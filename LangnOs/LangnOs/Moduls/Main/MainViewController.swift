@@ -8,11 +8,26 @@
 
 import UIKit
 
-final class MainViewController: UIViewController {
+final class MainViewController: BindibleViewController<MainViewModelInputProtocol & MainViewModelOutputProtocol> {
 
+    // MARK: - Lifecycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        initializeComponents()
+    }
+    
+    // MARK: - Override
+    
+    override func bindViewModel() {
+        
+    }
+    
+    // MARK: - Private methods
+    
+    private func initializeComponents() {
+        navigationItem.drive(model: viewModel?.navigationItemDrivableModel)
     }
 
 }

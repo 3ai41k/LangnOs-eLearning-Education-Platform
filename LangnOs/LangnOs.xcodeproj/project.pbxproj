@@ -30,6 +30,11 @@
 		8DD28BC92526806E00F59B7D /* BorderedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD28BC82526806E00F59B7D /* BorderedButton.swift */; };
 		8DD28BCB252680EC00F59B7D /* PresentationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD28BCA252680EC00F59B7D /* PresentationViewModel.swift */; };
 		8DD28BCD2526815C00F59B7D /* BindibleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD28BCC2526815C00F59B7D /* BindibleViewController.swift */; };
+		8DD28BCF252683A100F59B7D /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD28BCE252683A100F59B7D /* MainViewModel.swift */; };
+		8DD28BD32526854300F59B7D /* UINavigationItem+Drivable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD28BD22526854300F59B7D /* UINavigationItem+Drivable.swift */; };
+		8DD28BD52526856B00F59B7D /* NavigationItemDrivableModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD28BD42526856B00F59B7D /* NavigationItemDrivableModel.swift */; };
+		8DD28BDB2526864400F59B7D /* DrivableModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD28BDA2526864400F59B7D /* DrivableModelProtocol.swift */; };
+		8DD28BDD2526866600F59B7D /* DrivableViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD28BDC2526866600F59B7D /* DrivableViewProtocol.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,6 +63,11 @@
 		8DD28BC82526806E00F59B7D /* BorderedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BorderedButton.swift; sourceTree = "<group>"; };
 		8DD28BCA252680EC00F59B7D /* PresentationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentationViewModel.swift; sourceTree = "<group>"; };
 		8DD28BCC2526815C00F59B7D /* BindibleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BindibleViewController.swift; sourceTree = "<group>"; };
+		8DD28BCE252683A100F59B7D /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
+		8DD28BD22526854300F59B7D /* UINavigationItem+Drivable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationItem+Drivable.swift"; sourceTree = "<group>"; };
+		8DD28BD42526856B00F59B7D /* NavigationItemDrivableModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationItemDrivableModel.swift; sourceTree = "<group>"; };
+		8DD28BDA2526864400F59B7D /* DrivableModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrivableModelProtocol.swift; sourceTree = "<group>"; };
+		8DD28BDC2526866600F59B7D /* DrivableViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrivableViewProtocol.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -164,6 +174,7 @@
 			isa = PBXGroup;
 			children = (
 				8DD28BB225266F6800F59B7D /* MainCoordinator.swift */,
+				8DD28BCE252683A100F59B7D /* MainViewModel.swift */,
 				8DD28BAE25266F4000F59B7D /* MainViewController.swift */,
 				8DD28BAF25266F4000F59B7D /* MainViewController.xib */,
 			);
@@ -191,6 +202,7 @@
 			isa = PBXGroup;
 			children = (
 				8DD28BB5252675F800F59B7D /* UITabBarItem+Init.swift */,
+				8DD28BD22526854300F59B7D /* UINavigationItem+Drivable.swift */,
 			);
 			path = "UIKit+Extensions";
 			sourceTree = "<group>";
@@ -225,9 +237,28 @@
 		8DD28BC72526803500F59B7D /* CustomUI */ = {
 			isa = PBXGroup;
 			children = (
-				8DD28BC82526806E00F59B7D /* BorderedButton.swift */,
+				8DD28BD12526849000F59B7D /* Buttons */,
+				8DD28BD02526848100F59B7D /* DrivableViews */,
 			);
 			path = CustomUI;
+			sourceTree = "<group>";
+		};
+		8DD28BD02526848100F59B7D /* DrivableViews */ = {
+			isa = PBXGroup;
+			children = (
+				8DD28BDA2526864400F59B7D /* DrivableModelProtocol.swift */,
+				8DD28BDC2526866600F59B7D /* DrivableViewProtocol.swift */,
+				8DD28BD42526856B00F59B7D /* NavigationItemDrivableModel.swift */,
+			);
+			path = DrivableViews;
+			sourceTree = "<group>";
+		};
+		8DD28BD12526849000F59B7D /* Buttons */ = {
+			isa = PBXGroup;
+			children = (
+				8DD28BC82526806E00F59B7D /* BorderedButton.swift */,
+			);
+			path = Buttons;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -309,6 +340,8 @@
 				8DD28B85252667F600F59B7D /* AppDelegate.swift in Sources */,
 				8DD28BB325266F6800F59B7D /* MainCoordinator.swift in Sources */,
 				8DD28BA425266B2500F59B7D /* Coordinator.swift in Sources */,
+				8DD28BDB2526864400F59B7D /* DrivableModelProtocol.swift in Sources */,
+				8DD28BD32526854300F59B7D /* UINavigationItem+Drivable.swift in Sources */,
 				8DD28BC92526806E00F59B7D /* BorderedButton.swift in Sources */,
 				8DD28BB92526774400F59B7D /* String+Localize.swift in Sources */,
 				8DD28BC625267A1700F59B7D /* PresentationCoordinator.swift in Sources */,
@@ -318,9 +351,12 @@
 				8DD28BA625266BCE00F59B7D /* RootCoordinator.swift in Sources */,
 				8DD28BAA25266CDB00F59B7D /* RootViewModel.swift in Sources */,
 				8DD28BB6252675F800F59B7D /* UITabBarItem+Init.swift in Sources */,
+				8DD28BD52526856B00F59B7D /* NavigationItemDrivableModel.swift in Sources */,
 				8DD28B87252667F600F59B7D /* SceneDelegate.swift in Sources */,
 				8DD28BCB252680EC00F59B7D /* PresentationViewModel.swift in Sources */,
+				8DD28BDD2526866600F59B7D /* DrivableViewProtocol.swift in Sources */,
 				8DD28BB025266F4000F59B7D /* MainViewController.swift in Sources */,
+				8DD28BCF252683A100F59B7D /* MainViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -13,10 +13,13 @@ final class MainCoordinator: Coordinator {
     // MARK: - Override
     
     override func start() {
+        let mainViewModel = MainViewModel()
         let mainViewController = MainViewController()
+        mainViewController.viewModel = mainViewModel
         mainViewController.tabBarItem = UITabBarItem(provider: .main)
         
-        viewController = mainViewController
+        let navigationController = UINavigationController(rootViewController: mainViewController)
+        viewController = navigationController
     }
     
 }

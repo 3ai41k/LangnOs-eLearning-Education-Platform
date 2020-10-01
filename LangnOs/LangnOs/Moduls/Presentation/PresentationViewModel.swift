@@ -18,7 +18,7 @@ protocol PresentationViewModelOutputProtocol {
 
 final class PresentationViewModel { }
 
-// MARK: - RootViewModelInputProtocol
+// MARK: - PresentationViewModelInputProtocol
 
 extension PresentationViewModel: PresentationViewModelInputProtocol {
     
