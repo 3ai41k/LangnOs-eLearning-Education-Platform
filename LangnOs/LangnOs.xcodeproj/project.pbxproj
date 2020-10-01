@@ -24,6 +24,12 @@
 		8DD28BB6252675F800F59B7D /* UITabBarItem+Init.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD28BB5252675F800F59B7D /* UITabBarItem+Init.swift */; };
 		8DD28BB92526774400F59B7D /* String+Localize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD28BB82526774400F59B7D /* String+Localize.swift */; };
 		8DD28BBD2526793900F59B7D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8DD28BBF2526793900F59B7D /* Localizable.strings */; };
+		8DD28BC3252679F600F59B7D /* PresentationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD28BC1252679F600F59B7D /* PresentationViewController.swift */; };
+		8DD28BC4252679F600F59B7D /* PresentationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DD28BC2252679F600F59B7D /* PresentationViewController.xib */; };
+		8DD28BC625267A1700F59B7D /* PresentationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD28BC525267A1700F59B7D /* PresentationCoordinator.swift */; };
+		8DD28BC92526806E00F59B7D /* BorderedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD28BC82526806E00F59B7D /* BorderedButton.swift */; };
+		8DD28BCB252680EC00F59B7D /* PresentationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD28BCA252680EC00F59B7D /* PresentationViewModel.swift */; };
+		8DD28BCD2526815C00F59B7D /* BindibleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD28BCC2526815C00F59B7D /* BindibleViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +52,12 @@
 		8DD28BB5252675F800F59B7D /* UITabBarItem+Init.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITabBarItem+Init.swift"; sourceTree = "<group>"; };
 		8DD28BB82526774400F59B7D /* String+Localize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Localize.swift"; sourceTree = "<group>"; };
 		8DD28BBE2526793900F59B7D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		8DD28BC1252679F600F59B7D /* PresentationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentationViewController.swift; sourceTree = "<group>"; };
+		8DD28BC2252679F600F59B7D /* PresentationViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PresentationViewController.xib; sourceTree = "<group>"; };
+		8DD28BC525267A1700F59B7D /* PresentationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentationCoordinator.swift; sourceTree = "<group>"; };
+		8DD28BC82526806E00F59B7D /* BorderedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BorderedButton.swift; sourceTree = "<group>"; };
+		8DD28BCA252680EC00F59B7D /* PresentationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentationViewModel.swift; sourceTree = "<group>"; };
+		8DD28BCC2526815C00F59B7D /* BindibleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BindibleViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +90,7 @@
 		8DD28B83252667F600F59B7D /* LangnOs */ = {
 			isa = PBXGroup;
 			children = (
+				8DD28BC72526803500F59B7D /* CustomUI */,
 				8DD28BB72526773100F59B7D /* Foundation+Extensions */,
 				8DD28BB4252675E400F59B7D /* UIKit+Extensions */,
 				8DD28BAD25266EAD00F59B7D /* BusinessLayer */,
@@ -130,6 +143,7 @@
 				8DD28BA225266B1500F59B7D /* Generic */,
 				8DD28BA0252669F500F59B7D /* Root */,
 				8DD28BA125266A1C00F59B7D /* Main */,
+				8DD28BC0252679D300F59B7D /* Presentation */,
 			);
 			path = Moduls;
 			sourceTree = "<group>";
@@ -161,6 +175,7 @@
 			children = (
 				8DD28BA325266B2500F59B7D /* Coordinator.swift */,
 				8DD28BAB25266EA500F59B7D /* TabBarProvider.swift */,
+				8DD28BCC2526815C00F59B7D /* BindibleViewController.swift */,
 			);
 			path = Generic;
 			sourceTree = "<group>";
@@ -194,6 +209,25 @@
 				8DD28BBF2526793900F59B7D /* Localizable.strings */,
 			);
 			path = Localize;
+			sourceTree = "<group>";
+		};
+		8DD28BC0252679D300F59B7D /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				8DD28BC525267A1700F59B7D /* PresentationCoordinator.swift */,
+				8DD28BCA252680EC00F59B7D /* PresentationViewModel.swift */,
+				8DD28BC1252679F600F59B7D /* PresentationViewController.swift */,
+				8DD28BC2252679F600F59B7D /* PresentationViewController.xib */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		8DD28BC72526803500F59B7D /* CustomUI */ = {
+			isa = PBXGroup;
+			children = (
+				8DD28BC82526806E00F59B7D /* BorderedButton.swift */,
+			);
+			path = CustomUI;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -258,6 +292,7 @@
 				8DD28B94252667F800F59B7D /* LaunchScreen.storyboard in Resources */,
 				8DD28B91252667F800F59B7D /* Assets.xcassets in Resources */,
 				8DD28B8C252667F600F59B7D /* Main.storyboard in Resources */,
+				8DD28BC4252679F600F59B7D /* PresentationViewController.xib in Resources */,
 				8DD28BB125266F4000F59B7D /* MainViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -274,12 +309,17 @@
 				8DD28B85252667F600F59B7D /* AppDelegate.swift in Sources */,
 				8DD28BB325266F6800F59B7D /* MainCoordinator.swift in Sources */,
 				8DD28BA425266B2500F59B7D /* Coordinator.swift in Sources */,
+				8DD28BC92526806E00F59B7D /* BorderedButton.swift in Sources */,
 				8DD28BB92526774400F59B7D /* String+Localize.swift in Sources */,
+				8DD28BC625267A1700F59B7D /* PresentationCoordinator.swift in Sources */,
+				8DD28BC3252679F600F59B7D /* PresentationViewController.swift in Sources */,
 				8DD28B8F252667F600F59B7D /* LangnOs.xcdatamodeld in Sources */,
+				8DD28BCD2526815C00F59B7D /* BindibleViewController.swift in Sources */,
 				8DD28BA625266BCE00F59B7D /* RootCoordinator.swift in Sources */,
 				8DD28BAA25266CDB00F59B7D /* RootViewModel.swift in Sources */,
 				8DD28BB6252675F800F59B7D /* UITabBarItem+Init.swift in Sources */,
 				8DD28B87252667F600F59B7D /* SceneDelegate.swift in Sources */,
+				8DD28BCB252680EC00F59B7D /* PresentationViewModel.swift in Sources */,
 				8DD28BB025266F4000F59B7D /* MainViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
