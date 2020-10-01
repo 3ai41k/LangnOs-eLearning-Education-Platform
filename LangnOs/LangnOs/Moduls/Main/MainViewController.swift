@@ -10,6 +10,10 @@ import UIKit
 
 final class MainViewController: BindibleViewController<MainViewModelInputProtocol & MainViewModelOutputProtocol> {
 
+    // MARK: - IBOutlets
+    
+    
+    
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
@@ -28,6 +32,7 @@ final class MainViewController: BindibleViewController<MainViewModelInputProtoco
     
     private func initializeComponents() {
         navigationItem.drive(model: viewModel?.navigationItemDrivableModel)
+        navigationController?.navigationBar.drive(model: viewModel?.navigationBarDrivableModel)
     }
 
 }
