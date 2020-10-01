@@ -58,16 +58,72 @@
 		8DD28B83252667F600F59B7D /* LangnOs */ = {
 			isa = PBXGroup;
 			children = (
-				8DD28B84252667F600F59B7D /* AppDelegate.swift */,
-				8DD28B86252667F600F59B7D /* SceneDelegate.swift */,
-				8DD28B88252667F600F59B7D /* ViewController.swift */,
-				8DD28B8A252667F600F59B7D /* Main.storyboard */,
-				8DD28B90252667F800F59B7D /* Assets.xcassets */,
-				8DD28B92252667F800F59B7D /* LaunchScreen.storyboard */,
-				8DD28B95252667F800F59B7D /* Info.plist */,
+				8DD28B9F252669EF00F59B7D /* Moduls */,
+				8DD28B9B252668D600F59B7D /* Resources */,
 				8DD28B8D252667F600F59B7D /* LangnOs.xcdatamodeld */,
 			);
 			path = LangnOs;
+			sourceTree = "<group>";
+		};
+		8DD28B9B252668D600F59B7D /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				8DD28B9E2526690400F59B7D /* PropertyLists */,
+				8DD28B9D252668ED00F59B7D /* Storyboards */,
+				8DD28B9C252668E400F59B7D /* Assets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		8DD28B9C252668E400F59B7D /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				8DD28B90252667F800F59B7D /* Assets.xcassets */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
+		8DD28B9D252668ED00F59B7D /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				8DD28B8A252667F600F59B7D /* Main.storyboard */,
+				8DD28B92252667F800F59B7D /* LaunchScreen.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		8DD28B9E2526690400F59B7D /* PropertyLists */ = {
+			isa = PBXGroup;
+			children = (
+				8DD28B95252667F800F59B7D /* Info.plist */,
+			);
+			path = PropertyLists;
+			sourceTree = "<group>";
+		};
+		8DD28B9F252669EF00F59B7D /* Moduls */ = {
+			isa = PBXGroup;
+			children = (
+				8DD28BA0252669F500F59B7D /* Root */,
+				8DD28BA125266A1C00F59B7D /* Main */,
+			);
+			path = Moduls;
+			sourceTree = "<group>";
+		};
+		8DD28BA0252669F500F59B7D /* Root */ = {
+			isa = PBXGroup;
+			children = (
+				8DD28B84252667F600F59B7D /* AppDelegate.swift */,
+				8DD28B86252667F600F59B7D /* SceneDelegate.swift */,
+			);
+			path = Root;
+			sourceTree = "<group>";
+		};
+		8DD28BA125266A1C00F59B7D /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				8DD28B88252667F600F59B7D /* ViewController.swift */,
+			);
+			path = Main;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -290,7 +346,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = YH2LL6KMKW;
-				INFOPLIST_FILE = LangnOs/Info.plist;
+				INFOPLIST_FILE = LangnOs/Resources/PropertyLists/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -309,7 +365,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = YH2LL6KMKW;
-				INFOPLIST_FILE = LangnOs/Info.plist;
+				INFOPLIST_FILE = LangnOs/Resources/PropertyLists/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
