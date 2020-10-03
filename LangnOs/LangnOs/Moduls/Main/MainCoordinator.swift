@@ -16,6 +16,7 @@ final class MainCoordinator: Coordinator {
         let mainViewModel = MainViewModel()
         let mainViewController = MainViewController()
         mainViewController.viewModel = mainViewModel
+        mainViewController.collectionViewCellFactory = MainCellFactory()
         mainViewController.tabBarItem = UITabBarItem(provider: .main)
         
         let navigationController = UINavigationController(rootViewController: mainViewController)

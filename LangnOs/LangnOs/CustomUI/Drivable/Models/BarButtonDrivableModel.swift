@@ -1,5 +1,5 @@
 //
-//  NavigationItemDrivableModel.swift
+//  BarButtonDrivableModel.swift
 //  LangnOs
 //
 //  Created by Nikita Lizogubov on 02.10.2020.
@@ -8,6 +8,7 @@
 
 import Foundation
 
-struct NavigationItemDrivableModel: DrivableModelProtocol {
-    let title: String
+struct BarButtonDrivableModel: DrivableModelProtocol {
+    let target: Any?
+    let selector: Selector?
 }

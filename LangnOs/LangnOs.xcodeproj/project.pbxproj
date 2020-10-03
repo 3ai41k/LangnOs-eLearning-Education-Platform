@@ -37,6 +37,17 @@
 		8DD28BDD2526866600F59B7D /* DrivableViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD28BDC2526866600F59B7D /* DrivableViewProtocol.swift */; };
 		8DD28BDF2526886200F59B7D /* NavigationBarDrivableModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD28BDE2526886200F59B7D /* NavigationBarDrivableModel.swift */; };
 		8DD28BE12526889200F59B7D /* UINavigationBar+Drivable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD28BE02526889200F59B7D /* UINavigationBar+Drivable.swift */; };
+		8DD28BEE2527A52100F59B7D /* BarButtonDrivableModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD28BED2527A52100F59B7D /* BarButtonDrivableModel.swift */; };
+		8DD28BF02527A69800F59B7D /* UIBarButtonItem+Init.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD28BEF2527A69800F59B7D /* UIBarButtonItem+Init.swift */; };
+		8DD28BF52527ADF300F59B7D /* UniversalCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD28BF42527ADF300F59B7D /* UniversalCollectionView.swift */; };
+		8DD28BF72527B0E500F59B7D /* UniversalCollectionViewInputProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD28BF62527B0E500F59B7D /* UniversalCollectionViewInputProtocol.swift */; };
+		8DD28BF92527B3C700F59B7D /* UniversalCollectionViewCellFactoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD28BF82527B3C700F59B7D /* UniversalCollectionViewCellFactoryProtocol.swift */; };
+		8DD28BFB2527B76800F59B7D /* MainCellFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD28BFA2527B76800F59B7D /* MainCellFactory.swift */; };
+		8DD28BFF2527BCBF00F59B7D /* UniversalCollectionViewCellRegistratable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD28BFE2527BCBF00F59B7D /* UniversalCollectionViewCellRegistratable.swift */; };
+		8DD28C0425289C5300F59B7D /* VocabularyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD28C0225289C5300F59B7D /* VocabularyCollectionViewCell.swift */; };
+		8DD28C0525289C5300F59B7D /* VocabularyCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DD28C0325289C5300F59B7D /* VocabularyCollectionViewCell.xib */; };
+		8DD28C0725289C8C00F59B7D /* VocabularyCollectionViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD28C0625289C8C00F59B7D /* VocabularyCollectionViewCellViewModel.swift */; };
+		8DD28C0925289CCB00F59B7D /* CellViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD28C0825289CCB00F59B7D /* CellViewModelProtocol.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -72,6 +83,17 @@
 		8DD28BDC2526866600F59B7D /* DrivableViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrivableViewProtocol.swift; sourceTree = "<group>"; };
 		8DD28BDE2526886200F59B7D /* NavigationBarDrivableModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarDrivableModel.swift; sourceTree = "<group>"; };
 		8DD28BE02526889200F59B7D /* UINavigationBar+Drivable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationBar+Drivable.swift"; sourceTree = "<group>"; };
+		8DD28BED2527A52100F59B7D /* BarButtonDrivableModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarButtonDrivableModel.swift; sourceTree = "<group>"; };
+		8DD28BEF2527A69800F59B7D /* UIBarButtonItem+Init.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIBarButtonItem+Init.swift"; sourceTree = "<group>"; };
+		8DD28BF42527ADF300F59B7D /* UniversalCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniversalCollectionView.swift; sourceTree = "<group>"; };
+		8DD28BF62527B0E500F59B7D /* UniversalCollectionViewInputProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniversalCollectionViewInputProtocol.swift; sourceTree = "<group>"; };
+		8DD28BF82527B3C700F59B7D /* UniversalCollectionViewCellFactoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniversalCollectionViewCellFactoryProtocol.swift; sourceTree = "<group>"; };
+		8DD28BFA2527B76800F59B7D /* MainCellFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCellFactory.swift; sourceTree = "<group>"; };
+		8DD28BFE2527BCBF00F59B7D /* UniversalCollectionViewCellRegistratable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniversalCollectionViewCellRegistratable.swift; sourceTree = "<group>"; };
+		8DD28C0225289C5300F59B7D /* VocabularyCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabularyCollectionViewCell.swift; sourceTree = "<group>"; };
+		8DD28C0325289C5300F59B7D /* VocabularyCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VocabularyCollectionViewCell.xib; sourceTree = "<group>"; };
+		8DD28C0625289C8C00F59B7D /* VocabularyCollectionViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabularyCollectionViewCellViewModel.swift; sourceTree = "<group>"; };
+		8DD28C0825289CCB00F59B7D /* CellViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellViewModelProtocol.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -181,6 +203,7 @@
 				8DD28BCE252683A100F59B7D /* MainViewModel.swift */,
 				8DD28BAE25266F4000F59B7D /* MainViewController.swift */,
 				8DD28BAF25266F4000F59B7D /* MainViewController.xib */,
+				8DD28BFA2527B76800F59B7D /* MainCellFactory.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -206,8 +229,8 @@
 			isa = PBXGroup;
 			children = (
 				8DD28BB5252675F800F59B7D /* UITabBarItem+Init.swift */,
-				8DD28BD22526854300F59B7D /* UINavigationItem+Drivable.swift */,
-				8DD28BE02526889200F59B7D /* UINavigationBar+Drivable.swift */,
+				8DD28BEF2527A69800F59B7D /* UIBarButtonItem+Init.swift */,
+				8DD28BEC2527A47100F59B7D /* Drivable */,
 			);
 			path = "UIKit+Extensions";
 			sourceTree = "<group>";
@@ -242,21 +265,20 @@
 		8DD28BC72526803500F59B7D /* CustomUI */ = {
 			isa = PBXGroup;
 			children = (
+				8DD28BF32527AD2C00F59B7D /* CollectionView */,
 				8DD28BD12526849000F59B7D /* Buttons */,
-				8DD28BD02526848100F59B7D /* DrivableViews */,
+				8DD28BD02526848100F59B7D /* Drivable */,
 			);
 			path = CustomUI;
 			sourceTree = "<group>";
 		};
-		8DD28BD02526848100F59B7D /* DrivableViews */ = {
+		8DD28BD02526848100F59B7D /* Drivable */ = {
 			isa = PBXGroup;
 			children = (
-				8DD28BDA2526864400F59B7D /* DrivableModelProtocol.swift */,
-				8DD28BDC2526866600F59B7D /* DrivableViewProtocol.swift */,
-				8DD28BD42526856B00F59B7D /* NavigationItemDrivableModel.swift */,
-				8DD28BDE2526886200F59B7D /* NavigationBarDrivableModel.swift */,
+				8DD28BEA2527A42100F59B7D /* Protocols */,
+				8DD28BEB2527A43000F59B7D /* Models */,
 			);
-			path = DrivableViews;
+			path = Drivable;
 			sourceTree = "<group>";
 		};
 		8DD28BD12526849000F59B7D /* Buttons */ = {
@@ -265,6 +287,65 @@
 				8DD28BC82526806E00F59B7D /* BorderedButton.swift */,
 			);
 			path = Buttons;
+			sourceTree = "<group>";
+		};
+		8DD28BEA2527A42100F59B7D /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				8DD28BDA2526864400F59B7D /* DrivableModelProtocol.swift */,
+				8DD28BDC2526866600F59B7D /* DrivableViewProtocol.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		8DD28BEB2527A43000F59B7D /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				8DD28BD42526856B00F59B7D /* NavigationItemDrivableModel.swift */,
+				8DD28BDE2526886200F59B7D /* NavigationBarDrivableModel.swift */,
+				8DD28BED2527A52100F59B7D /* BarButtonDrivableModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		8DD28BEC2527A47100F59B7D /* Drivable */ = {
+			isa = PBXGroup;
+			children = (
+				8DD28BD22526854300F59B7D /* UINavigationItem+Drivable.swift */,
+				8DD28BE02526889200F59B7D /* UINavigationBar+Drivable.swift */,
+			);
+			path = Drivable;
+			sourceTree = "<group>";
+		};
+		8DD28BF32527AD2C00F59B7D /* CollectionView */ = {
+			isa = PBXGroup;
+			children = (
+				8DD28BF42527ADF300F59B7D /* UniversalCollectionView.swift */,
+				8DD28BF62527B0E500F59B7D /* UniversalCollectionViewInputProtocol.swift */,
+				8DD28BF82527B3C700F59B7D /* UniversalCollectionViewCellFactoryProtocol.swift */,
+				8DD28C0025289BD100F59B7D /* Cells */,
+			);
+			path = CollectionView;
+			sourceTree = "<group>";
+		};
+		8DD28C0025289BD100F59B7D /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				8DD28BFE2527BCBF00F59B7D /* UniversalCollectionViewCellRegistratable.swift */,
+				8DD28C0825289CCB00F59B7D /* CellViewModelProtocol.swift */,
+				8DD28C0125289BEF00F59B7D /* Vocabulary */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		8DD28C0125289BEF00F59B7D /* Vocabulary */ = {
+			isa = PBXGroup;
+			children = (
+				8DD28C0225289C5300F59B7D /* VocabularyCollectionViewCell.swift */,
+				8DD28C0625289C8C00F59B7D /* VocabularyCollectionViewCellViewModel.swift */,
+				8DD28C0325289C5300F59B7D /* VocabularyCollectionViewCell.xib */,
+			);
+			path = Vocabulary;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -331,6 +412,7 @@
 				8DD28B8C252667F600F59B7D /* Main.storyboard in Resources */,
 				8DD28BC4252679F600F59B7D /* PresentationViewController.xib in Resources */,
 				8DD28BB125266F4000F59B7D /* MainViewController.xib in Resources */,
+				8DD28C0525289C5300F59B7D /* VocabularyCollectionViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -350,19 +432,29 @@
 				8DD28BA425266B2500F59B7D /* Coordinator.swift in Sources */,
 				8DD28BDB2526864400F59B7D /* DrivableModelProtocol.swift in Sources */,
 				8DD28BD32526854300F59B7D /* UINavigationItem+Drivable.swift in Sources */,
+				8DD28BFF2527BCBF00F59B7D /* UniversalCollectionViewCellRegistratable.swift in Sources */,
 				8DD28BC92526806E00F59B7D /* BorderedButton.swift in Sources */,
 				8DD28BB92526774400F59B7D /* String+Localize.swift in Sources */,
+				8DD28C0925289CCB00F59B7D /* CellViewModelProtocol.swift in Sources */,
+				8DD28BF72527B0E500F59B7D /* UniversalCollectionViewInputProtocol.swift in Sources */,
 				8DD28BC625267A1700F59B7D /* PresentationCoordinator.swift in Sources */,
 				8DD28BC3252679F600F59B7D /* PresentationViewController.swift in Sources */,
 				8DD28B8F252667F600F59B7D /* LangnOs.xcdatamodeld in Sources */,
 				8DD28BCD2526815C00F59B7D /* BindibleViewController.swift in Sources */,
+				8DD28BF92527B3C700F59B7D /* UniversalCollectionViewCellFactoryProtocol.swift in Sources */,
 				8DD28BA625266BCE00F59B7D /* RootCoordinator.swift in Sources */,
 				8DD28BAA25266CDB00F59B7D /* RootViewModel.swift in Sources */,
 				8DD28BB6252675F800F59B7D /* UITabBarItem+Init.swift in Sources */,
+				8DD28C0425289C5300F59B7D /* VocabularyCollectionViewCell.swift in Sources */,
+				8DD28BF02527A69800F59B7D /* UIBarButtonItem+Init.swift in Sources */,
 				8DD28BD52526856B00F59B7D /* NavigationItemDrivableModel.swift in Sources */,
 				8DD28B87252667F600F59B7D /* SceneDelegate.swift in Sources */,
+				8DD28C0725289C8C00F59B7D /* VocabularyCollectionViewCellViewModel.swift in Sources */,
+				8DD28BEE2527A52100F59B7D /* BarButtonDrivableModel.swift in Sources */,
 				8DD28BCB252680EC00F59B7D /* PresentationViewModel.swift in Sources */,
+				8DD28BF52527ADF300F59B7D /* UniversalCollectionView.swift in Sources */,
 				8DD28BDD2526866600F59B7D /* DrivableViewProtocol.swift in Sources */,
+				8DD28BFB2527B76800F59B7D /* MainCellFactory.swift in Sources */,
 				8DD28BB025266F4000F59B7D /* MainViewController.swift in Sources */,
 				8DD28BCF252683A100F59B7D /* MainViewModel.swift in Sources */,
 			);

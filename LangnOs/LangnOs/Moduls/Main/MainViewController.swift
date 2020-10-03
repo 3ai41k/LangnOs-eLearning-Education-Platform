@@ -8,11 +8,20 @@
 
 import UIKit
 
-final class MainViewController: BindibleViewController<MainViewModelInputProtocol & MainViewModelOutputProtocol> {
+final class MainViewController: BindibleViewController<MainViewModelInputProtocol & UniversalCollectionViewInputProtocol & MainViewModelOutputProtocol> {
 
     // MARK: - IBOutlets
     
+    @IBOutlet private weak var fiexedCollectionView: UniversalCollectionView! {
+        didSet {
+            guard let viewModel = viewModel, let cellFactory = collectionViewCellFactory else { return }
+            fiexedCollectionView.start(viewModel: viewModel, cellFactory: cellFactory)
+        }
+    }
     
+    // MARK: - Publiec properties
+    
+    var collectionViewCellFactory: UniversalCollectionViewCellFactoryProtocol?
     
     // MARK: - Lifecycle
     

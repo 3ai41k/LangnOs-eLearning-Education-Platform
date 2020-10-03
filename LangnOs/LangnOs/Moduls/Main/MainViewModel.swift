@@ -17,7 +17,9 @@ protocol MainViewModelOutputProtocol {
     
 }
 
-final class MainViewModel { }
+final class MainViewModel {
+    
+}
 
 // MARK: - MainViewModelInputProtocol
 
@@ -31,6 +33,20 @@ extension MainViewModel: MainViewModelInputProtocol {
         NavigationBarDrivableModel(isBottomLineHidden: true,
                                    backgroundColor: .systemBackground,
                                    prefersLargeTitles: true)
+    }
+    
+}
+
+// MARK: - FixedCollectionViewInputProtocol
+
+extension MainViewModel: UniversalCollectionViewInputProtocol {
+    
+    var numberOfItemsInSection: Int {
+        5
+    }
+    
+    func cellViewModelForRowAt(indexPath: IndexPath) -> CellViewModelProtocol {
+        VocabularyCollectionViewCellViewModel()
     }
     
 }

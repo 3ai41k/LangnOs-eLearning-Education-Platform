@@ -18,6 +18,8 @@ extension UINavigationItem: DrivableViewProtocol {
         guard let model = model else { return }
         
         self.title = model.title
+        self.leftBarButtonItems = []
+        self.rightBarButtonItems = []
     }
     
 }
