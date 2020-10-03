@@ -8,11 +8,15 @@
 
 import UIKit
 
+protocol UniversalCollectionViewViewModelProtocol: UniversalCollectionViewInputProtocol, UniversalCollectionViewBindingProtocol, UniversalCollectionViewOutputProtocol {
+
+}
+
 final class UniversalCollectionView: UICollectionView {
     
     // MARK: - Private properties
     
-    private var viewModel: (UniversalCollectionViewInputProtocol & UniversalCollectionViewBindingProtocol)! {
+    private var viewModel: UniversalCollectionViewViewModelProtocol! {
         didSet {
             viewModel.reloadData = {
                 self.reloadData()
@@ -27,12 +31,14 @@ final class UniversalCollectionView: UICollectionView {
     
     // MARK: - Public methods
     
-    func start(viewModel: UniversalCollectionViewInputProtocol & UniversalCollectionViewBindingProtocol, cellFactory: UniversalCollectionViewCellFactoryProtocol) {
+    func start(viewModel: UniversalCollectionViewViewModelProtocol,
+               cellFactory: UniversalCollectionViewCellFactoryProtocol) {
         self.viewModel = viewModel
         self.cellFactory = cellFactory
         
         backgroundColor = viewModel.backgroundColor
         dataSource = self
+        delegate = self
         
         reloadData()
     }
@@ -52,6 +58,16 @@ extension UniversalCollectionView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cellViewModel = viewModel.cellViewModelForRowAt(indexPath: indexPath)
         return cellFactory.generateCell(cellViewModel: cellViewModel, collectionView: collectionView, indexPath: indexPath)
+    }
+    
+}
+
+// MARK: - UICollectionViewDelegate
+
+extension UniversalCollectionView: UICollectionViewDelegate {
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        viewModel.didSelectCellAt(indexPath: indexPath)
     }
     
 }

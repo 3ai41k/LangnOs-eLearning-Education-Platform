@@ -18,18 +18,26 @@ protocol MainViewModelOutputProtocol {
     func singInAction()
 }
 
-final class MainViewModel: UniversalCollectionViewBindingProtocol {
+final class MainViewModel: UniversalCollectionViewViewModelProtocol {
     
     // MARK: - Public properties
     
     var reloadData: (() -> Void)?
+    
+    var backgroundColor: UIColor {
+        .lightGray
+    }
+    
+    var numberOfItemsInSection: Int {
+        vocabularies.count
+    }
     
     // MARK: - Private properties
     
     private let router: MainNavigationProtocol
     private let cloudFirestore: FirebaseDatabaseProtocol
     
-    private var cellViewModels: [CellViewModelProtocol]
+    private var vocabularies: [Vocabulary]
     
     // MARK: - Init
     
@@ -37,7 +45,19 @@ final class MainViewModel: UniversalCollectionViewBindingProtocol {
         self.router = router
         self.cloudFirestore = cloudFirestore
         
-        self.cellViewModels = []
+        self.vocabularies = []
+    }
+    
+    // MARK: - Public methods
+    
+    func cellViewModelForRowAt(indexPath: IndexPath) -> CellViewModelProtocol {
+        let vocabulary = vocabularies[indexPath.row]
+        return VocabularyCollectionViewCellViewModel(vocabulary: vocabulary)
+    }
+    
+    func didSelectCellAt(indexPath: IndexPath) {
+        let vocabulary = vocabularies[indexPath.row]
+        router.navigateToVocabularyStatistic(vocabulary)
     }
     
 }
@@ -61,33 +81,13 @@ extension MainViewModel: MainViewModelInputProtocol {
         cloudFirestore.fetch(request: request) { (result: Result<[Vocabulary], Error>) in
             switch result {
             case .success(let vocabularies):
-                self.cellViewModels = vocabularies.map({
-                    VocabularyCollectionViewCellViewModel(vocabulary: $0)
-                })
+                self.vocabularies = vocabularies
                 self.reloadData?()
             case .failure(let error):
                 // FIX IT: Add error handling
                 print(error)
             }
         }
-    }
-    
-}
-
-// MARK: - FixedCollectionViewInputProtocol
-
-extension MainViewModel: UniversalCollectionViewInputProtocol {
-    
-    var backgroundColor: UIColor {
-        .lightGray
-    }
-    
-    var numberOfItemsInSection: Int {
-        cellViewModels.count
-    }
-    
-    func cellViewModelForRowAt(indexPath: IndexPath) -> CellViewModelProtocol {
-        cellViewModels[indexPath.row]
     }
     
 }
