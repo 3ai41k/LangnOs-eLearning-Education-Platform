@@ -7,3 +7,16 @@
 //
 
 import Foundation
+
+final class SingInCoordinator: Coordinator {
+    
+    // MARK: - Override
+    
+    override func start() {
+        let singInViewController = SingInViewController()
+        
+        viewController = singInViewController
+        parentViewController?.present(singInViewController, animated: true, completion: nil)
+    }
+    
+}

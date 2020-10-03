@@ -14,10 +14,20 @@ protocol MainViewModelInputProtocol {
 }
 
 protocol MainViewModelOutputProtocol {
-    
+    func singInAction()
 }
 
 final class MainViewModel {
+    
+    // MARK: - Private properties
+    
+    private let router: MainNavigationProtocol
+    
+    // MARK: - Init
+    
+    init(router: MainNavigationProtocol) {
+        self.router = router
+    }
     
 }
 
@@ -54,5 +64,9 @@ extension MainViewModel: UniversalCollectionViewInputProtocol {
 // MARK: - MainViewModelOutputProtocol
 
 extension MainViewModel: MainViewModelOutputProtocol {
+    
+    func singInAction() {
+        router.navigateToSingIn()
+    }
     
 }

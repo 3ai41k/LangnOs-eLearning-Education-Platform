@@ -8,12 +8,16 @@
 
 import UIKit
 
+protocol MainNavigationProtocol {
+    func navigateToSingIn()
+}
+
 final class MainCoordinator: Coordinator {
     
     // MARK: - Override
     
     override func start() {
-        let mainViewModel = MainViewModel()
+        let mainViewModel = MainViewModel(router: self)
         let mainViewController = MainViewController()
         mainViewController.viewModel = mainViewModel
         mainViewController.collectionViewCellFactory = MainCellFactory()
@@ -21,6 +25,17 @@ final class MainCoordinator: Coordinator {
         
         let navigationController = UINavigationController(rootViewController: mainViewController)
         viewController = navigationController
+    }
+    
+}
+
+// MARK: - MainNavigationProtocol
+
+extension MainCoordinator: MainNavigationProtocol {
+    
+    func navigateToSingIn() {
+        let singInCoordinator = SingInCoordinator(parentViewController: viewController)
+        singInCoordinator.start()
     }
     
 }

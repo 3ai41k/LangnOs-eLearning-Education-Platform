@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -50,6 +50,9 @@
 		8DD28C0725289C8C00F59B7D /* VocabularyCollectionViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD28C0625289C8C00F59B7D /* VocabularyCollectionViewCellViewModel.swift */; };
 		8DD28C0925289CCB00F59B7D /* CellViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD28C0825289CCB00F59B7D /* CellViewModelProtocol.swift */; };
 		8DD28C0C2528A86D00F59B7D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8DD28C0B2528A86C00F59B7D /* GoogleService-Info.plist */; };
+		8DD28C122528AEC800F59B7D /* SingInCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD28C112528AEC800F59B7D /* SingInCoordinator.swift */; };
+		8DD28C152528AEEF00F59B7D /* SingInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD28C132528AEEF00F59B7D /* SingInViewController.swift */; };
+		8DD28C162528AEEF00F59B7D /* SingInViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DD28C142528AEEF00F59B7D /* SingInViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -100,6 +103,9 @@
 		8DD28C0625289C8C00F59B7D /* VocabularyCollectionViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabularyCollectionViewCellViewModel.swift; sourceTree = "<group>"; };
 		8DD28C0825289CCB00F59B7D /* CellViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellViewModelProtocol.swift; sourceTree = "<group>"; };
 		8DD28C0B2528A86C00F59B7D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		8DD28C112528AEC800F59B7D /* SingInCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingInCoordinator.swift; sourceTree = "<group>"; };
+		8DD28C132528AEEF00F59B7D /* SingInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingInViewController.swift; sourceTree = "<group>"; };
+		8DD28C142528AEEF00F59B7D /* SingInViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SingInViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -195,6 +201,8 @@
 			isa = PBXGroup;
 			children = (
 				8DD28BA225266B1500F59B7D /* Generic */,
+				8DD28C102528ADF500F59B7D /* SingUp */,
+				8DD28C0F2528ADEC00F59B7D /* SingIn */,
 				8DD28BA0252669F500F59B7D /* Root */,
 				8DD28BA125266A1C00F59B7D /* Main */,
 				8DD28BC0252679D300F59B7D /* Presentation */,
@@ -239,6 +247,8 @@
 		8DD28BAD25266EAD00F59B7D /* BusinessLayer */ = {
 			isa = PBXGroup;
 			children = (
+				8DD28C0E2528AA2C00F59B7D /* Models */,
+				8DD28C0D2528AA2200F59B7D /* Services */,
 			);
 			path = BusinessLayer;
 			sourceTree = "<group>";
@@ -366,13 +376,43 @@
 			path = Vocabulary;
 			sourceTree = "<group>";
 		};
+		8DD28C0D2528AA2200F59B7D /* Services */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		8DD28C0E2528AA2C00F59B7D /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		8DD28C0F2528ADEC00F59B7D /* SingIn */ = {
+			isa = PBXGroup;
+			children = (
+				8DD28C112528AEC800F59B7D /* SingInCoordinator.swift */,
+				8DD28C132528AEEF00F59B7D /* SingInViewController.swift */,
+				8DD28C142528AEEF00F59B7D /* SingInViewController.xib */,
+			);
+			path = SingIn;
+			sourceTree = "<group>";
+		};
+		8DD28C102528ADF500F59B7D /* SingUp */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = SingUp;
+			sourceTree = "<group>";
+		};
 		9DE6AD27133D13A9E079D3C7 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
 				4A5FD3A8E54929BE86BD1584 /* Pods-LangnOs.debug.xcconfig */,
 				857C62CE9E52E6B51FA9DA81 /* Pods-LangnOs.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -439,6 +479,7 @@
 				8DD28BBD2526793900F59B7D /* Localizable.strings in Resources */,
 				8DD28C0C2528A86D00F59B7D /* GoogleService-Info.plist in Resources */,
 				8DD28B94252667F800F59B7D /* LaunchScreen.storyboard in Resources */,
+				8DD28C162528AEEF00F59B7D /* SingInViewController.xib in Resources */,
 				8DD28B91252667F800F59B7D /* Assets.xcassets in Resources */,
 				8DD28B8C252667F600F59B7D /* Main.storyboard in Resources */,
 				8DD28BC4252679F600F59B7D /* PresentationViewController.xib in Resources */,
@@ -496,6 +537,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8DD28C152528AEEF00F59B7D /* SingInViewController.swift in Sources */,
 				8DD28BE12526889200F59B7D /* UINavigationBar+Drivable.swift in Sources */,
 				8DD28BAC25266EA500F59B7D /* TabBarProvider.swift in Sources */,
 				8DD28BA825266C8200F59B7D /* RootTabBarController.swift in Sources */,
@@ -529,6 +571,7 @@
 				8DD28BDD2526866600F59B7D /* DrivableViewProtocol.swift in Sources */,
 				8DD28BFB2527B76800F59B7D /* MainCellFactory.swift in Sources */,
 				8DD28BB025266F4000F59B7D /* MainViewController.swift in Sources */,
+				8DD28C122528AEC800F59B7D /* SingInCoordinator.swift in Sources */,
 				8DD28BCF252683A100F59B7D /* MainViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

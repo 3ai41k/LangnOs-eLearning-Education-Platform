@@ -43,5 +43,12 @@ final class MainViewController: BindibleViewController<MainViewModelInputProtoco
         navigationItem.drive(model: viewModel?.navigationItemDrivableModel)
         navigationController?.navigationBar.drive(model: viewModel?.navigationBarDrivableModel)
     }
+    
+    // MARK: - Actions
+    
+    @IBAction
+    private func didSingInTouch(_ sender: Any) {
+        viewModel?.singInAction()
+    }
 
 }

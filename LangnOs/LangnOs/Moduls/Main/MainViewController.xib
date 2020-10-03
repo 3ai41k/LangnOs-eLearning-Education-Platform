@@ -28,13 +28,23 @@
                         <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                     </collectionViewFlowLayout>
                 </collectionView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rdt-TX-nhC">
+                    <rect key="frame" x="352" y="824" width="62" height="38"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                    <state key="normal" title="Sing In"/>
+                    <connections>
+                        <action selector="didSingInTouch:" destination="-1" eventType="touchUpInside" id="7PA-bl-J3N"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
             <constraints>
                 <constraint firstItem="70X-a8-0LI" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="6EL-o0-I0Q"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="70X-a8-0LI" secondAttribute="trailing" id="70c-hB-FOT"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Rdt-TX-nhC" secondAttribute="trailing" id="82U-Xg-tOK"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="70X-a8-0LI" secondAttribute="bottom" id="Rcw-du-mm6"/>
                 <constraint firstItem="70X-a8-0LI" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="qVG-NS-auQ"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="Rdt-TX-nhC" secondAttribute="bottom" id="zYL-HL-3lb"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <point key="canvasLocation" x="139" y="153"/>
