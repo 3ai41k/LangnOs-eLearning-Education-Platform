@@ -17,7 +17,8 @@ final class MainCoordinator: Coordinator {
     // MARK: - Override
     
     override func start() {
-        let mainViewModel = MainViewModel(router: self)
+        let cloudFirestore = FirebaseDatabase()
+        let mainViewModel = MainViewModel(router: self, cloudFirestore: cloudFirestore)
         let mainViewController = MainViewController()
         mainViewController.viewModel = mainViewModel
         mainViewController.collectionViewCellFactory = MainCellFactory()

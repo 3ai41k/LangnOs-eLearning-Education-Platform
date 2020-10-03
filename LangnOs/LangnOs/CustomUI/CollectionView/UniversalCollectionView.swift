@@ -12,7 +12,13 @@ final class UniversalCollectionView: UICollectionView {
     
     // MARK: - Private properties
     
-    private var viewModel: UniversalCollectionViewInputProtocol!
+    private var viewModel: (UniversalCollectionViewInputProtocol & UniversalCollectionViewBindingProtocol)! {
+        didSet {
+            viewModel.reloadData = {
+                self.reloadData()
+            }
+        }
+    }
     private var cellFactory: UniversalCollectionViewCellFactoryProtocol! {
         didSet {
             cellFactory.registerAllCells(collectionView: self)
@@ -21,14 +27,17 @@ final class UniversalCollectionView: UICollectionView {
     
     // MARK: - Public methods
     
-    func start(viewModel: UniversalCollectionViewInputProtocol, cellFactory: UniversalCollectionViewCellFactoryProtocol) {
+    func start(viewModel: UniversalCollectionViewInputProtocol & UniversalCollectionViewBindingProtocol, cellFactory: UniversalCollectionViewCellFactoryProtocol) {
         self.viewModel = viewModel
         self.cellFactory = cellFactory
         
+        backgroundColor = viewModel.backgroundColor
         dataSource = self
         
         reloadData()
     }
+    
+    // MARK: - Private methods
     
 }
 

@@ -6,9 +6,21 @@
 //  Copyright © 2020 NL. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
-protocol UniversalCollectionViewInputProtocol {
+protocol UniversalCollectionDataSourceProtocol {
     var numberOfItemsInSection: Int { get }
     func cellViewModelForRowAt(indexPath: IndexPath) -> CellViewModelProtocol
+}
+
+protocol UniversalCollectionViewInputProtocol: UniversalCollectionDataSourceProtocol {
+    var backgroundColor: UIColor { get }
+}
+
+extension UniversalCollectionViewInputProtocol {
+    
+    var backgroundColor: UIColor {
+        .systemBackground
+    }
+    
 }

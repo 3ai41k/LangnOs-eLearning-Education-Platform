@@ -8,7 +8,9 @@
 
 import UIKit
 
-final class MainViewController: BindibleViewController<MainViewModelInputProtocol & UniversalCollectionViewInputProtocol & MainViewModelOutputProtocol> {
+typealias MainViewModelType = MainViewModelInputProtocol & UniversalCollectionViewInputProtocol & UniversalCollectionViewBindingProtocol & MainViewModelOutputProtocol
+
+final class MainViewController: BindibleViewController<MainViewModelType> {
 
     // MARK: - IBOutlets
     
@@ -29,6 +31,12 @@ final class MainViewController: BindibleViewController<MainViewModelInputProtoco
         super.viewDidLoad()
         
         initializeComponents()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        viewModel?.fetchData()
     }
     
     // MARK: - Override

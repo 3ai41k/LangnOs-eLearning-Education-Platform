@@ -6,27 +6,38 @@
 //  Copyright © 2020 NL. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 protocol MainViewModelInputProtocol {
     var navigationItemDrivableModel: DrivableModelProtocol { get }
     var navigationBarDrivableModel: DrivableModelProtocol { get }
+    func fetchData()
 }
 
 protocol MainViewModelOutputProtocol {
     func singInAction()
 }
 
-final class MainViewModel {
+final class MainViewModel: UniversalCollectionViewBindingProtocol {
+    
+    // MARK: - Public properties
+    
+    var reloadData: (() -> Void)?
     
     // MARK: - Private properties
     
     private let router: MainNavigationProtocol
+    private let cloudFirestore: FirebaseDatabaseProtocol
+    
+    private var cellViewModels: [CellViewModelProtocol]
     
     // MARK: - Init
     
-    init(router: MainNavigationProtocol) {
+    init(router: MainNavigationProtocol, cloudFirestore: FirebaseDatabaseProtocol) {
         self.router = router
+        self.cloudFirestore = cloudFirestore
+        
+        self.cellViewModels = []
     }
     
 }
@@ -45,18 +56,38 @@ extension MainViewModel: MainViewModelInputProtocol {
                                    prefersLargeTitles: true)
     }
     
+    func fetchData() {
+        let request = FirebaseDatabaseVocabularyRequest()
+        cloudFirestore.fetch(request: request) { (result: Result<[Vocabulary], Error>) in
+            switch result {
+            case .success(let vocabularies):
+                self.cellViewModels = vocabularies.map({
+                    VocabularyCollectionViewCellViewModel(vocabulary: $0)
+                })
+                self.reloadData?()
+            case .failure(let error):
+                // FIX IT: Add error handling
+                print(error)
+            }
+        }
+    }
+    
 }
 
 // MARK: - FixedCollectionViewInputProtocol
 
 extension MainViewModel: UniversalCollectionViewInputProtocol {
     
+    var backgroundColor: UIColor {
+        .lightGray
+    }
+    
     var numberOfItemsInSection: Int {
-        5
+        cellViewModels.count
     }
     
     func cellViewModelForRowAt(indexPath: IndexPath) -> CellViewModelProtocol {
-        VocabularyCollectionViewCellViewModel()
+        cellViewModels[indexPath.row]
     }
     
 }

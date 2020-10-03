@@ -8,6 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		61C7EECA589DD05A72E263FD /* Pods_LangnOs.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 838CBE43D71675BA7ED1743C /* Pods_LangnOs.framework */; };
+		8DAA553E25290FDD00FF5066 /* FirebaseDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DAA553D25290FDD00FF5066 /* FirebaseDatabase.swift */; };
+		8DAA55402529112B00FF5066 /* Vocabulary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DAA553F2529112B00FF5066 /* Vocabulary.swift */; };
+		8DAA55452529117200FF5066 /* FirebaseDatabaseEntityProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DAA55442529117200FF5066 /* FirebaseDatabaseEntityProtocol.swift */; };
+		8DAA55472529129E00FF5066 /* FirebaseDatabaseRequestProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DAA55462529129E00FF5066 /* FirebaseDatabaseRequestProtocol.swift */; };
+		8DAA554A252912BA00FF5066 /* FirebaseDatabaseVocabularyRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DAA5549252912BA00FF5066 /* FirebaseDatabaseVocabularyRequest.swift */; };
+		8DAA554C2529162000FF5066 /* UniversalCollectionViewBindingProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DAA554B2529162000FF5066 /* UniversalCollectionViewBindingProtocol.swift */; };
+		8DAA554E25291D3400FF5066 /* Word.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DAA554D25291D3400FF5066 /* Word.swift */; };
 		8DD28B85252667F600F59B7D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD28B84252667F600F59B7D /* AppDelegate.swift */; };
 		8DD28B87252667F600F59B7D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD28B86252667F600F59B7D /* SceneDelegate.swift */; };
 		8DD28B8C252667F600F59B7D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8DD28B8A252667F600F59B7D /* Main.storyboard */; };
@@ -59,6 +66,13 @@
 		4A5FD3A8E54929BE86BD1584 /* Pods-LangnOs.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LangnOs.debug.xcconfig"; path = "Target Support Files/Pods-LangnOs/Pods-LangnOs.debug.xcconfig"; sourceTree = "<group>"; };
 		838CBE43D71675BA7ED1743C /* Pods_LangnOs.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LangnOs.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		857C62CE9E52E6B51FA9DA81 /* Pods-LangnOs.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LangnOs.release.xcconfig"; path = "Target Support Files/Pods-LangnOs/Pods-LangnOs.release.xcconfig"; sourceTree = "<group>"; };
+		8DAA553D25290FDD00FF5066 /* FirebaseDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseDatabase.swift; sourceTree = "<group>"; };
+		8DAA553F2529112B00FF5066 /* Vocabulary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vocabulary.swift; sourceTree = "<group>"; };
+		8DAA55442529117200FF5066 /* FirebaseDatabaseEntityProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseDatabaseEntityProtocol.swift; sourceTree = "<group>"; };
+		8DAA55462529129E00FF5066 /* FirebaseDatabaseRequestProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseDatabaseRequestProtocol.swift; sourceTree = "<group>"; };
+		8DAA5549252912BA00FF5066 /* FirebaseDatabaseVocabularyRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseDatabaseVocabularyRequest.swift; sourceTree = "<group>"; };
+		8DAA554B2529162000FF5066 /* UniversalCollectionViewBindingProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniversalCollectionViewBindingProtocol.swift; sourceTree = "<group>"; };
+		8DAA554D25291D3400FF5066 /* Word.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Word.swift; sourceTree = "<group>"; };
 		8DD28B81252667F600F59B7D /* LangnOs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LangnOs.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DD28B84252667F600F59B7D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8DD28B86252667F600F59B7D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -126,6 +140,25 @@
 				838CBE43D71675BA7ED1743C /* Pods_LangnOs.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		8DAA55412529113A00FF5066 /* FirebaseDatabase */ = {
+			isa = PBXGroup;
+			children = (
+				8DAA5548252912A400FF5066 /* Requests */,
+				8DAA55442529117200FF5066 /* FirebaseDatabaseEntityProtocol.swift */,
+				8DAA553D25290FDD00FF5066 /* FirebaseDatabase.swift */,
+			);
+			path = FirebaseDatabase;
+			sourceTree = "<group>";
+		};
+		8DAA5548252912A400FF5066 /* Requests */ = {
+			isa = PBXGroup;
+			children = (
+				8DAA55462529129E00FF5066 /* FirebaseDatabaseRequestProtocol.swift */,
+				8DAA5549252912BA00FF5066 /* FirebaseDatabaseVocabularyRequest.swift */,
+			);
+			path = Requests;
 			sourceTree = "<group>";
 		};
 		8DD28B78252667F600F59B7D = {
@@ -350,6 +383,7 @@
 			children = (
 				8DD28BF42527ADF300F59B7D /* UniversalCollectionView.swift */,
 				8DD28BF62527B0E500F59B7D /* UniversalCollectionViewInputProtocol.swift */,
+				8DAA554B2529162000FF5066 /* UniversalCollectionViewBindingProtocol.swift */,
 				8DD28BF82527B3C700F59B7D /* UniversalCollectionViewCellFactoryProtocol.swift */,
 				8DD28C0025289BD100F59B7D /* Cells */,
 			);
@@ -379,6 +413,7 @@
 		8DD28C0D2528AA2200F59B7D /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				8DAA55412529113A00FF5066 /* FirebaseDatabase */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -386,6 +421,8 @@
 		8DD28C0E2528AA2C00F59B7D /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				8DAA553F2529112B00FF5066 /* Vocabulary.swift */,
+				8DAA554D25291D3400FF5066 /* Word.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -539,10 +576,13 @@
 			files = (
 				8DD28C152528AEEF00F59B7D /* SingInViewController.swift in Sources */,
 				8DD28BE12526889200F59B7D /* UINavigationBar+Drivable.swift in Sources */,
+				8DAA55452529117200FF5066 /* FirebaseDatabaseEntityProtocol.swift in Sources */,
 				8DD28BAC25266EA500F59B7D /* TabBarProvider.swift in Sources */,
 				8DD28BA825266C8200F59B7D /* RootTabBarController.swift in Sources */,
+				8DAA554C2529162000FF5066 /* UniversalCollectionViewBindingProtocol.swift in Sources */,
 				8DD28B85252667F600F59B7D /* AppDelegate.swift in Sources */,
 				8DD28BDF2526886200F59B7D /* NavigationBarDrivableModel.swift in Sources */,
+				8DAA554A252912BA00FF5066 /* FirebaseDatabaseVocabularyRequest.swift in Sources */,
 				8DD28BB325266F6800F59B7D /* MainCoordinator.swift in Sources */,
 				8DD28BA425266B2500F59B7D /* Coordinator.swift in Sources */,
 				8DD28BDB2526864400F59B7D /* DrivableModelProtocol.swift in Sources */,
@@ -551,6 +591,7 @@
 				8DD28BC92526806E00F59B7D /* BorderedButton.swift in Sources */,
 				8DD28BB92526774400F59B7D /* String+Localize.swift in Sources */,
 				8DD28C0925289CCB00F59B7D /* CellViewModelProtocol.swift in Sources */,
+				8DAA55472529129E00FF5066 /* FirebaseDatabaseRequestProtocol.swift in Sources */,
 				8DD28BF72527B0E500F59B7D /* UniversalCollectionViewInputProtocol.swift in Sources */,
 				8DD28BC625267A1700F59B7D /* PresentationCoordinator.swift in Sources */,
 				8DD28BC3252679F600F59B7D /* PresentationViewController.swift in Sources */,
@@ -558,10 +599,12 @@
 				8DD28BCD2526815C00F59B7D /* BindibleViewController.swift in Sources */,
 				8DD28BF92527B3C700F59B7D /* UniversalCollectionViewCellFactoryProtocol.swift in Sources */,
 				8DD28BA625266BCE00F59B7D /* RootCoordinator.swift in Sources */,
+				8DAA554E25291D3400FF5066 /* Word.swift in Sources */,
 				8DD28BAA25266CDB00F59B7D /* RootViewModel.swift in Sources */,
 				8DD28BB6252675F800F59B7D /* UITabBarItem+Init.swift in Sources */,
 				8DD28C0425289C5300F59B7D /* VocabularyCollectionViewCell.swift in Sources */,
 				8DD28BF02527A69800F59B7D /* UIBarButtonItem+Init.swift in Sources */,
+				8DAA553E25290FDD00FF5066 /* FirebaseDatabase.swift in Sources */,
 				8DD28BD52526856B00F59B7D /* NavigationItemDrivableModel.swift in Sources */,
 				8DD28B87252667F600F59B7D /* SceneDelegate.swift in Sources */,
 				8DD28C0725289C8C00F59B7D /* VocabularyCollectionViewCellViewModel.swift in Sources */,
@@ -571,6 +614,7 @@
 				8DD28BDD2526866600F59B7D /* DrivableViewProtocol.swift in Sources */,
 				8DD28BFB2527B76800F59B7D /* MainCellFactory.swift in Sources */,
 				8DD28BB025266F4000F59B7D /* MainViewController.swift in Sources */,
+				8DAA55402529112B00FF5066 /* Vocabulary.swift in Sources */,
 				8DD28C122528AEC800F59B7D /* SingInCoordinator.swift in Sources */,
 				8DD28BCF252683A100F59B7D /* MainViewModel.swift in Sources */,
 			);
