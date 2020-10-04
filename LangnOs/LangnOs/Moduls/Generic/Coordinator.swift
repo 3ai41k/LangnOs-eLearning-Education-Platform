@@ -8,12 +8,29 @@
 
 import UIKit
 
+protocol CoordinatorClosableProtocol {
+    func close(completion: (() -> Void)?)
+    func close()
+}
+
+extension CoordinatorClosableProtocol where Self: Coordinator {
+    
+    func close(completion: (() -> Void)?) {
+        viewController?.dismiss(animated: true, completion: completion)
+    }
+    
+    func close() {
+        close(completion: nil)
+    }
+    
+}
+
 class Coordinator {
     
     // MARK: - Protected(Internal) properties
     
     internal weak var parentViewController: UIViewController?
-    internal var viewController: UIViewController?
+    internal weak var viewController: UIViewController?
     
     // MARK: - Init
     
