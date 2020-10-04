@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class VocabularyViewController: BindibleViewController<VocabularyViewModelInputProtocol> {
+final class VocabularyViewController: BindibleViewController<VocabularyViewModelInputProtocol & VocabularyViewModelOutputProtocol> {
 
     // MARK: - IBOutlets
     
@@ -21,13 +21,6 @@ final class VocabularyViewController: BindibleViewController<VocabularyViewModel
     @IBOutlet private weak var vocabularyNameLabel: UILabel!
     @IBOutlet private weak var numberOfCardsLabel: UILabel!
     @IBOutlet private weak var categoryNameLabel: UILabel!
-    
-    // MARK: - Public properties
-    // MARK: - Private properties
-    // MARK: - Lifecycle
-    // MARK: - Init
-    // MARK: - Public methods
-    // MARK: - Private methods
     
     // MARK: - Override
     
@@ -44,6 +37,9 @@ final class VocabularyViewController: BindibleViewController<VocabularyViewModel
     
     // MARK: - Actions
     
-    
+    @IBAction
+    private func didShowWordsTouch(_ sender: Any) {
+        viewModel?.showWordsAction()
+    }
     
 }

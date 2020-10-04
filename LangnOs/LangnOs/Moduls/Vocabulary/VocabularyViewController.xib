@@ -93,7 +93,7 @@
                             </constraints>
                         </view>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="6CS-lS-6MR">
-                            <rect key="frame" x="16" y="72" width="382" height="579"/>
+                            <rect key="frame" x="16" y="72" width="382" height="611"/>
                             <subviews>
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="dfM-WF-Pso">
                                     <rect key="frame" x="0.0" y="0.0" width="382" height="249.5"/>
@@ -108,11 +108,11 @@
                                                         <constraint firstAttribute="width" secondItem="Cy4-es-qEQ" secondAttribute="height" multiplier="1:1" id="aHe-AD-1gc"/>
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="image" keyPath="image" value="square.and.arrow.up" catalog="system"/>
                                                         <userDefinedRuntimeAttribute type="string" keyPath="title" value="Flash cards"/>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                             <real key="value" value="10"/>
                                                         </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="image" keyPath="image" value="rectangle.on.rectangle.angled" catalog="system"/>
                                                     </userDefinedRuntimeAttributes>
                                                 </view>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pAv-Dq-W64" customClass="VocabularyActionView" customModule="LangnOs" customModuleProvider="target">
@@ -122,19 +122,19 @@
                                                         <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                             <real key="value" value="10"/>
                                                         </userDefinedRuntimeAttribute>
-                                                        <userDefinedRuntimeAttribute type="image" keyPath="image" value="square.and.arrow.up" catalog="system"/>
                                                         <userDefinedRuntimeAttribute type="string" keyPath="title" value="Writing"/>
+                                                        <userDefinedRuntimeAttribute type="image" keyPath="image" value="pencil.and.outline" catalog="system"/>
                                                     </userDefinedRuntimeAttributes>
                                                 </view>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="C2z-Ep-dJQ" customClass="VocabularyActionView" customModule="LangnOs" customModuleProvider="target">
                                                     <rect key="frame" x="265.5" y="0.0" width="116.5" height="116.5"/>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                     <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="image" keyPath="image" value="square.and.arrow.up" catalog="system"/>
                                                         <userDefinedRuntimeAttribute type="string" keyPath="title" value="Listening"/>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                             <real key="value" value="10"/>
                                                         </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="image" keyPath="image" value="headphones" catalog="system"/>
                                                     </userDefinedRuntimeAttributes>
                                                 </view>
                                             </subviews>
@@ -149,7 +149,7 @@
                                                         <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                             <real key="value" value="10"/>
                                                         </userDefinedRuntimeAttribute>
-                                                        <userDefinedRuntimeAttribute type="image" keyPath="image" value="square.and.arrow.up" catalog="system"/>
+                                                        <userDefinedRuntimeAttribute type="image" keyPath="image" value="bubble.left.and.bubble.right" catalog="system"/>
                                                         <userDefinedRuntimeAttribute type="string" keyPath="title" value="Speaking"/>
                                                     </userDefinedRuntimeAttributes>
                                                 </view>
@@ -160,7 +160,7 @@
                                                         <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                             <real key="value" value="10"/>
                                                         </userDefinedRuntimeAttribute>
-                                                        <userDefinedRuntimeAttribute type="image" keyPath="image" value="square.and.arrow.up" catalog="system"/>
+                                                        <userDefinedRuntimeAttribute type="image" keyPath="image" value="circle.grid.2x2" catalog="system"/>
                                                         <userDefinedRuntimeAttribute type="string" keyPath="title" value="Matching"/>
                                                     </userDefinedRuntimeAttributes>
                                                 </view>
@@ -171,29 +171,34 @@
                                                         <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                             <real key="value" value="10"/>
                                                         </userDefinedRuntimeAttribute>
-                                                        <userDefinedRuntimeAttribute type="image" keyPath="image" value="square.and.arrow.up" catalog="system"/>
                                                         <userDefinedRuntimeAttribute type="string" keyPath="title" value="Test"/>
+                                                        <userDefinedRuntimeAttribute type="image" keyPath="image" value="clock" catalog="system"/>
                                                     </userDefinedRuntimeAttributes>
                                                 </view>
                                             </subviews>
                                         </stackView>
                                     </subviews>
                                 </stackView>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="q4X-nk-M6A">
-                                    <rect key="frame" x="0.0" y="265.5" width="382" height="64"/>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="q4X-nk-M6A" customClass="ScoreView" customModule="LangnOs" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="265.5" width="382" height="96"/>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                     <constraints>
-                                        <constraint firstAttribute="height" constant="64" id="nbm-aB-PwV"/>
+                                        <constraint firstAttribute="height" constant="96" id="nbm-aB-PwV"/>
                                     </constraints>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                            <real key="value" value="10"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
                                 </view>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Overview" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yPf-fR-8PE">
-                                    <rect key="frame" x="0.0" y="345.5" width="382" height="25.5"/>
+                                    <rect key="frame" x="0.0" y="377.5" width="382" height="25.5"/>
                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="21"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kOR-L4-KcF">
-                                    <rect key="frame" x="0.0" y="387" width="382" height="128"/>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kOR-L4-KcF" customClass="VocabularyProgressView" customModule="LangnOs" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="419" width="382" height="128"/>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                     <constraints>
                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="128" id="UjU-Z5-JTT"/>
@@ -201,17 +206,22 @@
                                     </constraints>
                                 </view>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MSO-6a-6zV" customClass="BorderedButton" customModule="LangnOs" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="531" width="382" height="48"/>
+                                    <rect key="frame" x="0.0" y="563" width="382" height="48"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="48" id="FlA-4O-0wd"/>
                                     </constraints>
-                                    <state key="normal" title="Show words"/>
+                                    <state key="normal" title="Show words">
+                                        <color key="titleColor" name="Icon"/>
+                                    </state>
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                             <real key="value" value="10"/>
                                         </userDefinedRuntimeAttribute>
                                     </userDefinedRuntimeAttributes>
+                                    <connections>
+                                        <action selector="didShowWordsTouch:" destination="-1" eventType="touchUpInside" id="Cvk-kL-Bfe"/>
+                                    </connections>
                                 </button>
                             </subviews>
                         </stackView>
@@ -241,13 +251,18 @@
     </objects>
     <resources>
         <image name="bookmark" catalog="system" width="112" height="128"/>
+        <image name="bubble.left.and.bubble.right" catalog="system" width="128" height="96"/>
+        <image name="circle.grid.2x2" catalog="system" width="128" height="112"/>
+        <image name="clock" catalog="system" width="128" height="121"/>
         <image name="doc" catalog="system" width="115" height="128"/>
-        <image name="square.and.arrow.up" catalog="system" width="115" height="128"/>
+        <image name="headphones" catalog="system" width="128" height="107"/>
+        <image name="pencil.and.outline" catalog="system" width="128" height="119"/>
+        <image name="rectangle.on.rectangle.angled" catalog="system" width="128" height="101"/>
         <namedColor name="AppBackground">
-            <color red="0.93725490196078431" green="0.95294117647058818" blue="0.98431372549019602" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.93699997663497925" green="0.95300000905990601" blue="0.98400002717971802" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="Icon">
-            <color red="0.41960784313725491" green="0.54509803921568623" blue="0.96078431372549022" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.41999998688697815" green="0.54500001668930054" blue="0.96100002527236938" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

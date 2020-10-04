@@ -17,6 +17,13 @@
 		8D66252D252A38AD00991D45 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D66252C252A38AD00991D45 /* UIView+Extensions.swift */; };
 		8D66252F252A3A4D00991D45 /* XibView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D66252E252A3A4D00991D45 /* XibView.swift */; };
 		8D662531252A3E9800991D45 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8D662530252A3E9800991D45 /* Colors.xcassets */; };
+		8D662533252A610B00991D45 /* ScoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D662532252A610B00991D45 /* ScoreView.swift */; };
+		8D662537252A612A00991D45 /* ScoreView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D662536252A612A00991D45 /* ScoreView.xib */; };
+		8D66253A252A6D4600991D45 /* VocabularyProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D662539252A6D4600991D45 /* VocabularyProgressView.swift */; };
+		8D66253C252A6D4E00991D45 /* VocabularyProgressView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D66253B252A6D4E00991D45 /* VocabularyProgressView.xib */; };
+		8D662540252A717500991D45 /* WordsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D66253E252A717500991D45 /* WordsViewController.swift */; };
+		8D662541252A717500991D45 /* WordsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D66253F252A717500991D45 /* WordsViewController.xib */; };
+		8D662543252A718400991D45 /* WordsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D662542252A718400991D45 /* WordsCoordinator.swift */; };
 		8D9985E825292776009EA144 /* UniversalCollectionViewOutputProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D9985E725292776009EA144 /* UniversalCollectionViewOutputProtocol.swift */; };
 		8D9985EC252929E7009EA144 /* VocabularyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D9985EA252929E7009EA144 /* VocabularyViewController.swift */; };
 		8D9985ED252929E7009EA144 /* VocabularyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D9985EB252929E7009EA144 /* VocabularyViewController.xib */; };
@@ -89,6 +96,13 @@
 		8D66252C252A38AD00991D45 /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
 		8D66252E252A3A4D00991D45 /* XibView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XibView.swift; sourceTree = "<group>"; };
 		8D662530252A3E9800991D45 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
+		8D662532252A610B00991D45 /* ScoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreView.swift; sourceTree = "<group>"; };
+		8D662536252A612A00991D45 /* ScoreView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ScoreView.xib; sourceTree = "<group>"; };
+		8D662539252A6D4600991D45 /* VocabularyProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabularyProgressView.swift; sourceTree = "<group>"; };
+		8D66253B252A6D4E00991D45 /* VocabularyProgressView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VocabularyProgressView.xib; sourceTree = "<group>"; };
+		8D66253E252A717500991D45 /* WordsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordsViewController.swift; sourceTree = "<group>"; };
+		8D66253F252A717500991D45 /* WordsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WordsViewController.xib; sourceTree = "<group>"; };
+		8D662542252A718400991D45 /* WordsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordsCoordinator.swift; sourceTree = "<group>"; };
 		8D9985E725292776009EA144 /* UniversalCollectionViewOutputProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniversalCollectionViewOutputProtocol.swift; sourceTree = "<group>"; };
 		8D9985EA252929E7009EA144 /* VocabularyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabularyViewController.swift; sourceTree = "<group>"; };
 		8D9985EB252929E7009EA144 /* VocabularyViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VocabularyViewController.xib; sourceTree = "<group>"; };
@@ -184,10 +198,48 @@
 		8D662527252A384200991D45 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				8D662538252A6CF400991D45 /* VocabularyProgress */,
+				8D662535252A611900991D45 /* Score */,
+				8D662534252A610F00991D45 /* Vocabulary */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		8D662534252A610F00991D45 /* Vocabulary */ = {
+			isa = PBXGroup;
+			children = (
 				8D662528252A386500991D45 /* VocabularyActionView.swift */,
 				8D66252A252A387600991D45 /* VocabularyActionView.xib */,
 			);
-			path = Views;
+			path = Vocabulary;
+			sourceTree = "<group>";
+		};
+		8D662535252A611900991D45 /* Score */ = {
+			isa = PBXGroup;
+			children = (
+				8D662532252A610B00991D45 /* ScoreView.swift */,
+				8D662536252A612A00991D45 /* ScoreView.xib */,
+			);
+			path = Score;
+			sourceTree = "<group>";
+		};
+		8D662538252A6CF400991D45 /* VocabularyProgress */ = {
+			isa = PBXGroup;
+			children = (
+				8D662539252A6D4600991D45 /* VocabularyProgressView.swift */,
+				8D66253B252A6D4E00991D45 /* VocabularyProgressView.xib */,
+			);
+			path = VocabularyProgress;
+			sourceTree = "<group>";
+		};
+		8D66253D252A715800991D45 /* Words */ = {
+			isa = PBXGroup;
+			children = (
+				8D662542252A718400991D45 /* WordsCoordinator.swift */,
+				8D66253E252A717500991D45 /* WordsViewController.swift */,
+				8D66253F252A717500991D45 /* WordsViewController.xib */,
+			);
+			path = Words;
 			sourceTree = "<group>";
 		};
 		8D9985E9252929BF009EA144 /* Vocabulary */ = {
@@ -300,6 +352,7 @@
 				8DD28BC0252679D300F59B7D /* Presentation */,
 				8DD28BA125266A1C00F59B7D /* Main */,
 				8D9985E9252929BF009EA144 /* Vocabulary */,
+				8D66253D252A715800991D45 /* Words */,
 				8D66251C2529F68D00991D45 /* CreateVocabulary */,
 			);
 			path = Moduls;
@@ -582,10 +635,13 @@
 				8DD28BBD2526793900F59B7D /* Localizable.strings in Resources */,
 				8DD28C0C2528A86D00F59B7D /* GoogleService-Info.plist in Resources */,
 				8D662531252A3E9800991D45 /* Colors.xcassets in Resources */,
+				8D662537252A612A00991D45 /* ScoreView.xib in Resources */,
 				8DD28B94252667F800F59B7D /* LaunchScreen.storyboard in Resources */,
 				8DD28C162528AEEF00F59B7D /* SingInViewController.xib in Resources */,
+				8D662541252A717500991D45 /* WordsViewController.xib in Resources */,
 				8DD28B91252667F800F59B7D /* Assets.xcassets in Resources */,
 				8DD28B8C252667F600F59B7D /* Main.storyboard in Resources */,
+				8D66253C252A6D4E00991D45 /* VocabularyProgressView.xib in Resources */,
 				8D66252B252A387600991D45 /* VocabularyActionView.xib in Resources */,
 				8DD28BC4252679F600F59B7D /* PresentationViewController.xib in Resources */,
 				8D6625202529F6C000991D45 /* CreateVocabularyViewController.xib in Resources */,
@@ -651,16 +707,19 @@
 				8DD28BAC25266EA500F59B7D /* TabBarProvider.swift in Sources */,
 				8DD28BA825266C8200F59B7D /* RootTabBarController.swift in Sources */,
 				8DAA554C2529162000FF5066 /* UniversalCollectionViewBindingProtocol.swift in Sources */,
+				8D662543252A718400991D45 /* WordsCoordinator.swift in Sources */,
 				8DD28B85252667F600F59B7D /* AppDelegate.swift in Sources */,
 				8DD28BDF2526886200F59B7D /* NavigationBarDrivableModel.swift in Sources */,
 				8DAA554A252912BA00FF5066 /* FirebaseDatabaseVocabularyRequest.swift in Sources */,
 				8DD28BB325266F6800F59B7D /* MainCoordinator.swift in Sources */,
 				8DD28BA425266B2500F59B7D /* Coordinator.swift in Sources */,
 				8DD28BDB2526864400F59B7D /* DrivableModelProtocol.swift in Sources */,
+				8D66253A252A6D4600991D45 /* VocabularyProgressView.swift in Sources */,
 				8DD28BD32526854300F59B7D /* UINavigationItem+Drivable.swift in Sources */,
 				8D9985E825292776009EA144 /* UniversalCollectionViewOutputProtocol.swift in Sources */,
 				8DD28BFF2527BCBF00F59B7D /* UniversalCollectionViewCellRegistratable.swift in Sources */,
 				8D6625222529F6CA00991D45 /* CreateVocabularyCoordinator.swift in Sources */,
+				8D662540252A717500991D45 /* WordsViewController.swift in Sources */,
 				8DD28BC92526806E00F59B7D /* BorderedButton.swift in Sources */,
 				8D66252F252A3A4D00991D45 /* XibView.swift in Sources */,
 				8D66252D252A38AD00991D45 /* UIView+Extensions.swift in Sources */,
@@ -691,6 +750,7 @@
 				8DD28BF52527ADF300F59B7D /* UniversalCollectionView.swift in Sources */,
 				8D9985EC252929E7009EA144 /* VocabularyViewController.swift in Sources */,
 				8DD28BDD2526866600F59B7D /* DrivableViewProtocol.swift in Sources */,
+				8D662533252A610B00991D45 /* ScoreView.swift in Sources */,
 				8D66251F2529F6C000991D45 /* CreateVocabularyViewController.swift in Sources */,
 				8DD28BFB2527B76800F59B7D /* MainCellFactory.swift in Sources */,
 				8DD28BB025266F4000F59B7D /* MainViewController.swift in Sources */,

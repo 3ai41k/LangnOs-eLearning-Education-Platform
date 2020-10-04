@@ -16,6 +16,10 @@ protocol VocabularyViewModelInputProtocol {
     var category: String { get }
 }
 
+protocol VocabularyViewModelOutputProtocol {
+    func showWordsAction()
+}
+
 final class VocabularyViewModel {
     
     // MARK: - Private properties
@@ -69,6 +73,16 @@ extension VocabularyViewModel: VocabularyViewModelInputProtocol {
     
     var category: String {
         "Career"
+    }
+    
+}
+
+// MARK: - VocabularyViewModelOutputProtocol
+
+extension VocabularyViewModel: VocabularyViewModelOutputProtocol {
+    
+    func showWordsAction() {
+        router.navigateToWords()
     }
     
 }

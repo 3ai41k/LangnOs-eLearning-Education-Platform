@@ -9,7 +9,7 @@
 import UIKit
 
 protocol VocabularyNavigationProtocol: CoordinatorClosableProtocol {
-    
+    func navigateToWords()
 }
 
 final class VocabularyCoordinator: Coordinator {
@@ -45,5 +45,10 @@ final class VocabularyCoordinator: Coordinator {
 // MARK: - VocabularyNavigationProtocol
 
 extension VocabularyCoordinator: VocabularyNavigationProtocol {
+    
+    func navigateToWords() {
+        let wordsCoordinator = WordsCoordinator(words: vocabulary.words, parentViewController: viewController)
+        wordsCoordinator.start()
+    }
     
 }

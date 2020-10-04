@@ -33,6 +33,7 @@ class XibView: UIView {
         let view = nib.instantiate(withOwner: self, options: nil).first as! UIView
 
         backgroundColor = .clear
+        clipsToBounds = true
         
         addSubview(view)
 
