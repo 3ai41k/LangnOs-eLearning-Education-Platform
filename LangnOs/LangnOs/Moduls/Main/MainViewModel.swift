@@ -60,6 +60,13 @@ final class MainViewModel: UniversalCollectionViewViewModelProtocol {
         router.navigateToVocabularyStatistic(vocabulary)
     }
     
+    // MARK: - Actions
+    
+    @objc
+    private func didCreateNewVocabularyTouched() {
+        router.createNewVocabulary()
+    }
+    
 }
 
 // MARK: - MainViewModelInputProtocol
@@ -67,9 +74,13 @@ final class MainViewModel: UniversalCollectionViewViewModelProtocol {
 extension MainViewModel: MainViewModelInputProtocol {
     
     var navigationItemDrivableModel: DrivableModelProtocol {
-        NavigationItemDrivableModel(title: "Hello, -3ai41k-",
-                                    leftBarButtonDrivableModels: [],
-                                    rightBarButtonDrivableModels: [])
+        let createNewVocabularyButtonModel = BarButtonDrivableModel(title: "Create".localize,
+                                                                    style: .plain,
+                                                                    target: self,
+                                                                    selector: #selector(didCreateNewVocabularyTouched))
+        return NavigationItemDrivableModel(title: "Hello, -3ai41k-",
+                                           leftBarButtonDrivableModels: [],
+                                           rightBarButtonDrivableModels: [createNewVocabularyButtonModel])
     }
     
     var navigationBarDrivableModel: DrivableModelProtocol {
