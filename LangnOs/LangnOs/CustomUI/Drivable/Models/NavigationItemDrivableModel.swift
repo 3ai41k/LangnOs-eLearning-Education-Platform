@@ -10,6 +10,6 @@ import Foundation
 
 struct NavigationItemDrivableModel: DrivableModelProtocol {
     let title: String
-    let leftBarButtonDrivableModels: [DrivableModelProtocol] = []
-    let rightBarButtonDrivableModels: [DrivableModelProtocol] = []
+    let leftBarButtonDrivableModels: [DrivableModelProtocol]
+    let rightBarButtonDrivableModels: [DrivableModelProtocol]
 }

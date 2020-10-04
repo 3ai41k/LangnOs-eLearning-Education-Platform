@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol VocabularyNavigationProtocol: CoordinatorClosableProtocol {
+    
+}
+
 final class VocabularyCoordinator: Coordinator {
     
     // MARK: - Private properties
@@ -25,7 +29,7 @@ final class VocabularyCoordinator: Coordinator {
     // MARK: - Override
     
     override func start() {
-        let vocabularyViewModel = VocabularyViewModel(vocabulary: vocabulary)
+        let vocabularyViewModel = VocabularyViewModel(router: self, vocabulary: vocabulary)
         let vocabularyViewController = VocabularyViewController()
         vocabularyViewController.viewModel = vocabularyViewModel
         
@@ -35,5 +39,11 @@ final class VocabularyCoordinator: Coordinator {
         viewController = navigationController
         parentViewController?.present(navigationController, animated: true, completion: nil)
     }
+    
+}
+
+// MARK: - VocabularyNavigationProtocol
+
+extension VocabularyCoordinator: VocabularyNavigationProtocol {
     
 }

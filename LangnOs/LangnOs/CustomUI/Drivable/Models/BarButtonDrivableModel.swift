@@ -6,9 +6,11 @@
 //  Copyright © 2020 NL. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 struct BarButtonDrivableModel: DrivableModelProtocol {
+    let title: String
+    let style: UIBarButtonItem.Style
     let target: Any?
     let selector: Selector?
 }

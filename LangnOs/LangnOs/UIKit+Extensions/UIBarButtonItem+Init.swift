@@ -10,5 +10,9 @@ import UIKit
 
 extension UIBarButtonItem {
     
+    convenience init?(model: DrivableModelProtocol) {
+        guard let model = model as? BarButtonDrivableModel else { return nil }
+        self.init(title: model.title, style: model.style, target: model.target, action: model.selector)
+    }
     
 }

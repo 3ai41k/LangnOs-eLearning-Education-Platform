@@ -17,12 +17,21 @@ final class VocabularyViewModel {
     
     // MARK: - Private properties
     
+    private let router: VocabularyNavigationProtocol
     private let vocabulary: Vocabulary
     
     // MARK: - Init
     
-    init(vocabulary: Vocabulary) {
+    init(router: VocabularyNavigationProtocol, vocabulary: Vocabulary) {
+        self.router = router
         self.vocabulary = vocabulary
+    }
+    
+    // MARK: - Actions
+    
+    @objc
+    private func didCloseTouched() {
+        router.close()
     }
     
 }
@@ -32,7 +41,13 @@ final class VocabularyViewModel {
 extension VocabularyViewModel: VocabularyViewModelInputProtocol {
     
     var navigationItemDrivableModel: DrivableModelProtocol {
-        NavigationItemDrivableModel(title: vocabulary.title)
+        let closeButtonModel = BarButtonDrivableModel(title: "Close".localize,
+                                                      style: .plain,
+                                                      target: self,
+                                                      selector: #selector(didCloseTouched))
+        return NavigationItemDrivableModel(title: vocabulary.title,
+                                           leftBarButtonDrivableModels: [closeButtonModel],
+                                           rightBarButtonDrivableModels: [])
     }
     
     var navigationBarDrivableModel: DrivableModelProtocol {

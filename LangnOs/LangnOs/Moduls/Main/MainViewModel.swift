@@ -67,7 +67,9 @@ final class MainViewModel: UniversalCollectionViewViewModelProtocol {
 extension MainViewModel: MainViewModelInputProtocol {
     
     var navigationItemDrivableModel: DrivableModelProtocol {
-        NavigationItemDrivableModel(title: "Hello, -3ai41k-")
+        NavigationItemDrivableModel(title: "Hello, -3ai41k-",
+                                    leftBarButtonDrivableModels: [],
+                                    rightBarButtonDrivableModels: [])
     }
     
     var navigationBarDrivableModel: DrivableModelProtocol {

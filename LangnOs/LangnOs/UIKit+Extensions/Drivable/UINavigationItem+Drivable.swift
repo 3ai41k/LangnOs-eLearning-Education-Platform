@@ -18,8 +18,8 @@ extension UINavigationItem: DrivableViewProtocol {
         guard let model = model else { return }
         
         self.title = model.title
-        self.leftBarButtonItems = []
-        self.rightBarButtonItems = []
+        self.leftBarButtonItems = model.leftBarButtonDrivableModels.compactMap({ UIBarButtonItem(model: $0) })
+        self.rightBarButtonItems = model.rightBarButtonDrivableModels.compactMap({ UIBarButtonItem(model: $0) })
     }
     
 }
