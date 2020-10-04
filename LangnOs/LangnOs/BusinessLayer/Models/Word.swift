@@ -10,10 +10,10 @@ import Foundation
 
 struct Word: FirebaseDatabaseEntityProtocol {
     let term: String
-    let definnition: String
+    let definition: String
     
     init(dictionary: [String : Any]) {
         self.term = dictionary["term"] as! String
-        self.definnition = dictionary["definnition"] as! String
+        self.definition = dictionary["definition"] as! String
     }
 }

@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol WordsNavigationProtocol {
+    
+}
+
 final class WordsCoordinator: Coordinator {
     
     // MARK: - Private properties
@@ -24,11 +28,20 @@ final class WordsCoordinator: Coordinator {
     // MARK: - Override
     
     override func start() {
+        let wordsViewModel = WordsViewModel(words: words, router: self)
+        let wordsCellFactory = WordsCellFactory()
         let wordsViewController = WordsViewController()
+        wordsViewController.tableViewCellFactory = wordsCellFactory
+        wordsViewController.viewModel = wordsViewModel
         
         viewController = wordsViewController
         (parentViewController as? UINavigationController)?.pushViewController(wordsViewController, animated: true)
     }
     
+}
+
+// MARK: - WordsNavigationProtocol
+
+extension WordsCoordinator: WordsNavigationProtocol {
     
 }

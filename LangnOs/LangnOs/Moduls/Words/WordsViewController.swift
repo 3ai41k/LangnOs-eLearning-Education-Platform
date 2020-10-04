@@ -8,23 +8,27 @@
 
 import UIKit
 
-class WordsViewController: UIViewController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+final class WordsViewController: BindibleViewController<WordsViewModelInputProtocol & WordsViewModelOutputProtocol & UniversalTableViewViewModel> {
+    
+    // MARK: - IBOutlets
+    
+    @IBOutlet private weak var tableView: UniversalTableView! {
+        didSet {
+            guard let viewModel = viewModel, let cellFactory = tableViewCellFactory else { return }
+            tableView.start(viewModel: viewModel, cellFactory: cellFactory)
+        }
     }
-
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
+    
+    // MARK: - Public properties
+    
+    var tableViewCellFactory: UniversalTableViewCellFactoryProtocol?
+    
+    // MARK: - Private properties
+    // MARK: - Lifecycle
+    // MARK: - Init
+    // MARK: - Override
+    // MARK: - Public methods
+    // MARK: - Private methods
+    // MARK: - Actions
 
 }

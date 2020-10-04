@@ -8,7 +8,7 @@
 
 import UIKit
 
-typealias MainViewModelType = MainViewModelInputProtocol & MainViewModelOutputProtocol & UniversalCollectionViewViewModelProtocol
+typealias MainViewModelType = MainViewModelInputProtocol & MainViewModelOutputProtocol & UniversalCollectionViewViewModel
 
 final class MainViewController: BindibleViewController<MainViewModelType> {
 

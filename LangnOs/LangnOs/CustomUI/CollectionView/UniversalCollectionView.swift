@@ -8,15 +8,13 @@
 
 import UIKit
 
-protocol UniversalCollectionViewViewModelProtocol: UniversalCollectionViewInputProtocol, UniversalCollectionViewBindingProtocol, UniversalCollectionViewOutputProtocol {
-
-}
+typealias UniversalCollectionViewViewModel = UniversalCollectionViewInputProtocol & UniversalCollectionViewBindingProtocol & UniversalCollectionViewOutputProtocol
 
 final class UniversalCollectionView: UICollectionView {
     
     // MARK: - Private properties
     
-    private var viewModel: UniversalCollectionViewViewModelProtocol! {
+    private var viewModel: UniversalCollectionViewViewModel! {
         didSet {
             viewModel.reloadData = {
                 self.reloadData()
@@ -31,7 +29,7 @@ final class UniversalCollectionView: UICollectionView {
     
     // MARK: - Public methods
     
-    func start(viewModel: UniversalCollectionViewViewModelProtocol,
+    func start(viewModel: UniversalCollectionViewViewModel,
                cellFactory: UniversalCollectionViewCellFactoryProtocol) {
         self.viewModel = viewModel
         self.cellFactory = cellFactory

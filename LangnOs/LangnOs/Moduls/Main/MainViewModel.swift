@@ -18,7 +18,7 @@ protocol MainViewModelOutputProtocol {
     func singInAction()
 }
 
-final class MainViewModel: UniversalCollectionViewViewModelProtocol {
+final class MainViewModel: UniversalCollectionViewViewModel {
     
     // MARK: - Public properties
     
