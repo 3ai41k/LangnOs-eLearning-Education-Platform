@@ -11,6 +11,9 @@ import Foundation
 protocol VocabularyViewModelInputProtocol {
     var navigationItemDrivableModel: DrivableModelProtocol { get }
     var navigationBarDrivableModel: DrivableModelProtocol { get }
+    var vocabularyName: String { get }
+    var numberOfWords: String { get }
+    var category: String { get }
 }
 
 final class VocabularyViewModel {
@@ -45,15 +48,27 @@ extension VocabularyViewModel: VocabularyViewModelInputProtocol {
                                                       style: .plain,
                                                       target: self,
                                                       selector: #selector(didCloseTouched))
-        return NavigationItemDrivableModel(title: vocabulary.title,
+        return NavigationItemDrivableModel(title: nil,
                                            leftBarButtonDrivableModels: [closeButtonModel],
                                            rightBarButtonDrivableModels: [])
     }
     
     var navigationBarDrivableModel: DrivableModelProtocol {
-        NavigationBarDrivableModel(isBottomLineHidden: false,
+        NavigationBarDrivableModel(isBottomLineHidden: true,
                                    backgroundColor: .white,
                                    prefersLargeTitles: false)
+    }
+    
+    var vocabularyName: String {
+        vocabulary.title
+    }
+    
+    var numberOfWords: String {
+        String(format: "%d %@", vocabulary.words.count, "cards".localize)
+    }
+    
+    var category: String {
+        "Career"
     }
     
 }

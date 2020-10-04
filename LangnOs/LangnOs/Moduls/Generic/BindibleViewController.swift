@@ -10,14 +10,27 @@ import UIKit
 
 class BindibleViewController<ViewModel>: UIViewController {
     
+    // MARK: - Public properties
+    
     var viewModel: ViewModel? {
         didSet {
             bindViewModel()
         }
     }
     
-    internal func bindViewModel() {
+    // MARK: - Lifecycle
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
         
+        setupUI()
+        configurateComponents()
     }
+    
+    // MARK: - Protected(internal) methods
+    
+    internal func bindViewModel() { }
+    internal func setupUI() { }
+    internal func configurateComponents() { }
     
 }

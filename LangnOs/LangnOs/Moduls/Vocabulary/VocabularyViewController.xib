@@ -1,22 +1,253 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13142" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097.3" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12042"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="VocabularyViewController" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="VocabularyViewController" customModule="LangnOs" customModuleProvider="target">
             <connections>
+                <outlet property="categoryNameLabel" destination="b4A-xx-P1l" id="n1k-Iq-8pv"/>
+                <outlet property="numberOfCardsLabel" destination="uf4-RZ-AbF" id="zP9-Oi-EmH"/>
+                <outlet property="topBarView" destination="0QZ-6u-bRp" id="1R7-7v-PJv"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outlet property="vocabularyNameLabel" destination="Zm9-dT-SnI" id="axE-au-hZg"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CdZ-5a-Lcs">
+                    <rect key="frame" x="0.0" y="44" width="414" height="852"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0QZ-6u-bRp">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="48"/>
+                            <subviews>
+                                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="6it-jh-RBJ">
+                                    <rect key="frame" x="20" y="12" width="386" height="24"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Vocabulary Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zm9-dT-SnI">
+                                            <rect key="frame" x="0.0" y="0.0" width="189" height="24"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="21"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="vRc-dk-LqA">
+                                            <rect key="frame" x="197" y="0.0" width="189" height="24"/>
+                                            <subviews>
+                                                <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="X1Q-X4-gOz">
+                                                    <rect key="frame" x="0.0" y="0.0" width="77.5" height="24"/>
+                                                    <subviews>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="doc" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="OZx-Yp-T6h">
+                                                            <rect key="frame" x="0.0" y="0.0" width="24" height="24"/>
+                                                            <color key="tintColor" name="Icon"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" secondItem="OZx-Yp-T6h" secondAttribute="height" multiplier="1:1" id="nwW-eF-mgK"/>
+                                                            </constraints>
+                                                        </imageView>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cards" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uf4-RZ-AbF">
+                                                            <rect key="frame" x="32" y="0.0" width="45.5" height="24"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                </stackView>
+                                                <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="QsP-8E-Ysv">
+                                                    <rect key="frame" x="85.5" y="0.0" width="103.5" height="24"/>
+                                                    <subviews>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bookmark" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="c75-jd-3Ch">
+                                                            <rect key="frame" x="0.0" y="0.0" width="24" height="24"/>
+                                                            <color key="tintColor" name="Icon"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" secondItem="c75-jd-3Ch" secondAttribute="height" multiplier="1:1" id="CH0-s1-ldg"/>
+                                                            </constraints>
+                                                        </imageView>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Category" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b4A-xx-P1l">
+                                                            <rect key="frame" x="32" y="0.0" width="71.5" height="24"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                </stackView>
+                                            </subviews>
+                                        </stackView>
+                                    </subviews>
+                                </stackView>
+                            </subviews>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            <constraints>
+                                <constraint firstItem="6it-jh-RBJ" firstAttribute="leading" secondItem="0QZ-6u-bRp" secondAttribute="leading" constant="20" id="2My-Lx-BmJ"/>
+                                <constraint firstAttribute="height" constant="48" id="PK5-fb-WCJ"/>
+                                <constraint firstItem="6it-jh-RBJ" firstAttribute="top" secondItem="0QZ-6u-bRp" secondAttribute="top" constant="12" id="iZ3-sj-5l7"/>
+                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="48" id="pEQ-bs-1ul"/>
+                                <constraint firstAttribute="trailing" secondItem="6it-jh-RBJ" secondAttribute="trailing" constant="8" id="spf-zG-rqT"/>
+                                <constraint firstAttribute="bottom" secondItem="6it-jh-RBJ" secondAttribute="bottom" constant="12" id="wk7-R9-wIu"/>
+                            </constraints>
+                        </view>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="6CS-lS-6MR">
+                            <rect key="frame" x="16" y="72" width="382" height="579"/>
+                            <subviews>
+                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="dfM-WF-Pso">
+                                    <rect key="frame" x="0.0" y="0.0" width="382" height="249.5"/>
+                                    <subviews>
+                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="6AI-nC-x4f">
+                                            <rect key="frame" x="0.0" y="0.0" width="382" height="116.5"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cy4-es-qEQ" customClass="VocabularyActionView" customModule="LangnOs" customModuleProvider="target">
+                                                    <rect key="frame" x="0.0" y="0.0" width="116.5" height="116.5"/>
+                                                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="Cy4-es-qEQ" secondAttribute="height" multiplier="1:1" id="aHe-AD-1gc"/>
+                                                    </constraints>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="image" keyPath="image" value="square.and.arrow.up" catalog="system"/>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="title" value="Flash cards"/>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                            <real key="value" value="10"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                </view>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pAv-Dq-W64" customClass="VocabularyActionView" customModule="LangnOs" customModuleProvider="target">
+                                                    <rect key="frame" x="132.5" y="0.0" width="117" height="116.5"/>
+                                                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                            <real key="value" value="10"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="image" keyPath="image" value="square.and.arrow.up" catalog="system"/>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="title" value="Writing"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                </view>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="C2z-Ep-dJQ" customClass="VocabularyActionView" customModule="LangnOs" customModuleProvider="target">
+                                                    <rect key="frame" x="265.5" y="0.0" width="116.5" height="116.5"/>
+                                                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="image" keyPath="image" value="square.and.arrow.up" catalog="system"/>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="title" value="Listening"/>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                            <real key="value" value="10"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                </view>
+                                            </subviews>
+                                        </stackView>
+                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="AL7-fE-uU4">
+                                            <rect key="frame" x="0.0" y="132.5" width="382" height="117"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UQg-eX-hme" customClass="VocabularyActionView" customModule="LangnOs" customModuleProvider="target">
+                                                    <rect key="frame" x="0.0" y="0.0" width="116.5" height="117"/>
+                                                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                            <real key="value" value="10"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="image" keyPath="image" value="square.and.arrow.up" catalog="system"/>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="title" value="Speaking"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                </view>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2xN-d7-Siz" customClass="VocabularyActionView" customModule="LangnOs" customModuleProvider="target">
+                                                    <rect key="frame" x="132.5" y="0.0" width="117" height="117"/>
+                                                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                            <real key="value" value="10"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="image" keyPath="image" value="square.and.arrow.up" catalog="system"/>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="title" value="Matching"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                </view>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="abz-se-9J1" customClass="VocabularyActionView" customModule="LangnOs" customModuleProvider="target">
+                                                    <rect key="frame" x="265.5" y="0.0" width="116.5" height="117"/>
+                                                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                            <real key="value" value="10"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="image" keyPath="image" value="square.and.arrow.up" catalog="system"/>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="title" value="Test"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                </view>
+                                            </subviews>
+                                        </stackView>
+                                    </subviews>
+                                </stackView>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="q4X-nk-M6A">
+                                    <rect key="frame" x="0.0" y="265.5" width="382" height="64"/>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="64" id="nbm-aB-PwV"/>
+                                    </constraints>
+                                </view>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Overview" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yPf-fR-8PE">
+                                    <rect key="frame" x="0.0" y="345.5" width="382" height="25.5"/>
+                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="21"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kOR-L4-KcF">
+                                    <rect key="frame" x="0.0" y="387" width="382" height="128"/>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="128" id="UjU-Z5-JTT"/>
+                                        <constraint firstAttribute="height" constant="128" id="ddw-wG-Afq"/>
+                                    </constraints>
+                                </view>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MSO-6a-6zV" customClass="BorderedButton" customModule="LangnOs" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="531" width="382" height="48"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="48" id="FlA-4O-0wd"/>
+                                    </constraints>
+                                    <state key="normal" title="Show words"/>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                            <real key="value" value="10"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
+                                </button>
+                            </subviews>
+                        </stackView>
+                    </subviews>
+                    <color key="backgroundColor" name="AppBackground"/>
+                    <constraints>
+                        <constraint firstItem="0QZ-6u-bRp" firstAttribute="top" secondItem="CdZ-5a-Lcs" secondAttribute="top" id="DO6-XL-8rJ"/>
+                        <constraint firstAttribute="trailing" secondItem="6CS-lS-6MR" secondAttribute="trailing" constant="16" id="LqE-LU-J2R"/>
+                        <constraint firstItem="0QZ-6u-bRp" firstAttribute="leading" secondItem="CdZ-5a-Lcs" secondAttribute="leading" id="RkT-Uu-9QG"/>
+                        <constraint firstItem="6CS-lS-6MR" firstAttribute="leading" secondItem="CdZ-5a-Lcs" secondAttribute="leading" constant="16" id="cFo-Te-4xt"/>
+                        <constraint firstAttribute="trailing" secondItem="0QZ-6u-bRp" secondAttribute="trailing" id="lEw-Vs-6Ma"/>
+                        <constraint firstItem="6CS-lS-6MR" firstAttribute="top" secondItem="0QZ-6u-bRp" secondAttribute="bottom" constant="24" id="qDs-ji-jV9"/>
+                        <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="6CS-lS-6MR" secondAttribute="bottom" constant="16" id="sIn-2L-uWm"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="CdZ-5a-Lcs" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="GOT-IR-KAG"/>
+                <constraint firstItem="CdZ-5a-Lcs" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="Kzq-SS-xum"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="CdZ-5a-Lcs" secondAttribute="trailing" id="M8b-ki-aN6"/>
+                <constraint firstAttribute="bottom" secondItem="CdZ-5a-Lcs" secondAttribute="bottom" id="sho-Z4-0mz"/>
+            </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <point key="canvasLocation" x="137.68115942028987" y="141.96428571428569"/>
         </view>
     </objects>
+    <resources>
+        <image name="bookmark" catalog="system" width="112" height="128"/>
+        <image name="doc" catalog="system" width="115" height="128"/>
+        <image name="square.and.arrow.up" catalog="system" width="115" height="128"/>
+        <namedColor name="AppBackground">
+            <color red="0.93725490196078431" green="0.95294117647058818" blue="0.98431372549019602" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Icon">
+            <color red="0.41960784313725491" green="0.54509803921568623" blue="0.96078431372549022" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
 </document>
