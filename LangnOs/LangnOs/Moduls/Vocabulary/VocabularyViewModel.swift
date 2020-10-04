@@ -11,9 +11,13 @@ import Foundation
 protocol VocabularyViewModelInputProtocol {
     var navigationItemDrivableModel: DrivableModelProtocol { get }
     var navigationBarDrivableModel: DrivableModelProtocol { get }
+    
     var vocabularyName: String { get }
     var numberOfWords: String { get }
     var category: String { get }
+    var phrasesLearned: Int { get }
+    var phrasesLeftToLearn: Int { get }
+    var totalLearningTime: Double { get }
 }
 
 protocol VocabularyViewModelOutputProtocol {
@@ -72,7 +76,19 @@ extension VocabularyViewModel: VocabularyViewModelInputProtocol {
     }
     
     var category: String {
-        "Career"
+        vocabulary.category
+    }
+    
+    var phrasesLearned: Int {
+        vocabulary.phrasesLearned
+    }
+    
+    var phrasesLeftToLearn: Int {
+        vocabulary.phrasesLeftToLearn
+    }
+    
+    var totalLearningTime: Double {
+        vocabulary.totalLearningTime
     }
     
 }

@@ -12,6 +12,7 @@ final class VocabularyViewController: BindibleViewController<VocabularyViewModel
 
     // MARK: - IBOutlets
     
+    // Refactore it
     @IBOutlet private weak var topBarView: UIView! {
         didSet {
             topBarView.layer.cornerRadius = 10.0
@@ -21,6 +22,8 @@ final class VocabularyViewController: BindibleViewController<VocabularyViewModel
     @IBOutlet private weak var vocabularyNameLabel: UILabel!
     @IBOutlet private weak var numberOfCardsLabel: UILabel!
     @IBOutlet private weak var categoryNameLabel: UILabel!
+    // ---
+    @IBOutlet private weak var vocabularyProgressView: VocabularyProgressView!
     
     // MARK: - Override
     
@@ -30,9 +33,15 @@ final class VocabularyViewController: BindibleViewController<VocabularyViewModel
     }
     
     override func configurateComponents() {
-        vocabularyNameLabel.text = viewModel?.vocabularyName
-        numberOfCardsLabel.text = viewModel?.numberOfWords
-        categoryNameLabel.text = viewModel?.category
+        guard let viewModel = viewModel else { return }
+        
+        vocabularyNameLabel.text = viewModel.vocabularyName
+        numberOfCardsLabel.text = viewModel.numberOfWords
+        categoryNameLabel.text = viewModel.category
+        
+        vocabularyProgressView.phrasesLearned = viewModel.phrasesLearned
+        vocabularyProgressView.phrasesLeftToLearn = viewModel.phrasesLeftToLearn
+        vocabularyProgressView.totalLearningTime = viewModel.totalLearningTime
     }
     
     // MARK: - Actions

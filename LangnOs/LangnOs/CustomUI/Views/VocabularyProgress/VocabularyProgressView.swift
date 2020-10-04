@@ -31,9 +31,9 @@ final class VocabularyProgressView: XibView {
         }
     }
     
-    var totalLearningTime: CGFloat = .zero {
+    var totalLearningTime: Double = .zero {
         didSet {
-            totalLearningTimeLabel.text = String(format: "%dh", totalLearningTime)
+            totalLearningTimeLabel.text = "\(totalLearningTime)h"
         }
     }
     
