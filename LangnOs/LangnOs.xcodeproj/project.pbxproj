@@ -41,6 +41,8 @@
 		8D83EA6C252B9215004E6098 /* UniversalTableViewBindingProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D83EA6B252B9215004E6098 /* UniversalTableViewBindingProtocol.swift */; };
 		8D83EA6F252B9C11004E6098 /* ActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D83EA6D252B9C11004E6098 /* ActivityViewController.swift */; };
 		8D83EA70252B9C11004E6098 /* ActivityViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D83EA6E252B9C11004E6098 /* ActivityViewController.xib */; };
+		8D83EA76252B9EB9004E6098 /* CoordinatorClosableProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D83EA75252B9EB9004E6098 /* CoordinatorClosableProtocol.swift */; };
+		8D83EA78252B9ECD004E6098 /* ActivityPresentableProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D83EA77252B9ECD004E6098 /* ActivityPresentableProtocol.swift */; };
 		8D9985E825292776009EA144 /* UniversalCollectionViewOutputProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D9985E725292776009EA144 /* UniversalCollectionViewOutputProtocol.swift */; };
 		8D9985EC252929E7009EA144 /* VocabularyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D9985EA252929E7009EA144 /* VocabularyViewController.swift */; };
 		8D9985ED252929E7009EA144 /* VocabularyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D9985EB252929E7009EA144 /* VocabularyViewController.xib */; };
@@ -137,6 +139,8 @@
 		8D83EA6B252B9215004E6098 /* UniversalTableViewBindingProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniversalTableViewBindingProtocol.swift; sourceTree = "<group>"; };
 		8D83EA6D252B9C11004E6098 /* ActivityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityViewController.swift; sourceTree = "<group>"; };
 		8D83EA6E252B9C11004E6098 /* ActivityViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ActivityViewController.xib; sourceTree = "<group>"; };
+		8D83EA75252B9EB9004E6098 /* CoordinatorClosableProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinatorClosableProtocol.swift; sourceTree = "<group>"; };
+		8D83EA77252B9ECD004E6098 /* ActivityPresentableProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityPresentableProtocol.swift; sourceTree = "<group>"; };
 		8D9985E725292776009EA144 /* UniversalCollectionViewOutputProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniversalCollectionViewOutputProtocol.swift; sourceTree = "<group>"; };
 		8D9985EA252929E7009EA144 /* VocabularyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabularyViewController.swift; sourceTree = "<group>"; };
 		8D9985EB252929E7009EA144 /* VocabularyViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VocabularyViewController.xib; sourceTree = "<group>"; };
@@ -324,6 +328,8 @@
 		8D83EA71252B9E5E004E6098 /* Coordinator */ = {
 			isa = PBXGroup;
 			children = (
+				8D83EA75252B9EB9004E6098 /* CoordinatorClosableProtocol.swift */,
+				8D83EA77252B9ECD004E6098 /* ActivityPresentableProtocol.swift */,
 				8DD28BA325266B2500F59B7D /* Coordinator.swift */,
 			);
 			path = Coordinator;
@@ -839,6 +845,7 @@
 				8DD28BDB2526864400F59B7D /* DrivableModelProtocol.swift in Sources */,
 				8D66254C252A7D3900991D45 /* WordsViewModel.swift in Sources */,
 				8D66253A252A6D4600991D45 /* VocabularyProgressView.swift in Sources */,
+				8D83EA76252B9EB9004E6098 /* CoordinatorClosableProtocol.swift in Sources */,
 				8DD28BD32526854300F59B7D /* UINavigationItem+Drivable.swift in Sources */,
 				8D83EA65252B8BB7004E6098 /* CreateWordTableViewCell.swift in Sources */,
 				8D9985E825292776009EA144 /* UniversalCollectionViewOutputProtocol.swift in Sources */,
@@ -881,6 +888,7 @@
 				8D83EA6C252B9215004E6098 /* UniversalTableViewBindingProtocol.swift in Sources */,
 				8DD28BF52527ADF300F59B7D /* UniversalCollectionView.swift in Sources */,
 				8D9985EC252929E7009EA144 /* VocabularyViewController.swift in Sources */,
+				8D83EA78252B9ECD004E6098 /* ActivityPresentableProtocol.swift in Sources */,
 				8DD28BDD2526866600F59B7D /* DrivableViewProtocol.swift in Sources */,
 				8D662533252A610B00991D45 /* ScoreView.swift in Sources */,
 				8D66251F2529F6C000991D45 /* CreateVocabularyViewController.swift in Sources */,
