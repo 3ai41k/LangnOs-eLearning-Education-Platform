@@ -22,7 +22,7 @@ final class CreateVocabularyViewModel: UniversalTableViewViewModel {
     // MARK: - Private properties
     
     private let fireBaseDatabase: FirebaseDatabaseCreatingProtocol
-    private let router: CreateVocabularyNavigationProtocol
+    private let router: CreateVocabularyNavigationProtocol & ActivityPresentableProtocol
     private var cellViewModels: [CreateWordTableViewCellViewModelProtocol]
     
     // MARK: - Public properties
@@ -35,7 +35,7 @@ final class CreateVocabularyViewModel: UniversalTableViewViewModel {
     
     // MARK: - Init
     
-    init(fireBaseDatabase: FirebaseDatabaseCreatingProtocol, router: CreateVocabularyNavigationProtocol) {
+    init(fireBaseDatabase: FirebaseDatabaseCreatingProtocol, router: CreateVocabularyNavigationProtocol & ActivityPresentableProtocol) {
         self.fireBaseDatabase = fireBaseDatabase
         self.router = router
         self.cellViewModels = [CreateWordTableViewCellViewModel()]
@@ -59,11 +59,13 @@ final class CreateVocabularyViewModel: UniversalTableViewViewModel {
         let words = cellViewModels.map({ $0.word })
         let vocabulary = Vocabulary(title: "Test", category: "Test", words: words)
         let request = FirebaseDatabaseVocabularyCreateRequest(vocabulary: vocabulary)
+        router.showActivity()
         fireBaseDatabase.create(request: request) { (error) in
             if let error = error {
                 // FIT IT: Error handling
                 print(error.localizedDescription)
             } else {
+                self.router.closeActivity()
                 self.router.close()
             }
         }

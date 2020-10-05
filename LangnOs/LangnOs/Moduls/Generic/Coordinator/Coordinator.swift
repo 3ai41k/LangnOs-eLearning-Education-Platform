@@ -25,6 +25,24 @@ extension CoordinatorClosableProtocol where Self: Coordinator {
     
 }
 
+protocol ActivityPresentableProtocol {
+    func showActivity()
+    func closeActivity()
+}
+
+extension ActivityPresentableProtocol where Self: Coordinator {
+    
+    func showActivity() {
+        let activityViewController = ActivityViewController()
+        viewController?.present(activityViewController, animated: false, completion: nil)
+    }
+    
+    func closeActivity() {
+        viewController?.presentingViewController?.dismiss(animated: false, completion: nil)
+    }
+    
+}
+
 class Coordinator {
     
     // MARK: - Protected(Internal) properties

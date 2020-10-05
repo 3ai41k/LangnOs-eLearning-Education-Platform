@@ -12,7 +12,7 @@ protocol CreateVocabularyNavigationProtocol: CoordinatorClosableProtocol {
     
 }
 
-final class CreateVocabularyCoordinator: Coordinator {
+final class CreateVocabularyCoordinator: Coordinator, ActivityPresentableProtocol {
     
     // MARK: - Override
     
@@ -30,7 +30,6 @@ final class CreateVocabularyCoordinator: Coordinator {
         viewController = navigationController
         parentViewController?.present(navigationController, animated: true, completion: nil)
     }
-    
     
 }
 
