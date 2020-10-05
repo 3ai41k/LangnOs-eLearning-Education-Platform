@@ -3,12 +3,14 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CreateVocabularyViewController" customModule="LangnOs" customModuleProvider="target">
             <connections>
+                <outlet property="tableView" destination="cpJ-f5-Y3h" id="q9J-9K-n3G"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -17,20 +19,52 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="cpJ-f5-Y3h">
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="cpJ-f5-Y3h" customClass="UniversalTableView" customModule="LangnOs" customModuleProvider="target">
                     <rect key="frame" x="0.0" y="44" width="414" height="852"/>
-                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                    <color key="backgroundColor" name="AppBackground"/>
                 </tableView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3WZ-zZ-FFZ" customClass="BorderedButton" customModule="LangnOs" customModuleProvider="target">
+                    <rect key="frame" x="326" y="774" width="56" height="56"/>
+                    <color key="backgroundColor" name="VocabularyProgress"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="3WZ-zZ-FFZ" secondAttribute="height" multiplier="1:1" id="8Pn-yi-812"/>
+                        <constraint firstAttribute="height" constant="56" id="Wed-rW-YtT"/>
+                    </constraints>
+                    <color key="tintColor" name="Icon"/>
+                    <state key="normal" image="plus" catalog="system"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <real key="value" value="28"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="didAddNewRowTouched:" destination="-1" eventType="touchUpInside" id="5UM-gI-nhf"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="cpJ-f5-Y3h" secondAttribute="bottom" id="AaD-sl-DJE"/>
                 <constraint firstItem="cpJ-f5-Y3h" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="OmF-Id-eJS"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="3WZ-zZ-FFZ" secondAttribute="bottom" constant="32" id="RAj-wa-YgN"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="cpJ-f5-Y3h" secondAttribute="trailing" id="fH2-YJ-fNv"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="3WZ-zZ-FFZ" secondAttribute="trailing" constant="32" id="jPY-mi-cdg"/>
                 <constraint firstItem="cpJ-f5-Y3h" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="lke-7A-iUw"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <point key="canvasLocation" x="139" y="143"/>
         </view>
     </objects>
+    <resources>
+        <image name="plus" catalog="system" width="128" height="113"/>
+        <namedColor name="AppBackground">
+            <color red="0.93699997663497925" green="0.95300000905990601" blue="0.98400002717971802" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Icon">
+            <color red="0.41999998688697815" green="0.54500001668930054" blue="0.96100002527236938" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="VocabularyProgress">
+            <color red="0.88200002908706665" green="0.90200001001358032" blue="0.94099998474121094" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
 </document>

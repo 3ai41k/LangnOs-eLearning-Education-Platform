@@ -24,6 +24,8 @@ final class WordsViewModel: UniversalTableViewViewModel {
         words.count
     }
     
+    var reloadData: (() -> Void)?
+    
     // MARK: - Private properties
     
     private let words: [Word]

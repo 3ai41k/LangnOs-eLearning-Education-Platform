@@ -13,18 +13,38 @@ protocol CreateVocabularyViewModelInputProtocol {
     var navigationBarDrivableModel: DrivableModelProtocol { get }
 }
 
-final class CreateVocabularyViewModel {
+protocol CreateVocabularyViewModelOutputProtocol {
+    func addRowAction()
+}
+
+final class CreateVocabularyViewModel: UniversalTableViewViewModel {
     
     // MARK: - Private properties
     
     private let fireBaseDatabase: FirebaseDatabaseCreatingProtocol
     private let router: CreateVocabularyNavigationProtocol
+    private var cellViewModels: [CreateWordTableViewCellViewModelProtocol]
+    
+    // MARK: - Public properties
+    
+    var numberOfRows: Int {
+        cellViewModels.count
+    }
+    
+    var reloadData: (() -> Void)?
     
     // MARK: - Init
     
     init(fireBaseDatabase: FirebaseDatabaseCreatingProtocol, router: CreateVocabularyNavigationProtocol) {
         self.fireBaseDatabase = fireBaseDatabase
         self.router = router
+        self.cellViewModels = [CreateWordTableViewCellViewModel()]
+    }
+    
+    // MARK: - Public methods
+    
+    func cellViewModelForRowAt(indexPath: IndexPath) -> CellViewModelProtocol {
+        cellViewModels[indexPath.row]
     }
     
     // MARK: - Actions
@@ -36,18 +56,16 @@ final class CreateVocabularyViewModel {
     
     @objc
     private func didCreateTouched() {
-        let words: [Word] = [
-            Word(term: "Test1", definition: "Test1"),
-            Word(term: "Test2", definition: "Test2"),
-            Word(term: "Test3", definition: "Test3"),
-        ]
-        let vocabulary = Vocabulary(title: "Test",
-                                    category: "Test",
-                                    words: words)
+        let words = cellViewModels.map({ $0.word })
+        let vocabulary = Vocabulary(title: "Test", category: "Test", words: words)
         let request = FirebaseDatabaseVocabularyCreateRequest(vocabulary: vocabulary)
         fireBaseDatabase.create(request: request) { (error) in
-            // FIX IT
-            print(error.localizedDescription)
+            if let error = error {
+                // FIT IT: Error handling
+                print(error.localizedDescription)
+            } else {
+                self.router.close()
+            }
         }
     }
     
@@ -75,6 +93,18 @@ extension CreateVocabularyViewModel: CreateVocabularyViewModelInputProtocol {
         NavigationBarDrivableModel(isBottomLineHidden: false,
                                    backgroundColor: .white,
                                    prefersLargeTitles: false)
+    }
+    
+}
+
+// MARK: - CreateVocabularyViewModelOutputProtocol
+
+extension CreateVocabularyViewModel: CreateVocabularyViewModelOutputProtocol {
+    
+    func addRowAction() {
+        let cellViewModel = CreateWordTableViewCellViewModel()
+        cellViewModels.append(cellViewModel)
+        reloadData?()
     }
     
 }

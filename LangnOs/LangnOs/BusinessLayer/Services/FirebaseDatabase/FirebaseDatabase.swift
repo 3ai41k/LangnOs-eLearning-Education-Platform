@@ -17,7 +17,7 @@ protocol FirebaseDatabaseFetchingProtocol {
 }
 
 protocol FirebaseDatabaseCreatingProtocol {
-    func create(request: FirebaseDatabaseRequestProtocol, completion: @escaping (Error) -> Void)
+    func create(request: FirebaseDatabaseRequestProtocol, completion: @escaping (Error?) -> Void)
 }
 
 final class FirebaseDatabase {
@@ -54,11 +54,9 @@ extension FirebaseDatabase: FirebaseDatabaseFetchingProtocol {
 
 extension FirebaseDatabase: FirebaseDatabaseCreatingProtocol {
     
-    func create(request: FirebaseDatabaseRequestProtocol, completion: @escaping (Error) -> Void) {
-        dataBase.child(request.collectionName).childByAutoId().setValue(request.data) { (error, databaseReference) in
-            if let error = error {
-                completion(error)
-            }
+    func create(request: FirebaseDatabaseRequestProtocol, completion: @escaping (Error?) -> Void) {
+        dataBase.child(request.collectionName).childByAutoId().setValue(request.data) { (error, _) in
+            completion(error)
         }
     }
     

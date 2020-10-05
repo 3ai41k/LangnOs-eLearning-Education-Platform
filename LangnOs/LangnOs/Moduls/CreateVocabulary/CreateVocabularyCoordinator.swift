@@ -18,8 +18,10 @@ final class CreateVocabularyCoordinator: Coordinator {
     
     override func start() {
         let fireBaseDatabase = FirebaseDatabase()
+        let createVocabularyCellFactory = CreateVocabularyCellFactory()
         let createVocabularyViewModel = CreateVocabularyViewModel(fireBaseDatabase: fireBaseDatabase, router: self)
         let createVocabularyViewController = CreateVocabularyViewController()
+        createVocabularyViewController.tableViewCellFactory = createVocabularyCellFactory
         createVocabularyViewController.viewModel = createVocabularyViewModel
         
         let navigationController = UINavigationController(rootViewController: createVocabularyViewController)

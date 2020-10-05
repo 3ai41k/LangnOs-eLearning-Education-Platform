@@ -8,13 +8,19 @@
 
 import UIKit
 
-typealias UniversalTableViewViewModel = UniversalTableViewInputProtocol
+typealias UniversalTableViewViewModel = UniversalTableViewInputProtocol & UniversalTableViewBindingProtocol
 
 final class UniversalTableView: UITableView {
     
     // MARK: - Private properties
     
-    private var viewModel: UniversalTableViewViewModel!
+    private var viewModel: UniversalTableViewViewModel! {
+        didSet {
+            viewModel.reloadData = { [weak self] in
+                self?.reloadData()
+            }
+        }
+    }
     private var cellFactory: UniversalTableViewCellFactoryProtocol! {
         didSet {
             cellFactory.registerAllCells(tableView: self)

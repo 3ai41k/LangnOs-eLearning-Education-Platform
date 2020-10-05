@@ -1,5 +1,5 @@
 //
-//  WordsCellFactory.swift
+//  CreateVocabularyCellFactory.swift
 //  LangnOs
 //
 //  Created by Nikita Lizogubov on 05.10.2020.
@@ -8,11 +8,11 @@
 
 import UIKit
 
-final class WordsCellFactory: UniversalTableViewCellFactoryProtocol {
+final class CreateVocabularyCellFactory: UniversalTableViewCellFactoryProtocol {
     
     private var cellTypes: [UniversalTableViewCellRegistratable.Type] {
         [
-            WordTableViewCell.self
+            CreateWordTableViewCell.self
         ]
     }
     
@@ -22,8 +22,8 @@ final class WordsCellFactory: UniversalTableViewCellFactoryProtocol {
     
     func generateCell(cellViewModel: CellViewModelProtocol, tableView: UITableView, indexPath: IndexPath) -> UITableViewCell {
         switch cellViewModel {
-        case let cellViewModel as WordTableViewCellViewModel:
-            let cell = WordTableViewCell.dequeueReusableCell(tableView, for: indexPath)
+        case let cellViewModel as CreateWordTableViewCellViewModel:
+            let cell = CreateWordTableViewCell.dequeueReusableCell(tableView, for: indexPath)
             cell.viewModel = cellViewModel
             return cell
         default:
