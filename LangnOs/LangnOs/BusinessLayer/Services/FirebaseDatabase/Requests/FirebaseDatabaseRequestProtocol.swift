@@ -10,4 +10,5 @@ import Foundation
 
 protocol FirebaseDatabaseRequestProtocol {
     var collectionName: String { get }
+    var data: [String: Any]? { get }
 }

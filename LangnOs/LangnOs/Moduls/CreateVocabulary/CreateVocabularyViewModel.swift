@@ -17,11 +17,13 @@ final class CreateVocabularyViewModel {
     
     // MARK: - Private properties
     
+    private let fireBaseDatabase: FirebaseDatabaseCreatingProtocol
     private let router: CreateVocabularyNavigationProtocol
     
     // MARK: - Init
     
-    init(router: CreateVocabularyNavigationProtocol) {
+    init(fireBaseDatabase: FirebaseDatabaseCreatingProtocol, router: CreateVocabularyNavigationProtocol) {
+        self.fireBaseDatabase = fireBaseDatabase
         self.router = router
     }
     
@@ -30,6 +32,23 @@ final class CreateVocabularyViewModel {
     @objc
     private func didCloseTouched() {
         router.close()
+    }
+    
+    @objc
+    private func didCreateTouched() {
+        let words: [Word] = [
+            Word(term: "Test1", definition: "Test1"),
+            Word(term: "Test2", definition: "Test2"),
+            Word(term: "Test3", definition: "Test3"),
+        ]
+        let vocabulary = Vocabulary(title: "Test",
+                                    category: "Test",
+                                    words: words)
+        let request = FirebaseDatabaseVocabularyCreateRequest(vocabulary: vocabulary)
+        fireBaseDatabase.create(request: request) { (error) in
+            // FIX IT
+            print(error.localizedDescription)
+        }
     }
     
 }
@@ -43,9 +62,13 @@ extension CreateVocabularyViewModel: CreateVocabularyViewModelInputProtocol {
                                                       style: .plain,
                                                       target: self,
                                                       selector: #selector(didCloseTouched))
+        let createButtonModel = BarButtonDrivableModel(title: "Create".localize,
+                                                       style: .done,
+                                                       target: self,
+                                                       selector: #selector(didCreateTouched))
         return NavigationItemDrivableModel(title: "Create Vocabulary".localize,
                                            leftBarButtonDrivableModels: [closeButtonModel],
-                                           rightBarButtonDrivableModels: [])
+                                           rightBarButtonDrivableModels: [createButtonModel])
     }
     
     var navigationBarDrivableModel: DrivableModelProtocol {

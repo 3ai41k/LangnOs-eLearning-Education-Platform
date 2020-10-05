@@ -17,7 +17,8 @@ final class CreateVocabularyCoordinator: Coordinator {
     // MARK: - Override
     
     override func start() {
-        let createVocabularyViewModel = CreateVocabularyViewModel(router: self)
+        let fireBaseDatabase = FirebaseDatabase()
+        let createVocabularyViewModel = CreateVocabularyViewModel(fireBaseDatabase: fireBaseDatabase, router: self)
         let createVocabularyViewController = CreateVocabularyViewController()
         createVocabularyViewController.viewModel = createVocabularyViewModel
         

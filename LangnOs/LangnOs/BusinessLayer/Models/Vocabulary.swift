@@ -16,7 +16,18 @@ struct Vocabulary: FirebaseDatabaseEntityProtocol {
     let totalLearningTime: Double
     let words: [Word]
     
-    init(dictionary: [String : Any]) {
+    var serialize: [String: Any] {
+        [
+            "title": title,
+            "category": category,
+            "phrasesLearned": phrasesLearned,
+            "phrasesLeftToLearn": phrasesLeftToLearn,
+            "totalLearningTime": totalLearningTime,
+            "words": words.map({ $0.serialize })
+        ]
+    }
+    
+    init(dictionary: [String: Any]) {
         self.title = dictionary["title"] as! String
         self.category = dictionary["category"] as! String
         self.phrasesLearned = dictionary["phrasesLearned"] as! Int
@@ -26,4 +37,14 @@ struct Vocabulary: FirebaseDatabaseEntityProtocol {
             Word(dictionary: $0)
         })
     }
+    
+    init(title: String, category: String, words: [Word]) {
+        self.title = title
+        self.category = category
+        self.phrasesLearned = 0
+        self.phrasesLeftToLearn = 0
+        self.totalLearningTime = 0.0
+        self.words = words
+    }
+    
 }

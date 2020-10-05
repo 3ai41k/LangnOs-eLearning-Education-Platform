@@ -10,4 +10,5 @@ import Foundation
 
 protocol FirebaseDatabaseEntityProtocol {
     init(dictionary: [String: Any])
+    var serialize: [String: Any] { get }
 }

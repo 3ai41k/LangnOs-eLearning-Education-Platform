@@ -35,13 +35,13 @@ final class MainViewModel: UniversalCollectionViewViewModel {
     // MARK: - Private properties
     
     private let router: MainNavigationProtocol
-    private let cloudFirestore: FirebaseDatabaseProtocol
+    private let cloudFirestore: FirebaseDatabaseFetchingProtocol
     
     private var vocabularies: [Vocabulary]
     
     // MARK: - Init
     
-    init(router: MainNavigationProtocol, cloudFirestore: FirebaseDatabaseProtocol) {
+    init(router: MainNavigationProtocol, cloudFirestore: FirebaseDatabaseFetchingProtocol) {
         self.router = router
         self.cloudFirestore = cloudFirestore
         
@@ -90,7 +90,7 @@ extension MainViewModel: MainViewModelInputProtocol {
     }
     
     func fetchData() {
-        let request = FirebaseDatabaseVocabularyRequest()
+        let request = FirebaseDatabaseVocabularyFetchRequest()
         cloudFirestore.fetch(request: request) { (result: Result<[Vocabulary], Error>) in
             switch result {
             case .success(let vocabularies):

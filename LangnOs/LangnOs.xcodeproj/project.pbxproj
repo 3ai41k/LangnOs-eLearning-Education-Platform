@@ -33,6 +33,7 @@
 		8D662553252A7F5F00991D45 /* WordTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D662551252A7F5F00991D45 /* WordTableViewCell.xib */; };
 		8D662555252A7FAC00991D45 /* WordTableViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D662554252A7FAC00991D45 /* WordTableViewCellViewModel.swift */; };
 		8D662558252A800600991D45 /* UniversalTableViewCellRegistratable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D662557252A800600991D45 /* UniversalTableViewCellRegistratable.swift */; };
+		8D66255A252B0F9F00991D45 /* FirebaseDatabaseVocabularyCreateRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D662559252B0F9F00991D45 /* FirebaseDatabaseVocabularyCreateRequest.swift */; };
 		8D9985E825292776009EA144 /* UniversalCollectionViewOutputProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D9985E725292776009EA144 /* UniversalCollectionViewOutputProtocol.swift */; };
 		8D9985EC252929E7009EA144 /* VocabularyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D9985EA252929E7009EA144 /* VocabularyViewController.swift */; };
 		8D9985ED252929E7009EA144 /* VocabularyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D9985EB252929E7009EA144 /* VocabularyViewController.xib */; };
@@ -42,7 +43,7 @@
 		8DAA55402529112B00FF5066 /* Vocabulary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DAA553F2529112B00FF5066 /* Vocabulary.swift */; };
 		8DAA55452529117200FF5066 /* FirebaseDatabaseEntityProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DAA55442529117200FF5066 /* FirebaseDatabaseEntityProtocol.swift */; };
 		8DAA55472529129E00FF5066 /* FirebaseDatabaseRequestProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DAA55462529129E00FF5066 /* FirebaseDatabaseRequestProtocol.swift */; };
-		8DAA554A252912BA00FF5066 /* FirebaseDatabaseVocabularyRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DAA5549252912BA00FF5066 /* FirebaseDatabaseVocabularyRequest.swift */; };
+		8DAA554A252912BA00FF5066 /* FirebaseDatabaseVocabularyFetchRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DAA5549252912BA00FF5066 /* FirebaseDatabaseVocabularyFetchRequest.swift */; };
 		8DAA554C2529162000FF5066 /* UniversalCollectionViewBindingProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DAA554B2529162000FF5066 /* UniversalCollectionViewBindingProtocol.swift */; };
 		8DAA554E25291D3400FF5066 /* Word.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DAA554D25291D3400FF5066 /* Word.swift */; };
 		8DD28B85252667F600F59B7D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD28B84252667F600F59B7D /* AppDelegate.swift */; };
@@ -121,6 +122,7 @@
 		8D662551252A7F5F00991D45 /* WordTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WordTableViewCell.xib; sourceTree = "<group>"; };
 		8D662554252A7FAC00991D45 /* WordTableViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordTableViewCellViewModel.swift; sourceTree = "<group>"; };
 		8D662557252A800600991D45 /* UniversalTableViewCellRegistratable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniversalTableViewCellRegistratable.swift; sourceTree = "<group>"; };
+		8D662559252B0F9F00991D45 /* FirebaseDatabaseVocabularyCreateRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseDatabaseVocabularyCreateRequest.swift; sourceTree = "<group>"; };
 		8D9985E725292776009EA144 /* UniversalCollectionViewOutputProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniversalCollectionViewOutputProtocol.swift; sourceTree = "<group>"; };
 		8D9985EA252929E7009EA144 /* VocabularyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabularyViewController.swift; sourceTree = "<group>"; };
 		8D9985EB252929E7009EA144 /* VocabularyViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VocabularyViewController.xib; sourceTree = "<group>"; };
@@ -130,7 +132,7 @@
 		8DAA553F2529112B00FF5066 /* Vocabulary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vocabulary.swift; sourceTree = "<group>"; };
 		8DAA55442529117200FF5066 /* FirebaseDatabaseEntityProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseDatabaseEntityProtocol.swift; sourceTree = "<group>"; };
 		8DAA55462529129E00FF5066 /* FirebaseDatabaseRequestProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseDatabaseRequestProtocol.swift; sourceTree = "<group>"; };
-		8DAA5549252912BA00FF5066 /* FirebaseDatabaseVocabularyRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseDatabaseVocabularyRequest.swift; sourceTree = "<group>"; };
+		8DAA5549252912BA00FF5066 /* FirebaseDatabaseVocabularyFetchRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseDatabaseVocabularyFetchRequest.swift; sourceTree = "<group>"; };
 		8DAA554B2529162000FF5066 /* UniversalCollectionViewBindingProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniversalCollectionViewBindingProtocol.swift; sourceTree = "<group>"; };
 		8DAA554D25291D3400FF5066 /* Word.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Word.swift; sourceTree = "<group>"; };
 		8DD28B81252667F600F59B7D /* LangnOs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LangnOs.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -317,7 +319,8 @@
 			isa = PBXGroup;
 			children = (
 				8DAA55462529129E00FF5066 /* FirebaseDatabaseRequestProtocol.swift */,
-				8DAA5549252912BA00FF5066 /* FirebaseDatabaseVocabularyRequest.swift */,
+				8DAA5549252912BA00FF5066 /* FirebaseDatabaseVocabularyFetchRequest.swift */,
+				8D662559252B0F9F00991D45 /* FirebaseDatabaseVocabularyCreateRequest.swift */,
 			);
 			path = Requests;
 			sourceTree = "<group>";
@@ -765,7 +768,8 @@
 				8DD28B85252667F600F59B7D /* AppDelegate.swift in Sources */,
 				8DD28BDF2526886200F59B7D /* NavigationBarDrivableModel.swift in Sources */,
 				8D662555252A7FAC00991D45 /* WordTableViewCellViewModel.swift in Sources */,
-				8DAA554A252912BA00FF5066 /* FirebaseDatabaseVocabularyRequest.swift in Sources */,
+				8D66255A252B0F9F00991D45 /* FirebaseDatabaseVocabularyCreateRequest.swift in Sources */,
+				8DAA554A252912BA00FF5066 /* FirebaseDatabaseVocabularyFetchRequest.swift in Sources */,
 				8DD28BB325266F6800F59B7D /* MainCoordinator.swift in Sources */,
 				8DD28BA425266B2500F59B7D /* Coordinator.swift in Sources */,
 				8DD28BDB2526864400F59B7D /* DrivableModelProtocol.swift in Sources */,

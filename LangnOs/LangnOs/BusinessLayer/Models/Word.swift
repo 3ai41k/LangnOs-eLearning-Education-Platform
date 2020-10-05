@@ -12,8 +12,21 @@ struct Word: FirebaseDatabaseEntityProtocol {
     let term: String
     let definition: String
     
-    init(dictionary: [String : Any]) {
+    var serialize: [String: Any] {
+        [
+            "term": term,
+            "definition": definition
+        ]
+    }
+    
+    init(dictionary: [String: Any]) {
         self.term = dictionary["term"] as! String
         self.definition = dictionary["definition"] as! String
     }
+    
+    init(term: String, definition: String) {
+        self.term = term
+        self.definition = definition
+    }
+    
 }
