@@ -14,11 +14,28 @@ final class VocabularyCollectionViewCell: UICollectionViewCell, UniversalCollect
     
     @IBOutlet private weak var containerView: UIView! {
         didSet {
-            containerView.layer.cornerRadius = 10.0
+            containerView.layer.cornerRadius = 20.0
         }
     }
-    @IBOutlet private weak var titleLabel: UILabel!
-    @IBOutlet private weak var numberOfWordsLabel: UILabel!
+    @IBOutlet private weak var categoryLabel: UILabel!
+    @IBOutlet private weak var nameLabel: UILabel!
+    @IBOutlet private weak var phrasesLearnnedView: UIView! {
+        didSet {
+            phrasesLearnnedView.layer.cornerRadius = phrasesLearnnedView.bounds.height / 2.0
+        }
+    }
+    @IBOutlet private weak var phrasesLearnedLabel: UILabel!
+    @IBOutlet private weak var phrasesLeftToLearnView: UIView! {
+        didSet {
+            phrasesLeftToLearnView.layer.cornerRadius = phrasesLeftToLearnView.bounds.height / 2.0
+        }
+    }
+    @IBOutlet private weak var phrasesLeftToLearnLabel: UILabel!
+    @IBOutlet private weak var bottomView: UIView! {
+        didSet {
+            bottomView.layer.cornerRadius = 20.0
+        }
+    }
     
     // MARK: - Public properties
     
@@ -31,8 +48,18 @@ final class VocabularyCollectionViewCell: UICollectionViewCell, UniversalCollect
     // MARK: - Private methods
     
     private func bindViewModel() {
-        titleLabel.text = viewModel?.title
-        numberOfWordsLabel.text = viewModel?.numberOfWords
+        categoryLabel.text = viewModel?.category
+        nameLabel.text = viewModel?.title
+        phrasesLearnedLabel.text = viewModel?.phrasesLeftToLearn
+        phrasesLeftToLearnLabel.text = viewModel?.phrasesLeftToLearn
+        
+        setupColor()
+    }
+    
+    private func setupColor() {
+        containerView.backgroundColor = viewModel?.color
+        phrasesLearnnedView.backgroundColor = viewModel?.color
+        phrasesLeftToLearnView.backgroundColor = viewModel?.color
     }
     
 }

@@ -14,16 +14,23 @@ final class MainViewController: BindibleViewController<MainViewModelType> {
 
     // MARK: - IBOutlets
     
+    @IBOutlet private weak var topBarView: UIView! {
+        didSet {
+            topBarView.layer.cornerRadius = 20.0
+            topBarView.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
+        }
+    }
     @IBOutlet private weak var fiexedCollectionView: UniversalCollectionView! {
         didSet {
-            guard let viewModel = viewModel, let cellFactory = collectionViewCellFactory else { return }
-            fiexedCollectionView.start(viewModel: viewModel, cellFactory: cellFactory)
+            guard let viewModel = viewModel, let cellFactory = collectionViewCellFactory, let layout = collectionViewLayout else { return }
+            fiexedCollectionView.start(viewModel: viewModel, cellFactory: cellFactory, layout: layout)
         }
     }
     
     // MARK: - Publiec properties
     
     var collectionViewCellFactory: UniversalCollectionViewCellFactoryProtocol?
+    var collectionViewLayout: UniversalCollectionViewLayoutProtocol?
     
     // MARK: - Lifecycle
     

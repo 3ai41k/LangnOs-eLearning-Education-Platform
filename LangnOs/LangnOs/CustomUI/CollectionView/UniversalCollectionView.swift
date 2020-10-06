@@ -7,18 +7,23 @@
 //
 
 import UIKit
+import Combine
 
-typealias UniversalCollectionViewViewModel = UniversalCollectionViewInputProtocol & UniversalCollectionViewBindingProtocol & UniversalCollectionViewOutputProtocol
+typealias UniversalCollectionViewViewModel = UniversalSectionProtocol & UniversalCollectionViewOutputProtocol
 
 final class UniversalCollectionView: UICollectionView {
     
     // MARK: - Private properties
     
+    private var cancellable: [AnyCancellable] = []
+    
     private var viewModel: UniversalCollectionViewViewModel! {
         didSet {
-            viewModel.reloadData = {
-                self.reloadData()
-            }
+            viewModel.tableSections.enumerated().forEach({ (index, section) in
+                section.reload.sink(receiveValue: { [weak self] in
+                    self?.reloadSections([index])
+                }).store(in: &cancellable)
+            })
         }
     }
     private var cellFactory: UniversalCollectionViewCellFactoryProtocol! {
@@ -26,15 +31,21 @@ final class UniversalCollectionView: UICollectionView {
             cellFactory.registerAllCells(collectionView: self)
         }
     }
+    private var layout: UniversalCollectionViewLayoutProtocol! {
+        didSet {
+            collectionViewLayout = layout.collectionViewLayout
+        }
+    }
     
     // MARK: - Public methods
     
     func start(viewModel: UniversalCollectionViewViewModel,
-               cellFactory: UniversalCollectionViewCellFactoryProtocol) {
+               cellFactory: UniversalCollectionViewCellFactoryProtocol,
+               layout: UniversalCollectionViewLayoutProtocol) {
         self.viewModel = viewModel
         self.cellFactory = cellFactory
+        self.layout = layout
         
-        backgroundColor = viewModel.backgroundColor
         dataSource = self
         delegate = self
         
@@ -49,12 +60,16 @@ final class UniversalCollectionView: UICollectionView {
 
 extension UniversalCollectionView: UICollectionViewDataSource {
     
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        viewModel.tableSections.count
+    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        viewModel.numberOfItemsInSection
+        viewModel.tableSections[section].cells.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cellViewModel = viewModel.cellViewModelForRowAt(indexPath: indexPath)
+        let cellViewModel = viewModel.tableSections[indexPath.section].cells[indexPath.row]
         return cellFactory.generateCell(cellViewModel: cellViewModel, collectionView: collectionView, indexPath: indexPath)
     }
     
@@ -66,6 +81,16 @@ extension UniversalCollectionView: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         viewModel.didSelectCellAt(indexPath: indexPath)
+    }
+    
+}
+
+// MARK: - UICollectionViewDelegateFlowLayout
+
+extension UniversalCollectionView: UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        layout.sizeForItemAt(collectionView, indexPath: indexPath)
     }
     
 }

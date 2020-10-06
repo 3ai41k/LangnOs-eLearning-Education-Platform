@@ -24,6 +24,7 @@ final class MainCoordinator: Coordinator {
         let mainViewController = MainViewController()
         mainViewController.viewModel = mainViewModel
         mainViewController.collectionViewCellFactory = MainCellFactory()
+        mainViewController.collectionViewLayout = SquareGridFlowLayout(numberOfItemsPerRow: 2)
         mainViewController.tabBarItem = UITabBarItem(provider: .main)
         
         let navigationController = UINavigationController(rootViewController: mainViewController)

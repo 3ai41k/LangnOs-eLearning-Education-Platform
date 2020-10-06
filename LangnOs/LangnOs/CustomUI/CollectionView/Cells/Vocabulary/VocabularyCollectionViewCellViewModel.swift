@@ -6,11 +6,14 @@
 //  Copyright © 2020 NL. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 protocol VocabularyCollectionViewCellInputProtocol {
     var title: String { get }
-    var numberOfWords: String { get }
+    var category: String { get }
+    var phrasesLearned: String { get }
+    var phrasesLeftToLearn: String { get }
+    var color: UIColor { get }
 }
 
 final class VocabularyCollectionViewCellViewModel: CellViewModelProtocol {
@@ -18,6 +21,10 @@ final class VocabularyCollectionViewCellViewModel: CellViewModelProtocol {
     // MARK: - Private properties
     
     private let vocabulary: Vocabulary
+    
+    // MARK: - Public properties
+    
+    var color: UIColor = .random
     
     // MARK: - Init
     
@@ -35,8 +42,16 @@ extension VocabularyCollectionViewCellViewModel: VocabularyCollectionViewCellInp
         vocabulary.title
     }
     
-    var numberOfWords: String {
-        String(format: "%d %@", vocabulary.words.count, "new words".localize)
+    var category: String {
+        vocabulary.category
+    }
+    
+    var phrasesLearned: String {
+        String(vocabulary.phrasesLearned)
+    }
+    
+    var phrasesLeftToLearn: String {
+        String(vocabulary.phrasesLeftToLearn)
     }
     
 }

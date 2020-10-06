@@ -17,7 +17,7 @@ protocol CreateVocabularyViewModelOutputProtocol {
     func addRowAction()
 }
 
-final class CreateVocabularyViewModel: UniversalTableViewViewModel {
+final class CreateVocabularyViewModel: UniversalSectionProtocol {
     
     // MARK: - Private properties
     
@@ -27,12 +27,6 @@ final class CreateVocabularyViewModel: UniversalTableViewViewModel {
     private enum SectionType: Int {
         case vocabularylInfo
         case words
-    }
-    
-    private var words: [Word] {
-        tableSections[SectionType.words.rawValue].cells.compactMap({
-            ($0 as? CreateWordTableViewCellViewModelProtocol)?.word
-        })
     }
     
     // MARK: - Public properties
@@ -62,10 +56,25 @@ final class CreateVocabularyViewModel: UniversalTableViewViewModel {
         tableSections.append(UniversalTableSectionViewModel(title: nil, cells: [createWordTableViewCellViewModel]))
     }
     
-    private func resignResponders() {
-        tableSections[SectionType.words.rawValue].cells.forEach({
-            ($0 as? ResignibleRespondersProtocol)?.resignResponders()
-        })
+    private func createVocabulary() -> Vocabulary {
+        var vocabularyName = ""
+        var words: [Word] = []
+        
+        for section in tableSections {
+            for cellViewModel in section.cells {
+                (cellViewModel as? ResignibleRespondersProtocol)?.resignResponders()
+                switch cellViewModel {
+                case let viewModel as VocabularyInfoTableViewCellViewModelProtocol:
+                    vocabularyName = viewModel.vocabularyName
+                case let viewModel as CreateWordTableViewCellViewModelProtocol:
+                    words.append(viewModel.word)
+                default:
+                    break
+                }
+            }
+        }
+        
+        return Vocabulary(title: vocabularyName, category: "Test", words: words)
     }
     
     // MARK: - Actions
@@ -77,13 +86,9 @@ final class CreateVocabularyViewModel: UniversalTableViewViewModel {
     
     @objc
     private func didCreateTouched() {
-        resignResponders()
-        
-        let vocabulary = Vocabulary(title: "Test", category: "Test", words: words)
-        let request = FirebaseDatabaseVocabularyCreateRequest(vocabulary: vocabulary)
-        
         router.showActivity()
         
+        let request = FirebaseDatabaseVocabularyCreateRequest(vocabulary: createVocabulary())
         fireBaseDatabase.create(request: request) { (error) in
             if let error = error {
                 // FIT IT: Error handling

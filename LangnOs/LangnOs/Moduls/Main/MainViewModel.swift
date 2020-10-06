@@ -22,38 +22,29 @@ final class MainViewModel: UniversalCollectionViewViewModel {
     
     // MARK: - Public properties
     
-    var reloadData: (() -> Void)?
-    
-    var backgroundColor: UIColor {
-        .lightGray
-    }
-    
-    var numberOfItemsInSection: Int {
-        vocabularies.count
-    }
+    var tableSections: [TableSectionViewModelProtocol] = [
+        UniversalTableSectionViewModel(title: nil, cells: [])
+    ]
     
     // MARK: - Private properties
     
     private let router: MainNavigationProtocol
     private let cloudFirestore: FirebaseDatabaseFetchingProtocol
-    
     private var vocabularies: [Vocabulary]
+    
+    private enum SectionType: Int {
+        case vocabulary
+    }
     
     // MARK: - Init
     
     init(router: MainNavigationProtocol, cloudFirestore: FirebaseDatabaseFetchingProtocol) {
         self.router = router
         self.cloudFirestore = cloudFirestore
-        
         self.vocabularies = []
     }
     
     // MARK: - Public methods
-    
-    func cellViewModelForRowAt(indexPath: IndexPath) -> CellViewModelProtocol {
-        let vocabulary = vocabularies[indexPath.row]
-        return VocabularyCollectionViewCellViewModel(vocabulary: vocabulary)
-    }
     
     func didSelectCellAt(indexPath: IndexPath) {
         let vocabulary = vocabularies[indexPath.row]
@@ -78,7 +69,7 @@ extension MainViewModel: MainViewModelInputProtocol {
                                                                     style: .plain,
                                                                     target: self,
                                                                     selector: #selector(didCreateNewVocabularyTouched))
-        return NavigationItemDrivableModel(title: "Hello, -3ai41k-",
+        return NavigationItemDrivableModel(title: "Maerials".localize,
                                            leftBarButtonDrivableModels: [],
                                            rightBarButtonDrivableModels: [createNewVocabularyButtonModel])
     }
@@ -86,7 +77,7 @@ extension MainViewModel: MainViewModelInputProtocol {
     var navigationBarDrivableModel: DrivableModelProtocol {
         NavigationBarDrivableModel(isBottomLineHidden: true,
                                    backgroundColor: .systemBackground,
-                                   prefersLargeTitles: true)
+                                   prefersLargeTitles: false)
     }
     
     func fetchData() {
@@ -95,7 +86,9 @@ extension MainViewModel: MainViewModelInputProtocol {
             switch result {
             case .success(let vocabularies):
                 self.vocabularies = vocabularies
-                self.reloadData?()
+                self.tableSections[SectionType.vocabulary.rawValue].cells = vocabularies.map({
+                    VocabularyCollectionViewCellViewModel(vocabulary: $0)
+                })
             case .failure(let error):
                 // FIX IT: Add error handling
                 print(error)

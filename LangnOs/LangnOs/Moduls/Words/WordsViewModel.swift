@@ -16,7 +16,7 @@ protocol WordsViewModelOutputProtocol {
     
 }
 
-final class WordsViewModel: UniversalTableViewViewModel {
+final class WordsViewModel: UniversalSectionProtocol {
     
     // MARK: - Public properties
     
