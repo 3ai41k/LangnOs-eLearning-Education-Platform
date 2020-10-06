@@ -30,3 +30,13 @@ struct Word: FirebaseDatabaseEntityProtocol {
     }
     
 }
+
+// MARK: - EmptyableProtocol
+
+extension Word: EmptyableProtocol {
+    
+    var isEmpty: Bool {
+        term.isEmpty && definition.isEmpty
+    }
+    
+}

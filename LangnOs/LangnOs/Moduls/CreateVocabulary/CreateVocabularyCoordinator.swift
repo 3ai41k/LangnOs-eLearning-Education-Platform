@@ -12,7 +12,7 @@ protocol CreateVocabularyNavigationProtocol: CoordinatorClosableProtocol {
     
 }
 
-final class CreateVocabularyCoordinator: Coordinator, ActivityPresentableProtocol {
+final class CreateVocabularyCoordinator: Coordinator, ActivityPresentableProtocol, AlertPresentableProtocol {
     
     // MARK: - Override
     

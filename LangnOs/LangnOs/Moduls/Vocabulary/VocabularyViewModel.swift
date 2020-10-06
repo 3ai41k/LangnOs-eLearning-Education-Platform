@@ -52,6 +52,7 @@ final class VocabularyViewModel {
     @objc
     private func didRemoveTouched() {
         router.showAlert(title: "Delete", message: "Are you sure?", actions: [
+            CancelAlertAction(handler: nil),
             OkAlertAction(handler: {
                 let request = VocabularyDeleteRequest(vocabulary: self.vocabulary)
                 self.cloudDatabase.delete(request: request) { (error) in
@@ -62,8 +63,7 @@ final class VocabularyViewModel {
                         self.router.close()
                     }
                 }
-            }),
-            CancelAlertAction(handler: nil)
+            })
         ])
     }
     

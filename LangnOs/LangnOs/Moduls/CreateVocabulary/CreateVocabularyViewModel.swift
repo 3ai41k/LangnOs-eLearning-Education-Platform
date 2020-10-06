@@ -22,7 +22,7 @@ final class CreateVocabularyViewModel: UniversalSectionProtocol {
     // MARK: - Private properties
     
     private let fireBaseDatabase: FirebaseDatabaseCreatingProtocol
-    private let router: CreateVocabularyNavigationProtocol & ActivityPresentableProtocol
+    private let router: CreateVocabularyNavigationProtocol & ActivityPresentableProtocol & AlertPresentableProtocol
     
     private enum SectionType: Int {
         case vocabularylInfo
@@ -35,7 +35,8 @@ final class CreateVocabularyViewModel: UniversalSectionProtocol {
     
     // MARK: - Init
     
-    init(fireBaseDatabase: FirebaseDatabaseCreatingProtocol, router: CreateVocabularyNavigationProtocol & ActivityPresentableProtocol) {
+    init(fireBaseDatabase: FirebaseDatabaseCreatingProtocol,
+         router: CreateVocabularyNavigationProtocol & ActivityPresentableProtocol & AlertPresentableProtocol) {
         self.fireBaseDatabase = fireBaseDatabase
         self.router = router
         self.tableSections = []
@@ -56,7 +57,7 @@ final class CreateVocabularyViewModel: UniversalSectionProtocol {
         tableSections.append(UniversalTableSectionViewModel(title: nil, cells: [createWordTableViewCellViewModel]))
     }
     
-    private func createVocabulary() -> Vocabulary {
+    private func createVocabulary() throws -> Vocabulary {
         var name = ""
         var category = ""
         var words: [Word] = []
@@ -69,11 +70,16 @@ final class CreateVocabularyViewModel: UniversalSectionProtocol {
                     name = viewModel.name
                     category = viewModel.category
                 case let viewModel as CreateWordTableViewCellViewModelProtocol:
+                    guard !viewModel.word.isEmpty else { break }
                     words.append(viewModel.word)
                 default:
                     break
                 }
             }
+        }
+        
+        guard !name.isEmpty, !category.isEmpty else {
+            throw NSError(domain: "Vocabulary is Empty", code: 0, userInfo: nil)
         }
         
         return Vocabulary(title: name, category: category, words: words)
@@ -88,17 +94,26 @@ final class CreateVocabularyViewModel: UniversalSectionProtocol {
     
     @objc
     private func didCreateTouched() {
-        router.showActivity()
-        
-        let request = VocabularyCreateRequest(vocabulary: createVocabulary())
-        fireBaseDatabase.create(request: request) { (error) in
-            if let error = error {
-                // FIT IT: Error handling
-                print(error.localizedDescription)
-            } else {
-                self.router.closeActivity()
-                self.router.close()
+        do {
+            let vocabulary = try createVocabulary()
+            let request = VocabularyCreateRequest(vocabulary: vocabulary)
+            
+            router.showActivity()
+            fireBaseDatabase.create(request: request) { (error) in
+                if let error = error {
+                    // FIT IT: Error handling
+                    print(error.localizedDescription)
+                } else {
+                    self.router.closeActivity()
+                    self.router.close()
+                }
             }
+        } catch {
+            router.showAlert(title: "Attention!", message: error.localizedDescription, actions: [
+                OkAlertAction(handler: {
+                    // TO DO: Add first cell respoder
+                })
+            ])
         }
     }
     
