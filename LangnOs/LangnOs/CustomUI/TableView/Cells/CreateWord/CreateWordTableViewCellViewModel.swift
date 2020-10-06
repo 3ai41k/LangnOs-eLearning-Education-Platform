@@ -8,7 +8,11 @@
 
 import Foundation
 
-protocol CreateWordTableViewCellViewModelProtocol: CellViewModelProtocol {
+protocol ResignibleRespondersProtocol {
+    func resignResponders()
+}
+
+protocol CreateWordTableViewCellViewModelProtocol: CellViewModelProtocol, ResignibleRespondersProtocol {
     var word: Word { get }
 }
 
@@ -22,16 +26,27 @@ protocol CreateWordTableViewCellOutputProtocol {
     func setDefinition(_ definition: String)
 }
 
-final class CreateWordTableViewCellViewModel: CreateWordTableViewCellViewModelProtocol {
+protocol CreateWordTableViewCellBindingProtocol {
+    var resignFirstResponders: (() -> Void)? { get set }
+}
+
+final class CreateWordTableViewCellViewModel: CreateWordTableViewCellViewModelProtocol, CreateWordTableViewCellBindingProtocol {
     
     // MARK: - Public properties
     
     var word: Word
+    var resignFirstResponders: (() -> Void)?
     
     // MARK: - Init
     
     init() {
         self.word = Word(term: "", definition: "")
+    }
+    
+    // MARK: - Public methods
+    
+    func resignResponders() {
+        resignFirstResponders?()
     }
     
 }

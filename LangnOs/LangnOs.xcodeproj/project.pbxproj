@@ -25,7 +25,6 @@
 		8D662541252A717500991D45 /* WordsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D66253F252A717500991D45 /* WordsViewController.xib */; };
 		8D662543252A718400991D45 /* WordsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D662542252A718400991D45 /* WordsCoordinator.swift */; };
 		8D662546252A7AAA00991D45 /* UniversalTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D662545252A7AAA00991D45 /* UniversalTableView.swift */; };
-		8D662548252A7B1100991D45 /* UniversalTableViewInputProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D662547252A7B1100991D45 /* UniversalTableViewInputProtocol.swift */; };
 		8D66254A252A7BE100991D45 /* UniversalTableViewCellFactoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D662549252A7BE100991D45 /* UniversalTableViewCellFactoryProtocol.swift */; };
 		8D66254C252A7D3900991D45 /* WordsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D66254B252A7D3900991D45 /* WordsViewModel.swift */; };
 		8D66254E252A7EF900991D45 /* WordsCellFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D66254D252A7EF900991D45 /* WordsCellFactory.swift */; };
@@ -38,11 +37,14 @@
 		8D83EA66252B8BB7004E6098 /* CreateWordTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D83EA64252B8BB7004E6098 /* CreateWordTableViewCell.xib */; };
 		8D83EA68252B8BE5004E6098 /* CreateWordTableViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D83EA67252B8BE5004E6098 /* CreateWordTableViewCellViewModel.swift */; };
 		8D83EA6A252B8FEA004E6098 /* CreateVocabularyCellFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D83EA69252B8FEA004E6098 /* CreateVocabularyCellFactory.swift */; };
-		8D83EA6C252B9215004E6098 /* UniversalTableViewBindingProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D83EA6B252B9215004E6098 /* UniversalTableViewBindingProtocol.swift */; };
 		8D83EA6F252B9C11004E6098 /* ActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D83EA6D252B9C11004E6098 /* ActivityViewController.swift */; };
 		8D83EA70252B9C11004E6098 /* ActivityViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D83EA6E252B9C11004E6098 /* ActivityViewController.xib */; };
 		8D83EA76252B9EB9004E6098 /* CoordinatorClosableProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D83EA75252B9EB9004E6098 /* CoordinatorClosableProtocol.swift */; };
 		8D83EA78252B9ECD004E6098 /* ActivityPresentableProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D83EA77252B9ECD004E6098 /* ActivityPresentableProtocol.swift */; };
+		8D83EA80252BA2A2004E6098 /* VocabularyInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D83EA7E252BA2A2004E6098 /* VocabularyInfoTableViewCell.swift */; };
+		8D83EA81252BA2A2004E6098 /* VocabularyInfoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D83EA7F252BA2A2004E6098 /* VocabularyInfoTableViewCell.xib */; };
+		8D83EA83252BA2D7004E6098 /* VocabularyInfoTableViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D83EA82252BA2D7004E6098 /* VocabularyInfoTableViewCellViewModel.swift */; };
+		8D83EA86252BBBD1004E6098 /* UniversalTableSectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D83EA85252BBBD1004E6098 /* UniversalTableSectionViewModel.swift */; };
 		8D9985E825292776009EA144 /* UniversalCollectionViewOutputProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D9985E725292776009EA144 /* UniversalCollectionViewOutputProtocol.swift */; };
 		8D9985EC252929E7009EA144 /* VocabularyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D9985EA252929E7009EA144 /* VocabularyViewController.swift */; };
 		8D9985ED252929E7009EA144 /* VocabularyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D9985EB252929E7009EA144 /* VocabularyViewController.xib */; };
@@ -55,6 +57,8 @@
 		8DAA554A252912BA00FF5066 /* FirebaseDatabaseVocabularyFetchRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DAA5549252912BA00FF5066 /* FirebaseDatabaseVocabularyFetchRequest.swift */; };
 		8DAA554C2529162000FF5066 /* UniversalCollectionViewBindingProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DAA554B2529162000FF5066 /* UniversalCollectionViewBindingProtocol.swift */; };
 		8DAA554E25291D3400FF5066 /* Word.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DAA554D25291D3400FF5066 /* Word.swift */; };
+		8DC3CF23252C67F9003CA62A /* InputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC3CF22252C67F9003CA62A /* InputView.swift */; };
+		8DC3CF27252C680C003CA62A /* InputView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DC3CF26252C680C003CA62A /* InputView.xib */; };
 		8DD28B85252667F600F59B7D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD28B84252667F600F59B7D /* AppDelegate.swift */; };
 		8DD28B87252667F600F59B7D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD28B86252667F600F59B7D /* SceneDelegate.swift */; };
 		8DD28B8C252667F600F59B7D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8DD28B8A252667F600F59B7D /* Main.storyboard */; };
@@ -123,7 +127,6 @@
 		8D66253F252A717500991D45 /* WordsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WordsViewController.xib; sourceTree = "<group>"; };
 		8D662542252A718400991D45 /* WordsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordsCoordinator.swift; sourceTree = "<group>"; };
 		8D662545252A7AAA00991D45 /* UniversalTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniversalTableView.swift; sourceTree = "<group>"; };
-		8D662547252A7B1100991D45 /* UniversalTableViewInputProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniversalTableViewInputProtocol.swift; sourceTree = "<group>"; };
 		8D662549252A7BE100991D45 /* UniversalTableViewCellFactoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniversalTableViewCellFactoryProtocol.swift; sourceTree = "<group>"; };
 		8D66254B252A7D3900991D45 /* WordsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordsViewModel.swift; sourceTree = "<group>"; };
 		8D66254D252A7EF900991D45 /* WordsCellFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordsCellFactory.swift; sourceTree = "<group>"; };
@@ -136,11 +139,14 @@
 		8D83EA64252B8BB7004E6098 /* CreateWordTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CreateWordTableViewCell.xib; sourceTree = "<group>"; };
 		8D83EA67252B8BE5004E6098 /* CreateWordTableViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateWordTableViewCellViewModel.swift; sourceTree = "<group>"; };
 		8D83EA69252B8FEA004E6098 /* CreateVocabularyCellFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateVocabularyCellFactory.swift; sourceTree = "<group>"; };
-		8D83EA6B252B9215004E6098 /* UniversalTableViewBindingProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniversalTableViewBindingProtocol.swift; sourceTree = "<group>"; };
 		8D83EA6D252B9C11004E6098 /* ActivityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityViewController.swift; sourceTree = "<group>"; };
 		8D83EA6E252B9C11004E6098 /* ActivityViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ActivityViewController.xib; sourceTree = "<group>"; };
 		8D83EA75252B9EB9004E6098 /* CoordinatorClosableProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinatorClosableProtocol.swift; sourceTree = "<group>"; };
 		8D83EA77252B9ECD004E6098 /* ActivityPresentableProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityPresentableProtocol.swift; sourceTree = "<group>"; };
+		8D83EA7E252BA2A2004E6098 /* VocabularyInfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabularyInfoTableViewCell.swift; sourceTree = "<group>"; };
+		8D83EA7F252BA2A2004E6098 /* VocabularyInfoTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VocabularyInfoTableViewCell.xib; sourceTree = "<group>"; };
+		8D83EA82252BA2D7004E6098 /* VocabularyInfoTableViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabularyInfoTableViewCellViewModel.swift; sourceTree = "<group>"; };
+		8D83EA85252BBBD1004E6098 /* UniversalTableSectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniversalTableSectionViewModel.swift; sourceTree = "<group>"; };
 		8D9985E725292776009EA144 /* UniversalCollectionViewOutputProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniversalCollectionViewOutputProtocol.swift; sourceTree = "<group>"; };
 		8D9985EA252929E7009EA144 /* VocabularyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabularyViewController.swift; sourceTree = "<group>"; };
 		8D9985EB252929E7009EA144 /* VocabularyViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VocabularyViewController.xib; sourceTree = "<group>"; };
@@ -153,6 +159,8 @@
 		8DAA5549252912BA00FF5066 /* FirebaseDatabaseVocabularyFetchRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseDatabaseVocabularyFetchRequest.swift; sourceTree = "<group>"; };
 		8DAA554B2529162000FF5066 /* UniversalCollectionViewBindingProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniversalCollectionViewBindingProtocol.swift; sourceTree = "<group>"; };
 		8DAA554D25291D3400FF5066 /* Word.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Word.swift; sourceTree = "<group>"; };
+		8DC3CF22252C67F9003CA62A /* InputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputView.swift; sourceTree = "<group>"; };
+		8DC3CF26252C680C003CA62A /* InputView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InputView.xib; sourceTree = "<group>"; };
 		8DD28B81252667F600F59B7D /* LangnOs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LangnOs.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DD28B84252667F600F59B7D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8DD28B86252667F600F59B7D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -240,6 +248,7 @@
 				8D662538252A6CF400991D45 /* VocabularyProgress */,
 				8D662535252A611900991D45 /* Score */,
 				8D662534252A610F00991D45 /* Vocabulary */,
+				8DC3CF21252C67CF003CA62A /* Input */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -287,9 +296,8 @@
 			isa = PBXGroup;
 			children = (
 				8D662545252A7AAA00991D45 /* UniversalTableView.swift */,
-				8D662547252A7B1100991D45 /* UniversalTableViewInputProtocol.swift */,
-				8D83EA6B252B9215004E6098 /* UniversalTableViewBindingProtocol.swift */,
 				8D662549252A7BE100991D45 /* UniversalTableViewCellFactoryProtocol.swift */,
+				8D83EA85252BBBD1004E6098 /* UniversalTableSectionViewModel.swift */,
 				8D66254F252A7F4700991D45 /* Cells */,
 			);
 			path = TableView;
@@ -301,6 +309,7 @@
 				8D662557252A800600991D45 /* UniversalTableViewCellRegistratable.swift */,
 				8D662556252A7FF900991D45 /* Word */,
 				8D83EA62252B8B78004E6098 /* CreateWord */,
+				8D83EA79252BA224004E6098 /* VocabularyInfo */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -361,6 +370,16 @@
 			path = ActivityViewController;
 			sourceTree = "<group>";
 		};
+		8D83EA79252BA224004E6098 /* VocabularyInfo */ = {
+			isa = PBXGroup;
+			children = (
+				8D83EA7E252BA2A2004E6098 /* VocabularyInfoTableViewCell.swift */,
+				8D83EA82252BA2D7004E6098 /* VocabularyInfoTableViewCellViewModel.swift */,
+				8D83EA7F252BA2A2004E6098 /* VocabularyInfoTableViewCell.xib */,
+			);
+			path = VocabularyInfo;
+			sourceTree = "<group>";
+		};
 		8D9985E9252929BF009EA144 /* Vocabulary */ = {
 			isa = PBXGroup;
 			children = (
@@ -390,6 +409,15 @@
 				8D662559252B0F9F00991D45 /* FirebaseDatabaseVocabularyCreateRequest.swift */,
 			);
 			path = Requests;
+			sourceTree = "<group>";
+		};
+		8DC3CF21252C67CF003CA62A /* Input */ = {
+			isa = PBXGroup;
+			children = (
+				8DC3CF22252C67F9003CA62A /* InputView.swift */,
+				8DC3CF26252C680C003CA62A /* InputView.xib */,
+			);
+			path = Input;
 			sourceTree = "<group>";
 		};
 		8DD28B78252667F600F59B7D = {
@@ -471,8 +499,8 @@
 				8DD28C0F2528ADEC00F59B7D /* SingIn */,
 				8DD28BC0252679D300F59B7D /* Presentation */,
 				8DD28BA125266A1C00F59B7D /* Main */,
-				8D9985E9252929BF009EA144 /* Vocabulary */,
 				8D66253D252A715800991D45 /* Words */,
+				8D9985E9252929BF009EA144 /* Vocabulary */,
 				8D66251C2529F68D00991D45 /* CreateVocabulary */,
 			);
 			path = Moduls;
@@ -768,10 +796,12 @@
 				8DD28BC4252679F600F59B7D /* PresentationViewController.xib in Resources */,
 				8D83EA70252B9C11004E6098 /* ActivityViewController.xib in Resources */,
 				8D6625202529F6C000991D45 /* CreateVocabularyViewController.xib in Resources */,
+				8D83EA81252BA2A2004E6098 /* VocabularyInfoTableViewCell.xib in Resources */,
 				8D662553252A7F5F00991D45 /* WordTableViewCell.xib in Resources */,
 				8DD28BB125266F4000F59B7D /* MainViewController.xib in Resources */,
 				8D9985ED252929E7009EA144 /* VocabularyViewController.xib in Resources */,
 				8DD28C0525289C5300F59B7D /* VocabularyCollectionViewCell.xib in Resources */,
+				8DC3CF27252C680C003CA62A /* InputView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -831,9 +861,9 @@
 				8DAA55452529117200FF5066 /* FirebaseDatabaseEntityProtocol.swift in Sources */,
 				8D662552252A7F5F00991D45 /* WordTableViewCell.swift in Sources */,
 				8DD28BAC25266EA500F59B7D /* TabBarProvider.swift in Sources */,
-				8D662548252A7B1100991D45 /* UniversalTableViewInputProtocol.swift in Sources */,
 				8DD28BA825266C8200F59B7D /* RootTabBarController.swift in Sources */,
 				8DAA554C2529162000FF5066 /* UniversalCollectionViewBindingProtocol.swift in Sources */,
+				8D83EA86252BBBD1004E6098 /* UniversalTableSectionViewModel.swift in Sources */,
 				8D662543252A718400991D45 /* WordsCoordinator.swift in Sources */,
 				8DD28B85252667F600F59B7D /* AppDelegate.swift in Sources */,
 				8DD28BDF2526886200F59B7D /* NavigationBarDrivableModel.swift in Sources */,
@@ -859,11 +889,14 @@
 				8D66252D252A38AD00991D45 /* UIView+Extensions.swift in Sources */,
 				8DD28BB92526774400F59B7D /* String+Localize.swift in Sources */,
 				8DD28C0925289CCB00F59B7D /* CellViewModelProtocol.swift in Sources */,
+				8D83EA80252BA2A2004E6098 /* VocabularyInfoTableViewCell.swift in Sources */,
+				8D83EA83252BA2D7004E6098 /* VocabularyInfoTableViewCellViewModel.swift in Sources */,
 				8DAA55472529129E00FF5066 /* FirebaseDatabaseRequestProtocol.swift in Sources */,
 				8DD28BF72527B0E500F59B7D /* UniversalCollectionViewInputProtocol.swift in Sources */,
 				8DD28BC625267A1700F59B7D /* PresentationCoordinator.swift in Sources */,
 				8DD28BC3252679F600F59B7D /* PresentationViewController.swift in Sources */,
 				8D83EA6A252B8FEA004E6098 /* CreateVocabularyCellFactory.swift in Sources */,
+				8DC3CF23252C67F9003CA62A /* InputView.swift in Sources */,
 				8D662558252A800600991D45 /* UniversalTableViewCellRegistratable.swift in Sources */,
 				8DD28B8F252667F600F59B7D /* LangnOs.xcdatamodeld in Sources */,
 				8DD28BCD2526815C00F59B7D /* BindibleViewController.swift in Sources */,
@@ -885,7 +918,6 @@
 				8D9985F125292B17009EA144 /* VocabularyViewModel.swift in Sources */,
 				8D66254A252A7BE100991D45 /* UniversalTableViewCellFactoryProtocol.swift in Sources */,
 				8DD28BCB252680EC00F59B7D /* PresentationViewModel.swift in Sources */,
-				8D83EA6C252B9215004E6098 /* UniversalTableViewBindingProtocol.swift in Sources */,
 				8DD28BF52527ADF300F59B7D /* UniversalCollectionView.swift in Sources */,
 				8D9985EC252929E7009EA144 /* VocabularyViewController.swift in Sources */,
 				8D83EA78252B9ECD004E6098 /* ActivityPresentableProtocol.swift in Sources */,

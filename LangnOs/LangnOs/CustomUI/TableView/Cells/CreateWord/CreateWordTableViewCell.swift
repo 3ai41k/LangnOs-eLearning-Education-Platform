@@ -12,41 +12,36 @@ final class CreateWordTableViewCell: UITableViewCell, UniversalTableViewCellRegi
     
     // MARK: - IBOutlets
     
-    @IBOutlet weak private var termTextField: UITextField!
-    @IBOutlet weak private var definitionTextField: UITextField!
-    
-    // MARK: - Public properties
-    
-    var viewModel: (CreateWordTableViewCellInputProtocol & CreateWordTableViewCellOutputProtocol)? {
+    @IBOutlet private weak var containerView: UIView! {
         didSet {
-            termTextField.text = viewModel?.term
-            definitionTextField.text = viewModel?.definition
+            containerView.layer.cornerRadius = 10.0
+        }
+    }
+    @IBOutlet private weak var termInputView: InputView! {
+        didSet {
+            termInputView.textDidEnter = { [weak self] (text) in
+                self?.viewModel?.setTerm(text)
+            }
+        }
+    }
+    @IBOutlet private weak var definitionInputView: InputView! {
+        didSet {
+            definitionInputView.textDidEnter = { [weak self] (text) in
+                self?.viewModel?.setDefinition(text)
+            }
         }
     }
     
-    // MARK: - Override
+    // MARK: - Public properties
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        
-        [termTextField, definitionTextField].forEach({ $0?.delegate = self })
-    }
-    
-}
-
-// MARK: - UITextFieldDelegate
-
-extension CreateWordTableViewCell: UITextFieldDelegate {
-    
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        guard let text = textField.text else { return }
-        switch textField {
-        case termTextField:
-            viewModel?.setTerm(text)
-        case definitionTextField:
-            viewModel?.setDefinition(text)
-        default:
-            return
+    var viewModel: (CreateWordTableViewCellInputProtocol & CreateWordTableViewCellOutputProtocol & CreateWordTableViewCellBindingProtocol)? {
+        didSet {
+            termInputView.value = viewModel?.term
+            definitionInputView.value = viewModel?.definition
+            
+            viewModel?.resignFirstResponders = { [weak self] in
+                [self?.termInputView, self?.definitionInputView].forEach({ $0?.resignFirstResponder() })
+            }
         }
     }
     

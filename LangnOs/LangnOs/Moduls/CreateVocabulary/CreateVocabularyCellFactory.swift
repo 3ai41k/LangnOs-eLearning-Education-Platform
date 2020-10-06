@@ -12,6 +12,7 @@ final class CreateVocabularyCellFactory: UniversalTableViewCellFactoryProtocol {
     
     private var cellTypes: [UniversalTableViewCellRegistratable.Type] {
         [
+            VocabularyInfoTableViewCell.self,
             CreateWordTableViewCell.self
         ]
     }
@@ -22,6 +23,10 @@ final class CreateVocabularyCellFactory: UniversalTableViewCellFactoryProtocol {
     
     func generateCell(cellViewModel: CellViewModelProtocol, tableView: UITableView, indexPath: IndexPath) -> UITableViewCell {
         switch cellViewModel {
+        case let cellViewModel as VocabularyInfoTableViewCellViewModel:
+            let cell = VocabularyInfoTableViewCell.dequeueReusableCell(tableView, for: indexPath)
+            cell.viewModel = cellViewModel
+            return cell
         case let cellViewModel as CreateWordTableViewCellViewModel:
             let cell = CreateWordTableViewCell.dequeueReusableCell(tableView, for: indexPath)
             cell.viewModel = cellViewModel

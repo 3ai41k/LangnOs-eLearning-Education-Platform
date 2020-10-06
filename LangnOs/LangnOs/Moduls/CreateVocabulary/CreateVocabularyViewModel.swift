@@ -23,28 +23,49 @@ final class CreateVocabularyViewModel: UniversalTableViewViewModel {
     
     private let fireBaseDatabase: FirebaseDatabaseCreatingProtocol
     private let router: CreateVocabularyNavigationProtocol & ActivityPresentableProtocol
-    private var cellViewModels: [CreateWordTableViewCellViewModelProtocol]
+    
+    private enum SectionType: Int {
+        case vocabularylInfo
+        case words
+    }
+    
+    private var words: [Word] {
+        tableSections[SectionType.words.rawValue].cells.compactMap({
+            ($0 as? CreateWordTableViewCellViewModelProtocol)?.word
+        })
+    }
     
     // MARK: - Public properties
     
-    var numberOfRows: Int {
-        cellViewModels.count
-    }
-    
-    var reloadData: (() -> Void)?
+    var tableSections: [TableSectionViewModelProtocol]
     
     // MARK: - Init
     
     init(fireBaseDatabase: FirebaseDatabaseCreatingProtocol, router: CreateVocabularyNavigationProtocol & ActivityPresentableProtocol) {
         self.fireBaseDatabase = fireBaseDatabase
         self.router = router
-        self.cellViewModels = [CreateWordTableViewCellViewModel()]
+        self.tableSections = []
+        
+        setupVocabularyInfoSection(&tableSections)
+        setupWordsSection(&tableSections)
     }
     
-    // MARK: - Public methods
+    // MARK: - Private methods
     
-    func cellViewModelForRowAt(indexPath: IndexPath) -> CellViewModelProtocol {
-        cellViewModels[indexPath.row]
+    private func setupVocabularyInfoSection(_ tableSections: inout [TableSectionViewModelProtocol]) {
+        let vocabularyInfoTableViewCellViewModel = VocabularyInfoTableViewCellViewModel()
+        tableSections.append(UniversalTableSectionViewModel(title: nil, cells: [vocabularyInfoTableViewCellViewModel]))
+    }
+    
+    private func setupWordsSection(_ tableSections: inout [TableSectionViewModelProtocol]) {
+        let createWordTableViewCellViewModel = CreateWordTableViewCellViewModel()
+        tableSections.append(UniversalTableSectionViewModel(title: nil, cells: [createWordTableViewCellViewModel]))
+    }
+    
+    private func resignResponders() {
+        tableSections[SectionType.words.rawValue].cells.forEach({
+            ($0 as? ResignibleRespondersProtocol)?.resignResponders()
+        })
     }
     
     // MARK: - Actions
@@ -56,10 +77,13 @@ final class CreateVocabularyViewModel: UniversalTableViewViewModel {
     
     @objc
     private func didCreateTouched() {
-        let words = cellViewModels.map({ $0.word })
+        resignResponders()
+        
         let vocabulary = Vocabulary(title: "Test", category: "Test", words: words)
         let request = FirebaseDatabaseVocabularyCreateRequest(vocabulary: vocabulary)
+        
         router.showActivity()
+        
         fireBaseDatabase.create(request: request) { (error) in
             if let error = error {
                 // FIT IT: Error handling
@@ -105,8 +129,7 @@ extension CreateVocabularyViewModel: CreateVocabularyViewModelOutputProtocol {
     
     func addRowAction() {
         let cellViewModel = CreateWordTableViewCellViewModel()
-        cellViewModels.append(cellViewModel)
-        reloadData?()
+        tableSections[SectionType.words.rawValue].cells.append(cellViewModel)
     }
     
 }
