@@ -57,7 +57,8 @@ final class CreateVocabularyViewModel: UniversalSectionProtocol {
     }
     
     private func createVocabulary() -> Vocabulary {
-        var vocabularyName = ""
+        var name = ""
+        var category = ""
         var words: [Word] = []
         
         for section in tableSections {
@@ -65,7 +66,8 @@ final class CreateVocabularyViewModel: UniversalSectionProtocol {
                 (cellViewModel as? ResignibleRespondersProtocol)?.resignResponders()
                 switch cellViewModel {
                 case let viewModel as VocabularyInfoTableViewCellViewModelProtocol:
-                    vocabularyName = viewModel.vocabularyName
+                    name = viewModel.name
+                    category = viewModel.category
                 case let viewModel as CreateWordTableViewCellViewModelProtocol:
                     words.append(viewModel.word)
                 default:
@@ -74,7 +76,7 @@ final class CreateVocabularyViewModel: UniversalSectionProtocol {
             }
         }
         
-        return Vocabulary(title: vocabularyName, category: "Test", words: words)
+        return Vocabulary(title: name, category: category, words: words)
     }
     
     // MARK: - Actions
@@ -88,7 +90,7 @@ final class CreateVocabularyViewModel: UniversalSectionProtocol {
     private func didCreateTouched() {
         router.showActivity()
         
-        let request = FirebaseDatabaseVocabularyCreateRequest(vocabulary: createVocabulary())
+        let request = VocabularyCreateRequest(vocabulary: createVocabulary())
         fireBaseDatabase.create(request: request) { (error) in
             if let error = error {
                 // FIT IT: Error handling

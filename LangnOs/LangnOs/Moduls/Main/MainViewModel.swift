@@ -29,7 +29,7 @@ final class MainViewModel: UniversalCollectionViewViewModel {
     // MARK: - Private properties
     
     private let router: MainNavigationProtocol
-    private let cloudFirestore: FirebaseDatabaseFetchingProtocol
+    private let firebaseDatabase: FirebaseDatabaseFetchingProtocol
     private var vocabularies: [Vocabulary]
     
     private enum SectionType: Int {
@@ -38,9 +38,9 @@ final class MainViewModel: UniversalCollectionViewViewModel {
     
     // MARK: - Init
     
-    init(router: MainNavigationProtocol, cloudFirestore: FirebaseDatabaseFetchingProtocol) {
+    init(router: MainNavigationProtocol, firebaseDatabase: FirebaseDatabaseFetchingProtocol) {
         self.router = router
-        self.cloudFirestore = cloudFirestore
+        self.firebaseDatabase = firebaseDatabase
         self.vocabularies = []
     }
     
@@ -81,14 +81,18 @@ extension MainViewModel: MainViewModelInputProtocol {
     }
     
     func fetchData() {
-        let request = FirebaseDatabaseVocabularyFetchRequest()
-        cloudFirestore.fetch(request: request) { (result: Result<[Vocabulary], Error>) in
+        let request = VocabularyFetchRequest()
+        firebaseDatabase.fetch(request: request) { (result: Result<[Vocabulary], Error>) in
             switch result {
             case .success(let vocabularies):
+                let cellViewModels = vocabularies
+                    //.sorted(by: { $0.createdDate > $1.createdDate })
+                    .map({
+                        VocabularyCollectionViewCellViewModel(vocabulary: $0)
+                    })
+                
+                self.tableSections[SectionType.vocabulary.rawValue].cells = cellViewModels
                 self.vocabularies = vocabularies
-                self.tableSections[SectionType.vocabulary.rawValue].cells = vocabularies.map({
-                    VocabularyCollectionViewCellViewModel(vocabulary: $0)
-                })
             case .failure(let error):
                 // FIX IT: Add error handling
                 print(error)

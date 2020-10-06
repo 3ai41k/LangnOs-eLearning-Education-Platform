@@ -9,32 +9,37 @@
 import Foundation
 
 protocol VocabularyInfoTableViewCellViewModelProtocol: CellViewModelProtocol, ResignibleRespondersProtocol {
-    var vocabularyName: String { get }
+    var name: String { get }
+    var category: String { get }
 }
 
 protocol VocabularyInfoViewCellInputProtocol {
-    var title: String { get }
+    var name: String { get }
+    var category: String { get }
 }
 
 protocol VocabularyInfoViewCellOutputProtocol {
-    func setTitle(_ title: String)
+    func setName(_ name: String)
+    func setCategory(_ category: String)
 }
 
 protocol VocabularyInfoViewCellBindingProtocol {
     var resignFirstResponders: (() -> Void)? { get set }
 }
 
-final class VocabularyInfoTableViewCellViewModel: VocabularyInfoTableViewCellViewModelProtocol, VocabularyInfoViewCellBindingProtocol {
+final class VocabularyInfoTableViewCellViewModel: VocabularyInfoTableViewCellViewModelProtocol, VocabularyInfoViewCellInputProtocol, VocabularyInfoViewCellBindingProtocol {
     
     // MARK: - Public properties
     
-    var vocabularyName: String
+    var name: String
+    var category: String
     var resignFirstResponders: (() -> Void)?
     
     // MARK: - Init
     
     init() {
-        self.vocabularyName = ""
+        self.name = ""
+        self.category = ""
     }
     
     // MARK: - Public methods
@@ -47,20 +52,14 @@ final class VocabularyInfoTableViewCellViewModel: VocabularyInfoTableViewCellVie
 
 // MARK: - VocabularyInfoViewCellInputProtocol
 
-extension VocabularyInfoTableViewCellViewModel: VocabularyInfoViewCellInputProtocol {
-    
-    var title: String {
-        vocabularyName
-    }
-    
-}
-
-// MARK: - VocabularyInfoViewCellInputProtocol
-
 extension VocabularyInfoTableViewCellViewModel: VocabularyInfoViewCellOutputProtocol {
     
-    func setTitle(_ title: String) {
-        self.vocabularyName = title
+    func setName(_ name: String) {
+        self.name = name
+    }
+    
+    func setCategory(_ category: String) {
+        self.category = category
     }
     
 }

@@ -1,5 +1,5 @@
 //
-//  FirebaseDatabaseVocabularyFetchRequest.swift
+//  VocabularyFetchRequest.swift
 //  LangnOs
 //
 //  Created by Nikita Lizogubov on 03.10.2020.
@@ -8,14 +8,10 @@
 
 import Foundation
 
-struct FirebaseDatabaseVocabularyFetchRequest: FirebaseDatabaseRequestProtocol {
+struct VocabularyFetchRequest: FirebaseDatabaseRequestProtocol {
     
     var collectionName: String {
         "Vocabulary"
-    }
-    
-    var data: [String: Any]? {
-        nil
     }
     
 }

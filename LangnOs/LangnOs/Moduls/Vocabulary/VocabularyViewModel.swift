@@ -28,13 +28,17 @@ final class VocabularyViewModel {
     
     // MARK: - Private properties
     
-    private let router: VocabularyNavigationProtocol
+    private let router: VocabularyNavigationProtocol & AlertPresentableProtocol
+    private let cloudDatabase: FirebaseDatabaseDeletingProtocol
     private let vocabulary: Vocabulary
     
     // MARK: - Init
     
-    init(router: VocabularyNavigationProtocol, vocabulary: Vocabulary) {
+    init(router: VocabularyNavigationProtocol & AlertPresentableProtocol,
+         cloudDatabase: FirebaseDatabaseDeletingProtocol,
+         vocabulary: Vocabulary) {
         self.router = router
+        self.cloudDatabase = cloudDatabase
         self.vocabulary = vocabulary
     }
     
@@ -43,6 +47,24 @@ final class VocabularyViewModel {
     @objc
     private func didCloseTouched() {
         router.close()
+    }
+    
+    @objc
+    private func didRemoveTouched() {
+        router.showAlert(title: "Delete", message: "Are you sure?", actions: [
+            OkAlertAction(handler: {
+                let request = VocabularyDeleteRequest(vocabulary: self.vocabulary)
+                self.cloudDatabase.delete(request: request) { (error) in
+                    if let error = error {
+                        // FIX IT: - Error hadnling
+                        print(error.localizedDescription)
+                    } else {
+                        self.router.close()
+                    }
+                }
+            }),
+            CancelAlertAction(handler: nil)
+        ])
     }
     
 }
@@ -56,9 +78,13 @@ extension VocabularyViewModel: VocabularyViewModelInputProtocol {
                                                       style: .plain,
                                                       target: self,
                                                       selector: #selector(didCloseTouched))
+        let removeButtonModel = BarButtonDrivableModel(title: "Remove".localize,
+                                                       style: .done,
+                                                       target: self,
+                                                       selector: #selector(didRemoveTouched))
         return NavigationItemDrivableModel(title: nil,
                                            leftBarButtonDrivableModels: [closeButtonModel],
-                                           rightBarButtonDrivableModels: [])
+                                           rightBarButtonDrivableModels: [removeButtonModel])
     }
     
     var navigationBarDrivableModel: DrivableModelProtocol {

@@ -20,7 +20,14 @@ final class VocabularyInfoTableViewCell: UITableViewCell, UniversalTableViewCell
     @IBOutlet private weak var nameInputView: InputView! {
         didSet {
             nameInputView.textDidEnter = { [weak self] (text) in
-                self?.viewModel?.setTitle(text)
+                self?.viewModel?.setName(text)
+            }
+        }
+    }
+    @IBOutlet weak var categoryInputView: InputView! {
+        didSet {
+            categoryInputView.textDidEnter = { [weak self] (text) in
+                self?.viewModel?.setCategory(text)
             }
         }
     }
@@ -29,20 +36,13 @@ final class VocabularyInfoTableViewCell: UITableViewCell, UniversalTableViewCell
     
     var viewModel: (VocabularyInfoViewCellInputProtocol & VocabularyInfoViewCellOutputProtocol & VocabularyInfoViewCellBindingProtocol)? {
         didSet {
-            nameInputView.value = viewModel?.title
+            nameInputView.value = viewModel?.name
+            categoryInputView.value = viewModel?.category
             
             viewModel?.resignFirstResponders = { [weak self] in
-                self?.nameInputView.resignFirstResponder()
+                [self?.nameInputView, self?.categoryInputView].forEach({ $0?.resignFirstResponder() })
             }
         }
     }
-    
-    // MARK: - Private properties
-    // MARK: - Lifecycle
-    // MARK: - Init
-    // MARK: - Override
-    // MARK: - Public methods
-    // MARK: - Private methods
-    // MARK: - Actions
     
 }

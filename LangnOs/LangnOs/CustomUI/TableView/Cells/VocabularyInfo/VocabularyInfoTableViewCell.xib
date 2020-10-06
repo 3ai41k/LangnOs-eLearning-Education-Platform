@@ -22,14 +22,21 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tza-pZ-nIz">
                         <rect key="frame" x="16" y="8" width="568" height="284"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="bg5-PL-RYR">
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="bg5-PL-RYR">
                                 <rect key="frame" x="16" y="16" width="536" height="252"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fUo-D5-vLe" customClass="InputView" customModule="LangnOs" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="536" height="252"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="536" height="118"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="string" keyPath="title" value="Name"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XvK-q0-sBO" customClass="InputView" customModule="LangnOs" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="134" width="536" height="118"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="title" value="Category"/>
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                 </subviews>
@@ -54,6 +61,7 @@
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <connections>
+                <outlet property="categoryInputView" destination="XvK-q0-sBO" id="loP-C2-HZ1"/>
                 <outlet property="containerView" destination="tza-pZ-nIz" id="PzR-rT-ZXj"/>
                 <outlet property="nameInputView" destination="fUo-D5-vLe" id="yaQ-E7-BF0"/>
             </connections>

@@ -20,6 +20,10 @@ protocol FirebaseDatabaseCreatingProtocol {
     func create(request: FirebaseDatabaseRequestProtocol, completion: @escaping (Error?) -> Void)
 }
 
+protocol FirebaseDatabaseDeletingProtocol {
+    func delete(request: FirebaseDatabaseRequestProtocol, completion: @escaping (Error?) -> Void)
+}
+
 final class FirebaseDatabase {
     
     private var dataBase: DatabaseReference {
@@ -34,14 +38,10 @@ extension FirebaseDatabase: FirebaseDatabaseFetchingProtocol {
     
     func fetch<Entity: FirebaseDatabaseEntityProtocol>(request: FirebaseDatabaseRequestProtocol, completion: @escaping (Result<[Entity], Error>) -> Void) {
         dataBase.child(request.collectionName).observeSingleEvent(of: .value, with: { (dataSnapshot) in
-            if let documents = dataSnapshot.value as? [String: Any] {
-                let entities: [Entity] = documents.compactMap({ (key, value) in
-                    guard let value = value as? [String: Any] else { return nil }
-                    return Entity(dictionary: value)
-                })
-                completion(.success(entities))
+            if let documents = dataSnapshot.value as? [String: [String: Any]] {
+                completion(.success(documents.map({ Entity(dictionary: $1) })))
             } else {
-                completion(.failure(FirebaseDatabaseError.documentsWereNotFound))
+                completion(.success([]))
             }
         }) { (error) in
             completion(.failure(error))
@@ -55,7 +55,21 @@ extension FirebaseDatabase: FirebaseDatabaseFetchingProtocol {
 extension FirebaseDatabase: FirebaseDatabaseCreatingProtocol {
     
     func create(request: FirebaseDatabaseRequestProtocol, completion: @escaping (Error?) -> Void) {
-        dataBase.child(request.collectionName).childByAutoId().setValue(request.data) { (error, _) in
+        guard let id = request.childId else { return }
+        dataBase.child(request.collectionName).child(id).setValue(request.data) { (error, _) in
+            completion(error)
+        }
+    }
+    
+}
+
+// MARK: - FirebaseDatabaseDeletingProtocol
+
+extension FirebaseDatabase: FirebaseDatabaseDeletingProtocol {
+    
+    func delete(request: FirebaseDatabaseRequestProtocol, completion: @escaping (Error?) -> Void) {
+        guard let id = request.childId else { return }
+        dataBase.child(request.collectionName).child(id).removeValue { (error, _) in
             completion(error)
         }
     }

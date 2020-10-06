@@ -12,7 +12,7 @@ protocol VocabularyNavigationProtocol: CoordinatorClosableProtocol {
     func navigateToWords()
 }
 
-final class VocabularyCoordinator: Coordinator {
+final class VocabularyCoordinator: Coordinator, AlertPresentableProtocol {
     
     // MARK: - Private properties
     
@@ -29,7 +29,8 @@ final class VocabularyCoordinator: Coordinator {
     // MARK: - Override
     
     override func start() {
-        let vocabularyViewModel = VocabularyViewModel(router: self, vocabulary: vocabulary)
+        let cloudDatabase = FirebaseDatabase()
+        let vocabularyViewModel = VocabularyViewModel(router: self, cloudDatabase: cloudDatabase, vocabulary: vocabulary)
         let vocabularyViewController = VocabularyViewController()
         vocabularyViewController.viewModel = vocabularyViewModel
         

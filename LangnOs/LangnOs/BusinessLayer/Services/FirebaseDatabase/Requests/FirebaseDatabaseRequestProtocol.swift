@@ -10,5 +10,18 @@ import Foundation
 
 protocol FirebaseDatabaseRequestProtocol {
     var collectionName: String { get }
+    var childId: String? { get }
     var data: [String: Any]? { get }
+}
+
+extension FirebaseDatabaseRequestProtocol {
+    
+    var childId: String? {
+        nil
+    }
+    
+    var data: [String: Any]? {
+        nil
+    }
+    
 }

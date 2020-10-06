@@ -1,5 +1,5 @@
 //
-//  FirebaseDatabaseVocabularyCreateRequest.swift
+//  VocabularyCreateRequest.swift
 //  LangnOs
 //
 //  Created by Nikita Lizogubov on 05.10.2020.
@@ -8,12 +8,16 @@
 
 import Foundation
 
-struct FirebaseDatabaseVocabularyCreateRequest: FirebaseDatabaseRequestProtocol {
+struct VocabularyCreateRequest: FirebaseDatabaseRequestProtocol {
     
     let vocabulary: Vocabulary
     
     var collectionName: String {
         "Vocabulary"
+    }
+    
+    var childId: String? {
+        vocabulary.id
     }
     
     var data: [String: Any]? {
