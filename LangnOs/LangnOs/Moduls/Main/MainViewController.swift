@@ -47,12 +47,6 @@ final class MainViewController: BindibleViewController<MainViewModelType> {
     
     // MARK: - Lifecycle
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        initializeComponents()
-    }
-    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
@@ -61,13 +55,7 @@ final class MainViewController: BindibleViewController<MainViewModelType> {
     
     // MARK: - Override
     
-    override func bindViewModel() {
-        
-    }
-    
-    // MARK: - Private methods
-    
-    private func initializeComponents() {
+    override func setupUI() {
         navigationItem.drive(model: viewModel?.navigationItemDrivableModel)
         navigationController?.navigationBar.drive(model: viewModel?.navigationBarDrivableModel)
     }

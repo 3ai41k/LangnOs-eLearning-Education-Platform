@@ -8,16 +8,34 @@
 
 import UIKit
 
+protocol AccountNavigationProtocol {
+    func navigateToSingIn()
+}
+
 final class AccountCoordinator: Coordinator {
     
     // MARK: - Override
     
     override func start() {
+        let authorizator = Authorizator()
+        let accountViewModel = AccountViewModel(router: self, authorizator: authorizator)
         let accountViewController = AccountViewController()
+        accountViewController.viewModel = accountViewModel
         accountViewController.tabBarItem = UITabBarItem(provider: .account)
         
         let navigationController = UINavigationController(rootViewController: accountViewController)
         viewController = navigationController
+    }
+    
+}
+
+// MARK: - AccountNavigationProtocol
+
+extension AccountCoordinator: AccountNavigationProtocol {
+    
+    func navigateToSingIn() {
+        let singInCoordinator = SingInCoordinator(parentViewController: viewController)
+        singInCoordinator.start()
     }
     
 }

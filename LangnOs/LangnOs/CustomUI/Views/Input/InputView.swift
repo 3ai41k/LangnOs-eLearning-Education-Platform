@@ -57,3 +57,21 @@ extension InputView: UITextFieldDelegate {
     }
     
 }
+
+// MARK: - DrivableViewProtocol
+
+extension InputView: DrivableViewProtocol {
+    
+    func drive(model: DrivableModelProtocol?) {
+        drive(model: model as? InputViewDrivableModel)
+    }
+    
+    private func drive(model: InputViewDrivableModel?) {
+        guard let model = model else { return }
+        
+        self.titleLabel.text = model.text
+        self.textField.placeholder = model.placeholder
+        self.textDidEnter = model.textDidEnter
+    }
+    
+}

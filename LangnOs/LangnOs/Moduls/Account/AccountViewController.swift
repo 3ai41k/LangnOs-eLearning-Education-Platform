@@ -8,23 +8,30 @@
 
 import UIKit
 
-class AccountViewController: UIViewController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+final class AccountViewController: BindibleViewController<AccountInputProtocol & AccountOutputProtocol> {
+    
+    // MARK: - IBOutlets
+    
+    @IBOutlet private weak var tableView: UniversalTableView! {
+        didSet {
+            let rect = CGRect(x: .zero, y: .zero, width: .zero, height: 200.0)
+            tableView.tableHeaderView = UserImageView(frame: rect)
+        }
     }
-
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    
+    // MARK: - Public properties
+    // MARK: - Private properties
+    // MARK: - Lifecycle
+    // MARK: - Init
+    // MARK: - Override
+    
+    override func setupUI() {
+        navigationItem.drive(model: viewModel?.navigationItemDrivableModel)
+        navigationController?.navigationBar.drive(model: viewModel?.navigationBarDrivableModel)
     }
-    */
+    
+    // MARK: - Public methods
+    // MARK: - Private methods
+    // MARK: - Actions
 
 }

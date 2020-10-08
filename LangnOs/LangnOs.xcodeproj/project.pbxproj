@@ -24,6 +24,15 @@
 		8D524F99252F7EA9002A6E01 /* CoursesCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D524F98252F7EA9002A6E01 /* CoursesCoordinator.swift */; };
 		8D524F9B252F7EB5002A6E01 /* MessagesCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D524F9A252F7EB5002A6E01 /* MessagesCoordinator.swift */; };
 		8D524F9D252F7EC1002A6E01 /* AccountCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D524F9C252F7EC1002A6E01 /* AccountCoordinator.swift */; };
+		8D524F9F252F83D2002A6E01 /* AccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D524F9E252F83D2002A6E01 /* AccountViewModel.swift */; };
+		8D524FA2252F86BC002A6E01 /* UserImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D524FA1252F86BC002A6E01 /* UserImageView.swift */; };
+		8D524FA4252F86D1002A6E01 /* UserImageView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D524FA3252F86D1002A6E01 /* UserImageView.xib */; };
+		8D524FA7252F8A9F002A6E01 /* Authorizator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D524FA6252F8A9F002A6E01 /* Authorizator.swift */; };
+		8D524FAD252FA755002A6E01 /* InputViewDrivableModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D524FAC252FA755002A6E01 /* InputViewDrivableModel.swift */; };
+		8D524FAF252FA7FB002A6E01 /* SingInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D524FAE252FA7FB002A6E01 /* SingInViewModel.swift */; };
+		8D524FB1252FB3CB002A6E01 /* SingUpCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D524FB0252FB3CB002A6E01 /* SingUpCoordinator.swift */; };
+		8D524FB3252FB654002A6E01 /* SingUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D524FB2252FB654002A6E01 /* SingUpViewModel.swift */; };
+		8D524FB7252FBC47002A6E01 /* AuthorizationContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D524FB6252FBC47002A6E01 /* AuthorizationContext.swift */; };
 		8D66251F2529F6C000991D45 /* CreateVocabularyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D66251D2529F6C000991D45 /* CreateVocabularyViewController.swift */; };
 		8D6625202529F6C000991D45 /* CreateVocabularyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D66251E2529F6C000991D45 /* CreateVocabularyViewController.xib */; };
 		8D6625222529F6CA00991D45 /* CreateVocabularyCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6625212529F6CA00991D45 /* CreateVocabularyCoordinator.swift */; };
@@ -148,6 +157,15 @@
 		8D524F98252F7EA9002A6E01 /* CoursesCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursesCoordinator.swift; sourceTree = "<group>"; };
 		8D524F9A252F7EB5002A6E01 /* MessagesCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesCoordinator.swift; sourceTree = "<group>"; };
 		8D524F9C252F7EC1002A6E01 /* AccountCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountCoordinator.swift; sourceTree = "<group>"; };
+		8D524F9E252F83D2002A6E01 /* AccountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewModel.swift; sourceTree = "<group>"; };
+		8D524FA1252F86BC002A6E01 /* UserImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserImageView.swift; sourceTree = "<group>"; };
+		8D524FA3252F86D1002A6E01 /* UserImageView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserImageView.xib; sourceTree = "<group>"; };
+		8D524FA6252F8A9F002A6E01 /* Authorizator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Authorizator.swift; sourceTree = "<group>"; };
+		8D524FAC252FA755002A6E01 /* InputViewDrivableModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputViewDrivableModel.swift; sourceTree = "<group>"; };
+		8D524FAE252FA7FB002A6E01 /* SingInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingInViewModel.swift; sourceTree = "<group>"; };
+		8D524FB0252FB3CB002A6E01 /* SingUpCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingUpCoordinator.swift; sourceTree = "<group>"; };
+		8D524FB2252FB654002A6E01 /* SingUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingUpViewModel.swift; sourceTree = "<group>"; };
+		8D524FB6252FBC47002A6E01 /* AuthorizationContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationContext.swift; sourceTree = "<group>"; };
 		8D66251D2529F6C000991D45 /* CreateVocabularyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateVocabularyViewController.swift; sourceTree = "<group>"; };
 		8D66251E2529F6C000991D45 /* CreateVocabularyViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CreateVocabularyViewController.xib; sourceTree = "<group>"; };
 		8D6625212529F6CA00991D45 /* CreateVocabularyCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateVocabularyCoordinator.swift; sourceTree = "<group>"; };
@@ -324,10 +342,37 @@
 			isa = PBXGroup;
 			children = (
 				8D524F9C252F7EC1002A6E01 /* AccountCoordinator.swift */,
+				8D524F9E252F83D2002A6E01 /* AccountViewModel.swift */,
 				8D524F94252F7E97002A6E01 /* AccountViewController.swift */,
 				8D524F95252F7E97002A6E01 /* AccountViewController.xib */,
 			);
 			path = Account;
+			sourceTree = "<group>";
+		};
+		8D524FA0252F8698002A6E01 /* UserImage */ = {
+			isa = PBXGroup;
+			children = (
+				8D524FA1252F86BC002A6E01 /* UserImageView.swift */,
+				8D524FA3252F86D1002A6E01 /* UserImageView.xib */,
+			);
+			path = UserImage;
+			sourceTree = "<group>";
+		};
+		8D524FA5252F8A75002A6E01 /* Authorizator */ = {
+			isa = PBXGroup;
+			children = (
+				8D524FA6252F8A9F002A6E01 /* Authorizator.swift */,
+			);
+			path = Authorizator;
+			sourceTree = "<group>";
+		};
+		8D524FA9252FA6D1002A6E01 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				8DD28BD22526854300F59B7D /* UINavigationItem+Drivable.swift */,
+				8DD28BE02526889200F59B7D /* UINavigationBar+Drivable.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		8D66251C2529F68D00991D45 /* CreateVocabulary */ = {
@@ -345,6 +390,7 @@
 		8D662527252A384200991D45 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				8D524FA0252F8698002A6E01 /* UserImage */,
 				8D662538252A6CF400991D45 /* VocabularyProgress */,
 				8D662535252A611900991D45 /* Score */,
 				8D662534252A610F00991D45 /* Vocabulary */,
@@ -676,6 +722,7 @@
 		8DD28BB4252675E400F59B7D /* UIKit+Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				8D66252E252A3A4D00991D45 /* XibView.swift */,
 				8DD28BB5252675F800F59B7D /* UITabBarItem+Init.swift */,
 				8DD28BEF2527A69800F59B7D /* UIBarButtonItem+Init.swift */,
 				8D66252C252A38AD00991D45 /* UIView+Extensions.swift */,
@@ -683,7 +730,6 @@
 				8DC3CF2B252CD503003CA62A /* UIEdgeInsets+Init.swift */,
 				8DC3CF3D252CFEB5003CA62A /* UIColor+Random.swift */,
 				8D524F66252F0355002A6E01 /* UICollectionView+Extensions.swift */,
-				8DD28BEC2527A47100F59B7D /* Drivable */,
 			);
 			path = "UIKit+Extensions";
 			sourceTree = "<group>";
@@ -732,6 +778,7 @@
 			children = (
 				8DD28BEA2527A42100F59B7D /* Protocols */,
 				8DD28BEB2527A43000F59B7D /* Models */,
+				8D524FA9252FA6D1002A6E01 /* Extensions */,
 			);
 			path = Drivable;
 			sourceTree = "<group>";
@@ -759,18 +806,9 @@
 				8DD28BD42526856B00F59B7D /* NavigationItemDrivableModel.swift */,
 				8DD28BDE2526886200F59B7D /* NavigationBarDrivableModel.swift */,
 				8DD28BED2527A52100F59B7D /* BarButtonDrivableModel.swift */,
+				8D524FAC252FA755002A6E01 /* InputViewDrivableModel.swift */,
 			);
 			path = Models;
-			sourceTree = "<group>";
-		};
-		8DD28BEC2527A47100F59B7D /* Drivable */ = {
-			isa = PBXGroup;
-			children = (
-				8D66252E252A3A4D00991D45 /* XibView.swift */,
-				8DD28BD22526854300F59B7D /* UINavigationItem+Drivable.swift */,
-				8DD28BE02526889200F59B7D /* UINavigationBar+Drivable.swift */,
-			);
-			path = Drivable;
 			sourceTree = "<group>";
 		};
 		8DD28BF32527AD2C00F59B7D /* CollectionView */ = {
@@ -810,6 +848,7 @@
 		8DD28C0D2528AA2200F59B7D /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				8D524FA5252F8A75002A6E01 /* Authorizator */,
 				8DAA55412529113A00FF5066 /* FirebaseDatabase */,
 			);
 			path = Services;
@@ -828,7 +867,9 @@
 		8DD28C0F2528ADEC00F59B7D /* SingIn */ = {
 			isa = PBXGroup;
 			children = (
+				8D524FB6252FBC47002A6E01 /* AuthorizationContext.swift */,
 				8DD28C112528AEC800F59B7D /* SingInCoordinator.swift */,
+				8D524FAE252FA7FB002A6E01 /* SingInViewModel.swift */,
 				8DD28C132528AEEF00F59B7D /* SingInViewController.swift */,
 				8DD28C142528AEEF00F59B7D /* SingInViewController.xib */,
 			);
@@ -838,6 +879,8 @@
 		8DD28C102528ADF500F59B7D /* SingUp */ = {
 			isa = PBXGroup;
 			children = (
+				8D524FB0252FB3CB002A6E01 /* SingUpCoordinator.swift */,
+				8D524FB2252FB654002A6E01 /* SingUpViewModel.swift */,
 			);
 			path = SingUp;
 			sourceTree = "<group>";
@@ -935,6 +978,7 @@
 				8DD28BB125266F4000F59B7D /* MainViewController.xib in Resources */,
 				8D9985ED252929E7009EA144 /* VocabularyViewController.xib in Resources */,
 				8DD28C0525289C5300F59B7D /* VocabularyCollectionViewCell.xib in Resources */,
+				8D524FA4252F86D1002A6E01 /* UserImageView.xib in Resources */,
 				8DC3CF27252C680C003CA62A /* InputView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -988,6 +1032,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8D524F9F252F83D2002A6E01 /* AccountViewModel.swift in Sources */,
 				8DC3CF34252CD5CD003CA62A /* SquareGridFlowLayout.swift in Sources */,
 				8D83EA68252B8BE5004E6098 /* CreateWordTableViewCellViewModel.swift in Sources */,
 				8D9985EF252929FF009EA144 /* VocabularyCoordinator.swift in Sources */,
@@ -1025,6 +1070,7 @@
 				8D524F60252E5AE5002A6E01 /* SearchBarCollectionReusableViewModel.swift in Sources */,
 				8D6625222529F6CA00991D45 /* CreateVocabularyCoordinator.swift in Sources */,
 				8D662540252A717500991D45 /* WordsViewController.swift in Sources */,
+				8D524FAD252FA755002A6E01 /* InputViewDrivableModel.swift in Sources */,
 				8DD28BC92526806E00F59B7D /* BorderedButton.swift in Sources */,
 				8D66252F252A3A4D00991D45 /* XibView.swift in Sources */,
 				8D66254E252A7EF900991D45 /* WordsCellFactory.swift in Sources */,
@@ -1032,9 +1078,11 @@
 				8DD28BB92526774400F59B7D /* String+Localize.swift in Sources */,
 				8DD28C0925289CCB00F59B7D /* CellViewModelProtocol.swift in Sources */,
 				8DC3CF37252CFB8D003CA62A /* UIView+Shadow.swift in Sources */,
+				8D524FA2252F86BC002A6E01 /* UserImageView.swift in Sources */,
 				8D83EA80252BA2A2004E6098 /* VocabularyInfoTableViewCell.swift in Sources */,
 				8DC3CF3E252CFEB5003CA62A /* UIColor+Random.swift in Sources */,
 				8D83EA83252BA2D7004E6098 /* VocabularyInfoTableViewCellViewModel.swift in Sources */,
+				8D524FB7252FBC47002A6E01 /* AuthorizationContext.swift in Sources */,
 				8DAA55472529129E00FF5066 /* FirebaseDatabaseRequestProtocol.swift in Sources */,
 				8DD28BC625267A1700F59B7D /* PresentationCoordinator.swift in Sources */,
 				8DD28BC3252679F600F59B7D /* PresentationViewController.swift in Sources */,
@@ -1052,10 +1100,13 @@
 				8DD28BAA25266CDB00F59B7D /* RootViewModel.swift in Sources */,
 				8DD28BB6252675F800F59B7D /* UITabBarItem+Init.swift in Sources */,
 				8D662546252A7AAA00991D45 /* UniversalTableView.swift in Sources */,
+				8D524FAF252FA7FB002A6E01 /* SingInViewModel.swift in Sources */,
 				8DD28C0425289C5300F59B7D /* VocabularyCollectionViewCell.swift in Sources */,
 				8DD28BF02527A69800F59B7D /* UIBarButtonItem+Init.swift in Sources */,
+				8D524FB3252FB654002A6E01 /* SingUpViewModel.swift in Sources */,
 				8D524F67252F0355002A6E01 /* UICollectionView+Extensions.swift in Sources */,
 				8DAA553E25290FDD00FF5066 /* FirebaseDatabase.swift in Sources */,
+				8D524FB1252FB3CB002A6E01 /* SingUpCoordinator.swift in Sources */,
 				8D524F92252F7E8B002A6E01 /* MessagesViewController.swift in Sources */,
 				8D524F5D252E5AAA002A6E01 /* SearchBarCollectionReusableView.swift in Sources */,
 				8DD28BD52526856B00F59B7D /* NavigationItemDrivableModel.swift in Sources */,
@@ -1075,6 +1126,7 @@
 				8D662533252A610B00991D45 /* ScoreView.swift in Sources */,
 				8D66251F2529F6C000991D45 /* CreateVocabularyViewController.swift in Sources */,
 				8DD28BFB2527B76800F59B7D /* MainCellFactory.swift in Sources */,
+				8D524FA7252F8A9F002A6E01 /* Authorizator.swift in Sources */,
 				8DD28BB025266F4000F59B7D /* MainViewController.swift in Sources */,
 				8DAA55402529112B00FF5066 /* Vocabulary.swift in Sources */,
 				8D524F9D252F7EC1002A6E01 /* AccountCoordinator.swift in Sources */,

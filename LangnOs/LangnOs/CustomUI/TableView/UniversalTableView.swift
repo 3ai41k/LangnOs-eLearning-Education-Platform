@@ -58,6 +58,7 @@ final class UniversalTableView: UITableView {
         self.cellFactory = cellFactory
         
         dataSource = self
+        delegate = self
         
         reloadData()
     }
@@ -94,6 +95,14 @@ extension UniversalTableView: UITableViewDataSource {
         let cellViewModel = viewModel.tableSections[indexPath.section].cells[indexPath.row]
         return cellFactory.generateCell(cellViewModel: cellViewModel, tableView: tableView, indexPath: indexPath)
     }
+    
+}
+
+// MARK: - UITableViewDelegate
+
+extension UniversalTableView: UITableViewDelegate {
+    
+    
     
 }
 

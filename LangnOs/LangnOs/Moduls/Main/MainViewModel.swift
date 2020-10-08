@@ -8,9 +8,13 @@
 
 import UIKit
 
-protocol MainViewModelInputProtocol {
+protocol NavigatableViewModelProtocol {
     var navigationItemDrivableModel: DrivableModelProtocol { get }
     var navigationBarDrivableModel: DrivableModelProtocol { get }
+}
+
+protocol MainViewModelInputProtocol: NavigatableViewModelProtocol {
+    
 }
 
 protocol MainViewModelOutputProtocol {

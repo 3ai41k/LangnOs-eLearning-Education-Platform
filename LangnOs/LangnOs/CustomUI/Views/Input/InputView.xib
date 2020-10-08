@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097.3" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -28,13 +26,13 @@
                             <rect key="frame" x="0.0" y="0.0" width="400" height="199"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="faw-gn-xzp">
-                                    <rect key="frame" x="0.0" y="0.0" width="37.5" height="199"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="38" height="199"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BVF-o6-hzn">
-                                    <rect key="frame" x="45.5" y="0.0" width="354.5" height="199"/>
+                                    <rect key="frame" x="46" y="0.0" width="354" height="199"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <textInputTraits key="textInputTraits"/>
                                 </textField>
@@ -42,7 +40,7 @@
                         </stackView>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YU1-2L-dhF">
                             <rect key="frame" x="0.0" y="199" width="400" height="1"/>
-                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="1" id="Ip0-eL-D2z"/>
                             </constraints>
@@ -50,7 +48,6 @@
                     </subviews>
                 </stackView>
             </subviews>
-            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <color key="backgroundColor" name="VocabularyProgress"/>
             <constraints>
                 <constraint firstItem="elc-L0-ZmI" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" id="5Qm-wX-r3i"/>
@@ -59,6 +56,7 @@
                 <constraint firstItem="elc-L0-ZmI" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="xfW-oR-pwF"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <point key="canvasLocation" x="139" y="133"/>
         </view>
     </objects>
@@ -66,8 +64,5 @@
         <namedColor name="VocabularyProgress">
             <color red="0.88200002908706665" green="0.90200001001358032" blue="0.94099998474121094" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
     </resources>
 </document>
