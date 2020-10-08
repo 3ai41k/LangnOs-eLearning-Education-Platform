@@ -30,6 +30,7 @@ final class MainViewModel: UniversalCollectionViewViewModel {
     // MARK: - Private properties
     
     private let router: MainNavigationProtocol
+    private let userInfo: UserInfoProtocol
     private let firebaseDatabase: FirebaseDatabaseFetchingProtocol
     private var vocabularies: [Vocabulary]
     
@@ -39,8 +40,11 @@ final class MainViewModel: UniversalCollectionViewViewModel {
     
     // MARK: - Init
     
-    init(router: MainNavigationProtocol, firebaseDatabase: FirebaseDatabaseFetchingProtocol) {
+    init(router: MainNavigationProtocol,
+         userInfo: UserInfoProtocol,
+         firebaseDatabase: FirebaseDatabaseFetchingProtocol) {
         self.router = router
+        self.userInfo = userInfo
         self.firebaseDatabase = firebaseDatabase
         self.vocabularies = []
         self.tableSections = []
@@ -115,7 +119,8 @@ extension MainViewModel: MainViewModelInputProtocol {
 extension MainViewModel: MainViewModelOutputProtocol {
     
     func fetchData() {
-        let request = VocabularyFetchRequest()
+        guard let userId = userInfo.userId else { return }
+        let request = VocabularyFetchRequest(userId: userId)
         firebaseDatabase.fetch(request: request) { (result: Result<[Vocabulary], Error>) in
             switch result {
             case .success(let vocabularies):

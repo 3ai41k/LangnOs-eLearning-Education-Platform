@@ -6,18 +6,26 @@
 //  Copyright © 2020 NL. All rights reserved.
 //
 
-import Foundation
+import FirebaseDatabase
 
-struct VocabularyDeleteRequest: FirebaseDatabaseRequestProtocol {
+struct VocabularyDeleteRequest {
+    
+    // MARK: - Public properties
     
     let vocabulary: Vocabulary
     
-    var collectionName: String {
+}
+
+// MARK: - FirebaseDatabaseRequestProtocol
+
+extension VocabularyDeleteRequest: FirebaseDatabaseRequestProtocol {
+    
+    private var collectionPath: String {
         "Vocabulary"
     }
     
-    var childId: String? {
-        vocabulary.id
+    func setCollectionPath(_ reference: DatabaseReference) -> DatabaseReference {
+        reference.child(collectionPath).child(vocabulary.id)
     }
     
 }

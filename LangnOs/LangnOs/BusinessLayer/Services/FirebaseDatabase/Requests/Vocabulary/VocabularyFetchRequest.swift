@@ -6,12 +6,30 @@
 //  Copyright © 2020 NL. All rights reserved.
 //
 
-import Foundation
+import FirebaseDatabase
 
-struct VocabularyFetchRequest: FirebaseDatabaseRequestProtocol {
+struct VocabularyFetchRequest {
     
-    var collectionName: String {
+    // MARK: - Public properties
+    
+    var userId: String
+    
+}
+
+// MARK: - FirebaseDatabaseRequestProtocol
+
+extension VocabularyFetchRequest: FirebaseDatabaseRequestProtocol {
+    
+    private var collectionPath: String {
         "Vocabulary"
+    }
+    
+    func setCollectionPath(_ reference: DatabaseReference) -> DatabaseReference {
+        reference.child(collectionPath)
+    }
+    
+    func setQuary(_ reference: DatabaseReference) -> DatabaseQuery? {
+        reference.queryOrdered(byChild: "userId").queryEqual(toValue: userId)
     }
     
 }

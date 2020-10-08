@@ -37,7 +37,9 @@ final class FirebaseDatabase {
 extension FirebaseDatabase: FirebaseDatabaseFetchingProtocol {
     
     func fetch<Entity: FirebaseDatabaseEntityProtocol>(request: FirebaseDatabaseRequestProtocol, completion: @escaping (Result<[Entity], Error>) -> Void) {
-        dataBase.child(request.collectionName).observeSingleEvent(of: .value, with: { (dataSnapshot) in
+        var reference = dataBase
+        reference = request.setCollectionPath(reference)
+        request.setQuary(reference)?.observeSingleEvent(of: .value, with: { (dataSnapshot) in
             if let documents = dataSnapshot.value as? [String: [String: Any]] {
                 completion(.success(documents.map({ Entity(dictionary: $1) })))
             } else {
@@ -55,8 +57,9 @@ extension FirebaseDatabase: FirebaseDatabaseFetchingProtocol {
 extension FirebaseDatabase: FirebaseDatabaseCreatingProtocol {
     
     func create(request: FirebaseDatabaseRequestProtocol, completion: @escaping (Error?) -> Void) {
-        guard let id = request.childId else { return }
-        dataBase.child(request.collectionName).child(id).setValue(request.data) { (error, _) in
+        var reference = dataBase
+        reference = request.setCollectionPath(reference)
+        reference.setValue(request.data) { (error, _) in
             completion(error)
         }
     }
@@ -68,8 +71,9 @@ extension FirebaseDatabase: FirebaseDatabaseCreatingProtocol {
 extension FirebaseDatabase: FirebaseDatabaseDeletingProtocol {
     
     func delete(request: FirebaseDatabaseRequestProtocol, completion: @escaping (Error?) -> Void) {
-        guard let id = request.childId else { return }
-        dataBase.child(request.collectionName).child(id).removeValue { (error, _) in
+        var reference = dataBase
+        reference = request.setCollectionPath(reference)
+        reference.removeValue { (error, _) in
             completion(error)
         }
     }

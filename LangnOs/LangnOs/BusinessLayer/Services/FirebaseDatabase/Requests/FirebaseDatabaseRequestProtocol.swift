@@ -7,20 +7,21 @@
 //
 
 import Foundation
+import FirebaseDatabase
 
 protocol FirebaseDatabaseRequestProtocol {
-    var collectionName: String { get }
-    var childId: String? { get }
     var data: [String: Any]? { get }
+    func setCollectionPath(_ reference: DatabaseReference) -> DatabaseReference
+    func setQuary(_ reference: DatabaseReference) -> DatabaseQuery?
 }
 
 extension FirebaseDatabaseRequestProtocol {
     
-    var childId: String? {
+    var data: [String: Any]? {
         nil
     }
     
-    var data: [String: Any]? {
+    func setQuary(_ reference: DatabaseReference) -> DatabaseQuery? {
         nil
     }
     

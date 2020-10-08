@@ -6,22 +6,30 @@
 //  Copyright © 2020 NL. All rights reserved.
 //
 
-import Foundation
+import FirebaseDatabase
 
-struct VocabularyCreateRequest: FirebaseDatabaseRequestProtocol {
+struct VocabularyCreateRequest {
+    
+    // MARK: - Public properties
     
     let vocabulary: Vocabulary
     
-    var collectionName: String {
+    var data: [String: Any]? {
+        vocabulary.serialize
+    }
+    
+}
+
+// MARK: - FirebaseDatabaseRequestProtocol
+
+extension VocabularyCreateRequest: FirebaseDatabaseRequestProtocol {
+    
+    private var collectionPath: String {
         "Vocabulary"
     }
     
-    var childId: String? {
-        vocabulary.id
-    }
-    
-    var data: [String: Any]? {
-        vocabulary.serialize
+    func setCollectionPath(_ reference: DatabaseReference) -> DatabaseReference {
+        reference.child(collectionPath).child(vocabulary.id)
     }
     
 }
