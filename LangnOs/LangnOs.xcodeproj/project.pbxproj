@@ -8,6 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		61C7EECA589DD05A72E263FD /* Pods_LangnOs.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 838CBE43D71675BA7ED1743C /* Pods_LangnOs.framework */; };
+		8D524F5A252E5A5B002A6E01 /* MainSectionViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D524F59252E5A5B002A6E01 /* MainSectionViewFactory.swift */; };
+		8D524F5D252E5AAA002A6E01 /* SearchBarCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D524F5B252E5AAA002A6E01 /* SearchBarCollectionReusableView.swift */; };
+		8D524F5E252E5AAA002A6E01 /* SearchBarCollectionReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D524F5C252E5AAA002A6E01 /* SearchBarCollectionReusableView.xib */; };
+		8D524F60252E5AE5002A6E01 /* SearchBarCollectionReusableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D524F5F252E5AE5002A6E01 /* SearchBarCollectionReusableViewModel.swift */; };
+		8D524F62252E5C71002A6E01 /* UniversalCollectionViewSectionRegistratable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D524F61252E5C71002A6E01 /* UniversalCollectionViewSectionRegistratable.swift */; };
+		8D524F64252E5E8F002A6E01 /* UniversalCollectionSectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D524F63252E5E8F002A6E01 /* UniversalCollectionSectionViewModel.swift */; };
 		8D66251F2529F6C000991D45 /* CreateVocabularyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D66251D2529F6C000991D45 /* CreateVocabularyViewController.swift */; };
 		8D6625202529F6C000991D45 /* CreateVocabularyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D66251E2529F6C000991D45 /* CreateVocabularyViewController.xib */; };
 		8D6625222529F6CA00991D45 /* CreateVocabularyCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6625212529F6CA00991D45 /* CreateVocabularyCoordinator.swift */; };
@@ -116,6 +122,12 @@
 		4A5FD3A8E54929BE86BD1584 /* Pods-LangnOs.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LangnOs.debug.xcconfig"; path = "Target Support Files/Pods-LangnOs/Pods-LangnOs.debug.xcconfig"; sourceTree = "<group>"; };
 		838CBE43D71675BA7ED1743C /* Pods_LangnOs.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LangnOs.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		857C62CE9E52E6B51FA9DA81 /* Pods-LangnOs.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LangnOs.release.xcconfig"; path = "Target Support Files/Pods-LangnOs/Pods-LangnOs.release.xcconfig"; sourceTree = "<group>"; };
+		8D524F59252E5A5B002A6E01 /* MainSectionViewFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainSectionViewFactory.swift; sourceTree = "<group>"; };
+		8D524F5B252E5AAA002A6E01 /* SearchBarCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarCollectionReusableView.swift; sourceTree = "<group>"; };
+		8D524F5C252E5AAA002A6E01 /* SearchBarCollectionReusableView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchBarCollectionReusableView.xib; sourceTree = "<group>"; };
+		8D524F5F252E5AE5002A6E01 /* SearchBarCollectionReusableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarCollectionReusableViewModel.swift; sourceTree = "<group>"; };
+		8D524F61252E5C71002A6E01 /* UniversalCollectionViewSectionRegistratable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniversalCollectionViewSectionRegistratable.swift; sourceTree = "<group>"; };
+		8D524F63252E5E8F002A6E01 /* UniversalCollectionSectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniversalCollectionSectionViewModel.swift; sourceTree = "<group>"; };
 		8D66251D2529F6C000991D45 /* CreateVocabularyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateVocabularyViewController.swift; sourceTree = "<group>"; };
 		8D66251E2529F6C000991D45 /* CreateVocabularyViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CreateVocabularyViewController.xib; sourceTree = "<group>"; };
 		8D6625212529F6CA00991D45 /* CreateVocabularyCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateVocabularyCoordinator.swift; sourceTree = "<group>"; };
@@ -240,6 +252,25 @@
 				838CBE43D71675BA7ED1743C /* Pods_LangnOs.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		8D524F58252E52A0002A6E01 /* ReusableViews */ = {
+			isa = PBXGroup;
+			children = (
+				8D524F61252E5C71002A6E01 /* UniversalCollectionViewSectionRegistratable.swift */,
+				8D524F65252F01CF002A6E01 /* SearchBar */,
+			);
+			path = ReusableViews;
+			sourceTree = "<group>";
+		};
+		8D524F65252F01CF002A6E01 /* SearchBar */ = {
+			isa = PBXGroup;
+			children = (
+				8D524F5B252E5AAA002A6E01 /* SearchBarCollectionReusableView.swift */,
+				8D524F5F252E5AE5002A6E01 /* SearchBarCollectionReusableViewModel.swift */,
+				8D524F5C252E5AAA002A6E01 /* SearchBarCollectionReusableView.xib */,
+			);
+			path = SearchBar;
 			sourceTree = "<group>";
 		};
 		8D66251C2529F68D00991D45 /* CreateVocabulary */ = {
@@ -557,6 +588,7 @@
 				8DD28BAE25266F4000F59B7D /* MainViewController.swift */,
 				8DD28BAF25266F4000F59B7D /* MainViewController.xib */,
 				8DD28BFA2527B76800F59B7D /* MainCellFactory.swift */,
+				8D524F59252E5A5B002A6E01 /* MainSectionViewFactory.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -685,7 +717,9 @@
 				8DD28BF42527ADF300F59B7D /* UniversalCollectionView.swift */,
 				8D9985E725292776009EA144 /* UniversalCollectionViewOutputProtocol.swift */,
 				8DD28BF82527B3C700F59B7D /* UniversalCollectionViewCellFactoryProtocol.swift */,
+				8D524F63252E5E8F002A6E01 /* UniversalCollectionSectionViewModel.swift */,
 				8DC3CF2F252CD5A9003CA62A /* Layout */,
+				8D524F58252E52A0002A6E01 /* ReusableViews */,
 				8DD28C0025289BD100F59B7D /* Cells */,
 			);
 			path = CollectionView;
@@ -722,9 +756,9 @@
 		8DD28C0E2528AA2C00F59B7D /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				8DC3CF58252D3977003CA62A /* EmptyableProtocol.swift */,
 				8DAA553F2529112B00FF5066 /* Vocabulary.swift */,
 				8DAA554D25291D3400FF5066 /* Word.swift */,
-				8DC3CF58252D3977003CA62A /* EmptyableProtocol.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -826,6 +860,7 @@
 				8DD28B8C252667F600F59B7D /* Main.storyboard in Resources */,
 				8D66253C252A6D4E00991D45 /* VocabularyProgressView.xib in Resources */,
 				8D66252B252A387600991D45 /* VocabularyActionView.xib in Resources */,
+				8D524F5E252E5AAA002A6E01 /* SearchBarCollectionReusableView.xib in Resources */,
 				8D83EA66252B8BB7004E6098 /* CreateWordTableViewCell.xib in Resources */,
 				8DD28BC4252679F600F59B7D /* PresentationViewController.xib in Resources */,
 				8D83EA70252B9C11004E6098 /* ActivityViewController.xib in Resources */,
@@ -906,6 +941,7 @@
 				8DC3CF2C252CD503003CA62A /* UIEdgeInsets+Init.swift in Sources */,
 				8D66255A252B0F9F00991D45 /* VocabularyCreateRequest.swift in Sources */,
 				8DAA554A252912BA00FF5066 /* VocabularyFetchRequest.swift in Sources */,
+				8D524F5A252E5A5B002A6E01 /* MainSectionViewFactory.swift in Sources */,
 				8DD28BB325266F6800F59B7D /* MainCoordinator.swift in Sources */,
 				8DD28BA425266B2500F59B7D /* Coordinator.swift in Sources */,
 				8DD28BDB2526864400F59B7D /* DrivableModelProtocol.swift in Sources */,
@@ -918,6 +954,7 @@
 				8DC3CF31252CD5B6003CA62A /* UniversalCollectionViewLayoutProtocol.swift in Sources */,
 				8DD28BFF2527BCBF00F59B7D /* UniversalCollectionViewCellRegistratable.swift in Sources */,
 				8D83EA6F252B9C11004E6098 /* ActivityViewController.swift in Sources */,
+				8D524F60252E5AE5002A6E01 /* SearchBarCollectionReusableViewModel.swift in Sources */,
 				8D6625222529F6CA00991D45 /* CreateVocabularyCoordinator.swift in Sources */,
 				8D662540252A717500991D45 /* WordsViewController.swift in Sources */,
 				8DD28BC92526806E00F59B7D /* BorderedButton.swift in Sources */,
@@ -934,6 +971,7 @@
 				8DD28BC625267A1700F59B7D /* PresentationCoordinator.swift in Sources */,
 				8DD28BC3252679F600F59B7D /* PresentationViewController.swift in Sources */,
 				8D83EA6A252B8FEA004E6098 /* CreateVocabularyCellFactory.swift in Sources */,
+				8D524F64252E5E8F002A6E01 /* UniversalCollectionSectionViewModel.swift in Sources */,
 				8DC3CF23252C67F9003CA62A /* InputView.swift in Sources */,
 				8D662558252A800600991D45 /* UniversalTableViewCellRegistratable.swift in Sources */,
 				8DD28B8F252667F600F59B7D /* LangnOs.xcdatamodeld in Sources */,
@@ -948,6 +986,7 @@
 				8DD28C0425289C5300F59B7D /* VocabularyCollectionViewCell.swift in Sources */,
 				8DD28BF02527A69800F59B7D /* UIBarButtonItem+Init.swift in Sources */,
 				8DAA553E25290FDD00FF5066 /* FirebaseDatabase.swift in Sources */,
+				8D524F5D252E5AAA002A6E01 /* SearchBarCollectionReusableView.swift in Sources */,
 				8DD28BD52526856B00F59B7D /* NavigationItemDrivableModel.swift in Sources */,
 				8DD28B87252667F600F59B7D /* SceneDelegate.swift in Sources */,
 				8DD28C0725289C8C00F59B7D /* VocabularyCollectionViewCellViewModel.swift in Sources */,
@@ -969,6 +1008,7 @@
 				8DAA55402529112B00FF5066 /* Vocabulary.swift in Sources */,
 				8DD28C122528AEC800F59B7D /* SingInCoordinator.swift in Sources */,
 				8DD28BCF252683A100F59B7D /* MainViewModel.swift in Sources */,
+				8D524F62252E5C71002A6E01 /* UniversalCollectionViewSectionRegistratable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

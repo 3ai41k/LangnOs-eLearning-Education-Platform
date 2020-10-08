@@ -35,7 +35,7 @@ final class OkAlertAction: UIAlertAction {
 final class CancelAlertAction: UIAlertAction {
     
     convenience init(handler: (() -> Void)?) {
-        self.init(title: "Cancle".localize, style: .default) { (_) in
+        self.init(title: "Cancle".localize, style: .cancel) { (_) in
             handler?()
         }
     }

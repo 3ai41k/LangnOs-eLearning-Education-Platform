@@ -1,15 +1,15 @@
 //
-//  UniversalTableSectionViewModel.swift
+//  UniversalCollectionSectionViewModel.swift
 //  LangnOs
 //
-//  Created by Nikita Lizogubov on 05.10.2020.
+//  Created by Nikita Lizogubov on 07.10.2020.
 //  Copyright © 2020 NL. All rights reserved.
 //
 
 import Foundation
 import Combine
 
-final class UniversalTableSectionViewModel: UniversalTableSectionViewModelProtocol {
+final class UniversalCollectionSectionViewModel: CollectionSectionViewModelProtocol {
     
     // MARK: - Private properties
     
@@ -17,6 +17,7 @@ final class UniversalTableSectionViewModel: UniversalTableSectionViewModelProtoc
     
     // MARK: - Public properties
     
+    var sectionViewModel: CollectionReusableViewModelProtocol?
     var cells: [CellViewModelProtocol] {
         didSet {
             reloadSubject.send()
@@ -28,7 +29,8 @@ final class UniversalTableSectionViewModel: UniversalTableSectionViewModelProtoc
     
     // MARK: - Init
     
-    init(cells: [CellViewModelProtocol]) {
+    init(sectionViewModel: CollectionReusableViewModelProtocol?, cells: [CellViewModelProtocol]) {
+        self.sectionViewModel = sectionViewModel
         self.cells = cells
         self.reloadSubject = PassthroughSubject<Void, Never>()
     }

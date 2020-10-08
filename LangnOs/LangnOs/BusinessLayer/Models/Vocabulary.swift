@@ -39,9 +39,9 @@ struct Vocabulary: FirebaseDatabaseEntityProtocol {
         self.phrasesLeftToLearn = dictionary["phrasesLeftToLearn"] as! Int
         self.totalLearningTime = dictionary["totalLearningTime"] as! Double
         self.createdDate = Date(timeIntervalSince1970: TimeInterval(dictionary["createdDate"] as! Double))
-        self.words = (dictionary["words"] as? [[String: Any]])?.compactMap({
+        self.words = (dictionary["words"] as! [[String: Any]]).map({
             Word(dictionary: $0)
-        }) ?? []
+        })
     }
     
     init(title: String, category: String, words: [Word]) {
@@ -56,3 +56,23 @@ struct Vocabulary: FirebaseDatabaseEntityProtocol {
     }
     
 }
+
+// MARK: - EmptyableProtocol
+
+extension Vocabulary: EmptyableProtocol {
+    
+    var isEmpty: Bool {
+        title.isEmpty && category.isEmpty && areWordsEmpty
+    }
+    
+    private var areWordsEmpty: Bool {
+        for word in words {
+            if word.isEmpty {
+                return true
+            }
+        }
+        return false
+    }
+    
+}
+

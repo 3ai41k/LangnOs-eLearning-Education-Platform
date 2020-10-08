@@ -17,7 +17,7 @@ protocol CreateVocabularyViewModelOutputProtocol {
     func addRowAction()
 }
 
-final class CreateVocabularyViewModel: UniversalSectionProtocol {
+final class CreateVocabularyViewModel: UniversalTableViewSectionProtocol {
     
     // MARK: - Private properties
     
@@ -31,7 +31,7 @@ final class CreateVocabularyViewModel: UniversalSectionProtocol {
     
     // MARK: - Public properties
     
-    var tableSections: [TableSectionViewModelProtocol]
+    var tableSections: [UniversalTableSectionViewModelProtocol]
     
     // MARK: - Init
     
@@ -47,14 +47,14 @@ final class CreateVocabularyViewModel: UniversalSectionProtocol {
     
     // MARK: - Private methods
     
-    private func setupVocabularyInfoSection(_ tableSections: inout [TableSectionViewModelProtocol]) {
+    private func setupVocabularyInfoSection(_ tableSections: inout [UniversalTableSectionViewModelProtocol]) {
         let vocabularyInfoTableViewCellViewModel = VocabularyInfoTableViewCellViewModel()
-        tableSections.append(UniversalTableSectionViewModel(title: nil, cells: [vocabularyInfoTableViewCellViewModel]))
+        tableSections.append(UniversalTableSectionViewModel(cells: [vocabularyInfoTableViewCellViewModel]))
     }
     
-    private func setupWordsSection(_ tableSections: inout [TableSectionViewModelProtocol]) {
+    private func setupWordsSection(_ tableSections: inout [UniversalTableSectionViewModelProtocol]) {
         let createWordTableViewCellViewModel = CreateWordTableViewCellViewModel()
-        tableSections.append(UniversalTableSectionViewModel(title: nil, cells: [createWordTableViewCellViewModel]))
+        tableSections.append(UniversalTableSectionViewModel(cells: [createWordTableViewCellViewModel]))
     }
     
     private func createVocabulary() throws -> Vocabulary {
@@ -70,7 +70,6 @@ final class CreateVocabularyViewModel: UniversalSectionProtocol {
                     name = viewModel.name
                     category = viewModel.category
                 case let viewModel as CreateWordTableViewCellViewModelProtocol:
-                    guard !viewModel.word.isEmpty else { break }
                     words.append(viewModel.word)
                 default:
                     break
@@ -78,11 +77,12 @@ final class CreateVocabularyViewModel: UniversalSectionProtocol {
             }
         }
         
-        guard !name.isEmpty, !category.isEmpty else {
+        let vocabulary = Vocabulary(title: name, category: category, words: words)
+        if vocabulary.isEmpty {
             throw NSError(domain: "Vocabulary is Empty", code: 0, userInfo: nil)
+        } else {
+            return vocabulary
         }
-        
-        return Vocabulary(title: name, category: category, words: words)
     }
     
     // MARK: - Actions

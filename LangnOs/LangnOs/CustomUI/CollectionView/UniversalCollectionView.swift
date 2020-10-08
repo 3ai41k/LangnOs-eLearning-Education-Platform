@@ -9,7 +9,26 @@
 import UIKit
 import Combine
 
-typealias UniversalCollectionViewViewModel = UniversalSectionProtocol & UniversalCollectionViewOutputProtocol
+typealias UniversalCollectionViewViewModel = UniversalCollectionViewSectionProtocol & UniversalCollectionViewOutputProtocol
+
+protocol CollectionReusableViewModelProtocol {
+    
+}
+
+protocol CollectionSectionViewModelProtocol: SectionViewModelProtocol {
+    var sectionViewModel: CollectionReusableViewModelProtocol? { get }
+}
+
+protocol UniversalCollectionViewSectionProtocol {
+    var tableSections: [CollectionSectionViewModelProtocol] { get }
+}
+
+protocol UniversalCollectionViewSectionFactoryProtocol {
+    func registerAllViews(collectionView: UICollectionView)
+    func generateView(sectionViewModel: CollectionReusableViewModelProtocol,
+                      collectionView: UICollectionView,
+                      indexPath: IndexPath) -> UICollectionReusableView
+}
 
 final class UniversalCollectionView: UICollectionView {
     
@@ -19,9 +38,9 @@ final class UniversalCollectionView: UICollectionView {
     
     private var viewModel: UniversalCollectionViewViewModel! {
         didSet {
-            viewModel.tableSections.enumerated().forEach({ (index, section) in
+            viewModel.tableSections.enumerated().forEach({ (sectionIndex, section) in
                 section.reload.sink(receiveValue: { [weak self] in
-                    self?.reloadSections([index])
+                    self?.reloadSections([sectionIndex])
                 }).store(in: &cancellable)
             })
         }
@@ -29,6 +48,11 @@ final class UniversalCollectionView: UICollectionView {
     private var cellFactory: UniversalCollectionViewCellFactoryProtocol! {
         didSet {
             cellFactory.registerAllCells(collectionView: self)
+        }
+    }
+    private var sectionFactory: UniversalCollectionViewSectionFactoryProtocol? {
+        didSet {
+            sectionFactory?.registerAllViews(collectionView: self)
         }
     }
     private var layout: UniversalCollectionViewLayoutProtocol! {
@@ -41,9 +65,11 @@ final class UniversalCollectionView: UICollectionView {
     
     func start(viewModel: UniversalCollectionViewViewModel,
                cellFactory: UniversalCollectionViewCellFactoryProtocol,
+               sectionFactory: UniversalCollectionViewSectionFactoryProtocol,
                layout: UniversalCollectionViewLayoutProtocol) {
         self.viewModel = viewModel
         self.cellFactory = cellFactory
+        self.sectionFactory = sectionFactory
         self.layout = layout
         
         dataSource = self
@@ -81,6 +107,17 @@ extension UniversalCollectionView: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         viewModel.didSelectCellAt(indexPath: indexPath)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        guard
+            let sectionFactory = sectionFactory,
+            let sectionViewModel = viewModel.tableSections[indexPath.section].sectionViewModel
+        else {
+            return UICollectionReusableView()
+        }
+
+        return sectionFactory.generateView(sectionViewModel: sectionViewModel, collectionView: collectionView, indexPath: indexPath)
     }
     
 }

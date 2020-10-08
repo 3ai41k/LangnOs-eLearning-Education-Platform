@@ -9,19 +9,17 @@
 import UIKit
 import Combine
 
-protocol TableSectionViewModelProtocol: class {
-    var title: String? { get }
+protocol SectionViewModelProtocol: class {
     var cells: [CellViewModelProtocol] { get set }
     var reload: AnyPublisher<Void, Never> { get }
 }
 
-protocol TableSectionViewModelDataSourceProtocol {
-    var rowsCount: Int { get }
-    func cellViewModelFor(rowAt index: Int) -> CellViewModelProtocol
+protocol UniversalTableSectionViewModelProtocol: SectionViewModelProtocol {
+    
 }
 
-protocol UniversalSectionProtocol {
-    var tableSections: [TableSectionViewModelProtocol] { get }
+protocol UniversalTableViewSectionProtocol {
+    var tableSections: [UniversalTableSectionViewModelProtocol] { get }
 }
 
 final class UniversalTableView: UITableView {
@@ -30,7 +28,7 @@ final class UniversalTableView: UITableView {
     
     private var cancellable: [AnyCancellable] = []
     
-    private var viewModel: UniversalSectionProtocol! {
+    private var viewModel: UniversalTableViewSectionProtocol! {
         didSet {
             viewModel.tableSections.enumerated().forEach({ (index, section) in
                 section.reload.sink(receiveValue: { [weak self] in
@@ -55,7 +53,7 @@ final class UniversalTableView: UITableView {
     
     // MARK: - Public methods
     
-    func start(viewModel: UniversalSectionProtocol, cellFactory: UniversalTableViewCellFactoryProtocol) {
+    func start(viewModel: UniversalTableViewSectionProtocol, cellFactory: UniversalTableViewCellFactoryProtocol) {
         self.viewModel = viewModel
         self.cellFactory = cellFactory
         

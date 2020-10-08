@@ -31,6 +31,7 @@ extension SquareGridFlowLayout: UniversalCollectionViewLayoutProtocol {
         layout.sectionInset = UIEdgeInsets(equal: Constants.spacing)
         layout.minimumLineSpacing = Constants.spacing
         layout.minimumInteritemSpacing = Constants.spacing
+        layout.headerReferenceSize = CGSize(width: .zero, height: 54.0)
         return layout
     }
     

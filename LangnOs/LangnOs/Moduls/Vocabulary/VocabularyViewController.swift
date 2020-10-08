@@ -15,8 +15,9 @@ final class VocabularyViewController: BindibleViewController<VocabularyViewModel
     // Refactore it
     @IBOutlet private weak var topBarView: UIView! {
         didSet {
-            topBarView.layer.cornerRadius = 10.0
+            topBarView.layer.cornerRadius = 20.0
             topBarView.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
+            topBarView.setShadow(color: .black, opacity: 0.25)
         }
     }
     @IBOutlet private weak var vocabularyNameLabel: UILabel!

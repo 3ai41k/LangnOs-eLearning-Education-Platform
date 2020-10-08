@@ -18,18 +18,31 @@ final class MainViewController: BindibleViewController<MainViewModelType> {
         didSet {
             topBarView.layer.cornerRadius = 20.0
             topBarView.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
+            topBarView.setShadow(color: .black, opacity: 0.25)
         }
     }
     @IBOutlet private weak var fiexedCollectionView: UniversalCollectionView! {
         didSet {
-            guard let viewModel = viewModel, let cellFactory = collectionViewCellFactory, let layout = collectionViewLayout else { return }
-            fiexedCollectionView.start(viewModel: viewModel, cellFactory: cellFactory, layout: layout)
+            guard
+                let viewModel = viewModel,
+                let cellFactory = collectionViewCellFactory,
+                let sectionFactory = collectionViewSectionFactory,
+                let layout = collectionViewLayout
+            else {
+                return
+            }
+            
+            fiexedCollectionView.start(viewModel: viewModel,
+                                       cellFactory: cellFactory,
+                                       sectionFactory: sectionFactory,
+                                       layout: layout)
         }
     }
     
     // MARK: - Publiec properties
     
     var collectionViewCellFactory: UniversalCollectionViewCellFactoryProtocol?
+    var collectionViewSectionFactory: UniversalCollectionViewSectionFactoryProtocol?
     var collectionViewLayout: UniversalCollectionViewLayoutProtocol?
     
     // MARK: - Lifecycle

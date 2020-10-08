@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097.3" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionReusableView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="U6b-Vx-4bR" customClass="SearchBarCollectionReusableView" customModule="LangnOs" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="400" height="50"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <subviews>
+                <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Sf-iU-7my">
+                    <rect key="frame" x="8" y="8" width="384" height="34"/>
+                    <subviews>
+                        <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="Search" translatesAutoresizingMaskIntoConstraints="NO" id="D5W-or-5ES">
+                            <rect key="frame" x="0.0" y="0.0" width="350" height="34"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </searchBar>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XQ3-6K-zRE" customClass="BorderedButton" customModule="LangnOs" customModuleProvider="target">
+                            <rect key="frame" x="350" y="0.0" width="34" height="34"/>
+                            <color key="backgroundColor" white="0.33333333333333331" alpha="0.10168533805031438" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="width" secondItem="XQ3-6K-zRE" secondAttribute="height" multiplier="1:1" id="VNL-pq-BJk"/>
+                            </constraints>
+                            <color key="tintColor" name="Icon"/>
+                            <state key="normal" image="slider.horizontal.3" catalog="system"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                    <real key="value" value="10"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                            <connections>
+                                <action selector="didFilterTouched:" destination="U6b-Vx-4bR" eventType="touchUpInside" id="fu6-Hf-VOa"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                </stackView>
+            </subviews>
+            <constraints>
+                <constraint firstItem="1Sf-iU-7my" firstAttribute="top" secondItem="U6b-Vx-4bR" secondAttribute="top" constant="8" id="GAC-db-QWi"/>
+                <constraint firstItem="1Sf-iU-7my" firstAttribute="leading" secondItem="VXr-Tz-HHm" secondAttribute="leading" constant="8" id="cbN-AV-5tC"/>
+                <constraint firstItem="VXr-Tz-HHm" firstAttribute="trailing" secondItem="1Sf-iU-7my" secondAttribute="trailing" constant="8" id="fk7-dt-Ctj"/>
+                <constraint firstAttribute="bottom" secondItem="1Sf-iU-7my" secondAttribute="bottom" constant="8" id="iYi-Y6-dra"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="VXr-Tz-HHm"/>
+            <connections>
+                <outlet property="searchBar" destination="D5W-or-5ES" id="XZy-ai-B7f"/>
+            </connections>
+            <point key="canvasLocation" x="195.6521739130435" y="127.90178571428571"/>
+        </collectionReusableView>
+    </objects>
+    <resources>
+        <image name="slider.horizontal.3" catalog="system" width="128" height="100"/>
+        <namedColor name="Icon">
+            <color red="0.41999998688697815" green="0.54500001668930054" blue="0.96100002527236938" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

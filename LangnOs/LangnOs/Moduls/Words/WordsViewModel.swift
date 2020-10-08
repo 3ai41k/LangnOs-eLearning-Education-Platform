@@ -16,11 +16,11 @@ protocol WordsViewModelOutputProtocol {
     
 }
 
-final class WordsViewModel: UniversalSectionProtocol {
+final class WordsViewModel: UniversalTableViewSectionProtocol {
     
     // MARK: - Public properties
     
-    var tableSections: [TableSectionViewModelProtocol]
+    var tableSections: [UniversalTableSectionViewModelProtocol]
     
     // MARK: - Private properties
     
@@ -39,9 +39,9 @@ final class WordsViewModel: UniversalSectionProtocol {
     
     // MARK: - Private methods
     
-    private func setupWordSection(_ tableSections: inout [TableSectionViewModelProtocol]) {
+    private func setupWordSection(_ tableSections: inout [UniversalTableSectionViewModelProtocol]) {
         let wordTableViewCellViewModels = words.map({ WordTableViewCellViewModel(word: $0) })
-        tableSections.append(UniversalTableSectionViewModel(title: nil, cells: wordTableViewCellViewModels))
+        tableSections.append(UniversalTableSectionViewModel(cells: wordTableViewCellViewModels))
     }
     
 }
