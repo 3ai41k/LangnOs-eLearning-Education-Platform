@@ -89,7 +89,7 @@ extension SingUpViewModel: SingInOutputProtocol {
             ])
             return
         }
-        authorizator.singUpWith(email: email, password: password) { (error) in
+        authorizator.singUpWith(name: name, email: email, password: password) { (error) in
             if let error = error {
                 // TO DO: errror handling
                 print(error.localizedDescription)

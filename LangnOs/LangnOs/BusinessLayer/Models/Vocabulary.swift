@@ -10,6 +10,7 @@ import Foundation
 
 struct Vocabulary: FirebaseDatabaseEntityProtocol {
     let id: String
+    let userId: String
     let title: String
     let category: String
     let phrasesLearned: Int
@@ -21,6 +22,7 @@ struct Vocabulary: FirebaseDatabaseEntityProtocol {
     var serialize: [String: Any] {
         [
             "id": id,
+            "userId": userId,
             "title": title,
             "category": category,
             "phrasesLearned": phrasesLearned,
@@ -33,6 +35,7 @@ struct Vocabulary: FirebaseDatabaseEntityProtocol {
     
     init(dictionary: [String: Any]) {
         self.id = dictionary["id"] as! String
+        self.userId = dictionary["userId"] as! String
         self.title = dictionary["title"] as! String
         self.category = dictionary["category"] as! String
         self.phrasesLearned = dictionary["phrasesLearned"] as! Int
@@ -44,8 +47,9 @@ struct Vocabulary: FirebaseDatabaseEntityProtocol {
         })
     }
     
-    init(title: String, category: String, words: [Word]) {
+    init(userId: String, title: String, category: String, words: [Word]) {
         self.id = UUID().uuidString
+        self.userId = userId
         self.title = title
         self.category = category
         self.phrasesLearned = 0

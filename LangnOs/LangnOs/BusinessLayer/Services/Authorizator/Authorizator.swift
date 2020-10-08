@@ -15,7 +15,7 @@ protocol LoginableProtocol {
 
 protocol RegistratableProtocol {
     func singInWith(email: String, password: String, completion: @escaping (Error?) -> Void)
-    func singUpWith(email: String, password: String, completion: @escaping (Error?) -> Void)
+    func singUpWith(name: String?, email: String, password: String, completion: @escaping (Error?) -> Void)
 }
 
 final class Authorizator {
@@ -59,7 +59,18 @@ extension Authorizator: RegistratableProtocol {
         }
     }
     
-    func singUpWith(email: String, password: String, completion: @escaping (Error?) -> Void) {
+    func singUpWith(name: String?, email: String, password: String, completion: @escaping (Error?) -> Void) {
+        auth.createUser(withEmail: email, password: password) { (authDataResult, error) in
+            if let error = error {
+                completion(error)
+            } else {
+                let request = self.currentUser?.createProfileChangeRequest()
+                request?.displayName = name
+                request?.commitChanges(completion: { (error) in
+                    completion(error)
+                })
+            }
+        }
         auth.createUser(withEmail: email, password: password) { (_, error) in
             completion(error)
         }

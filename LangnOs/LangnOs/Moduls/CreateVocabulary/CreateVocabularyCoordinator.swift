@@ -12,14 +12,19 @@ protocol CreateVocabularyNavigationProtocol: CoordinatorClosableProtocol {
     
 }
 
-final class CreateVocabularyCoordinator: Coordinator, ActivityPresentableProtocol, AlertPresentableProtocol {
+typealias CreateVocabularyCoordinatorProtocol = CreateVocabularyNavigationProtocol & ActivityPresentableProtocol & AlertPresentableProtocol
+
+final class CreateVocabularyCoordinator: Coordinator, CreateVocabularyCoordinatorProtocol {
     
     // MARK: - Override
     
     override func start() {
+        let securityInfo = SecurityInfo()
         let fireBaseDatabase = FirebaseDatabase()
+        let createVocabularyViewModel = CreateVocabularyViewModel(userInfo: securityInfo,
+                                                                  fireBaseDatabase: fireBaseDatabase,
+                                                                  router: self)
         let createVocabularyCellFactory = CreateVocabularyCellFactory()
-        let createVocabularyViewModel = CreateVocabularyViewModel(fireBaseDatabase: fireBaseDatabase, router: self)
         let createVocabularyViewController = CreateVocabularyViewController()
         createVocabularyViewController.tableViewCellFactory = createVocabularyCellFactory
         createVocabularyViewController.viewModel = createVocabularyViewModel
@@ -31,10 +36,6 @@ final class CreateVocabularyCoordinator: Coordinator, ActivityPresentableProtoco
         parentViewController?.present(navigationController, animated: true, completion: nil)
     }
     
-}
-
-// MARK: - CreateVocabularyNavigationProtocol
-
-extension CreateVocabularyCoordinator: CreateVocabularyNavigationProtocol {
+    // MARK: - CreateVocabularyNavigationProtocol
     
 }

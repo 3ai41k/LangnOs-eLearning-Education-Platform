@@ -33,6 +33,7 @@
 		8D524FB1252FB3CB002A6E01 /* SingUpCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D524FB0252FB3CB002A6E01 /* SingUpCoordinator.swift */; };
 		8D524FB3252FB654002A6E01 /* SingUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D524FB2252FB654002A6E01 /* SingUpViewModel.swift */; };
 		8D524FB7252FBC47002A6E01 /* AuthorizationContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D524FB6252FBC47002A6E01 /* AuthorizationContext.swift */; };
+		8D524FBA252FC4C5002A6E01 /* SecurityInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D524FB9252FC4C5002A6E01 /* SecurityInfo.swift */; };
 		8D66251F2529F6C000991D45 /* CreateVocabularyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D66251D2529F6C000991D45 /* CreateVocabularyViewController.swift */; };
 		8D6625202529F6C000991D45 /* CreateVocabularyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D66251E2529F6C000991D45 /* CreateVocabularyViewController.xib */; };
 		8D6625222529F6CA00991D45 /* CreateVocabularyCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6625212529F6CA00991D45 /* CreateVocabularyCoordinator.swift */; };
@@ -166,6 +167,7 @@
 		8D524FB0252FB3CB002A6E01 /* SingUpCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingUpCoordinator.swift; sourceTree = "<group>"; };
 		8D524FB2252FB654002A6E01 /* SingUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingUpViewModel.swift; sourceTree = "<group>"; };
 		8D524FB6252FBC47002A6E01 /* AuthorizationContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationContext.swift; sourceTree = "<group>"; };
+		8D524FB9252FC4C5002A6E01 /* SecurityInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecurityInfo.swift; sourceTree = "<group>"; };
 		8D66251D2529F6C000991D45 /* CreateVocabularyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateVocabularyViewController.swift; sourceTree = "<group>"; };
 		8D66251E2529F6C000991D45 /* CreateVocabularyViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CreateVocabularyViewController.xib; sourceTree = "<group>"; };
 		8D6625212529F6CA00991D45 /* CreateVocabularyCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateVocabularyCoordinator.swift; sourceTree = "<group>"; };
@@ -373,6 +375,14 @@
 				8DD28BE02526889200F59B7D /* UINavigationBar+Drivable.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		8D524FB8252FC498002A6E01 /* SecurityInfo */ = {
+			isa = PBXGroup;
+			children = (
+				8D524FB9252FC4C5002A6E01 /* SecurityInfo.swift */,
+			);
+			path = SecurityInfo;
 			sourceTree = "<group>";
 		};
 		8D66251C2529F68D00991D45 /* CreateVocabulary */ = {
@@ -848,6 +858,7 @@
 		8DD28C0D2528AA2200F59B7D /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				8D524FB8252FC498002A6E01 /* SecurityInfo */,
 				8D524FA5252F8A75002A6E01 /* Authorizator */,
 				8DAA55412529113A00FF5066 /* FirebaseDatabase */,
 			);
@@ -1105,6 +1116,7 @@
 				8DD28BF02527A69800F59B7D /* UIBarButtonItem+Init.swift in Sources */,
 				8D524FB3252FB654002A6E01 /* SingUpViewModel.swift in Sources */,
 				8D524F67252F0355002A6E01 /* UICollectionView+Extensions.swift in Sources */,
+				8D524FBA252FC4C5002A6E01 /* SecurityInfo.swift in Sources */,
 				8DAA553E25290FDD00FF5066 /* FirebaseDatabase.swift in Sources */,
 				8D524FB1252FB3CB002A6E01 /* SingUpCoordinator.swift in Sources */,
 				8D524F92252F7E8B002A6E01 /* MessagesViewController.swift in Sources */,

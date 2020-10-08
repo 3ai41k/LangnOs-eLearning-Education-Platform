@@ -106,6 +106,8 @@ extension SingInViewModel: SingInOutputProtocol {
             if let error = error {
                 // TO DO: errror handling
                 print(error.localizedDescription)
+            } else {
+                self.router.close()
             }
         }
     }

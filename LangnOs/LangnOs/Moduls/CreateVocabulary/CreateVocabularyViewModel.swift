@@ -21,8 +21,9 @@ final class CreateVocabularyViewModel: UniversalTableViewSectionProtocol {
     
     // MARK: - Private properties
     
+    private let userInfo: UserInfoProtocol
     private let fireBaseDatabase: FirebaseDatabaseCreatingProtocol
-    private let router: CreateVocabularyNavigationProtocol & ActivityPresentableProtocol & AlertPresentableProtocol
+    private let router: CreateVocabularyCoordinatorProtocol
     
     private enum SectionType: Int {
         case vocabularylInfo
@@ -35,8 +36,10 @@ final class CreateVocabularyViewModel: UniversalTableViewSectionProtocol {
     
     // MARK: - Init
     
-    init(fireBaseDatabase: FirebaseDatabaseCreatingProtocol,
-         router: CreateVocabularyNavigationProtocol & ActivityPresentableProtocol & AlertPresentableProtocol) {
+    init(userInfo: UserInfoProtocol,
+         fireBaseDatabase: FirebaseDatabaseCreatingProtocol,
+         router: CreateVocabularyCoordinatorProtocol) {
+        self.userInfo = userInfo
         self.fireBaseDatabase = fireBaseDatabase
         self.router = router
         self.tableSections = []
@@ -77,7 +80,11 @@ final class CreateVocabularyViewModel: UniversalTableViewSectionProtocol {
             }
         }
         
-        let vocabulary = Vocabulary(title: name, category: category, words: words)
+        guard let userId = userInfo.userId else {
+            throw NSError(domain: "User is not authorized", code: 0, userInfo: nil)
+        }
+        
+        let vocabulary = Vocabulary(userId: userId, title: name, category: category, words: words)
         if vocabulary.isEmpty {
             throw NSError(domain: "Vocabulary is Empty", code: 0, userInfo: nil)
         } else {
