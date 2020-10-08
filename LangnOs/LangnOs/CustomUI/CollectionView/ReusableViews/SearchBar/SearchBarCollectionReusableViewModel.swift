@@ -26,11 +26,7 @@ final class SearchBarCollectionReusableViewModel: CollectionReusableViewModelPro
     private let didFiter: () -> Void
     private let didCancle: () -> Void
     
-    private var searchText: String {
-        didSet {
-            textDidChange(searchText)
-        }
-    }
+    private var searchText: String
     
     // MARK: - Init
     
@@ -61,6 +57,7 @@ extension SearchBarCollectionReusableViewModel: SearchBarCollectionReusableOutpu
     
     func textDidChange(_ text: String) {
         searchText = text
+        textDidChange(searchText)
     }
     
     func fiterAction() {
@@ -68,6 +65,7 @@ extension SearchBarCollectionReusableViewModel: SearchBarCollectionReusableOutpu
     }
     
     func cancelAction() {
+        searchText = ""
         didCancle()
     }
     

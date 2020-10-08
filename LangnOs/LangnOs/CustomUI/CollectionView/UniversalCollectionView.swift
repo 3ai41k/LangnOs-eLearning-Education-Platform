@@ -38,11 +38,7 @@ final class UniversalCollectionView: UICollectionView {
     
     private var viewModel: UniversalCollectionViewViewModel! {
         didSet {
-            viewModel.tableSections.enumerated().forEach({ (sectionIndex, section) in
-                section.reload.sink(receiveValue: { [weak self] in
-                    self?.reloadSections([sectionIndex])
-                }).store(in: &cancellable)
-            })
+            bindViewModel()
         }
     }
     private var cellFactory: UniversalCollectionViewCellFactoryProtocol! {
@@ -50,7 +46,7 @@ final class UniversalCollectionView: UICollectionView {
             cellFactory.registerAllCells(collectionView: self)
         }
     }
-    private var sectionFactory: UniversalCollectionViewSectionFactoryProtocol? {
+    private var sectionFactory: UniversalCollectionViewSectionFactoryProtocol! {
         didSet {
             sectionFactory?.registerAllViews(collectionView: self)
         }
@@ -78,7 +74,35 @@ final class UniversalCollectionView: UICollectionView {
         reloadData()
     }
     
+    // MARK: - Override
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
+        //addTapGesture()
+    }
+    
     // MARK: - Private methods
+    
+    private func bindViewModel() {
+        viewModel.tableSections.enumerated().forEach({ (index, section) in
+            section.reload.sink(receiveValue: { [weak self] in
+                self?.reloadSections(IndexSet(integer: index))
+            }).store(in: &cancellable)
+        })
+    }
+    
+    private func addTapGesture() {
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(didEndEditing))
+        addGestureRecognizer(tapGestureRecognizer)
+    }
+    
+    // MARK: - Actions
+    
+    @objc
+    private func didEndEditing() {
+        endEditing(true)
+    }
     
 }
 
@@ -110,13 +134,9 @@ extension UniversalCollectionView: UICollectionViewDelegate {
     }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        guard
-            let sectionFactory = sectionFactory,
-            let sectionViewModel = viewModel.tableSections[indexPath.section].sectionViewModel
-        else {
+        guard let sectionViewModel = viewModel.tableSections[indexPath.section].sectionViewModel else {
             return UICollectionReusableView()
         }
-
         return sectionFactory.generateView(sectionViewModel: sectionViewModel, collectionView: collectionView, indexPath: indexPath)
     }
     

@@ -9,8 +9,8 @@
 import UIKit
 
 protocol MainNavigationProtocol {
-    func navigateToSingIn()
     func navigateToVocabularyStatistic(_ vocabulary: Vocabulary)
+    func navigateToFilter()
     func createNewVocabulary()
 }
 
@@ -38,14 +38,13 @@ final class MainCoordinator: Coordinator {
 
 extension MainCoordinator: MainNavigationProtocol {
     
-    func navigateToSingIn() {
-        let singInCoordinator = SingInCoordinator(parentViewController: viewController)
-        singInCoordinator.start()
-    }
-    
     func navigateToVocabularyStatistic(_ vocabulary: Vocabulary) {
         let vocabularyCoordinator = VocabularyCoordinator(vocabulary: vocabulary, parentViewController: viewController)
         vocabularyCoordinator.start()
+    }
+    
+    func navigateToFilter() {
+        
     }
     
     func createNewVocabulary() {

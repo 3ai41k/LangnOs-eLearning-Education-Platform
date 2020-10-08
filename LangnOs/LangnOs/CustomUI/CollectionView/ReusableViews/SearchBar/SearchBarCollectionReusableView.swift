@@ -40,16 +40,14 @@ final class SearchBarCollectionReusableView: UICollectionReusableView, Universal
 extension SearchBarCollectionReusableView: UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        viewModel?.textDidChange(searchText)
+        if searchText.isEmpty {
+            viewModel?.cancelAction()
+        }
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        guard let text = searchBar.text else { return }
+        guard let text = searchBar.text, !text.isEmpty else { return }
         viewModel?.textDidChange(text)
-    }
-    
-    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        viewModel?.cancelAction()
     }
     
 }

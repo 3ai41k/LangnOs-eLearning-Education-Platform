@@ -15,7 +15,6 @@ protocol MainViewModelInputProtocol {
 
 protocol MainViewModelOutputProtocol {
     func fetchData()
-    func singInAction()
 }
 
 final class MainViewModel: UniversalCollectionViewViewModel {
@@ -64,13 +63,9 @@ final class MainViewModel: UniversalCollectionViewViewModel {
     // MARK: - Actions
     
     private func searchVocabularyByName(searchText: String) {
-        if searchText.isEmpty {
-            didCancelTouched()
-        } else {
-            let filteredVocabulary = vocabularies.filter({ $0.title.contains(searchText) })
-            let cellViewModels = filteredVocabulary.map({ VocabularyCollectionViewCellViewModel(vocabulary: $0) })
-            tableSections[SectionType.vocabulary.rawValue].cells = cellViewModels
-        }
+        let filteredVocabulary = vocabularies.filter({ $0.title.contains(searchText) })
+        let cellViewModels = filteredVocabulary.map({ VocabularyCollectionViewCellViewModel(vocabulary: $0) })
+        tableSections[SectionType.vocabulary.rawValue].cells = cellViewModels
     }
     
     private func didFilterTouched() {
@@ -114,10 +109,6 @@ extension MainViewModel: MainViewModelInputProtocol {
 // MARK: - MainViewModelOutputProtocol
 
 extension MainViewModel: MainViewModelOutputProtocol {
-    
-    func singInAction() {
-        router.navigateToSingIn()
-    }
     
     func fetchData() {
         let request = VocabularyFetchRequest()
