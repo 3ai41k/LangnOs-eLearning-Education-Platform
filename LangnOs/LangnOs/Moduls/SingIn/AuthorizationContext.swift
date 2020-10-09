@@ -7,42 +7,60 @@
 //
 
 import Foundation
+import FirebaseAuth
 import Combine
 
+protocol SingInPublisherContextProtocol {
+    var userSingInPublisher: AnyPublisher<User, Never> { get }
+}
+
+protocol SingInContextProtocol {
+    func userDidSingIn(_ user: User)
+}
+
 protocol SingUpPublisherContextProtocol {
-    var singUpPublisher: AnyPublisher<Void, Never> { get }
+    var backToAuthorizePublisher: AnyPublisher<Void, Never> { get }
 }
 
 protocol SingUpContextProtocol {
-    func userDidCreated()
+    func userDidCreate(_ user: User)
 }
 
-protocol AuthorizationContextProtocol: SingUpPublisherContextProtocol, SingUpContextProtocol {
-    
-}
+typealias AuthorizationContextProtocol = SingInPublisherContextProtocol & SingInContextProtocol & SingUpPublisherContextProtocol & SingUpContextProtocol
 
 final class AuthorizationContext: AuthorizationContextProtocol {
     
     // MARK: - Private properties
     
-    private let singUpSubject: PassthroughSubject<Void, Never>
+    private let backToAuthorizeSubject: PassthroughSubject<Void, Never>
+    private let userSingInSubject: PassthroughSubject<User, Never>
     
     // MARK: - Public properties
     
-    var singUpPublisher: AnyPublisher<Void, Never> {
-        singUpSubject.eraseToAnyPublisher()
+    var backToAuthorizePublisher: AnyPublisher<Void, Never> {
+        backToAuthorizeSubject.eraseToAnyPublisher()
+    }
+    
+    var userSingInPublisher: AnyPublisher<User, Never> {
+        userSingInSubject.eraseToAnyPublisher()
     }
     
     // MARK: - Init
     
     init() {
-        singUpSubject = PassthroughSubject<Void, Never>()
+        backToAuthorizeSubject = PassthroughSubject<Void, Never>()
+        userSingInSubject = PassthroughSubject<User, Never>()
     }
     
     // MARK: - Public methods
     
-    func userDidCreated() {
-        singUpSubject.send()
+    func userDidSingIn(_ user: User) {
+        userSingInSubject.send(user)
+    }
+    
+    func userDidCreate(_ user: User) {
+        backToAuthorizeSubject.send()
+        userSingInSubject.send(user)
     }
     
 }

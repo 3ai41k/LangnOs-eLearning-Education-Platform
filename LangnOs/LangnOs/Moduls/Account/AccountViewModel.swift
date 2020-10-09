@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Combine
 
 protocol AccountInputProtocol: NavigatableViewModelProtocol {
     
@@ -16,15 +17,45 @@ protocol AccountOutputProtocol {
     
 }
 
-final class AccountViewModel {
+protocol AccountBindingProtocol {
+    var reloadUI: (() -> Void)? { get set }
+}
+
+final class AccountViewModel: AccountBindingProtocol {
+    
+    // MARK: - Public properties
+    
+    var reloadUI: (() -> Void)?
+    
+    // MARK: - Private properties
     
     private let router: AccountNavigationProtocol
     private let authorizator: LoginableProtocol
+    private let context: SingInPublisherContextProtocol
     
-    init(router: AccountNavigationProtocol, authorizator: LoginableProtocol) {
+    private var cancellables: [AnyCancellable]
+    
+    // MARK: - Init
+    
+    init(router: AccountNavigationProtocol, authorizator: LoginableProtocol, context: SingInPublisherContextProtocol) {
         self.router = router
         self.authorizator = authorizator
+        self.context = context
+        
+        self.cancellables = []
+        
+        bindContext()
     }
+    
+    // MARK: - Private methods
+    
+    private func bindContext() {
+        context.userSingInPublisher.sink { [weak self] (user) in
+            self?.reloadUI?()
+        }.store(in: &cancellables )
+    }
+    
+    // MARK: - Actions
     
     @objc
     private func didSingInTouched() {
@@ -38,12 +69,14 @@ final class AccountViewModel {
                 // TO DO: Error handling
                 print(error.localizedDescription)
             } else {
-                print("Did logout")
+                self.reloadUI?()
             }
         }
     }
     
 }
+
+// MARK: - AccountInputProtocol
 
 extension AccountViewModel: AccountInputProtocol {
     
@@ -69,6 +102,8 @@ extension AccountViewModel: AccountInputProtocol {
     }
     
 }
+
+// MARK: - AccountOutputProtocol
 
 extension AccountViewModel: AccountOutputProtocol {
     

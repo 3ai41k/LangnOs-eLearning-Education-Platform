@@ -14,10 +14,6 @@ struct VocabularyCreateRequest {
     
     let vocabulary: Vocabulary
     
-    var data: [String: Any]? {
-        vocabulary.serialize
-    }
-    
 }
 
 // MARK: - FirebaseDatabaseRequestProtocol
@@ -26,6 +22,10 @@ extension VocabularyCreateRequest: FirebaseDatabaseRequestProtocol {
     
     private var collectionPath: String {
         "Vocabulary"
+    }
+    
+    var data: [String: Any]? {
+        vocabulary.serialize
     }
     
     func setCollectionPath(_ reference: DatabaseReference) -> DatabaseReference {

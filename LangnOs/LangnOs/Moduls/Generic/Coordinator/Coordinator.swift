@@ -21,6 +21,10 @@ class Coordinator {
         self.parentViewController = parentViewController
     }
     
+    deinit {
+        print("=> deinit \(self)")
+    }
+    
     // MARK: - Protected(Internal) methods
     
     internal func start() {

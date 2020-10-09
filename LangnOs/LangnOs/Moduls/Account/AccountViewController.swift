@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class AccountViewController: BindibleViewController<AccountInputProtocol & AccountOutputProtocol> {
+final class AccountViewController: BindibleViewController<AccountInputProtocol & AccountOutputProtocol & AccountBindingProtocol> {
     
     // MARK: - IBOutlets
     
@@ -24,6 +24,12 @@ final class AccountViewController: BindibleViewController<AccountInputProtocol &
     // MARK: - Lifecycle
     // MARK: - Init
     // MARK: - Override
+    
+    override func bindViewModel() {
+        viewModel?.reloadUI = { [weak self] in
+            self?.setupUI()
+        }
+    }
     
     override func setupUI() {
         navigationItem.drive(model: viewModel?.navigationItemDrivableModel)

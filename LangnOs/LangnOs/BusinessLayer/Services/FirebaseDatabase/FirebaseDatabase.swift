@@ -32,7 +32,7 @@ final class FirebaseDatabase {
     
 }
 
-// MARK: - CloudFirestoreProtocol
+// MARK: - FirebaseDatabaseFetchingProtocol
 
 extension FirebaseDatabase: FirebaseDatabaseFetchingProtocol {
     

@@ -9,7 +9,7 @@
 import UIKit
 
 struct InputViewDrivableModel: DrivableModelProtocol {
-    let text: String
+    let text: String?
     let placeholder: String
     let textDidEnter: (String) -> Void
 }

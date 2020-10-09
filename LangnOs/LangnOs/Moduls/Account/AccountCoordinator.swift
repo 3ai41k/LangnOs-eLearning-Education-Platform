@@ -14,11 +14,15 @@ protocol AccountNavigationProtocol {
 
 final class AccountCoordinator: Coordinator {
     
+    // MARK: - Private methods
+    
+    private let context: AuthorizationContextProtocol = AuthorizationContext()
+    
     // MARK: - Override
     
     override func start() {
         let authorizator = Authorizator()
-        let accountViewModel = AccountViewModel(router: self, authorizator: authorizator)
+        let accountViewModel = AccountViewModel(router: self, authorizator: authorizator, context: context)
         let accountViewController = AccountViewController()
         accountViewController.viewModel = accountViewModel
         accountViewController.tabBarItem = UITabBarItem(provider: .account)
@@ -34,7 +38,7 @@ final class AccountCoordinator: Coordinator {
 extension AccountCoordinator: AccountNavigationProtocol {
     
     func navigateToSingIn() {
-        let singInCoordinator = SingInCoordinator(parentViewController: viewController)
+        let singInCoordinator = SingInCoordinator(context: context, parentViewController: viewController)
         singInCoordinator.start()
     }
     

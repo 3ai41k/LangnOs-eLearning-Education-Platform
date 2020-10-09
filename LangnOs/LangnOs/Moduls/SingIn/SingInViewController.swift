@@ -12,37 +12,48 @@ final class SingInViewController: BindibleViewController<SingInInputProtocol & S
 
     // MARK: - IBOutlets
     
-    @IBOutlet weak var stackView: UIStackView! {
+    @IBOutlet private weak var headerLabel: UILabel!
+    @IBOutlet private weak var textFieldStackView: UIStackView! {
         didSet {
             setupInputViews()
         }
     }
+    @IBOutlet private weak var descriptionLabel: UILabel!
+    @IBOutlet private weak var bottomStackView: UIStackView! {
+        didSet {
+            setupButtons()
+        }
+    }
     
-    // MARK: - Public properties
-    // MARK: - Private properties
-    // MARK: - Lifecycle
-    // MARK: - Init
     // MARK: - Override
-    // MARK: - Public methods
+    
+    override func configurateComponents() {
+        headerLabel.text = viewModel?.header
+        descriptionLabel.text = viewModel?.description
+    }
+    
     // MARK: - Private methods
     
     private func setupInputViews() {
-        viewModel?.inputViewModels.forEach({
+        viewModel?.inputDrivingModels.forEach({
             let inputView = InputView()
             inputView.drive(model: $0)
-            self.stackView.insertArrangedSubview(inputView, at: 0)
+            self.textFieldStackView.insertArrangedSubview(inputView, at: 0)
+        })
+    }
+    
+    private func setupButtons() {
+        viewModel?.buttonsDrivingModels.forEach({
+            let button = UIButton()
+            button.drive(model: $0)
+            self.bottomStackView.addArrangedSubview(button)
         })
     }
     
     // MARK: - Actions
     
     @IBAction
-    private func didSingupTouched(_ sender: Any) {
-        viewModel?.singUpAction()
-    }
-    
-    @IBAction
-    private func didNextTouched(_ sender: Any) {
+    private func didNextTouch(_ sender: Any) {
         viewModel?.nextAction()
     }
     

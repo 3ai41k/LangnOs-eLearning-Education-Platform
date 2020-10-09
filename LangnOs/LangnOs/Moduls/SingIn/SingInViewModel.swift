@@ -10,7 +10,10 @@ import Foundation
 import Combine
 
 protocol SingInInputProtocol {
-    var inputViewModels: [DrivableModelProtocol] { get }
+    var header: String { get }
+    var description: String { get }
+    var inputDrivingModels: [DrivableModelProtocol] { get }
+    var buttonsDrivingModels: [DrivableModelProtocol] { get }
 }
 
 protocol SingInOutputProtocol {
@@ -24,7 +27,7 @@ final class SingInViewModel {
     
     private let router: SingInCoordinatorProtocol
     private let authorizator: RegistratableProtocol
-    private let context: SingUpPublisherContextProtocol
+    private let context: SingInContextProtocol & SingUpPublisherContextProtocol
     
     private var cancellables: [AnyCancellable]
     
@@ -35,7 +38,7 @@ final class SingInViewModel {
     
     init(router: SingInCoordinatorProtocol,
          authorizator: RegistratableProtocol,
-         context: SingUpPublisherContextProtocol) {
+         context: SingInContextProtocol & SingUpPublisherContextProtocol) {
         self.router = router
         self.authorizator = authorizator
         self.context = context
@@ -51,7 +54,7 @@ final class SingInViewModel {
     // MARK: - Private methods
     
     private func bindContext() {
-        context.singUpPublisher.sink { [weak self] in
+        context.backToAuthorizePublisher.sink { [weak self] _ in
             self?.router.close()
         }.store(in: &cancellables)
     }
@@ -68,20 +71,42 @@ final class SingInViewModel {
         self.password = password
     }
     
+    @objc
+    private func didSingup() {
+        router.navigateToSingUp()
+    }
+    
 }
 
 // MARK: - SingInInputProtocol
 
 extension SingInViewModel: SingInInputProtocol {
     
-    var inputViewModels: [DrivableModelProtocol] {
+    var header: String {
+        "Welocme Back!".localize
+    }
+    
+    var description: String {
+        "Sing in".localize
+    }
+    
+    var inputDrivingModels: [DrivableModelProtocol] {
         [
-            InputViewDrivableModel(text: "Password:".localize,
-                                   placeholder: "Enter".localize,
+            InputViewDrivableModel(text: nil,
+                                   placeholder: "Password".localize,
                                    textDidEnter: didPasswordEnter),
-            InputViewDrivableModel(text: "Email:".localize,
-                                   placeholder: "Enter".localize,
+            InputViewDrivableModel(text: nil,
+                                   placeholder: "Email".localize,
                                    textDidEnter: didEmailEnter)
+        ]
+    }
+    
+    var buttonsDrivingModels: [DrivableModelProtocol] {
+        [
+            ButtonDrivableModel(title: "Sing up".localize,
+                                titleColor: .black,
+                                target: self,
+                                selector: #selector(didSingup))
         ]
     }
     
@@ -102,12 +127,13 @@ extension SingInViewModel: SingInOutputProtocol {
             ])
             return
         }
-        authorizator.singInWith(email: email, password: password) { (error) in
-            if let error = error {
-                // TO DO: errror handling
-                print(error.localizedDescription)
-            } else {
+        authorizator.singInWith(email: email, password: password) { (result) in
+            switch result {
+            case .success(let user):
+                self.context.userDidSingIn(user)
                 self.router.close()
+            case .failure(let error):
+                print(error.localizedDescription)
             }
         }
     }

@@ -57,19 +57,31 @@ final class SingUpViewModel {
 
 extension SingUpViewModel: SingInInputProtocol {
     
-    var inputViewModels: [DrivableModelProtocol] {
+    var header: String {
+        "Create Account".localize
+    }
+    
+    var description: String {
+        "Sing up".localize
+    }
+    
+    var inputDrivingModels: [DrivableModelProtocol] {
         [
-            InputViewDrivableModel(text: "Password:".localize,
-                                   placeholder: "Enter".localize,
+            InputViewDrivableModel(text: nil,
+                                   placeholder: "Password".localize,
                                    textDidEnter: didPasswordEnter),
-            InputViewDrivableModel(text: "Email:".localize,
-                                   placeholder: "Enter".localize,
+            InputViewDrivableModel(text: nil,
+                                   placeholder: "Email".localize,
                                    textDidEnter: didEmailEnter),
-            InputViewDrivableModel(text: "Name:".localize,
-                                   placeholder: "Enter".localize,
+            InputViewDrivableModel(text: nil,
+                                   placeholder: "Name".localize,
                                    textDidEnter: didNameEnter)
             
         ]
+    }
+    
+    var buttonsDrivingModels: [DrivableModelProtocol] {
+        []
     }
     
 }
@@ -89,14 +101,15 @@ extension SingUpViewModel: SingInOutputProtocol {
             ])
             return
         }
-        authorizator.singUpWith(name: name, email: email, password: password) { (error) in
-            if let error = error {
+        authorizator.singUpWith(name: name, email: email, password: password) { (result) in
+            switch result {
+            case .success(let user):
+                self.router.close {
+                    self.context.userDidCreate(user)
+                }
+            case .failure(let error):
                 // TO DO: errror handling
                 print(error.localizedDescription)
-            } else {
-                self.router.close {
-                    self.context.userDidCreated()
-                }
             }
         }
     }

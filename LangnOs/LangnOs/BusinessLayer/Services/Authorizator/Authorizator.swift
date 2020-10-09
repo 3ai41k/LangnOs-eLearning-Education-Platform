@@ -8,17 +8,23 @@
 
 import FirebaseAuth
 
+enum AuthorizatorError: Error {
+    case userCannotFound
+}
+
 protocol LoginableProtocol {
     var isUserLogin: Bool { get }
     func logOut(completion: (Error?) -> Void)
 }
 
 protocol RegistratableProtocol {
-    func singInWith(email: String, password: String, completion: @escaping (Error?) -> Void)
-    func singUpWith(name: String?, email: String, password: String, completion: @escaping (Error?) -> Void)
+    func singInWith(email: String, password: String, completion: @escaping (Result<User, Error>) -> Void)
+    func singUpWith(name: String?, email: String, password: String, completion: @escaping (Result<User, Error>) -> Void)
 }
 
 final class Authorizator {
+    
+    // MARK: - Private properties
     
     private var auth: Auth {
         Auth.auth()
@@ -53,27 +59,52 @@ extension Authorizator: LoginableProtocol {
 
 extension Authorizator: RegistratableProtocol {
     
-    func singInWith(email: String, password: String, completion: @escaping (Error?) -> Void) {
+    func singInWith(email: String, password: String, completion: @escaping (Result<User, Error>) -> Void) {
         auth.signIn(withEmail: email, password: password) { (_, error) in
-            completion(error)
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                guard let currentUser = self.currentUser else {
+                    completion(.failure(AuthorizatorError.userCannotFound))
+                    return
+                }
+                completion(.success(currentUser))
+            }
         }
     }
     
-    func singUpWith(name: String?, email: String, password: String, completion: @escaping (Error?) -> Void) {
+    func singUpWith(name: String?, email: String, password: String, completion: @escaping (Result<User, Error>) -> Void) {
         auth.createUser(withEmail: email, password: password) { (authDataResult, error) in
             if let error = error {
-                completion(error)
+                completion(.failure(error))
             } else {
-                let request = self.currentUser?.createProfileChangeRequest()
-                request?.displayName = name
-                request?.commitChanges(completion: { (error) in
-                    completion(error)
-                })
+                if let name = name {
+                    self.extendedProfile(name: name, completion: completion)
+                } else {
+                    guard let currentUser = self.currentUser else {
+                        completion(.failure(AuthorizatorError.userCannotFound))
+                        return
+                    }
+                    completion(.success(currentUser))
+                }
             }
         }
-        auth.createUser(withEmail: email, password: password) { (_, error) in
-            completion(error)
-        }
+    }
+    
+    private func extendedProfile(name: String, completion: @escaping (Result<User, Error>) -> Void) {
+        let request = currentUser?.createProfileChangeRequest()
+        request?.displayName = name
+        request?.commitChanges(completion: { (error) in
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                guard let currentUser = self.currentUser else {
+                    completion(.failure(AuthorizatorError.userCannotFound))
+                    return
+                }
+                completion(.success(currentUser))
+            }
+        })
     }
     
 }

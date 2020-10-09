@@ -69,7 +69,12 @@ extension InputView: DrivableViewProtocol {
     private func drive(model: InputViewDrivableModel?) {
         guard let model = model else { return }
         
-        self.titleLabel.text = model.text
+        if let text = model.text {
+            self.titleLabel.text = text
+        } else {
+            self.titleLabel.isHidden = true
+        }
+        
         self.textField.placeholder = model.placeholder
         self.textDidEnter = model.textDidEnter
     }

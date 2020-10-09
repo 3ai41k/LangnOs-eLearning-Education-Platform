@@ -3,13 +3,17 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SingInViewController" customModule="LangnOs" customModuleProvider="target">
             <connections>
-                <outlet property="stackView" destination="bv2-A1-wcv" id="0bt-68-Lfy"/>
+                <outlet property="bottomStackView" destination="iuw-Qb-yrk" id="xfo-3C-pwt"/>
+                <outlet property="descriptionLabel" destination="irq-RL-KB3" id="0Ax-sV-vOa"/>
+                <outlet property="headerLabel" destination="jMC-D8-h38" id="Som-l1-T5F"/>
+                <outlet property="textFieldStackView" destination="fMe-gR-o3t" id="uWt-5s-uNU"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -18,144 +22,141 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uNj-qa-QYo">
-                    <rect key="frame" x="0.0" y="832" width="414" height="64"/>
-                    <color key="backgroundColor" systemColor="systemGrayColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="64" id="nu5-FG-J8H"/>
-                    </constraints>
-                </view>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CdT-sT-Gqo" customClass="BorderedButton" customModule="LangnOs" customModuleProvider="target">
-                    <rect key="frame" x="254" y="798" width="128" height="64"/>
-                    <color key="backgroundColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="128" id="9cJ-sh-jFr"/>
-                        <constraint firstAttribute="height" constant="64" id="N1j-oT-dyi"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <state key="normal" image="arrow.right" catalog="system"/>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                            <real key="value" value="10"/>
-                        </userDefinedRuntimeAttribute>
-                    </userDefinedRuntimeAttributes>
-                    <connections>
-                        <action selector="didNextTouched:" destination="-1" eventType="touchUpInside" id="AB5-kH-3ks"/>
-                    </connections>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gbT-sV-Nik">
-                    <rect key="frame" x="16" y="788" width="132" height="36"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="36" id="aUH-VY-5ix"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                    <state key="normal" title="Forgot password?">
-                        <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
-                    </state>
-                </button>
-                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="bv2-A1-wcv">
-                    <rect key="frame" x="32" y="416" width="350" height="64"/>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="bv2-A1-wcv">
+                    <rect key="frame" x="32" y="132" width="350" height="714"/>
                     <subviews>
-                        <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dws-DE-fPY">
-                            <rect key="frame" x="0.0" y="0.0" width="350" height="64"/>
-                            <subviews>
-                                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="kXh-J7-dED">
-                                    <rect key="frame" x="0.0" y="0.0" width="136" height="64"/>
-                                    <subviews>
-                                        <button opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4bP-e7-Eq1" customClass="BorderedButton" customModule="LangnOs" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="0.0" width="64" height="64"/>
-                                            <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" secondItem="4bP-e7-Eq1" secondAttribute="height" multiplier="1:1" id="dor-3t-7E5"/>
-                                            </constraints>
-                                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            <state key="normal" image="folder.fill" catalog="system"/>
-                                            <userDefinedRuntimeAttributes>
-                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                    <real key="value" value="10"/>
-                                                </userDefinedRuntimeAttribute>
-                                            </userDefinedRuntimeAttributes>
-                                        </button>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hhw-n6-8c7" customClass="BorderedButton" customModule="LangnOs" customModuleProvider="target">
-                                            <rect key="frame" x="72" y="0.0" width="64" height="64"/>
-                                            <color key="backgroundColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            <state key="normal" image="folder.fill" catalog="system"/>
-                                            <userDefinedRuntimeAttributes>
-                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                    <real key="value" value="10"/>
-                                                </userDefinedRuntimeAttribute>
-                                            </userDefinedRuntimeAttributes>
-                                        </button>
-                                    </subviews>
-                                </stackView>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bfc-3h-2eT">
-                                    <rect key="frame" x="136" y="0.0" width="214" height="64"/>
-                                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                </view>
-                            </subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome Back!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jMC-D8-h38">
+                            <rect key="frame" x="0.0" y="0.0" width="350" height="43"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="36"/>
+                            <color key="textColor" name="NextButton"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="orH-8R-8yh">
+                            <rect key="frame" x="0.0" y="59" width="350" height="125"/>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="64" id="C4F-QK-Yho"/>
+                                <constraint firstAttribute="height" constant="125" id="6IK-io-2RG"/>
+                            </constraints>
+                        </view>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="fMe-gR-o3t">
+                            <rect key="frame" x="0.0" y="200" width="350" height="64"/>
+                            <subviews>
+                                <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dws-DE-fPY">
+                                    <rect key="frame" x="0.0" y="0.0" width="350" height="64"/>
+                                    <subviews>
+                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="kXh-J7-dED">
+                                            <rect key="frame" x="0.0" y="0.0" width="136" height="64"/>
+                                            <subviews>
+                                                <button opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4bP-e7-Eq1" customClass="BorderedButton" customModule="LangnOs" customModuleProvider="target">
+                                                    <rect key="frame" x="0.0" y="0.0" width="64" height="64"/>
+                                                    <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="4bP-e7-Eq1" secondAttribute="height" multiplier="1:1" id="dor-3t-7E5"/>
+                                                    </constraints>
+                                                    <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <state key="normal" image="folder.fill" catalog="system"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                            <real key="value" value="32"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hhw-n6-8c7" customClass="BorderedButton" customModule="LangnOs" customModuleProvider="target">
+                                                    <rect key="frame" x="72" y="0.0" width="64" height="64"/>
+                                                    <color key="backgroundColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <state key="normal" image="folder.fill" catalog="system"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                            <real key="value" value="32"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                </button>
+                                            </subviews>
+                                        </stackView>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bfc-3h-2eT">
+                                            <rect key="frame" x="136" y="0.0" width="214" height="64"/>
+                                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        </view>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="64" id="C4F-QK-Yho"/>
+                                    </constraints>
+                                </stackView>
+                            </subviews>
+                        </stackView>
+                        <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="m1s-RP-eNM">
+                            <rect key="frame" x="0.0" y="280" width="350" height="82"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sing in" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="irq-RL-KB3">
+                                    <rect key="frame" x="0.0" y="0.0" width="268" height="82"/>
+                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="36"/>
+                                    <color key="textColor" name="NextButton"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uyI-L3-cVI" customClass="BorderedButton" customModule="LangnOs" customModuleProvider="target">
+                                    <rect key="frame" x="268" y="0.0" width="82" height="82"/>
+                                    <color key="backgroundColor" name="NextButton"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" secondItem="uyI-L3-cVI" secondAttribute="height" multiplier="1:1" id="0Ci-4w-PIl"/>
+                                        <constraint firstAttribute="height" constant="82" id="Udk-cV-fbR"/>
+                                    </constraints>
+                                    <color key="tintColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                    <state key="normal" image="arrow.right" catalog="system">
+                                        <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="24" scale="default" weight="regular"/>
+                                    </state>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                            <real key="value" value="41"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
+                                    <connections>
+                                        <action selector="didNextTouch:" destination="-1" eventType="touchUpInside" id="6SV-Rs-Ot0"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                        </stackView>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gyz-9u-R7B">
+                            <rect key="frame" x="0.0" y="378" width="350" height="256"/>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        </view>
+                        <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iuw-Qb-yrk">
+                            <rect key="frame" x="0.0" y="650" width="350" height="64"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="64" id="ocr-pD-lL9"/>
                             </constraints>
                         </stackView>
                     </subviews>
                 </stackView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome Back!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jMC-D8-h38">
-                    <rect key="frame" x="32" y="357" width="350" height="43"/>
-                    <fontDescription key="fontDescription" type="boldSystem" pointSize="36"/>
-                    <nil key="textColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <stackView opaque="NO" contentMode="scaleToFill" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="Bgq-L7-8Tm">
-                    <rect key="frame" x="36" y="60" width="125" height="33"/>
-                    <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Le-Ab-S3e">
-                            <rect key="frame" x="0.0" y="0.0" width="45" height="33"/>
-                            <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                            <state key="normal" title="Login">
-                                <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </state>
-                        </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6W5-V0-LlM">
-                            <rect key="frame" x="61" y="0.0" width="64" height="33"/>
-                            <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                            <state key="normal" title="Sign Up">
-                                <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </state>
-                            <connections>
-                                <action selector="didSingupTouched:" destination="-1" eventType="touchUpInside" id="aah-NY-iUL"/>
-                            </connections>
-                        </button>
-                    </subviews>
-                </stackView>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="minus" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="5DY-gO-bch">
+                    <rect key="frame" x="16" y="58" width="382" height="12"/>
+                    <color key="tintColor" name="NextButton"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="8" id="gao-T5-m2Z"/>
+                    </constraints>
+                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="21"/>
+                </imageView>
             </subviews>
             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
             <constraints>
+                <constraint firstItem="bv2-A1-wcv" firstAttribute="top" secondItem="5DY-gO-bch" secondAttribute="bottom" constant="64" id="0cA-2D-baT"/>
                 <constraint firstItem="bv2-A1-wcv" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="32" id="2x1-G7-SXM"/>
+                <constraint firstItem="5DY-gO-bch" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="3h2-lC-AM0"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="bv2-A1-wcv" secondAttribute="trailing" constant="32" id="7lN-FH-fuc"/>
-                <constraint firstAttribute="bottom" secondItem="uNj-qa-QYo" secondAttribute="bottom" id="DbT-3m-GCC"/>
-                <constraint firstItem="bv2-A1-wcv" firstAttribute="top" secondItem="jMC-D8-h38" secondAttribute="bottom" constant="16" id="QH4-8h-21z"/>
-                <constraint firstItem="jMC-D8-h38" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="32" id="SGv-v9-lCR"/>
-                <constraint firstItem="Bgq-L7-8Tm" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="36" id="Vot-2u-6NI"/>
-                <constraint firstAttribute="trailing" secondItem="uNj-qa-QYo" secondAttribute="trailing" id="Wdc-ST-qmR"/>
-                <constraint firstItem="Bgq-L7-8Tm" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="16" id="X5o-IQ-vGY"/>
-                <constraint firstItem="uNj-qa-QYo" firstAttribute="top" secondItem="gbT-sV-Nik" secondAttribute="bottom" constant="8" id="Xg2-WD-Lfz"/>
-                <constraint firstItem="bv2-A1-wcv" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="ae3-kt-mus"/>
-                <constraint firstItem="uNj-qa-QYo" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="chK-LS-CTP"/>
-                <constraint firstItem="gbT-sV-Nik" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="qm5-8C-3fO"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Bgq-L7-8Tm" secondAttribute="trailing" constant="36" id="tay-y2-9ls"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="CdT-sT-Gqo" secondAttribute="trailing" constant="32" id="vFm-gr-INV"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="jMC-D8-h38" secondAttribute="trailing" constant="32" id="vQ6-nV-pMJ"/>
-                <constraint firstItem="CdT-sT-Gqo" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="gbT-sV-Nik" secondAttribute="trailing" constant="16" id="vj7-B1-u4h"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="CdT-sT-Gqo" secondAttribute="bottom" id="wAe-Kg-2TW"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="bv2-A1-wcv" secondAttribute="bottom" constant="16" id="de3-Qg-mMT"/>
+                <constraint firstItem="5DY-gO-bch" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="16" id="fB3-hP-rQi"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="5DY-gO-bch" secondAttribute="trailing" constant="16" id="fcw-Za-lMX"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
-            <point key="canvasLocation" x="139" y="153"/>
+            <point key="canvasLocation" x="137.68115942028987" y="152.67857142857142"/>
         </view>
     </objects>
     <resources>
         <image name="arrow.right" catalog="system" width="128" height="98"/>
         <image name="folder.fill" catalog="system" width="128" height="95"/>
+        <image name="minus" catalog="system" width="128" height="24"/>
+        <namedColor name="NextButton">
+            <color red="0.27450980392156865" green="0.29411764705882354" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
     </resources>
 </document>

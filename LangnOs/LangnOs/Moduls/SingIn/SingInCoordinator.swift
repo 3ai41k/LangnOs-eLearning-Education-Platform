@@ -6,7 +6,7 @@
 //  Copyright © 2020 NL. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 protocol SingInNavigationProtocol {
     func navigateToSingUp()
@@ -18,7 +18,14 @@ final class SingInCoordinator: Coordinator, SingInCoordinatorProtocol {
     
     // MARK: - Private properties
     
-    private let context: AuthorizationContextProtocol = AuthorizationContext()
+    private let context: AuthorizationContextProtocol
+    
+    // MARK: - Init
+    
+    init(context: AuthorizationContextProtocol, parentViewController: UIViewController?) {
+        self.context = context
+        super.init(parentViewController: parentViewController)
+    }
     
     // MARK: - Override
     

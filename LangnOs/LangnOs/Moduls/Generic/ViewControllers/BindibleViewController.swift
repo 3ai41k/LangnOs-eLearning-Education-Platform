@@ -12,17 +12,14 @@ class BindibleViewController<ViewModel>: UIViewController {
     
     // MARK: - Public properties
     
-    var viewModel: ViewModel? {
-        didSet {
-            bindViewModel()
-        }
-    }
+    var viewModel: ViewModel?
     
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        bindViewModel()
         setupUI()
         configurateComponents()
     }
