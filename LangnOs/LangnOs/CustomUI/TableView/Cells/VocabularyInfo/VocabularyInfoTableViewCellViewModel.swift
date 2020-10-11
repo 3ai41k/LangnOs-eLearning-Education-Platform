@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol VocabularyInfoTableViewCellViewModelProtocol: CellViewModelProtocol, ResignibleRespondersProtocol {
+protocol VocabularyInfoTableViewCellViewModelProtocol: CellViewModelProtocol {
     var name: String { get }
     var category: String { get }
 }
@@ -23,29 +23,18 @@ protocol VocabularyInfoViewCellOutputProtocol {
     func setCategory(_ category: String)
 }
 
-protocol VocabularyInfoViewCellBindingProtocol {
-    var resignFirstResponders: (() -> Void)? { get set }
-}
-
-final class VocabularyInfoTableViewCellViewModel: VocabularyInfoTableViewCellViewModelProtocol, VocabularyInfoViewCellInputProtocol, VocabularyInfoViewCellBindingProtocol {
+final class VocabularyInfoTableViewCellViewModel: VocabularyInfoTableViewCellViewModelProtocol, VocabularyInfoViewCellInputProtocol {
     
     // MARK: - Public properties
     
     var name: String
     var category: String
-    var resignFirstResponders: (() -> Void)?
     
     // MARK: - Init
     
     init() {
         self.name = ""
         self.category = ""
-    }
-    
-    // MARK: - Public methods
-    
-    func resignResponders() {
-        resignFirstResponders?()
     }
     
 }

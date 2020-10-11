@@ -23,19 +23,13 @@ final class MainViewController: BindibleViewController<MainViewModelType> {
     }
     @IBOutlet private weak var fiexedCollectionView: UniversalCollectionView! {
         didSet {
-            guard
-                let viewModel = viewModel,
-                let cellFactory = collectionViewCellFactory,
-                let sectionFactory = collectionViewSectionFactory,
-                let layout = collectionViewLayout
-            else {
-                return
-            }
+            fiexedCollectionView.viewModel = viewModel
+            fiexedCollectionView.cellFactory = collectionViewCellFactory
+            fiexedCollectionView.sectionFactory = collectionViewSectionFactory
+            fiexedCollectionView.layout = collectionViewLayout
+            fiexedCollectionView.refreshDataHandler = viewModel?.refreshData
             
-            fiexedCollectionView.start(viewModel: viewModel,
-                                       cellFactory: cellFactory,
-                                       sectionFactory: sectionFactory,
-                                       layout: layout)
+            fiexedCollectionView.start()
         }
     }
     
@@ -47,8 +41,8 @@ final class MainViewController: BindibleViewController<MainViewModelType> {
     
     // MARK: - Lifecycle
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+    override func viewDidLoad() {
+        super.viewDidLoad()
         
         viewModel?.fetchData()
     }

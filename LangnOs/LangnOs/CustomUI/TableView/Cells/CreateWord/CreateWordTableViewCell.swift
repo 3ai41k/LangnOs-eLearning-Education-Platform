@@ -34,14 +34,10 @@ final class CreateWordTableViewCell: UITableViewCell, UniversalTableViewCellRegi
     
     // MARK: - Public properties
     
-    var viewModel: (CreateWordTableViewCellInputProtocol & CreateWordTableViewCellOutputProtocol & CreateWordTableViewCellBindingProtocol)? {
+    var viewModel: (CreateWordTableViewCellInputProtocol & CreateWordTableViewCellOutputProtocol)? {
         didSet {
             termInputView.value = viewModel?.term
             definitionInputView.value = viewModel?.definition
-            
-            viewModel?.resignFirstResponders = { [weak self] in
-                [self?.termInputView, self?.definitionInputView].forEach({ $0?.resignFirstResponder() })
-            }
         }
     }
     

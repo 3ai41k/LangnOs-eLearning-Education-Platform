@@ -34,6 +34,9 @@
                                     <rect key="frame" x="46" y="0.0" width="354" height="199"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <textInputTraits key="textInputTraits"/>
+                                    <connections>
+                                        <action selector="textFieldDidChange:" destination="-1" eventType="editingChanged" id="S8K-kQ-JMr"/>
+                                    </connections>
                                 </textField>
                             </subviews>
                         </stackView>

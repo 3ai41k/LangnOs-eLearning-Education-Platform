@@ -14,11 +14,7 @@ final class InputView: XibView {
     // MARK: - IBOutlets
     
     @IBOutlet private weak var titleLabel: UILabel!
-    @IBOutlet private weak var textField: UITextField! {
-        didSet {
-            textField.delegate = self
-        }
-    }
+    @IBOutlet private weak var textField: UITextField!
     
     // MARK: - Public properties
     
@@ -38,24 +34,14 @@ final class InputView: XibView {
     
     var textDidEnter: ((String) -> Void)?
     
-    // MARK: - Override
+    // MARK: - Actions
     
-    @discardableResult
-    override func resignFirstResponder() -> Bool {
-        textField.resignFirstResponder()
-    }
-
-}
-
-// MARK: - UITextFieldDelegate
-
-extension InputView: UITextFieldDelegate {
-    
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        guard let text = textField.text else { return }
+    @IBAction
+    private func textFieldDidChange(_ sender: UITextField) {
+        guard let text = sender.text else { return }
         textDidEnter?(text)
     }
-    
+
 }
 
 // MARK: - DrivableViewProtocol

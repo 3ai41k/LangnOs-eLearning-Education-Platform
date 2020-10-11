@@ -19,6 +19,7 @@ protocol MainViewModelInputProtocol: NavigatableViewModelProtocol {
 
 protocol MainViewModelOutputProtocol {
     func fetchData()
+    func refreshData(completion: @escaping () -> Void)
 }
 
 final class MainViewModel: UniversalCollectionViewViewModel {
@@ -68,7 +69,28 @@ final class MainViewModel: UniversalCollectionViewViewModel {
         tableSections.append(UniversalCollectionSectionViewModel(sectionViewModel: sectionViewModel, cells: []))
     }
     
-    // MARK: - Actions
+    // MARK: - Action
+    
+    private func fetchData(completion: (() -> Void)?) {
+        defer {
+            completion?()
+        }
+        
+        guard let userId = userInfo.userId else { return }
+        
+        let request = VocabularyFetchRequest(userId: userId)
+        firebaseDatabase.fetch(request: request) { (result: Result<[Vocabulary], Error>) in
+            switch result {
+            case .success(let vocabularies):
+                self.tableSections[SectionType.vocabulary.rawValue].cells = vocabularies.map({
+                    VocabularyCollectionViewCellViewModel(vocabulary: $0)
+                })
+                self.vocabularies = vocabularies
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+    }
     
     private func searchVocabularyByName(searchText: String) {
         let filteredVocabulary = vocabularies.filter({ $0.title.contains(searchText) })
@@ -119,23 +141,12 @@ extension MainViewModel: MainViewModelInputProtocol {
 extension MainViewModel: MainViewModelOutputProtocol {
     
     func fetchData() {
-        guard let userId = userInfo.userId else { return }
-        let request = VocabularyFetchRequest(userId: userId)
-        firebaseDatabase.fetch(request: request) { (result: Result<[Vocabulary], Error>) in
-            switch result {
-            case .success(let vocabularies):
-                let cellViewModels = vocabularies
-                    //.sorted(by: { $0.createdDate > $1.createdDate })
-                    .map({
-                        VocabularyCollectionViewCellViewModel(vocabulary: $0)
-                    })
-                
-                self.tableSections[SectionType.vocabulary.rawValue].cells = cellViewModels
-                self.vocabularies = vocabularies
-            case .failure(let error):
-                // FIX IT: Add error handling
-                print(error)
-            }
+        fetchData(completion: nil)
+    }
+    
+    func refreshData(completion: @escaping () -> Void) {
+        fetchData {
+            completion()
         }
     }
     

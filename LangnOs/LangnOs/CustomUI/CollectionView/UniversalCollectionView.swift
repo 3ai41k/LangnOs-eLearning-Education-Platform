@@ -32,46 +32,46 @@ protocol UniversalCollectionViewSectionFactoryProtocol {
 
 final class UniversalCollectionView: UICollectionView {
     
-    // MARK: - Private properties
+    // MARK: - Public properties
     
-    private var cancellable: [AnyCancellable] = []
-    
-    private var viewModel: UniversalCollectionViewViewModel! {
+    var viewModel: UniversalCollectionViewViewModel? {
         didSet {
             bindViewModel()
         }
     }
-    private var cellFactory: UniversalCollectionViewCellFactoryProtocol! {
+    
+    var cellFactory: UniversalCollectionViewCellFactoryProtocol? {
         didSet {
-            cellFactory.registerAllCells(collectionView: self)
+            cellFactory?.registerAllCells(collectionView: self)
         }
     }
-    private var sectionFactory: UniversalCollectionViewSectionFactoryProtocol! {
+    
+    var sectionFactory: UniversalCollectionViewSectionFactoryProtocol? {
         didSet {
             sectionFactory?.registerAllViews(collectionView: self)
         }
     }
-    private var layout: UniversalCollectionViewLayoutProtocol! {
+    
+    var layout: UniversalCollectionViewLayoutProtocol? {
         didSet {
-            collectionViewLayout = layout.collectionViewLayout
+            guard let collectionViewLayout = layout?.collectionViewLayout else { return }
+            self.collectionViewLayout = collectionViewLayout
         }
     }
     
+    var refreshDataHandler: ((@escaping () -> Void) -> Void)?
+    
+    // MARK: - Private properties
+    
+    private var cancellable: [AnyCancellable] = []
+    
     // MARK: - Public methods
     
-    func start(viewModel: UniversalCollectionViewViewModel,
-               cellFactory: UniversalCollectionViewCellFactoryProtocol,
-               sectionFactory: UniversalCollectionViewSectionFactoryProtocol,
-               layout: UniversalCollectionViewLayoutProtocol) {
-        self.viewModel = viewModel
-        self.cellFactory = cellFactory
-        self.sectionFactory = sectionFactory
-        self.layout = layout
+    func start() {
+        self.dataSource = self
+        self.delegate = self
         
-        dataSource = self
-        delegate = self
-        
-        reloadData()
+        self.reloadData()
     }
     
     // MARK: - Override
@@ -79,29 +79,43 @@ final class UniversalCollectionView: UICollectionView {
     override func awakeFromNib() {
         super.awakeFromNib()
         
+        addRefreshControl()
         //addTapGesture()
     }
     
     // MARK: - Private methods
     
     private func bindViewModel() {
-        viewModel.tableSections.enumerated().forEach({ (index, section) in
+        viewModel?.tableSections.enumerated().forEach({ (index, section) in
             section.reload.sink(receiveValue: { [weak self] in
                 self?.reloadSections(IndexSet(integer: index))
             }).store(in: &cancellable)
         })
     }
     
+    private func addRefreshControl() {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(refreshData), for: .valueChanged)
+        self.refreshControl = refreshControl
+    }
+    
     private func addTapGesture() {
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(didEndEditing))
-        addGestureRecognizer(tapGestureRecognizer)
+        self.addGestureRecognizer(tapGestureRecognizer)
     }
     
     // MARK: - Actions
     
     @objc
+    private func refreshData(_ sender: UIRefreshControl) {
+        refreshDataHandler? {
+            sender.endRefreshing()
+        }
+    }
+    
+    @objc
     private func didEndEditing() {
-        endEditing(true)
+        self.endEditing(true)
     }
     
 }
@@ -111,16 +125,21 @@ final class UniversalCollectionView: UICollectionView {
 extension UniversalCollectionView: UICollectionViewDataSource {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        viewModel.tableSections.count
+        viewModel?.tableSections.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        viewModel.tableSections[section].cells.count
+        viewModel?.tableSections[section].cells.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cellViewModel = viewModel.tableSections[indexPath.section].cells[indexPath.row]
-        return cellFactory.generateCell(cellViewModel: cellViewModel, collectionView: collectionView, indexPath: indexPath)
+        guard
+            let cellViewModel = viewModel?.tableSections[indexPath.section].cells[indexPath.row],
+            let cell = cellFactory?.generateCell(cellViewModel: cellViewModel, collectionView: collectionView, indexPath: indexPath)
+        else {
+            return UICollectionViewCell()
+        }
+        return cell
     }
     
 }
@@ -130,14 +149,17 @@ extension UniversalCollectionView: UICollectionViewDataSource {
 extension UniversalCollectionView: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        viewModel.didSelectCellAt(indexPath: indexPath)
+        viewModel?.didSelectCellAt(indexPath: indexPath)
     }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        guard let sectionViewModel = viewModel.tableSections[indexPath.section].sectionViewModel else {
+        guard
+            let sectionViewModel = viewModel?.tableSections[indexPath.section].sectionViewModel,
+            let rusableView = sectionFactory?.generateView(sectionViewModel: sectionViewModel, collectionView: collectionView, indexPath: indexPath)
+        else {
             return UICollectionReusableView()
         }
-        return sectionFactory.generateView(sectionViewModel: sectionViewModel, collectionView: collectionView, indexPath: indexPath)
+        return rusableView
     }
     
 }
@@ -147,7 +169,7 @@ extension UniversalCollectionView: UICollectionViewDelegate {
 extension UniversalCollectionView: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        layout.sizeForItemAt(collectionView, indexPath: indexPath)
+        layout?.sizeForItemAt(collectionView, indexPath: indexPath) ?? CGSize(width: 0.0, height: 0.0)
     }
     
 }

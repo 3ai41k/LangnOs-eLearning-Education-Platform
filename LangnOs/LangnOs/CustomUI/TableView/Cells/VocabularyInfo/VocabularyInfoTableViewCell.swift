@@ -34,14 +34,10 @@ final class VocabularyInfoTableViewCell: UITableViewCell, UniversalTableViewCell
     
     // MARK: - Public properties
     
-    var viewModel: (VocabularyInfoViewCellInputProtocol & VocabularyInfoViewCellOutputProtocol & VocabularyInfoViewCellBindingProtocol)? {
+    var viewModel: (VocabularyInfoViewCellInputProtocol & VocabularyInfoViewCellOutputProtocol)? {
         didSet {
             nameInputView.value = viewModel?.name
             categoryInputView.value = viewModel?.category
-            
-            viewModel?.resignFirstResponders = { [weak self] in
-                [self?.nameInputView, self?.categoryInputView].forEach({ $0?.resignFirstResponder() })
-            }
         }
     }
     

@@ -67,7 +67,6 @@ final class CreateVocabularyViewModel: UniversalTableViewSectionProtocol {
         
         for section in tableSections {
             for cellViewModel in section.cells {
-                (cellViewModel as? ResignibleRespondersProtocol)?.resignResponders()
                 switch cellViewModel {
                 case let viewModel as VocabularyInfoTableViewCellViewModelProtocol:
                     name = viewModel.name
