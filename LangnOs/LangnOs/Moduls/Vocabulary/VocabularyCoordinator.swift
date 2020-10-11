@@ -9,6 +9,7 @@
 import UIKit
 
 protocol VocabularyNavigationProtocol: CoordinatorClosableProtocol {
+    func navigateToFlashCards()
     func navigateToWords()
 }
 
@@ -46,6 +47,11 @@ final class VocabularyCoordinator: Coordinator, AlertPresentableProtocol {
 // MARK: - VocabularyNavigationProtocol
 
 extension VocabularyCoordinator: VocabularyNavigationProtocol {
+    
+    func navigateToFlashCards() {
+        let flashCardsCoordinator = FlashCardsCoordinator(words: vocabulary.words, parentViewController: viewController)
+        flashCardsCoordinator.start()
+    }
     
     func navigateToWords() {
         let wordsCoordinator = WordsCoordinator(words: vocabulary.words, parentViewController: viewController)

@@ -66,6 +66,7 @@ final class MainViewModel: UniversalCollectionViewViewModel {
     // MARK: - Private methods
     
     private func setupVocabularySection(_ tableSections: inout [CollectionSectionViewModelProtocol]) {
+        // FIX IT - Retain cycle. [weak self]
         let sectionViewModel = SearchBarCollectionReusableViewModel(textDidChange: searchVocabularyByName,
                                                                     didFiter: didFilterTouched,
                                                                     didCancle: didCancelTouched)
@@ -113,7 +114,7 @@ final class MainViewModel: UniversalCollectionViewViewModel {
     @objc
     private func didCreateNewVocabularyTouched() {
         if authorizator.isUserLogin {
-            router.createNewVocabulary()
+            router.createNewVocabulary(didVocabularyCreateHandler: didVocabularyCreate)
         } else {
             let canelAlertAction = CancelAlertAction(handler: { })
             let singInAlertAction = SingInAlertAction(handler: didSingInTouched)
@@ -121,6 +122,10 @@ final class MainViewModel: UniversalCollectionViewViewModel {
                              message: "You are not authrized!".localize,
                              actions: [canelAlertAction, singInAlertAction])
         }
+    }
+    
+    private func didVocabularyCreate() {
+        fetchData()
     }
     
     private func didSingInTouched() {

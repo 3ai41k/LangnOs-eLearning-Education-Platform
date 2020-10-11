@@ -11,7 +11,7 @@ import UIKit
 protocol MainNavigationProtocol {
     func navigateToVocabularyStatistic(_ vocabulary: Vocabulary)
     func navigateToFilter()
-    func createNewVocabulary()
+    func createNewVocabulary(didVocabularyCreateHandler: @escaping () -> Void)
     func navigateToSingIn()
 }
 
@@ -55,8 +55,9 @@ extension MainCoordinator {
         
     }
     
-    func createNewVocabulary() {
-        let createVocabularyCoordinator = CreateVocabularyCoordinator(parentViewController: viewController)
+    func createNewVocabulary(didVocabularyCreateHandler: @escaping () -> Void) {
+        let createVocabularyCoordinator = CreateVocabularyCoordinator(didVocabularyCreateHandler: didVocabularyCreateHandler,
+                                                                      parentViewController: viewController)
         createVocabularyCoordinator.start()
     }
     

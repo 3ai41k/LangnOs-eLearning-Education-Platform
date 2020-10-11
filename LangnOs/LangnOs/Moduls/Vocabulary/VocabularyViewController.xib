@@ -105,6 +105,7 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cy4-es-qEQ" customClass="VocabularyActionView" customModule="LangnOs" customModuleProvider="target">
                                                     <rect key="frame" x="0.0" y="0.0" width="116.5" height="116.5"/>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                    <gestureRecognizers/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="Cy4-es-qEQ" secondAttribute="height" multiplier="1:1" id="aHe-AD-1gc"/>
                                                     </constraints>
@@ -115,6 +116,9 @@
                                                         </userDefinedRuntimeAttribute>
                                                         <userDefinedRuntimeAttribute type="image" keyPath="image" value="rectangle.on.rectangle.angled" catalog="system"/>
                                                     </userDefinedRuntimeAttributes>
+                                                    <connections>
+                                                        <outletCollection property="gestureRecognizers" destination="JTG-Hd-Lpi" appends="YES" id="ik5-BP-T3d"/>
+                                                    </connections>
                                                 </view>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pAv-Dq-W64" customClass="VocabularyActionView" customModule="LangnOs" customModuleProvider="target">
                                                     <rect key="frame" x="132.5" y="0.0" width="117" height="116.5"/>
@@ -249,6 +253,11 @@
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <point key="canvasLocation" x="137.68115942028987" y="141.96428571428569"/>
         </view>
+        <tapGestureRecognizer id="JTG-Hd-Lpi">
+            <connections>
+                <action selector="didFlashCardsTouch:" destination="-1" id="1Kk-pY-VUt"/>
+            </connections>
+        </tapGestureRecognizer>
     </objects>
     <resources>
         <image name="bookmark" catalog="system" width="112" height="128"/>

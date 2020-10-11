@@ -9,12 +9,24 @@
 import UIKit
 
 protocol CreateVocabularyNavigationProtocol: CoordinatorClosableProtocol {
-    
+    func vocabularyDidCreate()
 }
 
 typealias CreateVocabularyCoordinatorProtocol = CreateVocabularyNavigationProtocol & ActivityPresentableProtocol & AlertPresentableProtocol
 
 final class CreateVocabularyCoordinator: Coordinator, CreateVocabularyCoordinatorProtocol {
+    
+    // MARK: - Private properties
+    
+    private var didCreateHandler: () -> Void
+    
+    // MARK: - Init
+    
+    init(didVocabularyCreateHandler: @escaping () -> Void, parentViewController: UIViewController?) {
+        self.didCreateHandler = didVocabularyCreateHandler
+        
+        super.init(parentViewController: parentViewController)
+    }
     
     // MARK: - Override
     
@@ -37,5 +49,11 @@ final class CreateVocabularyCoordinator: Coordinator, CreateVocabularyCoordinato
     }
     
     // MARK: - CreateVocabularyNavigationProtocol
+    
+    func vocabularyDidCreate() {
+        close {
+            self.didCreateHandler()
+        }
+    }
     
 }

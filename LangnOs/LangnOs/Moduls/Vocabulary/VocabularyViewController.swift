@@ -23,7 +23,6 @@ final class VocabularyViewController: BindibleViewController<VocabularyViewModel
     @IBOutlet private weak var vocabularyNameLabel: UILabel!
     @IBOutlet private weak var numberOfCardsLabel: UILabel!
     @IBOutlet private weak var categoryNameLabel: UILabel!
-    // ---
     @IBOutlet private weak var vocabularyProgressView: VocabularyProgressView!
     
     // MARK: - Override
@@ -46,6 +45,11 @@ final class VocabularyViewController: BindibleViewController<VocabularyViewModel
     }
     
     // MARK: - Actions
+    
+    @IBAction
+    private func didFlashCardsTouch(_ sender: Any) {
+        viewModel?.showFlashCardsAction()
+    }
     
     @IBAction
     private func didShowWordsTouch(_ sender: Any) {

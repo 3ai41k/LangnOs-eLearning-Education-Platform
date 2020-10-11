@@ -115,7 +115,7 @@ final class CreateVocabularyViewModel: UniversalTableViewSectionProtocol {
                     print(error.localizedDescription)
                 } else {
                     self.router.closeActivity()
-                    self.router.close()
+                    self.router.vocabularyDidCreate()
                 }
             }
         } catch {

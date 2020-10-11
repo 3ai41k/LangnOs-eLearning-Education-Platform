@@ -8,10 +8,7 @@
 
 import Foundation
 
-protocol VocabularyViewModelInputProtocol {
-    var navigationItemDrivableModel: DrivableModelProtocol { get }
-    var navigationBarDrivableModel: DrivableModelProtocol { get }
-    
+protocol VocabularyViewModelInputProtocol: NavigatableViewModelProtocol {
     var vocabularyName: String { get }
     var numberOfWords: String { get }
     var category: String { get }
@@ -21,6 +18,7 @@ protocol VocabularyViewModelInputProtocol {
 }
 
 protocol VocabularyViewModelOutputProtocol {
+    func showFlashCardsAction()
     func showWordsAction()
 }
 
@@ -122,6 +120,10 @@ extension VocabularyViewModel: VocabularyViewModelInputProtocol {
 // MARK: - VocabularyViewModelOutputProtocol
 
 extension VocabularyViewModel: VocabularyViewModelOutputProtocol {
+    
+    func showFlashCardsAction() {
+        router.navigateToFlashCards()
+    }
     
     func showWordsAction() {
         router.navigateToWords()

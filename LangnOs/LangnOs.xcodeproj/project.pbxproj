@@ -43,6 +43,14 @@
 		8D524FDB2533816D002A6E01 /* UIBarButtonItem+Init.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D524FDA2533816D002A6E01 /* UIBarButtonItem+Init.swift */; };
 		8D524FDD2533ABF1002A6E01 /* TextFieldDrivableModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D524FDC2533ABF0002A6E01 /* TextFieldDrivableModel.swift */; };
 		8D524FDF2533ACC0002A6E01 /* UITextField+Drivable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D524FDE2533ACC0002A6E01 /* UITextField+Drivable.swift */; };
+		8D524FE32533BA27002A6E01 /* FlashCardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D524FE12533BA27002A6E01 /* FlashCardsViewController.swift */; };
+		8D524FE42533BA27002A6E01 /* FlashCardsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D524FE22533BA27002A6E01 /* FlashCardsViewController.xib */; };
+		8D524FE62533BA46002A6E01 /* FlashCardsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D524FE52533BA46002A6E01 /* FlashCardsCoordinator.swift */; };
+		8D524FE82533BC7B002A6E01 /* FlashCardsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D524FE72533BC7B002A6E01 /* FlashCardsViewModel.swift */; };
+		8D524FEA2533BDB2002A6E01 /* FlashCardsCellFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D524FE92533BDB2002A6E01 /* FlashCardsCellFactory.swift */; };
+		8D524FEE2533BEC9002A6E01 /* FlashCardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D524FEC2533BEC9002A6E01 /* FlashCardTableViewCell.swift */; };
+		8D524FEF2533BEC9002A6E01 /* FlashCardTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D524FED2533BEC9002A6E01 /* FlashCardTableViewCell.xib */; };
+		8D524FF12533BF47002A6E01 /* FlashCardTableViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D524FF02533BF47002A6E01 /* FlashCardTableViewCellViewModel.swift */; };
 		8D66251F2529F6C000991D45 /* CreateVocabularyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D66251D2529F6C000991D45 /* CreateVocabularyViewController.swift */; };
 		8D6625202529F6C000991D45 /* CreateVocabularyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D66251E2529F6C000991D45 /* CreateVocabularyViewController.xib */; };
 		8D6625222529F6CA00991D45 /* CreateVocabularyCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6625212529F6CA00991D45 /* CreateVocabularyCoordinator.swift */; };
@@ -185,6 +193,14 @@
 		8D524FDA2533816D002A6E01 /* UIBarButtonItem+Init.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIBarButtonItem+Init.swift"; sourceTree = "<group>"; };
 		8D524FDC2533ABF0002A6E01 /* TextFieldDrivableModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldDrivableModel.swift; sourceTree = "<group>"; };
 		8D524FDE2533ACC0002A6E01 /* UITextField+Drivable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Drivable.swift"; sourceTree = "<group>"; };
+		8D524FE12533BA27002A6E01 /* FlashCardsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashCardsViewController.swift; sourceTree = "<group>"; };
+		8D524FE22533BA27002A6E01 /* FlashCardsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FlashCardsViewController.xib; sourceTree = "<group>"; };
+		8D524FE52533BA46002A6E01 /* FlashCardsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashCardsCoordinator.swift; sourceTree = "<group>"; };
+		8D524FE72533BC7B002A6E01 /* FlashCardsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashCardsViewModel.swift; sourceTree = "<group>"; };
+		8D524FE92533BDB2002A6E01 /* FlashCardsCellFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashCardsCellFactory.swift; sourceTree = "<group>"; };
+		8D524FEC2533BEC9002A6E01 /* FlashCardTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashCardTableViewCell.swift; sourceTree = "<group>"; };
+		8D524FED2533BEC9002A6E01 /* FlashCardTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FlashCardTableViewCell.xib; sourceTree = "<group>"; };
+		8D524FF02533BF47002A6E01 /* FlashCardTableViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashCardTableViewCellViewModel.swift; sourceTree = "<group>"; };
 		8D66251D2529F6C000991D45 /* CreateVocabularyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateVocabularyViewController.swift; sourceTree = "<group>"; };
 		8D66251E2529F6C000991D45 /* CreateVocabularyViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CreateVocabularyViewController.xib; sourceTree = "<group>"; };
 		8D6625212529F6CA00991D45 /* CreateVocabularyCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateVocabularyCoordinator.swift; sourceTree = "<group>"; };
@@ -413,6 +429,28 @@
 			path = TopBar;
 			sourceTree = "<group>";
 		};
+		8D524FE02533BA07002A6E01 /* FlashCards */ = {
+			isa = PBXGroup;
+			children = (
+				8D524FE52533BA46002A6E01 /* FlashCardsCoordinator.swift */,
+				8D524FE72533BC7B002A6E01 /* FlashCardsViewModel.swift */,
+				8D524FE12533BA27002A6E01 /* FlashCardsViewController.swift */,
+				8D524FE22533BA27002A6E01 /* FlashCardsViewController.xib */,
+				8D524FE92533BDB2002A6E01 /* FlashCardsCellFactory.swift */,
+			);
+			path = FlashCards;
+			sourceTree = "<group>";
+		};
+		8D524FEB2533BEAD002A6E01 /* FlashCard */ = {
+			isa = PBXGroup;
+			children = (
+				8D524FEC2533BEC9002A6E01 /* FlashCardTableViewCell.swift */,
+				8D524FF02533BF47002A6E01 /* FlashCardTableViewCellViewModel.swift */,
+				8D524FED2533BEC9002A6E01 /* FlashCardTableViewCell.xib */,
+			);
+			path = FlashCard;
+			sourceTree = "<group>";
+		};
 		8D66251C2529F68D00991D45 /* CreateVocabulary */ = {
 			isa = PBXGroup;
 			children = (
@@ -495,6 +533,7 @@
 				8D662556252A7FF900991D45 /* Word */,
 				8D83EA62252B8B78004E6098 /* CreateWord */,
 				8D83EA79252BA224004E6098 /* VocabularyInfo */,
+				8D524FEB2533BEAD002A6E01 /* FlashCard */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -710,6 +749,7 @@
 				8D66253D252A715800991D45 /* Words */,
 				8D9985E9252929BF009EA144 /* Vocabulary */,
 				8D66251C2529F68D00991D45 /* CreateVocabulary */,
+				8D524FE02533BA07002A6E01 /* FlashCards */,
 			);
 			path = Moduls;
 			sourceTree = "<group>";
@@ -1016,10 +1056,12 @@
 				8D83EA70252B9C11004E6098 /* ActivityViewController.xib in Resources */,
 				8D6625202529F6C000991D45 /* CreateVocabularyViewController.xib in Resources */,
 				8D83EA81252BA2A2004E6098 /* VocabularyInfoTableViewCell.xib in Resources */,
+				8D524FE42533BA27002A6E01 /* FlashCardsViewController.xib in Resources */,
 				8D524F93252F7E8B002A6E01 /* MessagesViewController.xib in Resources */,
 				8D524F97252F7E97002A6E01 /* AccountViewController.xib in Resources */,
 				8D662553252A7F5F00991D45 /* WordTableViewCell.xib in Resources */,
 				8DD28BB125266F4000F59B7D /* MainViewController.xib in Resources */,
+				8D524FEF2533BEC9002A6E01 /* FlashCardTableViewCell.xib in Resources */,
 				8D9985ED252929E7009EA144 /* VocabularyViewController.xib in Resources */,
 				8DD28C0525289C5300F59B7D /* VocabularyCollectionViewCell.xib in Resources */,
 				8D524FA4252F86D1002A6E01 /* UserImageView.xib in Resources */,
@@ -1084,6 +1126,7 @@
 				8DD28BE12526889200F59B7D /* UINavigationBar+Drivable.swift in Sources */,
 				8DAA55452529117200FF5066 /* FirebaseDatabaseEntityProtocol.swift in Sources */,
 				8D524FCE253372A3002A6E01 /* TopBarView.swift in Sources */,
+				8D524FE62533BA46002A6E01 /* FlashCardsCoordinator.swift in Sources */,
 				8D662552252A7F5F00991D45 /* WordTableViewCell.swift in Sources */,
 				8DD28BAC25266EA500F59B7D /* TabBarProvider.swift in Sources */,
 				8D524F9B252F7EB5002A6E01 /* MessagesCoordinator.swift in Sources */,
@@ -1110,6 +1153,7 @@
 				8D83EA76252B9EB9004E6098 /* CoordinatorClosableProtocol.swift in Sources */,
 				8DD28BD32526854300F59B7D /* UINavigationItem+Drivable.swift in Sources */,
 				8D524F96252F7E97002A6E01 /* AccountViewController.swift in Sources */,
+				8D524FEA2533BDB2002A6E01 /* FlashCardsCellFactory.swift in Sources */,
 				8D83EA65252B8BB7004E6098 /* CreateWordTableViewCell.swift in Sources */,
 				8D9985E825292776009EA144 /* UniversalCollectionViewOutputProtocol.swift in Sources */,
 				8DC3CF31252CD5B6003CA62A /* UniversalCollectionViewLayoutProtocol.swift in Sources */,
@@ -1134,12 +1178,14 @@
 				8D83EA83252BA2D7004E6098 /* VocabularyInfoTableViewCellViewModel.swift in Sources */,
 				8D524FB7252FBC47002A6E01 /* AuthorizationContext.swift in Sources */,
 				8DAA55472529129E00FF5066 /* FirebaseDatabaseRequestProtocol.swift in Sources */,
+				8D524FE82533BC7B002A6E01 /* FlashCardsViewModel.swift in Sources */,
 				8DD28BC625267A1700F59B7D /* PresentationCoordinator.swift in Sources */,
 				8DD28BC3252679F600F59B7D /* PresentationViewController.swift in Sources */,
 				8D83EA6A252B8FEA004E6098 /* CreateVocabularyCellFactory.swift in Sources */,
 				8D524F64252E5E8F002A6E01 /* UniversalCollectionSectionViewModel.swift in Sources */,
 				8DC3CF23252C67F9003CA62A /* InputView.swift in Sources */,
 				8D662558252A800600991D45 /* UniversalTableViewCellRegistratable.swift in Sources */,
+				8D524FF12533BF47002A6E01 /* FlashCardTableViewCellViewModel.swift in Sources */,
 				8DD28B8F252667F600F59B7D /* LangnOs.xcdatamodeld in Sources */,
 				8DD28BCD2526815C00F59B7D /* BindibleViewController.swift in Sources */,
 				8DD28BF92527B3C700F59B7D /* UniversalCollectionViewCellFactoryProtocol.swift in Sources */,
@@ -1159,6 +1205,7 @@
 				8D524FB1252FB3CB002A6E01 /* SingUpCoordinator.swift in Sources */,
 				8D524F92252F7E8B002A6E01 /* MessagesViewController.swift in Sources */,
 				8D524F5D252E5AAA002A6E01 /* SearchBarCollectionReusableView.swift in Sources */,
+				8D524FEE2533BEC9002A6E01 /* FlashCardTableViewCell.swift in Sources */,
 				8DD28BD52526856B00F59B7D /* NavigationItemDrivableModel.swift in Sources */,
 				8D524FDF2533ACC0002A6E01 /* UITextField+Drivable.swift in Sources */,
 				8DD28B87252667F600F59B7D /* SceneDelegate.swift in Sources */,
@@ -1183,6 +1230,7 @@
 				8DAA55402529112B00FF5066 /* Vocabulary.swift in Sources */,
 				8D524F9D252F7EC1002A6E01 /* AccountCoordinator.swift in Sources */,
 				8DD28C122528AEC800F59B7D /* SingInCoordinator.swift in Sources */,
+				8D524FE32533BA27002A6E01 /* FlashCardsViewController.swift in Sources */,
 				8DD28BCF252683A100F59B7D /* MainViewModel.swift in Sources */,
 				8D524F62252E5C71002A6E01 /* UniversalCollectionViewSectionRegistratable.swift in Sources */,
 			);
