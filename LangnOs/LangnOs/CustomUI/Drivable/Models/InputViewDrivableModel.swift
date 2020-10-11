@@ -10,6 +10,6 @@ import UIKit
 
 struct InputViewDrivableModel: DrivableModelProtocol {
     let text: String?
-    let placeholder: String
+    let textFieldDrivableModel: TextFieldDrivableModel
     let textDidEnter: (String) -> Void
 }

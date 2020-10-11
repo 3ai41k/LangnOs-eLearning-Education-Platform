@@ -68,13 +68,13 @@ extension SingUpViewModel: SingInInputProtocol {
     var inputDrivingModels: [DrivableModelProtocol] {
         [
             InputViewDrivableModel(text: nil,
-                                   placeholder: "Password".localize,
+                                   textFieldDrivableModel: TextFieldDrivableModel(placeholder: "Password".localize, returnKey: .done, contentType: .password),
                                    textDidEnter: didPasswordEnter),
             InputViewDrivableModel(text: nil,
-                                   placeholder: "Email".localize,
+                                   textFieldDrivableModel: TextFieldDrivableModel(placeholder: "Email".localize, contentType: .emailAddress),
                                    textDidEnter: didEmailEnter),
             InputViewDrivableModel(text: nil,
-                                   placeholder: "Name".localize,
+                                   textFieldDrivableModel: TextFieldDrivableModel(placeholder: "Name".localize),
                                    textDidEnter: didNameEnter)
             
         ]
@@ -89,10 +89,6 @@ extension SingUpViewModel: SingInInputProtocol {
 // MARK: - SingInOutputProtocol
 
 extension SingUpViewModel: SingInOutputProtocol {
-    
-    func singUpAction() {
-        
-    }
     
     func nextAction() {
         guard !email.isEmpty, !password.isEmpty else {

@@ -138,6 +138,7 @@
                 </imageView>
             </subviews>
             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+            <gestureRecognizers/>
             <constraints>
                 <constraint firstItem="bv2-A1-wcv" firstAttribute="top" secondItem="5DY-gO-bch" secondAttribute="bottom" constant="64" id="0cA-2D-baT"/>
                 <constraint firstItem="bv2-A1-wcv" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="32" id="2x1-G7-SXM"/>
@@ -148,15 +149,23 @@
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="5DY-gO-bch" secondAttribute="trailing" constant="16" id="fcw-Za-lMX"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <connections>
+                <outletCollection property="gestureRecognizers" destination="7fG-4X-fvo" appends="YES" id="JnV-a3-WMM"/>
+            </connections>
             <point key="canvasLocation" x="137.68115942028987" y="152.67857142857142"/>
         </view>
+        <tapGestureRecognizer id="7fG-4X-fvo">
+            <connections>
+                <action selector="didEndEditingTouch:" destination="-1" id="Xuw-hr-s7H"/>
+            </connections>
+        </tapGestureRecognizer>
     </objects>
     <resources>
         <image name="arrow.right" catalog="system" width="128" height="98"/>
         <image name="folder.fill" catalog="system" width="128" height="95"/>
         <image name="minus" catalog="system" width="128" height="24"/>
         <namedColor name="NextButton">
-            <color red="0.27450980392156865" green="0.29411764705882354" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.27500000596046448" green="0.29399999976158142" blue="0.33300000429153442" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

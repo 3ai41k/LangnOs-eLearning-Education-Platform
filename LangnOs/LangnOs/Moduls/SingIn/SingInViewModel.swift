@@ -18,7 +18,6 @@ protocol SingInInputProtocol {
 
 protocol SingInOutputProtocol {
     func nextAction()
-    func singUpAction()
 }
 
 final class SingInViewModel {
@@ -76,6 +75,10 @@ final class SingInViewModel {
         router.navigateToSingUp()
     }
     
+    private func singUpAction() {
+        router.navigateToSingUp()
+    }
+    
 }
 
 // MARK: - SingInInputProtocol
@@ -93,10 +96,10 @@ extension SingInViewModel: SingInInputProtocol {
     var inputDrivingModels: [DrivableModelProtocol] {
         [
             InputViewDrivableModel(text: nil,
-                                   placeholder: "Password".localize,
+                                   textFieldDrivableModel: TextFieldDrivableModel(placeholder: "Password".localize, returnKey: .done, contentType: .password),
                                    textDidEnter: didPasswordEnter),
             InputViewDrivableModel(text: nil,
-                                   placeholder: "Email".localize,
+                                   textFieldDrivableModel: TextFieldDrivableModel(placeholder: "Email".localize, contentType: .emailAddress),
                                    textDidEnter: didEmailEnter)
         ]
     }
@@ -115,10 +118,6 @@ extension SingInViewModel: SingInInputProtocol {
 // MARK: - SingInOutputProtocol
 
 extension SingInViewModel: SingInOutputProtocol {
-    
-    func singUpAction() {
-        router.navigateToSingUp()
-    }
     
     func nextAction() {
         guard !email.isEmpty, !password.isEmpty else {

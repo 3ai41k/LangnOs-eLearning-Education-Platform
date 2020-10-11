@@ -14,7 +14,11 @@ final class InputView: XibView {
     // MARK: - IBOutlets
     
     @IBOutlet private weak var titleLabel: UILabel!
-    @IBOutlet private weak var textField: UITextField!
+    @IBOutlet private weak var textField: UITextField! {
+        didSet {
+            textField.delegate = self
+        }
+    }
     
     // MARK: - Public properties
     
@@ -57,6 +61,17 @@ final class InputView: XibView {
 
 }
 
+// MARK: - UITextFieldDelegate
+
+extension InputView: UITextFieldDelegate {
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true;
+    }
+    
+}
+
 // MARK: - DrivableViewProtocol
 
 extension InputView: DrivableViewProtocol {
@@ -74,7 +89,7 @@ extension InputView: DrivableViewProtocol {
             self.titleLabel.isHidden = true
         }
         
-        self.textField.placeholder = model.placeholder
+        self.textField.drive(model: model.textFieldDrivableModel)
         self.textDidEnter = model.textDidEnter
     }
     

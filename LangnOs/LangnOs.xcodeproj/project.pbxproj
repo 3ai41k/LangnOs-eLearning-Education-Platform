@@ -41,6 +41,8 @@
 		8D524FD325337985002A6E01 /* UIToolBar+Drivable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D524FD225337985002A6E01 /* UIToolBar+Drivable.swift */; };
 		8D524FD525337A22002A6E01 /* ToolbarDrivableModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D524FD425337A22002A6E01 /* ToolbarDrivableModel.swift */; };
 		8D524FDB2533816D002A6E01 /* UIBarButtonItem+Init.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D524FDA2533816D002A6E01 /* UIBarButtonItem+Init.swift */; };
+		8D524FDD2533ABF1002A6E01 /* TextFieldDrivableModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D524FDC2533ABF0002A6E01 /* TextFieldDrivableModel.swift */; };
+		8D524FDF2533ACC0002A6E01 /* UITextField+Drivable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D524FDE2533ACC0002A6E01 /* UITextField+Drivable.swift */; };
 		8D66251F2529F6C000991D45 /* CreateVocabularyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D66251D2529F6C000991D45 /* CreateVocabularyViewController.swift */; };
 		8D6625202529F6C000991D45 /* CreateVocabularyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D66251E2529F6C000991D45 /* CreateVocabularyViewController.xib */; };
 		8D6625222529F6CA00991D45 /* CreateVocabularyCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6625212529F6CA00991D45 /* CreateVocabularyCoordinator.swift */; };
@@ -181,6 +183,8 @@
 		8D524FD225337985002A6E01 /* UIToolBar+Drivable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIToolBar+Drivable.swift"; sourceTree = "<group>"; };
 		8D524FD425337A22002A6E01 /* ToolbarDrivableModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolbarDrivableModel.swift; sourceTree = "<group>"; };
 		8D524FDA2533816D002A6E01 /* UIBarButtonItem+Init.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIBarButtonItem+Init.swift"; sourceTree = "<group>"; };
+		8D524FDC2533ABF0002A6E01 /* TextFieldDrivableModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldDrivableModel.swift; sourceTree = "<group>"; };
+		8D524FDE2533ACC0002A6E01 /* UITextField+Drivable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Drivable.swift"; sourceTree = "<group>"; };
 		8D66251D2529F6C000991D45 /* CreateVocabularyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateVocabularyViewController.swift; sourceTree = "<group>"; };
 		8D66251E2529F6C000991D45 /* CreateVocabularyViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CreateVocabularyViewController.xib; sourceTree = "<group>"; };
 		8D6625212529F6CA00991D45 /* CreateVocabularyCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateVocabularyCoordinator.swift; sourceTree = "<group>"; };
@@ -387,6 +391,7 @@
 				8DD28BE02526889200F59B7D /* UINavigationBar+Drivable.swift */,
 				8D524FC62530D1D8002A6E01 /* UIButton+Drivable.swift */,
 				8D524FD225337985002A6E01 /* UIToolBar+Drivable.swift */,
+				8D524FDE2533ACC0002A6E01 /* UITextField+Drivable.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -843,6 +848,7 @@
 				8D524FAC252FA755002A6E01 /* InputViewDrivableModel.swift */,
 				8D524FC82530D22A002A6E01 /* ButtonDrivableModel.swift */,
 				8D524FD425337A22002A6E01 /* ToolbarDrivableModel.swift */,
+				8D524FDC2533ABF0002A6E01 /* TextFieldDrivableModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1116,6 +1122,7 @@
 				8DD28BC92526806E00F59B7D /* BorderedButton.swift in Sources */,
 				8D66252F252A3A4D00991D45 /* XibView.swift in Sources */,
 				8D66254E252A7EF900991D45 /* WordsCellFactory.swift in Sources */,
+				8D524FDD2533ABF1002A6E01 /* TextFieldDrivableModel.swift in Sources */,
 				8D66252D252A38AD00991D45 /* UIView+Extensions.swift in Sources */,
 				8DD28BB92526774400F59B7D /* String+Localize.swift in Sources */,
 				8DD28C0925289CCB00F59B7D /* CellViewModelProtocol.swift in Sources */,
@@ -1153,6 +1160,7 @@
 				8D524F92252F7E8B002A6E01 /* MessagesViewController.swift in Sources */,
 				8D524F5D252E5AAA002A6E01 /* SearchBarCollectionReusableView.swift in Sources */,
 				8DD28BD52526856B00F59B7D /* NavigationItemDrivableModel.swift in Sources */,
+				8D524FDF2533ACC0002A6E01 /* UITextField+Drivable.swift in Sources */,
 				8DD28B87252667F600F59B7D /* SceneDelegate.swift in Sources */,
 				8DD28C0725289C8C00F59B7D /* VocabularyCollectionViewCellViewModel.swift in Sources */,
 				8D662529252A386500991D45 /* VocabularyActionView.swift in Sources */,

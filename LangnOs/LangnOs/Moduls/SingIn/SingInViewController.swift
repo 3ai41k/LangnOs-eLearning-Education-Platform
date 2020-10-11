@@ -57,4 +57,9 @@ final class SingInViewController: BindibleViewController<SingInInputProtocol & S
         viewModel?.nextAction()
     }
     
+    @IBAction
+    private func didEndEditingTouch(_ sender: Any) {
+        view.endEditing(true)
+    }
+    
 }
