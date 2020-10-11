@@ -30,8 +30,9 @@ final class MainViewModel: UniversalCollectionViewViewModel {
     
     // MARK: - Private properties
     
-    private let router: MainNavigationProtocol
+    private let router: MainCoordinatorProtocol
     private let userInfo: UserInfoProtocol
+    private let authorizator: LoginableProtocol
     private let firebaseDatabase: FirebaseDatabaseFetchingProtocol
     private var vocabularies: [Vocabulary]
     
@@ -41,11 +42,13 @@ final class MainViewModel: UniversalCollectionViewViewModel {
     
     // MARK: - Init
     
-    init(router: MainNavigationProtocol,
+    init(router: MainCoordinatorProtocol,
          userInfo: UserInfoProtocol,
+         authorizator: LoginableProtocol,
          firebaseDatabase: FirebaseDatabaseFetchingProtocol) {
         self.router = router
         self.userInfo = userInfo
+        self.authorizator = authorizator
         self.firebaseDatabase = firebaseDatabase
         self.vocabularies = []
         self.tableSections = []
@@ -109,7 +112,19 @@ final class MainViewModel: UniversalCollectionViewViewModel {
     
     @objc
     private func didCreateNewVocabularyTouched() {
-        router.createNewVocabulary()
+        if authorizator.isUserLogin {
+            router.createNewVocabulary()
+        } else {
+            let canelAlertAction = CancelAlertAction(handler: { })
+            let singInAlertAction = SingInAlertAction(handler: didSingInTouched)
+            router.showAlert(title: "Attention!".localize,
+                             message: "You are not authrized!".localize,
+                             actions: [canelAlertAction, singInAlertAction])
+        }
+    }
+    
+    private func didSingInTouched() {
+        router.navigateToSingIn()
     }
     
 }

@@ -41,3 +41,13 @@ final class CancelAlertAction: UIAlertAction {
     }
     
 }
+
+final class SingInAlertAction: UIAlertAction {
+    
+    convenience init(handler: (() -> Void)?) {
+        self.init(title: "Sing In".localize, style: .default) { (_) in
+            handler?()
+        }
+    }
+    
+}

@@ -12,16 +12,23 @@ protocol MainNavigationProtocol {
     func navigateToVocabularyStatistic(_ vocabulary: Vocabulary)
     func navigateToFilter()
     func createNewVocabulary()
+    func navigateToSingIn()
 }
 
-final class MainCoordinator: Coordinator {
+typealias MainCoordinatorProtocol = MainNavigationProtocol & AlertPresentableProtocol
+
+final class MainCoordinator: Coordinator, MainCoordinatorProtocol {
     
     // MARK: - Override
     
     override func start() {
+        let authorizator = Authorizator()
         let securityInfo = SecurityInfo()
         let firebaseDatabase = FirebaseDatabase()
-        let mainViewModel = MainViewModel(router: self, userInfo: securityInfo, firebaseDatabase: firebaseDatabase)
+        let mainViewModel = MainViewModel(router: self,
+                                          userInfo: securityInfo,
+                                          authorizator: authorizator,
+                                          firebaseDatabase: firebaseDatabase)
         let mainViewController = MainViewController()
         mainViewController.viewModel = mainViewModel
         mainViewController.collectionViewCellFactory = MainCellFactory()
@@ -37,7 +44,7 @@ final class MainCoordinator: Coordinator {
 
 // MARK: - MainNavigationProtocol
 
-extension MainCoordinator: MainNavigationProtocol {
+extension MainCoordinator {
     
     func navigateToVocabularyStatistic(_ vocabulary: Vocabulary) {
         let vocabularyCoordinator = VocabularyCoordinator(vocabulary: vocabulary, parentViewController: viewController)
@@ -51,6 +58,12 @@ extension MainCoordinator: MainNavigationProtocol {
     func createNewVocabulary() {
         let createVocabularyCoordinator = CreateVocabularyCoordinator(parentViewController: viewController)
         createVocabularyCoordinator.start()
+    }
+    
+    func navigateToSingIn() {
+        let context = AuthorizationContext()
+        let singInCoordinator = SingInCoordinator(context: context, parentViewController: viewController)
+        singInCoordinator.start()
     }
     
 }
