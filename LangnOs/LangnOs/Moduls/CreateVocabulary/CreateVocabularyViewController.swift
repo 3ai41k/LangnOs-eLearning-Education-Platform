@@ -8,14 +8,15 @@
 
 import UIKit
 
-final class CreateVocabularyViewController: BindibleViewController<CreateVocabularyViewModelInputProtocol & CreateVocabularyViewModelOutputProtocol & UniversalTableViewSectionProtocol> {
+final class CreateVocabularyViewController: BindibleViewController<CreateVocabularyViewModelInputProtocol & UniversalTableViewSectionProtocol> {
     
     // MARK: - IBOutlets
     
     @IBOutlet private weak var tableView: UniversalTableView! {
         didSet {
-            guard let viewModel = viewModel, let cellFactory = tableViewCellFactory else { return }
-            tableView.start(viewModel: viewModel, cellFactory: cellFactory)
+            tableView.viewModel = viewModel
+            tableView.cellFactory = tableViewCellFactory
+            tableView.start()
         }
     }
     
@@ -25,10 +26,11 @@ final class CreateVocabularyViewController: BindibleViewController<CreateVocabul
     
     // MARK: - Private properties
     // MARK: - Lifecycle
+    
     // MARK: - Init
     // MARK: - Override
     
-    override func bindViewModel() {
+    override func setupUI() {
         navigationItem.drive(model: viewModel?.navigationItemDrivableModel)
         navigationController?.navigationBar.drive(model: viewModel?.navigationBarDrivableModel)
     }
@@ -36,12 +38,6 @@ final class CreateVocabularyViewController: BindibleViewController<CreateVocabul
     // MARK: - Public methods
     // MARK: - Private methods
     // MARK: - Actions
-    
-    @IBAction
-    private func didAddNewRowTouched(_ sender: Any) {
-        viewModel?.addRowAction()
-    }
-    
     
 
 }

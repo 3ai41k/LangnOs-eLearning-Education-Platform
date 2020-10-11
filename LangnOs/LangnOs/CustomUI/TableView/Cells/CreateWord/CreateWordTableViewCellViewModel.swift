@@ -15,6 +15,7 @@ protocol CreateWordTableViewCellViewModelProtocol: CellViewModelProtocol {
 protocol CreateWordTableViewCellInputProtocol {
     var term: String { get }
     var definition: String { get }
+    var toolbarDrivableModel: DrivableModelProtocol { get }
 }
 
 protocol CreateWordTableViewCellOutputProtocol {
@@ -28,10 +29,22 @@ final class CreateWordTableViewCellViewModel: CreateWordTableViewCellViewModelPr
     
     var word: Word
     
+    // MARK: - Private properties
+    
+    private var addNewWordHandler: () -> Void
+    
     // MARK: - Init
     
-    init() {
+    init(addNewWordHandler: @escaping () -> Void) {
+        self.addNewWordHandler = addNewWordHandler
         self.word = Word(term: "", definition: "")
+    }
+    
+    // MARK: - Action
+    
+    @objc
+    private func didAddTouch() {
+        addNewWordHandler()
     }
     
 }
@@ -46,6 +59,15 @@ extension CreateWordTableViewCellViewModel: CreateWordTableViewCellInputProtocol
     
     var definition: String {
         word.definition
+    }
+    
+    var toolbarDrivableModel: DrivableModelProtocol {
+        ToolbarDrivableModel(barButtonDrivableModels: [
+            BarButtonDrivableModel(title: "Add".localize,
+                                   style: .plain,
+                                   target: self,
+                                   selector: #selector(didAddTouch))
+        ])
     }
     
 }

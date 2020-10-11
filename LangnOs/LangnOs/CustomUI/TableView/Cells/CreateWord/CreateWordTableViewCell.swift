@@ -38,6 +38,13 @@ final class CreateWordTableViewCell: UITableViewCell, UniversalTableViewCellRegi
         didSet {
             termInputView.value = viewModel?.term
             definitionInputView.value = viewModel?.definition
+            [termInputView, definitionInputView].forEach({
+                let sreenWidth = UIScreen.main.bounds.width
+                let rect = CGRect(x: .zero, y: .zero, width: sreenWidth, height: 44.0)
+                let toolbar = UIToolbar(frame: rect)
+                toolbar.drive(model: viewModel?.toolbarDrivableModel)
+                $0?.textFieldInputAccessoryView = toolbar
+            })
         }
     }
     

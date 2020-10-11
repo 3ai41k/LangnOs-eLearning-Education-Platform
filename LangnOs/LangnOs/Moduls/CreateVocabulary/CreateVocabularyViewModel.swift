@@ -8,13 +8,8 @@
 
 import Foundation
 
-protocol CreateVocabularyViewModelInputProtocol {
-    var navigationItemDrivableModel: DrivableModelProtocol { get }
-    var navigationBarDrivableModel: DrivableModelProtocol { get }
-}
-
-protocol CreateVocabularyViewModelOutputProtocol {
-    func addRowAction()
+protocol CreateVocabularyViewModelInputProtocol: NavigatableViewModelProtocol {
+    
 }
 
 final class CreateVocabularyViewModel: UniversalTableViewSectionProtocol {
@@ -56,7 +51,9 @@ final class CreateVocabularyViewModel: UniversalTableViewSectionProtocol {
     }
     
     private func setupWordsSection(_ tableSections: inout [UniversalTableSectionViewModelProtocol]) {
-        let createWordTableViewCellViewModel = CreateWordTableViewCellViewModel()
+        let createWordTableViewCellViewModel = CreateWordTableViewCellViewModel { [weak self] in
+            self?.addRowAction()
+        }
         tableSections.append(UniversalTableSectionViewModel(cells: [createWordTableViewCellViewModel]))
     }
     
@@ -92,6 +89,13 @@ final class CreateVocabularyViewModel: UniversalTableViewSectionProtocol {
     }
     
     // MARK: - Actions
+    
+    private func addRowAction() {
+        let cellViewModel = CreateWordTableViewCellViewModel{ [weak self] in
+            self?.addRowAction()
+        }
+        tableSections[SectionType.words.rawValue].cells.append(cellViewModel)
+    }
     
     @objc
     private func didCloseTouched() {
@@ -144,20 +148,9 @@ extension CreateVocabularyViewModel: CreateVocabularyViewModelInputProtocol {
     }
     
     var navigationBarDrivableModel: DrivableModelProtocol {
-        NavigationBarDrivableModel(isBottomLineHidden: false,
+        NavigationBarDrivableModel(isBottomLineHidden: true,
                                    backgroundColor: .white,
                                    prefersLargeTitles: false)
-    }
-    
-}
-
-// MARK: - CreateVocabularyViewModelOutputProtocol
-
-extension CreateVocabularyViewModel: CreateVocabularyViewModelOutputProtocol {
-    
-    func addRowAction() {
-        let cellViewModel = CreateWordTableViewCellViewModel()
-        tableSections[SectionType.words.rawValue].cells.append(cellViewModel)
     }
     
 }

@@ -24,57 +24,79 @@ protocol UniversalTableViewSectionProtocol {
 
 final class UniversalTableView: UITableView {
     
-    // MARK: - Private properties
+    // MARK: - Public properties
     
-    private var cancellable: [AnyCancellable] = []
-    
-    private var viewModel: UniversalTableViewSectionProtocol! {
+    var viewModel: UniversalTableViewSectionProtocol? {
         didSet {
-            viewModel.tableSections.enumerated().forEach({ (index, section) in
+            viewModel?.tableSections.enumerated().forEach({ (index, section) in
                 section.reload.sink(receiveValue: { [weak self] in
-                    self?.reloadSections([index], with: .automatic)
+                    self?.reloadSections([index], with: .fade)
                 }).store(in: &cancellable)
             })
         }
     }
-    private var cellFactory: UniversalTableViewCellFactoryProtocol! {
+    var cellFactory: UniversalTableViewCellFactoryProtocol? {
         didSet {
-            cellFactory.registerAllCells(tableView: self)
+            cellFactory?.registerAllCells(tableView: self)
         }
     }
     
-    // MARK: - Override
+    // MARK: - Private properties
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
+    private var cancellable: [AnyCancellable] = []
+    
+    // MARK: - Lifecycle
+    
+    override init(frame: CGRect, style: UITableView.Style) {
+        super.init(frame: frame, style: style)
         
-        addTapGusture()
+        initializeComponents()
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        
+        initializeComponents()
+    }
+    
+    deinit {
+        removeNotifications()
     }
     
     // MARK: - Public methods
     
-    func start(viewModel: UniversalTableViewSectionProtocol, cellFactory: UniversalTableViewCellFactoryProtocol) {
-        self.viewModel = viewModel
-        self.cellFactory = cellFactory
-        
+    func start() {
         dataSource = self
-        delegate = self
         
         reloadData()
     }
     
     // MARK: - Private methods
     
-    private func addTapGusture() {
-        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(didTapOnView))
-        addGestureRecognizer(tapGestureRecognizer)
+    private func initializeComponents() {
+        setupNotifications()
+    }
+    
+    private func setupNotifications() {
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    private func removeNotifications() {
+        NotificationCenter.default.removeObserver(self)
     }
     
     // MARK: - Actions
     
     @objc
-    private func didTapOnView() {
-        endEditing(true)
+    private func keyboardWillShow(_ notificatio: Notification) {
+        guard let keyboardSize = notificatio.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else { return }
+        contentInset = UIEdgeInsets(top: 0, left: 0, bottom: keyboardSize.cgRectValue.height, right: 0)
+    }
+    
+    @objc
+    private func keyboardWillHide() {
+        contentInset = .zero
     }
     
 }
@@ -84,25 +106,22 @@ final class UniversalTableView: UITableView {
 extension UniversalTableView: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        viewModel.tableSections.count
+        viewModel?.tableSections.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        viewModel.tableSections[section].cells.count
+        viewModel?.tableSections[section].cells.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cellViewModel = viewModel.tableSections[indexPath.section].cells[indexPath.row]
-        return cellFactory.generateCell(cellViewModel: cellViewModel, tableView: tableView, indexPath: indexPath)
+        guard
+            let cellViewModel = viewModel?.tableSections[indexPath.section].cells[indexPath.row],
+            let cell = cellFactory?.generateCell(cellViewModel: cellViewModel, tableView: tableView, indexPath: indexPath)
+        else {
+            return UITableViewCell()
+        }
+        return cell
     }
-    
-}
-
-// MARK: - UITableViewDelegate
-
-extension UniversalTableView: UITableViewDelegate {
-    
-    
     
 }
 

@@ -32,7 +32,20 @@ final class InputView: XibView {
         }
     }
     
+    var textFieldInputAccessoryView: UIView? {
+        didSet {
+            textField.inputAccessoryView = textFieldInputAccessoryView
+        }
+    }
+    
     var textDidEnter: ((String) -> Void)?
+    
+    // MARK: - Overrride
+    
+    @discardableResult
+    override func becomeFirstResponder() -> Bool {
+        textField.becomeFirstResponder()
+    }
     
     // MARK: - Actions
     

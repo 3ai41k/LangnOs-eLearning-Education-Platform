@@ -36,6 +36,11 @@
 		8D524FBA252FC4C5002A6E01 /* SecurityInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D524FB9252FC4C5002A6E01 /* SecurityInfo.swift */; };
 		8D524FC72530D1D8002A6E01 /* UIButton+Drivable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D524FC62530D1D8002A6E01 /* UIButton+Drivable.swift */; };
 		8D524FC92530D22A002A6E01 /* ButtonDrivableModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D524FC82530D22A002A6E01 /* ButtonDrivableModel.swift */; };
+		8D524FCE253372A3002A6E01 /* TopBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D524FCD253372A3002A6E01 /* TopBarView.swift */; };
+		8D524FD0253372B0002A6E01 /* TopBarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D524FCF253372B0002A6E01 /* TopBarView.xib */; };
+		8D524FD325337985002A6E01 /* UIToolBar+Drivable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D524FD225337985002A6E01 /* UIToolBar+Drivable.swift */; };
+		8D524FD525337A22002A6E01 /* ToolbarDrivableModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D524FD425337A22002A6E01 /* ToolbarDrivableModel.swift */; };
+		8D524FDB2533816D002A6E01 /* UIBarButtonItem+Init.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D524FDA2533816D002A6E01 /* UIBarButtonItem+Init.swift */; };
 		8D66251F2529F6C000991D45 /* CreateVocabularyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D66251D2529F6C000991D45 /* CreateVocabularyViewController.swift */; };
 		8D6625202529F6C000991D45 /* CreateVocabularyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D66251E2529F6C000991D45 /* CreateVocabularyViewController.xib */; };
 		8D6625222529F6CA00991D45 /* CreateVocabularyCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6625212529F6CA00991D45 /* CreateVocabularyCoordinator.swift */; };
@@ -125,7 +130,6 @@
 		8DD28BDF2526886200F59B7D /* NavigationBarDrivableModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD28BDE2526886200F59B7D /* NavigationBarDrivableModel.swift */; };
 		8DD28BE12526889200F59B7D /* UINavigationBar+Drivable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD28BE02526889200F59B7D /* UINavigationBar+Drivable.swift */; };
 		8DD28BEE2527A52100F59B7D /* BarButtonDrivableModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD28BED2527A52100F59B7D /* BarButtonDrivableModel.swift */; };
-		8DD28BF02527A69800F59B7D /* UIBarButtonItem+Init.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD28BEF2527A69800F59B7D /* UIBarButtonItem+Init.swift */; };
 		8DD28BF52527ADF300F59B7D /* UniversalCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD28BF42527ADF300F59B7D /* UniversalCollectionView.swift */; };
 		8DD28BF92527B3C700F59B7D /* UniversalCollectionViewCellFactoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD28BF82527B3C700F59B7D /* UniversalCollectionViewCellFactoryProtocol.swift */; };
 		8DD28BFB2527B76800F59B7D /* MainCellFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD28BFA2527B76800F59B7D /* MainCellFactory.swift */; };
@@ -172,6 +176,11 @@
 		8D524FB9252FC4C5002A6E01 /* SecurityInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecurityInfo.swift; sourceTree = "<group>"; };
 		8D524FC62530D1D8002A6E01 /* UIButton+Drivable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Drivable.swift"; sourceTree = "<group>"; };
 		8D524FC82530D22A002A6E01 /* ButtonDrivableModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonDrivableModel.swift; sourceTree = "<group>"; };
+		8D524FCD253372A3002A6E01 /* TopBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopBarView.swift; sourceTree = "<group>"; };
+		8D524FCF253372B0002A6E01 /* TopBarView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TopBarView.xib; sourceTree = "<group>"; };
+		8D524FD225337985002A6E01 /* UIToolBar+Drivable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIToolBar+Drivable.swift"; sourceTree = "<group>"; };
+		8D524FD425337A22002A6E01 /* ToolbarDrivableModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolbarDrivableModel.swift; sourceTree = "<group>"; };
+		8D524FDA2533816D002A6E01 /* UIBarButtonItem+Init.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIBarButtonItem+Init.swift"; sourceTree = "<group>"; };
 		8D66251D2529F6C000991D45 /* CreateVocabularyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateVocabularyViewController.swift; sourceTree = "<group>"; };
 		8D66251E2529F6C000991D45 /* CreateVocabularyViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CreateVocabularyViewController.xib; sourceTree = "<group>"; };
 		8D6625212529F6CA00991D45 /* CreateVocabularyCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateVocabularyCoordinator.swift; sourceTree = "<group>"; };
@@ -263,7 +272,6 @@
 		8DD28BDE2526886200F59B7D /* NavigationBarDrivableModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarDrivableModel.swift; sourceTree = "<group>"; };
 		8DD28BE02526889200F59B7D /* UINavigationBar+Drivable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationBar+Drivable.swift"; sourceTree = "<group>"; };
 		8DD28BED2527A52100F59B7D /* BarButtonDrivableModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarButtonDrivableModel.swift; sourceTree = "<group>"; };
-		8DD28BEF2527A69800F59B7D /* UIBarButtonItem+Init.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIBarButtonItem+Init.swift"; sourceTree = "<group>"; };
 		8DD28BF42527ADF300F59B7D /* UniversalCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniversalCollectionView.swift; sourceTree = "<group>"; };
 		8DD28BF82527B3C700F59B7D /* UniversalCollectionViewCellFactoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniversalCollectionViewCellFactoryProtocol.swift; sourceTree = "<group>"; };
 		8DD28BFA2527B76800F59B7D /* MainCellFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCellFactory.swift; sourceTree = "<group>"; };
@@ -378,6 +386,7 @@
 				8DD28BD22526854300F59B7D /* UINavigationItem+Drivable.swift */,
 				8DD28BE02526889200F59B7D /* UINavigationBar+Drivable.swift */,
 				8D524FC62530D1D8002A6E01 /* UIButton+Drivable.swift */,
+				8D524FD225337985002A6E01 /* UIToolBar+Drivable.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -388,6 +397,15 @@
 				8D524FB9252FC4C5002A6E01 /* SecurityInfo.swift */,
 			);
 			path = SecurityInfo;
+			sourceTree = "<group>";
+		};
+		8D524FCC25337288002A6E01 /* TopBar */ = {
+			isa = PBXGroup;
+			children = (
+				8D524FCD253372A3002A6E01 /* TopBarView.swift */,
+				8D524FCF253372B0002A6E01 /* TopBarView.xib */,
+			);
+			path = TopBar;
 			sourceTree = "<group>";
 		};
 		8D66251C2529F68D00991D45 /* CreateVocabulary */ = {
@@ -405,6 +423,7 @@
 		8D662527252A384200991D45 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				8D524FCC25337288002A6E01 /* TopBar */,
 				8D524FA0252F8698002A6E01 /* UserImage */,
 				8D662538252A6CF400991D45 /* VocabularyProgress */,
 				8D662535252A611900991D45 /* Score */,
@@ -739,12 +758,12 @@
 			children = (
 				8D66252E252A3A4D00991D45 /* XibView.swift */,
 				8DD28BB5252675F800F59B7D /* UITabBarItem+Init.swift */,
-				8DD28BEF2527A69800F59B7D /* UIBarButtonItem+Init.swift */,
 				8D66252C252A38AD00991D45 /* UIView+Extensions.swift */,
 				8DC3CF36252CFB8D003CA62A /* UIView+Shadow.swift */,
 				8DC3CF2B252CD503003CA62A /* UIEdgeInsets+Init.swift */,
 				8DC3CF3D252CFEB5003CA62A /* UIColor+Random.swift */,
 				8D524F66252F0355002A6E01 /* UICollectionView+Extensions.swift */,
+				8D524FDA2533816D002A6E01 /* UIBarButtonItem+Init.swift */,
 			);
 			path = "UIKit+Extensions";
 			sourceTree = "<group>";
@@ -823,6 +842,7 @@
 				8DD28BED2527A52100F59B7D /* BarButtonDrivableModel.swift */,
 				8D524FAC252FA755002A6E01 /* InputViewDrivableModel.swift */,
 				8D524FC82530D22A002A6E01 /* ButtonDrivableModel.swift */,
+				8D524FD425337A22002A6E01 /* ToolbarDrivableModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -974,6 +994,7 @@
 				8DD28BBD2526793900F59B7D /* Localizable.strings in Resources */,
 				8DD28C0C2528A86D00F59B7D /* GoogleService-Info.plist in Resources */,
 				8D662531252A3E9800991D45 /* Colors.xcassets in Resources */,
+				8D524FD0253372B0002A6E01 /* TopBarView.xib in Resources */,
 				8D662537252A612A00991D45 /* ScoreView.xib in Resources */,
 				8DD28B94252667F800F59B7D /* LaunchScreen.storyboard in Resources */,
 				8DD28C162528AEEF00F59B7D /* SingInViewController.xib in Resources */,
@@ -1056,6 +1077,7 @@
 				8DD28C152528AEEF00F59B7D /* SingInViewController.swift in Sources */,
 				8DD28BE12526889200F59B7D /* UINavigationBar+Drivable.swift in Sources */,
 				8DAA55452529117200FF5066 /* FirebaseDatabaseEntityProtocol.swift in Sources */,
+				8D524FCE253372A3002A6E01 /* TopBarView.swift in Sources */,
 				8D662552252A7F5F00991D45 /* WordTableViewCell.swift in Sources */,
 				8DD28BAC25266EA500F59B7D /* TabBarProvider.swift in Sources */,
 				8D524F9B252F7EB5002A6E01 /* MessagesCoordinator.swift in Sources */,
@@ -1069,6 +1091,7 @@
 				8D662555252A7FAC00991D45 /* WordTableViewCellViewModel.swift in Sources */,
 				8D524FC92530D22A002A6E01 /* ButtonDrivableModel.swift in Sources */,
 				8DC3CF2C252CD503003CA62A /* UIEdgeInsets+Init.swift in Sources */,
+				8D524FDB2533816D002A6E01 /* UIBarButtonItem+Init.swift in Sources */,
 				8D66255A252B0F9F00991D45 /* VocabularyCreateRequest.swift in Sources */,
 				8DAA554A252912BA00FF5066 /* VocabularyFetchRequest.swift in Sources */,
 				8D524F5A252E5A5B002A6E01 /* MainSectionViewFactory.swift in Sources */,
@@ -1096,6 +1119,7 @@
 				8D66252D252A38AD00991D45 /* UIView+Extensions.swift in Sources */,
 				8DD28BB92526774400F59B7D /* String+Localize.swift in Sources */,
 				8DD28C0925289CCB00F59B7D /* CellViewModelProtocol.swift in Sources */,
+				8D524FD325337985002A6E01 /* UIToolBar+Drivable.swift in Sources */,
 				8DC3CF37252CFB8D003CA62A /* UIView+Shadow.swift in Sources */,
 				8D524FA2252F86BC002A6E01 /* UserImageView.swift in Sources */,
 				8D83EA80252BA2A2004E6098 /* VocabularyInfoTableViewCell.swift in Sources */,
@@ -1121,7 +1145,6 @@
 				8D662546252A7AAA00991D45 /* UniversalTableView.swift in Sources */,
 				8D524FAF252FA7FB002A6E01 /* SingInViewModel.swift in Sources */,
 				8DD28C0425289C5300F59B7D /* VocabularyCollectionViewCell.swift in Sources */,
-				8DD28BF02527A69800F59B7D /* UIBarButtonItem+Init.swift in Sources */,
 				8D524FB3252FB654002A6E01 /* SingUpViewModel.swift in Sources */,
 				8D524F67252F0355002A6E01 /* UICollectionView+Extensions.swift in Sources */,
 				8D524FBA252FC4C5002A6E01 /* SecurityInfo.swift in Sources */,
@@ -1135,6 +1158,7 @@
 				8D662529252A386500991D45 /* VocabularyActionView.swift in Sources */,
 				8DD28BEE2527A52100F59B7D /* BarButtonDrivableModel.swift in Sources */,
 				8DC3CF43252D2CBD003CA62A /* VocabularyDeleteRequest.swift in Sources */,
+				8D524FD525337A22002A6E01 /* ToolbarDrivableModel.swift in Sources */,
 				8D9985F125292B17009EA144 /* VocabularyViewModel.swift in Sources */,
 				8D66254A252A7BE100991D45 /* UniversalTableViewCellFactoryProtocol.swift in Sources */,
 				8DD28BCB252680EC00F59B7D /* PresentationViewModel.swift in Sources */,

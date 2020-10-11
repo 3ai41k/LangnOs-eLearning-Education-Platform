@@ -14,8 +14,9 @@ final class WordsViewController: BindibleViewController<WordsViewModelInputProto
     
     @IBOutlet private weak var tableView: UniversalTableView! {
         didSet {
-            guard let viewModel = viewModel, let cellFactory = tableViewCellFactory else { return }
-            tableView.start(viewModel: viewModel, cellFactory: cellFactory)
+            tableView.viewModel = viewModel
+            tableView.cellFactory = tableViewCellFactory
+            tableView.start()
         }
     }
     

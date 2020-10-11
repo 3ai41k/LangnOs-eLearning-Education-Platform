@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol UniversalTableViewCellFactoryProtocol {
+protocol UniversalTableViewCellFactoryProtocol: class {
     func registerAllCells(tableView: UITableView)
     func generateCell(cellViewModel: CellViewModelProtocol, tableView: UITableView, indexPath: IndexPath) -> UITableViewCell
 }
