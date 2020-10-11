@@ -20,14 +20,14 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="cpJ-f5-Y3h" customClass="UniversalTableView" customModule="LangnOs" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="76" width="414" height="820"/>
+                    <rect key="frame" x="0.0" y="84" width="414" height="812"/>
                     <color key="backgroundColor" name="AppBackground"/>
                 </tableView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bz5-5V-xAI" customClass="TopBarView" customModule="LangnOs" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="44" width="414" height="32"/>
+                    <rect key="frame" x="0.0" y="44" width="414" height="40"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="32" id="1ot-CD-jFC"/>
+                        <constraint firstAttribute="height" constant="40" id="1ot-CD-jFC"/>
                     </constraints>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -41,10 +41,10 @@
                 <constraint firstAttribute="bottom" secondItem="cpJ-f5-Y3h" secondAttribute="bottom" id="AaD-sl-DJE"/>
                 <constraint firstItem="bz5-5V-xAI" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="FKG-P1-zrz"/>
                 <constraint firstItem="cpJ-f5-Y3h" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="OmF-Id-eJS"/>
-                <constraint firstItem="bz5-5V-xAI" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="X80-CM-MnC"/>
+                <constraint firstItem="bz5-5V-xAI" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="X80-CM-MnC"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="cpJ-f5-Y3h" secondAttribute="trailing" id="fH2-YJ-fNv"/>
                 <constraint firstItem="cpJ-f5-Y3h" firstAttribute="top" secondItem="bz5-5V-xAI" secondAttribute="bottom" id="jxD-aN-Iff"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="bz5-5V-xAI" secondAttribute="trailing" id="mKF-Zz-DAe"/>
+                <constraint firstAttribute="trailing" secondItem="bz5-5V-xAI" secondAttribute="trailing" id="mKF-Zz-DAe"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <point key="canvasLocation" x="137.68115942028987" y="142.63392857142856"/>

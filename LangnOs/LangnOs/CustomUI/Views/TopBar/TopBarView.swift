@@ -11,22 +11,22 @@ import UIKit
 @IBDesignable
 final class TopBarView: XibView {
     
+    // MARK: - IBOutlets
+    
+    @IBOutlet private weak var contentView: UIView! {
+        didSet {
+            contentView.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
+            contentView.setShadow(color: .black, opacity: 0.25)
+        }
+    }
+    
     // MARK: - Public properties
     
     @IBInspectable
     var cornerRadius: CGFloat = .zero {
         didSet {
-            layer.cornerRadius = cornerRadius
+            contentView.layer.cornerRadius = cornerRadius
         }
-    }
-    
-    // MARK: - Override
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        
-        layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
-        setShadow(color: .black, opacity: 0.25)
     }
 
 }

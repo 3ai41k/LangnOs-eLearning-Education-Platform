@@ -14,13 +14,6 @@ final class MainViewController: BindibleViewController<MainViewModelType> {
 
     // MARK: - IBOutlets
     
-    @IBOutlet private weak var topBarView: UIView! {
-        didSet {
-            topBarView.layer.cornerRadius = 20.0
-            topBarView.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
-            topBarView.setShadow(color: .black, opacity: 0.25)
-        }
-    }
     @IBOutlet private weak var fiexedCollectionView: UniversalCollectionView! {
         didSet {
             fiexedCollectionView.viewModel = viewModel

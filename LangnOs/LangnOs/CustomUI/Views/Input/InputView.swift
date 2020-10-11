@@ -25,8 +25,7 @@ final class InputView: XibView {
     @IBInspectable
     var title: String? {
         didSet {
-            guard let text = title else { return }
-            titleLabel.text = text + ":"
+            titleLabel.text = title?.uppercased()
         }
     }
     
