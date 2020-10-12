@@ -1,4 +1,22 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1" systemVersion="11A491" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="false" userDefinedModelVersionIdentifier="">
-    <elements/>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="16119" systemVersion="19H2" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="VocabularyEntity" representedClassName=".VocabularyEntity" syncable="YES" codeGenerationType="category">
+        <attribute name="category" optional="YES" attributeType="String"/>
+        <attribute name="createdDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="phrasesLearned" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="phrasesLeftToLearn" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="title" optional="YES" attributeType="String"/>
+        <attribute name="totalLearningTime" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="userId" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <relationship name="words" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="WordEntity"/>
+    </entity>
+    <entity name="WordEntity" representedClassName=".WordEntity" syncable="YES" codeGenerationType="category">
+        <attribute name="definition" optional="YES" attributeType="String"/>
+        <attribute name="term" optional="YES" attributeType="String"/>
+    </entity>
+    <elements>
+        <element name="VocabularyEntity" positionX="-45" positionY="0" width="128" height="178"/>
+        <element name="WordEntity" positionX="-18" positionY="27" width="128" height="73"/>
+    </elements>
 </model>
