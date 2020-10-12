@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class FlashCardsCoordinator: Coordinator {
+final class FlashCardsCoordinator: Coordinator, AlertPresentableProtocol {
     
     // MARK: - Private properties
     
@@ -25,7 +25,10 @@ final class FlashCardsCoordinator: Coordinator {
     // MARK: - Override
     
     override func start() {
-        let flashCardsViewModel = FlashCardsViewModel(words: words)
+        let speechSynthesizer = SpeechSynthesizer()
+        let flashCardsViewModel = FlashCardsViewModel(words: words,
+                                                      speechSynthesizer: speechSynthesizer,
+                                                      router: self)
         let flashCardsCellFactory = FlashCardsCellFactory()
         let flashCardsViewController = FlashCardsViewController()
         flashCardsViewController.viewModel = flashCardsViewModel

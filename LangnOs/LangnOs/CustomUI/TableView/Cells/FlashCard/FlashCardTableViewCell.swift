@@ -12,15 +12,29 @@ final class FlashCardTableViewCell: UITableViewCell, UniversalTableViewCellRegis
     
     // MARK: - IBOutlets
     
-    @IBOutlet private weak var flipContainerView: UIView!
+    @IBOutlet private weak var flipContainerView: UIView! {
+        didSet {
+            flipContainerView.layer.cornerRadius = 20.0
+            flipContainerView.setShadow(color: .black, opacity: 0.25)
+        }
+    }
+    @IBOutlet private weak var termLabel: UILabel!
+    @IBOutlet private weak var pronounceButton: UIButton!
     
     // MARK: - Public properties
     
-    var viewModel: FlashCardTableViewCellInputProtocol? {
+    var viewModel: (FlashCardTableViewCellInputProtocol & FlashCardTableViewCellOutputProtocol & FlashCardTableViewCellBindingProtocol)? {
         didSet {
-            
+            termLabel.text = viewModel?.term
+            viewModel?.isPronounceButtonEnabled = { (isEnabled) in
+                self.pronounceButton.isEnabled = isEnabled
+            }
         }
     }
+    
+    // MARK: - Private properties
+    
+    private var isFipped = false
     
     // MARK: - Override
     
@@ -29,8 +43,6 @@ final class FlashCardTableViewCell: UITableViewCell, UniversalTableViewCellRegis
         
         addTapGesture()
     }
-    
-    // MARK: - Private methods
     
     private func addTapGesture() {
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(didFlipCard))
@@ -41,11 +53,16 @@ final class FlashCardTableViewCell: UITableViewCell, UniversalTableViewCellRegis
     
     @objc
     private func didFlipCard() {
-        UIView.transition(with: flipContainerView, duration: 1, options: .transitionFlipFromRight, animations: {
-
-        }) { (success) in
-
-        }
+        self.isFipped = isFipped ? false : true
+        UIView.transition(with: flipContainerView, duration: 0.5, options: .transitionFlipFromRight, animations: {
+            self.termLabel.text = self.isFipped ? self.viewModel?.definition : self.viewModel?.term
+        })
+    }
+    
+    @IBAction
+    private func didPronounceTouch(_ sender: Any) {
+        guard let text = termLabel.text else { return }
+        viewModel?.speak(text: text)
     }
     
 }

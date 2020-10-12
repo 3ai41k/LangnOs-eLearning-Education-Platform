@@ -88,6 +88,7 @@
 		8D83EA81252BA2A2004E6098 /* VocabularyInfoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D83EA7F252BA2A2004E6098 /* VocabularyInfoTableViewCell.xib */; };
 		8D83EA83252BA2D7004E6098 /* VocabularyInfoTableViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D83EA82252BA2D7004E6098 /* VocabularyInfoTableViewCellViewModel.swift */; };
 		8D83EA86252BBBD1004E6098 /* UniversalTableSectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D83EA85252BBBD1004E6098 /* UniversalTableSectionViewModel.swift */; };
+		8D94E7C52534D102005FA4B9 /* SpeechSynthesizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D94E7C42534D102005FA4B9 /* SpeechSynthesizer.swift */; };
 		8D9985E825292776009EA144 /* UniversalCollectionViewOutputProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D9985E725292776009EA144 /* UniversalCollectionViewOutputProtocol.swift */; };
 		8D9985EC252929E7009EA144 /* VocabularyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D9985EA252929E7009EA144 /* VocabularyViewController.swift */; };
 		8D9985ED252929E7009EA144 /* VocabularyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D9985EB252929E7009EA144 /* VocabularyViewController.xib */; };
@@ -238,6 +239,7 @@
 		8D83EA7F252BA2A2004E6098 /* VocabularyInfoTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VocabularyInfoTableViewCell.xib; sourceTree = "<group>"; };
 		8D83EA82252BA2D7004E6098 /* VocabularyInfoTableViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabularyInfoTableViewCellViewModel.swift; sourceTree = "<group>"; };
 		8D83EA85252BBBD1004E6098 /* UniversalTableSectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniversalTableSectionViewModel.swift; sourceTree = "<group>"; };
+		8D94E7C42534D102005FA4B9 /* SpeechSynthesizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechSynthesizer.swift; sourceTree = "<group>"; };
 		8D9985E725292776009EA144 /* UniversalCollectionViewOutputProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniversalCollectionViewOutputProtocol.swift; sourceTree = "<group>"; };
 		8D9985EA252929E7009EA144 /* VocabularyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabularyViewController.swift; sourceTree = "<group>"; };
 		8D9985EB252929E7009EA144 /* VocabularyViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VocabularyViewController.xib; sourceTree = "<group>"; };
@@ -605,6 +607,14 @@
 			path = VocabularyInfo;
 			sourceTree = "<group>";
 		};
+		8D94E7C32534D0F9005FA4B9 /* SpeechSynthesizer */ = {
+			isa = PBXGroup;
+			children = (
+				8D94E7C42534D102005FA4B9 /* SpeechSynthesizer.swift */,
+			);
+			path = SpeechSynthesizer;
+			sourceTree = "<group>";
+		};
 		8D9985E9252929BF009EA144 /* Vocabulary */ = {
 			isa = PBXGroup;
 			children = (
@@ -930,6 +940,7 @@
 		8DD28C0D2528AA2200F59B7D /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				8D94E7C32534D0F9005FA4B9 /* SpeechSynthesizer */,
 				8D524FB8252FC498002A6E01 /* SecurityInfo */,
 				8D524FA5252F8A75002A6E01 /* Authorizator */,
 				8DAA55412529113A00FF5066 /* FirebaseDatabase */,
@@ -1208,6 +1219,7 @@
 				8D524FEE2533BEC9002A6E01 /* FlashCardTableViewCell.swift in Sources */,
 				8DD28BD52526856B00F59B7D /* NavigationItemDrivableModel.swift in Sources */,
 				8D524FDF2533ACC0002A6E01 /* UITextField+Drivable.swift in Sources */,
+				8D94E7C52534D102005FA4B9 /* SpeechSynthesizer.swift in Sources */,
 				8DD28B87252667F600F59B7D /* SceneDelegate.swift in Sources */,
 				8DD28C0725289C8C00F59B7D /* VocabularyCollectionViewCellViewModel.swift in Sources */,
 				8D662529252A386500991D45 /* VocabularyActionView.swift in Sources */,

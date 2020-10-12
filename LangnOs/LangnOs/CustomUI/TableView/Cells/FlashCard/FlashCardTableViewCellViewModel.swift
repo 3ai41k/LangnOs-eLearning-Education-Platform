@@ -9,19 +9,38 @@
 import Foundation
 
 protocol FlashCardTableViewCellInputProtocol {
-    
+    var term: String { get }
+    var definition: String { get }
 }
 
-final class FlashCardTableViewCellViewModel: CellViewModelProtocol {
+protocol FlashCardTableViewCellOutputProtocol {
+    func speak(text: String)
+}
+
+protocol FlashCardTableViewCellBindingProtocol {
+    var isPronounceButtonEnabled: ((Bool) -> Void)? { get set }
+}
+
+final class FlashCardTableViewCellViewModel: CellViewModelProtocol, FlashCardTableViewCellBindingProtocol {
+    
+    // MARK: - Public properties
+    
+    var isPronounceButtonEnabled: ((Bool) -> Void)?
     
     // MARK: - Private properties
     
     private let word: Word
+    private let speechSynthesizer: SpeakableProtocol
+    private let onErrorHandler: (Error) -> Void
     
     // MARK: - Init
     
-    init(word: Word) {
+    init(word: Word,
+         speechSynthesizer: SpeakableProtocol,
+         onErrorHandler: @escaping (Error) -> Void) {
         self.word = word
+        self.speechSynthesizer = speechSynthesizer
+        self.onErrorHandler = onErrorHandler
     }
     
 }
@@ -29,5 +48,33 @@ final class FlashCardTableViewCellViewModel: CellViewModelProtocol {
 // MARK: - FlashCardTableViewCellInputProtocol
 
 extension FlashCardTableViewCellViewModel: FlashCardTableViewCellInputProtocol {
+    
+    var term: String {
+        word.term
+    }
+    
+    var definition: String {
+        word.definition
+    }
+    
+}
+
+// MARK: - FlashCardTableViewCellOutputProtocol
+
+extension FlashCardTableViewCellViewModel: FlashCardTableViewCellOutputProtocol {
+    
+    func speak(text: String) {
+        speechSynthesizer.didStartHandler = { [weak self] in
+            self?.isPronounceButtonEnabled?(false)
+        }
+        speechSynthesizer.didFinishHandler = { [weak self] in
+            self?.isPronounceButtonEnabled?(true)
+        }
+        do {
+            try speechSynthesizer.speak(string: text)
+        } catch {
+            onErrorHandler(error)
+        }
+    }
     
 }

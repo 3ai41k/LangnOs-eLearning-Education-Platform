@@ -18,8 +18,32 @@
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4W6-2C-V0a">
                         <rect key="frame" x="16" y="8" width="288" height="400"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="32" translatesAutoresizingMaskIntoConstraints="NO" id="0vz-hI-lre">
+                                <rect key="frame" x="107" y="159" width="74" height="82.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2IL-JU-8yo">
+                                        <rect key="frame" x="16" y="0.0" width="42" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j0K-tu-8IX">
+                                        <rect key="frame" x="0.0" y="52.5" width="74" height="30"/>
+                                        <state key="normal" title="Pronounce"/>
+                                        <connections>
+                                            <action selector="didPronounceTouch:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="fBc-I2-kMA"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstItem="0vz-hI-lre" firstAttribute="centerY" secondItem="4W6-2C-V0a" secondAttribute="centerY" id="0wZ-Zp-K3E"/>
+                            <constraint firstItem="0vz-hI-lre" firstAttribute="centerX" secondItem="4W6-2C-V0a" secondAttribute="centerX" id="ZxR-8v-gNI"/>
+                        </constraints>
                     </view>
                 </subviews>
                 <constraints>
@@ -33,6 +57,8 @@
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="flipContainerView" destination="4W6-2C-V0a" id="Cv7-y0-5ob"/>
+                <outlet property="pronounceButton" destination="j0K-tu-8IX" id="lRm-sn-vou"/>
+                <outlet property="termLabel" destination="2IL-JU-8yo" id="7Mb-ux-18i"/>
             </connections>
             <point key="canvasLocation" x="137.68115942028987" y="178.79464285714286"/>
         </tableViewCell>
