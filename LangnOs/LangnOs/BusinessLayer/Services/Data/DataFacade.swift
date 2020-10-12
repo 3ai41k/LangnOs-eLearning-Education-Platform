@@ -50,14 +50,14 @@ final class DataFacade {
     
     // MARK: - Private methods
     
-    private func saveEntitiesToCoreData<Entity: FDEntityProtocol & CDEntityProtocol>(_ entities: [Entity]) {
-        entities.forEach({ Entity.insert(conetxt: coreDataContext.contex, entity: $0) })
+    private func saveEntities<Entity: FDEntityProtocol & CDEntityProtocol>(_ entities: [Entity]) {
+        entities.forEach({ Entity.insert(context: coreDataContext.context, entity: $0) })
         coreDataContext.saveContext()
     }
     
-    private func tryToSelectDataFromCoreData<Entity: FDEntityProtocol & CDEntityProtocol>(completion: @escaping (Result<[Entity], Error>) -> Void) {
+    private func tryToSelectEntities<Entity: FDEntityProtocol & CDEntityProtocol>(completion: @escaping (Result<[Entity], Error>) -> Void) {
         do {
-            let coreDataEntities = try Entity.select(conetxt: coreDataContext.contex)
+            let coreDataEntities = try Entity.select(context: coreDataContext.context)
             completion(.success(coreDataEntities))
         } catch {
             completion(.failure(error))
@@ -75,14 +75,19 @@ extension DataFacade: DataFacadeFetchingProtocol {
             firebaseDatabase.fetch(request: request) { (result: Result<[Entity], Error>) in
                 switch result {
                 case .success(let entities):
-                    self.saveEntitiesToCoreData(entities)
-                    completion(.success(entities))
+                    do {
+                        try Entity.delete(context: self.coreDataContext.context)
+                        self.saveEntities(entities)
+                        completion(.success(entities))
+                    } catch {
+                        completion(.failure(error))
+                    }
                 case .failure(let error):
                     completion(.failure(error))
                 }
             }
         } else {
-            tryToSelectDataFromCoreData(completion: completion)
+            tryToSelectEntities(completion: completion)
         }
     }
     

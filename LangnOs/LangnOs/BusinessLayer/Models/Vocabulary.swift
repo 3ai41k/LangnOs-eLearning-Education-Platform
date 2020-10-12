@@ -86,10 +86,10 @@ extension Vocabulary: CDEntityProtocol {
         })
     }
     
-    static func select(conetxt: NSManagedObjectContext) throws -> [Vocabulary] {
+    static func select(context: NSManagedObjectContext) throws -> [Vocabulary] {
         let request = NSFetchRequest<VocabularyEntity>(entityName: "VocabularyEntity")
         do {
-            return try conetxt.fetch(request).map({
+            return try context.fetch(request).map({
                 Vocabulary(entity: $0)
             })
         } catch {
@@ -97,8 +97,8 @@ extension Vocabulary: CDEntityProtocol {
         }
     }
     
-    static func insert(conetxt: NSManagedObjectContext, entity: Vocabulary) {
-        let vocabulary = VocabularyEntity(context: conetxt)
+    static func insert(context: NSManagedObjectContext, entity: Vocabulary) {
+        let vocabulary = VocabularyEntity(context: context)
         vocabulary.id = UUID(uuidString: entity.id)
         vocabulary.userId = entity.userId
         vocabulary.title = entity.title
@@ -108,19 +108,24 @@ extension Vocabulary: CDEntityProtocol {
         vocabulary.totalLearningTime = entity.totalLearningTime
         vocabulary.createdDate = entity.createdDate
         entity.words.forEach({
-            let word = WordEntity(context: conetxt)
+            let word = WordEntity(context: context)
             word.term = $0.term
             word.definition = $0.definition
             vocabulary.addToWords(word)
         })
     }
     
-    static func update(conetxt: NSManagedObjectContext, entity: Vocabulary) {
+    static func update(context: NSManagedObjectContext, entity: Vocabulary) {
         
     }
     
-    static func delete(conetxt: NSManagedObjectContext, entity: Vocabulary) {
-        
+    static func delete(context: NSManagedObjectContext) throws {
+        let request = NSFetchRequest<VocabularyEntity>(entityName: "VocabularyEntity")
+        do {
+            try context.fetch(request).forEach({ context.delete($0) })
+        } catch {
+            throw error
+        }
     }
     
 }

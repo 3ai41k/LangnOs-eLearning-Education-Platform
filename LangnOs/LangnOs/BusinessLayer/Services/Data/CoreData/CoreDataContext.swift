@@ -10,7 +10,7 @@ import Foundation
 import CoreData
 
 protocol ContextAccessableProtocol {
-    var contex: NSManagedObjectContext { get }
+    var context: NSManagedObjectContext { get }
 }
 
 protocol ContextSavableProtocol {
@@ -37,7 +37,7 @@ final class CoreDataContext {
 
 extension CoreDataContext: ContextAccessableProtocol {
     
-    var contex: NSManagedObjectContext {
+    var context: NSManagedObjectContext {
         persistentContainer.viewContext
     }
     

@@ -47,22 +47,21 @@ extension Word: CDEntityProtocol {
         self.definition = entity.definition!
     }
     
-    static func select(conetxt: NSManagedObjectContext) throws -> [Word] {
+    static func select(context: NSManagedObjectContext) throws -> [Word] {
         []
     }
     
-    static func insert(conetxt: NSManagedObjectContext, entity: Word) {
+    static func insert(context: NSManagedObjectContext, entity: Word) {
         
     }
     
-    static func update(conetxt: NSManagedObjectContext, entity: Word) {
+    static func update(context: NSManagedObjectContext, entity: Word) {
         
     }
     
-    static func delete(conetxt: NSManagedObjectContext, entity: Word) {
+    static func delete(context: NSManagedObjectContext) throws {
         
     }
-    
     
 }
 

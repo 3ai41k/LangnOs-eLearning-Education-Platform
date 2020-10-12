@@ -662,6 +662,16 @@
 			path = Reachability;
 			sourceTree = "<group>";
 		};
+		8D94E7DA2534FEC6005FA4B9 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				8DAA55412529113A00FF5066 /* FirebaseDatabase */,
+				8D94E7C82534DEAD005FA4B9 /* CoreData */,
+				8D94E7D32534E3DC005FA4B9 /* DataFacade.swift */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
 		8D9985E9252929BF009EA144 /* Vocabulary */ = {
 			isa = PBXGroup;
 			children = (
@@ -986,13 +996,11 @@
 		8DD28C0D2528AA2200F59B7D /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				8D94E7DA2534FEC6005FA4B9 /* Data */,
 				8D94E7C32534D0F9005FA4B9 /* SpeechSynthesizer */,
 				8D524FB8252FC498002A6E01 /* SecurityInfo */,
 				8D524FA5252F8A75002A6E01 /* Authorizator */,
-				8DAA55412529113A00FF5066 /* FirebaseDatabase */,
-				8D94E7C82534DEAD005FA4B9 /* CoreData */,
 				8D94E7D72534F765005FA4B9 /* Reachability */,
-				8D94E7D32534E3DC005FA4B9 /* DataFacade.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
