@@ -7,10 +7,22 @@
 //
 
 import Foundation
+import CoreData
 
-struct Word: FirebaseDatabaseEntityProtocol {
+struct Word {
     let term: String
     let definition: String
+    
+    init(term: String, definition: String) {
+        self.term = term
+        self.definition = definition
+    }
+    
+}
+
+// MARK: - FDEntityProtocol
+
+extension Word: FDEntityProtocol {
     
     var serialize: [String: Any] {
         [
@@ -24,10 +36,33 @@ struct Word: FirebaseDatabaseEntityProtocol {
         self.definition = dictionary["definition"] as! String
     }
     
-    init(term: String, definition: String) {
-        self.term = term
-        self.definition = definition
+}
+
+// MARK: - CDEntityProtocol
+
+extension Word: CDEntityProtocol {
+    
+    init(entity: WordEntity) {
+        self.term = entity.term!
+        self.definition = entity.definition!
     }
+    
+    static func select(conetxt: NSManagedObjectContext) throws -> [Word] {
+        []
+    }
+    
+    static func insert(conetxt: NSManagedObjectContext, entity: Word) {
+        
+    }
+    
+    static func update(conetxt: NSManagedObjectContext, entity: Word) {
+        
+    }
+    
+    static func delete(conetxt: NSManagedObjectContext, entity: Word) {
+        
+    }
+    
     
 }
 

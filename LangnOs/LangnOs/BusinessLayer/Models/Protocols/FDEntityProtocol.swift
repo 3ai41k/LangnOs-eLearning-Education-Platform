@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol FirebaseDatabaseEntityProtocol {
+protocol FDEntityProtocol {
     init(dictionary: [String: Any])
     var serialize: [String: Any] { get }
 }

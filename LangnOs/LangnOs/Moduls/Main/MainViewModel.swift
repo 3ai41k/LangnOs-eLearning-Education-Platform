@@ -33,7 +33,7 @@ final class MainViewModel: UniversalCollectionViewViewModel {
     private let router: MainCoordinatorProtocol
     private let userInfo: UserInfoProtocol
     private let authorizator: LoginableProtocol
-    private let firebaseDatabase: FirebaseDatabaseFetchingProtocol
+    private let dataFacade: DataFacadeFetchingProtocol
     private var vocabularies: [Vocabulary]
     
     private enum SectionType: Int {
@@ -45,11 +45,11 @@ final class MainViewModel: UniversalCollectionViewViewModel {
     init(router: MainCoordinatorProtocol,
          userInfo: UserInfoProtocol,
          authorizator: LoginableProtocol,
-         firebaseDatabase: FirebaseDatabaseFetchingProtocol) {
+         dataFacade: DataFacadeFetchingProtocol) {
         self.router = router
         self.userInfo = userInfo
         self.authorizator = authorizator
-        self.firebaseDatabase = firebaseDatabase
+        self.dataFacade = dataFacade
         self.vocabularies = []
         self.tableSections = []
         
@@ -83,7 +83,7 @@ final class MainViewModel: UniversalCollectionViewViewModel {
         guard let userId = userInfo.userId else { return }
         
         let request = VocabularyFetchRequest(userId: userId)
-        firebaseDatabase.fetch(request: request) { (result: Result<[Vocabulary], Error>) in
+        dataFacade.fetch(request: request) { (result: Result<[Vocabulary], Error>) in
             switch result {
             case .success(let vocabularies):
                 self.tableSections[SectionType.vocabulary.rawValue].cells = vocabularies.map({

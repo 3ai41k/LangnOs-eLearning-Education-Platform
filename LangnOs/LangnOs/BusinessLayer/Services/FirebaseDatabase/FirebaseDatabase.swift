@@ -13,7 +13,7 @@ enum FirebaseDatabaseError: Error {
 }
 
 protocol FirebaseDatabaseFetchingProtocol {
-    func fetch<Entity: FirebaseDatabaseEntityProtocol>(request: FirebaseDatabaseRequestProtocol, completion: @escaping (Result<[Entity], Error>) -> Void)
+    func fetch<Entity: FDEntityProtocol>(request: FirebaseDatabaseRequestProtocol, completion: @escaping (Result<[Entity], Error>) -> Void)
 }
 
 protocol FirebaseDatabaseCreatingProtocol {
@@ -36,7 +36,7 @@ final class FirebaseDatabase {
 
 extension FirebaseDatabase: FirebaseDatabaseFetchingProtocol {
     
-    func fetch<Entity: FirebaseDatabaseEntityProtocol>(request: FirebaseDatabaseRequestProtocol, completion: @escaping (Result<[Entity], Error>) -> Void) {
+    func fetch<Entity: FDEntityProtocol>(request: FirebaseDatabaseRequestProtocol, completion: @escaping (Result<[Entity], Error>) -> Void) {
         var reference = dataBase
         reference = request.setCollectionPath(reference)
         request.setQuary(reference)?.observeSingleEvent(of: .value, with: { (dataSnapshot) in

@@ -7,8 +7,9 @@
 //
 
 import Foundation
+import CoreData
 
-struct Vocabulary: FirebaseDatabaseEntityProtocol {
+struct Vocabulary {
     let id: String
     let userId: String
     let title: String
@@ -18,6 +19,24 @@ struct Vocabulary: FirebaseDatabaseEntityProtocol {
     let totalLearningTime: Double
     let createdDate: Date
     let words: [Word]
+    
+    init(userId: String, title: String, category: String, words: [Word]) {
+        self.id = UUID().uuidString
+        self.userId = userId
+        self.title = title
+        self.category = category
+        self.phrasesLearned = 0
+        self.phrasesLeftToLearn = 0
+        self.totalLearningTime = 0.0
+        self.createdDate = Date()
+        self.words = words
+    }
+    
+}
+
+// MARK: - FDEntityProtocol
+
+extension Vocabulary: FDEntityProtocol {
     
     var serialize: [String: Any] {
         [
@@ -47,16 +66,61 @@ struct Vocabulary: FirebaseDatabaseEntityProtocol {
         })
     }
     
-    init(userId: String, title: String, category: String, words: [Word]) {
-        self.id = UUID().uuidString
-        self.userId = userId
-        self.title = title
-        self.category = category
-        self.phrasesLearned = 0
-        self.phrasesLeftToLearn = 0
-        self.totalLearningTime = 0.0
-        self.createdDate = Date()
-        self.words = words
+}
+
+// MARK: - CDEntityProtocol
+
+extension Vocabulary: CDEntityProtocol {
+    
+    init(entity: VocabularyEntity) {
+        self.id = entity.id!.uuidString
+        self.userId = entity.userId!
+        self.title = entity.title!
+        self.category = entity.category!
+        self.phrasesLearned = Int(entity.phrasesLearned)
+        self.phrasesLeftToLearn = Int(entity.phrasesLeftToLearn)
+        self.totalLearningTime = entity.totalLearningTime
+        self.createdDate = entity.createdDate!
+        self.words = (entity.words?.allObjects as? [WordEntity])!.map({
+            Word(entity: $0)
+        })
+    }
+    
+    static func select(conetxt: NSManagedObjectContext) throws -> [Vocabulary] {
+        let request = NSFetchRequest<VocabularyEntity>(entityName: "VocabularyEntity")
+        do {
+            return try conetxt.fetch(request).map({
+                Vocabulary(entity: $0)
+            })
+        } catch {
+            throw error
+        }
+    }
+    
+    static func insert(conetxt: NSManagedObjectContext, entity: Vocabulary) {
+        let vocabulary = VocabularyEntity(context: conetxt)
+        vocabulary.id = UUID(uuidString: entity.id)
+        vocabulary.userId = entity.userId
+        vocabulary.title = entity.title
+        vocabulary.category = entity.category
+        vocabulary.phrasesLearned = Int32(entity.phrasesLearned)
+        vocabulary.phrasesLeftToLearn = Int32(entity.phrasesLeftToLearn)
+        vocabulary.totalLearningTime = entity.totalLearningTime
+        vocabulary.createdDate = entity.createdDate
+        entity.words.forEach({
+            let word = WordEntity(context: conetxt)
+            word.term = $0.term
+            word.definition = $0.definition
+            vocabulary.addToWords(word)
+        })
+    }
+    
+    static func update(conetxt: NSManagedObjectContext, entity: Vocabulary) {
+        
+    }
+    
+    static func delete(conetxt: NSManagedObjectContext, entity: Vocabulary) {
+        
     }
     
 }

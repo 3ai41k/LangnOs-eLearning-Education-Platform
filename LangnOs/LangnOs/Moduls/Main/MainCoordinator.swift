@@ -22,13 +22,20 @@ final class MainCoordinator: Coordinator, MainCoordinatorProtocol {
     // MARK: - Override
     
     override func start() {
+        let firebaseDatabase = FirebaseDatabase()
+        let coreDataContext = CoreDataContext()
+        let reachability = Reachability()
+        let dataFacade = DataFacade(firebaseDatabase: firebaseDatabase,
+                                    coreDataContext: coreDataContext,
+                                    reachability: reachability)
+        
         let authorizator = Authorizator()
         let securityInfo = SecurityInfo()
-        let firebaseDatabase = FirebaseDatabase()
         let mainViewModel = MainViewModel(router: self,
                                           userInfo: securityInfo,
                                           authorizator: authorizator,
-                                          firebaseDatabase: firebaseDatabase)
+                                          dataFacade: dataFacade)
+        
         let mainViewController = MainViewController()
         mainViewController.viewModel = mainViewModel
         mainViewController.collectionViewCellFactory = MainCellFactory()
@@ -40,11 +47,7 @@ final class MainCoordinator: Coordinator, MainCoordinatorProtocol {
         viewController = navigationController
     }
     
-}
-
-// MARK: - MainNavigationProtocol
-
-extension MainCoordinator {
+    // MARK: - MainNavigationProtocol
     
     func navigateToVocabularyStatistic(_ vocabulary: Vocabulary) {
         let vocabularyCoordinator = VocabularyCoordinator(vocabulary: vocabulary, parentViewController: viewController)
