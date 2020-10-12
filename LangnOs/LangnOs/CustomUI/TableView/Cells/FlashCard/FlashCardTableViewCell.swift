@@ -44,9 +44,11 @@ final class FlashCardTableViewCell: UITableViewCell, UniversalTableViewCellRegis
         addTapGesture()
     }
     
+    // MARK: - Private methods
+    
     private func addTapGesture() {
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(didFlipCard))
-        addGestureRecognizer(tapGestureRecognizer)
+        flipContainerView.addGestureRecognizer(tapGestureRecognizer)
     }
     
     // MARK: - Actions
