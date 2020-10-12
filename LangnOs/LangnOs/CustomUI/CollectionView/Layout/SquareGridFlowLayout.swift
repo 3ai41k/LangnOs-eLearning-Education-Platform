@@ -48,8 +48,8 @@ extension SquareGridFlowLayout: UniversalCollectionViewLayoutProtocol {
 extension SquareGridFlowLayout {
     
     private enum Constants {
-        static var spacing: CGFloat = 16.0
-        static var spacingBetweenCells: CGFloat = 16.0
+        static var spacing: CGFloat = 8.0
+        static var spacingBetweenCells: CGFloat = 8.0
     }
     
 }

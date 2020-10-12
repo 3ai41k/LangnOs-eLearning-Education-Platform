@@ -45,6 +45,14 @@ final class VocabularyCollectionViewCell: UICollectionViewCell, UniversalCollect
         }
     }
     
+    // MARK: - Override
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
+        setShadow(color: .black, opacity: 0.25)
+    }
+    
     // MARK: - Private methods
     
     private func bindViewModel() {
