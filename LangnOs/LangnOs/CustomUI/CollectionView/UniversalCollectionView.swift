@@ -92,7 +92,7 @@ final class UniversalCollectionView: UICollectionView {
         super.awakeFromNib()
         
         addRefreshControl()
-        //addTapGesture()
+        addTapGesture()
     }
     
     override func reloadData() {
@@ -135,6 +135,7 @@ final class UniversalCollectionView: UICollectionView {
     
     private func addTapGesture() {
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(didEndEditing))
+        tapGestureRecognizer.cancelsTouchesInView = false
         self.addGestureRecognizer(tapGestureRecognizer)
     }
     
