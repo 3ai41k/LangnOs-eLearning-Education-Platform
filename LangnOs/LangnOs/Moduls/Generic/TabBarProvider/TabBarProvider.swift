@@ -8,7 +8,7 @@
 
 import UIKit
 
-enum TabBarProvider: CaseIterable {
+enum TabBarProvider: Int, CaseIterable {
     case main
     case courses
     case messages
@@ -50,6 +50,19 @@ enum TabBarProvider: CaseIterable {
             return UIImage(systemName: "ellipses.bubble")!
         case .account:
             return UIImage(systemName: "person")!
+        }
+    }
+    
+    var isLoced: Bool {
+        switch self {
+        case .main:
+            return false
+        case .courses:
+            return true
+        case .messages:
+            return true
+        case .account:
+            return false
         }
     }
     

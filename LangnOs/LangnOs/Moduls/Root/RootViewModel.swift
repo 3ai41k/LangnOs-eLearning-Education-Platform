@@ -12,16 +12,51 @@ protocol RootViewModelInputProtocol {
     func getTabBarCoordinators() -> [Coordinator]
 }
 
-final class RootViewModel { }
+protocol RootViewModelOutputProtocol {
+    func shouldNavigateToTheArea(_ index: Int) -> Bool
+}
+
+final class RootViewModel {
+    
+    // MARK: - Private properties
+    
+    private let router: AlertPresentableProtocol
+    private let tabBarProviders: [TabBarProvider]
+    
+    // MARK: - Init
+    
+    init(router: AlertPresentableProtocol) {
+        self.router = router
+        self.tabBarProviders = TabBarProvider.allCases
+    }
+    
+}
 
 // MARK: - RootViewModelInputProtocol
 
 extension RootViewModel: RootViewModelInputProtocol {
     
     func getTabBarCoordinators() -> [Coordinator] {
-        TabBarProvider.allCases.map({
+        tabBarProviders.map({
             $0.generateCoordinator(parentViewController: nil)
         })
+    }
+    
+}
+
+// MARK: - RootViewModelOutputProtocol
+
+extension RootViewModel: RootViewModelOutputProtocol {
+    
+    func shouldNavigateToTheArea(_ index: Int) -> Bool {
+        if tabBarProviders[index].isLoced {
+            router.showAlert(title: "Attention!", message: "This area is closed!", actions: [
+                OkAlertAction(handler: { })
+            ])
+            return false
+        } else {
+            return true
+        }
     }
     
 }

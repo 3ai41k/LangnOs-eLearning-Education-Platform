@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class RootCoordinator: Coordinator {
+final class RootCoordinator: Coordinator, AlertPresentableProtocol {
     
     // MARK: - Private properties
     
@@ -25,9 +25,11 @@ final class RootCoordinator: Coordinator {
     // MARK: - Override
     
     override func start() {
-        let tabBarViewModel = RootViewModel()
+        let tabBarViewModel = RootViewModel(router: self)
         let tabBarController = RootTabBarController()
         tabBarController.viewModel = tabBarViewModel
+        
+        viewController = tabBarController
         
         window.rootViewController = tabBarController
         window.becomeKey()
