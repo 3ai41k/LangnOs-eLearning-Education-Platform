@@ -9,9 +9,9 @@
 import UIKit
 
 protocol MainNavigationProtocol {
-    func navigateToVocabularyStatistic(_ vocabulary: Vocabulary)
+    func navigateToVocabularyStatistic(_ vocabulary: Vocabulary, didVocabularyRemoveHandler: @escaping () -> Void)
     func navigateToFilter()
-    func createNewVocabulary(didVocabularyCreateHandler: @escaping () -> Void)
+    func createNewVocabulary(didVocabularyCreateHandler: @escaping (Vocabulary) -> Void)
     func navigateToSingIn()
 }
 
@@ -22,13 +22,7 @@ final class MainCoordinator: Coordinator, MainCoordinatorProtocol {
     // MARK: - Override
     
     override func start() {
-        let firebaseDatabase = FirebaseDatabase()
-        let coreDataContext = CoreDataContext()
-        let reachability = Reachability()
-        let dataFacade = DataFacade(firebaseDatabase: firebaseDatabase,
-                                    coreDataContext: coreDataContext,
-                                    reachability: reachability)
-        
+        let dataFacade = DataFacade()
         let authorizator = Authorizator()
         let securityInfo = SecurityInfo()
         let mainViewModel = MainViewModel(router: self,
@@ -49,8 +43,10 @@ final class MainCoordinator: Coordinator, MainCoordinatorProtocol {
     
     // MARK: - MainNavigationProtocol
     
-    func navigateToVocabularyStatistic(_ vocabulary: Vocabulary) {
-        let vocabularyCoordinator = VocabularyCoordinator(vocabulary: vocabulary, parentViewController: viewController)
+    func navigateToVocabularyStatistic(_ vocabulary: Vocabulary, didVocabularyRemoveHandler: @escaping () -> Void) {
+        let vocabularyCoordinator = VocabularyCoordinator(vocabulary: vocabulary,
+                                                          didVocabularyRemoveHandler: didVocabularyRemoveHandler,
+                                                          parentViewController: viewController)
         vocabularyCoordinator.start()
     }
     
@@ -58,7 +54,7 @@ final class MainCoordinator: Coordinator, MainCoordinatorProtocol {
         
     }
     
-    func createNewVocabulary(didVocabularyCreateHandler: @escaping () -> Void) {
+    func createNewVocabulary(didVocabularyCreateHandler: @escaping (Vocabulary) -> Void) {
         let createVocabularyCoordinator = CreateVocabularyCoordinator(didVocabularyCreateHandler: didVocabularyCreateHandler,
                                                                       parentViewController: viewController)
         createVocabularyCoordinator.start()

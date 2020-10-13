@@ -13,15 +13,15 @@ enum FirebaseDatabaseError: Error {
 }
 
 protocol FirebaseDatabaseFetchingProtocol {
-    func fetch<Entity: FDEntityProtocol>(request: FirebaseDatabaseRequestProtocol, completion: @escaping (Result<[Entity], Error>) -> Void)
+    func fetch<Entity: FDEntityProtocol, Request: FirebaseDatabaseRequestProtocol>(request: Request, completion: @escaping (Result<[Entity], Error>) -> Void)
 }
 
 protocol FirebaseDatabaseCreatingProtocol {
-    func create(request: FirebaseDatabaseRequestProtocol, completion: @escaping (Error?) -> Void)
+    func create<Request: FirebaseDatabaseRequestProtocol>(request: Request, onSuccess: @escaping () -> Void, onError: @escaping (Error) -> Void)
 }
 
 protocol FirebaseDatabaseDeletingProtocol {
-    func delete(request: FirebaseDatabaseRequestProtocol, completion: @escaping (Error?) -> Void)
+    func delete<Request: FirebaseDatabaseRequestProtocol>(request: Request, onSuccess: @escaping () -> Void, onError: @escaping (Error) -> Void)
 }
 
 final class FirebaseDatabase {
@@ -35,8 +35,7 @@ final class FirebaseDatabase {
 // MARK: - FirebaseDatabaseFetchingProtocol
 
 extension FirebaseDatabase: FirebaseDatabaseFetchingProtocol {
-    
-    func fetch<Entity: FDEntityProtocol>(request: FirebaseDatabaseRequestProtocol, completion: @escaping (Result<[Entity], Error>) -> Void) {
+    func fetch<Entity: FDEntityProtocol, Request: FirebaseDatabaseRequestProtocol>(request: Request, completion: @escaping (Result<[Entity], Error>) -> Void) {
         var reference = dataBase
         reference = request.setCollectionPath(reference)
         request.setQuary(reference)?.observeSingleEvent(of: .value, with: { (dataSnapshot) in
@@ -56,11 +55,15 @@ extension FirebaseDatabase: FirebaseDatabaseFetchingProtocol {
 
 extension FirebaseDatabase: FirebaseDatabaseCreatingProtocol {
     
-    func create(request: FirebaseDatabaseRequestProtocol, completion: @escaping (Error?) -> Void) {
+    func create<Request: FirebaseDatabaseRequestProtocol>(request: Request, onSuccess: @escaping () -> Void, onError: @escaping (Error) -> Void) {
         var reference = dataBase
         reference = request.setCollectionPath(reference)
-        reference.setValue(request.data) { (error, _) in
-            completion(error)
+        reference.setValue(request.entity?.serialize) { (error, _) in
+            if let error = error {
+                onError(error)
+            } else {
+                onSuccess()
+            }
         }
     }
     
@@ -70,11 +73,15 @@ extension FirebaseDatabase: FirebaseDatabaseCreatingProtocol {
 
 extension FirebaseDatabase: FirebaseDatabaseDeletingProtocol {
     
-    func delete(request: FirebaseDatabaseRequestProtocol, completion: @escaping (Error?) -> Void) {
+    func delete<Request: FirebaseDatabaseRequestProtocol>(request: Request, onSuccess: @escaping () -> Void, onError: @escaping (Error) -> Void) {
         var reference = dataBase
         reference = request.setCollectionPath(reference)
         reference.removeValue { (error, _) in
-            completion(error)
+            if let error = error {
+                onError(error)
+            } else {
+                onSuccess()
+            }
         }
     }
     

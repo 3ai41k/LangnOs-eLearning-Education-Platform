@@ -14,11 +14,8 @@ final class NoResulsView: XibView {
     
     @IBOutlet private weak var label: UILabel!
     @IBOutlet private weak var imageView: UIImageView!
-    @IBOutlet private weak var button: UIButton!
     
     // MARK: - Public properties
-    
-    var buttonHandler: (() -> Void)?
     
     var title: String? {
         didSet {
@@ -30,19 +27,6 @@ final class NoResulsView: XibView {
         didSet {
             imageView.image = image
         }
-    }
-    
-    var buttonTitle: String? {
-        didSet {
-            button.setTitle(buttonTitle, for: .normal)
-        }
-    }
-    
-    // MARK: - Actions
-
-    @IBAction
-    private func didCreateTouch(_ sender: Any) {
-        buttonHandler?()
     }
     
 

@@ -38,20 +38,6 @@ struct Vocabulary {
 
 extension Vocabulary: FDEntityProtocol {
     
-    var serialize: [String: Any] {
-        [
-            "id": id,
-            "userId": userId,
-            "title": title,
-            "category": category,
-            "phrasesLearned": phrasesLearned,
-            "phrasesLeftToLearn": phrasesLeftToLearn,
-            "totalLearningTime": totalLearningTime,
-            "createdDate": createdDate.timeIntervalSince1970,
-            "words": words.map({ $0.serialize })
-        ]
-    }
-    
     init(dictionary: [String: Any]) {
         self.id = dictionary["id"] as! String
         self.userId = dictionary["userId"] as! String
@@ -97,17 +83,17 @@ extension Vocabulary: CDEntityProtocol {
         }
     }
     
-    static func insert(context: NSManagedObjectContext, entity: Vocabulary) {
+    func insert(context: NSManagedObjectContext) {
         let vocabulary = VocabularyEntity(context: context)
-        vocabulary.id = UUID(uuidString: entity.id)
-        vocabulary.userId = entity.userId
-        vocabulary.title = entity.title
-        vocabulary.category = entity.category
-        vocabulary.phrasesLearned = Int32(entity.phrasesLearned)
-        vocabulary.phrasesLeftToLearn = Int32(entity.phrasesLeftToLearn)
-        vocabulary.totalLearningTime = entity.totalLearningTime
-        vocabulary.createdDate = entity.createdDate
-        entity.words.forEach({
+        vocabulary.id = UUID(uuidString: id)
+        vocabulary.userId = userId
+        vocabulary.title = title
+        vocabulary.category = category
+        vocabulary.phrasesLearned = Int32(phrasesLearned)
+        vocabulary.phrasesLeftToLearn = Int32(phrasesLeftToLearn)
+        vocabulary.totalLearningTime = totalLearningTime
+        vocabulary.createdDate = createdDate
+        words.forEach({
             let word = WordEntity(context: context)
             word.term = $0.term
             word.definition = $0.definition
@@ -115,17 +101,42 @@ extension Vocabulary: CDEntityProtocol {
         })
     }
     
-    static func update(context: NSManagedObjectContext, entity: Vocabulary) {
+    func update(context: NSManagedObjectContext) {
         
     }
     
-    static func delete(context: NSManagedObjectContext) throws {
+    func delete(context: NSManagedObjectContext) throws {
         let request = NSFetchRequest<VocabularyEntity>(entityName: "VocabularyEntity")
         do {
-            try context.fetch(request).forEach({ context.delete($0) })
+            let vocabularies = try context.fetch(request)
+            if let vocabularyForDelete = vocabularies.first(where: { $0.id?.uuidString == id }) {
+                context.delete(vocabularyForDelete)
+            } else {
+                throw DataFacadeError.entityHasNoFound
+            }
         } catch {
             throw error
         }
+    }
+    
+}
+
+// MARK: - SerializableProtocol
+
+extension Vocabulary: SerializableProtocol {
+    
+    var serialize: [String: Any] {
+        [
+            "id": id,
+            "userId": userId,
+            "title": title,
+            "category": category,
+            "phrasesLearned": phrasesLearned,
+            "phrasesLeftToLearn": phrasesLeftToLearn,
+            "totalLearningTime": totalLearningTime,
+            "createdDate": createdDate.timeIntervalSince1970,
+            "words": words.map({ $0.serialize })
+        ]
     }
     
 }

@@ -9,7 +9,7 @@
 import UIKit
 
 protocol CreateVocabularyNavigationProtocol: CoordinatorClosableProtocol {
-    func vocabularyDidCreate()
+    func vocabularyDidCreate(_ vocabulary: Vocabulary)
 }
 
 typealias CreateVocabularyCoordinatorProtocol = CreateVocabularyNavigationProtocol & ActivityPresentableProtocol & AlertPresentableProtocol
@@ -18,12 +18,12 @@ final class CreateVocabularyCoordinator: Coordinator, CreateVocabularyCoordinato
     
     // MARK: - Private properties
     
-    private var didCreateHandler: () -> Void
+    private var didVocabularyCreateHandler: (Vocabulary) -> Void
     
     // MARK: - Init
     
-    init(didVocabularyCreateHandler: @escaping () -> Void, parentViewController: UIViewController?) {
-        self.didCreateHandler = didVocabularyCreateHandler
+    init(didVocabularyCreateHandler: @escaping (Vocabulary) -> Void, parentViewController: UIViewController?) {
+        self.didVocabularyCreateHandler = didVocabularyCreateHandler
         
         super.init(parentViewController: parentViewController)
     }
@@ -32,9 +32,9 @@ final class CreateVocabularyCoordinator: Coordinator, CreateVocabularyCoordinato
     
     override func start() {
         let securityInfo = SecurityInfo()
-        let fireBaseDatabase = FirebaseDatabase()
+        let dataFacade = DataFacade()
         let createVocabularyViewModel = CreateVocabularyViewModel(userInfo: securityInfo,
-                                                                  fireBaseDatabase: fireBaseDatabase,
+                                                                  dataFacade: dataFacade,
                                                                   router: self)
         let createVocabularyCellFactory = CreateVocabularyCellFactory()
         let createVocabularyViewController = CreateVocabularyViewController()
@@ -50,9 +50,9 @@ final class CreateVocabularyCoordinator: Coordinator, CreateVocabularyCoordinato
     
     // MARK: - CreateVocabularyNavigationProtocol
     
-    func vocabularyDidCreate() {
+    func vocabularyDidCreate(_ vocabulary: Vocabulary) {
         close {
-            self.didCreateHandler()
+            self.didVocabularyCreateHandler(vocabulary)
         }
     }
     

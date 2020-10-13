@@ -24,8 +24,8 @@ extension VocabularyCreateRequest: FirebaseDatabaseRequestProtocol {
         "Vocabulary"
     }
     
-    var data: [String: Any]? {
-        vocabulary.serialize
+    var entity: Vocabulary? {
+        vocabulary
     }
     
     func setCollectionPath(_ reference: DatabaseReference) -> DatabaseReference {

@@ -33,7 +33,13 @@ final class MainViewModel: UniversalCollectionViewViewModel {
     private let userInfo: UserInfoProtocol
     private let authorizator: LoginableProtocol
     private let dataFacade: DataFacadeFetchingProtocol
-    private var vocabularies: [Vocabulary]
+    private var vocabularies: [Vocabulary] {
+        didSet {
+            tableSections[SectionType.vocabulary.rawValue].cells = vocabularies.map({
+                VocabularyCollectionViewCellViewModel(vocabulary: $0)
+            })
+        }
+    }
     
     private enum SectionType: Int {
         case vocabulary
@@ -60,7 +66,9 @@ final class MainViewModel: UniversalCollectionViewViewModel {
     
     func didSelectCellAt(indexPath: IndexPath) {
         let vocabulary = vocabularies[indexPath.row]
-        router.navigateToVocabularyStatistic(vocabulary)
+        router.navigateToVocabularyStatistic(vocabulary) {
+            self.vocabularies.remove(at: indexPath.row)
+        }
     }
     
     func refreshData(completion: @escaping () -> Void) {
@@ -92,9 +100,6 @@ final class MainViewModel: UniversalCollectionViewViewModel {
         dataFacade.fetch(request: request) { (result: Result<[Vocabulary], Error>) in
             switch result {
             case .success(let vocabularies):
-                self.tableSections[SectionType.vocabulary.rawValue].cells = vocabularies.map({
-                    VocabularyCollectionViewCellViewModel(vocabulary: $0)
-                })
                 self.vocabularies = vocabularies
             case .failure(let error):
                 print(error.localizedDescription)
@@ -130,8 +135,8 @@ final class MainViewModel: UniversalCollectionViewViewModel {
         }
     }
     
-    private func didVocabularyCreate() {
-        fetchData()
+    private func didVocabularyCreate(_ vocabulary: Vocabulary) {
+        vocabularies.append(vocabulary)
     }
     
     private func didSingInTouched() {

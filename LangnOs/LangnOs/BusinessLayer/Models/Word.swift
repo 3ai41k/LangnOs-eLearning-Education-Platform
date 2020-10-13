@@ -51,15 +51,15 @@ extension Word: CDEntityProtocol {
         []
     }
     
-    static func insert(context: NSManagedObjectContext, entity: Word) {
+    func insert(context: NSManagedObjectContext) {
         
     }
     
-    static func update(context: NSManagedObjectContext, entity: Word) {
+    func update(context: NSManagedObjectContext) {
         
     }
     
-    static func delete(context: NSManagedObjectContext) throws {
+    func delete(context: NSManagedObjectContext) throws {
         
     }
     

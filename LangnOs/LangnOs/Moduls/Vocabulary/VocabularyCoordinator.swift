@@ -11,6 +11,7 @@ import UIKit
 protocol VocabularyNavigationProtocol: CoordinatorClosableProtocol {
     func navigateToFlashCards()
     func navigateToWords()
+    func removeVocabulary()
 }
 
 final class VocabularyCoordinator: Coordinator, AlertPresentableProtocol {
@@ -18,11 +19,15 @@ final class VocabularyCoordinator: Coordinator, AlertPresentableProtocol {
     // MARK: - Private properties
     
     private let vocabulary: Vocabulary
+    private let didVocabularyRemoveHandler: () -> Void
     
     // MARK: - Init
     
-    init(vocabulary: Vocabulary, parentViewController: UIViewController?) {
+    init(vocabulary: Vocabulary,
+         didVocabularyRemoveHandler: @escaping () -> Void,
+         parentViewController: UIViewController?) {
         self.vocabulary = vocabulary
+        self.didVocabularyRemoveHandler = didVocabularyRemoveHandler
         
         super.init(parentViewController: parentViewController)
     }
@@ -30,8 +35,8 @@ final class VocabularyCoordinator: Coordinator, AlertPresentableProtocol {
     // MARK: - Override
     
     override func start() {
-        let cloudDatabase = FirebaseDatabase()
-        let vocabularyViewModel = VocabularyViewModel(router: self, cloudDatabase: cloudDatabase, vocabulary: vocabulary)
+        let dataFacade = DataFacade()
+        let vocabularyViewModel = VocabularyViewModel(router: self, dataFacade: dataFacade, vocabulary: vocabulary)
         let vocabularyViewController = VocabularyViewController()
         vocabularyViewController.viewModel = vocabularyViewModel
         
@@ -56,6 +61,12 @@ extension VocabularyCoordinator: VocabularyNavigationProtocol {
     func navigateToWords() {
         let wordsCoordinator = WordsCoordinator(words: vocabulary.words, parentViewController: viewController)
         wordsCoordinator.start()
+    }
+    
+    func removeVocabulary() {
+        close {
+            self.didVocabularyRemoveHandler()
+        }
     }
     
 }

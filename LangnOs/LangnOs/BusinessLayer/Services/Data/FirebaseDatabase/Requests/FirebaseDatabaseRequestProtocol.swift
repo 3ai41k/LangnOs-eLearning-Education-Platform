@@ -9,15 +9,18 @@
 import Foundation
 import FirebaseDatabase
 
+// TO DO: Rename
+
 protocol FirebaseDatabaseRequestProtocol {
-    var data: [String: Any]? { get }
+    associatedtype Entity: CDEntityProtocol & SerializableProtocol
+    var entity: Entity? { get }
     func setCollectionPath(_ reference: DatabaseReference) -> DatabaseReference
     func setQuary(_ reference: DatabaseReference) -> DatabaseQuery?
 }
 
 extension FirebaseDatabaseRequestProtocol {
     
-    var data: [String: Any]? {
+    var entity: Entity? {
         nil
     }
     

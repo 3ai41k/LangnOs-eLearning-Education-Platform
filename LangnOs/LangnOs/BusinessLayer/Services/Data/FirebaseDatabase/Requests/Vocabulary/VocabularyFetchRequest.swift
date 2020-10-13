@@ -20,6 +20,8 @@ struct VocabularyFetchRequest {
 
 extension VocabularyFetchRequest: FirebaseDatabaseRequestProtocol {
     
+    typealias Entity = Vocabulary
+    
     private var collectionPath: String {
         "Vocabulary"
     }

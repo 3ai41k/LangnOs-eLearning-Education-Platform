@@ -14,7 +14,7 @@ protocol ContextAccessableProtocol {
 }
 
 protocol ContextSavableProtocol {
-    func saveContext()
+    func save()
 }
 
 final class CoreDataContext {
@@ -47,7 +47,7 @@ extension CoreDataContext: ContextAccessableProtocol {
 
 extension CoreDataContext: ContextSavableProtocol {
     
-    func saveContext() {
+    func save() {
         let context = persistentContainer.viewContext
         if context.hasChanges {
             do {

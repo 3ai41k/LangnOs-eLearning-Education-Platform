@@ -17,7 +17,7 @@ final class CreateVocabularyViewModel: UniversalTableViewSectionProtocol {
     // MARK: - Private properties
     
     private let userInfo: UserInfoProtocol
-    private let fireBaseDatabase: FirebaseDatabaseCreatingProtocol
+    private let dataFacade: DataFacadeCreatingProtocol
     private let router: CreateVocabularyCoordinatorProtocol
     
     private enum SectionType: Int {
@@ -32,10 +32,10 @@ final class CreateVocabularyViewModel: UniversalTableViewSectionProtocol {
     // MARK: - Init
     
     init(userInfo: UserInfoProtocol,
-         fireBaseDatabase: FirebaseDatabaseCreatingProtocol,
+         dataFacade: DataFacadeCreatingProtocol,
          router: CreateVocabularyCoordinatorProtocol) {
         self.userInfo = userInfo
-        self.fireBaseDatabase = fireBaseDatabase
+        self.dataFacade = dataFacade
         self.router = router
         self.tableSections = []
         
@@ -109,13 +109,13 @@ final class CreateVocabularyViewModel: UniversalTableViewSectionProtocol {
             let request = VocabularyCreateRequest(vocabulary: vocabulary)
             
             router.showActivity()
-            fireBaseDatabase.create(request: request) { (error) in
+            dataFacade.create(request: request) { (error) in
                 if let error = error {
                     // FIT IT: Error handling
                     print(error.localizedDescription)
                 } else {
                     self.router.closeActivity()
-                    self.router.vocabularyDidCreate()
+                    self.router.vocabularyDidCreate(vocabulary)
                 }
             }
         } catch {

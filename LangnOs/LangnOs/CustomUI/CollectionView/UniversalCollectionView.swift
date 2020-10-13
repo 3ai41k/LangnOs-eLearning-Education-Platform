@@ -119,13 +119,7 @@ final class UniversalCollectionView: UICollectionView {
     
     private func setBackgroundViewIfSectionsAreEmpty() {
         if let sections = viewModel?.tableSections {
-            var emptySections: [Bool] = []
-            for section in sections {
-                if section.cells.isEmpty {
-                    emptySections.append(true)
-                }
-            }
-            if emptySections.contains(false) {
+            if sections.map({ $0.cells.isEmpty }).contains(false) {
                 backgroundView = nil
             } else {
                 backgroundView = customBackgroundView

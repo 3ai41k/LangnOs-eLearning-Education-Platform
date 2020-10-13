@@ -97,6 +97,7 @@
 		8D94E7D92534F772005FA4B9 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D94E7D82534F772005FA4B9 /* Reachability.swift */; };
 		8D94E7E025362FE5005FA4B9 /* NoResulsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D94E7DF25362FE5005FA4B9 /* NoResulsView.swift */; };
 		8D94E7E225363008005FA4B9 /* NoResulsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D94E7E125363008005FA4B9 /* NoResulsView.xib */; };
+		8D94E7E425363D03005FA4B9 /* SerializableProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D94E7E325363D03005FA4B9 /* SerializableProtocol.swift */; };
 		8D9985EC252929E7009EA144 /* VocabularyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D9985EA252929E7009EA144 /* VocabularyViewController.swift */; };
 		8D9985ED252929E7009EA144 /* VocabularyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D9985EB252929E7009EA144 /* VocabularyViewController.xib */; };
 		8D9985EF252929FF009EA144 /* VocabularyCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D9985EE252929FF009EA144 /* VocabularyCoordinator.swift */; };
@@ -255,6 +256,7 @@
 		8D94E7D82534F772005FA4B9 /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		8D94E7DF25362FE5005FA4B9 /* NoResulsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoResulsView.swift; sourceTree = "<group>"; };
 		8D94E7E125363008005FA4B9 /* NoResulsView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoResulsView.xib; sourceTree = "<group>"; };
+		8D94E7E325363D03005FA4B9 /* SerializableProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SerializableProtocol.swift; sourceTree = "<group>"; };
 		8D9985EA252929E7009EA144 /* VocabularyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabularyViewController.swift; sourceTree = "<group>"; };
 		8D9985EB252929E7009EA144 /* VocabularyViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VocabularyViewController.xib; sourceTree = "<group>"; };
 		8D9985EE252929FF009EA144 /* VocabularyCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabularyCoordinator.swift; sourceTree = "<group>"; };
@@ -652,6 +654,7 @@
 			children = (
 				8DAA55442529117200FF5066 /* FDEntityProtocol.swift */,
 				8D94E7D52534F6DF005FA4B9 /* CDEntityProtocol.swift */,
+				8D94E7E325363D03005FA4B9 /* SerializableProtocol.swift */,
 				8DC3CF58252D3977003CA62A /* EmptyableProtocol.swift */,
 			);
 			path = Protocols;
@@ -1319,6 +1322,7 @@
 				8D524F9D252F7EC1002A6E01 /* AccountCoordinator.swift in Sources */,
 				8DD28C122528AEC800F59B7D /* SingInCoordinator.swift in Sources */,
 				8D524FE32533BA27002A6E01 /* FlashCardsViewController.swift in Sources */,
+				8D94E7E425363D03005FA4B9 /* SerializableProtocol.swift in Sources */,
 				8DD28BCF252683A100F59B7D /* MainViewModel.swift in Sources */,
 				8D524F62252E5C71002A6E01 /* UniversalCollectionViewSectionRegistratable.swift in Sources */,
 			);

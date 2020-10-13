@@ -17,7 +17,7 @@ extension ActivityPresentableProtocol where Self: Coordinator {
     
     func showActivity() {
         let activityViewController = ActivityViewController()
-        activityViewController.modalPresentationStyle = .fullScreen
+        activityViewController.modalPresentationStyle = .overCurrentContext
         viewController?.present(activityViewController, animated: false, completion: nil)
     }
     

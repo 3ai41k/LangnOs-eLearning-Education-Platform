@@ -27,16 +27,16 @@ final class VocabularyViewModel {
     // MARK: - Private properties
     
     private let router: VocabularyNavigationProtocol & AlertPresentableProtocol
-    private let cloudDatabase: FirebaseDatabaseDeletingProtocol
+    private let dataFacade: DataFacadeDeletingProtocol
     private let vocabulary: Vocabulary
     
     // MARK: - Init
     
     init(router: VocabularyNavigationProtocol & AlertPresentableProtocol,
-         cloudDatabase: FirebaseDatabaseDeletingProtocol,
+         dataFacade: DataFacadeDeletingProtocol,
          vocabulary: Vocabulary) {
         self.router = router
-        self.cloudDatabase = cloudDatabase
+        self.dataFacade = dataFacade
         self.vocabulary = vocabulary
     }
     
@@ -53,12 +53,13 @@ final class VocabularyViewModel {
             CancelAlertAction(handler: nil),
             OkAlertAction(handler: {
                 let request = VocabularyDeleteRequest(vocabulary: self.vocabulary)
-                self.cloudDatabase.delete(request: request) { (error) in
+                self.dataFacade.delete(request: request) { (error) in
                     if let error = error {
-                        // FIX IT: - Error hadnling
-                        print(error.localizedDescription)
+                        self.router.showAlert(title: "Error!", message: error.localizedDescription, actions: [
+                            OkAlertAction(handler: { })
+                        ])
                     } else {
-                        self.router.close()
+                        self.router.removeVocabulary()
                     }
                 }
             })
