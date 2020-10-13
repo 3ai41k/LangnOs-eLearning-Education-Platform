@@ -50,12 +50,12 @@ final class DataFacade {
     
     // MARK: - Private methods
     
-    private func saveEntities<Entity: FDEntityProtocol & CDEntityProtocol>(_ entities: [Entity]) {
+    private func saveEntities<Entity: CDEntityProtocol>(_ entities: [Entity]) {
         entities.forEach({ Entity.insert(context: coreDataContext.context, entity: $0) })
         coreDataContext.saveContext()
     }
     
-    private func tryToSelectEntities<Entity: FDEntityProtocol & CDEntityProtocol>(completion: @escaping (Result<[Entity], Error>) -> Void) {
+    private func tryToSelectEntities<Entity: CDEntityProtocol>(completion: @escaping (Result<[Entity], Error>) -> Void) {
         do {
             let coreDataEntities = try Entity.select(context: coreDataContext.context)
             completion(.success(coreDataEntities))

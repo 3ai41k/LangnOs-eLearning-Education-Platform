@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097.3" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NoResulsView" customModule="LangnOs" customModuleProvider="target">
+            <connections>
+                <outlet property="button" destination="RyC-5L-OSr" id="rj3-sb-HtR"/>
+                <outlet property="imageView" destination="hbb-JQ-adf" id="244-61-eZ8"/>
+                <outlet property="label" destination="2Wl-EH-rMw" id="sFy-6t-91O"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="ljI-6T-1vV">
+                    <rect key="frame" x="8" y="381.5" width="398" height="133.5"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="There are no items found" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Wl-EH-rMw">
+                            <rect key="frame" x="97" y="0.0" width="204" height="20.5"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                            <color key="textColor" name="Icon"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="exclamationmark.triangle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="hbb-JQ-adf">
+                            <rect key="frame" x="167" y="29.5" width="64" height="62"/>
+                            <color key="tintColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="width" secondItem="hbb-JQ-adf" secondAttribute="height" multiplier="1:1" id="Lis-XN-812"/>
+                                <constraint firstAttribute="height" constant="64" id="Zuh-CQ-hEH"/>
+                            </constraints>
+                        </imageView>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RyC-5L-OSr">
+                            <rect key="frame" x="173.5" y="100.5" width="51" height="33"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="tintColor" name="Icon"/>
+                            <state key="normal" title="Create"/>
+                            <connections>
+                                <action selector="didCreateTouch:" destination="-1" eventType="touchUpInside" id="AHx-lc-VYq"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                </stackView>
+            </subviews>
+            <color key="backgroundColor" name="AppBackground"/>
+            <constraints>
+                <constraint firstItem="ljI-6T-1vV" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="RHr-y7-PMF"/>
+                <constraint firstItem="ljI-6T-1vV" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="dZn-2m-FcV"/>
+                <constraint firstItem="ljI-6T-1vV" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="8" id="rOl-Ie-Ah5"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="ljI-6T-1vV" secondAttribute="trailing" constant="8" id="xeS-yO-YxK"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <point key="canvasLocation" x="139" y="134"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="exclamationmark.triangle" catalog="system" width="128" height="112"/>
+        <namedColor name="AppBackground">
+            <color red="0.93699997663497925" green="0.95300000905990601" blue="0.98400002717971802" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Icon">
+            <color red="0.41999998688697815" green="0.54500001668930054" blue="0.96100002527236938" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

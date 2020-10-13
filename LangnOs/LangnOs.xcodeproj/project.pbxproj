@@ -95,7 +95,8 @@
 		8D94E7D42534E3DC005FA4B9 /* DataFacade.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D94E7D32534E3DC005FA4B9 /* DataFacade.swift */; };
 		8D94E7D62534F6DF005FA4B9 /* CDEntityProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D94E7D52534F6DF005FA4B9 /* CDEntityProtocol.swift */; };
 		8D94E7D92534F772005FA4B9 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D94E7D82534F772005FA4B9 /* Reachability.swift */; };
-		8D9985E825292776009EA144 /* UniversalCollectionViewOutputProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D9985E725292776009EA144 /* UniversalCollectionViewOutputProtocol.swift */; };
+		8D94E7E025362FE5005FA4B9 /* NoResulsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D94E7DF25362FE5005FA4B9 /* NoResulsView.swift */; };
+		8D94E7E225363008005FA4B9 /* NoResulsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D94E7E125363008005FA4B9 /* NoResulsView.xib */; };
 		8D9985EC252929E7009EA144 /* VocabularyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D9985EA252929E7009EA144 /* VocabularyViewController.swift */; };
 		8D9985ED252929E7009EA144 /* VocabularyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D9985EB252929E7009EA144 /* VocabularyViewController.xib */; };
 		8D9985EF252929FF009EA144 /* VocabularyCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D9985EE252929FF009EA144 /* VocabularyCoordinator.swift */; };
@@ -252,7 +253,8 @@
 		8D94E7D32534E3DC005FA4B9 /* DataFacade.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataFacade.swift; sourceTree = "<group>"; };
 		8D94E7D52534F6DF005FA4B9 /* CDEntityProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CDEntityProtocol.swift; sourceTree = "<group>"; };
 		8D94E7D82534F772005FA4B9 /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
-		8D9985E725292776009EA144 /* UniversalCollectionViewOutputProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniversalCollectionViewOutputProtocol.swift; sourceTree = "<group>"; };
+		8D94E7DF25362FE5005FA4B9 /* NoResulsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoResulsView.swift; sourceTree = "<group>"; };
+		8D94E7E125363008005FA4B9 /* NoResulsView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoResulsView.xib; sourceTree = "<group>"; };
 		8D9985EA252929E7009EA144 /* VocabularyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabularyViewController.swift; sourceTree = "<group>"; };
 		8D9985EB252929E7009EA144 /* VocabularyViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VocabularyViewController.xib; sourceTree = "<group>"; };
 		8D9985EE252929FF009EA144 /* VocabularyCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabularyCoordinator.swift; sourceTree = "<group>"; };
@@ -480,6 +482,7 @@
 		8D662527252A384200991D45 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				8D94E7DE25362FA5005FA4B9 /* Background */,
 				8D524FCC25337288002A6E01 /* TopBar */,
 				8D524FA0252F8698002A6E01 /* UserImage */,
 				8D662538252A6CF400991D45 /* VocabularyProgress */,
@@ -670,6 +673,15 @@
 				8D94E7D32534E3DC005FA4B9 /* DataFacade.swift */,
 			);
 			path = Data;
+			sourceTree = "<group>";
+		};
+		8D94E7DE25362FA5005FA4B9 /* Background */ = {
+			isa = PBXGroup;
+			children = (
+				8D94E7DF25362FE5005FA4B9 /* NoResulsView.swift */,
+				8D94E7E125363008005FA4B9 /* NoResulsView.xib */,
+			);
+			path = Background;
 			sourceTree = "<group>";
 		};
 		8D9985E9252929BF009EA144 /* Vocabulary */ = {
@@ -963,7 +975,6 @@
 			isa = PBXGroup;
 			children = (
 				8DD28BF42527ADF300F59B7D /* UniversalCollectionView.swift */,
-				8D9985E725292776009EA144 /* UniversalCollectionViewOutputProtocol.swift */,
 				8DD28BF82527B3C700F59B7D /* UniversalCollectionViewCellFactoryProtocol.swift */,
 				8D524F63252E5E8F002A6E01 /* UniversalCollectionSectionViewModel.swift */,
 				8DC3CF2F252CD5A9003CA62A /* Layout */,
@@ -1123,6 +1134,7 @@
 				8D83EA66252B8BB7004E6098 /* CreateWordTableViewCell.xib in Resources */,
 				8DD28BC4252679F600F59B7D /* PresentationViewController.xib in Resources */,
 				8D83EA70252B9C11004E6098 /* ActivityViewController.xib in Resources */,
+				8D94E7E225363008005FA4B9 /* NoResulsView.xib in Resources */,
 				8D6625202529F6C000991D45 /* CreateVocabularyViewController.xib in Resources */,
 				8D83EA81252BA2A2004E6098 /* VocabularyInfoTableViewCell.xib in Resources */,
 				8D524FE42533BA27002A6E01 /* FlashCardsViewController.xib in Resources */,
@@ -1190,6 +1202,7 @@
 				8D524F9F252F83D2002A6E01 /* AccountViewModel.swift in Sources */,
 				8DC3CF34252CD5CD003CA62A /* SquareGridFlowLayout.swift in Sources */,
 				8D83EA68252B8BE5004E6098 /* CreateWordTableViewCellViewModel.swift in Sources */,
+				8D94E7E025362FE5005FA4B9 /* NoResulsView.swift in Sources */,
 				8D9985EF252929FF009EA144 /* VocabularyCoordinator.swift in Sources */,
 				8DD28C152528AEEF00F59B7D /* SingInViewController.swift in Sources */,
 				8DD28BE12526889200F59B7D /* UINavigationBar+Drivable.swift in Sources */,
@@ -1225,7 +1238,6 @@
 				8D524F96252F7E97002A6E01 /* AccountViewController.swift in Sources */,
 				8D524FEA2533BDB2002A6E01 /* FlashCardsCellFactory.swift in Sources */,
 				8D83EA65252B8BB7004E6098 /* CreateWordTableViewCell.swift in Sources */,
-				8D9985E825292776009EA144 /* UniversalCollectionViewOutputProtocol.swift in Sources */,
 				8DC3CF31252CD5B6003CA62A /* UniversalCollectionViewLayoutProtocol.swift in Sources */,
 				8DD28BFF2527BCBF00F59B7D /* UniversalCollectionViewCellRegistratable.swift in Sources */,
 				8D83EA6F252B9C11004E6098 /* ActivityViewController.swift in Sources */,

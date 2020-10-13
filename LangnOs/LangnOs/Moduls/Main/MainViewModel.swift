@@ -19,7 +19,6 @@ protocol MainViewModelInputProtocol: NavigatableViewModelProtocol {
 
 protocol MainViewModelOutputProtocol {
     func fetchData()
-    func refreshData(completion: @escaping () -> Void)
 }
 
 final class MainViewModel: UniversalCollectionViewViewModel {
@@ -57,10 +56,17 @@ final class MainViewModel: UniversalCollectionViewViewModel {
     }
     
     // MARK: - Public methods
+    // UniversalCollectionViewViewModel
     
     func didSelectCellAt(indexPath: IndexPath) {
         let vocabulary = vocabularies[indexPath.row]
         router.navigateToVocabularyStatistic(vocabulary)
+    }
+    
+    func refreshData(completion: @escaping () -> Void) {
+        fetchData {
+            completion()
+        }
     }
     
     // MARK: - Private methods
@@ -162,12 +168,6 @@ extension MainViewModel: MainViewModelOutputProtocol {
     
     func fetchData() {
         fetchData(completion: nil)
-    }
-    
-    func refreshData(completion: @escaping () -> Void) {
-        fetchData {
-            completion()
-        }
     }
     
 }

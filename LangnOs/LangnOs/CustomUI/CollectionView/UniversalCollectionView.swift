@@ -9,7 +9,9 @@
 import UIKit
 import Combine
 
-typealias UniversalCollectionViewViewModel = UniversalCollectionViewSectionProtocol & UniversalCollectionViewOutputProtocol
+typealias UniversalCollectionViewViewModel =
+    UniversalCollectionViewSectionProtocol &
+    UniversalCollectionViewOutputProtocol
 
 protocol CollectionReusableViewModelProtocol {
     
@@ -21,6 +23,16 @@ protocol CollectionSectionViewModelProtocol: SectionViewModelProtocol {
 
 protocol UniversalCollectionViewSectionProtocol {
     var tableSections: [CollectionSectionViewModelProtocol] { get }
+}
+
+protocol UniversalCollectionViewOutputProtocol {
+    func didSelectCellAt(indexPath: IndexPath)
+    func refreshData(completion: @escaping () -> Void)
+}
+
+extension UniversalCollectionViewOutputProtocol {
+    func didSelectCellAt(indexPath: IndexPath) { }
+    func refreshData(completion: @escaping () -> Void) { }
 }
 
 protocol UniversalCollectionViewSectionFactoryProtocol {
@@ -59,7 +71,7 @@ final class UniversalCollectionView: UICollectionView {
         }
     }
     
-    var refreshDataHandler: ((@escaping () -> Void) -> Void)?
+    var customBackgroundView: UIView?
     
     // MARK: - Private properties
     
@@ -83,6 +95,18 @@ final class UniversalCollectionView: UICollectionView {
         //addTapGesture()
     }
     
+    override func reloadData() {
+        super.reloadData()
+        
+        setBackgroundViewIfSectionsAreEmpty()
+    }
+    
+    override func reloadSections(_ sections: IndexSet) {
+        super.reloadSections(sections)
+        
+        setBackgroundViewIfSectionsAreEmpty()
+    }
+    
     // MARK: - Private methods
     
     private func bindViewModel() {
@@ -91,6 +115,22 @@ final class UniversalCollectionView: UICollectionView {
                 self?.reloadSections(IndexSet(integer: index))
             }).store(in: &cancellable)
         })
+    }
+    
+    private func setBackgroundViewIfSectionsAreEmpty() {
+        if let sections = viewModel?.tableSections {
+            var emptySections: [Bool] = []
+            for section in sections {
+                if section.cells.isEmpty {
+                    emptySections.append(true)
+                }
+            }
+            if emptySections.contains(false) {
+                backgroundView = nil
+            } else {
+                backgroundView = customBackgroundView
+            }
+        }
     }
     
     private func addRefreshControl() {
@@ -108,7 +148,7 @@ final class UniversalCollectionView: UICollectionView {
     
     @objc
     private func refreshData(_ sender: UIRefreshControl) {
-        refreshDataHandler? {
+        viewModel?.refreshData {
             sender.endRefreshing()
         }
     }

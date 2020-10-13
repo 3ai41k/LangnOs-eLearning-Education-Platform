@@ -14,15 +14,15 @@ final class MainViewController: BindibleViewController<MainViewModelType> {
 
     // MARK: - IBOutlets
     
-    @IBOutlet private weak var fiexedCollectionView: UniversalCollectionView! {
+    @IBOutlet private weak var collectionView: UniversalCollectionView! {
         didSet {
-            fiexedCollectionView.viewModel = viewModel
-            fiexedCollectionView.cellFactory = collectionViewCellFactory
-            fiexedCollectionView.sectionFactory = collectionViewSectionFactory
-            fiexedCollectionView.layout = collectionViewLayout
-            fiexedCollectionView.refreshDataHandler = viewModel?.refreshData
+            collectionView.viewModel = viewModel
+            collectionView.cellFactory = collectionViewCellFactory
+            collectionView.sectionFactory = collectionViewSectionFactory
+            collectionView.layout = collectionViewLayout
+            collectionView.customBackgroundView = NoResulsView()
             
-            fiexedCollectionView.start()
+            collectionView.start()
         }
     }
     
