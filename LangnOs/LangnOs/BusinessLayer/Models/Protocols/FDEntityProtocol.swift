@@ -8,6 +8,6 @@
 
 import Foundation
 
-protocol FDEntityProtocol {
+protocol FDEntityProtocol: SerializableProtocol {
     init(dictionary: [String: Any])
 }

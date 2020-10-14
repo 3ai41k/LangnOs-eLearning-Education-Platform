@@ -38,7 +38,7 @@ extension FirebaseDatabase: FirebaseDatabaseFetchingProtocol {
     func fetch<Entity: FDEntityProtocol, Request: FirebaseDatabaseRequestProtocol>(request: Request, completion: @escaping (Result<[Entity], Error>) -> Void) {
         var reference = dataBase
         reference = request.setCollectionPath(reference)
-        request.setQuary(reference)?.observeSingleEvent(of: .value, with: { (dataSnapshot) in
+        (request.setQuary(reference) ?? reference)?.observeSingleEvent(of: .value, with: { (dataSnapshot) in
             if let documents = dataSnapshot.value as? [String: [String: Any]] {
                 completion(.success(documents.map({ Entity(dictionary: $1) })))
             } else {

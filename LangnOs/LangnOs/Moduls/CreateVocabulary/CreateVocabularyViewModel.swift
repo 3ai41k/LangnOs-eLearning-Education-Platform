@@ -12,7 +12,7 @@ protocol CreateVocabularyViewModelInputProtocol: NavigatableViewModelProtocol {
     
 }
 
-final class CreateVocabularyViewModel: UniversalTableViewSectionProtocol {
+final class CreateVocabularyViewModel: UniversalTableViewModelProtocol {
     
     // MARK: - Private properties
     
@@ -147,7 +147,7 @@ extension CreateVocabularyViewModel: CreateVocabularyViewModelInputProtocol {
                                            rightBarButtonDrivableModels: [createButtonModel])
     }
     
-    var navigationBarDrivableModel: DrivableModelProtocol {
+    var navigationBarDrivableModel: DrivableModelProtocol? {
         NavigationBarDrivableModel(isBottomLineHidden: true,
                                    backgroundColor: .white,
                                    prefersLargeTitles: false)

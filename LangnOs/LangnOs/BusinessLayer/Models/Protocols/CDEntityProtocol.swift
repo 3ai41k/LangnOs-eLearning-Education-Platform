@@ -15,3 +15,7 @@ protocol CDEntityProtocol {
     func update(context: NSManagedObjectContext)
     func delete(context: NSManagedObjectContext) throws
 }
+
+extension CDEntityProtocol {
+    func update(context: NSManagedObjectContext) { }
+}

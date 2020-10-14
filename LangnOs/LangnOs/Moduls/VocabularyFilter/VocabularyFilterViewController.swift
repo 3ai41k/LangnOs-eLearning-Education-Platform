@@ -12,24 +12,26 @@ final class VocabularyFilterViewController: BindibleViewController<VocabularyFil
     
     // MARK: - IBOutlets
     
-    
-    
+    @IBOutlet weak var tableView: UniversalTableView! {
+        didSet {
+            tableView.viewModel = viewModel
+            tableView.cellFactory = cellFactory
+            tableView.tableFooterView = UIView()
+            
+            tableView.start()
+        }
+    }
     
     // MARK: - Public properties
     
-    
-    
-    
-    // MARK: - Private properties
-    
-    
-    
+    var cellFactory: UniversalTableViewCellFactoryProtocol?
     
     // MARK: - Lifecycle
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         
+        viewModel?.fetchData()
     }
     
     
@@ -41,11 +43,14 @@ final class VocabularyFilterViewController: BindibleViewController<VocabularyFil
     // MARK: - Override
     
     override func bindViewModel() {
-        
+        viewModel?.updateUI = { [weak self] in
+            self?.setupUI()
+        }
     }
     
     override func setupUI() {
-        
+        navigationItem.drive(model: viewModel?.navigationItemDrivableModel)
+        navigationController?.navigationBar.drive(model: viewModel?.navigationBarDrivableModel)
     }
     
     override func configurateComponents() {

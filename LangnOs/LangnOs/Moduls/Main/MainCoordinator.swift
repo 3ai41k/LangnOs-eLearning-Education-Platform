@@ -10,7 +10,7 @@ import UIKit
 
 protocol MainNavigationProtocol {
     func navigateToVocabularyStatistic(_ vocabulary: Vocabulary, didVocabularyRemoveHandler: @escaping () -> Void)
-    func navigateToFilter()
+    func navigateToFilter(didVocabularyFilerSelece: @escaping (VocabularyFilter) -> Void)
     func createNewVocabulary(didVocabularyCreateHandler: @escaping (Vocabulary) -> Void)
     func navigateToSingIn()
 }
@@ -22,12 +22,14 @@ final class MainCoordinator: Coordinator, MainCoordinatorProtocol {
     // MARK: - Override
     
     override func start() {
-        let dataFacade = DataFacade()
         let authorizator = Authorizator()
         let securityInfo = SecurityInfo()
+        let coreDataContext = CoreDataContext()
+        let dataFacade = DataFacade()
         let mainViewModel = MainViewModel(router: self,
                                           userInfo: securityInfo,
                                           authorizator: authorizator,
+                                          coreDataContext: coreDataContext,
                                           dataFacade: dataFacade)
         
         let mainViewController = MainViewController()
@@ -50,8 +52,10 @@ final class MainCoordinator: Coordinator, MainCoordinatorProtocol {
         vocabularyCoordinator.start()
     }
     
-    func navigateToFilter() {
-        
+    func navigateToFilter(didVocabularyFilerSelece: @escaping (VocabularyFilter) -> Void) {
+        let vocabularyFilterCoordinator = VocabularyFilterCoordinator(didVocabularyFilerSelece: didVocabularyFilerSelece,
+                                                                      parentViewController: viewController)
+        vocabularyFilterCoordinator.start()
     }
     
     func createNewVocabulary(didVocabularyCreateHandler: @escaping (Vocabulary) -> Void) {

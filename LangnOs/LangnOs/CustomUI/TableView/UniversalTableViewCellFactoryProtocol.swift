@@ -9,6 +9,15 @@
 import UIKit
 
 protocol UniversalTableViewCellFactoryProtocol: class {
+    var cellTypes: [UniversalTableViewCellRegistratable.Type] { get }
     func registerAllCells(tableView: UITableView)
     func generateCell(cellViewModel: CellViewModelProtocol, tableView: UITableView, indexPath: IndexPath) -> UITableViewCell
+}
+
+extension UniversalTableViewCellFactoryProtocol {
+    
+    func registerAllCells(tableView: UITableView) {
+        cellTypes.forEach({ $0.register(tableView) })
+    }
+    
 }

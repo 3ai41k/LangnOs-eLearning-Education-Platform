@@ -10,7 +10,11 @@ import UIKit
 
 protocol NavigatableViewModelProtocol {
     var navigationItemDrivableModel: DrivableModelProtocol { get }
-    var navigationBarDrivableModel: DrivableModelProtocol { get }
+    var navigationBarDrivableModel: DrivableModelProtocol? { get }
+}
+
+extension NavigatableViewModelProtocol {
+    var navigationBarDrivableModel: DrivableModelProtocol? { nil }
 }
 
 protocol MainViewModelInputProtocol: NavigatableViewModelProtocol {
@@ -25,21 +29,23 @@ final class MainViewModel: UniversalCollectionViewViewModel {
     
     // MARK: - Public properties
     
-    var tableSections: [CollectionSectionViewModelProtocol]
+    var tableSections: [CollectionSectionViewModelProtocol] = []
     
     // MARK: - Private properties
     
     private let router: MainCoordinatorProtocol
     private let userInfo: UserInfoProtocol
     private let authorizator: LoginableProtocol
+    private let coreDataContext: ContextAccessableProtocol
     private let dataFacade: DataFacadeFetchingProtocol
-    private var vocabularies: [Vocabulary] {
+    private var vocabularies: [Vocabulary] = [] {
         didSet {
             tableSections[SectionType.vocabulary.rawValue].cells = vocabularies.map({
                 VocabularyCollectionViewCellViewModel(vocabulary: $0)
             })
         }
     }
+    private var vocabularyFilter: VocabularyFilter?
     
     private enum SectionType: Int {
         case vocabulary
@@ -50,13 +56,13 @@ final class MainViewModel: UniversalCollectionViewViewModel {
     init(router: MainCoordinatorProtocol,
          userInfo: UserInfoProtocol,
          authorizator: LoginableProtocol,
+         coreDataContext: ContextAccessableProtocol,
          dataFacade: DataFacadeFetchingProtocol) {
         self.router = router
         self.userInfo = userInfo
         self.authorizator = authorizator
+        self.coreDataContext = coreDataContext
         self.dataFacade = dataFacade
-        self.vocabularies = []
-        self.tableSections = []
         
         setupVocabularySection(&tableSections)
     }
@@ -81,7 +87,7 @@ final class MainViewModel: UniversalCollectionViewViewModel {
     
     private func setupVocabularySection(_ tableSections: inout [CollectionSectionViewModelProtocol]) {
         // FIX IT - Retain cycle. [weak self]
-        let sectionViewModel = SearchBarCollectionReusableViewModel(textDidChange: searchVocabularyByName,
+        let sectionViewModel = SearchBarCollectionReusableViewModel(textDidChange: searchVocabulary,
                                                                     didFiter: didFilterTouched,
                                                                     didCancle: didCancelTouched)
         tableSections.append(UniversalCollectionSectionViewModel(sectionViewModel: sectionViewModel, cells: []))
@@ -107,14 +113,26 @@ final class MainViewModel: UniversalCollectionViewViewModel {
         }
     }
     
-    private func searchVocabularyByName(searchText: String) {
-        let filteredVocabulary = vocabularies.filter({ $0.title.contains(searchText) })
-        let cellViewModels = filteredVocabulary.map({ VocabularyCollectionViewCellViewModel(vocabulary: $0) })
-        tableSections[SectionType.vocabulary.rawValue].cells = cellViewModels
+    private func searchVocabulary(searchText: String) {
+        guard let filter = vocabularyFilter else { return }
+        
+        let query = "\(filter.value) == \(searchText)"
+        
+        do {
+            let filteredVocabulary = try Vocabulary.select(context: coreDataContext.context, query: query)
+            let cellViewModels = filteredVocabulary.map({ VocabularyCollectionViewCellViewModel(vocabulary: $0) })
+            tableSections[SectionType.vocabulary.rawValue].cells = cellViewModels
+        } catch {
+            router.showAlert(title: "Error!", message: error.localizedDescription, actions: [
+                OkAlertAction(handler: { })
+            ])
+        }
     }
     
     private func didFilterTouched() {
-        print(#function)
+        router.navigateToFilter { vocabularyFilter in
+            self.vocabularyFilter = vocabularyFilter
+        }
     }
     
     private func didCancelTouched() {
@@ -159,7 +177,7 @@ extension MainViewModel: MainViewModelInputProtocol {
                                            rightBarButtonDrivableModels: [createNewVocabularyButtonModel])
     }
     
-    var navigationBarDrivableModel: DrivableModelProtocol {
+    var navigationBarDrivableModel: DrivableModelProtocol? {
         NavigationBarDrivableModel(isBottomLineHidden: true,
                                    backgroundColor: .systemBackground,
                                    prefersLargeTitles: false)

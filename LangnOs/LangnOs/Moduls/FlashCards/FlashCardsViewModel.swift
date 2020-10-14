@@ -16,9 +16,9 @@ protocol FlashCardsViewModelOutputProtocol {
     
 }
 
-typealias FlashCardsViewModelProtocol = UniversalTableViewSectionProtocol & FlashCardsViewModelInputProtocol & FlashCardsViewModelOutputProtocol
+typealias FlashCardsViewModelProtocol = UniversalTableViewModelProtocol & FlashCardsViewModelInputProtocol & FlashCardsViewModelOutputProtocol
 
-final class FlashCardsViewModel: UniversalTableViewSectionProtocol {
+final class FlashCardsViewModel: UniversalTableViewModelProtocol {
     
     // MARK: - Public properties
     

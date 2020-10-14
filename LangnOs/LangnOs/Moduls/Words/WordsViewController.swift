@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class WordsViewController: BindibleViewController<WordsViewModelInputProtocol & WordsViewModelOutputProtocol & UniversalTableViewSectionProtocol> {
+final class WordsViewController: BindibleViewController<WordsViewModelInputProtocol & WordsViewModelOutputProtocol & UniversalTableViewModelProtocol> {
     
     // MARK: - IBOutlets
     

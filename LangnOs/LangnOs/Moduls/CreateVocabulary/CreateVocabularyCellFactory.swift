@@ -10,15 +10,11 @@ import UIKit
 
 final class CreateVocabularyCellFactory: UniversalTableViewCellFactoryProtocol {
     
-    private var cellTypes: [UniversalTableViewCellRegistratable.Type] {
+    var cellTypes: [UniversalTableViewCellRegistratable.Type] {
         [
             VocabularyInfoTableViewCell.self,
             CreateWordTableViewCell.self
         ]
-    }
-    
-    func registerAllCells(tableView: UITableView) {
-        cellTypes.forEach({ $0.register(tableView) })
     }
     
     func generateCell(cellViewModel: CellViewModelProtocol, tableView: UITableView, indexPath: IndexPath) -> UITableViewCell {

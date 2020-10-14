@@ -24,16 +24,16 @@ struct Word {
 
 extension Word: FDEntityProtocol {
     
+    init(dictionary: [String: Any]) {
+        self.term = dictionary["term"] as! String
+        self.definition = dictionary["definition"] as! String
+    }
+    
     var serialize: [String: Any] {
         [
             "term": term,
             "definition": definition
         ]
-    }
-    
-    init(dictionary: [String: Any]) {
-        self.term = dictionary["term"] as! String
-        self.definition = dictionary["definition"] as! String
     }
     
 }
@@ -52,10 +52,6 @@ extension Word: CDEntityProtocol {
     }
     
     func insert(context: NSManagedObjectContext) {
-        
-    }
-    
-    func update(context: NSManagedObjectContext) {
         
     }
     

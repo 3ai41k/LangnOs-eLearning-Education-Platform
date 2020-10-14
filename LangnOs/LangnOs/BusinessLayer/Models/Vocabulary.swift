@@ -52,13 +52,27 @@ extension Vocabulary: FDEntityProtocol {
         })
     }
     
+    var serialize: [String: Any] {
+        [
+            "id": id,
+            "userId": userId,
+            "title": title,
+            "category": category,
+            "phrasesLearned": phrasesLearned,
+            "phrasesLeftToLearn": phrasesLeftToLearn,
+            "totalLearningTime": totalLearningTime,
+            "createdDate": createdDate.timeIntervalSince1970,
+            "words": words.map({ $0.serialize })
+        ]
+    }
+    
 }
 
 // MARK: - CDEntityProtocol
 
 extension Vocabulary: CDEntityProtocol {
     
-    init(entity: VocabularyEntity) {
+    private init(entity: VocabularyEntity) {
         self.id = entity.id!.uuidString
         self.userId = entity.userId!
         self.title = entity.title!
@@ -74,6 +88,19 @@ extension Vocabulary: CDEntityProtocol {
     
     static func select(context: NSManagedObjectContext) throws -> [Vocabulary] {
         let request = NSFetchRequest<VocabularyEntity>(entityName: "VocabularyEntity")
+        do {
+            return try context.fetch(request).map({
+                Vocabulary(entity: $0)
+            })
+        } catch {
+            throw error
+        }
+    }
+    
+    static func select(context: NSManagedObjectContext, query: String) throws -> [Vocabulary] {
+        let request = NSFetchRequest<VocabularyEntity>(entityName: "VocabularyEntity")
+        request.predicate = NSPredicate(format: query)
+        
         do {
             return try context.fetch(request).map({
                 Vocabulary(entity: $0)
@@ -101,10 +128,6 @@ extension Vocabulary: CDEntityProtocol {
         })
     }
     
-    func update(context: NSManagedObjectContext) {
-        
-    }
-    
     func delete(context: NSManagedObjectContext) throws {
         let request = NSFetchRequest<VocabularyEntity>(entityName: "VocabularyEntity")
         do {
@@ -117,26 +140,6 @@ extension Vocabulary: CDEntityProtocol {
         } catch {
             throw error
         }
-    }
-    
-}
-
-// MARK: - SerializableProtocol
-
-extension Vocabulary: SerializableProtocol {
-    
-    var serialize: [String: Any] {
-        [
-            "id": id,
-            "userId": userId,
-            "title": title,
-            "category": category,
-            "phrasesLearned": phrasesLearned,
-            "phrasesLeftToLearn": phrasesLeftToLearn,
-            "totalLearningTime": totalLearningTime,
-            "createdDate": createdDate.timeIntervalSince1970,
-            "words": words.map({ $0.serialize })
-        ]
     }
     
 }

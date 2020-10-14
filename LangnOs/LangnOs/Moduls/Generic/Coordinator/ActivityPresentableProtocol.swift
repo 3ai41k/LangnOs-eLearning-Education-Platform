@@ -22,7 +22,7 @@ extension ActivityPresentableProtocol where Self: Coordinator {
     }
     
     func closeActivity() {
-        viewController?.presentingViewController?.dismiss(animated: false, completion: nil)
+        viewController?.presentedViewController?.dismiss(animated: false, completion: nil)
     }
     
 }

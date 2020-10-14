@@ -9,6 +9,10 @@
 import UIKit
 import Combine
 
+typealias UniversalTableViewModelProtocol =
+    UniversalTableViewSectionProtocol &
+    UniversalTableViewOutputProtocol
+
 protocol SectionViewModelProtocol: class {
     var cells: [CellViewModelProtocol] { get set }
     var reload: AnyPublisher<Void, Never> { get }
@@ -22,11 +26,19 @@ protocol UniversalTableViewSectionProtocol {
     var tableSections: [UniversalTableSectionViewModelProtocol] { get }
 }
 
+protocol UniversalTableViewOutputProtocol {
+    func didSelectCellAt(indexPath: IndexPath)
+}
+
+extension UniversalTableViewOutputProtocol {
+    func didSelectCellAt(indexPath: IndexPath) { }
+}
+
 final class UniversalTableView: UITableView {
     
     // MARK: - Public properties
     
-    var viewModel: UniversalTableViewSectionProtocol? {
+    var viewModel: UniversalTableViewModelProtocol? {
         didSet {
             viewModel?.tableSections.enumerated().forEach({ (index, section) in
                 section.reload.sink(receiveValue: { [weak self] in
@@ -66,9 +78,10 @@ final class UniversalTableView: UITableView {
     // MARK: - Public methods
     
     func start() {
-        dataSource = self
+        self.dataSource = self
+        self.delegate = self
         
-        reloadData()
+        self.reloadData()
     }
     
     // MARK: - Private methods
@@ -121,6 +134,16 @@ extension UniversalTableView: UITableViewDataSource {
             return UITableViewCell()
         }
         return cell
+    }
+    
+}
+
+// MARK: - UITableViewDelegate
+
+extension UniversalTableView: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        viewModel?.didSelectCellAt(indexPath: indexPath)
     }
     
 }
