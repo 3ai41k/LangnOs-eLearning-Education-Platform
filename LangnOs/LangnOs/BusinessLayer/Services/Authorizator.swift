@@ -9,7 +9,7 @@
 import FirebaseAuth
 
 enum AuthorizatorError: Error {
-    case userCannotFound
+    case userWasNotFound
 }
 
 protocol LoginableProtocol {
@@ -19,6 +19,10 @@ protocol LoginableProtocol {
 protocol RegistratableProtocol {
     func singInWith(email: String, password: String, completion: @escaping (Result<User, Error>) -> Void)
     func singUpWith(name: String?, email: String, password: String, completion: @escaping (Result<User, Error>) -> Void)
+}
+
+protocol UserProfileExtandableProtocol {
+    func setImageURL(_ url: URL, completion: @escaping (Error?) -> Void)
 }
 
 final class Authorizator {
@@ -60,7 +64,7 @@ extension Authorizator: RegistratableProtocol {
                 completion(.failure(error))
             } else {
                 guard let currentUser = self.currentUser else {
-                    completion(.failure(AuthorizatorError.userCannotFound))
+                    completion(.failure(AuthorizatorError.userWasNotFound))
                     return
                 }
                 completion(.success(currentUser))
@@ -77,7 +81,7 @@ extension Authorizator: RegistratableProtocol {
                     self.extendedProfile(name: name, completion: completion)
                 } else {
                     guard let currentUser = self.currentUser else {
-                        completion(.failure(AuthorizatorError.userCannotFound))
+                        completion(.failure(AuthorizatorError.userWasNotFound))
                         return
                     }
                     completion(.success(currentUser))
@@ -94,11 +98,25 @@ extension Authorizator: RegistratableProtocol {
                 completion(.failure(error))
             } else {
                 guard let currentUser = self.currentUser else {
-                    completion(.failure(AuthorizatorError.userCannotFound))
+                    completion(.failure(AuthorizatorError.userWasNotFound))
                     return
                 }
                 completion(.success(currentUser))
             }
+        })
+    }
+    
+}
+
+// MARK: - UserProfileExtandableProtocol
+
+extension Authorizator: UserProfileExtandableProtocol {
+    
+    func setImageURL(_ url: URL, completion: @escaping (Error?) -> Void) {
+        let request = currentUser?.createProfileChangeRequest()
+        request?.photoURL = url
+        request?.commitChanges(completion: { (error) in
+            completion(error)
         })
     }
     

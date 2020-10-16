@@ -8,6 +8,14 @@
 
 import UIKit
 
+//protocol BindibleViewModel {
+//    var updateUI: (() -> Void)? { get set }
+//}
+//
+//extension BindibleViewModel {
+//    var updateUI: (() -> Void)? { nil }
+//}
+
 class BindibleViewController<ViewModel>: UIViewController {
     
     // MARK: - Public properties
@@ -26,8 +34,14 @@ class BindibleViewController<ViewModel>: UIViewController {
     
     // MARK: - Protected(internal) methods
     
-    internal func bindViewModel() { }
+    internal func bindViewModel() {
+//        viewModel?.updateUI = { [weak self] in
+//            self?.setupUI()
+//        }
+    }
+    
     internal func setupUI() { }
+    
     internal func configurateComponents() { }
     
 }

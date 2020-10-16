@@ -109,6 +109,13 @@
 		8D94E83625374D3B005FA4B9 /* VocabularyFilterEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D94E83525374D3B005FA4B9 /* VocabularyFilterEntity.swift */; };
 		8D94E83925374FBF005FA4B9 /* VocabularyFilterFetchRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D94E83825374FBF005FA4B9 /* VocabularyFilterFetchRequest.swift */; };
 		8D94E83F2539FA2D005FA4B9 /* SecurityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D94E83E2539FA2D005FA4B9 /* SecurityManager.swift */; };
+		8D94E845253A1F8D005FA4B9 /* ImagePickerCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D94E841253A1F8D005FA4B9 /* ImagePickerCoordinator.swift */; };
+		8D94E846253A1F8D005FA4B9 /* ImagePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D94E842253A1F8D005FA4B9 /* ImagePickerViewController.swift */; };
+		8D94E847253A1F8D005FA4B9 /* ImagePickerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D94E843253A1F8D005FA4B9 /* ImagePickerViewModel.swift */; };
+		8D94E84A253A2ABF005FA4B9 /* UIView+CornerRadius.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D94E849253A2ABF005FA4B9 /* UIView+CornerRadius.swift */; };
+		8D94E84C253A344F005FA4B9 /* FirebaseStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D94E84B253A344F005FA4B9 /* FirebaseStorage.swift */; };
+		8D94E850253A4039005FA4B9 /* FirebaseFirestoreRequestProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D94E84F253A4039005FA4B9 /* FirebaseFirestoreRequestProtocol.swift */; };
+		8D94E852253A4052005FA4B9 /* UserImageFirestoreRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D94E851253A4051005FA4B9 /* UserImageFirestoreRequest.swift */; };
 		8D9985EC252929E7009EA144 /* VocabularyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D9985EA252929E7009EA144 /* VocabularyViewController.swift */; };
 		8D9985ED252929E7009EA144 /* VocabularyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D9985EB252929E7009EA144 /* VocabularyViewController.xib */; };
 		8D9985EF252929FF009EA144 /* VocabularyCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D9985EE252929FF009EA144 /* VocabularyCoordinator.swift */; };
@@ -279,6 +286,13 @@
 		8D94E83525374D3B005FA4B9 /* VocabularyFilterEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabularyFilterEntity.swift; sourceTree = "<group>"; };
 		8D94E83825374FBF005FA4B9 /* VocabularyFilterFetchRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabularyFilterFetchRequest.swift; sourceTree = "<group>"; };
 		8D94E83E2539FA2D005FA4B9 /* SecurityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecurityManager.swift; sourceTree = "<group>"; };
+		8D94E841253A1F8D005FA4B9 /* ImagePickerCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerCoordinator.swift; sourceTree = "<group>"; };
+		8D94E842253A1F8D005FA4B9 /* ImagePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerViewController.swift; sourceTree = "<group>"; };
+		8D94E843253A1F8D005FA4B9 /* ImagePickerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerViewModel.swift; sourceTree = "<group>"; };
+		8D94E849253A2ABF005FA4B9 /* UIView+CornerRadius.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+CornerRadius.swift"; sourceTree = "<group>"; };
+		8D94E84B253A344F005FA4B9 /* FirebaseStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseStorage.swift; sourceTree = "<group>"; };
+		8D94E84F253A4039005FA4B9 /* FirebaseFirestoreRequestProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseFirestoreRequestProtocol.swift; sourceTree = "<group>"; };
+		8D94E851253A4051005FA4B9 /* UserImageFirestoreRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserImageFirestoreRequest.swift; sourceTree = "<group>"; };
 		8D9985EA252929E7009EA144 /* VocabularyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabularyViewController.swift; sourceTree = "<group>"; };
 		8D9985EB252929E7009EA144 /* VocabularyViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VocabularyViewController.xib; sourceTree = "<group>"; };
 		8D9985EE252929FF009EA144 /* VocabularyCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabularyCoordinator.swift; sourceTree = "<group>"; };
@@ -691,6 +705,35 @@
 			path = VocabularyFilter;
 			sourceTree = "<group>";
 		};
+		8D94E840253A1F1C005FA4B9 /* ImagePicker */ = {
+			isa = PBXGroup;
+			children = (
+				8D94E841253A1F8D005FA4B9 /* ImagePickerCoordinator.swift */,
+				8D94E842253A1F8D005FA4B9 /* ImagePickerViewController.swift */,
+				8D94E843253A1F8D005FA4B9 /* ImagePickerViewModel.swift */,
+			);
+			path = ImagePicker;
+			sourceTree = "<group>";
+		};
+		8D94E84D253A3FDB005FA4B9 /* FirebaseDatabe */ = {
+			isa = PBXGroup;
+			children = (
+				8DAA55462529129E00FF5066 /* FirebaseDatabaseRequestProtocol.swift */,
+				8DC3CF4C252D3083003CA62A /* Vocabulary */,
+				8D94E83725374FA2005FA4B9 /* VocabularyFilter */,
+			);
+			path = FirebaseDatabe;
+			sourceTree = "<group>";
+		};
+		8D94E84E253A3FE7005FA4B9 /* FirebaseFirestore */ = {
+			isa = PBXGroup;
+			children = (
+				8D94E84F253A4039005FA4B9 /* FirebaseFirestoreRequestProtocol.swift */,
+				8D94E851253A4051005FA4B9 /* UserImageFirestoreRequest.swift */,
+			);
+			path = FirebaseFirestore;
+			sourceTree = "<group>";
+		};
 		8D9985E9252929BF009EA144 /* Vocabulary */ = {
 			isa = PBXGroup;
 			children = (
@@ -705,9 +748,8 @@
 		8DAA5548252912A400FF5066 /* Requests */ = {
 			isa = PBXGroup;
 			children = (
-				8DAA55462529129E00FF5066 /* FirebaseDatabaseRequestProtocol.swift */,
-				8DC3CF4C252D3083003CA62A /* Vocabulary */,
-				8D94E83725374FA2005FA4B9 /* VocabularyFilter */,
+				8D94E84D253A3FDB005FA4B9 /* FirebaseDatabe */,
+				8D94E84E253A3FE7005FA4B9 /* FirebaseFirestore */,
 			);
 			path = Requests;
 			sourceTree = "<group>";
@@ -821,6 +863,7 @@
 				8D524F89252F7E0B002A6E01 /* Courses */,
 				8D524F8A252F7E17002A6E01 /* Messages */,
 				8D524F8B252F7E23002A6E01 /* Account */,
+				8D94E840253A1F1C005FA4B9 /* ImagePicker */,
 				8DD28BC0252679D300F59B7D /* Presentation */,
 				8D524F86252F7ACC002A6E01 /* Filter */,
 				8D66253D252A715800991D45 /* Words */,
@@ -885,6 +928,7 @@
 				8DD28BB5252675F800F59B7D /* UITabBarItem+Init.swift */,
 				8D66252C252A38AD00991D45 /* UIView+Extensions.swift */,
 				8DC3CF36252CFB8D003CA62A /* UIView+Shadow.swift */,
+				8D94E849253A2ABF005FA4B9 /* UIView+CornerRadius.swift */,
 				8DC3CF2B252CD503003CA62A /* UIEdgeInsets+Init.swift */,
 				8DC3CF3D252CFEB5003CA62A /* UIColor+Random.swift */,
 				8D524F66252F0355002A6E01 /* UICollectionView+Extensions.swift */,
@@ -1010,6 +1054,7 @@
 			isa = PBXGroup;
 			children = (
 				8DAA553D25290FDD00FF5066 /* FirebaseDatabase.swift */,
+				8D94E84B253A344F005FA4B9 /* FirebaseStorage.swift */,
 				8D94E7CB2534DF03005FA4B9 /* CoreDataContext.swift */,
 				8D94E7D32534E3DC005FA4B9 /* DataFacade.swift */,
 				8D94E7C42534D102005FA4B9 /* SpeechSynthesizer.swift */,
@@ -1214,6 +1259,7 @@
 				8D94E832253749CE005FA4B9 /* VocabularyFilterCellFactory.swift in Sources */,
 				8D94E82225373FB6005FA4B9 /* VocabularyFilterViewModel.swift in Sources */,
 				8DD28BE12526889200F59B7D /* UINavigationBar+Drivable.swift in Sources */,
+				8D94E84A253A2ABF005FA4B9 /* UIView+CornerRadius.swift in Sources */,
 				8DAA55452529117200FF5066 /* FDEntityProtocol.swift in Sources */,
 				8D524FCE253372A3002A6E01 /* TopBarView.swift in Sources */,
 				8D524FE62533BA46002A6E01 /* FlashCardsCoordinator.swift in Sources */,
@@ -1256,6 +1302,7 @@
 				8D662540252A717500991D45 /* WordsViewController.swift in Sources */,
 				8D524FAD252FA755002A6E01 /* InputViewDrivableModel.swift in Sources */,
 				8DD28BC92526806E00F59B7D /* BorderedButton.swift in Sources */,
+				8D94E852253A4052005FA4B9 /* UserImageFirestoreRequest.swift in Sources */,
 				8D66252F252A3A4D00991D45 /* XibView.swift in Sources */,
 				8D66254E252A7EF900991D45 /* WordsCellFactory.swift in Sources */,
 				8D524FDD2533ABF1002A6E01 /* TextFieldDrivableModel.swift in Sources */,
@@ -1273,8 +1320,10 @@
 				8D524FB7252FBC47002A6E01 /* RootContext.swift in Sources */,
 				8DAA55472529129E00FF5066 /* FirebaseDatabaseRequestProtocol.swift in Sources */,
 				8D524FE82533BC7B002A6E01 /* FlashCardsViewModel.swift in Sources */,
+				8D94E845253A1F8D005FA4B9 /* ImagePickerCoordinator.swift in Sources */,
 				8DD28BC625267A1700F59B7D /* PresentationCoordinator.swift in Sources */,
 				8DD28BC3252679F600F59B7D /* PresentationViewController.swift in Sources */,
+				8D94E850253A4039005FA4B9 /* FirebaseFirestoreRequestProtocol.swift in Sources */,
 				8D94E7D92534F772005FA4B9 /* Reachability.swift in Sources */,
 				8D83EA6A252B8FEA004E6098 /* CreateVocabularyCellFactory.swift in Sources */,
 				8D524F64252E5E8F002A6E01 /* UniversalCollectionSectionViewModel.swift in Sources */,
@@ -1294,6 +1343,7 @@
 				8D662546252A7AAA00991D45 /* UniversalTableView.swift in Sources */,
 				8D94E82B25374823005FA4B9 /* FilterTableViewCellViewModel.swift in Sources */,
 				8D524FAF252FA7FB002A6E01 /* SingInViewModel.swift in Sources */,
+				8D94E84C253A344F005FA4B9 /* FirebaseStorage.swift in Sources */,
 				8D94E7D22534E376005FA4B9 /* WordEntity.swift in Sources */,
 				8DD28C0425289C5300F59B7D /* VocabularyCollectionViewCell.swift in Sources */,
 				8D524FB3252FB654002A6E01 /* SingUpViewModel.swift in Sources */,
@@ -1305,6 +1355,7 @@
 				8D94E82F253748B3005FA4B9 /* FilterTableViewCell.swift in Sources */,
 				8D524F5D252E5AAA002A6E01 /* SearchBarCollectionReusableView.swift in Sources */,
 				8D524FEE2533BEC9002A6E01 /* FlashCardTableViewCell.swift in Sources */,
+				8D94E847253A1F8D005FA4B9 /* ImagePickerViewModel.swift in Sources */,
 				8DD28BD52526856B00F59B7D /* NavigationItemDrivableModel.swift in Sources */,
 				8D524FDF2533ACC0002A6E01 /* UITextField+Drivable.swift in Sources */,
 				8D94E7C52534D102005FA4B9 /* SpeechSynthesizer.swift in Sources */,
@@ -1328,6 +1379,7 @@
 				8D66251F2529F6C000991D45 /* CreateVocabularyViewController.swift in Sources */,
 				8DD28BFB2527B76800F59B7D /* MainCellFactory.swift in Sources */,
 				8D524FA7252F8A9F002A6E01 /* Authorizator.swift in Sources */,
+				8D94E846253A1F8D005FA4B9 /* ImagePickerViewController.swift in Sources */,
 				8DD28BB025266F4000F59B7D /* MainViewController.swift in Sources */,
 				8D94E7D42534E3DC005FA4B9 /* DataFacade.swift in Sources */,
 				8DAA55402529112B00FF5066 /* Vocabulary.swift in Sources */,

@@ -3,13 +3,19 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AccountViewController" customModule="LangnOs" customModuleProvider="target">
             <connections>
-                <outlet property="tableView" destination="9FD-8z-cwu" id="b9X-tC-8vV"/>
+                <outlet property="activityIndicator" destination="aip-uf-vpo" id="gTL-Fb-G4G"/>
+                <outlet property="bottomCardView" destination="aKC-6Z-WiY" id="xCZ-Nx-fen"/>
+                <outlet property="detailsButton" destination="Pvh-HO-ccy" id="R1E-QT-XIE"/>
+                <outlet property="userEmailLabel" destination="J3f-LW-3yC" id="URT-zK-fwd"/>
+                <outlet property="userImageView" destination="oLa-lW-YRc" id="rVo-JW-bUA"/>
+                <outlet property="userNameLabel" destination="8tb-c5-4N1" id="ELv-mb-bH6"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -18,19 +24,107 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="9FD-8z-cwu" customClass="UniversalTableView" customModule="LangnOs" customModuleProvider="target">
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="H8K-3x-Fql">
                     <rect key="frame" x="0.0" y="44" width="414" height="818"/>
-                </tableView>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iyO-nz-uCl">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="409"/>
+                            <subviews>
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="oLa-lW-YRc">
+                                    <rect key="frame" x="57" y="54.5" width="300" height="300"/>
+                                    <color key="tintColor" name="Icon"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="300" id="Nr5-OX-N7r"/>
+                                        <constraint firstAttribute="width" secondItem="oLa-lW-YRc" secondAttribute="height" multiplier="1:1" id="igP-od-skF"/>
+                                    </constraints>
+                                </imageView>
+                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="aip-uf-vpo">
+                                    <rect key="frame" x="188.5" y="186" width="37" height="37"/>
+                                </activityIndicatorView>
+                            </subviews>
+                            <color key="backgroundColor" name="AppBackground"/>
+                            <constraints>
+                                <constraint firstItem="oLa-lW-YRc" firstAttribute="centerX" secondItem="iyO-nz-uCl" secondAttribute="centerX" id="Ssv-KI-8Dp"/>
+                                <constraint firstItem="aip-uf-vpo" firstAttribute="centerY" secondItem="iyO-nz-uCl" secondAttribute="centerY" id="ohJ-Vc-TCW"/>
+                                <constraint firstItem="aip-uf-vpo" firstAttribute="centerX" secondItem="iyO-nz-uCl" secondAttribute="centerX" id="yiH-W0-Od0"/>
+                                <constraint firstItem="oLa-lW-YRc" firstAttribute="centerY" secondItem="iyO-nz-uCl" secondAttribute="centerY" id="yn8-PH-P5v"/>
+                            </constraints>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aKC-6Z-WiY">
+                            <rect key="frame" x="0.0" y="409" width="414" height="409"/>
+                            <subviews>
+                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="H16-R2-xJr">
+                                    <rect key="frame" x="32" y="32" width="350" height="82.5"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="James Martina" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8tb-c5-4N1">
+                                            <rect key="frame" x="0.0" y="0.0" width="281.5" height="49"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="41"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J3f-LW-3yC">
+                                            <rect key="frame" x="0.0" y="57" width="49.5" height="25.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </stackView>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fva-nP-f7p">
+                                    <rect key="frame" x="0.0" y="309" width="414" height="100"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pvh-HO-ccy">
+                                            <rect key="frame" x="330" y="16" width="68" height="68"/>
+                                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" secondItem="Pvh-HO-ccy" secondAttribute="height" multiplier="1:1" id="kEs-Sq-2I9"/>
+                                            </constraints>
+                                            <color key="tintColor" name="Icon"/>
+                                            <state key="normal" image="arrow.right" catalog="system">
+                                                <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="27"/>
+                                            </state>
+                                        </button>
+                                    </subviews>
+                                    <color key="backgroundColor" name="Icon"/>
+                                    <constraints>
+                                        <constraint firstAttribute="trailing" secondItem="Pvh-HO-ccy" secondAttribute="trailing" constant="16" id="F2H-Rh-WgC"/>
+                                        <constraint firstItem="Pvh-HO-ccy" firstAttribute="top" secondItem="fva-nP-f7p" secondAttribute="top" constant="16" id="SQG-QV-TZz"/>
+                                        <constraint firstAttribute="height" constant="100" id="XAA-3n-GQa"/>
+                                        <constraint firstAttribute="bottom" secondItem="Pvh-HO-ccy" secondAttribute="bottom" constant="16" id="mQW-Vi-6QL"/>
+                                    </constraints>
+                                </view>
+                            </subviews>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            <constraints>
+                                <constraint firstAttribute="trailing" secondItem="fva-nP-f7p" secondAttribute="trailing" id="0TG-dc-5mg"/>
+                                <constraint firstItem="H16-R2-xJr" firstAttribute="top" secondItem="aKC-6Z-WiY" secondAttribute="top" constant="32" id="2tw-Hb-Jiw"/>
+                                <constraint firstItem="H16-R2-xJr" firstAttribute="leading" secondItem="aKC-6Z-WiY" secondAttribute="leading" constant="32" id="JoV-eV-3Vl"/>
+                                <constraint firstItem="fva-nP-f7p" firstAttribute="leading" secondItem="aKC-6Z-WiY" secondAttribute="leading" id="TMU-F8-R9I"/>
+                                <constraint firstAttribute="bottom" secondItem="fva-nP-f7p" secondAttribute="bottom" id="Zrd-Dx-UhM"/>
+                                <constraint firstAttribute="trailing" secondItem="H16-R2-xJr" secondAttribute="trailing" constant="32" id="bRF-W6-iMA"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                </stackView>
             </subviews>
-            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+            <color key="backgroundColor" name="AppBackground"/>
             <constraints>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="9FD-8z-cwu" secondAttribute="trailing" id="LaX-Qe-eZq"/>
-                <constraint firstItem="9FD-8z-cwu" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="d9j-eC-h86"/>
-                <constraint firstItem="9FD-8z-cwu" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="eaD-Sa-7Vf"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="9FD-8z-cwu" secondAttribute="bottom" id="zVf-V1-rv4"/>
+                <constraint firstItem="H8K-3x-Fql" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="5da-3d-hSL"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="H8K-3x-Fql" secondAttribute="trailing" id="5ut-Bm-wjj"/>
+                <constraint firstItem="H8K-3x-Fql" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="HPg-Od-HW0"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="H8K-3x-Fql" secondAttribute="bottom" id="lGh-2c-xvi"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <point key="canvasLocation" x="139" y="153"/>
         </view>
     </objects>
+    <resources>
+        <image name="arrow.right" catalog="system" width="128" height="98"/>
+        <namedColor name="AppBackground">
+            <color red="0.93699997663497925" green="0.95300000905990601" blue="0.98400002717971802" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Icon">
+            <color red="0.41999998688697815" green="0.54500001668930054" blue="0.96100002527236938" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
 </document>

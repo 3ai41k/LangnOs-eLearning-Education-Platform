@@ -11,9 +11,14 @@ import UIKit
 protocol AccountNavigationProtocol {
     func navigateToSingIn()
     func navigateToPresention()
+    func navigateToImagePicker(sourceType: UIImagePickerController.SourceType, didImageSelect: @escaping (UIImage) -> Void)
 }
 
-final class AccountCoordinator: Coordinator {
+typealias AccountCoordinatorProtocol =
+    AccountNavigationProtocol &
+    AlertPresentableProtocol
+
+final class AccountCoordinator: Coordinator, AlertPresentableProtocol {
     
     // MARK: - Private methods
     
@@ -31,10 +36,12 @@ final class AccountCoordinator: Coordinator {
     
     override func start() {
         let securityManager = SecurityManager.shared
+        let storage = FirebaseStorage()
         let authorizator = Authorizator()
         let accountViewModel = AccountViewModel(router: self,
                                                 context: context,
                                                 securityManager: securityManager,
+                                                storage: storage,
                                                 authorizator: authorizator)
         
         let accountViewController = AccountViewController()
@@ -59,6 +66,13 @@ extension AccountCoordinator: AccountNavigationProtocol {
     func navigateToPresention() {
         let presentationCoordinator = PresentationCoordinator(parentViewController: viewController)
         presentationCoordinator.start()
+    }
+    
+    func navigateToImagePicker(sourceType: UIImagePickerController.SourceType, didImageSelect: @escaping (UIImage) -> Void) {
+        let imagePickerCoordinator = ImagePickerCoordinator(sourceType: sourceType,
+                                                            didImageSelect: didImageSelect,
+                                                            parentViewController: viewController)
+        imagePickerCoordinator.start()
     }
     
 }
