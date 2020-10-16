@@ -66,16 +66,16 @@ enum TabBarProvider: Int, CaseIterable {
         }
     }
     
-    func generateCoordinator(parentViewController: UIViewController?) -> Coordinator {
+    func generateCoordinator(context: RootContextProtocol, parentViewController: UIViewController?) -> Coordinator {
         switch self {
         case .main:
-            return MainCoordinator(parentViewController: parentViewController)
+            return MainCoordinator(context: context, parentViewController: parentViewController)
         case .courses:
             return CoursesCoordinator(parentViewController: parentViewController)
         case .messages:
             return MessagesCoordinator(parentViewController: parentViewController)
         case .account:
-            return AccountCoordinator(parentViewController: parentViewController)
+            return AccountCoordinator(context: context, parentViewController: parentViewController)
         }
     }
     

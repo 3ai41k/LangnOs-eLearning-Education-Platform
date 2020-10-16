@@ -6,7 +6,7 @@
 //  Copyright © 2020 NL. All rights reserved.
 //
 
-import Foundation
+import FirebaseAuth
 import Combine
 
 protocol AccountInputProtocol: NavigatableViewModelProtocol {
@@ -30,19 +30,25 @@ final class AccountViewModel: AccountBindingProtocol {
     // MARK: - Private properties
     
     private let router: AccountNavigationProtocol
-    private let authorizator: LoginableProtocol
-    private let context: SingInPublisherContextProtocol
+    private let context: SingInPublisherContextProtocol & UserSessesionContextProtocol
+    private let securityManager: SecurityManager
     
-    private var cancellables: [AnyCancellable]
+    
+    private let authorizator: LoginableProtocol
+    
+    private var cancellables: [AnyCancellable] = []
     
     // MARK: - Init
     
-    init(router: AccountNavigationProtocol, authorizator: LoginableProtocol, context: SingInPublisherContextProtocol) {
+    init(router: AccountNavigationProtocol,
+         context: SingInPublisherContextProtocol & UserSessesionContextProtocol,
+         securityManager: SecurityManager,
+         authorizator: LoginableProtocol) {
         self.router = router
-        self.authorizator = authorizator
         self.context = context
+        self.securityManager = securityManager
+        self.authorizator = authorizator
         
-        self.cancellables = []
         
         bindContext()
     }
@@ -51,6 +57,8 @@ final class AccountViewModel: AccountBindingProtocol {
     
     private func bindContext() {
         context.userSingInPublisher.sink { [weak self] (user) in
+            self?.securityManager.setUser(user)
+            self?.router.navigateToPresention()
             self?.reloadUI?()
         }.store(in: &cancellables )
     }
@@ -69,6 +77,8 @@ final class AccountViewModel: AccountBindingProtocol {
                 // TO DO: Error handling
                 print(error.localizedDescription)
             } else {
+                self.securityManager.removeUser()
+                self.context.removeUserFromCurrentSession()
                 self.reloadUI?()
             }
         }
@@ -89,13 +99,14 @@ extension AccountViewModel: AccountInputProtocol {
                                                      style: .done,
                                                      target: self,
                                                      selector: #selector(didLogoutTouched))
-        let rightBarButtons = authorizator.isUserLogin ? [logoutBarButton] : [singInBarButton]
-        return NavigationItemDrivableModel(title: "Hello, Anonimus".localize,
+        let title = "Hello, \(securityManager.user?.displayName ?? "Anonimus")"
+        let rightBarButtons = securityManager.user != nil ? [logoutBarButton] : [singInBarButton]
+        return NavigationItemDrivableModel(title: title,
                                            leftBarButtonDrivableModels: [],
                                            rightBarButtonDrivableModels: rightBarButtons)
     }
     
-    var navigationBarDrivableModel: DrivableModelProtocol {
+    var navigationBarDrivableModel: DrivableModelProtocol? {
         NavigationBarDrivableModel(isBottomLineHidden: true,
                                    backgroundColor: .white,
                                    prefersLargeTitles: true)

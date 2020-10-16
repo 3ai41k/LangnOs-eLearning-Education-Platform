@@ -19,16 +19,25 @@ typealias MainCoordinatorProtocol = MainNavigationProtocol & AlertPresentablePro
 
 final class MainCoordinator: Coordinator, MainCoordinatorProtocol {
     
+    // MARK: - Private properties
+    
+    private let context: RootContextProtocol
+    
+    // MARK: - Init
+    
+    init(context: RootContextProtocol, parentViewController: UIViewController?) {
+        self.context = context
+        
+        super.init(parentViewController: parentViewController)
+    }
+    
     // MARK: - Override
     
     override func start() {
-        let authorizator = Authorizator()
-        let securityInfo = SecurityInfo()
         let coreDataContext = CoreDataContext()
         let dataFacade = DataFacade()
         let mainViewModel = MainViewModel(router: self,
-                                          userInfo: securityInfo,
-                                          authorizator: authorizator,
+                                          contex: context,
                                           coreDataContext: coreDataContext,
                                           dataFacade: dataFacade)
         
@@ -65,7 +74,7 @@ final class MainCoordinator: Coordinator, MainCoordinatorProtocol {
     }
     
     func navigateToSingIn() {
-        let context = AuthorizationContext()
+        let context = RootContext()
         let singInCoordinator = SingInCoordinator(context: context, parentViewController: viewController)
         singInCoordinator.start()
     }

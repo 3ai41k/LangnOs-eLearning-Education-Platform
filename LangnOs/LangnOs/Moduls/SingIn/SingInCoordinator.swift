@@ -18,11 +18,11 @@ final class SingInCoordinator: Coordinator, SingInCoordinatorProtocol {
     
     // MARK: - Private properties
     
-    private let context: AuthorizationContextProtocol
+    private let context: RootContextProtocol
     
     // MARK: - Init
     
-    init(context: AuthorizationContextProtocol, parentViewController: UIViewController?) {
+    init(context: RootContextProtocol, parentViewController: UIViewController?) {
         self.context = context
         super.init(parentViewController: parentViewController)
     }

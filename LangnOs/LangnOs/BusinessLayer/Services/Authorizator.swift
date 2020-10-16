@@ -13,7 +13,6 @@ enum AuthorizatorError: Error {
 }
 
 protocol LoginableProtocol {
-    var isUserLogin: Bool { get }
     func logOut(completion: (Error?) -> Void)
 }
 
@@ -39,10 +38,6 @@ final class Authorizator {
 // MARK: - LoginableProtocol
 
 extension Authorizator: LoginableProtocol {
-    
-    var isUserLogin: Bool {
-        currentUser != nil
-    }
     
     func logOut(completion: (Error?) -> Void) {
         do {

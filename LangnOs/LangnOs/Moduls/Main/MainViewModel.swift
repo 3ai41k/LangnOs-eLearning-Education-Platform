@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import FirebaseAuth
+import Combine
 
 protocol NavigatableViewModelProtocol {
     var navigationItemDrivableModel: DrivableModelProtocol { get }
@@ -34,8 +36,11 @@ final class MainViewModel: UniversalCollectionViewViewModel {
     // MARK: - Private properties
     
     private let router: MainCoordinatorProtocol
-    private let userInfo: UserInfoProtocol
-    private let authorizator: LoginableProtocol
+    private let contex: UserSessesionPublisherContextProtocol
+    
+    private var user: User?
+    private var cancellables: [AnyCancellable] = []
+    
     private let coreDataContext: ContextAccessableProtocol
     private let dataFacade: DataFacadeFetchingProtocol
     private var vocabularies: [Vocabulary] = [] {
@@ -54,21 +59,20 @@ final class MainViewModel: UniversalCollectionViewViewModel {
     // MARK: - Init
     
     init(router: MainCoordinatorProtocol,
-         userInfo: UserInfoProtocol,
-         authorizator: LoginableProtocol,
+         contex: UserSessesionPublisherContextProtocol,
          coreDataContext: ContextAccessableProtocol,
          dataFacade: DataFacadeFetchingProtocol) {
         self.router = router
-        self.userInfo = userInfo
-        self.authorizator = authorizator
+        self.contex = contex
         self.coreDataContext = coreDataContext
         self.dataFacade = dataFacade
+        
+        bindContext()
         
         setupVocabularySection(&tableSections)
     }
     
     // MARK: - Public methods
-    // UniversalCollectionViewViewModel
     
     func didSelectCellAt(indexPath: IndexPath) {
         let vocabulary = vocabularies[indexPath.row]
@@ -85,6 +89,18 @@ final class MainViewModel: UniversalCollectionViewViewModel {
     
     // MARK: - Private methods
     
+    private func bindContext() {
+        contex.userSessionPublisher.sink { [weak self] (state) in
+            switch state {
+            case .didSet(let user):
+                self?.user = user
+            case .didRemove:
+                self?.user = nil
+            }
+            self?.fetchData()
+        }.store(in: &cancellables)
+    }
+    
     private func setupVocabularySection(_ tableSections: inout [CollectionSectionViewModelProtocol]) {
         // FIX IT - Retain cycle. [weak self]
         let sectionViewModel = SearchBarCollectionReusableViewModel(textDidChange: searchVocabulary,
@@ -100,16 +116,19 @@ final class MainViewModel: UniversalCollectionViewViewModel {
             completion?()
         }
         
-        guard let userId = userInfo.userId else { return }
-        
-        let request = VocabularyFetchRequest(userId: userId)
-        dataFacade.fetch(request: request) { (result: Result<[Vocabulary], Error>) in
-            switch result {
-            case .success(let vocabularies):
-                self.vocabularies = vocabularies
-            case .failure(let error):
-                print(error.localizedDescription)
+        if let userId = user?.uid {
+            let request = VocabularyFetchRequest(userId: userId)
+            dataFacade.fetch(request: request) { (result: Result<[Vocabulary], Error>) in
+                switch result {
+                case .success(let vocabularies):
+                    self.vocabularies = vocabularies
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
             }
+        } else {
+            // TO DO: Remove from the device
+            self.vocabularies = []
         }
     }
     
@@ -142,7 +161,7 @@ final class MainViewModel: UniversalCollectionViewViewModel {
     
     @objc
     private func didCreateNewVocabularyTouched() {
-        if authorizator.isUserLogin {
+        if let _ = user {
             router.createNewVocabulary(didVocabularyCreateHandler: didVocabularyCreate)
         } else {
             let canelAlertAction = CancelAlertAction(handler: { })

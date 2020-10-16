@@ -13,11 +13,12 @@ final class PresentationCoordinator: Coordinator {
     // MARK: - Override
     
     override func start() {
-        let presentationViewModel = PresentationViewModel()
-        let presentationViewController = PresentationViewController()
-        presentationViewController.viewModel = presentationViewModel
+        let viewModel = PresentationViewModel()
+        let viewController = PresentationViewController()
+        viewController.viewModel = viewModel
         
-        viewController = presentationViewController
+        self.viewController = viewController
+        self.parentViewController?.present(viewController, animated: true, completion: nil)
     }
     
 }

@@ -14,8 +14,7 @@ final class AccountViewController: BindibleViewController<AccountInputProtocol &
     
     @IBOutlet private weak var tableView: UniversalTableView! {
         didSet {
-            let rect = CGRect(x: .zero, y: .zero, width: .zero, height: 200.0)
-            tableView.tableHeaderView = UserImageView(frame: rect)
+            
         }
     }
     

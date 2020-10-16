@@ -32,7 +32,7 @@
 		8D524FAF252FA7FB002A6E01 /* SingInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D524FAE252FA7FB002A6E01 /* SingInViewModel.swift */; };
 		8D524FB1252FB3CB002A6E01 /* SingUpCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D524FB0252FB3CB002A6E01 /* SingUpCoordinator.swift */; };
 		8D524FB3252FB654002A6E01 /* SingUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D524FB2252FB654002A6E01 /* SingUpViewModel.swift */; };
-		8D524FB7252FBC47002A6E01 /* AuthorizationContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D524FB6252FBC47002A6E01 /* AuthorizationContext.swift */; };
+		8D524FB7252FBC47002A6E01 /* RootContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D524FB6252FBC47002A6E01 /* RootContext.swift */; };
 		8D524FBA252FC4C5002A6E01 /* SecurityInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D524FB9252FC4C5002A6E01 /* SecurityInfo.swift */; };
 		8D524FC72530D1D8002A6E01 /* UIButton+Drivable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D524FC62530D1D8002A6E01 /* UIButton+Drivable.swift */; };
 		8D524FC92530D22A002A6E01 /* ButtonDrivableModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D524FC82530D22A002A6E01 /* ButtonDrivableModel.swift */; };
@@ -109,6 +109,7 @@
 		8D94E83425374BA2005FA4B9 /* VocabularyFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D94E83325374BA2005FA4B9 /* VocabularyFilter.swift */; };
 		8D94E83625374D3B005FA4B9 /* VocabularyFilterEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D94E83525374D3B005FA4B9 /* VocabularyFilterEntity.swift */; };
 		8D94E83925374FBF005FA4B9 /* VocabularyFilterFetchRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D94E83825374FBF005FA4B9 /* VocabularyFilterFetchRequest.swift */; };
+		8D94E83F2539FA2D005FA4B9 /* SecurityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D94E83E2539FA2D005FA4B9 /* SecurityManager.swift */; };
 		8D9985EC252929E7009EA144 /* VocabularyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D9985EA252929E7009EA144 /* VocabularyViewController.swift */; };
 		8D9985ED252929E7009EA144 /* VocabularyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D9985EB252929E7009EA144 /* VocabularyViewController.xib */; };
 		8D9985EF252929FF009EA144 /* VocabularyCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D9985EE252929FF009EA144 /* VocabularyCoordinator.swift */; };
@@ -202,7 +203,7 @@
 		8D524FAE252FA7FB002A6E01 /* SingInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingInViewModel.swift; sourceTree = "<group>"; };
 		8D524FB0252FB3CB002A6E01 /* SingUpCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingUpCoordinator.swift; sourceTree = "<group>"; };
 		8D524FB2252FB654002A6E01 /* SingUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingUpViewModel.swift; sourceTree = "<group>"; };
-		8D524FB6252FBC47002A6E01 /* AuthorizationContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationContext.swift; sourceTree = "<group>"; };
+		8D524FB6252FBC47002A6E01 /* RootContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootContext.swift; sourceTree = "<group>"; };
 		8D524FB9252FC4C5002A6E01 /* SecurityInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecurityInfo.swift; sourceTree = "<group>"; };
 		8D524FC62530D1D8002A6E01 /* UIButton+Drivable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Drivable.swift"; sourceTree = "<group>"; };
 		8D524FC82530D22A002A6E01 /* ButtonDrivableModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonDrivableModel.swift; sourceTree = "<group>"; };
@@ -279,6 +280,7 @@
 		8D94E83325374BA2005FA4B9 /* VocabularyFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabularyFilter.swift; sourceTree = "<group>"; };
 		8D94E83525374D3B005FA4B9 /* VocabularyFilterEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabularyFilterEntity.swift; sourceTree = "<group>"; };
 		8D94E83825374FBF005FA4B9 /* VocabularyFilterFetchRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabularyFilterFetchRequest.swift; sourceTree = "<group>"; };
+		8D94E83E2539FA2D005FA4B9 /* SecurityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecurityManager.swift; sourceTree = "<group>"; };
 		8D9985EA252929E7009EA144 /* VocabularyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabularyViewController.swift; sourceTree = "<group>"; };
 		8D9985EB252929E7009EA144 /* VocabularyViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VocabularyViewController.xib; sourceTree = "<group>"; };
 		8D9985EE252929FF009EA144 /* VocabularyCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabularyCoordinator.swift; sourceTree = "<group>"; };
@@ -432,14 +434,6 @@
 			path = UserImage;
 			sourceTree = "<group>";
 		};
-		8D524FA5252F8A75002A6E01 /* Authorizator */ = {
-			isa = PBXGroup;
-			children = (
-				8D524FA6252F8A9F002A6E01 /* Authorizator.swift */,
-			);
-			path = Authorizator;
-			sourceTree = "<group>";
-		};
 		8D524FA9252FA6D1002A6E01 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -450,14 +444,6 @@
 				8D524FDE2533ACC0002A6E01 /* UITextField+Drivable.swift */,
 			);
 			path = Extensions;
-			sourceTree = "<group>";
-		};
-		8D524FB8252FC498002A6E01 /* SecurityInfo */ = {
-			isa = PBXGroup;
-			children = (
-				8D524FB9252FC4C5002A6E01 /* SecurityInfo.swift */,
-			);
-			path = SecurityInfo;
 			sourceTree = "<group>";
 		};
 		8D524FCC25337288002A6E01 /* TopBar */ = {
@@ -647,22 +633,6 @@
 			path = VocabularyInfo;
 			sourceTree = "<group>";
 		};
-		8D94E7C32534D0F9005FA4B9 /* SpeechSynthesizer */ = {
-			isa = PBXGroup;
-			children = (
-				8D94E7C42534D102005FA4B9 /* SpeechSynthesizer.swift */,
-			);
-			path = SpeechSynthesizer;
-			sourceTree = "<group>";
-		};
-		8D94E7C82534DEAD005FA4B9 /* CoreData */ = {
-			isa = PBXGroup;
-			children = (
-				8D94E7CB2534DF03005FA4B9 /* CoreDataContext.swift */,
-			);
-			path = CoreData;
-			sourceTree = "<group>";
-		};
 		8D94E7CD2534E0F1005FA4B9 /* CoreDataEntities */ = {
 			isa = PBXGroup;
 			children = (
@@ -682,24 +652,6 @@
 				8DC3CF58252D3977003CA62A /* EmptyableProtocol.swift */,
 			);
 			path = Protocols;
-			sourceTree = "<group>";
-		};
-		8D94E7D72534F765005FA4B9 /* Reachability */ = {
-			isa = PBXGroup;
-			children = (
-				8D94E7D82534F772005FA4B9 /* Reachability.swift */,
-			);
-			path = Reachability;
-			sourceTree = "<group>";
-		};
-		8D94E7DA2534FEC6005FA4B9 /* Data */ = {
-			isa = PBXGroup;
-			children = (
-				8DAA55412529113A00FF5066 /* FirebaseDatabase */,
-				8D94E7C82534DEAD005FA4B9 /* CoreData */,
-				8D94E7D32534E3DC005FA4B9 /* DataFacade.swift */,
-			);
-			path = Data;
 			sourceTree = "<group>";
 		};
 		8D94E7DE25362FA5005FA4B9 /* Background */ = {
@@ -750,15 +702,6 @@
 				8D9985EB252929E7009EA144 /* VocabularyViewController.xib */,
 			);
 			path = Vocabulary;
-			sourceTree = "<group>";
-		};
-		8DAA55412529113A00FF5066 /* FirebaseDatabase */ = {
-			isa = PBXGroup;
-			children = (
-				8DAA5548252912A400FF5066 /* Requests */,
-				8DAA553D25290FDD00FF5066 /* FirebaseDatabase.swift */,
-			);
-			path = FirebaseDatabase;
 			sourceTree = "<group>";
 		};
 		8DAA5548252912A400FF5066 /* Requests */ = {
@@ -896,6 +839,7 @@
 			children = (
 				8DD28B84252667F600F59B7D /* AppDelegate.swift */,
 				8DD28B86252667F600F59B7D /* SceneDelegate.swift */,
+				8D524FB6252FBC47002A6E01 /* RootContext.swift */,
 				8DD28BA525266BCE00F59B7D /* RootCoordinator.swift */,
 				8DD28BA725266C8200F59B7D /* RootTabBarController.swift */,
 				8DD28BA925266CDB00F59B7D /* RootViewModel.swift */,
@@ -930,6 +874,7 @@
 			isa = PBXGroup;
 			children = (
 				8DD28C0E2528AA2C00F59B7D /* Models */,
+				8DAA5548252912A400FF5066 /* Requests */,
 				8DD28C0D2528AA2200F59B7D /* Services */,
 			);
 			path = BusinessLayer;
@@ -1066,11 +1011,14 @@
 		8DD28C0D2528AA2200F59B7D /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				8D94E7DA2534FEC6005FA4B9 /* Data */,
-				8D94E7C32534D0F9005FA4B9 /* SpeechSynthesizer */,
-				8D524FB8252FC498002A6E01 /* SecurityInfo */,
-				8D524FA5252F8A75002A6E01 /* Authorizator */,
-				8D94E7D72534F765005FA4B9 /* Reachability */,
+				8DAA553D25290FDD00FF5066 /* FirebaseDatabase.swift */,
+				8D94E7CB2534DF03005FA4B9 /* CoreDataContext.swift */,
+				8D94E7D32534E3DC005FA4B9 /* DataFacade.swift */,
+				8D94E7C42534D102005FA4B9 /* SpeechSynthesizer.swift */,
+				8D94E83E2539FA2D005FA4B9 /* SecurityManager.swift */,
+				8D524FB9252FC4C5002A6E01 /* SecurityInfo.swift */,
+				8D524FA6252F8A9F002A6E01 /* Authorizator.swift */,
+				8D94E7D82534F772005FA4B9 /* Reachability.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -1090,7 +1038,6 @@
 		8DD28C0F2528ADEC00F59B7D /* SingIn */ = {
 			isa = PBXGroup;
 			children = (
-				8D524FB6252FBC47002A6E01 /* AuthorizationContext.swift */,
 				8DD28C112528AEC800F59B7D /* SingInCoordinator.swift */,
 				8D524FAE252FA7FB002A6E01 /* SingInViewModel.swift */,
 				8DD28C132528AEEF00F59B7D /* SingInViewController.swift */,
@@ -1326,7 +1273,7 @@
 				8D83EA80252BA2A2004E6098 /* VocabularyInfoTableViewCell.swift in Sources */,
 				8DC3CF3E252CFEB5003CA62A /* UIColor+Random.swift in Sources */,
 				8D83EA83252BA2D7004E6098 /* VocabularyInfoTableViewCellViewModel.swift in Sources */,
-				8D524FB7252FBC47002A6E01 /* AuthorizationContext.swift in Sources */,
+				8D524FB7252FBC47002A6E01 /* RootContext.swift in Sources */,
 				8DAA55472529129E00FF5066 /* FirebaseDatabaseRequestProtocol.swift in Sources */,
 				8D524FE82533BC7B002A6E01 /* FlashCardsViewModel.swift in Sources */,
 				8DD28BC625267A1700F59B7D /* PresentationCoordinator.swift in Sources */,
@@ -1358,6 +1305,7 @@
 				8DAA553E25290FDD00FF5066 /* FirebaseDatabase.swift in Sources */,
 				8D524FB1252FB3CB002A6E01 /* SingUpCoordinator.swift in Sources */,
 				8D524F92252F7E8B002A6E01 /* MessagesViewController.swift in Sources */,
+				8D94E83F2539FA2D005FA4B9 /* SecurityManager.swift in Sources */,
 				8D94E82F253748B3005FA4B9 /* FilterTableViewCell.swift in Sources */,
 				8D524F5D252E5AAA002A6E01 /* SearchBarCollectionReusableView.swift in Sources */,
 				8D524FEE2533BEC9002A6E01 /* FlashCardTableViewCell.swift in Sources */,
