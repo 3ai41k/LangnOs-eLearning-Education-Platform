@@ -37,8 +37,8 @@ final class MainViewModel: UniversalCollectionViewViewModel {
     
     private let router: MainCoordinatorProtocol
     private let contex: UserSessesionPublisherContextProtocol
+    private let securityManager: SecurityManager
     
-    private var user: User?
     private var cancellables: [AnyCancellable] = []
     
     private let coreDataContext: ContextAccessableProtocol
@@ -60,10 +60,12 @@ final class MainViewModel: UniversalCollectionViewViewModel {
     
     init(router: MainCoordinatorProtocol,
          contex: UserSessesionPublisherContextProtocol,
+         securityManager: SecurityManager,
          coreDataContext: ContextAccessableProtocol,
          dataFacade: DataFacadeFetchingProtocol) {
         self.router = router
         self.contex = contex
+        self.securityManager = securityManager
         self.coreDataContext = coreDataContext
         self.dataFacade = dataFacade
         
@@ -90,13 +92,7 @@ final class MainViewModel: UniversalCollectionViewViewModel {
     // MARK: - Private methods
     
     private func bindContext() {
-        contex.userSessionPublisher.sink { [weak self] (state) in
-            switch state {
-            case .didSet(let user):
-                self?.user = user
-            case .didRemove:
-                self?.user = nil
-            }
+        contex.userSessionPublisher.sink { [weak self] _ in
             self?.fetchData()
         }.store(in: &cancellables)
     }
@@ -116,7 +112,7 @@ final class MainViewModel: UniversalCollectionViewViewModel {
             completion?()
         }
         
-        if let userId = user?.uid {
+        if let userId = securityManager.user?.uid {
             let request = VocabularyFetchRequest(userId: userId)
             dataFacade.fetch(request: request) { (result: Result<[Vocabulary], Error>) in
                 switch result {
@@ -161,8 +157,8 @@ final class MainViewModel: UniversalCollectionViewViewModel {
     
     @objc
     private func didCreateNewVocabularyTouched() {
-        if let _ = user {
-            router.createNewVocabulary(didVocabularyCreateHandler: didVocabularyCreate)
+        if let user = securityManager.user {
+            router.createNewVocabulary(user: user, didVocabularyCreateHandler: didVocabularyCreate)
         } else {
             let canelAlertAction = CancelAlertAction(handler: { })
             let singInAlertAction = SingInAlertAction(handler: didSingInTouched)

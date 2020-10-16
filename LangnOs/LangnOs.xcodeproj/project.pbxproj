@@ -33,7 +33,6 @@
 		8D524FB1252FB3CB002A6E01 /* SingUpCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D524FB0252FB3CB002A6E01 /* SingUpCoordinator.swift */; };
 		8D524FB3252FB654002A6E01 /* SingUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D524FB2252FB654002A6E01 /* SingUpViewModel.swift */; };
 		8D524FB7252FBC47002A6E01 /* RootContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D524FB6252FBC47002A6E01 /* RootContext.swift */; };
-		8D524FBA252FC4C5002A6E01 /* SecurityInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D524FB9252FC4C5002A6E01 /* SecurityInfo.swift */; };
 		8D524FC72530D1D8002A6E01 /* UIButton+Drivable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D524FC62530D1D8002A6E01 /* UIButton+Drivable.swift */; };
 		8D524FC92530D22A002A6E01 /* ButtonDrivableModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D524FC82530D22A002A6E01 /* ButtonDrivableModel.swift */; };
 		8D524FCE253372A3002A6E01 /* TopBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D524FCD253372A3002A6E01 /* TopBarView.swift */; };
@@ -204,7 +203,6 @@
 		8D524FB0252FB3CB002A6E01 /* SingUpCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingUpCoordinator.swift; sourceTree = "<group>"; };
 		8D524FB2252FB654002A6E01 /* SingUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingUpViewModel.swift; sourceTree = "<group>"; };
 		8D524FB6252FBC47002A6E01 /* RootContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootContext.swift; sourceTree = "<group>"; };
-		8D524FB9252FC4C5002A6E01 /* SecurityInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecurityInfo.swift; sourceTree = "<group>"; };
 		8D524FC62530D1D8002A6E01 /* UIButton+Drivable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Drivable.swift"; sourceTree = "<group>"; };
 		8D524FC82530D22A002A6E01 /* ButtonDrivableModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonDrivableModel.swift; sourceTree = "<group>"; };
 		8D524FCD253372A3002A6E01 /* TopBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopBarView.swift; sourceTree = "<group>"; };
@@ -1016,7 +1014,6 @@
 				8D94E7D32534E3DC005FA4B9 /* DataFacade.swift */,
 				8D94E7C42534D102005FA4B9 /* SpeechSynthesizer.swift */,
 				8D94E83E2539FA2D005FA4B9 /* SecurityManager.swift */,
-				8D524FB9252FC4C5002A6E01 /* SecurityInfo.swift */,
 				8D524FA6252F8A9F002A6E01 /* Authorizator.swift */,
 				8D94E7D82534F772005FA4B9 /* Reachability.swift */,
 			);
@@ -1301,7 +1298,6 @@
 				8DD28C0425289C5300F59B7D /* VocabularyCollectionViewCell.swift in Sources */,
 				8D524FB3252FB654002A6E01 /* SingUpViewModel.swift in Sources */,
 				8D524F67252F0355002A6E01 /* UICollectionView+Extensions.swift in Sources */,
-				8D524FBA252FC4C5002A6E01 /* SecurityInfo.swift in Sources */,
 				8DAA553E25290FDD00FF5066 /* FirebaseDatabase.swift in Sources */,
 				8D524FB1252FB3CB002A6E01 /* SingUpCoordinator.swift in Sources */,
 				8D524F92252F7E8B002A6E01 /* MessagesViewController.swift in Sources */,

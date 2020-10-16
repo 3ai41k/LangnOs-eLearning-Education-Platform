@@ -6,7 +6,7 @@
 //  Copyright © 2020 NL. All rights reserved.
 //
 
-import Foundation
+import FirebaseAuth
 
 protocol CreateVocabularyViewModelInputProtocol: NavigatableViewModelProtocol {
     
@@ -14,30 +14,29 @@ protocol CreateVocabularyViewModelInputProtocol: NavigatableViewModelProtocol {
 
 final class CreateVocabularyViewModel: UniversalTableViewModelProtocol {
     
+    // MARK: - Public properties
+    
+    var tableSections: [UniversalTableSectionViewModelProtocol] = []
+    
     // MARK: - Private properties
     
-    private let userInfo: UserInfoProtocol
-    private let dataFacade: DataFacadeCreatingProtocol
     private let router: CreateVocabularyCoordinatorProtocol
+    private let user: User
+    private let dataFacade: DataFacadeCreatingProtocol
     
     private enum SectionType: Int {
         case vocabularylInfo
         case words
     }
     
-    // MARK: - Public properties
-    
-    var tableSections: [UniversalTableSectionViewModelProtocol]
-    
     // MARK: - Init
     
-    init(userInfo: UserInfoProtocol,
-         dataFacade: DataFacadeCreatingProtocol,
-         router: CreateVocabularyCoordinatorProtocol) {
-        self.userInfo = userInfo
-        self.dataFacade = dataFacade
+    init(router: CreateVocabularyCoordinatorProtocol,
+         user: User,
+         dataFacade: DataFacadeCreatingProtocol) {
         self.router = router
-        self.tableSections = []
+        self.user = user
+        self.dataFacade = dataFacade
         
         setupVocabularyInfoSection(&tableSections)
         setupWordsSection(&tableSections)
@@ -76,11 +75,7 @@ final class CreateVocabularyViewModel: UniversalTableViewModelProtocol {
             }
         }
         
-        guard let userId = userInfo.userId else {
-            throw NSError(domain: "User is not authorized", code: 0, userInfo: nil)
-        }
-        
-        let vocabulary = Vocabulary(userId: userId, title: name, category: category, words: words)
+        let vocabulary = Vocabulary(userId: user.uid, title: name, category: category, words: words)
         if vocabulary.isEmpty {
             throw NSError(domain: "Vocabulary is Empty", code: 0, userInfo: nil)
         } else {

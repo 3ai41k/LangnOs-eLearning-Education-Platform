@@ -7,11 +7,12 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 protocol MainNavigationProtocol {
     func navigateToVocabularyStatistic(_ vocabulary: Vocabulary, didVocabularyRemoveHandler: @escaping () -> Void)
     func navigateToFilter(didVocabularyFilerSelece: @escaping (VocabularyFilter) -> Void)
-    func createNewVocabulary(didVocabularyCreateHandler: @escaping (Vocabulary) -> Void)
+    func createNewVocabulary(user: User, didVocabularyCreateHandler: @escaping (Vocabulary) -> Void)
     func navigateToSingIn()
 }
 
@@ -34,10 +35,12 @@ final class MainCoordinator: Coordinator, MainCoordinatorProtocol {
     // MARK: - Override
     
     override func start() {
+        let securityManager = SecurityManager.shared
         let coreDataContext = CoreDataContext()
         let dataFacade = DataFacade()
         let mainViewModel = MainViewModel(router: self,
                                           contex: context,
+                                          securityManager: securityManager,
                                           coreDataContext: coreDataContext,
                                           dataFacade: dataFacade)
         
@@ -67,8 +70,9 @@ final class MainCoordinator: Coordinator, MainCoordinatorProtocol {
         vocabularyFilterCoordinator.start()
     }
     
-    func createNewVocabulary(didVocabularyCreateHandler: @escaping (Vocabulary) -> Void) {
-        let createVocabularyCoordinator = CreateVocabularyCoordinator(didVocabularyCreateHandler: didVocabularyCreateHandler,
+    func createNewVocabulary(user: User, didVocabularyCreateHandler: @escaping (Vocabulary) -> Void) {
+        let createVocabularyCoordinator = CreateVocabularyCoordinator(user: user,
+                                                                      didVocabularyCreateHandler: didVocabularyCreateHandler,
                                                                       parentViewController: viewController)
         createVocabularyCoordinator.start()
     }

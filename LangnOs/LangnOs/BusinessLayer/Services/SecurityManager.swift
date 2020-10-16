@@ -18,7 +18,9 @@ final class SecurityManager {
     
     // MARK: - Init
     
-    private init() { }
+    private init() {
+        self.user = Auth.auth().currentUser
+    }
     
     // MARK: - Public methods
     

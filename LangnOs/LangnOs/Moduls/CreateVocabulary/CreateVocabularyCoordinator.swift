@@ -7,22 +7,30 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 protocol CreateVocabularyNavigationProtocol: CoordinatorClosableProtocol {
     func vocabularyDidCreate(_ vocabulary: Vocabulary)
 }
 
-typealias CreateVocabularyCoordinatorProtocol = CreateVocabularyNavigationProtocol & ActivityPresentableProtocol & AlertPresentableProtocol
+typealias CreateVocabularyCoordinatorProtocol =
+    CreateVocabularyNavigationProtocol &
+    ActivityPresentableProtocol &
+AlertPresentableProtocol
 
 final class CreateVocabularyCoordinator: Coordinator, CreateVocabularyCoordinatorProtocol {
     
     // MARK: - Private properties
     
-    private var didVocabularyCreateHandler: (Vocabulary) -> Void
+    private let user: User
+    private let didVocabularyCreateHandler: (Vocabulary) -> Void
     
     // MARK: - Init
     
-    init(didVocabularyCreateHandler: @escaping (Vocabulary) -> Void, parentViewController: UIViewController?) {
+    init(user: User,
+         didVocabularyCreateHandler: @escaping (Vocabulary) -> Void,
+         parentViewController: UIViewController?) {
+        self.user = user
         self.didVocabularyCreateHandler = didVocabularyCreateHandler
         
         super.init(parentViewController: parentViewController)
@@ -31,11 +39,10 @@ final class CreateVocabularyCoordinator: Coordinator, CreateVocabularyCoordinato
     // MARK: - Override
     
     override func start() {
-        let securityInfo = SecurityInfo()
         let dataFacade = DataFacade()
-        let createVocabularyViewModel = CreateVocabularyViewModel(userInfo: securityInfo,
-                                                                  dataFacade: dataFacade,
-                                                                  router: self)
+        let createVocabularyViewModel = CreateVocabularyViewModel(router: self,
+                                                                  user: user,
+                                                                  dataFacade: dataFacade)
         let createVocabularyCellFactory = CreateVocabularyCellFactory()
         let createVocabularyViewController = CreateVocabularyViewController()
         createVocabularyViewController.tableViewCellFactory = createVocabularyCellFactory
