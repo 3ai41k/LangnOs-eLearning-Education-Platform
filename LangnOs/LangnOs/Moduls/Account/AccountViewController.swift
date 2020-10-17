@@ -32,12 +32,6 @@ final class AccountViewController: BindibleViewController<AccountViewModelProtoc
             
         }
     }
-    @IBOutlet private weak var detailsButton: UIButton! {
-        didSet {
-            detailsButton.setСircle()
-            detailsButton.setShadow(color: .black, opacity: Constants.shadowOpacity)
-        }
-    }
     
     // MARK: - Private properties
     
@@ -48,19 +42,22 @@ final class AccountViewController: BindibleViewController<AccountViewModelProtoc
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        viewModel?.dowloadUserImage()
+        viewModel?.actionSubject.send(.downloadUserImage)
     }
     
     // MARK: - Override
     
     override func bindViewModel() {
-        viewModel?.userImage.sink(receiveValue: { [weak self] (image) in
+        viewModel?.userImage
+            .compactMap({ $0 })
+            .sink(receiveValue: { [weak self] (image) in
             self?.userImageView.image = image
+            self?.activityIndicator.stopAnimating()
         }).store(in: &cancellables)
         
-        viewModel?.reloadUI = { [weak self] in
+        viewModel?.reloadUI.sink(receiveValue: { [weak self]  in
             self?.setupUI()
-        }
+        }).store(in: &cancellables)
     }
     
     override func setupUI() {

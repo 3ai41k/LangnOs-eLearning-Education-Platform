@@ -12,7 +12,6 @@
             <connections>
                 <outlet property="activityIndicator" destination="aip-uf-vpo" id="gTL-Fb-G4G"/>
                 <outlet property="bottomCardView" destination="aKC-6Z-WiY" id="xCZ-Nx-fen"/>
-                <outlet property="detailsButton" destination="Pvh-HO-ccy" id="R1E-QT-XIE"/>
                 <outlet property="userEmailLabel" destination="J3f-LW-3yC" id="URT-zK-fwd"/>
                 <outlet property="userImageView" destination="oLa-lW-YRc" id="rVo-JW-bUA"/>
                 <outlet property="userNameLabel" destination="8tb-c5-4N1" id="ELv-mb-bH6"/>
@@ -70,37 +69,11 @@
                                         </label>
                                     </subviews>
                                 </stackView>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fva-nP-f7p">
-                                    <rect key="frame" x="0.0" y="309" width="414" height="100"/>
-                                    <subviews>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pvh-HO-ccy">
-                                            <rect key="frame" x="330" y="16" width="68" height="68"/>
-                                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" secondItem="Pvh-HO-ccy" secondAttribute="height" multiplier="1:1" id="kEs-Sq-2I9"/>
-                                            </constraints>
-                                            <color key="tintColor" name="Icon"/>
-                                            <state key="normal" image="arrow.right" catalog="system">
-                                                <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="27"/>
-                                            </state>
-                                        </button>
-                                    </subviews>
-                                    <color key="backgroundColor" name="Icon"/>
-                                    <constraints>
-                                        <constraint firstAttribute="trailing" secondItem="Pvh-HO-ccy" secondAttribute="trailing" constant="16" id="F2H-Rh-WgC"/>
-                                        <constraint firstItem="Pvh-HO-ccy" firstAttribute="top" secondItem="fva-nP-f7p" secondAttribute="top" constant="16" id="SQG-QV-TZz"/>
-                                        <constraint firstAttribute="height" constant="100" id="XAA-3n-GQa"/>
-                                        <constraint firstAttribute="bottom" secondItem="Pvh-HO-ccy" secondAttribute="bottom" constant="16" id="mQW-Vi-6QL"/>
-                                    </constraints>
-                                </view>
                             </subviews>
                             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             <constraints>
-                                <constraint firstAttribute="trailing" secondItem="fva-nP-f7p" secondAttribute="trailing" id="0TG-dc-5mg"/>
                                 <constraint firstItem="H16-R2-xJr" firstAttribute="top" secondItem="aKC-6Z-WiY" secondAttribute="top" constant="32" id="2tw-Hb-Jiw"/>
                                 <constraint firstItem="H16-R2-xJr" firstAttribute="leading" secondItem="aKC-6Z-WiY" secondAttribute="leading" constant="32" id="JoV-eV-3Vl"/>
-                                <constraint firstItem="fva-nP-f7p" firstAttribute="leading" secondItem="aKC-6Z-WiY" secondAttribute="leading" id="TMU-F8-R9I"/>
-                                <constraint firstAttribute="bottom" secondItem="fva-nP-f7p" secondAttribute="bottom" id="Zrd-Dx-UhM"/>
                                 <constraint firstAttribute="trailing" secondItem="H16-R2-xJr" secondAttribute="trailing" constant="32" id="bRF-W6-iMA"/>
                             </constraints>
                         </view>
@@ -119,7 +92,6 @@
         </view>
     </objects>
     <resources>
-        <image name="arrow.right" catalog="system" width="128" height="98"/>
         <namedColor name="AppBackground">
             <color red="0.93699997663497925" green="0.95300000905990601" blue="0.98400002717971802" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import FirebaseAuth
 import Combine
 
 protocol AccountInputProtocol: NavigatableViewModelProtocol {
@@ -16,12 +15,16 @@ protocol AccountInputProtocol: NavigatableViewModelProtocol {
     var userImage: CurrentValueSubject<UIImage?, Never> { get }
 }
 
+enum AccountViewModelAction {
+    case downloadUserImage
+}
+
 protocol AccountOutputProtocol {
-    func dowloadUserImage()
+    var actionSubject: PassthroughSubject<AccountViewModelAction, Never> { get }
 }
 
 protocol AccountBindingProtocol {
-    var reloadUI: (() -> Void)? { get set }
+    var reloadUI: AnyPublisher<Void, Never> { get }
 }
 
 typealias AccountViewModelProtocol =
@@ -29,12 +32,12 @@ typealias AccountViewModelProtocol =
     AccountOutputProtocol &
     AccountBindingProtocol
 
-final class AccountViewModel: AccountBindingProtocol {
+final class AccountViewModel: AccountOutputProtocol {
     
     // MARK: - Public properties
     
     var userImage = CurrentValueSubject<UIImage?, Never>(nil)
-    var reloadUI: (() -> Void)?
+    var actionSubject = PassthroughSubject<AccountViewModelAction, Never>()
     
     // MARK: - Private properties
     
@@ -44,6 +47,11 @@ final class AccountViewModel: AccountBindingProtocol {
     private let storage: FirebaseStorageUploadingProtocol
     private let authorizator: LoginableProtocol & UserProfileExtandableProtocol
     
+    private var actionPublisher: AnyPublisher<AccountViewModelAction, Never> {
+        actionSubject.eraseToAnyPublisher()
+    }
+    
+    private var reloadUISubject = PassthroughSubject<Void, Never>()
     private var cancellables: [AnyCancellable] = []
     
     // MARK: - Init
@@ -60,6 +68,7 @@ final class AccountViewModel: AccountBindingProtocol {
         self.authorizator = authorizator
         
         bindContext()
+        bindView()
     }
     
     // MARK: - Private methods
@@ -68,9 +77,18 @@ final class AccountViewModel: AccountBindingProtocol {
         context.userSingInPublisher.sink { [weak self] (user) in
             self?.securityManager.setUser(user)
             self?.router.navigateToPresention()
-            self?.reloadUI?()
+            self?.reloadUISubject.send()
             self?.dowloadUserImage()
         }.store(in: &cancellables )
+    }
+    
+    private func bindView() {
+        actionPublisher.sink { [weak self] (action) in
+            switch action {
+            case .downloadUserImage:
+                self?.dowloadUserImage()
+            }
+        }.store(in: &cancellables)
     }
     
     private func logout() {
@@ -80,9 +98,50 @@ final class AccountViewModel: AccountBindingProtocol {
             } else {
                 self.securityManager.removeUser()
                 self.context.removeUserFromCurrentSession()
-                self.userImage.value = nil
-                self.reloadUI?()
+                self.userImage.value = Constants.defaultImage
+                self.reloadUISubject.send()
             }
+        }
+    }
+    
+    private func didImageSelect(_ image: UIImage) {
+        guard let user = securityManager.user else { return }
+        
+        let request = UserImageFirestoreRequest(user: user, image: image, compressionQuality: 0.5)
+        storage.upload(request: request) { (result) in
+            switch result {
+            case .success(let url):
+                self.authorizator.setImageURL(url) { (error) in
+                    if let error = error {
+                        self.router.showError(error)
+                    } else {
+                        self.userImage.value = image
+                    }
+                }
+            case .failure(let error):
+                self.router.showError(error)
+            }
+        }
+    }
+    
+    private func dowloadUserImage() {
+        if let photoURL = securityManager.user?.photoURL {
+            DispatchQueue.global(qos: .utility).async {
+                do {
+                    let data = try Data(contentsOf: photoURL)
+                    if let image = UIImage(data: data) {
+                        DispatchQueue.main.async {
+                            self.userImage.value = image
+                        }
+                    }
+                } catch {
+                    DispatchQueue.main.async {
+                        self.router.showError(error)
+                    }
+                }
+            }
+        } else {
+            userImage.value = Constants.defaultImage
         }
     }
     
@@ -121,26 +180,6 @@ final class AccountViewModel: AccountBindingProtocol {
             }),
             CancelAlertAction(handler: { })
         ])
-    }
-    
-    private func didImageSelect(_ image: UIImage) {
-        guard let user = securityManager.user else { return }
-        
-        let request = UserImageFirestoreRequest(user: user, image: image, compressionQuality: 0.5)
-        storage.upload(request: request) { (result) in
-            switch result {
-            case .success(let url):
-                self.authorizator.setImageURL(url) { (error) in
-                    if let error = error {
-                        self.router.showError(error)
-                    } else {
-                        self.userImage.value = image
-                    }
-                }
-            case .failure(let error):
-                self.router.showError(error)
-            }
-        }
     }
     
 }
@@ -185,32 +224,23 @@ extension AccountViewModel: AccountInputProtocol {
     
 }
 
-// MARK: - AccountOutputProtocol
+// MARK: - AccountBindingProtocol
 
-extension AccountViewModel: AccountOutputProtocol {
+extension AccountViewModel: AccountBindingProtocol {
     
-    // REFACTOR IT
-    func dowloadUserImage() {
-        if userImage.value == nil {
-            guard let photoURL = securityManager.user?.photoURL else {
-                userImage.value = UIImage(systemName: "person.crop.circle")!
-                return
-            }
-            DispatchQueue.global(qos: .utility).async {
-                do {
-                    let data = try Data(contentsOf: photoURL)
-                    if let image = UIImage(data: data) {
-                        DispatchQueue.main.async {
-                            self.userImage.value = image
-                        }
-                    }
-                } catch {
-                    DispatchQueue.main.async {
-                        self.router.showError(error)
-                    }
-                }
-            }
-        }
+    var reloadUI: AnyPublisher<Void, Never> {
+        reloadUISubject.eraseToAnyPublisher()
     }
     
 }
+
+// MARK: - Constants
+
+extension AccountViewModel {
+    
+    enum Constants {
+        static let defaultImage = UIImage(systemName: "person.crop.circle")!
+    }
+    
+}
+
