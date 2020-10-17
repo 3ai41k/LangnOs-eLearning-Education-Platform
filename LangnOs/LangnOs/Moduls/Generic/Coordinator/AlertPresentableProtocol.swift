@@ -68,6 +68,16 @@ final class SingInAlertAction: UIAlertAction {
     
 }
 
+final class RenameAlertAction: UIAlertAction {
+    
+    convenience init(handler: (() -> Void)?) {
+        self.init(title: "Rename".localize, style: .default) { (_) in
+            handler?()
+        }
+    }
+    
+}
+
 final class TakePhotoAlertAction: UIAlertAction {
     
     convenience init(handler: (() -> Void)?) {
@@ -92,6 +102,16 @@ final class PhotoLibraryAlertAction: UIAlertAction {
     
     convenience init(handler: (() -> Void)?) {
         self.init(title: "Photo library".localize, style: .default) { (_) in
+            handler?()
+        }
+    }
+    
+}
+
+final class RemovePhotoAlertAction: UIAlertAction {
+    
+    convenience init(handler: (() -> Void)?) {
+        self.init(title: "Remove photo".localize, style: .destructive) { (_) in
             handler?()
         }
     }

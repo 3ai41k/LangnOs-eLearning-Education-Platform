@@ -18,18 +18,14 @@ final class AccountViewController: BindibleViewController<AccountViewModelProtoc
             userImageView.setСircle()
         }
     }
-    @IBOutlet private weak var activityIndicator: UIActivityIndicatorView! {
-        didSet {
-            activityIndicator.startAnimating()
-        }
-    }
+    @IBOutlet private weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet private weak var userNameLabel: UILabel!
     @IBOutlet private weak var userEmailLabel: UILabel!
     @IBOutlet private weak var bottomCardView: UIView! {
         didSet {
             bottomCardView.layer.cornerRadius = 20.0
+            bottomCardView.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
             bottomCardView.setShadow(color: .black, opacity: Constants.shadowOpacity)
-            
         }
     }
     

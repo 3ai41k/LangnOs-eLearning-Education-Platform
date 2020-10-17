@@ -114,8 +114,9 @@
 		8D94E847253A1F8D005FA4B9 /* ImagePickerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D94E843253A1F8D005FA4B9 /* ImagePickerViewModel.swift */; };
 		8D94E84A253A2ABF005FA4B9 /* UIView+CornerRadius.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D94E849253A2ABF005FA4B9 /* UIView+CornerRadius.swift */; };
 		8D94E84C253A344F005FA4B9 /* FirebaseStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D94E84B253A344F005FA4B9 /* FirebaseStorage.swift */; };
-		8D94E850253A4039005FA4B9 /* FirebaseFirestoreRequestProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D94E84F253A4039005FA4B9 /* FirebaseFirestoreRequestProtocol.swift */; };
+		8D94E850253A4039005FA4B9 /* FirebaseFirestoreUploadRequestProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D94E84F253A4039005FA4B9 /* FirebaseFirestoreUploadRequestProtocol.swift */; };
 		8D94E852253A4052005FA4B9 /* UserImageFirestoreRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D94E851253A4051005FA4B9 /* UserImageFirestoreRequest.swift */; };
+		8D94E85D253B50FC005FA4B9 /* DeleteUserImageFirestoreRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D94E85C253B50FC005FA4B9 /* DeleteUserImageFirestoreRequest.swift */; };
 		8D9985EC252929E7009EA144 /* VocabularyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D9985EA252929E7009EA144 /* VocabularyViewController.swift */; };
 		8D9985ED252929E7009EA144 /* VocabularyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D9985EB252929E7009EA144 /* VocabularyViewController.xib */; };
 		8D9985EF252929FF009EA144 /* VocabularyCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D9985EE252929FF009EA144 /* VocabularyCoordinator.swift */; };
@@ -291,8 +292,9 @@
 		8D94E843253A1F8D005FA4B9 /* ImagePickerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerViewModel.swift; sourceTree = "<group>"; };
 		8D94E849253A2ABF005FA4B9 /* UIView+CornerRadius.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+CornerRadius.swift"; sourceTree = "<group>"; };
 		8D94E84B253A344F005FA4B9 /* FirebaseStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseStorage.swift; sourceTree = "<group>"; };
-		8D94E84F253A4039005FA4B9 /* FirebaseFirestoreRequestProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseFirestoreRequestProtocol.swift; sourceTree = "<group>"; };
+		8D94E84F253A4039005FA4B9 /* FirebaseFirestoreUploadRequestProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseFirestoreUploadRequestProtocol.swift; sourceTree = "<group>"; };
 		8D94E851253A4051005FA4B9 /* UserImageFirestoreRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserImageFirestoreRequest.swift; sourceTree = "<group>"; };
+		8D94E85C253B50FC005FA4B9 /* DeleteUserImageFirestoreRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteUserImageFirestoreRequest.swift; sourceTree = "<group>"; };
 		8D9985EA252929E7009EA144 /* VocabularyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabularyViewController.swift; sourceTree = "<group>"; };
 		8D9985EB252929E7009EA144 /* VocabularyViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VocabularyViewController.xib; sourceTree = "<group>"; };
 		8D9985EE252929FF009EA144 /* VocabularyCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabularyCoordinator.swift; sourceTree = "<group>"; };
@@ -728,10 +730,19 @@
 		8D94E84E253A3FE7005FA4B9 /* FirebaseFirestore */ = {
 			isa = PBXGroup;
 			children = (
-				8D94E84F253A4039005FA4B9 /* FirebaseFirestoreRequestProtocol.swift */,
-				8D94E851253A4051005FA4B9 /* UserImageFirestoreRequest.swift */,
+				8D94E84F253A4039005FA4B9 /* FirebaseFirestoreUploadRequestProtocol.swift */,
+				8D94E85E253B5144005FA4B9 /* UserImage */,
 			);
 			path = FirebaseFirestore;
+			sourceTree = "<group>";
+		};
+		8D94E85E253B5144005FA4B9 /* UserImage */ = {
+			isa = PBXGroup;
+			children = (
+				8D94E851253A4051005FA4B9 /* UserImageFirestoreRequest.swift */,
+				8D94E85C253B50FC005FA4B9 /* DeleteUserImageFirestoreRequest.swift */,
+			);
+			path = UserImage;
 			sourceTree = "<group>";
 		};
 		8D9985E9252929BF009EA144 /* Vocabulary */ = {
@@ -1279,6 +1290,7 @@
 				8DC3CF2C252CD503003CA62A /* UIEdgeInsets+Init.swift in Sources */,
 				8D524FDB2533816D002A6E01 /* UIBarButtonItem+Init.swift in Sources */,
 				8D66255A252B0F9F00991D45 /* VocabularyCreateRequest.swift in Sources */,
+				8D94E85D253B50FC005FA4B9 /* DeleteUserImageFirestoreRequest.swift in Sources */,
 				8DAA554A252912BA00FF5066 /* VocabularyFetchRequest.swift in Sources */,
 				8D524F5A252E5A5B002A6E01 /* MainSectionViewFactory.swift in Sources */,
 				8DD28BB325266F6800F59B7D /* MainCoordinator.swift in Sources */,
@@ -1323,7 +1335,7 @@
 				8D94E845253A1F8D005FA4B9 /* ImagePickerCoordinator.swift in Sources */,
 				8DD28BC625267A1700F59B7D /* PresentationCoordinator.swift in Sources */,
 				8DD28BC3252679F600F59B7D /* PresentationViewController.swift in Sources */,
-				8D94E850253A4039005FA4B9 /* FirebaseFirestoreRequestProtocol.swift in Sources */,
+				8D94E850253A4039005FA4B9 /* FirebaseFirestoreUploadRequestProtocol.swift in Sources */,
 				8D94E7D92534F772005FA4B9 /* Reachability.swift in Sources */,
 				8D83EA6A252B8FEA004E6098 /* CreateVocabularyCellFactory.swift in Sources */,
 				8D524F64252E5E8F002A6E01 /* UniversalCollectionSectionViewModel.swift in Sources */,

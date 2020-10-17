@@ -27,9 +27,9 @@ struct UserImageFirestoreRequest {
     
 }
 
-// MARK: - FirestoreRequest
+// MARK: - FirebaseFirestoreUploadRequestProtocol
 
-extension UserImageFirestoreRequest: FirebaseFirestoreRequestProtocol {
+extension UserImageFirestoreRequest: FirebaseFirestoreUploadRequestProtocol {
     
     var path: String {
         "user/\(user.uid)/images/profile/profileImage.jpg"

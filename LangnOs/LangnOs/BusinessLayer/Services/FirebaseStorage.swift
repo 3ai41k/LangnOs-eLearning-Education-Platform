@@ -16,7 +16,11 @@ enum FirebaseStorageError: Error {
 }
 
 protocol FirebaseStorageUploadingProtocol {
-    func upload(request: FirebaseFirestoreRequestProtocol, completion: @escaping (Result<URL, Error>) -> Void)
+    func upload(request: FirebaseFirestoreUploadRequestProtocol, completion: @escaping (Result<URL, Error>) -> Void)
+}
+
+protocol FirebaseStorageRemovingProtocol {
+    func delete(request: FirebaseFirestoreDeleteRequestProtocol, completion: @escaping (Error?) -> Void)
 }
 
 final class FirebaseStorage {
@@ -31,7 +35,7 @@ final class FirebaseStorage {
 
 extension FirebaseStorage: FirebaseStorageUploadingProtocol {
     
-    func upload(request: FirebaseFirestoreRequestProtocol, completion: @escaping (Result<URL, Error>) -> Void) {
+    func upload(request: FirebaseFirestoreUploadRequestProtocol, completion: @escaping (Result<URL, Error>) -> Void) {
         guard let data = request.data else {
             completion(.failure(FirebaseStorageError.dataNotFound))
             return
@@ -54,6 +58,19 @@ extension FirebaseStorage: FirebaseStorageUploadingProtocol {
                     }
                 }
             }
+        }
+    }
+    
+}
+
+// MARK: - FirebaseStorageRemovingProtocol
+
+extension FirebaseStorage: FirebaseStorageRemovingProtocol {
+    
+    func delete(request: FirebaseFirestoreDeleteRequestProtocol, completion: @escaping (Error?) -> Void) {
+        let reference = storage.reference(withPath: request.path)
+        reference.delete { (error) in
+            completion(error)
         }
     }
     

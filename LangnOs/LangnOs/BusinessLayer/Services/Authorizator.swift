@@ -22,7 +22,8 @@ protocol RegistratableProtocol {
 }
 
 protocol UserProfileExtandableProtocol {
-    func setImageURL(_ url: URL, completion: @escaping (Error?) -> Void)
+    func setImage(url: URL, completion: @escaping (Error?) -> Void)
+    func removeImage(completion: @escaping (Error?) -> Void)
 }
 
 final class Authorizator {
@@ -112,7 +113,15 @@ extension Authorizator: RegistratableProtocol {
 
 extension Authorizator: UserProfileExtandableProtocol {
     
-    func setImageURL(_ url: URL, completion: @escaping (Error?) -> Void) {
+    func setImage(url: URL, completion: @escaping (Error?) -> Void) {
+        updateImageURL(url, completion: completion)
+    }
+    
+    func removeImage(completion: @escaping (Error?) -> Void) {
+        updateImageURL(nil, completion: completion)
+    }
+    
+    private func updateImageURL(_ url: URL?, completion: @escaping (Error?) -> Void) {
         let request = currentUser?.createProfileChangeRequest()
         request?.photoURL = url
         request?.commitChanges(completion: { (error) in

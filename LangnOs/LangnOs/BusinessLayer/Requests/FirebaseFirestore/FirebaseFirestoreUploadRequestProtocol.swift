@@ -1,5 +1,5 @@
 //
-//  FirebaseFirestoreRequestProtocol.swift
+//  FirebaseFirestoreUploadRequestProtocol.swift
 //  LangnOs
 //
 //  Created by Nikita Lizogubov on 16.10.2020.
@@ -13,14 +13,17 @@ enum FirestoreContentType: String {
     case image = "image/jpg"
 }
 
-protocol FirebaseFirestoreRequestProtocol {
+protocol FirebaseFirestoreDeleteRequestProtocol {
     var path: String { get }
+}
+
+protocol FirebaseFirestoreUploadRequestProtocol: FirebaseFirestoreDeleteRequestProtocol {
     var data: Data? { get }
     var contentType: FirestoreContentType { get }
     var metaData: StorageMetadata { get }
 }
 
-extension FirebaseFirestoreRequestProtocol {
+extension FirebaseFirestoreUploadRequestProtocol {
     
     var metaData: StorageMetadata {
         let metadata = StorageMetadata()

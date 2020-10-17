@@ -44,7 +44,7 @@ final class AccountViewModel: AccountOutputProtocol {
     private let router: AccountCoordinatorProtocol
     private let context: SingInPublisherContextProtocol & UserSessesionContextProtocol
     private let securityManager: SecurityManager
-    private let storage: FirebaseStorageUploadingProtocol
+    private let storage: FirebaseStorageUploadingProtocol & FirebaseStorageRemovingProtocol
     private let authorizator: LoginableProtocol & UserProfileExtandableProtocol
     
     private var actionPublisher: AnyPublisher<AccountViewModelAction, Never> {
@@ -59,7 +59,7 @@ final class AccountViewModel: AccountOutputProtocol {
     init(router: AccountCoordinatorProtocol,
          context: SingInPublisherContextProtocol & UserSessesionContextProtocol,
          securityManager: SecurityManager,
-         storage: FirebaseStorageUploadingProtocol,
+         storage: FirebaseStorageUploadingProtocol & FirebaseStorageRemovingProtocol,
          authorizator: LoginableProtocol & UserProfileExtandableProtocol) {
         self.router = router
         self.context = context
@@ -94,7 +94,7 @@ final class AccountViewModel: AccountOutputProtocol {
     private func logout() {
         authorizator.logOut { (error) in
             if let error = error {
-                self.showErrorAlert(error)
+                self.router.showError(error)
             } else {
                 self.securityManager.removeUser()
                 self.context.removeUserFromCurrentSession()
@@ -111,7 +111,7 @@ final class AccountViewModel: AccountOutputProtocol {
         storage.upload(request: request) { (result) in
             switch result {
             case .success(let url):
-                self.authorizator.setImageURL(url) { (error) in
+                self.authorizator.setImage(url: url) { (error) in
                     if let error = error {
                         self.router.showError(error)
                     } else {
@@ -145,10 +145,23 @@ final class AccountViewModel: AccountOutputProtocol {
         }
     }
     
-    private func showErrorAlert(_ error: Error) {
-        router.showAlert(title: "Error!".localize, message: error.localizedDescription, actions: [
-            OkAlertAction(handler: { })
-        ])
+    private func removeUserImage() {
+        guard let user = securityManager.user else { return }
+        
+        let request = DeleteUserImageFirestoreRequest(user: user)
+        storage.delete(request: request) { (error) in
+            if let error = error {
+                self.router.showError(error)
+            } else {
+                self.authorizator.removeImage { (error) in
+                    if let error = error {
+                        self.router.showError(error)
+                    } else {
+                        self.userImage.value = Constants.defaultImage
+                    }
+                }
+            }
+        }
     }
     
     // MARK: - Actions
@@ -169,6 +182,9 @@ final class AccountViewModel: AccountOutputProtocol {
     @objc
     private func didEditProfileTouch() {
         router.showActionSheet(title: nil, message: nil, actions: [
+            RenameAlertAction(handler: {
+                
+            }),
             TakePhotoAlertAction(handler: {
                 self.router.navigateToImagePicker(sourceType: .camera, didImageSelect: self.didImageSelect)
             }),
@@ -177,6 +193,9 @@ final class AccountViewModel: AccountOutputProtocol {
             }),
             PhotoLibraryAlertAction(handler: {
                 self.router.navigateToImagePicker(sourceType: .photoLibrary, didImageSelect: self.didImageSelect)
+            }),
+            RemovePhotoAlertAction(handler: {
+                self.removeUserImage()
             }),
             CancelAlertAction(handler: { })
         ])
