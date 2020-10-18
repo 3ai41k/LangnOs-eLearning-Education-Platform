@@ -9,14 +9,15 @@
 import UIKit
 import Combine
 
-protocol AccountInputProtocol: NavigatableViewModelProtocol {
-    var initials: String { get }
-    var email: String? { get }
-    var userImage: CurrentValueSubject<UIImage?, Never> { get }
-}
-
 enum AccountViewModelAction {
     case downloadUserImage
+}
+
+protocol AccountInputProtocol: NavigatableViewModelProtocol {
+    var initials: CurrentValueSubject<String?, Never> { get }
+    var email: CurrentValueSubject<String?, Never> { get }
+    var userImage: CurrentValueSubject<UIImage?, Never> { get }
+    var isImageActivityIndicatorHidden: CurrentValueSubject<Bool, Never> { get }
 }
 
 protocol AccountOutputProtocol {
@@ -36,7 +37,11 @@ final class AccountViewModel: AccountOutputProtocol {
     
     // MARK: - Public properties
     
-    var userImage = CurrentValueSubject<UIImage?, Never>(nil)
+    var initials: CurrentValueSubject<String?, Never>
+    var email: CurrentValueSubject<String?, Never>
+    var userImage: CurrentValueSubject<UIImage?, Never>
+    var isImageActivityIndicatorHidden: CurrentValueSubject<Bool, Never>
+    
     var actionSubject = PassthroughSubject<AccountViewModelAction, Never>()
     
     // MARK: - Private properties
@@ -67,6 +72,11 @@ final class AccountViewModel: AccountOutputProtocol {
         self.storage = storage
         self.authorizator = authorizator
         
+        self.initials = .init(securityManager.user?.displayName ?? "No name".localize)
+        self.email = .init(securityManager.user?.email)
+        self.userImage = .init(nil)
+        self.isImageActivityIndicatorHidden = .init(false)
+        
         bindContext()
         bindView()
     }
@@ -77,8 +87,12 @@ final class AccountViewModel: AccountOutputProtocol {
         context.userSingInPublisher.sink { [weak self] (user) in
             self?.securityManager.setUser(user)
             self?.router.navigateToPresention()
-            self?.reloadUISubject.send()
+            
+            self?.initials.value = user.displayName ?? "No name".localize
+            self?.email.value = user.email
             self?.dowloadUserImage()
+            
+            self?.reloadUISubject.send()
         }.store(in: &cancellables )
     }
     
@@ -98,7 +112,11 @@ final class AccountViewModel: AccountOutputProtocol {
             } else {
                 self.securityManager.removeUser()
                 self.context.removeUserFromCurrentSession()
+                
+                self.initials.value = "No name".localize
+                self.email.value = nil
                 self.userImage.value = Constants.defaultImage
+                
                 self.reloadUISubject.send()
             }
         }
@@ -125,6 +143,7 @@ final class AccountViewModel: AccountOutputProtocol {
     }
     
     private func dowloadUserImage() {
+        guard userImage.value == nil else { return }
         if let photoURL = securityManager.user?.photoURL {
             DispatchQueue.global(qos: .utility).async {
                 do {
@@ -132,16 +151,19 @@ final class AccountViewModel: AccountOutputProtocol {
                     if let image = UIImage(data: data) {
                         DispatchQueue.main.async {
                             self.userImage.value = image
+                            self.isImageActivityIndicatorHidden.value = true
                         }
                     }
                 } catch {
                     DispatchQueue.main.async {
                         self.router.showError(error)
+                        self.isImageActivityIndicatorHidden.value = true
                     }
                 }
             }
         } else {
             userImage.value = Constants.defaultImage
+            isImageActivityIndicatorHidden.value = true
         }
     }
     
@@ -207,14 +229,6 @@ final class AccountViewModel: AccountOutputProtocol {
 
 extension AccountViewModel: AccountInputProtocol {
     
-    var initials: String {
-        securityManager.user?.displayName ?? "No name".localize
-    }
-    
-    var email: String? {
-        securityManager.user?.email
-    }
-    
     var navigationItemDrivableModel: DrivableModelProtocol {
         let singInBarButton = BarButtonDrivableModel(title: "Sing In".localize,
                                                      style: .done,
@@ -237,7 +251,7 @@ extension AccountViewModel: AccountInputProtocol {
     
     var navigationBarDrivableModel: DrivableModelProtocol? {
         NavigationBarDrivableModel(isBottomLineHidden: true,
-                                   backgroundColor: .white,
+                                   backgroundColor: ColorUtils.app,
                                    prefersLargeTitles: false)
     }
     

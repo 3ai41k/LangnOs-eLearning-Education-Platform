@@ -31,7 +31,7 @@ final class AccountViewController: BindibleViewController<AccountViewModelProtoc
     
     // MARK: - Private properties
     
-    private var cancellables: [AnyCancellable] = []
+    private var cancellables: [AnyCancellable?] = []
     
     // MARK: - Lifecycle
     
@@ -44,22 +44,24 @@ final class AccountViewController: BindibleViewController<AccountViewModelProtoc
     // MARK: - Override
     
     override func bindViewModel() {
-        viewModel?.userImage
-            .compactMap({ $0 })
-            .sink(receiveValue: { [weak self] (image) in
-            self?.userImageView.image = image
-            self?.activityIndicator.stopAnimating()
-        }).store(in: &cancellables)
-        
-        viewModel?.reloadUI.sink(receiveValue: { [weak self]  in
-            self?.setupUI()
-        }).store(in: &cancellables)
+        cancellables = [
+            viewModel?.initials.assign(to: \.text, on: userNameLabel),
+            viewModel?.email.assign(to: \.text, on: userEmailLabel),
+            viewModel?.userImage.assign(to: \.image, on: userImageView),
+            viewModel?.isImageActivityIndicatorHidden.sink(receiveValue: { [weak self] isHidden in
+                if isHidden {
+                    self?.activityIndicator.stopAnimating()
+                } else {
+                    self?.activityIndicator.startAnimating()
+                }
+            }),
+            viewModel?.reloadUI.sink(receiveValue: { [weak self] in
+                self?.setupUI()
+            })
+        ]
     }
     
     override func setupUI() {
-        userNameLabel.text = viewModel?.initials
-        userEmailLabel.text = viewModel?.email
-        
         navigationItem.drive(model: viewModel?.navigationItemDrivableModel)
         navigationController?.navigationBar.drive(model: viewModel?.navigationBarDrivableModel)
     }
