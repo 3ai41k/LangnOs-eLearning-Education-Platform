@@ -10,6 +10,7 @@ import UIKit
 
 protocol VocabularyNavigationProtocol: CoordinatorClosableProtocol {
     func navigateToFlashCards()
+    func navigateToWriting()
     func navigateToWords()
     func removeVocabulary()
 }
@@ -61,6 +62,11 @@ extension VocabularyCoordinator: VocabularyNavigationProtocol {
     func navigateToWords() {
         let wordsCoordinator = WordsCoordinator(words: vocabulary.words, parentViewController: viewController)
         wordsCoordinator.start()
+    }
+    
+    func navigateToWriting() {
+        let writingCoordinator = WritingCoordinator(words: vocabulary.words, parentViewController: viewController)
+        writingCoordinator.start()
     }
     
     func removeVocabulary() {

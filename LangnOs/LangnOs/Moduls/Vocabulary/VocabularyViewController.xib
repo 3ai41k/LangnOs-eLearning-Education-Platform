@@ -123,6 +123,7 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pAv-Dq-W64" customClass="VocabularyActionView" customModule="LangnOs" customModuleProvider="target">
                                                     <rect key="frame" x="132.5" y="0.0" width="117" height="116.5"/>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                    <gestureRecognizers/>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                             <real key="value" value="10"/>
@@ -130,6 +131,9 @@
                                                         <userDefinedRuntimeAttribute type="string" keyPath="title" value="Writing"/>
                                                         <userDefinedRuntimeAttribute type="image" keyPath="image" value="pencil.and.outline" catalog="system"/>
                                                     </userDefinedRuntimeAttributes>
+                                                    <connections>
+                                                        <outletCollection property="gestureRecognizers" destination="VTk-LT-I7F" appends="YES" id="tfx-DC-cAj"/>
+                                                    </connections>
                                                 </view>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="C2z-Ep-dJQ" customClass="VocabularyActionView" customModule="LangnOs" customModuleProvider="target">
                                                     <rect key="frame" x="265.5" y="0.0" width="116.5" height="116.5"/>
@@ -256,6 +260,11 @@
         <tapGestureRecognizer id="JTG-Hd-Lpi">
             <connections>
                 <action selector="didFlashCardsTouch:" destination="-1" id="1Kk-pY-VUt"/>
+            </connections>
+        </tapGestureRecognizer>
+        <tapGestureRecognizer id="VTk-LT-I7F">
+            <connections>
+                <action selector="didWritingTouch:" destination="-1" id="IWf-XS-Tsl"/>
             </connections>
         </tapGestureRecognizer>
     </objects>

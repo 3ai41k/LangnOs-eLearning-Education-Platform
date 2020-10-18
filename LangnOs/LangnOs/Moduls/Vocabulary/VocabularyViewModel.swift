@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Combine
 
 protocol VocabularyViewModelInputProtocol: NavigatableViewModelProtocol {
     var vocabularyName: String { get }
@@ -17,18 +18,37 @@ protocol VocabularyViewModelInputProtocol: NavigatableViewModelProtocol {
     var totalLearningTime: Double { get }
 }
 
-protocol VocabularyViewModelOutputProtocol {
-    func showFlashCardsAction()
-    func showWordsAction()
+enum VocabularyViewModelAction {
+    case flashCards
+    case writing
+    case listening
+    case speaking
+    case matching
+    case test
+    case words
 }
 
-final class VocabularyViewModel {
+protocol VocabularyViewModelOutputProtocol {
+    var actionSubject: PassthroughSubject<VocabularyViewModelAction, Never> { get }
+}
+
+final class VocabularyViewModel: VocabularyViewModelOutputProtocol {
+    
+    // MARK: - Public properties
+    
+    let actionSubject = PassthroughSubject<VocabularyViewModelAction, Never>()
     
     // MARK: - Private properties
     
     private let router: VocabularyNavigationProtocol & AlertPresentableProtocol
     private let dataFacade: DataFacadeDeletingProtocol
     private let vocabulary: Vocabulary
+    
+    private var actionPublisher: AnyPublisher<VocabularyViewModelAction, Never> {
+        actionSubject.eraseToAnyPublisher()
+    }
+    
+    private var cancellables: [AnyCancellable?] = []
     
     // MARK: - Init
     
@@ -38,6 +58,33 @@ final class VocabularyViewModel {
         self.router = router
         self.dataFacade = dataFacade
         self.vocabulary = vocabulary
+        
+        self.bindView()
+    }
+    
+    // MARK: - Private methods
+    
+    private func bindView() {
+        cancellables = [
+            actionPublisher.sink(receiveValue: { [weak self] action in
+                switch action {
+                case .flashCards:
+                    self?.router.navigateToFlashCards()
+                case .writing:
+                    self?.router.navigateToWriting()
+                case .listening:
+                    self?.router.navigateToFlashCards()
+                case .speaking:
+                    self?.router.navigateToFlashCards()
+                case .matching:
+                    self?.router.navigateToFlashCards()
+                case .test:
+                    self?.router.navigateToFlashCards()
+                case .words:
+                    self?.router.navigateToWords()
+                }
+            })
+        ]
     }
     
     // MARK: - Actions
@@ -55,9 +102,7 @@ final class VocabularyViewModel {
                 let request = VocabularyDeleteRequest(vocabulary: self.vocabulary)
                 self.dataFacade.delete(request: request) { (error) in
                     if let error = error {
-                        self.router.showAlert(title: "Error!", message: error.localizedDescription, actions: [
-                            OkAlertAction(handler: { })
-                        ])
+                        self.router.showError(error)
                     } else {
                         self.router.removeVocabulary()
                     }
@@ -86,7 +131,7 @@ extension VocabularyViewModel: VocabularyViewModelInputProtocol {
                                            rightBarButtonDrivableModels: [removeButtonModel])
     }
     
-    var navigationBarDrivableModel: DrivableModelProtocol {
+    var navigationBarDrivableModel: DrivableModelProtocol? {
         NavigationBarDrivableModel(isBottomLineHidden: true,
                                    backgroundColor: .white,
                                    prefersLargeTitles: false)
@@ -114,20 +159,6 @@ extension VocabularyViewModel: VocabularyViewModelInputProtocol {
     
     var totalLearningTime: Double {
         vocabulary.totalLearningTime
-    }
-    
-}
-
-// MARK: - VocabularyViewModelOutputProtocol
-
-extension VocabularyViewModel: VocabularyViewModelOutputProtocol {
-    
-    func showFlashCardsAction() {
-        router.navigateToFlashCards()
-    }
-    
-    func showWordsAction() {
-        router.navigateToWords()
     }
     
 }

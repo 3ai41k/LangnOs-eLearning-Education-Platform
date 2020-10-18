@@ -48,12 +48,17 @@ final class VocabularyViewController: BindibleViewController<VocabularyViewModel
     
     @IBAction
     private func didFlashCardsTouch(_ sender: Any) {
-        viewModel?.showFlashCardsAction()
+        viewModel?.actionSubject.send(.flashCards)
+    }
+    
+    @IBAction
+    private func didWritingTouch(_ sender: Any) {
+        viewModel?.actionSubject.send(.writing)
     }
     
     @IBAction
     private func didShowWordsTouch(_ sender: Any) {
-        viewModel?.showWordsAction()
+        viewModel?.actionSubject.send(.words)
     }
     
 }
