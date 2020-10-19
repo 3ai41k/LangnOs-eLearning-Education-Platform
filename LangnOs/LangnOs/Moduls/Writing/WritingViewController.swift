@@ -13,6 +13,9 @@ final class WritingViewController: BindibleViewController<WritingViewModelProtoc
     
     // MARK: - IBOutlets
     
+    @IBOutlet private weak var wordsCounterLabel: UILabel!
+    @IBOutlet private weak var writingProgressView: WritingProgressView!
+    @IBOutlet private weak var progressView: UIProgressView!
     @IBOutlet private weak var messageView: UIView! {
         didSet {
             messageView.transform = CGAffineTransform(translationX: .zero, y: Constants.messageViewYInHideState)
@@ -36,7 +39,10 @@ final class WritingViewController: BindibleViewController<WritingViewModelProtoc
     override func bindViewModel() {
         cancellables = [
             viewModel?.word.assign(to: \.text, on: wordLabel),
+            viewModel?.wordsCounter.assign(to: \.text, on: wordsCounterLabel),
+            viewModel?.correctAnswers.assign(to: \.correctAnswers, on: writingProgressView),
             viewModel?.isAnswerHidden.assign(to: \.isHidden, on: answerButton),
+            viewModel?.progress.assign(to: \.progress, on: progressView),
             viewModel?.message.compactMap({ $0 }).sink(receiveValue: { [weak self] (message, color) in
                 self?.messageLabel.text = message
                 self?.messageView.backgroundColor = color

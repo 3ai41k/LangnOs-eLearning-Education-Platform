@@ -12,9 +12,12 @@
                 <outlet property="answerButton" destination="BYb-2J-GfB" id="48I-CY-0rH"/>
                 <outlet property="messageLabel" destination="xg3-NV-INo" id="Mfe-Hg-sGz"/>
                 <outlet property="messageView" destination="Nf7-Qe-SsC" id="j26-Tc-6Lh"/>
+                <outlet property="progressView" destination="mrt-5D-ROy" id="AF8-Pf-N4q"/>
                 <outlet property="textField" destination="zVH-OD-AMA" id="nUS-EZ-Juh"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="wordLabel" destination="D7r-8R-Fg0" id="7N6-aN-BbD"/>
+                <outlet property="wordsCounterLabel" destination="0ic-gg-YXD" id="d50-ly-7Vx"/>
+                <outlet property="writingProgressView" destination="C8B-rU-NaU" id="7ja-60-3YU"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -51,7 +54,7 @@
                     </subviews>
                 </stackView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nf7-Qe-SsC">
-                    <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                    <rect key="frame" x="0.0" y="124" width="414" height="44"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Correct!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xg3-NV-INo">
                             <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
@@ -69,15 +72,57 @@
                         <constraint firstAttribute="bottom" secondItem="xg3-NV-INo" secondAttribute="bottom" id="xSP-Ym-7WQ"/>
                     </constraints>
                 </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="i9P-7I-kvG" customClass="TopBarView" customModule="LangnOs" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="44" width="414" height="80"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="80" id="vvM-lG-n16"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <real key="value" value="20"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="kBB-6y-MXQ">
+                    <rect key="frame" x="16" y="60" width="382" height="40"/>
+                    <subviews>
+                        <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aqb-Bd-ja8">
+                            <rect key="frame" x="0.0" y="0.0" width="382" height="22"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0ic-gg-YXD">
+                                    <rect key="frame" x="0.0" y="0.0" width="10.5" height="22"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="C8B-rU-NaU" customClass="WritingProgressView" customModule="LangnOs" customModuleProvider="target">
+                                    <rect key="frame" x="10.5" y="0.0" width="371.5" height="22"/>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                </view>
+                            </subviews>
+                        </stackView>
+                        <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="mrt-5D-ROy">
+                            <rect key="frame" x="0.0" y="38" width="382" height="2"/>
+                        </progressView>
+                    </subviews>
+                </stackView>
             </subviews>
             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
             <constraints>
-                <constraint firstItem="Nf7-Qe-SsC" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="NAl-3b-y8C"/>
+                <constraint firstItem="i9P-7I-kvG" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="7Xq-Gj-DDh"/>
+                <constraint firstItem="kBB-6y-MXQ" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="16" id="Fqf-G3-Oz1"/>
                 <constraint firstItem="Nf7-Qe-SsC" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="TKr-Dy-nKp"/>
                 <constraint firstItem="e3B-I4-xVE" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="YFN-mw-rHO"/>
                 <constraint firstItem="Nf7-Qe-SsC" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="aiq-Go-vNA"/>
                 <constraint firstItem="e3B-I4-xVE" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="32" id="eO5-2C-uBx"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="i9P-7I-kvG" secondAttribute="trailing" id="ePZ-xm-ThY"/>
+                <constraint firstItem="kBB-6y-MXQ" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="ehs-rI-gvI"/>
+                <constraint firstItem="Nf7-Qe-SsC" firstAttribute="top" secondItem="kBB-6y-MXQ" secondAttribute="bottom" constant="24" id="hde-KK-GHs"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="e3B-I4-xVE" secondAttribute="trailing" constant="32" id="hoN-ff-X1D"/>
+                <constraint firstItem="Nf7-Qe-SsC" firstAttribute="top" secondItem="i9P-7I-kvG" secondAttribute="bottom" id="lQD-F5-VHW"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="kBB-6y-MXQ" secondAttribute="trailing" constant="16" id="ljp-NP-LJF"/>
+                <constraint firstItem="i9P-7I-kvG" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="qYI-NA-juw"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <point key="canvasLocation" x="137.68115942028987" y="126.5625"/>

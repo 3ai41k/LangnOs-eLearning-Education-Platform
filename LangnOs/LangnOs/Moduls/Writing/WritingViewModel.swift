@@ -9,11 +9,18 @@
 import UIKit
 import Combine
 
+enum WritingViewModelError: Error {
+    case wordsAreLearned
+}
+
 protocol WritingViewModelInputProtocol {
     var word: CurrentValueSubject<String?, Never> { get }
+    var wordsCounter: CurrentValueSubject<String?, Never> { get }
+    var correctAnswers: CurrentValueSubject<Int, Never> { get }
     var isAnswerHidden: CurrentValueSubject<Bool, Never> { get }
     var message: CurrentValueSubject<(String, UIColor)?, Never> { get }
     var clearInputPublisher: AnyPublisher<Void, Never> { get }
+    var progress: CurrentValueSubject<Float, Never> { get }
 }
 
 enum WritingViewModelAction {
@@ -34,29 +41,34 @@ final class WritingViewModel: WritingViewModelProtocol {
     // MARK: - Public properties
     
     var word: CurrentValueSubject<String?, Never>
+    var wordsCounter: CurrentValueSubject<String?, Never>
+    var correctAnswers: CurrentValueSubject<Int, Never>
     var isAnswerHidden: CurrentValueSubject<Bool, Never>
     var message: CurrentValueSubject<(String, UIColor)?, Never>
     var clearInputPublisher: AnyPublisher<Void, Never> {
         clearInputSubject.eraseToAnyPublisher()
     }
+    var progress: CurrentValueSubject<Float, Never>
     var actionSubject: PassthroughSubject<WritingViewModelAction, Never>
     
     // MARK: - Private properties
     
-    private let words: [Word]
-    private var currentWord: Word {
+    private let router: WritingCoordinatorProtocol
+    private let words: [WritingWord]
+    private var currentWord: WritingWord {
+        willSet {
+            wordsCounter.value = String(words.filter({ !$0.isLearned }).count)
+            isAnswerHidden.value = true
+            progress.value = currentProgress
+            clearInputSubject.send()
+        }
         didSet {
             word.value = currentWord.term
         }
     }
-    private var mistakeCounter: Int {
-        didSet {
-            if mistakeCounter == 2 {
-                isAnswerHidden.value = false
-            }
-        }
+    private var currentProgress: Float {
+        Float(words.map({ $0.correctCounter }).reduce(0, +)) / Float(words.count * 2)
     }
-    
     private var clearInputSubject: PassthroughSubject<Void, Never>
     private var actionPublisher: AnyPublisher<WritingViewModelAction, Never> {
         actionSubject.eraseToAnyPublisher()
@@ -65,15 +77,19 @@ final class WritingViewModel: WritingViewModelProtocol {
     
     // MARK: - Init
     
-    init(words: [Word]) {
-        self.words = words
-        self.currentWord = words.randomElement()!
-        self.mistakeCounter = 0
+    init(router: WritingCoordinatorProtocol, words: [Word]) {
+        self.router = router
+        
+        self.words = words.map({ WritingWord(word: $0) })
+        self.currentWord = self.words.randomElement()!
         
         self.word = .init(currentWord.term)
+        self.wordsCounter = .init("\(words.count)")
+        self.correctAnswers = .init(0)
         self.message = .init(nil)
         self.isAnswerHidden = .init(true)
         self.clearInputSubject = .init()
+        self.progress = .init(.zero)
         self.actionSubject = .init()
         self.cancellables = []
         
@@ -95,19 +111,35 @@ final class WritingViewModel: WritingViewModelProtocol {
         ]
     }
     
+    private func getRandomWord() throws -> WritingWord {
+        if let learnedWords = words.filter({ !$0.isLearned }).randomElement() {
+            return learnedWords
+        } else {
+            throw WritingViewModelError.wordsAreLearned
+        }
+    }
+    
     // MARK: - Actions
     
     private func checkUserInput(_ string: String) {
         if string.lowercased() == currentWord.definition.lowercased() {
-            currentWord = words.randomElement()!
             message.value = ("Correct!", .green)
-            isAnswerHidden.value = true
-            mistakeCounter = 0
-            clearInputSubject.send()
+            currentWord.markCorrect()
+            do {
+                currentWord = try getRandomWord()
+            } catch {
+                self.router.close()
+            }
         } else {
             message.value = ("Incorrect!", .red)
-            mistakeCounter += 1
+            currentWord.markIncorrect()
         }
+        
+        if currentWord.isFailed {
+            isAnswerHidden.value = false
+        }
+        
+        correctAnswers.value = currentWord.correctCounter
     }
     
     private func showAnswer() {

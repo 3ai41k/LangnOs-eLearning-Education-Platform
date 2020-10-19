@@ -14,12 +14,10 @@ protocol WritingCoordinatorNavigationProtocol {
 
 typealias WritingCoordinatorProtocol =
     WritingCoordinatorNavigationProtocol &
-    CoordinatorClosableProtocol &
-    ActivityPresentableProtocol &
-    AlertPresentableProtocol
+    CoordinatorClosableProtocol
     
 
-final class WritingCoordinator: Coordinator  {
+final class WritingCoordinator: Coordinator, CoordinatorClosableProtocol {
     
     // MARK: - Private properties
     
@@ -36,7 +34,7 @@ final class WritingCoordinator: Coordinator  {
     // MARK: - Override
     
     override func start() {
-        let viewModel = WritingViewModel(words: words)
+        let viewModel = WritingViewModel(router: self, words: words)
         let viewController = WritingViewController()
         viewController.viewModel = viewModel
         

@@ -185,6 +185,9 @@
 		8DD28C122528AEC800F59B7D /* SingInCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD28C112528AEC800F59B7D /* SingInCoordinator.swift */; };
 		8DD28C152528AEEF00F59B7D /* SingInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD28C132528AEEF00F59B7D /* SingInViewController.swift */; };
 		8DD28C162528AEEF00F59B7D /* SingInViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DD28C142528AEEF00F59B7D /* SingInViewController.xib */; };
+		8DF928A9253DDE700052FC31 /* WritingWordModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF928A8253DDE700052FC31 /* WritingWordModel.swift */; };
+		8DF928AC253DEBCF0052FC31 /* WritingProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF928AB253DEBCF0052FC31 /* WritingProgressView.swift */; };
+		8DF928AE253DEBEC0052FC31 /* WritingProgressView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DF928AD253DEBEC0052FC31 /* WritingProgressView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -370,6 +373,9 @@
 		8DD28C112528AEC800F59B7D /* SingInCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingInCoordinator.swift; sourceTree = "<group>"; };
 		8DD28C132528AEEF00F59B7D /* SingInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingInViewController.swift; sourceTree = "<group>"; };
 		8DD28C142528AEEF00F59B7D /* SingInViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SingInViewController.xib; sourceTree = "<group>"; };
+		8DF928A8253DDE700052FC31 /* WritingWordModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WritingWordModel.swift; sourceTree = "<group>"; };
+		8DF928AB253DEBCF0052FC31 /* WritingProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WritingProgressView.swift; sourceTree = "<group>"; };
+		8DF928AD253DEBEC0052FC31 /* WritingProgressView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WritingProgressView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -516,6 +522,7 @@
 		8D662527252A384200991D45 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				8DF928AA253DEBB90052FC31 /* WritingProgress */,
 				8D94E7DE25362FA5005FA4B9 /* Background */,
 				8D524FCC25337288002A6E01 /* TopBar */,
 				8D524FA0252F8698002A6E01 /* UserImage */,
@@ -768,6 +775,7 @@
 			children = (
 				8D94E863253CE2AB005FA4B9 /* WritingCoordinator.swift */,
 				8D94E864253CE2AB005FA4B9 /* WritingViewController.swift */,
+				8DF928A8253DDE700052FC31 /* WritingWordModel.swift */,
 				8D94E865253CE2AB005FA4B9 /* WritingViewModel.swift */,
 				8D94E866253CE2AB005FA4B9 /* WritingViewController.xib */,
 			);
@@ -1139,6 +1147,15 @@
 			path = SingUp;
 			sourceTree = "<group>";
 		};
+		8DF928AA253DEBB90052FC31 /* WritingProgress */ = {
+			isa = PBXGroup;
+			children = (
+				8DF928AB253DEBCF0052FC31 /* WritingProgressView.swift */,
+				8DF928AD253DEBEC0052FC31 /* WritingProgressView.xib */,
+			);
+			path = WritingProgress;
+			sourceTree = "<group>";
+		};
 		9DE6AD27133D13A9E079D3C7 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -1232,6 +1249,7 @@
 				8D83EA81252BA2A2004E6098 /* VocabularyInfoTableViewCell.xib in Resources */,
 				8D524FE42533BA27002A6E01 /* FlashCardsViewController.xib in Resources */,
 				8D524F93252F7E8B002A6E01 /* MessagesViewController.xib in Resources */,
+				8DF928AE253DEBEC0052FC31 /* WritingProgressView.xib in Resources */,
 				8D524F97252F7E97002A6E01 /* AccountViewController.xib in Resources */,
 				8D662553252A7F5F00991D45 /* WordTableViewCell.xib in Resources */,
 				8DD28BB125266F4000F59B7D /* MainViewController.xib in Resources */,
@@ -1384,6 +1402,7 @@
 				8DD28BA625266BCE00F59B7D /* RootCoordinator.swift in Sources */,
 				8D6625242529F79B00991D45 /* CreateVocabularyViewModel.swift in Sources */,
 				8DAA554E25291D3400FF5066 /* Word.swift in Sources */,
+				8DF928AC253DEBCF0052FC31 /* WritingProgressView.swift in Sources */,
 				8D524F8E252F7E7D002A6E01 /* CoursesViewController.swift in Sources */,
 				8DD28BAA25266CDB00F59B7D /* RootViewModel.swift in Sources */,
 				8DD28BB6252675F800F59B7D /* UITabBarItem+Init.swift in Sources */,
@@ -1430,6 +1449,7 @@
 				8D94E846253A1F8D005FA4B9 /* ImagePickerViewController.swift in Sources */,
 				8DD28BB025266F4000F59B7D /* MainViewController.swift in Sources */,
 				8D94E7D42534E3DC005FA4B9 /* DataFacade.swift in Sources */,
+				8DF928A9253DDE700052FC31 /* WritingWordModel.swift in Sources */,
 				8DAA55402529112B00FF5066 /* Vocabulary.swift in Sources */,
 				8D524F9D252F7EC1002A6E01 /* AccountCoordinator.swift in Sources */,
 				8DD28C122528AEC800F59B7D /* SingInCoordinator.swift in Sources */,

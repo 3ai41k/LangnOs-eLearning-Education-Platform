@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097.3" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="WritingProgressView" customModule="LangnOs" customModuleProvider="target">
+            <connections>
+                <outlet property="firstProgressView" destination="TwA-un-qoX" id="FA5-kL-nzy"/>
+                <outlet property="secondProgressView" destination="U8X-gt-mYh" id="H56-8T-KnM"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="416" height="200"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="gc1-IE-Osd">
+                    <rect key="frame" x="0.0" y="0.0" width="416" height="200"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TwA-un-qoX">
+                            <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
+                            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="width" secondItem="TwA-un-qoX" secondAttribute="height" multiplier="1:1" id="FFP-Ja-8Cx"/>
+                            </constraints>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U8X-gt-mYh">
+                            <rect key="frame" x="216" y="0.0" width="200" height="200"/>
+                            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </view>
+                    </subviews>
+                </stackView>
+            </subviews>
+            <constraints>
+                <constraint firstItem="gc1-IE-Osd" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="Uns-yw-t4w"/>
+                <constraint firstAttribute="bottom" secondItem="gc1-IE-Osd" secondAttribute="bottom" id="YIj-Kr-8H9"/>
+                <constraint firstItem="gc1-IE-Osd" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="gAR-cW-n1q"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="gc1-IE-Osd" secondAttribute="trailing" id="wG1-gs-jUl"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <point key="canvasLocation" x="137.59999999999999" y="113.79310344827587"/>
+        </view>
+    </objects>
+</document>
