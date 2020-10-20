@@ -68,9 +68,9 @@ final class MainViewModel: UniversalCollectionViewViewModel {
         self.coreDataContext = coreDataContext
         self.dataFacade = dataFacade
         
-        bindContext()
+        self.bindContext()
         
-        setupVocabularySection(&tableSections)
+        self.setupVocabularySection(&tableSections)
     }
     
     // MARK: - Public methods
@@ -98,10 +98,13 @@ final class MainViewModel: UniversalCollectionViewViewModel {
     
     private func setupVocabularySection(_ tableSections: inout [CollectionSectionViewModelProtocol]) {
         // FIX IT - Retain cycle. [weak self]
-        let sectionViewModel = SearchBarCollectionReusableViewModel(textDidChange: searchVocabulary,
-                                                                    didFiter: didFilterTouched,
-                                                                    didCancle: didCancelTouched)
-        tableSections.append(UniversalCollectionSectionViewModel(sectionViewModel: sectionViewModel, cells: []))
+        let sectionHeaderViewModel = SearchBarCollectionReusableViewModel(textDidChange: searchVocabulary,
+                                                                          didFiter: didFilterTouched,
+                                                                          didCancle: didCancelTouched)
+        let sectionFooterViewModel = ViewAllCollectionReusableViewModel()
+        tableSections.append(UniversalCollectionSectionViewModel(sectionHeaderViewModel: sectionHeaderViewModel,
+                                                                 sectionFooterViewModel: sectionFooterViewModel,
+                                                                 cells: []))
     }
     
     // MARK: - Action

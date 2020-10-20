@@ -128,6 +128,9 @@
 		8DA744AF253F2EA600F9EC8B /* StudyResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA744AB253F2EA600F9EC8B /* StudyResultViewController.swift */; };
 		8DA744B0253F2EA600F9EC8B /* StudyResultViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA744AC253F2EA600F9EC8B /* StudyResultViewModel.swift */; };
 		8DA744B1253F2EA600F9EC8B /* StudyResultViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DA744AD253F2EA600F9EC8B /* StudyResultViewController.xib */; };
+		8DA744B6253F414300F9EC8B /* ViewAllCollectionReusableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA744B5253F414300F9EC8B /* ViewAllCollectionReusableViewModel.swift */; };
+		8DA744BB253F421200F9EC8B /* ViewAllCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA744B9253F421200F9EC8B /* ViewAllCollectionReusableView.swift */; };
+		8DA744BC253F421200F9EC8B /* ViewAllCollectionReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DA744BA253F421200F9EC8B /* ViewAllCollectionReusableView.xib */; };
 		8DAA553E25290FDD00FF5066 /* FirebaseDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DAA553D25290FDD00FF5066 /* FirebaseDatabase.swift */; };
 		8DAA55402529112B00FF5066 /* Vocabulary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DAA553F2529112B00FF5066 /* Vocabulary.swift */; };
 		8DAA55452529117200FF5066 /* FDEntityProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DAA55442529117200FF5066 /* FDEntityProtocol.swift */; };
@@ -316,6 +319,9 @@
 		8DA744AB253F2EA600F9EC8B /* StudyResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudyResultViewController.swift; sourceTree = "<group>"; };
 		8DA744AC253F2EA600F9EC8B /* StudyResultViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudyResultViewModel.swift; sourceTree = "<group>"; };
 		8DA744AD253F2EA600F9EC8B /* StudyResultViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StudyResultViewController.xib; sourceTree = "<group>"; };
+		8DA744B5253F414300F9EC8B /* ViewAllCollectionReusableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewAllCollectionReusableViewModel.swift; sourceTree = "<group>"; };
+		8DA744B9253F421200F9EC8B /* ViewAllCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewAllCollectionReusableView.swift; sourceTree = "<group>"; };
+		8DA744BA253F421200F9EC8B /* ViewAllCollectionReusableView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ViewAllCollectionReusableView.xib; sourceTree = "<group>"; };
 		8DAA553D25290FDD00FF5066 /* FirebaseDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseDatabase.swift; sourceTree = "<group>"; };
 		8DAA553F2529112B00FF5066 /* Vocabulary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vocabulary.swift; sourceTree = "<group>"; };
 		8DAA55442529117200FF5066 /* FDEntityProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FDEntityProtocol.swift; sourceTree = "<group>"; };
@@ -407,6 +413,7 @@
 			children = (
 				8D524F61252E5C71002A6E01 /* UniversalCollectionViewSectionRegistratable.swift */,
 				8D524F65252F01CF002A6E01 /* SearchBar */,
+				8DA744B2253F40FD00F9EC8B /* ViewAll */,
 			);
 			path = ReusableViews;
 			sourceTree = "<group>";
@@ -797,6 +804,16 @@
 				8DA744AD253F2EA600F9EC8B /* StudyResultViewController.xib */,
 			);
 			path = StudyResult;
+			sourceTree = "<group>";
+		};
+		8DA744B2253F40FD00F9EC8B /* ViewAll */ = {
+			isa = PBXGroup;
+			children = (
+				8DA744B9253F421200F9EC8B /* ViewAllCollectionReusableView.swift */,
+				8DA744B5253F414300F9EC8B /* ViewAllCollectionReusableViewModel.swift */,
+				8DA744BA253F421200F9EC8B /* ViewAllCollectionReusableView.xib */,
+			);
+			path = ViewAll;
 			sourceTree = "<group>";
 		};
 		8DAA5548252912A400FF5066 /* Requests */ = {
@@ -1255,6 +1272,7 @@
 				8D6625202529F6C000991D45 /* CreateVocabularyViewController.xib in Resources */,
 				8D83EA81252BA2A2004E6098 /* VocabularyInfoTableViewCell.xib in Resources */,
 				8D524FE42533BA27002A6E01 /* FlashCardsViewController.xib in Resources */,
+				8DA744BC253F421200F9EC8B /* ViewAllCollectionReusableView.xib in Resources */,
 				8D524F93252F7E8B002A6E01 /* MessagesViewController.xib in Resources */,
 				8DF928AE253DEBEC0052FC31 /* WritingProgressView.xib in Resources */,
 				8D524F97252F7E97002A6E01 /* AccountViewController.xib in Resources */,
@@ -1406,6 +1424,7 @@
 				8D524FF12533BF47002A6E01 /* FlashCardTableViewCellViewModel.swift in Sources */,
 				8DD28B8F252667F600F59B7D /* LangnOs.xcdatamodeld in Sources */,
 				8DD28BCD2526815C00F59B7D /* BindibleViewController.swift in Sources */,
+				8DA744BB253F421200F9EC8B /* ViewAllCollectionReusableView.swift in Sources */,
 				8DD28BF92527B3C700F59B7D /* UniversalCollectionViewCellFactoryProtocol.swift in Sources */,
 				8DD28BA625266BCE00F59B7D /* RootCoordinator.swift in Sources */,
 				8D6625242529F79B00991D45 /* CreateVocabularyViewModel.swift in Sources */,
@@ -1440,6 +1459,7 @@
 				8DD28BEE2527A52100F59B7D /* BarButtonDrivableModel.swift in Sources */,
 				8DC3CF43252D2CBD003CA62A /* VocabularyDeleteRequest.swift in Sources */,
 				8D524FD525337A22002A6E01 /* ToolbarDrivableModel.swift in Sources */,
+				8DA744B6253F414300F9EC8B /* ViewAllCollectionReusableViewModel.swift in Sources */,
 				8D94E7D02534E34E005FA4B9 /* VocabularyEntity.swift in Sources */,
 				8D94E7D62534F6DF005FA4B9 /* CDEntityProtocol.swift in Sources */,
 				8D9985F125292B17009EA144 /* VocabularyViewModel.swift in Sources */,

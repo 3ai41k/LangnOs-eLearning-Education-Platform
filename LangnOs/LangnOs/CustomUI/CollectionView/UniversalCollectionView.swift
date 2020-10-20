@@ -18,7 +18,8 @@ protocol CollectionReusableViewModelProtocol {
 }
 
 protocol CollectionSectionViewModelProtocol: SectionViewModelProtocol {
-    var sectionViewModel: CollectionReusableViewModelProtocol? { get }
+    var sectionHeaderViewModel: CollectionReusableViewModelProtocol? { get }
+    var sectionFooterViewModel: CollectionReusableViewModelProtocol? { get }
 }
 
 protocol UniversalCollectionViewSectionProtocol {
@@ -36,10 +37,18 @@ extension UniversalCollectionViewOutputProtocol {
 }
 
 protocol UniversalCollectionViewSectionFactoryProtocol {
-    func registerAllViews(collectionView: UICollectionView)
-    func generateView(sectionViewModel: CollectionReusableViewModelProtocol,
+    var viewTypes: [UniversalCollectionViewSectionRegistratable.Type] { get }
+    func generateView(reusableViewModel: CollectionReusableViewModelProtocol,
                       collectionView: UICollectionView,
                       indexPath: IndexPath) -> UICollectionReusableView
+}
+
+extension UniversalCollectionViewSectionFactoryProtocol {
+    
+    func registerAllViews(collectionView: UICollectionView) {
+        viewTypes.forEach({ $0.register(collectionView) })
+    }
+    
 }
 
 final class UniversalCollectionView: UICollectionView {
@@ -188,13 +197,26 @@ extension UniversalCollectionView: UICollectionViewDelegate {
     }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        let sectionViewModel = viewModel?.tableSections[indexPath.section]
+        var reusableViewModel: CollectionReusableViewModelProtocol?
+        
+        switch kind {
+        case UICollectionView.elementKindSectionHeader:
+            reusableViewModel = sectionViewModel?.sectionHeaderViewModel
+        case UICollectionView.elementKindSectionFooter:
+            reusableViewModel = sectionViewModel?.sectionFooterViewModel
+        default:
+            assert(false, "Unexpected element kind")
+        }
+        
         guard
-            let sectionViewModel = viewModel?.tableSections[indexPath.section].sectionViewModel,
-            let rusableView = sectionFactory?.generateView(sectionViewModel: sectionViewModel, collectionView: collectionView, indexPath: indexPath)
+            let viewModel = reusableViewModel,
+            let reusableView = sectionFactory?.generateView(reusableViewModel: viewModel, collectionView: collectionView, indexPath: indexPath)
         else {
             return UICollectionReusableView()
         }
-        return rusableView
+        
+        return reusableView
     }
     
 }

@@ -10,6 +10,7 @@ import UIKit
 
 protocol UniversalCollectionViewSectionRegistratable where Self: UICollectionReusableView {
     static var identifier: String { get }
+    static var kind: String { get }
     static var nib: UINib { get }
     static func register(_ collectionView: UICollectionView)
     static func dequeueReusableView(_ collectionView: UICollectionView, for indexPath: IndexPath) -> Self
@@ -27,12 +28,12 @@ extension UniversalCollectionViewSectionRegistratable {
     
     static func register(_ collectionView: UICollectionView) {
         collectionView.register(nib,
-                                forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
+                                forSupplementaryViewOfKind: kind,
                                 withReuseIdentifier: identifier)
     }
     
     static func dequeueReusableView(_ collectionView: UICollectionView, for indexPath: IndexPath) -> Self {
-        collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader,
+        collectionView.dequeueReusableSupplementaryView(ofKind: kind,
                                                         withReuseIdentifier: identifier,
                                                         for: indexPath) as! Self
     }

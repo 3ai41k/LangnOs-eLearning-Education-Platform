@@ -13,11 +13,12 @@ final class UniversalCollectionSectionViewModel: CollectionSectionViewModelProto
     
     // MARK: - Private properties
     
-    private var reloadSubject: PassthroughSubject<Void, Never>
+    private var reloadSubject = PassthroughSubject<Void, Never>()
     
     // MARK: - Public properties
     
-    var sectionViewModel: CollectionReusableViewModelProtocol?
+    var sectionHeaderViewModel: CollectionReusableViewModelProtocol?
+    var sectionFooterViewModel: CollectionReusableViewModelProtocol?
     var cells: [CellViewModelProtocol] {
         didSet {
             reloadSubject.send()
@@ -29,10 +30,12 @@ final class UniversalCollectionSectionViewModel: CollectionSectionViewModelProto
     
     // MARK: - Init
     
-    init(sectionViewModel: CollectionReusableViewModelProtocol?, cells: [CellViewModelProtocol]) {
-        self.sectionViewModel = sectionViewModel
+    init(sectionHeaderViewModel: CollectionReusableViewModelProtocol? = nil,
+         sectionFooterViewModel: CollectionReusableViewModelProtocol? = nil,
+         cells: [CellViewModelProtocol]) {
+        self.sectionHeaderViewModel = sectionHeaderViewModel
+        self.sectionFooterViewModel = sectionFooterViewModel
         self.cells = cells
-        self.reloadSubject = PassthroughSubject<Void, Never>()
     }
     
 }

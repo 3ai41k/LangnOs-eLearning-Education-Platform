@@ -20,6 +20,10 @@ final class SearchBarCollectionReusableView: UICollectionReusableView, Universal
     
     // MARK: - Public properties
     
+    static var kind: String {
+        UICollectionView.elementKindSectionHeader
+    }
+    
     var viewModel: (SearchBarCollectionReusableInputProtocol & SearchBarCollectionReusableOutputProtocol)? {
         didSet {
             searchBar.text = viewModel?.text

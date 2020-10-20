@@ -10,21 +10,22 @@ import UIKit
 
 final class MainSectionViewFactory: UniversalCollectionViewSectionFactoryProtocol {
     
-    private var viewTypes: [UniversalCollectionViewSectionRegistratable.Type] {
+    var viewTypes: [UniversalCollectionViewSectionRegistratable.Type] {
         [
-            SearchBarCollectionReusableView.self
+            SearchBarCollectionReusableView.self,
+            ViewAllCollectionReusableView.self
         ]
     }
     
-    func registerAllViews(collectionView: UICollectionView) {
-        viewTypes.forEach({ $0.register(collectionView) })
-    }
-    
-    func generateView(sectionViewModel: CollectionReusableViewModelProtocol, collectionView: UICollectionView, indexPath: IndexPath) -> UICollectionReusableView {
-        switch sectionViewModel {
-        case let sectionViewModel as SearchBarCollectionReusableViewModel:
+    func generateView(reusableViewModel: CollectionReusableViewModelProtocol, collectionView: UICollectionView, indexPath: IndexPath) -> UICollectionReusableView {
+        switch reusableViewModel {
+        case let reusableViewModel as SearchBarCollectionReusableViewModel:
             let view = SearchBarCollectionReusableView.dequeueReusableView(collectionView, for: indexPath)
-            view.viewModel = sectionViewModel
+            view.viewModel = reusableViewModel
+            return view
+        case let reusableViewModel as ViewAllCollectionReusableViewModel:
+            let view = ViewAllCollectionReusableView.dequeueReusableView(collectionView, for: indexPath)
+            view.viewModel = reusableViewModel
             return view
         default:
             return UICollectionReusableView()
