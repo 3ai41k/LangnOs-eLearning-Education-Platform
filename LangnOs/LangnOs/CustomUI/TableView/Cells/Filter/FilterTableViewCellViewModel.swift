@@ -34,12 +34,11 @@ final class FilterTableViewCellViewModel: FilterTableViewCellViewModelBindingPro
     
     // MARK: - Private properties
     
-    private let vocabularyFilter: VocabularyFilter
     
     // MARK: - Init
     
-    init(vocabularyFilter: VocabularyFilter) {
-        self.vocabularyFilter = vocabularyFilter
+    init() {
+        
     }
     
     // MARK: - Public methods
@@ -57,7 +56,7 @@ final class FilterTableViewCellViewModel: FilterTableViewCellViewModelBindingPro
 extension FilterTableViewCellViewModel: FilterTableViewCellViewModelInputProtocol {
     
     var title: String {
-        vocabularyFilter.name
+        ""
     }
     
     var image: UIImage? {

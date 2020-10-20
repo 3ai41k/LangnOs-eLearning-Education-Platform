@@ -9,7 +9,7 @@
 import UIKit
 
 protocol VocabularyFilterCoordinatorNavigationProtocol {
-    func selectVocabularyFilter(_ vocabularyFilter: VocabularyFilter)
+    func selectVocabularyFilter()
 }
 
 typealias VocabularyFilterCoordinatorProtocol =
@@ -23,11 +23,11 @@ final class VocabularyFilterCoordinator: Coordinator, VocabularyFilterCoordinato
     
     // MARK: - Private properties
     
-    private let didVocabularyFilerSelece: (VocabularyFilter) -> Void
+    private let didVocabularyFilerSelece: () -> Void
     
     // MARK: - Init
     
-    init(didVocabularyFilerSelece: @escaping (VocabularyFilter) -> Void, parentViewController: UIViewController?) {
+    init(didVocabularyFilerSelece: @escaping () -> Void, parentViewController: UIViewController?) {
         self.didVocabularyFilerSelece = didVocabularyFilerSelece
         
         super.init(parentViewController: parentViewController)
@@ -56,9 +56,9 @@ final class VocabularyFilterCoordinator: Coordinator, VocabularyFilterCoordinato
     
     // MARK: - VocabularyFilterCoordinatorNavigationProtocol
     
-    func selectVocabularyFilter(_ vocabularyFilter: VocabularyFilter) {
+    func selectVocabularyFilter() {
         close {
-            self.didVocabularyFilerSelece(vocabularyFilter)
+            self.didVocabularyFilerSelece()
         }
     }
     

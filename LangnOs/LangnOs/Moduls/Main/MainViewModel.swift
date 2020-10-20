@@ -50,7 +50,6 @@ final class MainViewModel: UniversalCollectionViewViewModel {
             })
         }
     }
-    private var vocabularyFilter: VocabularyFilter?
     
     private enum SectionType: Int {
         case vocabulary
@@ -129,25 +128,19 @@ final class MainViewModel: UniversalCollectionViewViewModel {
     }
     
     private func searchVocabulary(searchText: String) {
-        guard let filter = vocabularyFilter else { return }
-        
-        let query = "\(filter.value) == \(searchText)"
-        
-        do {
-            let filteredVocabulary = try Vocabulary.select(context: coreDataContext.context, query: query)
-            let cellViewModels = filteredVocabulary.map({ VocabularyCollectionViewCellViewModel(vocabulary: $0) })
-            tableSections[SectionType.vocabulary.rawValue].cells = cellViewModels
-        } catch {
-            router.showAlert(title: "Error!", message: error.localizedDescription, actions: [
-                OkAlertAction(handler: { })
-            ])
-        }
+//        do {
+//            let filteredVocabulary = try Vocabulary.select(context: coreDataContext.context, query: query)
+//            let cellViewModels = filteredVocabulary.map({ VocabularyCollectionViewCellViewModel(vocabulary: $0) })
+//            tableSections[SectionType.vocabulary.rawValue].cells = cellViewModels
+//        } catch {
+//            router.showAlert(title: "Error!", message: error.localizedDescription, actions: [
+//                OkAlertAction(handler: { })
+//            ])
+//        }
     }
     
     private func didFilterTouched() {
-        router.navigateToFilter { vocabularyFilter in
-            self.vocabularyFilter = vocabularyFilter
-        }
+        
     }
     
     private func didCancelTouched() {

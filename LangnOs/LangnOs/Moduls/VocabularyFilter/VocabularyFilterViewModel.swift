@@ -36,8 +36,6 @@ final class VocabularyFilterViewModel: VocabularyFilterViewModelBindingProtocol,
     
     private let router: VocabularyFilterCoordinatorProtocol
     
-    private var vocabularyFilters: [VocabularyFilter] = []
-    
     // MARK: - Init
     
     init(router: VocabularyFilterCoordinatorProtocol) {
@@ -55,8 +53,7 @@ final class VocabularyFilterViewModel: VocabularyFilterViewModelBindingProtocol,
     // MARK: - Private methods
     
     private func setupFilterSection(_ tableSections: inout [UniversalTableSectionViewModelProtocol]) {
-        let cellViewModel = vocabularyFilters.map({ FilterTableViewCellViewModel(vocabularyFilter: $0) })
-        tableSections.append(UniversalTableSectionViewModel(cells: cellViewModel))
+        tableSections.append(UniversalTableSectionViewModel(cells: []))
     }
     
     // MARK: - Actions

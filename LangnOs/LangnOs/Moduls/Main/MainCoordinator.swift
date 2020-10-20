@@ -11,7 +11,7 @@ import FirebaseAuth
 
 protocol MainNavigationProtocol {
     func navigateToVocabularyStatistic(_ vocabulary: Vocabulary, didVocabularyRemoveHandler: @escaping () -> Void)
-    func navigateToFilter(didVocabularyFilerSelece: @escaping (VocabularyFilter) -> Void)
+    func navigateToFilter(didVocabularyFilerSelece: @escaping () -> Void)
     func createNewVocabulary(user: User, didVocabularyCreateHandler: @escaping (Vocabulary) -> Void)
     func navigateToSingIn()
 }
@@ -64,7 +64,7 @@ final class MainCoordinator: Coordinator, MainCoordinatorProtocol {
         vocabularyCoordinator.start()
     }
     
-    func navigateToFilter(didVocabularyFilerSelece: @escaping (VocabularyFilter) -> Void) {
+    func navigateToFilter(didVocabularyFilerSelece: @escaping () -> Void) {
         let vocabularyFilterCoordinator = VocabularyFilterCoordinator(didVocabularyFilerSelece: didVocabularyFilerSelece,
                                                                       parentViewController: viewController)
         vocabularyFilterCoordinator.start()
