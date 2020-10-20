@@ -34,7 +34,8 @@ protocol WritingViewModelOutputProtocol {
 
 typealias WritingViewModelProtocol =
     WritingViewModelInputProtocol &
-    WritingViewModelOutputProtocol
+    WritingViewModelOutputProtocol &
+    NavigatableViewModelProtocol
 
 final class WritingViewModel: WritingViewModelProtocol {
     
@@ -122,29 +123,71 @@ final class WritingViewModel: WritingViewModelProtocol {
     // MARK: - Actions
     
     private func checkUserInput(_ string: String) {
-        if string.lowercased() == currentWord.definition.lowercased() {
-            message.value = ("Correct!", .green)
-            currentWord.markCorrect()
-            do {
-                currentWord = try getRandomWord()
-            } catch {
-                self.router.close()
-            }
-        } else {
-            message.value = ("Incorrect!", .red)
-            currentWord.markIncorrect()
-        }
+        self.router.navigateToStudyResult()
         
-        if currentWord.isFailed {
-            isAnswerHidden.value = false
-        }
         
-        correctAnswers.value = currentWord.correctCounter
+//        if string.lowercased() == currentWord.definition.lowercased() {
+//            message.value = ("Correct!", .green)
+//            currentWord.markCorrect()
+//            do {
+//                currentWord = try getRandomWord()
+//            } catch {
+//                self.router.navigateToStudyResult()
+//            }
+//        } else {
+//            message.value = ("Incorrect!", .red)
+//            currentWord.markIncorrect()
+//        }
+//
+//        if currentWord.isFailed {
+//            isAnswerHidden.value = false
+//        }
+//
+//        correctAnswers.value = currentWord.correctCounter
     }
     
     private func showAnswer() {
         word.value = currentWord.definition
     }
+    
+    // MARK: - Actions
+    
+    @objc
+    private func didBackTouch() {
+        router.close()
+    }
+    
+    @objc
+    private func didSideMenuTouch() {
+        
+    }
+    
+}
+
+// MARK: - NavigatableViewModelProtocol
+
+extension WritingViewModel {
+    
+    var navigationItemDrivableModel: DrivableModelProtocol {
+        let backButton = BarButtonDrivableModel(title: "Back",
+                                                style: .plain,
+                                                target: self,
+                                                selector: #selector(didBackTouch))
+        let sideMenuButton = BarButtonDrivableModel(title: "Menu",
+                                                    style: .done,
+                                                    target: self,
+                                                    selector: #selector(didSideMenuTouch))
+        return NavigationItemDrivableModel(title: "Unit",
+                                           leftBarButtonDrivableModels: [backButton],
+                                           rightBarButtonDrivableModels: [sideMenuButton])
+    }
+    
+    var navigationBarDrivableModel: DrivableModelProtocol? {
+        NavigationBarDrivableModel(isBottomLineHidden: true,
+                                   backgroundColor: .white,
+                                   prefersLargeTitles: false)
+    }
+    
     
 }
 

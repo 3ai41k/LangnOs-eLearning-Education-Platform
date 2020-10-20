@@ -9,7 +9,7 @@
 import UIKit
 
 protocol WritingCoordinatorNavigationProtocol {
-    
+    func navigateToStudyResult()
 }
 
 typealias WritingCoordinatorProtocol =
@@ -17,7 +17,7 @@ typealias WritingCoordinatorProtocol =
     CoordinatorClosableProtocol
     
 
-final class WritingCoordinator: Coordinator, CoordinatorClosableProtocol {
+final class WritingCoordinator: Coordinator, WritingCoordinatorProtocol {
     
     // MARK: - Private properties
     
@@ -38,15 +38,19 @@ final class WritingCoordinator: Coordinator, CoordinatorClosableProtocol {
         let viewController = WritingViewController()
         viewController.viewModel = viewModel
         
-        self.viewController = viewController
-        (parentViewController as? UINavigationController)?.pushViewController(viewController, animated: true)
+        let navigationController = UINavigationController(rootViewController: viewController)
+        navigationController.modalPresentationStyle = .fullScreen
+        
+        self.viewController = navigationController
+        self.parentViewController?.present(navigationController, animated: true, completion: nil)
     }
     
-}
-
-// MARK: - WritingCoordinatorNavigationProtocol
-
-extension WritingCoordinator: WritingCoordinatorNavigationProtocol {
+    // MARK: - WritingCoordinatorNavigationProtocol
+    
+    func navigateToStudyResult() {
+        let studyResultCoordinator = StudyResultCoordinator(parentViewController: viewController)
+        studyResultCoordinator.start()
+    }
     
 }
 

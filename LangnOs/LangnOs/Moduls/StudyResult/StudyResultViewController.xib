@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097.3" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="StudyResultViewController" customModule="LangnOs" customModuleProvider="target">
+            <connections>
+                <outlet property="closeButton" destination="EUT-i1-aZJ" id="6CW-ZG-1Oi"/>
+                <outlet property="roundResultLabel" destination="YaY-t0-hMm" id="1ts-yl-SJu"/>
+                <outlet property="startNewRoundButton" destination="Yoq-0s-dXe" id="ow3-SZ-MaE"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yoq-0s-dXe" customClass="BorderedButton" customModule="LangnOs" customModuleProvider="target">
+                    <rect key="frame" x="32" y="734" width="350" height="64"/>
+                    <color key="backgroundColor" name="Button"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="64" id="DvC-A3-KDY"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                    <state key="normal" title="Start new round">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <real key="value" value="15"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="didStartNewRoundTouch:" destination="-1" eventType="touchUpInside" id="d3G-hq-nb1"/>
+                    </connections>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Round result" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YaY-t0-hMm">
+                    <rect key="frame" x="16" y="68" width="382" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EUT-i1-aZJ">
+                    <rect key="frame" x="362" y="60" width="36" height="36"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="36" id="idR-7N-EOD"/>
+                        <constraint firstAttribute="width" secondItem="EUT-i1-aZJ" secondAttribute="height" multiplier="1:1" id="sBK-O9-yrC"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="tintColor" name="Icon"/>
+                    <state key="normal" image="multiply" catalog="system">
+                        <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="21"/>
+                    </state>
+                    <connections>
+                        <action selector="didCloseTouch:" destination="-1" eventType="touchUpInside" id="Iyt-ub-IhV"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" name="AppBackground"/>
+            <constraints>
+                <constraint firstItem="Yoq-0s-dXe" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="32" id="6rX-T3-6sj"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Yoq-0s-dXe" secondAttribute="trailing" constant="32" id="79i-Mf-7na"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="EUT-i1-aZJ" secondAttribute="trailing" constant="16" id="9Dw-9x-Y4d"/>
+                <constraint firstItem="YaY-t0-hMm" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="CGe-ql-V6n"/>
+                <constraint firstItem="EUT-i1-aZJ" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="16" id="Ef9-6z-Abm"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="Yoq-0s-dXe" secondAttribute="bottom" constant="64" id="HRv-e0-KjZ"/>
+                <constraint firstItem="YaY-t0-hMm" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="24" id="WY3-Q9-Y5B"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="YaY-t0-hMm" secondAttribute="trailing" constant="16" id="sun-gq-EWb"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <point key="canvasLocation" x="139" y="127"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="multiply" catalog="system" width="128" height="111"/>
+        <namedColor name="AppBackground">
+            <color red="0.93699997663497925" green="0.95300000905990601" blue="0.98400002717971802" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Button">
+            <color red="0.37254901960784315" green="0.50980392156862742" blue="0.94117647058823528" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Icon">
+            <color red="0.41999998688697815" green="0.54500001668930054" blue="0.96100002527236938" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

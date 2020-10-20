@@ -14,5 +14,9 @@ struct ColorUtils {
         UIColor(named: "AppBackground")!
     }
     
+    static var button: UIColor {
+        UIColor(named: "Button")!
+    }
+    
     
 }

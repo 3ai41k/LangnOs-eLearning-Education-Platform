@@ -54,6 +54,11 @@ final class WritingViewController: BindibleViewController<WritingViewModelProtoc
         ]
     }
     
+    override func setupUI() {
+        navigationItem.drive(model: viewModel?.navigationItemDrivableModel)
+        navigationController?.navigationBar.drive(model: viewModel?.navigationBarDrivableModel)
+    }
+    
     // MARK: - Private methods
     
     private func showMessageView() {

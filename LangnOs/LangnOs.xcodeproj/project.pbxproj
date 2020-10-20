@@ -126,6 +126,10 @@
 		8D9985ED252929E7009EA144 /* VocabularyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D9985EB252929E7009EA144 /* VocabularyViewController.xib */; };
 		8D9985EF252929FF009EA144 /* VocabularyCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D9985EE252929FF009EA144 /* VocabularyCoordinator.swift */; };
 		8D9985F125292B17009EA144 /* VocabularyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D9985F025292B17009EA144 /* VocabularyViewModel.swift */; };
+		8DA744AE253F2EA600F9EC8B /* StudyResultCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA744AA253F2EA600F9EC8B /* StudyResultCoordinator.swift */; };
+		8DA744AF253F2EA600F9EC8B /* StudyResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA744AB253F2EA600F9EC8B /* StudyResultViewController.swift */; };
+		8DA744B0253F2EA600F9EC8B /* StudyResultViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA744AC253F2EA600F9EC8B /* StudyResultViewModel.swift */; };
+		8DA744B1253F2EA600F9EC8B /* StudyResultViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DA744AD253F2EA600F9EC8B /* StudyResultViewController.xib */; };
 		8DAA553E25290FDD00FF5066 /* FirebaseDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DAA553D25290FDD00FF5066 /* FirebaseDatabase.swift */; };
 		8DAA55402529112B00FF5066 /* Vocabulary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DAA553F2529112B00FF5066 /* Vocabulary.swift */; };
 		8DAA55452529117200FF5066 /* FDEntityProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DAA55442529117200FF5066 /* FDEntityProtocol.swift */; };
@@ -312,6 +316,10 @@
 		8D9985EB252929E7009EA144 /* VocabularyViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VocabularyViewController.xib; sourceTree = "<group>"; };
 		8D9985EE252929FF009EA144 /* VocabularyCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabularyCoordinator.swift; sourceTree = "<group>"; };
 		8D9985F025292B17009EA144 /* VocabularyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabularyViewModel.swift; sourceTree = "<group>"; };
+		8DA744AA253F2EA600F9EC8B /* StudyResultCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudyResultCoordinator.swift; sourceTree = "<group>"; };
+		8DA744AB253F2EA600F9EC8B /* StudyResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudyResultViewController.swift; sourceTree = "<group>"; };
+		8DA744AC253F2EA600F9EC8B /* StudyResultViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudyResultViewModel.swift; sourceTree = "<group>"; };
+		8DA744AD253F2EA600F9EC8B /* StudyResultViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StudyResultViewController.xib; sourceTree = "<group>"; };
 		8DAA553D25290FDD00FF5066 /* FirebaseDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseDatabase.swift; sourceTree = "<group>"; };
 		8DAA553F2529112B00FF5066 /* Vocabulary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vocabulary.swift; sourceTree = "<group>"; };
 		8DAA55442529117200FF5066 /* FDEntityProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FDEntityProtocol.swift; sourceTree = "<group>"; };
@@ -793,6 +801,17 @@
 			path = Vocabulary;
 			sourceTree = "<group>";
 		};
+		8DA744A9253F2E8800F9EC8B /* StudyResult */ = {
+			isa = PBXGroup;
+			children = (
+				8DA744AA253F2EA600F9EC8B /* StudyResultCoordinator.swift */,
+				8DA744AB253F2EA600F9EC8B /* StudyResultViewController.swift */,
+				8DA744AC253F2EA600F9EC8B /* StudyResultViewModel.swift */,
+				8DA744AD253F2EA600F9EC8B /* StudyResultViewController.xib */,
+			);
+			path = StudyResult;
+			sourceTree = "<group>";
+		};
 		8DAA5548252912A400FF5066 /* Requests */ = {
 			isa = PBXGroup;
 			children = (
@@ -921,6 +940,7 @@
 				8D9985E9252929BF009EA144 /* Vocabulary */,
 				8D524FE02533BA07002A6E01 /* FlashCards */,
 				8D94E862253CE291005FA4B9 /* Writing */,
+				8DA744A9253F2E8800F9EC8B /* StudyResult */,
 			);
 			path = Moduls;
 			sourceTree = "<group>";
@@ -1245,6 +1265,7 @@
 				8D83EA70252B9C11004E6098 /* ActivityViewController.xib in Resources */,
 				8D94E830253748B3005FA4B9 /* FilterTableViewCell.xib in Resources */,
 				8D94E7E225363008005FA4B9 /* NoResulsView.xib in Resources */,
+				8DA744B1253F2EA600F9EC8B /* StudyResultViewController.xib in Resources */,
 				8D6625202529F6C000991D45 /* CreateVocabularyViewController.xib in Resources */,
 				8D83EA81252BA2A2004E6098 /* VocabularyInfoTableViewCell.xib in Resources */,
 				8D524FE42533BA27002A6E01 /* FlashCardsViewController.xib in Resources */,
@@ -1319,6 +1340,7 @@
 				8DD28C152528AEEF00F59B7D /* SingInViewController.swift in Sources */,
 				8D94E832253749CE005FA4B9 /* VocabularyFilterCellFactory.swift in Sources */,
 				8D94E82225373FB6005FA4B9 /* VocabularyFilterViewModel.swift in Sources */,
+				8DA744AE253F2EA600F9EC8B /* StudyResultCoordinator.swift in Sources */,
 				8DD28BE12526889200F59B7D /* UINavigationBar+Drivable.swift in Sources */,
 				8D94E84A253A2ABF005FA4B9 /* UIView+CornerRadius.swift in Sources */,
 				8DAA55452529117200FF5066 /* FDEntityProtocol.swift in Sources */,
@@ -1331,6 +1353,7 @@
 				8DD28BA825266C8200F59B7D /* RootTabBarController.swift in Sources */,
 				8D524FC72530D1D8002A6E01 /* UIButton+Drivable.swift in Sources */,
 				8D83EA86252BBBD1004E6098 /* UniversalTableSectionViewModel.swift in Sources */,
+				8DA744AF253F2EA600F9EC8B /* StudyResultViewController.swift in Sources */,
 				8D662543252A718400991D45 /* WordsCoordinator.swift in Sources */,
 				8DD28B85252667F600F59B7D /* AppDelegate.swift in Sources */,
 				8DD28BDF2526886200F59B7D /* NavigationBarDrivableModel.swift in Sources */,
@@ -1378,6 +1401,7 @@
 				8D94E868253CE2AB005FA4B9 /* WritingViewController.swift in Sources */,
 				8D94E869253CE2AB005FA4B9 /* WritingViewModel.swift in Sources */,
 				8DC3CF37252CFB8D003CA62A /* UIView+Shadow.swift in Sources */,
+				8DA744B0253F2EA600F9EC8B /* StudyResultViewModel.swift in Sources */,
 				8D524FA2252F86BC002A6E01 /* UserImageView.swift in Sources */,
 				8D83EA80252BA2A2004E6098 /* VocabularyInfoTableViewCell.swift in Sources */,
 				8DC3CF3E252CFEB5003CA62A /* UIColor+Random.swift in Sources */,
