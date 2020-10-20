@@ -105,9 +105,7 @@
 		8D94E82F253748B3005FA4B9 /* FilterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D94E82D253748B3005FA4B9 /* FilterTableViewCell.swift */; };
 		8D94E830253748B3005FA4B9 /* FilterTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D94E82E253748B3005FA4B9 /* FilterTableViewCell.xib */; };
 		8D94E832253749CE005FA4B9 /* VocabularyFilterCellFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D94E831253749CE005FA4B9 /* VocabularyFilterCellFactory.swift */; };
-		8D94E83425374BA2005FA4B9 /* VocabularyFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D94E83325374BA2005FA4B9 /* VocabularyFilter.swift */; };
 		8D94E83625374D3B005FA4B9 /* VocabularyFilterEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D94E83525374D3B005FA4B9 /* VocabularyFilterEntity.swift */; };
-		8D94E83925374FBF005FA4B9 /* VocabularyFilterFetchRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D94E83825374FBF005FA4B9 /* VocabularyFilterFetchRequest.swift */; };
 		8D94E83F2539FA2D005FA4B9 /* SecurityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D94E83E2539FA2D005FA4B9 /* SecurityManager.swift */; };
 		8D94E845253A1F8D005FA4B9 /* ImagePickerCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D94E841253A1F8D005FA4B9 /* ImagePickerCoordinator.swift */; };
 		8D94E846253A1F8D005FA4B9 /* ImagePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D94E842253A1F8D005FA4B9 /* ImagePickerViewController.swift */; };
@@ -295,9 +293,7 @@
 		8D94E82D253748B3005FA4B9 /* FilterTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterTableViewCell.swift; sourceTree = "<group>"; };
 		8D94E82E253748B3005FA4B9 /* FilterTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FilterTableViewCell.xib; sourceTree = "<group>"; };
 		8D94E831253749CE005FA4B9 /* VocabularyFilterCellFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabularyFilterCellFactory.swift; sourceTree = "<group>"; };
-		8D94E83325374BA2005FA4B9 /* VocabularyFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabularyFilter.swift; sourceTree = "<group>"; };
 		8D94E83525374D3B005FA4B9 /* VocabularyFilterEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabularyFilterEntity.swift; sourceTree = "<group>"; };
-		8D94E83825374FBF005FA4B9 /* VocabularyFilterFetchRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabularyFilterFetchRequest.swift; sourceTree = "<group>"; };
 		8D94E83E2539FA2D005FA4B9 /* SecurityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecurityManager.swift; sourceTree = "<group>"; };
 		8D94E841253A1F8D005FA4B9 /* ImagePickerCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerCoordinator.swift; sourceTree = "<group>"; };
 		8D94E842253A1F8D005FA4B9 /* ImagePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerViewController.swift; sourceTree = "<group>"; };
@@ -724,14 +720,6 @@
 			path = Filter;
 			sourceTree = "<group>";
 		};
-		8D94E83725374FA2005FA4B9 /* VocabularyFilter */ = {
-			isa = PBXGroup;
-			children = (
-				8D94E83825374FBF005FA4B9 /* VocabularyFilterFetchRequest.swift */,
-			);
-			path = VocabularyFilter;
-			sourceTree = "<group>";
-		};
 		8D94E840253A1F1C005FA4B9 /* ImagePicker */ = {
 			isa = PBXGroup;
 			children = (
@@ -747,7 +735,6 @@
 			children = (
 				8DAA55462529129E00FF5066 /* FirebaseDatabaseRequestProtocol.swift */,
 				8DC3CF4C252D3083003CA62A /* Vocabulary */,
-				8D94E83725374FA2005FA4B9 /* VocabularyFilter */,
 			);
 			path = FirebaseDatabe;
 			sourceTree = "<group>";
@@ -1141,7 +1128,6 @@
 				8D94E7CE2534E0FD005FA4B9 /* Protocols */,
 				8D94E7CD2534E0F1005FA4B9 /* CoreDataEntities */,
 				8DAA553F2529112B00FF5066 /* Vocabulary.swift */,
-				8D94E83325374BA2005FA4B9 /* VocabularyFilter.swift */,
 				8DAA554D25291D3400FF5066 /* Word.swift */,
 			);
 			path = Models;
@@ -1358,7 +1344,6 @@
 				8DD28B85252667F600F59B7D /* AppDelegate.swift in Sources */,
 				8DD28BDF2526886200F59B7D /* NavigationBarDrivableModel.swift in Sources */,
 				8D662555252A7FAC00991D45 /* WordTableViewCellViewModel.swift in Sources */,
-				8D94E83425374BA2005FA4B9 /* VocabularyFilter.swift in Sources */,
 				8D524FC92530D22A002A6E01 /* ButtonDrivableModel.swift in Sources */,
 				8DC3CF2C252CD503003CA62A /* UIEdgeInsets+Init.swift in Sources */,
 				8D524FDB2533816D002A6E01 /* UIBarButtonItem+Init.swift in Sources */,
@@ -1396,7 +1381,6 @@
 				8D66252D252A38AD00991D45 /* UIView+Extensions.swift in Sources */,
 				8DD28BB92526774400F59B7D /* String+Localize.swift in Sources */,
 				8DD28C0925289CCB00F59B7D /* CellViewModelProtocol.swift in Sources */,
-				8D94E83925374FBF005FA4B9 /* VocabularyFilterFetchRequest.swift in Sources */,
 				8D524FD325337985002A6E01 /* UIToolBar+Drivable.swift in Sources */,
 				8D94E868253CE2AB005FA4B9 /* WritingViewController.swift in Sources */,
 				8D94E869253CE2AB005FA4B9 /* WritingViewModel.swift in Sources */,

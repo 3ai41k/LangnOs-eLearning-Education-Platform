@@ -28,12 +28,6 @@ final class VocabularyFilterViewController: BindibleViewController<VocabularyFil
     
     // MARK: - Lifecycle
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        viewModel?.fetchData()
-    }
-    
     
     // MARK: - Init
     
@@ -43,9 +37,7 @@ final class VocabularyFilterViewController: BindibleViewController<VocabularyFil
     // MARK: - Override
     
     override func bindViewModel() {
-        viewModel?.updateUI = { [weak self] in
-            self?.setupUI()
-        }
+        
     }
     
     override func setupUI() {

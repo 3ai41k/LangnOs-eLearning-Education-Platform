@@ -36,8 +36,7 @@ final class VocabularyFilterCoordinator: Coordinator, VocabularyFilterCoordinato
     // MARK: - Override
     
     override func start() {
-        let dataFacade = DataFacade()
-        let viewModel = VocabularyFilterViewModel(router: self, dataFacade: dataFacade, selectedVocabularyFilter: nil)
+        let viewModel = VocabularyFilterViewModel(router: self)
         let cellFactory = VocabularyFilterCellFactory()
         let viewController = VocabularyFilterViewController()
         viewController.cellFactory = cellFactory
