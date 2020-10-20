@@ -158,7 +158,7 @@ final class WritingViewModel: WritingViewModelProtocol {
     }
     
     @objc
-    private func didSideMenuTouch() {
+    private func didSettingsTouch() {
         
     }
     
@@ -173,10 +173,10 @@ extension WritingViewModel {
                                                 style: .plain,
                                                 target: self,
                                                 selector: #selector(didBackTouch))
-        let sideMenuButton = BarButtonDrivableModel(title: "Menu",
+        let sideMenuButton = BarButtonDrivableModel(title: "Settings",
                                                     style: .done,
                                                     target: self,
-                                                    selector: #selector(didSideMenuTouch))
+                                                    selector: #selector(didSettingsTouch))
         return NavigationItemDrivableModel(title: "Unit",
                                            leftBarButtonDrivableModels: [backButton],
                                            rightBarButtonDrivableModels: [sideMenuButton])
