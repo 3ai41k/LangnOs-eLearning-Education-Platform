@@ -38,11 +38,9 @@ final class MainViewModel: UniversalCollectionViewViewModel {
     private let router: MainCoordinatorProtocol
     private let contex: UserSessesionPublisherContextProtocol
     private let securityManager: SecurityManager
-    
-    private var cancellables: [AnyCancellable] = []
-    
-    private let coreDataContext: ContextAccessableProtocol
     private let dataFacade: DataFacadeFetchingProtocol
+    
+    private var cancellables: [AnyCancellable?] = []
     private var vocabularies: [Vocabulary] = [] {
         didSet {
             tableSections[SectionType.vocabulary.rawValue].cells = vocabularies.map({
@@ -50,6 +48,7 @@ final class MainViewModel: UniversalCollectionViewViewModel {
             })
         }
     }
+    private var vocabularyFilter: VocabularyFilter = .name
     
     private enum SectionType: Int {
         case vocabulary
@@ -60,12 +59,10 @@ final class MainViewModel: UniversalCollectionViewViewModel {
     init(router: MainCoordinatorProtocol,
          contex: UserSessesionPublisherContextProtocol,
          securityManager: SecurityManager,
-         coreDataContext: ContextAccessableProtocol,
          dataFacade: DataFacadeFetchingProtocol) {
         self.router = router
         self.contex = contex
         self.securityManager = securityManager
-        self.coreDataContext = coreDataContext
         self.dataFacade = dataFacade
         
         self.bindContext()
@@ -91,9 +88,11 @@ final class MainViewModel: UniversalCollectionViewViewModel {
     // MARK: - Private methods
     
     private func bindContext() {
-        contex.userSessionPublisher.sink { [weak self] _ in
-            self?.fetchData()
-        }.store(in: &cancellables)
+        cancellables = [
+            contex.userSessionPublisher.sink { [weak self] _ in
+                self?.fetchData()
+            }
+        ]
     }
     
     private func setupVocabularySection(_ tableSections: inout [CollectionSectionViewModelProtocol]) {
@@ -101,13 +100,15 @@ final class MainViewModel: UniversalCollectionViewViewModel {
         let sectionHeaderViewModel = SearchBarCollectionReusableViewModel(textDidChange: searchVocabulary,
                                                                           didFiter: didFilterTouched,
                                                                           didCancle: didCancelTouched)
-        let sectionFooterViewModel = ViewAllCollectionReusableViewModel()
+        //let sectionFooterViewModel = ViewAllCollectionReusableViewModel()
         tableSections.append(UniversalCollectionSectionViewModel(sectionHeaderViewModel: sectionHeaderViewModel,
-                                                                 sectionFooterViewModel: sectionFooterViewModel,
+                                                                 sectionFooterViewModel: nil,
                                                                  cells: []))
     }
     
-    // MARK: - Action
+    private func searchVocabulary(searchText: String) {
+        
+    }
     
     private func fetchData(completion: (() -> Void)?) {
         defer {
@@ -130,20 +131,12 @@ final class MainViewModel: UniversalCollectionViewViewModel {
         }
     }
     
-    private func searchVocabulary(searchText: String) {
-//        do {
-//            let filteredVocabulary = try Vocabulary.select(context: coreDataContext.context, query: query)
-//            let cellViewModels = filteredVocabulary.map({ VocabularyCollectionViewCellViewModel(vocabulary: $0) })
-//            tableSections[SectionType.vocabulary.rawValue].cells = cellViewModels
-//        } catch {
-//            router.showAlert(title: "Error!", message: error.localizedDescription, actions: [
-//                OkAlertAction(handler: { })
-//            ])
-//        }
-    }
+    // MARK: - Action
     
     private func didFilterTouched() {
-        
+        router.navigateToFilter(selectedFilter: vocabularyFilter) { vocabularyFilter in
+            self.vocabularyFilter = vocabularyFilter
+        }
     }
     
     private func didCancelTouched() {

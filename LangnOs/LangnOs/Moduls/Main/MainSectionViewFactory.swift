@@ -12,8 +12,8 @@ final class MainSectionViewFactory: UniversalCollectionViewSectionFactoryProtoco
     
     var viewTypes: [UniversalCollectionViewSectionRegistratable.Type] {
         [
-            SearchBarCollectionReusableView.self,
-            ViewAllCollectionReusableView.self
+            SearchBarCollectionReusableView.self
+            //ViewAllCollectionReusableView.self
         ]
     }
     

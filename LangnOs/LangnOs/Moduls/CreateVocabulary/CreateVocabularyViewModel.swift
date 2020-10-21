@@ -50,10 +50,7 @@ final class CreateVocabularyViewModel: UniversalTableViewModelProtocol {
     }
     
     private func setupWordsSection(_ tableSections: inout [UniversalTableSectionViewModelProtocol]) {
-        let createWordTableViewCellViewModel = CreateWordTableViewCellViewModel { [weak self] in
-            self?.addRowAction()
-        }
-        tableSections.append(UniversalTableSectionViewModel(cells: [createWordTableViewCellViewModel]))
+        tableSections.append(UniversalTableSectionViewModel(cells: [createWordCellViewModel()]))
     }
     
     private func createVocabulary() throws -> Vocabulary {
@@ -83,13 +80,21 @@ final class CreateVocabularyViewModel: UniversalTableViewModelProtocol {
         }
     }
     
+    private func createWordCellViewModel() -> CreateWordTableViewCellViewModel {
+        let cellViewModel = CreateWordTableViewCellViewModel()
+        cellViewModel.addNewWordHandler = { [weak self] in
+            self?.addRowAction()
+        }
+        cellViewModel.addImageHandler = { [weak self] completion in
+            self?.router.navigateToImagePicker(sourceType: .photoLibrary, didImageSelect: completion)
+        }
+        return cellViewModel
+    }
+    
     // MARK: - Actions
     
     private func addRowAction() {
-        let cellViewModel = CreateWordTableViewCellViewModel{ [weak self] in
-            self?.addRowAction()
-        }
-        tableSections[SectionType.words.rawValue].cells.append(cellViewModel)
+        tableSections[SectionType.words.rawValue].cells.append(createWordCellViewModel())
     }
     
     @objc

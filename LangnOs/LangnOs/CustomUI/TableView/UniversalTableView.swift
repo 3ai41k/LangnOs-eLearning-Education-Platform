@@ -34,6 +34,11 @@ extension UniversalTableViewOutputProtocol {
     func didSelectCellAt(indexPath: IndexPath) { }
 }
 
+protocol CellResizableProtocol where Self: UITableViewCell {
+    var beginUpdate: (() -> Void)? { get set }
+    var endUpdate: (() -> Void)? { get set }
+}
+
 final class UniversalTableView: UITableView {
     
     // MARK: - Public properties
@@ -91,8 +96,14 @@ final class UniversalTableView: UITableView {
     }
     
     private func setupNotifications() {
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(keyboardWillShow),
+                                               name: UIResponder.keyboardWillShowNotification,
+                                               object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(keyboardWillHide),
+                                               name: UIResponder.keyboardWillHideNotification,
+                                               object: nil)
     }
     
     private func removeNotifications() {
@@ -104,7 +115,7 @@ final class UniversalTableView: UITableView {
     @objc
     private func keyboardWillShow(_ notificatio: Notification) {
         guard let keyboardSize = notificatio.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else { return }
-        contentInset = UIEdgeInsets(top: 0, left: 0, bottom: keyboardSize.cgRectValue.height, right: 0)
+        contentInset = UIEdgeInsets(top: 0, left: 0, bottom: keyboardSize.cgRectValue.height + 50.0, right: 0)
     }
     
     @objc
@@ -133,6 +144,16 @@ extension UniversalTableView: UITableViewDataSource {
         else {
             return UITableViewCell()
         }
+        
+        if let cell = cell as? CellResizableProtocol {
+            cell.beginUpdate = {
+                tableView.beginUpdates()
+            }
+            cell.endUpdate = {
+                tableView.endUpdates()
+            }
+        }
+        
         return cell
     }
     

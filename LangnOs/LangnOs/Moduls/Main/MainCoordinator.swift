@@ -11,7 +11,7 @@ import FirebaseAuth
 
 protocol MainNavigationProtocol {
     func navigateToVocabularyStatistic(_ vocabulary: Vocabulary, didVocabularyRemoveHandler: @escaping () -> Void)
-    func navigateToFilter(didVocabularyFilerSelece: @escaping () -> Void)
+    func navigateToFilter(selectedFilter: VocabularyFilter, selectFilterHandler: @escaping (VocabularyFilter) -> Void)
     func createNewVocabulary(user: User, didVocabularyCreateHandler: @escaping (Vocabulary) -> Void)
     func navigateToSingIn()
 }
@@ -36,12 +36,10 @@ final class MainCoordinator: Coordinator, MainCoordinatorProtocol {
     
     override func start() {
         let securityManager = SecurityManager.shared
-        let coreDataContext = CoreDataContext()
         let dataFacade = DataFacade()
         let mainViewModel = MainViewModel(router: self,
                                           contex: context,
                                           securityManager: securityManager,
-                                          coreDataContext: coreDataContext,
                                           dataFacade: dataFacade)
         
         let mainViewController = MainViewController()
@@ -64,8 +62,9 @@ final class MainCoordinator: Coordinator, MainCoordinatorProtocol {
         vocabularyCoordinator.start()
     }
     
-    func navigateToFilter(didVocabularyFilerSelece: @escaping () -> Void) {
-        let vocabularyFilterCoordinator = VocabularyFilterCoordinator(didVocabularyFilerSelece: didVocabularyFilerSelece,
+    func navigateToFilter(selectedFilter: VocabularyFilter, selectFilterHandler: @escaping (VocabularyFilter) -> Void) {
+        let vocabularyFilterCoordinator = VocabularyFilterCoordinator(selectedFilter: selectedFilter,
+                                                                      selectFilterHandler: selectFilterHandler,
                                                                       parentViewController: viewController)
         vocabularyFilterCoordinator.start()
     }
@@ -79,7 +78,8 @@ final class MainCoordinator: Coordinator, MainCoordinatorProtocol {
     
     func navigateToSingIn() {
         let context = RootContext()
-        let singInCoordinator = SingInCoordinator(context: context, parentViewController: viewController)
+        let singInCoordinator = SingInCoordinator(context: context,
+                                                  parentViewController: viewController)
         singInCoordinator.start()
     }
     

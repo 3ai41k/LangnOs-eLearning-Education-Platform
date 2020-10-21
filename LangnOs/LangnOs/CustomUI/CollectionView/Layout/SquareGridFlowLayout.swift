@@ -32,7 +32,7 @@ extension SquareGridFlowLayout: UniversalCollectionViewLayoutProtocol {
         layout.minimumLineSpacing = Constants.spacing
         layout.minimumInteritemSpacing = Constants.spacing
         layout.headerReferenceSize = CGSize(width: .zero, height: 54.0)
-        layout.footerReferenceSize = CGSize(width: .zero, height: 54.0)
+        //layout.footerReferenceSize = CGSize(width: .zero, height: 54.0)
         return layout
     }
     

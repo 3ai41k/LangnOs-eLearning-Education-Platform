@@ -8,25 +8,11 @@
 
 import Foundation
 
-protocol VocabularyFilterViewModelInputProtocol: NavigatableViewModelProtocol {
-    
-}
-
-protocol VocabularyFilterViewModelOutputProtocol {
-    
-}
-
-protocol VocabularyFilterViewModelBindingProtocol {
-    
-}
-
 typealias VocabularyFilterViewModelProtocol =
-    VocabularyFilterViewModelInputProtocol &
-    VocabularyFilterViewModelOutputProtocol &
-    VocabularyFilterViewModelBindingProtocol &
+    NavigatableViewModelProtocol &
     UniversalTableViewModelProtocol
 
-final class VocabularyFilterViewModel: VocabularyFilterViewModelBindingProtocol, UniversalTableViewModelProtocol {
+final class VocabularyFilterViewModel: UniversalTableViewModelProtocol {
     
     // MARK: - Public properties
     
@@ -35,39 +21,50 @@ final class VocabularyFilterViewModel: VocabularyFilterViewModelBindingProtocol,
     // MARK: - Private properties
     
     private let router: VocabularyFilterCoordinatorProtocol
+    private var selectedFilter: VocabularyFilter
+    private let filters: [VocabularyFilter]
     
     // MARK: - Init
     
-    init(router: VocabularyFilterCoordinatorProtocol) {
+    init(router: VocabularyFilterCoordinatorProtocol, selectedFilter: VocabularyFilter) {
         self.router = router
+        self.selectedFilter = selectedFilter
+        self.filters = VocabularyFilter.allCases
         
-        setupFilterSection(&tableSections)
+        self.setupFilterSection(&tableSections)
     }
     
     // MARK: - Public methods
     
     func didSelectCellAt(indexPath: IndexPath) {
-        
+        selectedFilter = filters[indexPath.row]
     }
     
     // MARK: - Private methods
     
     private func setupFilterSection(_ tableSections: inout [UniversalTableSectionViewModelProtocol]) {
-        tableSections.append(UniversalTableSectionViewModel(cells: []))
+        let cellViewModels: [CellViewModelProtocol] = filters.map({
+            let cellViewModel = FilterTableViewCellViewModel(filter: $0)
+            if $0 == self.selectedFilter {
+                cellViewModel.setFocuse()
+            }
+            return cellViewModel
+        })
+        tableSections.append(UniversalTableSectionViewModel(cells: cellViewModels))
     }
     
     // MARK: - Actions
     
     @objc
     private func didDoneTouch() {
-        
+        router.selectVocabularyFilter(selectedFilter)
     }
     
 }
 
-// MARK: - VocabularyFilterViewModelInputProtocol
+// MARK: - NavigatableViewModelProtocol
 
-extension VocabularyFilterViewModel: VocabularyFilterViewModelInputProtocol {
+extension VocabularyFilterViewModel: NavigatableViewModelProtocol {
     
     var navigationItemDrivableModel: DrivableModelProtocol {
         let doneBarButtonDrivableModel = BarButtonDrivableModel(title: "Done".localize,
@@ -78,12 +75,6 @@ extension VocabularyFilterViewModel: VocabularyFilterViewModelInputProtocol {
                                     leftBarButtonDrivableModels: [],
                                     rightBarButtonDrivableModels: [doneBarButtonDrivableModel])
     }
-    
-}
-
-// MARK: - VocabularyFilterViewModelOutputProtocol
-
-extension VocabularyFilterViewModel: VocabularyFilterViewModelOutputProtocol {
     
 }
 

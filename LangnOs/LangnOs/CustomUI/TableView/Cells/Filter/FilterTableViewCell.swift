@@ -19,16 +19,7 @@ final class FilterTableViewCell: UITableViewCell, UniversalTableViewCellRegistra
         }
     }
     
-    // MARK: - Private properties
-    // MARK: - Lifecycle
-    // MARK: - Init
     // MARK: - Override
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        
-        selectionStyle = .none
-    }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
@@ -42,6 +33,7 @@ final class FilterTableViewCell: UITableViewCell, UniversalTableViewCellRegistra
     private func bindViewModel() {
         textLabel?.text = viewModel?.title
         imageView?.image = viewModel?.image
+        accessoryType = viewModel?.accessoryType ?? .none
     }
     
     // MARK: - Actions

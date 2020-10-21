@@ -6,7 +6,8 @@
 //  Copyright © 2020 NL. All rights reserved.
 //
 
-import Foundation
+import UIKit
+import Combine
 
 protocol CreateWordTableViewCellViewModelProtocol: CellViewModelProtocol {
     var word: Word { get }
@@ -15,6 +16,8 @@ protocol CreateWordTableViewCellViewModelProtocol: CellViewModelProtocol {
 protocol CreateWordTableViewCellInputProtocol {
     var term: String { get }
     var definition: String { get }
+    var image: CurrentValueSubject<UIImage?, Never> { get }
+    var setBecomeFirstResponder: AnyPublisher<Void, Never> { get }
     var toolbarDrivableModel: DrivableModelProtocol { get }
 }
 
@@ -28,23 +31,44 @@ final class CreateWordTableViewCellViewModel: CreateWordTableViewCellViewModelPr
     // MARK: - Public properties
     
     var word: Word
+    var addNewWordHandler: (() -> Void)?
+    var addImageHandler: ((@escaping (UIImage) -> Void) -> Void)?
+    
+    var image = CurrentValueSubject<UIImage?, Never>(nil)
+    var setBecomeFirstResponder: AnyPublisher<Void, Never> {
+        setBecomeFirstResponderSubject.eraseToAnyPublisher()
+    }
     
     // MARK: - Private properties
     
-    private var addNewWordHandler: () -> Void
+    private var setBecomeFirstResponderSubject = PassthroughSubject<Void, Never>()
     
     // MARK: - Init
     
-    init(addNewWordHandler: @escaping () -> Void) {
-        self.addNewWordHandler = addNewWordHandler
+    init() {
         self.word = Word(term: "", definition: "")
+        
+        self.bindView()
+    }
+    
+    // MARK: - Private methods
+    
+    private func bindView() {
+        
     }
     
     // MARK: - Action
     
     @objc
     private func didAddTouch() {
-        addNewWordHandler()
+        addNewWordHandler?()
+    }
+    
+    @objc
+    private func didAddImageTouch() {
+        addImageHandler? { image in
+            self.image.value = image
+        }
     }
     
 }
@@ -66,7 +90,11 @@ extension CreateWordTableViewCellViewModel: CreateWordTableViewCellInputProtocol
             BarButtonDrivableModel(title: "Add".localize,
                                    style: .plain,
                                    target: self,
-                                   selector: #selector(didAddTouch))
+                                   selector: #selector(didAddTouch)),
+            BarButtonDrivableModel(title: "Image".localize,
+                                   style: .plain,
+                                   target: self,
+                                   selector: #selector(didAddImageTouch))
         ])
     }
     

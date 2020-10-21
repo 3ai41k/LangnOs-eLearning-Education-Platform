@@ -10,33 +10,44 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="200" id="KGk-i7-Jjw" customClass="CreateWordTableViewCell" customModule="LangnOs" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="200"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="448" id="KGk-i7-Jjw" customClass="CreateWordTableViewCell" customModule="LangnOs" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="448"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="200"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="448"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zr2-6t-HAh">
-                        <rect key="frame" x="16" y="8" width="288" height="184"/>
+                        <rect key="frame" x="16" y="8" width="288" height="432"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="Ix9-Bn-WMW">
-                                <rect key="frame" x="16" y="16" width="256" height="152"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="Ix9-Bn-WMW">
+                                <rect key="frame" x="16" y="16" width="256" height="400"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0gL-rs-s8t" customClass="InputView" customModule="LangnOs" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="256" height="68"/>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="string" keyPath="title" value="Term"/>
-                                        </userDefinedRuntimeAttributes>
-                                    </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cTf-fv-YQH" customClass="InputView" customModule="LangnOs" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="84" width="256" height="68"/>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="string" keyPath="title" value="Definition"/>
-                                        </userDefinedRuntimeAttributes>
-                                    </view>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="tb7-fd-Hbk">
+                                        <rect key="frame" x="0.0" y="0.0" width="256" height="256"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="tb7-fd-Hbk" secondAttribute="height" multiplier="1:1" id="XpU-X8-cEx"/>
+                                        </constraints>
+                                    </imageView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="U5l-X3-M4v">
+                                        <rect key="frame" x="0.0" y="272" width="256" height="128"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0gL-rs-s8t" customClass="InputView" customModule="LangnOs" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="256" height="56"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="title" value="Term"/>
+                                                </userDefinedRuntimeAttributes>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cTf-fv-YQH" customClass="InputView" customModule="LangnOs" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="72" width="256" height="56"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="title" value="Definition"/>
+                                                </userDefinedRuntimeAttributes>
+                                            </view>
+                                        </subviews>
+                                    </stackView>
                                 </subviews>
                             </stackView>
                         </subviews>
@@ -59,11 +70,12 @@
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
-                <outlet property="containerView" destination="Zr2-6t-HAh" id="jdr-on-qmN"/>
+                <outlet property="containerView" destination="Zr2-6t-HAh" id="ddi-bE-wUW"/>
                 <outlet property="definitionInputView" destination="cTf-fv-YQH" id="aq5-hc-nY3"/>
+                <outlet property="termImageView" destination="tb7-fd-Hbk" id="6eC-OJ-FWs"/>
                 <outlet property="termInputView" destination="0gL-rs-s8t" id="h4o-AA-RVk"/>
             </connections>
-            <point key="canvasLocation" x="137.68115942028987" y="204.91071428571428"/>
+            <point key="canvasLocation" x="137.68115942028987" y="121.875"/>
         </tableViewCell>
     </objects>
     <resources>

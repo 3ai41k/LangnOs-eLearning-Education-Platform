@@ -11,12 +11,13 @@ import FirebaseAuth
 
 protocol CreateVocabularyNavigationProtocol: CoordinatorClosableProtocol {
     func vocabularyDidCreate(_ vocabulary: Vocabulary)
+    func navigateToImagePicker(sourceType: UIImagePickerController.SourceType, didImageSelect: @escaping (UIImage) -> Void)
 }
 
 typealias CreateVocabularyCoordinatorProtocol =
     CreateVocabularyNavigationProtocol &
     ActivityPresentableProtocol &
-AlertPresentableProtocol
+    AlertPresentableProtocol
 
 final class CreateVocabularyCoordinator: Coordinator, CreateVocabularyCoordinatorProtocol {
     
@@ -61,6 +62,13 @@ final class CreateVocabularyCoordinator: Coordinator, CreateVocabularyCoordinato
         close {
             self.didVocabularyCreateHandler(vocabulary)
         }
+    }
+    
+    func navigateToImagePicker(sourceType: UIImagePickerController.SourceType, didImageSelect: @escaping (UIImage) -> Void) {
+        let imagePickerCoordinator = ImagePickerCoordinator(sourceType: sourceType,
+                                                            didImageSelect: didImageSelect,
+                                                            parentViewController: viewController)
+        imagePickerCoordinator.start()
     }
     
 }

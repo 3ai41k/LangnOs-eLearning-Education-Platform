@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import Combine
 
-final class CreateWordTableViewCell: UITableViewCell, UniversalTableViewCellRegistratable {
+final class CreateWordTableViewCell: UITableViewCell, UniversalTableViewCellRegistratable, CellResizableProtocol {
     
     // MARK: - IBOutlets
     
@@ -18,6 +19,7 @@ final class CreateWordTableViewCell: UITableViewCell, UniversalTableViewCellRegi
             containerView.setShadow(color: .black, opacity: 0.25)
         }
     }
+    @IBOutlet private weak var termImageView: UIImageView!
     @IBOutlet private weak var termInputView: InputView! {
         didSet {
             termInputView.textDidEnter = { [weak self] (text) in
@@ -37,16 +39,37 @@ final class CreateWordTableViewCell: UITableViewCell, UniversalTableViewCellRegi
     
     var viewModel: (CreateWordTableViewCellInputProtocol & CreateWordTableViewCellOutputProtocol)? {
         didSet {
-            termInputView.value = viewModel?.term
-            definitionInputView.value = viewModel?.definition
-            [termInputView, definitionInputView].forEach({
-                let sreenWidth = UIScreen.main.bounds.width
-                let rect = CGRect(x: .zero, y: .zero, width: sreenWidth, height: 44.0)
-                let toolbar = UIToolbar(frame: rect)
-                toolbar.drive(model: viewModel?.toolbarDrivableModel)
-                $0?.textFieldInputAccessoryView = toolbar
-            })
+            bindViewModel()
         }
+    }
+    
+    var beginUpdate: (() -> Void)?
+    var endUpdate: (() -> Void)?
+    
+    // MARK: - Private properties
+    
+    private var cancellables: [AnyCancellable?] = []
+    
+    // MARK: - Private methods
+    
+    private func bindViewModel() {
+        termInputView.value = viewModel?.term
+        definitionInputView.value = viewModel?.definition
+        [termInputView, definitionInputView].forEach({
+            let sreenWidth = UIScreen.main.bounds.width
+            let rect = CGRect(x: .zero, y: .zero, width: sreenWidth, height: 44.0)
+            let toolbar = UIToolbar(frame: rect)
+            toolbar.drive(model: viewModel?.toolbarDrivableModel)
+            $0?.textFieldInputAccessoryView = toolbar
+        })
+        cancellables = [
+            viewModel?.image.sink(receiveValue: { [weak self] image in
+                self?.beginUpdate?()
+                self?.termImageView.image = image
+                self?.termImageView.isHidden = image == nil
+                self?.endUpdate?()
+            })
+        ]
     }
     
 }

@@ -11,6 +11,7 @@ import UIKit
 protocol FilterTableViewCellViewModelInputProtocol {
     var title: String { get }
     var image: UIImage? { get }
+    var accessoryType: UITableViewCell.AccessoryType { get }
 }
 
 protocol FilterTableViewCellViewModelOutputProtocol {
@@ -30,20 +31,23 @@ final class FilterTableViewCellViewModel: FilterTableViewCellViewModelBindingPro
     
     // MARK: - Public properties
     
-    
+    var accessoryType: UITableViewCell.AccessoryType = .none
     
     // MARK: - Private properties
     
+    private let filter: VocabularyFilter
     
     // MARK: - Init
     
-    init() {
-        
+    init(filter: VocabularyFilter) {
+        self.filter = filter
     }
     
     // MARK: - Public methods
     
-    
+    func setFocuse() {
+        accessoryType = .checkmark
+    }
     
     // MARK: - Private methods
     
@@ -56,7 +60,7 @@ final class FilterTableViewCellViewModel: FilterTableViewCellViewModelBindingPro
 extension FilterTableViewCellViewModel: FilterTableViewCellViewModelInputProtocol {
     
     var title: String {
-        ""
+        filter.title
     }
     
     var image: UIImage? {

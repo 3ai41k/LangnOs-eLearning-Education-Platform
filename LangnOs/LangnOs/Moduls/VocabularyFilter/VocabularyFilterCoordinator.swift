@@ -9,26 +9,28 @@
 import UIKit
 
 protocol VocabularyFilterCoordinatorNavigationProtocol {
-    func selectVocabularyFilter()
+    func selectVocabularyFilter(_ filter: VocabularyFilter)
 }
 
 typealias VocabularyFilterCoordinatorProtocol =
     VocabularyFilterCoordinatorNavigationProtocol &
-    CoordinatorClosableProtocol &
-    ActivityPresentableProtocol &
-    AlertPresentableProtocol
+    CoordinatorClosableProtocol
     
 
 final class VocabularyFilterCoordinator: Coordinator, VocabularyFilterCoordinatorProtocol  {
     
     // MARK: - Private properties
     
-    private let didVocabularyFilerSelece: () -> Void
+    private let selectedFilter: VocabularyFilter
+    private let selectFilterHandler: (VocabularyFilter) -> Void
     
     // MARK: - Init
     
-    init(didVocabularyFilerSelece: @escaping () -> Void, parentViewController: UIViewController?) {
-        self.didVocabularyFilerSelece = didVocabularyFilerSelece
+    init(selectedFilter: VocabularyFilter,
+         selectFilterHandler: @escaping (VocabularyFilter) -> Void,
+         parentViewController: UIViewController?) {
+        self.selectedFilter = selectedFilter
+        self.selectFilterHandler = selectFilterHandler
         
         super.init(parentViewController: parentViewController)
     }
@@ -36,7 +38,7 @@ final class VocabularyFilterCoordinator: Coordinator, VocabularyFilterCoordinato
     // MARK: - Override
     
     override func start() {
-        let viewModel = VocabularyFilterViewModel(router: self)
+        let viewModel = VocabularyFilterViewModel(router: self, selectedFilter: selectedFilter)
         let cellFactory = VocabularyFilterCellFactory()
         let viewController = VocabularyFilterViewController()
         viewController.cellFactory = cellFactory
@@ -56,9 +58,9 @@ final class VocabularyFilterCoordinator: Coordinator, VocabularyFilterCoordinato
     
     // MARK: - VocabularyFilterCoordinatorNavigationProtocol
     
-    func selectVocabularyFilter() {
+    func selectVocabularyFilter(_ filter: VocabularyFilter) {
         close {
-            self.didVocabularyFilerSelece()
+            self.selectFilterHandler(filter)
         }
     }
     

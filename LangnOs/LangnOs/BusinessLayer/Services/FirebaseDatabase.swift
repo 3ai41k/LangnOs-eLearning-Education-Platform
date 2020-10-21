@@ -35,6 +35,7 @@ final class FirebaseDatabase {
 // MARK: - FirebaseDatabaseFetchingProtocol
 
 extension FirebaseDatabase: FirebaseDatabaseFetchingProtocol {
+    
     func fetch<Entity: FDEntityProtocol, Request: FirebaseDatabaseRequestProtocol>(request: Request, completion: @escaping (Result<[Entity], Error>) -> Void) {
         var reference = dataBase
         reference = request.setCollectionPath(reference)
