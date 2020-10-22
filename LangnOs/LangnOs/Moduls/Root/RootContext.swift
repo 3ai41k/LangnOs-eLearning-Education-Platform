@@ -39,13 +39,23 @@ protocol UserSessesionContextProtocol {
     func removeUserFromCurrentSession()
 }
 
+protocol CentreButtonTabBarPublisherContrxtProtocol {
+    var centreButtonPublisher: AnyPublisher<Void, Never> { get }
+}
+
+protocol CentreButtonTabBarContextProtocol {
+    func didCentreButtonTouch()
+}
+
 typealias RootContextProtocol =
     SingInPublisherContextProtocol &
     SingInContextProtocol &
     SingUpPublisherContextProtocol &
     SingUpContextProtocol &
     UserSessesionPublisherContextProtocol &
-    UserSessesionContextProtocol
+    UserSessesionContextProtocol &
+    CentreButtonTabBarPublisherContrxtProtocol &
+    CentreButtonTabBarContextProtocol
 
 final class RootContext: RootContextProtocol {
     
@@ -63,11 +73,16 @@ final class RootContext: RootContextProtocol {
         userSessionSubject.eraseToAnyPublisher()
     }
     
+    var centreButtonPublisher: AnyPublisher<Void, Never> {
+        centreButtonSubject.eraseToAnyPublisher()
+    }
+    
     // MARK: - Private properties
     
     private let backToAuthorizeSubject = PassthroughSubject<Void, Never>()
     private let userSingInSubject = PassthroughSubject<User, Never>()
     private let userSessionSubject = PassthroughSubject<UserSessionState, Never>()
+    private let centreButtonSubject = PassthroughSubject<Void, Never>()
     
     // MARK: - SingInContextProtocol
     
@@ -91,6 +106,12 @@ final class RootContext: RootContextProtocol {
     
     func removeUserFromCurrentSession() {
         userSessionSubject.send(.didRemove)
+    }
+    
+    // MARK: - CentreButtonTabBarContextProtocol
+    
+    func didCentreButtonTouch() {
+        centreButtonSubject.send()
     }
     
 }

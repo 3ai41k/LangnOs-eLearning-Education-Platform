@@ -41,7 +41,7 @@ final class DashboardViewModel: UniversalCollectionViewViewModel {
     // MARK: - Private properties
     
     private let router: DashboardCoordinatorProtocol
-    private let contex: UserSessesionPublisherContextProtocol
+    private let contex: UserSessesionPublisherContextProtocol & CentreButtonTabBarPublisherContrxtProtocol
     private let securityManager: SecurityManager
     private let dataFacade: DataFacadeFetchingProtocol
     
@@ -62,7 +62,7 @@ final class DashboardViewModel: UniversalCollectionViewViewModel {
     // MARK: - Init
     
     init(router: DashboardCoordinatorProtocol,
-         contex: UserSessesionPublisherContextProtocol,
+         contex: UserSessesionPublisherContextProtocol & CentreButtonTabBarPublisherContrxtProtocol,
          securityManager: SecurityManager,
          dataFacade: DataFacadeFetchingProtocol) {
         self.router = router
@@ -96,6 +96,9 @@ final class DashboardViewModel: UniversalCollectionViewViewModel {
         cancellables = [
             contex.userSessionPublisher.sink { [weak self] _ in
                 self?.fetchData()
+            },
+            contex.centreButtonPublisher.sink { [weak self] in
+                self?.createNewVocabulary()
             }
         ]
     }
@@ -136,6 +139,18 @@ final class DashboardViewModel: UniversalCollectionViewViewModel {
         }
     }
     
+    private func createNewVocabulary() {
+        if let user = securityManager.user {
+            router.createNewVocabulary(user: user, didVocabularyCreateHandler: didVocabularyCreate)
+        } else {
+            let canelAlertAction = CancelAlertAction(handler: { })
+            let singInAlertAction = SingInAlertAction(handler: didSingInTouched)
+            router.showAlert(title: "Attention!".localize,
+                             message: "You are not authrized!".localize,
+                             actions: [canelAlertAction, singInAlertAction])
+        }
+    }
+    
     // MARK: - Action
     
     private func didFilterTouched() {
@@ -147,19 +162,6 @@ final class DashboardViewModel: UniversalCollectionViewViewModel {
     private func didCancelTouched() {
         let cellViewModels = vocabularies.map({ VocabularyCollectionViewCellViewModel(vocabulary: $0) })
         tableSections[SectionType.vocabulary.rawValue].cells = cellViewModels
-    }
-    
-    @objc
-    private func didCreateNewVocabularyTouched() {
-        if let user = securityManager.user {
-            router.createNewVocabulary(user: user, didVocabularyCreateHandler: didVocabularyCreate)
-        } else {
-            let canelAlertAction = CancelAlertAction(handler: { })
-            let singInAlertAction = SingInAlertAction(handler: didSingInTouched)
-            router.showAlert(title: "Attention!".localize,
-                             message: "You are not authrized!".localize,
-                             actions: [canelAlertAction, singInAlertAction])
-        }
     }
     
     private func didVocabularyCreate(_ vocabulary: Vocabulary) {
@@ -177,13 +179,9 @@ final class DashboardViewModel: UniversalCollectionViewViewModel {
 extension DashboardViewModel: DashboardViewModelInputProtocol {
     
     var navigationItemDrivableModel: DrivableModelProtocol {
-        let createNewVocabularyButtonModel = BarButtonDrivableModel(title: "Create".localize,
-                                                                    style: .plain,
-                                                                    target: self,
-                                                                    selector: #selector(didCreateNewVocabularyTouched))
-        return NavigationItemDrivableModel(title: "Maerials".localize,
+        return NavigationItemDrivableModel(title: "Materials".localize,
                                            leftBarButtonDrivableModels: [],
-                                           rightBarButtonDrivableModels: [createNewVocabularyButtonModel])
+                                           rightBarButtonDrivableModels: [])
     }
     
     var navigationBarDrivableModel: DrivableModelProtocol? {

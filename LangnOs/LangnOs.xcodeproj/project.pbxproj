@@ -75,6 +75,7 @@
 		8D662555252A7FAC00991D45 /* WordTableViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D662554252A7FAC00991D45 /* WordTableViewCellViewModel.swift */; };
 		8D662558252A800600991D45 /* UniversalTableViewCellRegistratable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D662557252A800600991D45 /* UniversalTableViewCellRegistratable.swift */; };
 		8D66255A252B0F9F00991D45 /* VocabularyCreateRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D662559252B0F9F00991D45 /* VocabularyCreateRequest.swift */; };
+		8D82FB562541D6A90005B137 /* CentreButtonTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D82FB552541D6A90005B137 /* CentreButtonTabBarController.swift */; };
 		8D83EA65252B8BB7004E6098 /* CreateWordTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D83EA63252B8BB7004E6098 /* CreateWordTableViewCell.swift */; };
 		8D83EA66252B8BB7004E6098 /* CreateWordTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D83EA64252B8BB7004E6098 /* CreateWordTableViewCell.xib */; };
 		8D83EA68252B8BE5004E6098 /* CreateWordTableViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D83EA67252B8BE5004E6098 /* CreateWordTableViewCellViewModel.swift */; };
@@ -267,6 +268,7 @@
 		8D662554252A7FAC00991D45 /* WordTableViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordTableViewCellViewModel.swift; sourceTree = "<group>"; };
 		8D662557252A800600991D45 /* UniversalTableViewCellRegistratable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniversalTableViewCellRegistratable.swift; sourceTree = "<group>"; };
 		8D662559252B0F9F00991D45 /* VocabularyCreateRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabularyCreateRequest.swift; sourceTree = "<group>"; };
+		8D82FB552541D6A90005B137 /* CentreButtonTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CentreButtonTabBarController.swift; sourceTree = "<group>"; };
 		8D83EA63252B8BB7004E6098 /* CreateWordTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateWordTableViewCell.swift; sourceTree = "<group>"; };
 		8D83EA64252B8BB7004E6098 /* CreateWordTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CreateWordTableViewCell.xib; sourceTree = "<group>"; };
 		8D83EA67252B8BE5004E6098 /* CreateWordTableViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateWordTableViewCellViewModel.swift; sourceTree = "<group>"; };
@@ -641,17 +643,10 @@
 			path = Coordinator;
 			sourceTree = "<group>";
 		};
-		8D83EA72252B9E66004E6098 /* TabBarProvider */ = {
-			isa = PBXGroup;
-			children = (
-				8DD28BAB25266EA500F59B7D /* TabBarProvider.swift */,
-			);
-			path = TabBarProvider;
-			sourceTree = "<group>";
-		};
 		8D83EA73252B9E72004E6098 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				8D82FB552541D6A90005B137 /* CentreButtonTabBarController.swift */,
 				8DD28BCC2526815C00F59B7D /* BindibleViewController.swift */,
 				8D83EA74252B9E7B004E6098 /* ActivityViewController */,
 			);
@@ -980,7 +975,6 @@
 			isa = PBXGroup;
 			children = (
 				8D83EA73252B9E72004E6098 /* ViewControllers */,
-				8D83EA72252B9E66004E6098 /* TabBarProvider */,
 				8D83EA71252B9E5E004E6098 /* Coordinator */,
 			);
 			path = Generic;
@@ -1145,6 +1139,7 @@
 			children = (
 				8D94E7CE2534E0FD005FA4B9 /* Protocols */,
 				8D94E7CD2534E0F1005FA4B9 /* CoreDataEntities */,
+				8DD28BAB25266EA500F59B7D /* TabBarProvider.swift */,
 				8DAA553F2529112B00FF5066 /* Vocabulary.swift */,
 				8DA744BF25409A5100F9EC8B /* VocabularyFilter.swift */,
 				8DAA554D25291D3400FF5066 /* Word.swift */,
@@ -1433,6 +1428,7 @@
 				8D6625242529F79B00991D45 /* CreateVocabularyViewModel.swift in Sources */,
 				8DAA554E25291D3400FF5066 /* Word.swift in Sources */,
 				8DF928AC253DEBCF0052FC31 /* WritingProgressView.swift in Sources */,
+				8D82FB562541D6A90005B137 /* CentreButtonTabBarController.swift in Sources */,
 				8D524F8E252F7E7D002A6E01 /* CoursesViewController.swift in Sources */,
 				8DD28BAA25266CDB00F59B7D /* RootViewModel.swift in Sources */,
 				8DD28BB6252675F800F59B7D /* UITabBarItem+Init.swift in Sources */,

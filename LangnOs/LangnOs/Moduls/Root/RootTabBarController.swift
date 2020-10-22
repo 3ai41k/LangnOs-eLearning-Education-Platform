@@ -8,15 +8,11 @@
 
 import UIKit
 
-final class RootTabBarController: UITabBarController {
+final class RootTabBarController: CentreButtonTabBarController {
     
     // MARK: - Public properties
     
-    var viewModel: (RootViewModelInputProtocol & RootViewModelOutputProtocol)? {
-        didSet {
-            bindViewModel()
-        }
-    }
+    var viewModel: (RootViewModelInputProtocol & RootViewModelOutputProtocol)?
     
     // MARK: - Lifecycle
     
@@ -24,6 +20,7 @@ final class RootTabBarController: UITabBarController {
         super.viewDidLoad()
         
         initializeComponents()
+        bindViewModel()
     }
     
     // MARK: - Private methods
@@ -36,23 +33,19 @@ final class RootTabBarController: UITabBarController {
         viewControllers = viewModel?.getTabBarCoordinators().compactMap({
             $0.start()
             return $0.viewController
-        })
+        }) ?? []
     }
     
 }
 
-// MARK: - UITabBarControllerDelegate
+// MARK: - CentreButtonTabBarControllerDelegate
 
-extension RootTabBarController: UITabBarControllerDelegate {
+extension RootTabBarController: CentreButtonTabBarControllerDelegate {
     
-    func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
-        guard
-            let viewModel = viewModel,
-            let index = tabBarController.viewControllers?.firstIndex(of: viewController)
-        else {
-            return false
+    func centreButtonTabBarControllerfor(_ centreButtonTabBarControllerfor: CentreButtonTabBarController, didCentreButtonTouchFor viewController: UIViewController) {
+        if let index = centreButtonTabBarControllerfor.viewControllers.firstIndex(of: viewController) {
+            viewModel?.didCentreButtonTouch(by: index)
         }
-        return viewModel.shouldNavigateToTheArea(index)
     }
     
 }

@@ -13,7 +13,7 @@ protocol RootViewModelInputProtocol {
 }
 
 protocol RootViewModelOutputProtocol {
-    func shouldNavigateToTheArea(_ index: Int) -> Bool
+    func didCentreButtonTouch(by index: Int)
 }
 
 final class RootViewModel {
@@ -51,15 +51,8 @@ extension RootViewModel: RootViewModelInputProtocol {
 
 extension RootViewModel: RootViewModelOutputProtocol {
     
-    func shouldNavigateToTheArea(_ index: Int) -> Bool {
-        if tabBarProviders[index].isLoced {
-            router.showAlert(title: "Attention!", message: "This area is closed!", actions: [
-                OkAlertAction(handler: { })
-            ])
-            return false
-        } else {
-            return true
-        }
+    func didCentreButtonTouch(by index: Int) {
+        context.didCentreButtonTouch()
     }
     
 }
