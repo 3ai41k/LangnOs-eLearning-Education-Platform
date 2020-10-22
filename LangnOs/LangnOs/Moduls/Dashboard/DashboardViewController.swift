@@ -1,5 +1,5 @@
 //
-//  MainViewController.swift
+//  DashboardViewController.swift
 //  LangnOs
 //
 //  Created by Nikita Lizogubov on 01.10.2020.
@@ -8,9 +8,7 @@
 
 import UIKit
 
-typealias MainViewModelType = MainViewModelInputProtocol & MainViewModelOutputProtocol & UniversalCollectionViewViewModel
-
-final class MainViewController: BindibleViewController<MainViewModelType> {
+final class DashboardViewController: BindibleViewController<DashboardViewModelProtocol> {
 
     // MARK: - IBOutlets
     

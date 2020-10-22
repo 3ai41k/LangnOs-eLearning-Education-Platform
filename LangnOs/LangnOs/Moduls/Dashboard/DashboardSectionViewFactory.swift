@@ -1,5 +1,5 @@
 //
-//  MainSectionViewFactory.swift
+//  DashboardSectionViewFactory.swift
 //  LangnOs
 //
 //  Created by Nikita Lizogubov on 07.10.2020.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class MainSectionViewFactory: UniversalCollectionViewSectionFactoryProtocol {
+final class DashboardSectionViewFactory: UniversalCollectionViewSectionFactoryProtocol {
     
     var viewTypes: [UniversalCollectionViewSectionRegistratable.Type] {
         [

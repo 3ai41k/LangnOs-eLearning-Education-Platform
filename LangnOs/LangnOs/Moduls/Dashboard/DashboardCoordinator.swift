@@ -9,16 +9,16 @@
 import UIKit
 import FirebaseAuth
 
-protocol MainNavigationProtocol {
+protocol DashboardNavigationProtocol {
     func navigateToVocabularyStatistic(_ vocabulary: Vocabulary, didVocabularyRemoveHandler: @escaping () -> Void)
     func navigateToFilter(selectedFilter: VocabularyFilter, selectFilterHandler: @escaping (VocabularyFilter) -> Void)
     func createNewVocabulary(user: User, didVocabularyCreateHandler: @escaping (Vocabulary) -> Void)
     func navigateToSingIn()
 }
 
-typealias MainCoordinatorProtocol = MainNavigationProtocol & AlertPresentableProtocol
+typealias DashboardCoordinatorProtocol = DashboardNavigationProtocol & AlertPresentableProtocol
 
-final class MainCoordinator: Coordinator, MainCoordinatorProtocol {
+final class DashboardCoordinator: Coordinator, DashboardCoordinatorProtocol {
     
     // MARK: - Private properties
     
@@ -37,20 +37,20 @@ final class MainCoordinator: Coordinator, MainCoordinatorProtocol {
     override func start() {
         let securityManager = SecurityManager.shared
         let dataFacade = DataFacade()
-        let mainViewModel = MainViewModel(router: self,
-                                          contex: context,
-                                          securityManager: securityManager,
-                                          dataFacade: dataFacade)
+        let viewModel = DashboardViewModel(router: self,
+                                           contex: context,
+                                           securityManager: securityManager,
+                                           dataFacade: dataFacade)
         
-        let mainViewController = MainViewController()
-        mainViewController.viewModel = mainViewModel
-        mainViewController.collectionViewCellFactory = MainCellFactory()
-        mainViewController.collectionViewSectionFactory = MainSectionViewFactory()
-        mainViewController.collectionViewLayout = SquareGridFlowLayout(numberOfItemsPerRow: 2)
-        mainViewController.tabBarItem = UITabBarItem(provider: .main)
+        let viewController = DashboardViewController()
+        viewController.viewModel = viewModel
+        viewController.collectionViewCellFactory = DashboardCellFactory()
+        viewController.collectionViewSectionFactory = DashboardSectionViewFactory()
+        viewController.collectionViewLayout = SquareGridFlowLayout(numberOfItemsPerRow: 2)
+        viewController.tabBarItem = UITabBarItem(provider: .dashboard)
         
-        let navigationController = UINavigationController(rootViewController: mainViewController)
-        viewController = navigationController
+        let navigationController = UINavigationController(rootViewController: viewController)
+        self.viewController = navigationController
     }
     
     // MARK: - MainNavigationProtocol

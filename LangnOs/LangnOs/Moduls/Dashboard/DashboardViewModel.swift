@@ -1,5 +1,5 @@
 //
-//  MainViewModel.swift
+//  DashboardViewModel.swift
 //  LangnOs
 //
 //  Created by Nikita Lizogubov on 02.10.2020.
@@ -19,15 +19,20 @@ extension NavigatableViewModelProtocol {
     var navigationBarDrivableModel: DrivableModelProtocol? { nil }
 }
 
-protocol MainViewModelInputProtocol: NavigatableViewModelProtocol {
+protocol DashboardViewModelInputProtocol: NavigatableViewModelProtocol {
     
 }
 
-protocol MainViewModelOutputProtocol {
+protocol DashboardViewModelOutputProtocol {
     func fetchData()
 }
 
-final class MainViewModel: UniversalCollectionViewViewModel {
+typealias DashboardViewModelProtocol =
+    DashboardViewModelInputProtocol &
+    DashboardViewModelOutputProtocol &
+    UniversalCollectionViewViewModel
+
+final class DashboardViewModel: UniversalCollectionViewViewModel {
     
     // MARK: - Public properties
     
@@ -35,7 +40,7 @@ final class MainViewModel: UniversalCollectionViewViewModel {
     
     // MARK: - Private properties
     
-    private let router: MainCoordinatorProtocol
+    private let router: DashboardCoordinatorProtocol
     private let contex: UserSessesionPublisherContextProtocol
     private let securityManager: SecurityManager
     private let dataFacade: DataFacadeFetchingProtocol
@@ -56,7 +61,7 @@ final class MainViewModel: UniversalCollectionViewViewModel {
     
     // MARK: - Init
     
-    init(router: MainCoordinatorProtocol,
+    init(router: DashboardCoordinatorProtocol,
          contex: UserSessesionPublisherContextProtocol,
          securityManager: SecurityManager,
          dataFacade: DataFacadeFetchingProtocol) {
@@ -167,9 +172,9 @@ final class MainViewModel: UniversalCollectionViewViewModel {
     
 }
 
-// MARK: - MainViewModelInputProtocol
+// MARK: - DashboardViewModelInputProtocol
 
-extension MainViewModel: MainViewModelInputProtocol {
+extension DashboardViewModel: DashboardViewModelInputProtocol {
     
     var navigationItemDrivableModel: DrivableModelProtocol {
         let createNewVocabularyButtonModel = BarButtonDrivableModel(title: "Create".localize,
@@ -189,9 +194,9 @@ extension MainViewModel: MainViewModelInputProtocol {
     
 }
 
-// MARK: - MainViewModelOutputProtocol
+// MARK: - DashboardViewModelOutputProtocol
 
-extension MainViewModel: MainViewModelOutputProtocol {
+extension DashboardViewModel: DashboardViewModelOutputProtocol {
     
     func fetchData() {
         fetchData(completion: nil)

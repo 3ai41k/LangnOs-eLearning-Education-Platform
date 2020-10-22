@@ -1,5 +1,5 @@
 //
-//  MainCellFactory.swift
+//  DashboardCellFactory.swift
 //  LangnOs
 //
 //  Created by Nikita Lizogubov on 02.10.2020.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class MainCellFactory: UniversalCollectionViewCellFactoryProtocol {
+final class DashboardCellFactory: UniversalCollectionViewCellFactoryProtocol {
     
     private var cellTypes: [UniversalCollectionViewCellRegistratable.Type] {
         [

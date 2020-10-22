@@ -9,15 +9,15 @@
 import UIKit
 
 enum TabBarProvider: Int, CaseIterable {
-    case main
+    case dashboard
     case courses
     case messages
     case account
     
     var title: String {
         switch self {
-        case .main:
-            return "Home".localize
+        case .dashboard:
+            return "Dashboard".localize
         case .courses:
             return "Courses".localize
         case .messages:
@@ -29,8 +29,8 @@ enum TabBarProvider: Int, CaseIterable {
     
     var unselectedImage: UIImage {
         switch self {
-        case .main:
-            return UIImage(systemName: "house.fill")!
+        case .dashboard:
+            return UIImage(systemName: "square.split.2x2.fill")!
         case .courses:
             return UIImage(systemName: "book.fill")!
         case .messages:
@@ -42,8 +42,8 @@ enum TabBarProvider: Int, CaseIterable {
     
     var selectedImage: UIImage {
         switch self {
-        case .main:
-            return UIImage(systemName: "house")!
+        case .dashboard:
+            return UIImage(systemName: "square.split.2x2")!
         case .courses:
             return UIImage(systemName: "book")!
         case .messages:
@@ -55,7 +55,7 @@ enum TabBarProvider: Int, CaseIterable {
     
     var isLoced: Bool {
         switch self {
-        case .main:
+        case .dashboard:
             return false
         case .courses:
             return true
@@ -68,8 +68,8 @@ enum TabBarProvider: Int, CaseIterable {
     
     func generateCoordinator(context: RootContextProtocol, parentViewController: UIViewController?) -> Coordinator {
         switch self {
-        case .main:
-            return MainCoordinator(context: context, parentViewController: parentViewController)
+        case .dashboard:
+            return DashboardCoordinator(context: context, parentViewController: parentViewController)
         case .courses:
             return CoursesCoordinator(parentViewController: parentViewController)
         case .messages:
