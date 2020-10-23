@@ -32,6 +32,9 @@
                                     <constraint firstAttribute="height" constant="48" id="bsT-rU-cuI"/>
                                 </constraints>
                                 <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="didButtonTouch:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="v93-4W-Ox6"/>
+                                </connections>
                             </button>
                         </subviews>
                     </stackView>

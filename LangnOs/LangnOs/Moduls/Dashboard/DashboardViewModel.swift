@@ -119,7 +119,9 @@ final class DashboardViewModel: DashboardViewModelProtocol {
     
     private func setupFavoritesSection(_ tableSections: inout [SectionViewModelProtocol]) {
         let cellViewModels = [
-            MessageCellViewModel(message: "Add favorite sets here to have quick access at any time, without having to search")
+            MessageCellViewModel(message: "Add favorite sets here to have quick access at any time, without having to search",
+                                 buttonTitle: "Add Favorites",
+                                 buttonHandler: { [weak self] in self?.favoriteButtonTouch() })
         ]
         let sectionViewModel = TableSectionViewModel(headerView: TitleSectionViewModel(text: "Favorites".localize),
                                                      footerView: nil,
@@ -138,5 +140,9 @@ final class DashboardViewModel: DashboardViewModelProtocol {
     }
     
     // MARK: - Action
+    
+    private func favoriteButtonTouch() {
+        print(#function)
+    }
     
 }
