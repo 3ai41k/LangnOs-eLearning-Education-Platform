@@ -46,7 +46,7 @@ final class DashboardViewController: BindibleViewController<DashboardViewModelPr
         let createVocabularyButton = UIBarButtonItem(barButtonSystemItem: .add,
                                                      target: self,
                                                      action: #selector(didCreateVocabularyTouch))
-        let userButton = UIBarButtonItem(image: SFSymbolsImage.personCircle(),
+        let userButton = UIBarButtonItem(image: SFSymbols.personCircle(),
                                          style: .plain,
                                          target: self,
                                          action: #selector(didUserTouch))

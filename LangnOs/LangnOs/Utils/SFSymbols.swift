@@ -13,7 +13,7 @@ enum ImageState {
     case fill
 }
 
-struct SFSymbolsImage {
+struct SFSymbols {
     
     static func bookmark(for state: ImageState) -> UIImage {
         switch state {

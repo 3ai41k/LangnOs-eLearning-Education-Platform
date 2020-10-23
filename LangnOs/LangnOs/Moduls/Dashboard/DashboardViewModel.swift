@@ -109,10 +109,10 @@ final class DashboardViewModel: DashboardViewModelProtocol {
     
     private func setupMyWordSection(_ tableSections: inout [SectionViewModelProtocol]) {
         let cellViewModels = [
-            ColoredImageCellViewModel(text: "Materials", image: SFSymbolsImage.bookmark(for: .normal), color: .systemGreen),
-            ColoredImageCellViewModel(text: "Statistic", image: SFSymbolsImage.bookmark(for: .normal), color: .systemBlue),
-            ColoredImageCellViewModel(text: "Courses", image: SFSymbolsImage.bookmark(for: .normal), color: .systemPurple),
-            ColoredImageCellViewModel(text: "Something", image: SFSymbolsImage.bookmark(for: .normal), color: .systemOrange)
+            ColoredImageCellViewModel(text: "Materials", image: SFSymbols.bookmark(for: .normal), color: .systemGreen),
+            ColoredImageCellViewModel(text: "Statistic", image: SFSymbols.bookmark(for: .normal), color: .systemBlue),
+            ColoredImageCellViewModel(text: "Courses", image: SFSymbols.bookmark(for: .normal), color: .systemPurple),
+            ColoredImageCellViewModel(text: "Something", image: SFSymbols.bookmark(for: .normal), color: .systemOrange)
         ]
         let sectionViewModel = TableSectionViewModel(headerView: TitleSectionViewModel(text: "My Work".localize),
                                                      footerView: nil,

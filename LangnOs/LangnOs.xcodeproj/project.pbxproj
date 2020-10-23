@@ -198,7 +198,7 @@
 		8DF2537B254328B3001492AE /* ColoredImageCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF2537A254328B3001492AE /* ColoredImageCellViewModel.swift */; };
 		8DF2537E254328CD001492AE /* ColoredImageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF2537C254328CC001492AE /* ColoredImageTableViewCell.swift */; };
 		8DF2537F254328CD001492AE /* ColoredImageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DF2537D254328CC001492AE /* ColoredImageTableViewCell.xib */; };
-		8DF2538125432B62001492AE /* SFSymbolsImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF2538025432B62001492AE /* SFSymbolsImage.swift */; };
+		8DF2538125432B62001492AE /* SFSymbols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF2538025432B62001492AE /* SFSymbols.swift */; };
 		8DF25385254330A6001492AE /* MessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF25383254330A6001492AE /* MessageTableViewCell.swift */; };
 		8DF25386254330A6001492AE /* MessageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DF25384254330A6001492AE /* MessageTableViewCell.xib */; };
 		8DF25388254330B6001492AE /* MessageCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF25387254330B6001492AE /* MessageCellViewModel.swift */; };
@@ -403,7 +403,7 @@
 		8DF2537A254328B3001492AE /* ColoredImageCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColoredImageCellViewModel.swift; sourceTree = "<group>"; };
 		8DF2537C254328CC001492AE /* ColoredImageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColoredImageTableViewCell.swift; sourceTree = "<group>"; };
 		8DF2537D254328CC001492AE /* ColoredImageTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ColoredImageTableViewCell.xib; sourceTree = "<group>"; };
-		8DF2538025432B62001492AE /* SFSymbolsImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFSymbolsImage.swift; sourceTree = "<group>"; };
+		8DF2538025432B62001492AE /* SFSymbols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFSymbols.swift; sourceTree = "<group>"; };
 		8DF25383254330A6001492AE /* MessageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageTableViewCell.swift; sourceTree = "<group>"; };
 		8DF25384254330A6001492AE /* MessageTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessageTableViewCell.xib; sourceTree = "<group>"; };
 		8DF25387254330B6001492AE /* MessageCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCellViewModel.swift; sourceTree = "<group>"; };
@@ -788,7 +788,7 @@
 			isa = PBXGroup;
 			children = (
 				8D94E860253CB83E005FA4B9 /* ColorUtils.swift */,
-				8DF2538025432B62001492AE /* SFSymbolsImage.swift */,
+				8DF2538025432B62001492AE /* SFSymbols.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -1541,7 +1541,7 @@
 				8DA744C025409A5100F9EC8B /* VocabularyFilter.swift in Sources */,
 				8DC3CF59252D3977003CA62A /* EmptyableProtocol.swift in Sources */,
 				8D662533252A610B00991D45 /* ScoreView.swift in Sources */,
-				8DF2538125432B62001492AE /* SFSymbolsImage.swift in Sources */,
+				8DF2538125432B62001492AE /* SFSymbols.swift in Sources */,
 				8D66251F2529F6C000991D45 /* CreateVocabularyViewController.swift in Sources */,
 				8DD28BFB2527B76800F59B7D /* DashboardCellFactory.swift in Sources */,
 				8D524FA7252F8A9F002A6E01 /* Authorizator.swift in Sources */,
