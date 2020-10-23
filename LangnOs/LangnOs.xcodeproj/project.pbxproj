@@ -207,6 +207,7 @@
 		8DF2539025434BE9001492AE /* MaterialsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF2538C25434BE9001492AE /* MaterialsViewModel.swift */; };
 		8DF2539125434BE9001492AE /* MaterialsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DF2538D25434BE9001492AE /* MaterialsViewController.xib */; };
 		8DF2539325434F40001492AE /* MaterialsCellFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF2539225434F40001492AE /* MaterialsCellFactory.swift */; };
+		8DF2539525436C0C001492AE /* Sequence+KeyPathSorting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF2539425436C0C001492AE /* Sequence+KeyPathSorting.swift */; };
 		8DF928A9253DDE700052FC31 /* WritingWordModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF928A8253DDE700052FC31 /* WritingWordModel.swift */; };
 		8DF928AC253DEBCF0052FC31 /* WritingProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF928AB253DEBCF0052FC31 /* WritingProgressView.swift */; };
 		8DF928AE253DEBEC0052FC31 /* WritingProgressView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DF928AD253DEBEC0052FC31 /* WritingProgressView.xib */; };
@@ -417,6 +418,7 @@
 		8DF2538C25434BE9001492AE /* MaterialsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaterialsViewModel.swift; sourceTree = "<group>"; };
 		8DF2538D25434BE9001492AE /* MaterialsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MaterialsViewController.xib; sourceTree = "<group>"; };
 		8DF2539225434F40001492AE /* MaterialsCellFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaterialsCellFactory.swift; sourceTree = "<group>"; };
+		8DF2539425436C0C001492AE /* Sequence+KeyPathSorting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Sequence+KeyPathSorting.swift"; sourceTree = "<group>"; };
 		8DF928A8253DDE700052FC31 /* WritingWordModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WritingWordModel.swift; sourceTree = "<group>"; };
 		8DF928AB253DEBCF0052FC31 /* WritingProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WritingProgressView.swift; sourceTree = "<group>"; };
 		8DF928AD253DEBEC0052FC31 /* WritingProgressView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WritingProgressView.xib; sourceTree = "<group>"; };
@@ -1047,6 +1049,7 @@
 			isa = PBXGroup;
 			children = (
 				8DD28BB82526774400F59B7D /* String+Localize.swift */,
+				8DF2539425436C0C001492AE /* Sequence+KeyPathSorting.swift */,
 			);
 			path = "Foundation+Extensions";
 			sourceTree = "<group>";
@@ -1552,6 +1555,7 @@
 				8DD28B87252667F600F59B7D /* SceneDelegate.swift in Sources */,
 				8DD28C0725289C8C00F59B7D /* VocabularyCollectionViewCellViewModel.swift in Sources */,
 				8D662529252A386500991D45 /* VocabularyActionView.swift in Sources */,
+				8DF2539525436C0C001492AE /* Sequence+KeyPathSorting.swift in Sources */,
 				8DD28BEE2527A52100F59B7D /* BarButtonDrivableModel.swift in Sources */,
 				8DC3CF43252D2CBD003CA62A /* VocabularyDeleteRequest.swift in Sources */,
 				8D524FD525337A22002A6E01 /* ToolbarDrivableModel.swift in Sources */,

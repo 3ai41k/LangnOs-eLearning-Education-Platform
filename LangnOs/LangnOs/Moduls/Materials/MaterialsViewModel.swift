@@ -14,15 +14,11 @@ protocol MaterialsViewModelInputProtocol {
     var scopeButtonTitles: CurrentValueSubject<[String]?, Never> { get }
 }
 
-enum MaterialsViewModelAction {
-    case fetchData
-    case createVocabulary
-    case search(String)
-    case selectedScope(Int)
-}
-
 protocol MaterialsViewModelOutputProtocol {
-    var actionSubject: PassthroughSubject<MaterialsViewModelAction, Never> { get }
+    func fetchDataAction()
+    func createVocabularyAction()
+    func searchAction(_ searchedText: String)
+    func selectScopeAction(_ index: Int)
 }
 
 protocol MaterialsViewModelBindingProtocol {
@@ -45,7 +41,6 @@ final class MaterialsViewModel: MaterialsViewModelProtocol {
     
     var title: CurrentValueSubject<String?, Never>
     var scopeButtonTitles: CurrentValueSubject<[String]?, Never>
-    var actionSubject: PassthroughSubject<MaterialsViewModelAction, Never>
     var isActivityIndicatorHidden: CurrentValueSubject<Bool, Never>
     var tableSections: [CollectionSectionViewModelProtocol] = []
     
@@ -55,11 +50,6 @@ final class MaterialsViewModel: MaterialsViewModelProtocol {
     private let dataProvider: DataFacadeFetchingProtocol & DataFacadeCreatingProtocol
     private let securityManager: SecurityManager
     
-    private var actionPublisher: AnyPublisher<MaterialsViewModelAction, Never> {
-        actionSubject.eraseToAnyPublisher()
-    }
-    private var cancellables: [AnyCancellable?] = []
-    
     private var vocabularies: [Vocabulary] = [] {
         didSet {
             isActivityIndicatorHidden.value = true
@@ -68,6 +58,9 @@ final class MaterialsViewModel: MaterialsViewModelProtocol {
             tableSections[SectionType.vocabulary.rawValue].cells.value = cellViewModels
         }
     }
+    
+    private let filters = VocabularyFilter.allCases
+    private var slectedFilterIndex = 0
     
     // MARK: - Init
     
@@ -79,11 +72,8 @@ final class MaterialsViewModel: MaterialsViewModelProtocol {
         self.securityManager = securityManager
         
         self.title = .init("Materials".localize)
-        self.scopeButtonTitles = .init(["a", "b", "c"])
-        self.actionSubject = .init()
+        self.scopeButtonTitles = .init(filters.map({ $0.title }))
         self.isActivityIndicatorHidden = .init(false)
-        
-        self.bindView()
         
         self.setupEmptySection(&tableSections)
     }
@@ -97,42 +87,9 @@ final class MaterialsViewModel: MaterialsViewModelProtocol {
     
     // MARK: - Private methods
     
-    private func bindView() {
-        cancellables = [
-            actionPublisher.sink(receiveValue: { [weak self] (action) in
-                switch action {
-                case .fetchData:
-                    self?.fetchData()
-                case .createVocabulary:
-                    self?.router.navigateToCreateVocabulary { [weak self] vocabulary in
-                        self?.createVocabulary(vocabulary)
-                    }
-                case .search(let text):
-                    print(text)
-                case .selectedScope(let index):
-                    print(index)
-                }
-            })
-        ]
-    }
-    
     private func setupEmptySection(_ tableSections: inout [CollectionSectionViewModelProtocol]) {
         let sectionViewModel = UniversalCollectionSectionViewModel(cells: [])
         tableSections.append(sectionViewModel)
-    }
-    
-    private func fetchData() {
-        guard let userId = securityManager.user?.uid else { return }
-        
-        let request = VocabularyFetchRequest(userId: userId)
-        dataProvider.fetch(request: request) { (resulr: Result<[Vocabulary], Error>) in
-            switch resulr {
-            case .success(let vocabularies):
-                self.vocabularies = vocabularies
-            case .failure(let error):
-                self.router.showError(error)
-            }
-        }
     }
     
     private func createVocabulary(_ vocabulary: Vocabulary) {
@@ -153,6 +110,64 @@ final class MaterialsViewModel: MaterialsViewModelProtocol {
                 self.vocabularies.append(vocabularyWithUserId)
             }
         }
+    }
+    
+    private func discardSearch() {
+        let cellViewModels = vocabularies.map({ VocabularyCollectionViewCellViewModel(vocabulary: $0) })
+        tableSections[SectionType.vocabulary.rawValue].cells.value = cellViewModels
+    }
+    
+}
+
+// MARK: - MaterialsViewModelOutputProtocol
+
+extension MaterialsViewModel {
+    
+    func fetchDataAction() {
+        guard let userId = securityManager.user?.uid else { return }
+        
+        let request = VocabularyFetchRequest(userId: userId)
+        dataProvider.fetch(request: request) { (resulr: Result<[Vocabulary], Error>) in
+            switch resulr {
+            case .success(let vocabularies):
+                self.vocabularies = vocabularies
+            case .failure(let error):
+                self.router.showError(error)
+            }
+        }
+    }
+    
+    func createVocabularyAction() {
+        router.navigateToCreateVocabulary { vocabulary in
+            self.createVocabulary(vocabulary)
+        }
+    }
+    
+    //
+    // Fix this method
+    //
+    // filterBy.keyPath can not be cust to KeyPath<Vocabulary, String>
+    // because \Vocabulary.createdDate id Date type
+    //
+    
+    func searchAction(_ searchedText: String) {
+        guard let filterBy = VocabularyFilter(rawValue: slectedFilterIndex), !searchedText.isEmpty else {
+            discardSearch()
+            return
+        }
+        
+        let cellViewModels = vocabularies.filter { vocabulary in
+            guard let keyPathToString = filterBy.keyPath as? KeyPath<Vocabulary, String> else { return  false }
+            return vocabulary[keyPath: keyPathToString].contains(searchedText)
+        }.map({
+            VocabularyCollectionViewCellViewModel(vocabulary: $0)
+        })
+        
+        tableSections[SectionType.vocabulary.rawValue].cells.value = cellViewModels
+    }
+    
+    func selectScopeAction(_ index: Int) {
+        slectedFilterIndex = index
     }
     
 }

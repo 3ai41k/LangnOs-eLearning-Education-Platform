@@ -47,7 +47,7 @@ final class MaterialsViewController: BindibleViewController<MaterialsViewModelPr
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        viewModel?.actionSubject.send(.fetchData)
+        viewModel?.fetchDataAction()
     }
     
     // MARK: - Override
@@ -87,7 +87,7 @@ final class MaterialsViewController: BindibleViewController<MaterialsViewModelPr
     
     @objc
     private func didCreateVocabularyTouch() {
-        viewModel?.actionSubject.send(.createVocabulary)
+        viewModel?.createVocabularyAction()
     }
     
 }
@@ -98,7 +98,7 @@ extension MaterialsViewController: UISearchResultsUpdating {
     
     func updateSearchResults(for searchController: UISearchController) {
         guard let text = searchController.searchBar.text else { return }
-        viewModel?.actionSubject.send(.search(text))
+        viewModel?.searchAction(text)
     }
     
 }
@@ -108,7 +108,7 @@ extension MaterialsViewController: UISearchResultsUpdating {
 extension MaterialsViewController: UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
-        viewModel?.actionSubject.send(.selectedScope(selectedScope))
+        viewModel?.selectScopeAction(selectedScope)
     }
     
 }
