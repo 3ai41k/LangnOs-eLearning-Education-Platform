@@ -8,9 +8,13 @@
 
 import Foundation
 
-struct VocabularyGeneralInfo {
+struct VocabularyGeneralInfo: EmptyableProtocol {
     let name: String
     let category: String
+    
+    var isEmpty: Bool {
+        name.isEmpty && category.isEmpty
+    }
     
     static var empty: VocabularyGeneralInfo {
         VocabularyGeneralInfo(name: "", category: "")

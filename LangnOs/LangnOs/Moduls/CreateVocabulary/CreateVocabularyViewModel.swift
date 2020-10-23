@@ -98,14 +98,22 @@ extension CreateVocabularyViewModel {
                 case let cell as VocabularyGeneralInfoViewModel:
                     generalInfo = cell.vocabularyGeneralInfo
                 case let cell as VocabularyWordCellViewModel:
-                    words.append(cell.word)
+                    if !cell.word.isEmpty {
+                        words.append(cell.word)
+                    }
                 default:
                     break
                 }
             })
         })
         
-        router.finish(generalInfo, words: words)
+        if generalInfo.isEmpty {
+            router.showAlert(title: "Sorry!",
+                             message: "General information is empty. Because of this we could not create this vocabulary. Please, enter name and category",
+                             actions: [OkAlertAction(handler: { })])
+        } else {
+            router.finish(generalInfo, words: words)
+        }
     }
     
     func closeAction() {
