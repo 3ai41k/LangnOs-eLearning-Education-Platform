@@ -13,17 +13,23 @@ typealias UniversalTableViewModelProtocol =
     UniversalTableViewSectionProtocol &
     UniversalTableViewOutputProtocol
 
-protocol SectionViewModelProtocol: class {
-    var cells: [CellViewModelProtocol] { get set }
-    var reload: AnyPublisher<Void, Never> { get }
+protocol SectionViewFactoryProtocol {
+    func generateHederView(sectionViewModel: SectionViewViewModelProtocol) -> UIView
+    func generateFooterView(sectionViewModel: SectionViewViewModelProtocol) -> UIView
 }
 
-protocol UniversalTableSectionViewModelProtocol: SectionViewModelProtocol {
+protocol SectionViewViewModelProtocol {
     
 }
 
+protocol SectionViewModelProtocol {
+    var cells: CurrentValueSubject<[CellViewModelProtocol], Never> { get }
+    var sectionHeaderViewModel: SectionViewViewModelProtocol? { get }
+    var sectionFooterViewModel: SectionViewViewModelProtocol? { get }
+}
+
 protocol UniversalTableViewSectionProtocol {
-    var tableSections: [UniversalTableSectionViewModelProtocol] { get }
+    var tableSections: [SectionViewModelProtocol] { get }
 }
 
 protocol UniversalTableViewOutputProtocol {
@@ -45,8 +51,8 @@ final class UniversalTableView: UITableView {
     
     var viewModel: UniversalTableViewModelProtocol? {
         didSet {
-            viewModel?.tableSections.enumerated().forEach({ (index, section) in
-                section.reload.sink(receiveValue: { [weak self] in
+            viewModel?.tableSections.enumerated().forEach({ index, section in
+                section.cells.sink(receiveValue: { [weak self] cells in
                     self?.reloadSections([index], with: .fade)
                 }).store(in: &cancellable)
             })
@@ -57,12 +63,13 @@ final class UniversalTableView: UITableView {
             cellFactory?.registerAllCells(tableView: self)
         }
     }
+    var sectionFactory: SectionViewFactoryProtocol?
     
     // MARK: - Private properties
     
     private var cancellable: [AnyCancellable] = []
     
-    // MARK: - Lifecycle
+    // MARK: - Init
     
     override init(frame: CGRect, style: UITableView.Style) {
         super.init(frame: frame, style: style)
@@ -115,7 +122,7 @@ final class UniversalTableView: UITableView {
     @objc
     private func keyboardWillShow(_ notificatio: Notification) {
         guard let keyboardSize = notificatio.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else { return }
-        contentInset = UIEdgeInsets(top: 0, left: 0, bottom: keyboardSize.cgRectValue.height + 50.0, right: 0)
+        contentInset = UIEdgeInsets(top: 0, left: 0, bottom: keyboardSize.cgRectValue.height, right: 0)
     }
     
     @objc
@@ -134,12 +141,12 @@ extension UniversalTableView: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        viewModel?.tableSections[section].cells.count ?? 0
+        viewModel?.tableSections[section].cells.value.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard
-            let cellViewModel = viewModel?.tableSections[indexPath.section].cells[indexPath.row],
+            let cellViewModel = viewModel?.tableSections[indexPath.section].cells.value[indexPath.row],
             let cell = cellFactory?.generateCell(cellViewModel: cellViewModel, tableView: tableView, indexPath: indexPath)
         else {
             return UITableViewCell()
@@ -165,6 +172,16 @@ extension UniversalTableView: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         viewModel?.didSelectCellAt(indexPath: indexPath)
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        guard let hederViewModel = viewModel?.tableSections[section].sectionHeaderViewModel else { return nil }
+        return sectionFactory?.generateHederView(sectionViewModel: hederViewModel)
+    }
+    
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        guard let footerViewModel = viewModel?.tableSections[section].sectionFooterViewModel else { return nil }
+        return sectionFactory?.generateFooterView(sectionViewModel: footerViewModel)
     }
     
 }

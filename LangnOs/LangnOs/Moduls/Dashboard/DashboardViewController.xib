@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097.3" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <device id="retina6_1" orientation="portrait" appearance="dark"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
-        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DashboardViewController" customModule="LangnOs" customModuleProvider="target">
             <connections>
-                <outlet property="collectionView" destination="70X-a8-0LI" id="Xfr-CC-k4f"/>
+                <outlet property="tableView" destination="Y6h-2E-pm3" id="cHg-FD-vgM"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -19,46 +18,20 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" keyboardDismissMode="onDrag" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="70X-a8-0LI" customClass="UniversalCollectionView" customModule="LangnOs" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="84" width="414" height="778"/>
-                    <color key="backgroundColor" name="AppBackground"/>
-                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="OQ6-Yu-XsT">
-                        <size key="itemSize" width="128" height="128"/>
-                        <size key="headerReferenceSize" width="50" height="50"/>
-                        <size key="footerReferenceSize" width="50" height="50"/>
-                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                    </collectionViewFlowLayout>
-                </collectionView>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E63-bw-pJm" customClass="TopBarView" customModule="LangnOs" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="44" width="414" height="40"/>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="Y6h-2E-pm3" customClass="UniversalTableView" customModule="LangnOs" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="40" id="jbj-KP-nxR"/>
-                    </constraints>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                            <real key="value" value="20"/>
-                        </userDefinedRuntimeAttribute>
-                    </userDefinedRuntimeAttributes>
-                </view>
+                </tableView>
             </subviews>
-            <color key="backgroundColor" name="AppBackground"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
             <constraints>
-                <constraint firstItem="70X-a8-0LI" firstAttribute="top" secondItem="E63-bw-pJm" secondAttribute="bottom" id="0mq-6P-8GP"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="70X-a8-0LI" secondAttribute="trailing" id="70c-hB-FOT"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="E63-bw-pJm" secondAttribute="trailing" id="Mvm-v3-6Je"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="70X-a8-0LI" secondAttribute="bottom" id="Rcw-du-mm6"/>
-                <constraint firstItem="E63-bw-pJm" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="YBG-su-5mw"/>
-                <constraint firstItem="E63-bw-pJm" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="h6r-fT-sEp"/>
-                <constraint firstItem="70X-a8-0LI" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="qVG-NS-auQ"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="Y6h-2E-pm3" secondAttribute="bottom" id="4ZS-mz-e7M"/>
+                <constraint firstItem="Y6h-2E-pm3" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="DLV-dK-Svp"/>
+                <constraint firstItem="Y6h-2E-pm3" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="de4-IZ-dMB"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Y6h-2E-pm3" secondAttribute="trailing" id="koQ-07-dYl"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <point key="canvasLocation" x="137.68115942028987" y="152.67857142857142"/>
         </view>
     </objects>
-    <resources>
-        <namedColor name="AppBackground">
-            <color red="0.93699997663497925" green="0.95300000905990601" blue="0.98400002717971802" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-    </resources>
 </document>

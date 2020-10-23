@@ -17,7 +17,8 @@ protocol CollectionReusableViewModelProtocol {
     
 }
 
-protocol CollectionSectionViewModelProtocol: SectionViewModelProtocol {
+protocol CollectionSectionViewModelProtocol {
+    var cells: CurrentValueSubject<[CellViewModelProtocol], Never> { get }
     var sectionHeaderViewModel: CollectionReusableViewModelProtocol? { get }
     var sectionFooterViewModel: CollectionReusableViewModelProtocol? { get }
 }
@@ -120,7 +121,7 @@ final class UniversalCollectionView: UICollectionView {
     
     private func bindViewModel() {
         viewModel?.tableSections.enumerated().forEach({ (index, section) in
-            section.reload.sink(receiveValue: { [weak self] in
+            section.cells.sink(receiveValue: { [weak self] _ in
                 self?.reloadSections(IndexSet(integer: index))
             }).store(in: &cancellable)
         })
@@ -128,7 +129,7 @@ final class UniversalCollectionView: UICollectionView {
     
     private func setBackgroundViewIfSectionsAreEmpty() {
         if let sections = viewModel?.tableSections {
-            if sections.map({ $0.cells.isEmpty }).contains(false) {
+            if sections.map({ $0.cells.value.isEmpty }).contains(false) {
                 backgroundView = nil
             } else {
                 backgroundView = customBackgroundView
@@ -173,12 +174,12 @@ extension UniversalCollectionView: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        viewModel?.tableSections[section].cells.count ?? 0
+        viewModel?.tableSections[section].cells.value.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard
-            let cellViewModel = viewModel?.tableSections[indexPath.section].cells[indexPath.row],
+            let cellViewModel = viewModel?.tableSections[indexPath.section].cells.value[indexPath.row],
             let cell = cellFactory?.generateCell(cellViewModel: cellViewModel, collectionView: collectionView, indexPath: indexPath)
         else {
             return UICollectionViewCell()

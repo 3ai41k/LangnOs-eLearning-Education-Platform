@@ -8,11 +8,15 @@
 
 import UIKit
 
-final class RootTabBarController: CentreButtonTabBarController {
+final class RootTabBarController: UITabBarController {
     
     // MARK: - Public properties
     
-    var viewModel: (RootViewModelInputProtocol & RootViewModelOutputProtocol)?
+    var viewModel: (RootViewModelInputProtocol & RootViewModelOutputProtocol)? {
+        didSet {
+            bindViewModel()
+        }
+    }
     
     // MARK: - Lifecycle
     
@@ -20,20 +24,19 @@ final class RootTabBarController: CentreButtonTabBarController {
         super.viewDidLoad()
         
         initializeComponents()
-        bindViewModel()
     }
     
     // MARK: - Private methods
     
     private func initializeComponents() {
-        delegate = self
+        //delegate = self
     }
     
     private func bindViewModel() {
         viewControllers = viewModel?.getTabBarCoordinators().compactMap({
             $0.start()
             return $0.viewController
-        }) ?? []
+        })
     }
     
 }

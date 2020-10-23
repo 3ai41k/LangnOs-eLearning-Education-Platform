@@ -16,7 +16,7 @@ final class CreateVocabularyViewModel: UniversalTableViewModelProtocol {
     
     // MARK: - Public properties
     
-    var tableSections: [UniversalTableSectionViewModelProtocol] = []
+    var tableSections: [SectionViewModelProtocol] = []
     
     // MARK: - Private properties
     
@@ -44,13 +44,13 @@ final class CreateVocabularyViewModel: UniversalTableViewModelProtocol {
     
     // MARK: - Private methods
     
-    private func setupVocabularyInfoSection(_ tableSections: inout [UniversalTableSectionViewModelProtocol]) {
+    private func setupVocabularyInfoSection(_ tableSections: inout [SectionViewModelProtocol]) {
         let vocabularyInfoTableViewCellViewModel = VocabularyInfoTableViewCellViewModel()
-        tableSections.append(UniversalTableSectionViewModel(cells: [vocabularyInfoTableViewCellViewModel]))
+        tableSections.append(TableSectionViewModel(cells: [vocabularyInfoTableViewCellViewModel]))
     }
     
-    private func setupWordsSection(_ tableSections: inout [UniversalTableSectionViewModelProtocol]) {
-        tableSections.append(UniversalTableSectionViewModel(cells: [createWordCellViewModel()]))
+    private func setupWordsSection(_ tableSections: inout [SectionViewModelProtocol]) {
+        tableSections.append(TableSectionViewModel(cells: [createWordCellViewModel()]))
     }
     
     private func createVocabulary() throws -> Vocabulary {
@@ -59,7 +59,7 @@ final class CreateVocabularyViewModel: UniversalTableViewModelProtocol {
         var words: [Word] = []
         
         for section in tableSections {
-            for cellViewModel in section.cells {
+            for cellViewModel in section.cells.value {
                 switch cellViewModel {
                 case let viewModel as VocabularyInfoTableViewCellViewModelProtocol:
                     name = viewModel.name
@@ -94,7 +94,7 @@ final class CreateVocabularyViewModel: UniversalTableViewModelProtocol {
     // MARK: - Actions
     
     private func addRowAction() {
-        tableSections[SectionType.words.rawValue].cells.append(createWordCellViewModel())
+        tableSections[SectionType.words.rawValue].cells.value.append(createWordCellViewModel())
     }
     
     @objc

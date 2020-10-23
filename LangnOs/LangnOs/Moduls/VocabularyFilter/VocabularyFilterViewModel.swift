@@ -16,7 +16,7 @@ final class VocabularyFilterViewModel: UniversalTableViewModelProtocol {
     
     // MARK: - Public properties
     
-    var tableSections: [UniversalTableSectionViewModelProtocol] = []
+    var tableSections: [SectionViewModelProtocol] = []
     
     // MARK: - Private properties
     
@@ -42,7 +42,7 @@ final class VocabularyFilterViewModel: UniversalTableViewModelProtocol {
     
     // MARK: - Private methods
     
-    private func setupFilterSection(_ tableSections: inout [UniversalTableSectionViewModelProtocol]) {
+    private func setupFilterSection(_ tableSections: inout [SectionViewModelProtocol]) {
         let cellViewModels: [CellViewModelProtocol] = filters.map({
             let cellViewModel = FilterTableViewCellViewModel(filter: $0)
             if $0 == self.selectedFilter {
@@ -50,7 +50,7 @@ final class VocabularyFilterViewModel: UniversalTableViewModelProtocol {
             }
             return cellViewModel
         })
-        tableSections.append(UniversalTableSectionViewModel(cells: cellViewModels))
+        tableSections.append(TableSectionViewModel(cells: cellViewModels))
     }
     
     // MARK: - Actions

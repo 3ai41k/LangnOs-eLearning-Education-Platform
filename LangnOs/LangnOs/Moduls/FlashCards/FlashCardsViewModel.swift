@@ -22,7 +22,7 @@ final class FlashCardsViewModel: UniversalTableViewModelProtocol {
     
     // MARK: - Public properties
     
-    var tableSections: [UniversalTableSectionViewModelProtocol]
+    var tableSections: [SectionViewModelProtocol]
     
     // MARK: - Private properties
 
@@ -44,13 +44,13 @@ final class FlashCardsViewModel: UniversalTableViewModelProtocol {
     
     // MARK: - Private methods
     
-    private func setupFlashCardsSection(_ tableSections: inout [UniversalTableSectionViewModelProtocol]) {
+    private func setupFlashCardsSection(_ tableSections: inout [SectionViewModelProtocol]) {
         let cells: [CellViewModelProtocol] = words.map({
             FlashCardTableViewCellViewModel(word: $0, speechSynthesizer: speechSynthesizer) { [weak self] error in
                 self?.showError(error)
             }
         })
-        tableSections.append(UniversalTableSectionViewModel(cells: cells))
+        tableSections.append(TableSectionViewModel(cells: cells))
     }
     
     // MARK: - Actions

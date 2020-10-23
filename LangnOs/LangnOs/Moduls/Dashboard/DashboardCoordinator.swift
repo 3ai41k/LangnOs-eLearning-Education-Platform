@@ -42,14 +42,16 @@ final class DashboardCoordinator: Coordinator, DashboardCoordinatorProtocol {
                                            securityManager: securityManager,
                                            dataFacade: dataFacade)
         
+        let cellFactory = DashboardCellFactory()
+        let sectionFactory = DashboardSectionFactory()
         let viewController = DashboardViewController()
         viewController.viewModel = viewModel
-        viewController.collectionViewCellFactory = DashboardCellFactory()
-        viewController.collectionViewSectionFactory = DashboardSectionViewFactory()
-        viewController.collectionViewLayout = SquareGridFlowLayout(numberOfItemsPerRow: 2)
-        viewController.tabBarItem = UITabBarItem(provider: .dashboard)
+        viewController.cellFactory = cellFactory
+        viewController.sectionFactory = sectionFactory
         
         let navigationController = UINavigationController(rootViewController: viewController)
+        navigationController.tabBarItem = UITabBarItem(provider: .dashboard)
+        
         self.viewController = navigationController
     }
     

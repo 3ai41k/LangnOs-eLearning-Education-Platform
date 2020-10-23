@@ -20,7 +20,7 @@ final class WordsViewModel: UniversalTableViewModelProtocol {
     
     // MARK: - Public properties
     
-    var tableSections: [UniversalTableSectionViewModelProtocol]
+    var tableSections: [SectionViewModelProtocol]
     
     // MARK: - Private properties
     
@@ -39,9 +39,9 @@ final class WordsViewModel: UniversalTableViewModelProtocol {
     
     // MARK: - Private methods
     
-    private func setupWordSection(_ tableSections: inout [UniversalTableSectionViewModelProtocol]) {
+    private func setupWordSection(_ tableSections: inout [SectionViewModelProtocol]) {
         let wordTableViewCellViewModels = words.map({ WordTableViewCellViewModel(word: $0) })
-        tableSections.append(UniversalTableSectionViewModel(cells: wordTableViewCellViewModels))
+        tableSections.append(TableSectionViewModel(cells: wordTableViewCellViewModels))
     }
     
 }

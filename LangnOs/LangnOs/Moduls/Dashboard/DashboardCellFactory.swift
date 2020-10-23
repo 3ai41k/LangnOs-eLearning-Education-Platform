@@ -8,26 +8,22 @@
 
 import UIKit
 
-final class DashboardCellFactory: UniversalCollectionViewCellFactoryProtocol {
+final class DashboardCellFactory: UniversalTableViewCellFactoryProtocol {
     
-    private var cellTypes: [UniversalCollectionViewCellRegistratable.Type] {
+    var cellTypes: [UniversalTableViewCellRegistratable.Type] {
         [
-            VocabularyCollectionViewCell.self
+            FilterTableViewCell.self
         ]
     }
     
-    func registerAllCells(collectionView: UICollectionView) {
-        cellTypes.forEach({ $0.register(collectionView) })
-    }
-    
-    func generateCell(cellViewModel: CellViewModelProtocol, collectionView: UICollectionView, indexPath: IndexPath) -> UICollectionViewCell {
+    func generateCell(cellViewModel: CellViewModelProtocol, tableView: UITableView, indexPath: IndexPath) -> UITableViewCell {
         switch cellViewModel {
-        case let cellViewModel as VocabularyCollectionViewCellViewModel:
-            let cell = VocabularyCollectionViewCell.dequeueReusableCell(collectionView, for: indexPath)
+        case let cellViewModel as FilterTableViewCellViewModel:
+            let cell = FilterTableViewCell.dequeueReusableCell(tableView, for: indexPath)
             cell.viewModel = cellViewModel
             return cell
         default:
-            return UICollectionViewCell()
+            return UITableViewCell()
         }
     }
     
