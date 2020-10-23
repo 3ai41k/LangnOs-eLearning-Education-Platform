@@ -806,6 +806,7 @@
 		8D94E862253CE291005FA4B9 /* Writing */ = {
 			isa = PBXGroup;
 			children = (
+				8DF928A8253DDE700052FC31 /* WritingWordModel.swift */,
 				8D94E863253CE2AB005FA4B9 /* WritingCoordinator.swift */,
 				8D94E864253CE2AB005FA4B9 /* WritingViewController.swift */,
 				8D94E865253CE2AB005FA4B9 /* WritingViewModel.swift */,
@@ -985,6 +986,7 @@
 			children = (
 				8DD28B84252667F600F59B7D /* AppDelegate.swift */,
 				8DD28B86252667F600F59B7D /* SceneDelegate.swift */,
+				8DD28BAB25266EA500F59B7D /* TabBarProvider.swift */,
 				8D524FB6252FBC47002A6E01 /* RootContext.swift */,
 				8DD28BA525266BCE00F59B7D /* RootCoordinator.swift */,
 				8DD28BA725266C8200F59B7D /* RootTabBarController.swift */,
@@ -1174,11 +1176,8 @@
 			children = (
 				8D94E7CE2534E0FD005FA4B9 /* Protocols */,
 				8D94E7CD2534E0F1005FA4B9 /* CoreDataEntities */,
-				8DD28BAB25266EA500F59B7D /* TabBarProvider.swift */,
 				8DAA553F2529112B00FF5066 /* Vocabulary.swift */,
-				8DA744BF25409A5100F9EC8B /* VocabularyFilter.swift */,
 				8DAA554D25291D3400FF5066 /* Word.swift */,
-				8DF928A8253DDE700052FC31 /* WritingWordModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1244,6 +1243,7 @@
 		8DF2538925434BC4001492AE /* Materials */ = {
 			isa = PBXGroup;
 			children = (
+				8DA744BF25409A5100F9EC8B /* VocabularyFilter.swift */,
 				8DF2538A25434BE9001492AE /* MaterialsCoordinator.swift */,
 				8DF2538C25434BE9001492AE /* MaterialsViewModel.swift */,
 				8DF2538B25434BE9001492AE /* MaterialsViewController.swift */,
