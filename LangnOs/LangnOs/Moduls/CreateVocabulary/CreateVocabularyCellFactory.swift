@@ -12,19 +12,14 @@ final class CreateVocabularyCellFactory: UniversalTableViewCellFactoryProtocol {
     
     var cellTypes: [UniversalTableViewCellRegistratable.Type] {
         [
-            VocabularyInfoTableViewCell.self,
-            CreateWordTableViewCell.self
+            VocabularyTableViewCell.self
         ]
     }
     
     func generateCell(cellViewModel: CellViewModelProtocol, tableView: UITableView, indexPath: IndexPath) -> UITableViewCell {
         switch cellViewModel {
-        case let cellViewModel as VocabularyInfoTableViewCellViewModel:
-            let cell = VocabularyInfoTableViewCell.dequeueReusableCell(tableView, for: indexPath)
-            cell.viewModel = cellViewModel
-            return cell
-        case let cellViewModel as CreateWordTableViewCellViewModel:
-            let cell = CreateWordTableViewCell.dequeueReusableCell(tableView, for: indexPath)
+        case let cellViewModel as VocabularyCellViewModel:
+            let cell = VocabularyTableViewCell.dequeueReusableCell(tableView, for: indexPath)
             cell.viewModel = cellViewModel
             return cell
         default:

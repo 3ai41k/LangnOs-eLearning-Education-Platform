@@ -3,14 +3,13 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
-        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="448" id="KGk-i7-Jjw" customClass="CreateWordTableViewCell" customModule="LangnOs" customModuleProvider="target">
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="448" id="KGk-i7-Jjw" customClass="VocabularyTableViewCell" customModule="LangnOs" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="320" height="448"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
@@ -35,23 +34,17 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0gL-rs-s8t" customClass="InputView" customModule="LangnOs" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="256" height="56"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="string" keyPath="title" value="Term"/>
-                                                </userDefinedRuntimeAttributes>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cTf-fv-YQH" customClass="InputView" customModule="LangnOs" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="72" width="256" height="56"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="string" keyPath="title" value="Definition"/>
-                                                </userDefinedRuntimeAttributes>
                                             </view>
                                         </subviews>
                                     </stackView>
                                 </subviews>
                             </stackView>
                         </subviews>
-                        <color key="backgroundColor" name="VocabularyProgress"/>
+                        <color key="backgroundColor" systemColor="systemGray5Color" red="0.8980392157" green="0.8980392157" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="Ix9-Bn-WMW" secondAttribute="bottom" constant="16" id="UBK-Ke-zcJ"/>
                             <constraint firstAttribute="trailing" secondItem="Ix9-Bn-WMW" secondAttribute="trailing" constant="16" id="XeR-lH-sue"/>
@@ -71,16 +64,11 @@
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="containerView" destination="Zr2-6t-HAh" id="ddi-bE-wUW"/>
-                <outlet property="definitionInputView" destination="cTf-fv-YQH" id="aq5-hc-nY3"/>
-                <outlet property="termImageView" destination="tb7-fd-Hbk" id="6eC-OJ-FWs"/>
-                <outlet property="termInputView" destination="0gL-rs-s8t" id="h4o-AA-RVk"/>
+                <outlet property="footerInputView" destination="cTf-fv-YQH" id="Pgw-Qq-aWs"/>
+                <outlet property="headerInputView" destination="0gL-rs-s8t" id="Ncm-GF-tQ0"/>
+                <outlet property="wordImageView" destination="tb7-fd-Hbk" id="8av-HE-ecA"/>
             </connections>
             <point key="canvasLocation" x="137.68115942028987" y="121.875"/>
         </tableViewCell>
     </objects>
-    <resources>
-        <namedColor name="VocabularyProgress">
-            <color red="0.88200002908706665" green="0.90200001001358032" blue="0.94099998474121094" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-    </resources>
 </document>

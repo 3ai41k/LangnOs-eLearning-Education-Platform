@@ -13,6 +13,10 @@ struct Word {
     let term: String
     let definition: String
     
+    static var empty: Word {
+        Word(term: "", definition: "")
+    }
+    
     init(term: String, definition: String) {
         self.term = term
         self.definition = definition

@@ -53,57 +53,13 @@ final class CreateVocabularyViewModel: CreateVocabularyViewModelProtocol {
     // MARK: - Private methods
     
     private func setupVocabularyInfoSection(_ tableSections: inout [SectionViewModelProtocol]) {
-        let cellViewModel = VocabularyInfoTableViewCellViewModel()
+        let cellViewModel = VocabularyGeneralInfoViewModel()
         tableSections.append(TableSectionViewModel(cells: [cellViewModel]))
     }
     
     private func setupWordsSection(_ tableSections: inout [SectionViewModelProtocol]) {
-        let cellViewModel = createWordCellViewModel()
+        let cellViewModel = VocabularyWordCellViewModel()
         tableSections.append(TableSectionViewModel(cells: [cellViewModel]))
-    }
-    
-    private func createVocabulary() throws -> Vocabulary {
-        var name = ""
-        var category = ""
-        var words: [Word] = []
-        
-        for section in tableSections {
-            for cellViewModel in section.cells.value {
-                switch cellViewModel {
-                case let viewModel as VocabularyInfoTableViewCellViewModelProtocol:
-                    name = viewModel.name
-                    category = viewModel.category
-                case let viewModel as CreateWordTableViewCellViewModelProtocol:
-                    words.append(viewModel.word)
-                default:
-                    break
-                }
-            }
-        }
-        
-        let vocabulary = Vocabulary(userId: "", title: name, category: category, words: words)
-        if vocabulary.isEmpty {
-            throw NSError(domain: "Vocabulary is Empty", code: 0, userInfo: nil)
-        } else {
-            return vocabulary
-        }
-    }
-    
-    private func createWordCellViewModel() -> CreateWordTableViewCellViewModel {
-        let cellViewModel = CreateWordTableViewCellViewModel()
-        cellViewModel.addNewWordHandler = { [weak self] in
-            self?.addRowAction()
-        }
-        cellViewModel.addImageHandler = { [weak self] completion in
-            self?.router.navigateToImagePicker(sourceType: .photoLibrary, didImageSelect: completion)
-        }
-        return cellViewModel
-    }
-    
-    // MARK: - Actions
-    
-    private func addRowAction() {
-        tableSections[SectionType.words.rawValue].cells.value.append(createWordCellViewModel())
     }
     
 }
