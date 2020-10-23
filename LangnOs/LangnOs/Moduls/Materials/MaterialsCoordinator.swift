@@ -9,7 +9,8 @@
 import UIKit
 
 protocol MaterialsCoordinatorNavigationProtocol {
-    
+    func navigateToCreateVocabulary(_ completion: @escaping (Vocabulary) -> Void)
+    func navigateToVocabulary(_ vocabulary: Vocabulary)
 }
 
 typealias MaterialsCoordinatorProtocol =
@@ -19,12 +20,17 @@ typealias MaterialsCoordinatorProtocol =
     AlertPresentableProtocol
     
 
-final class MaterialsCoordinator: Coordinator  {
+final class MaterialsCoordinator: Coordinator, MaterialsCoordinatorProtocol  {
     
     // MARK: - Override
     
     override func start() {
-        let viewModel = MaterialsViewModel()
+        let dataProvider = DataFacade()
+        let securityManager = SecurityManager.shared
+        
+        let viewModel = MaterialsViewModel(router: self,
+                                           dataProvider: dataProvider,
+                                           securityManager: securityManager)
         
         let cellFactory = MaterialsCellFactory()
         let layout = SquareGridFlowLayout(numberOfItemsPerRow: 2)
@@ -38,12 +44,17 @@ final class MaterialsCoordinator: Coordinator  {
         (parentViewController as? UINavigationController)?.pushViewController(viewController, animated: true)
     }
     
-}
-
-// MARK: - MaterialsCoordinatorNavigationProtocol
-
-extension MaterialsCoordinator: MaterialsCoordinatorNavigationProtocol {
+    // MARK: - MaterialsCoordinatorNavigationProtocol
+    
+    func navigateToCreateVocabulary(_ completion: @escaping (Vocabulary) -> Void) {
+        let createVocabularyCoordinator = CreateVocabularyCoordinator(didVocabularyCreateHandler: completion, parentViewController: viewController)
+        createVocabularyCoordinator.start()
+    }
+    
+    func navigateToVocabulary(_ vocabulary: Vocabulary) {
+        let vocabularyCoordinator = VocabularyCoordinator(vocabulary: vocabulary, didVocabularyRemoveHandler: { }, parentViewController: viewController)
+        vocabularyCoordinator.start()
+    }
     
 }
-
 

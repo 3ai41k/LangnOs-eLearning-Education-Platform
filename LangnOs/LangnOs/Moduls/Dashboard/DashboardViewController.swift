@@ -43,26 +43,17 @@ final class DashboardViewController: BindibleViewController<DashboardViewModelPr
     }
     
     override func setupUI() {
-        let createVocabularyButton = UIBarButtonItem(barButtonSystemItem: .add,
-                                                     target: self,
-                                                     action: #selector(didCreateVocabularyTouch))
         let userButton = UIBarButtonItem(image: SFSymbols.personCircle(),
                                          style: .plain,
                                          target: self,
                                          action: #selector(didUserTouch))
         
-        navigationItem.rightBarButtonItem = createVocabularyButton
         navigationItem.leftBarButtonItem = userButton
         
         navigationController?.navigationBar.prefersLargeTitles = true
     }
     
     // MARK: - Actions
-    
-    @objc
-    private func didCreateVocabularyTouch() {
-        viewModel?.actionSubject.send(.createVocabulary)
-    }
     
     @objc
     private func didUserTouch() {

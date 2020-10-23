@@ -23,15 +23,12 @@ final class CreateVocabularyCoordinator: Coordinator, CreateVocabularyCoordinato
     
     // MARK: - Private properties
     
-    private let user: User
     private let didVocabularyCreateHandler: (Vocabulary) -> Void
     
     // MARK: - Init
     
-    init(user: User,
-         didVocabularyCreateHandler: @escaping (Vocabulary) -> Void,
+    init(didVocabularyCreateHandler: @escaping (Vocabulary) -> Void,
          parentViewController: UIViewController?) {
-        self.user = user
         self.didVocabularyCreateHandler = didVocabularyCreateHandler
         
         super.init(parentViewController: parentViewController)
@@ -40,19 +37,16 @@ final class CreateVocabularyCoordinator: Coordinator, CreateVocabularyCoordinato
     // MARK: - Override
     
     override func start() {
-        let dataFacade = DataFacade()
-        let createVocabularyViewModel = CreateVocabularyViewModel(router: self,
-                                                                  user: user,
-                                                                  dataFacade: dataFacade)
-        let createVocabularyCellFactory = CreateVocabularyCellFactory()
-        let createVocabularyViewController = CreateVocabularyViewController()
-        createVocabularyViewController.tableViewCellFactory = createVocabularyCellFactory
-        createVocabularyViewController.viewModel = createVocabularyViewModel
+        let viewModel = CreateVocabularyViewModel(router: self)
+        let cellFactory = CreateVocabularyCellFactory()
+        let viewController = CreateVocabularyViewController()
+        viewController.tableViewCellFactory = cellFactory
+        viewController.viewModel = viewModel
         
-        let navigationController = UINavigationController(rootViewController: createVocabularyViewController)
+        let navigationController = UINavigationController(rootViewController: viewController)
         navigationController.modalPresentationStyle = .fullScreen
         
-        viewController = navigationController
+        self.viewController = navigationController
         parentViewController?.present(navigationController, animated: true, completion: nil)
     }
     

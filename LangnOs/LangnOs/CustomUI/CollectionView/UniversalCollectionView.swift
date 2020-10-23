@@ -102,7 +102,7 @@ final class UniversalCollectionView: UICollectionView {
         super.awakeFromNib()
         
         //addRefreshControl()
-        addTapGesture()
+        //addTapGesture()
     }
     
     override func reloadData() {
@@ -122,7 +122,7 @@ final class UniversalCollectionView: UICollectionView {
     private func bindViewModel() {
         viewModel?.tableSections.enumerated().forEach({ (index, section) in
             section.cells.sink(receiveValue: { [weak self] _ in
-                self?.reloadSections(IndexSet(integer: index))
+                self?.reloadSections([index])
             }).store(in: &cancellable)
         })
     }

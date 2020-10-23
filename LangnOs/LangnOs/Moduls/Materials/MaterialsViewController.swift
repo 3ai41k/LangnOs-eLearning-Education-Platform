@@ -43,8 +43,8 @@ final class MaterialsViewController: BindibleViewController<MaterialsViewModelPr
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        viewModel?.actionSubject.send(.fetchData)
     }
-    
     
     // MARK: - Init
     
@@ -58,9 +58,17 @@ final class MaterialsViewController: BindibleViewController<MaterialsViewModelPr
     }
     
     override func setupUI() {
+        let createVocabularyButton = UIBarButtonItem(barButtonSystemItem: .add,
+                                                     target: self,
+                                                     action: #selector(didCreateVocabularyTouch))
+        
+        navigationItem.rightBarButtonItem = createVocabularyButton
+        
         let searchController = UISearchController()
         
         navigationItem.searchController = searchController
+        navigationItem.hidesSearchBarWhenScrolling = false
+        
         title = "Materials".localize
     }
     
@@ -78,6 +86,11 @@ final class MaterialsViewController: BindibleViewController<MaterialsViewModelPr
     
     
     // MARK: - Actions
+    
+    @objc
+    private func didCreateVocabularyTouch() {
+        viewModel?.actionSubject.send(.createVocabulary)
+    }
     
 }
 

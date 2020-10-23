@@ -21,8 +21,6 @@ final class CreateVocabularyViewModel: UniversalTableViewModelProtocol {
     // MARK: - Private properties
     
     private let router: CreateVocabularyCoordinatorProtocol
-    private let user: User
-    private let dataFacade: DataFacadeCreatingProtocol
     
     private enum SectionType: Int {
         case vocabularylInfo
@@ -31,12 +29,8 @@ final class CreateVocabularyViewModel: UniversalTableViewModelProtocol {
     
     // MARK: - Init
     
-    init(router: CreateVocabularyCoordinatorProtocol,
-         user: User,
-         dataFacade: DataFacadeCreatingProtocol) {
+    init(router: CreateVocabularyCoordinatorProtocol) {
         self.router = router
-        self.user = user
-        self.dataFacade = dataFacade
         
         setupVocabularyInfoSection(&tableSections)
         setupWordsSection(&tableSections)
@@ -72,7 +66,7 @@ final class CreateVocabularyViewModel: UniversalTableViewModelProtocol {
             }
         }
         
-        let vocabulary = Vocabulary(userId: user.uid, title: name, category: category, words: words)
+        let vocabulary = Vocabulary(userId: "", title: name, category: category, words: words)
         if vocabulary.isEmpty {
             throw NSError(domain: "Vocabulary is Empty", code: 0, userInfo: nil)
         } else {
@@ -106,24 +100,9 @@ final class CreateVocabularyViewModel: UniversalTableViewModelProtocol {
     private func didCreateTouched() {
         do {
             let vocabulary = try createVocabulary()
-            let request = VocabularyCreateRequest(vocabulary: vocabulary)
-            
-            router.showActivity()
-            dataFacade.create(request: request) { (error) in
-                if let error = error {
-                    // FIT IT: Error handling
-                    print(error.localizedDescription)
-                } else {
-                    self.router.closeActivity()
-                    self.router.vocabularyDidCreate(vocabulary)
-                }
-            }
+            router.vocabularyDidCreate(vocabulary)
         } catch {
-            router.showAlert(title: "Attention!", message: error.localizedDescription, actions: [
-                OkAlertAction(handler: {
-                    // TO DO: Add first cell respoder
-                })
-            ])
+            router.showError(error)
         }
     }
     

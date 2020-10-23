@@ -13,7 +13,6 @@ protocol VocabularyCollectionViewCellInputProtocol {
     var category: String { get }
     var phrasesLearned: String { get }
     var phrasesLeftToLearn: String { get }
-    var color: UIColor { get }
 }
 
 final class VocabularyCollectionViewCellViewModel: CellViewModelProtocol {
@@ -21,10 +20,6 @@ final class VocabularyCollectionViewCellViewModel: CellViewModelProtocol {
     // MARK: - Private properties
     
     private let vocabulary: Vocabulary
-    
-    // MARK: - Public properties
-    
-    var color: UIColor = .random
     
     // MARK: - Init
     

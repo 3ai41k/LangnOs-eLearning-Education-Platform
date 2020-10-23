@@ -23,7 +23,6 @@ protocol DashboardViewModelInputProtocol {
 }
 
 enum DashboardViewModelAction {
-    case createVocabulary
     case userProfile
 }
 
@@ -113,8 +112,6 @@ final class DashboardViewModel: DashboardViewModelProtocol {
         cancellables = [
             actionPublisher.sink(receiveValue: { [weak self] (action) in
                 switch action {
-                case .createVocabulary:
-                    print(#function)
                 case .userProfile:
                     self?.router.navigateToUserProfile()
                 }
