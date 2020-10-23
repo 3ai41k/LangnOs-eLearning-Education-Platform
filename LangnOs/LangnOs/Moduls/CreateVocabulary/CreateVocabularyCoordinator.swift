@@ -10,7 +10,7 @@ import UIKit
 import FirebaseAuth
 
 protocol CreateVocabularyNavigationProtocol: CoordinatorClosableProtocol {
-    func vocabularyDidCreate(_ vocabulary: Vocabulary)
+    func finish(_ generalInfo: VocabularyGeneralInfo, words: [Word])
     func navigateToImagePicker(sourceType: UIImagePickerController.SourceType, didImageSelect: @escaping (UIImage) -> Void)
 }
 
@@ -23,13 +23,13 @@ final class CreateVocabularyCoordinator: Coordinator, CreateVocabularyCoordinato
     
     // MARK: - Private properties
     
-    private let didVocabularyCreateHandler: (Vocabulary) -> Void
+    private let completion: (VocabularyGeneralInfo, [Word]) -> Void
     
     // MARK: - Init
     
-    init(didVocabularyCreateHandler: @escaping (Vocabulary) -> Void,
+    init(completion: @escaping (VocabularyGeneralInfo, [Word]) -> Void,
          parentViewController: UIViewController?) {
-        self.didVocabularyCreateHandler = didVocabularyCreateHandler
+        self.completion = completion
         
         super.init(parentViewController: parentViewController)
     }
@@ -52,9 +52,9 @@ final class CreateVocabularyCoordinator: Coordinator, CreateVocabularyCoordinato
     
     // MARK: - CreateVocabularyNavigationProtocol
     
-    func vocabularyDidCreate(_ vocabulary: Vocabulary) {
+    func finish(_ generalInfo: VocabularyGeneralInfo, words: [Word]) {
         close {
-            self.didVocabularyCreateHandler(vocabulary)
+            self.completion(generalInfo, words)
         }
     }
     

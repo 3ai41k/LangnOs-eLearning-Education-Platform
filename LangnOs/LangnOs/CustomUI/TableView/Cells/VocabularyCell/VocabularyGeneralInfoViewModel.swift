@@ -29,9 +29,7 @@ final class VocabularyGeneralInfoViewModel: VocabularyCellViewModel {
         vocabularyGeneralInfo.category
     }
     
-    // MARK: - Private properties
-    
-    private var vocabularyGeneralInfo: VocabularyGeneralInfo
+    var vocabularyGeneralInfo: VocabularyGeneralInfo
     
     // MARK: - Init
     

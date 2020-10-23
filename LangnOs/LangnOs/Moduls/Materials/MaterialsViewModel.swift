@@ -92,22 +92,18 @@ final class MaterialsViewModel: MaterialsViewModelProtocol {
         tableSections.append(sectionViewModel)
     }
     
-    private func createVocabulary(_ vocabulary: Vocabulary) {
+    private func createVocabulary(_ generailInfo: VocabularyGeneralInfo, words: [Word]) {
         guard let userId = securityManager.user?.uid else { return }
         
         isActivityIndicatorHidden.value = false
         
-        let vocabularyWithUserId = Vocabulary(userId: userId,
-                                              title: vocabulary.title,
-                                              category: vocabulary.category,
-                                              words: vocabulary.words)
-        
-        let request = VocabularyCreateRequest(vocabulary: vocabularyWithUserId)
+        let vocabulary = Vocabulary(userId: userId, title: generailInfo.name, category: generailInfo.category, words: words)
+        let request = VocabularyCreateRequest(vocabulary: vocabulary)
         dataProvider.create(request: request) { (error) in
             if let error = error {
                 self.router.showError(error)
             } else {
-                self.vocabularies.append(vocabularyWithUserId)
+                self.vocabularies.append(vocabulary)
             }
         }
     }
@@ -138,8 +134,8 @@ extension MaterialsViewModel {
     }
     
     func createVocabularyAction() {
-        router.navigateToCreateVocabulary { vocabulary in
-            self.createVocabulary(vocabulary)
+        router.navigateToCreateVocabulary { (generalInfo, words)  in
+            self.createVocabulary(generalInfo, words: words)
         }
     }
     

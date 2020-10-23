@@ -20,9 +20,24 @@ final class VocabularyWordCellViewModel: VocabularyCellViewModel {
         word.definition
     }
     
-    // MARK: - Private properties
+    override var toolbarDrivableModel: DrivableModelProtocol? {
+        let addButton = BarButtonDrivableModel(title: "Add",
+                                               style: .plain,
+                                               target: self,
+                                               selector: #selector(didAddTouch))
+        let imageButton = BarButtonDrivableModel(title: "Image",
+                                                 style: .plain,
+                                                 target: self,
+                                                 selector: #selector(didImageTouch))
+        return ToolbarDrivableModel(barButtonDrivableModels: [
+            addButton, imageButton
+        ])
+    }
     
-    private var word: Word
+    var addHandler: (() -> Void)?
+    var imageHandler: (() -> Void)?
+    
+    var word: Word
     
     // MARK: - Init
     
@@ -42,5 +57,16 @@ final class VocabularyWordCellViewModel: VocabularyCellViewModel {
         word = Word(term: word.term, definition: text)
     }
     
+    // MARK: - Actions
+    
+    @objc
+    private func didAddTouch() {
+        addHandler?()
+    }
+    
+    @objc
+    private func didImageTouch() {
+        imageHandler?()
+    }
     
 }

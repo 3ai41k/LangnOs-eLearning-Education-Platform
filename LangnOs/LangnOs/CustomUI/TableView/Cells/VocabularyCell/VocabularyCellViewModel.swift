@@ -16,7 +16,7 @@ protocol VocabularyCellViewModelInputProtocol {
     var footerValue: String? { get }
     var image: CurrentValueSubject<UIImage?, Never> { get }
     var setBecomeFirstResponder: AnyPublisher<Void, Never> { get }
-    var toolbarDrivableModel: CurrentValueSubject<DrivableModelProtocol?, Never> { get }
+    var toolbarDrivableModel: DrivableModelProtocol? { get }
 }
 
 protocol VocabularyCellViewModelOutputProtocol {
@@ -45,7 +45,9 @@ class VocabularyCellViewModel: VocabularyCellViewModelProtocol {
         nil
     }
     var image: CurrentValueSubject<UIImage?, Never>
-    var toolbarDrivableModel: CurrentValueSubject<DrivableModelProtocol?, Never>
+    var toolbarDrivableModel: DrivableModelProtocol? {
+        nil
+    }
     
     var setBecomeFirstResponder: AnyPublisher<Void, Never> {
         setBecomeFirstResponderSubject.eraseToAnyPublisher()
@@ -61,7 +63,6 @@ class VocabularyCellViewModel: VocabularyCellViewModelProtocol {
         self.headerTitle = .init(headerTitle)
         self.footerTitle = .init(footerTitle)
         self.image = .init(nil)
-        self.toolbarDrivableModel = .init(nil)
     }
     
     func setHeaderValue(_ text: String) { }

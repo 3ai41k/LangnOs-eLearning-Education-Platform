@@ -53,13 +53,33 @@ final class CreateVocabularyViewModel: CreateVocabularyViewModelProtocol {
     // MARK: - Private methods
     
     private func setupVocabularyInfoSection(_ tableSections: inout [SectionViewModelProtocol]) {
-        let cellViewModel = VocabularyGeneralInfoViewModel()
-        tableSections.append(TableSectionViewModel(cells: [cellViewModel]))
+        let sectionViewModel = TableSectionViewModel(cells: [
+            VocabularyGeneralInfoViewModel()
+        ])
+        tableSections.append(sectionViewModel)
     }
     
     private func setupWordsSection(_ tableSections: inout [SectionViewModelProtocol]) {
+        let sectionViewModel = TableSectionViewModel(cells: [
+            createWordCellViewModel()
+        ])
+        tableSections.append(sectionViewModel)
+    }
+    
+    private func addWordRow() {
+        let cellViewModel = createWordCellViewModel()
+        tableSections[SectionType.words.rawValue].cells.value.append(cellViewModel)
+    }
+    
+    private func addImage() {
+        print(#function)
+    }
+    
+    private func createWordCellViewModel() -> CellViewModelProtocol {
         let cellViewModel = VocabularyWordCellViewModel()
-        tableSections.append(TableSectionViewModel(cells: [cellViewModel]))
+        cellViewModel.addHandler = { [weak self] in self?.addWordRow() }
+        cellViewModel.imageHandler = { [weak self] in self?.addImage() }
+        return cellViewModel
     }
     
 }
@@ -69,7 +89,23 @@ final class CreateVocabularyViewModel: CreateVocabularyViewModelProtocol {
 extension CreateVocabularyViewModel {
     
     func doneAction() {
-        router.close()
+        var generalInfo: VocabularyGeneralInfo = .empty
+        var words: [Word] = []
+        
+        tableSections.forEach({ section in
+            section.cells.value.forEach({ cell in
+                switch cell {
+                case let cell as VocabularyGeneralInfoViewModel:
+                    generalInfo = cell.vocabularyGeneralInfo
+                case let cell as VocabularyWordCellViewModel:
+                    words.append(cell.word)
+                default:
+                    break
+                }
+            })
+        })
+        
+        router.finish(generalInfo, words: words)
     }
     
     func closeAction() {
