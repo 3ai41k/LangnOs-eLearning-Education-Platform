@@ -12,14 +12,14 @@ final class DashboardCellFactory: UniversalTableViewCellFactoryProtocol {
     
     var cellTypes: [UniversalTableViewCellRegistratable.Type] {
         [
-            FilterTableViewCell.self
+            ColoredImageTableViewCell.self
         ]
     }
     
     func generateCell(cellViewModel: CellViewModelProtocol, tableView: UITableView, indexPath: IndexPath) -> UITableViewCell {
         switch cellViewModel {
-        case let cellViewModel as FilterTableViewCellViewModel:
-            let cell = FilterTableViewCell.dequeueReusableCell(tableView, for: indexPath)
+        case let cellViewModel as ColoredImageCellViewModel:
+            let cell = ColoredImageTableViewCell.dequeueReusableCell(tableView, for: indexPath)
             cell.viewModel = cellViewModel
             return cell
         default:

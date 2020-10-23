@@ -42,8 +42,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // MARK: - Private methods
     
     private func setupUIGlobaly() {
-        UIBarButtonItem.appearance().tintColor = UIColor(named: "Icon")
-        UIImageView.appearance().tintColor = UIColor(named: "Icon")
+        
     }
 
 }

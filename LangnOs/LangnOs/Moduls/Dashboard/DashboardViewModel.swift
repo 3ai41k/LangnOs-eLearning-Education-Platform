@@ -106,9 +106,10 @@ final class DashboardViewModel: DashboardViewModelProtocol {
     
     private func setupMyWordSection(_ tableSections: inout [SectionViewModelProtocol]) {
         let cellViewModels = [
-            FilterTableViewCellViewModel(filter: .name),
-            FilterTableViewCellViewModel(filter: .category),
-            FilterTableViewCellViewModel(filter: .createdDate)
+            ColoredImageCellViewModel(text: "Materials", image: SFSymbolsImage.bookmark(for: .normal), color: .systemGreen),
+            ColoredImageCellViewModel(text: "Statistic", image: SFSymbolsImage.bookmark(for: .normal), color: .systemBlue),
+            ColoredImageCellViewModel(text: "Courses", image: SFSymbolsImage.bookmark(for: .normal), color: .systemPurple),
+            ColoredImageCellViewModel(text: "Something", image: SFSymbolsImage.bookmark(for: .normal), color: .systemOrange)
         ]
         let sectionViewModel = TableSectionViewModel(headerView: TitleSectionViewModel(text: "My Work".localize),
                                                      footerView: nil,
@@ -117,26 +118,16 @@ final class DashboardViewModel: DashboardViewModelProtocol {
     }
     
     private func setupFavoritesSection(_ tableSections: inout [SectionViewModelProtocol]) {
-        let cellViewModels = [
-            FilterTableViewCellViewModel(filter: .name),
-            FilterTableViewCellViewModel(filter: .category),
-            FilterTableViewCellViewModel(filter: .createdDate)
-        ]
         let sectionViewModel = TableSectionViewModel(headerView: TitleSectionViewModel(text: "Favorites".localize),
                                                      footerView: nil,
-                                                     cells: cellViewModels)
+                                                     cells: [])
         tableSections.append(sectionViewModel)
     }
     
     private func setupRecentSection(_ tableSections: inout [SectionViewModelProtocol]) {
-        let cellViewModels = [
-            FilterTableViewCellViewModel(filter: .name),
-            FilterTableViewCellViewModel(filter: .category),
-            FilterTableViewCellViewModel(filter: .createdDate)
-        ]
         let sectionViewModel = TableSectionViewModel(headerView: TitleSectionViewModel(text: "Recent".localize),
                                                      footerView: nil,
-                                                     cells: cellViewModels)
+                                                     cells: [])
         tableSections.append(sectionViewModel)
     }
     

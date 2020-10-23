@@ -195,6 +195,10 @@
 		8DF253722543194E001492AE /* TitleSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF253712543194E001492AE /* TitleSectionView.swift */; };
 		8DF2537625431968001492AE /* TitleSectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF2537525431968001492AE /* TitleSectionViewModel.swift */; };
 		8DF2537825431970001492AE /* TitleSectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DF2537725431970001492AE /* TitleSectionView.xib */; };
+		8DF2537B254328B3001492AE /* ColoredImageCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF2537A254328B3001492AE /* ColoredImageCellViewModel.swift */; };
+		8DF2537E254328CD001492AE /* ColoredImageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF2537C254328CC001492AE /* ColoredImageTableViewCell.swift */; };
+		8DF2537F254328CD001492AE /* ColoredImageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DF2537D254328CC001492AE /* ColoredImageTableViewCell.xib */; };
+		8DF2538125432B62001492AE /* SFSymbolsImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF2538025432B62001492AE /* SFSymbolsImage.swift */; };
 		8DF928A9253DDE700052FC31 /* WritingWordModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF928A8253DDE700052FC31 /* WritingWordModel.swift */; };
 		8DF928AC253DEBCF0052FC31 /* WritingProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF928AB253DEBCF0052FC31 /* WritingProgressView.swift */; };
 		8DF928AE253DEBEC0052FC31 /* WritingProgressView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DF928AD253DEBEC0052FC31 /* WritingProgressView.xib */; };
@@ -393,6 +397,10 @@
 		8DF253712543194E001492AE /* TitleSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleSectionView.swift; sourceTree = "<group>"; };
 		8DF2537525431968001492AE /* TitleSectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleSectionViewModel.swift; sourceTree = "<group>"; };
 		8DF2537725431970001492AE /* TitleSectionView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TitleSectionView.xib; sourceTree = "<group>"; };
+		8DF2537A254328B3001492AE /* ColoredImageCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColoredImageCellViewModel.swift; sourceTree = "<group>"; };
+		8DF2537C254328CC001492AE /* ColoredImageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColoredImageTableViewCell.swift; sourceTree = "<group>"; };
+		8DF2537D254328CC001492AE /* ColoredImageTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ColoredImageTableViewCell.xib; sourceTree = "<group>"; };
+		8DF2538025432B62001492AE /* SFSymbolsImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFSymbolsImage.swift; sourceTree = "<group>"; };
 		8DF928A8253DDE700052FC31 /* WritingWordModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WritingWordModel.swift; sourceTree = "<group>"; };
 		8DF928AB253DEBCF0052FC31 /* WritingProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WritingProgressView.swift; sourceTree = "<group>"; };
 		8DF928AD253DEBEC0052FC31 /* WritingProgressView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WritingProgressView.xib; sourceTree = "<group>"; };
@@ -610,6 +618,7 @@
 			isa = PBXGroup;
 			children = (
 				8D662557252A800600991D45 /* UniversalTableViewCellRegistratable.swift */,
+				8DF2537925432832001492AE /* ColoredImageCell */,
 				8D662556252A7FF900991D45 /* Word */,
 				8D83EA62252B8B78004E6098 /* CreateWord */,
 				8D83EA79252BA224004E6098 /* VocabularyInfo */,
@@ -772,6 +781,7 @@
 			isa = PBXGroup;
 			children = (
 				8D94E860253CB83E005FA4B9 /* ColorUtils.swift */,
+				8DF2538025432B62001492AE /* SFSymbolsImage.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -1193,6 +1203,16 @@
 			path = TitleSection;
 			sourceTree = "<group>";
 		};
+		8DF2537925432832001492AE /* ColoredImageCell */ = {
+			isa = PBXGroup;
+			children = (
+				8DF2537C254328CC001492AE /* ColoredImageTableViewCell.swift */,
+				8DF2537A254328B3001492AE /* ColoredImageCellViewModel.swift */,
+				8DF2537D254328CC001492AE /* ColoredImageTableViewCell.xib */,
+			);
+			path = ColoredImageCell;
+			sourceTree = "<group>";
+		};
 		8DF928AA253DEBB90052FC31 /* WritingProgress */ = {
 			isa = PBXGroup;
 			children = (
@@ -1289,6 +1309,7 @@
 				8D524F5E252E5AAA002A6E01 /* SearchBarCollectionReusableView.xib in Resources */,
 				8D83EA66252B8BB7004E6098 /* CreateWordTableViewCell.xib in Resources */,
 				8DD28BC4252679F600F59B7D /* PresentationViewController.xib in Resources */,
+				8DF2537F254328CD001492AE /* ColoredImageTableViewCell.xib in Resources */,
 				8D83EA70252B9C11004E6098 /* ActivityViewController.xib in Resources */,
 				8D94E830253748B3005FA4B9 /* FilterTableViewCell.xib in Resources */,
 				8D94E7E225363008005FA4B9 /* NoResulsView.xib in Resources */,
@@ -1398,6 +1419,7 @@
 				8DD28BA425266B2500F59B7D /* Coordinator.swift in Sources */,
 				8DD28BDB2526864400F59B7D /* DrivableModelProtocol.swift in Sources */,
 				8D94E82125373FB6005FA4B9 /* VocabularyFilterViewController.swift in Sources */,
+				8DF2537E254328CD001492AE /* ColoredImageTableViewCell.swift in Sources */,
 				8D66254C252A7D3900991D45 /* WordsViewModel.swift in Sources */,
 				8D66253A252A6D4600991D45 /* VocabularyProgressView.swift in Sources */,
 				8D83EA76252B9EB9004E6098 /* CoordinatorClosableProtocol.swift in Sources */,
@@ -1499,10 +1521,12 @@
 				8DA744C025409A5100F9EC8B /* VocabularyFilter.swift in Sources */,
 				8DC3CF59252D3977003CA62A /* EmptyableProtocol.swift in Sources */,
 				8D662533252A610B00991D45 /* ScoreView.swift in Sources */,
+				8DF2538125432B62001492AE /* SFSymbolsImage.swift in Sources */,
 				8D66251F2529F6C000991D45 /* CreateVocabularyViewController.swift in Sources */,
 				8DD28BFB2527B76800F59B7D /* DashboardCellFactory.swift in Sources */,
 				8D524FA7252F8A9F002A6E01 /* Authorizator.swift in Sources */,
 				8D94E846253A1F8D005FA4B9 /* ImagePickerViewController.swift in Sources */,
+				8DF2537B254328B3001492AE /* ColoredImageCellViewModel.swift in Sources */,
 				8DD28BB025266F4000F59B7D /* DashboardViewController.swift in Sources */,
 				8D94E7D42534E3DC005FA4B9 /* DataFacade.swift in Sources */,
 				8DF928A9253DDE700052FC31 /* WritingWordModel.swift in Sources */,
