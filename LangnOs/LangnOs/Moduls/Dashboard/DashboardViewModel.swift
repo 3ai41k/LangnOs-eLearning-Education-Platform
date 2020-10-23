@@ -104,18 +104,34 @@ final class DashboardViewModel: DashboardViewModelProtocol {
             FilterTableViewCellViewModel(filter: .category),
             FilterTableViewCellViewModel(filter: .createdDate)
         ]
-        let sectionViewModel = TableSectionViewModel(headerView: TitleSectionViewModel(),
-                                                     footerView: TitleSectionViewModel(),
+        let sectionViewModel = TableSectionViewModel(headerView: TitleSectionViewModel(text: "My Work".localize),
+                                                     footerView: TitleSectionViewModel(text: "My Work".localize),
                                                      cells: cellViewModels)
         tableSections.append(sectionViewModel)
     }
     
     private func setupFavoritesSection(_ tableSections: inout [SectionViewModelProtocol]) {
-        
+        let cellViewModels = [
+            FilterTableViewCellViewModel(filter: .name),
+            FilterTableViewCellViewModel(filter: .category),
+            FilterTableViewCellViewModel(filter: .createdDate)
+        ]
+        let sectionViewModel = TableSectionViewModel(headerView: TitleSectionViewModel(text: "Favorites".localize),
+                                                     footerView: TitleSectionViewModel(text: "Favorites".localize),
+                                                     cells: cellViewModels)
+        tableSections.append(sectionViewModel)
     }
     
     private func setupRecentSection(_ tableSections: inout [SectionViewModelProtocol]) {
-        
+        let cellViewModels = [
+            FilterTableViewCellViewModel(filter: .name),
+            FilterTableViewCellViewModel(filter: .category),
+            FilterTableViewCellViewModel(filter: .createdDate)
+        ]
+        let sectionViewModel = TableSectionViewModel(headerView: TitleSectionViewModel(text: "Recent".localize),
+                                                     footerView: TitleSectionViewModel(text: "Recent".localize),
+                                                     cells: cellViewModels)
+        tableSections.append(sectionViewModel)
     }
     
     // MARK: - Action

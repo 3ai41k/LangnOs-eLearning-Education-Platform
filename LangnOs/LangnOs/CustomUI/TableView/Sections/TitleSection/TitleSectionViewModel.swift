@@ -6,8 +6,25 @@
 //  Copyright © 2020 NL. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
-final class TitleSectionViewModel: SectionViewViewModelProtocol {
+protocol TitleSectionViewModelInput {
+    var text: String { get }
+    var font: UIFont { get }
+}
+
+typealias TitleSectionViewModelProtocol =
+    SectionViewViewModelProtocol &
+    TitleSectionViewModelInput
+
+final class TitleSectionViewModel: TitleSectionViewModelProtocol {
+    
+    let text: String
+    let font: UIFont
+    
+    init(text: String) {
+        self.text = text
+        self.font = .boldSystemFont(ofSize: 21.0)
+    }
     
 }

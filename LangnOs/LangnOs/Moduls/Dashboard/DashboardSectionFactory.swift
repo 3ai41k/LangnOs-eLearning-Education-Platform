@@ -10,16 +10,15 @@ import UIKit
 
 final class DashboardSectionFactory: SectionViewFactoryProtocol {
     
-    func generateHederView(sectionViewModel: SectionViewViewModelProtocol) -> UIView {
-        let view = UIView(frame: CGRect(x: .zero, y: .zero, width: .zero, height: 44.0))
-        view.backgroundColor = .red
-        return view
-    }
-    
-    func generateFooterView(sectionViewModel: SectionViewViewModelProtocol) -> UIView {
-        let view = UIView(frame: CGRect(x: .zero, y: .zero, width: .zero, height: 44.0))
-        view.backgroundColor = .green
-        return view
+    func generateView(sectionViewModel: SectionViewViewModelProtocol) -> UIView {
+        switch sectionViewModel {
+        case let sectionViewModel as TitleSectionViewModel:
+            guard let view: TitleSectionView = .fromNib() else { return UIView() }
+            view.viewModel = sectionViewModel
+            return view
+        default:
+            return UIView()
+        }
     }
     
 }

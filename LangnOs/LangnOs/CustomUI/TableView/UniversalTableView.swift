@@ -14,8 +14,7 @@ typealias UniversalTableViewModelProtocol =
     UniversalTableViewOutputProtocol
 
 protocol SectionViewFactoryProtocol {
-    func generateHederView(sectionViewModel: SectionViewViewModelProtocol) -> UIView
-    func generateFooterView(sectionViewModel: SectionViewViewModelProtocol) -> UIView
+    func generateView(sectionViewModel: SectionViewViewModelProtocol) -> UIView
 }
 
 protocol SectionViewViewModelProtocol {
@@ -176,12 +175,12 @@ extension UniversalTableView: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         guard let hederViewModel = viewModel?.tableSections[section].sectionHeaderViewModel else { return nil }
-        return sectionFactory?.generateHederView(sectionViewModel: hederViewModel)
+        return sectionFactory?.generateView(sectionViewModel: hederViewModel)
     }
     
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         guard let footerViewModel = viewModel?.tableSections[section].sectionFooterViewModel else { return nil }
-        return sectionFactory?.generateFooterView(sectionViewModel: footerViewModel)
+        return sectionFactory?.generateView(sectionViewModel: footerViewModel)
     }
     
 }

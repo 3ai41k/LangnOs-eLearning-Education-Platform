@@ -50,7 +50,6 @@ final class DashboardViewController: BindibleViewController<DashboardViewModelPr
         navigationItem.rightBarButtonItem = createVocabularyButton
         
         navigationController?.navigationBar.prefersLargeTitles = true
-        navigationController?.navigationBar.topItem?.title = "Home".localize
     }
     
     // MARK: - Actions

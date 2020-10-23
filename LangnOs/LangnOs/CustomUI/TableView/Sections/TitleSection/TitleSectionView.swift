@@ -6,4 +6,26 @@
 //  Copyright © 2020 NL. All rights reserved.
 //
 
-import Foundation
+import UIKit
+
+final class TitleSectionView: UIView {
+    
+    // MARK: - IBOutlets
+    
+    @IBOutlet private weak var label: UILabel!
+    
+    // MARK: - Public properties
+    
+    var viewModel: TitleSectionViewModelInput? {
+        didSet {
+            bindViewModel()
+        }
+    }
+    // MARK: - Private methods
+    
+    private func bindViewModel() {
+        label.text = viewModel?.text
+        label.font = viewModel?.font
+    }
+    
+}
