@@ -29,8 +29,22 @@ final class FlashCardsViewController: BindibleViewController<FlashCardsViewModel
     // MARK: - Lifecycle
     // MARK: - Init
     // MARK: - Override
+    
+    override func setupUI() {
+        let doneButton = UIBarButtonItem(barButtonSystemItem: .done,
+                                         target: self,
+                                         action: #selector(didDoneButtonTouch))
+        
+        navigationItem.leftBarButtonItem = doneButton
+    }
+    
     // MARK: - Public methods
     // MARK: - Private methods
     // MARK: - Actions
+    
+    @objc
+    private func didDoneButtonTouch() {
+        viewModel?.closeAction()
+    }
     
 }

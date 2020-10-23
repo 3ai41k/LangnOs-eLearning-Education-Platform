@@ -88,7 +88,7 @@ final class VocabularyViewModel: VocabularyViewModelOutputProtocol {
     // MARK: - Actions
     
     private func removeVocabularyAction() {
-        router.showAlert(title: "Are you sure?", message: "Do you want to delete this vocabulary ?", actions: [
+        router.showAlert(title: "Are you sure ?", message: "Do you want to delete this vocabulary ?", actions: [
             CancelAlertAction(handler: { }),
             OkAlertAction(handler: { self.router.removeVocabulary() })
         ])

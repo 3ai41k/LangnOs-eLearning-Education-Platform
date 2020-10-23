@@ -8,7 +8,16 @@
 
 import UIKit
 
-final class FlashCardsCoordinator: Coordinator, AlertPresentableProtocol {
+protocol FlashCardsNavigationProtocol {
+    
+}
+
+typealias FlashCardsCoordinatorProtocol =
+    FlashCardsNavigationProtocol &
+    AlertPresentableProtocol &
+    CoordinatorClosableProtocol
+
+final class FlashCardsCoordinator: Coordinator, FlashCardsCoordinatorProtocol {
     
     // MARK: - Private properties
     
@@ -26,16 +35,22 @@ final class FlashCardsCoordinator: Coordinator, AlertPresentableProtocol {
     
     override func start() {
         let speechSynthesizer = SpeechSynthesizer()
-        let flashCardsViewModel = FlashCardsViewModel(words: words,
-                                                      speechSynthesizer: speechSynthesizer,
-                                                      router: self)
-        let flashCardsCellFactory = FlashCardsCellFactory()
-        let flashCardsViewController = FlashCardsViewController()
-        flashCardsViewController.viewModel = flashCardsViewModel
-        flashCardsViewController.tableViewCellFactory = flashCardsCellFactory
+        let viewModel = FlashCardsViewModel(router: self,
+                                            words: words,
+                                            speechSynthesizer: speechSynthesizer)
         
-        viewController = flashCardsViewController
-        (parentViewController as? UINavigationController)?.pushViewController(flashCardsViewController, animated: true)
+        let cellFactory = FlashCardsCellFactory()
+        let viewController = FlashCardsViewController()
+        viewController.viewModel = viewModel
+        viewController.tableViewCellFactory = cellFactory
+        
+        let navigationController = UINavigationController(rootViewController: viewController)
+        navigationController.modalPresentationStyle = .fullScreen
+        
+        self.viewController = navigationController
+        parentViewController?.present(navigationController, animated: true, completion: nil)
     }
+    
+    // MARK: - FlashCardsNavigationProtocol
     
 }

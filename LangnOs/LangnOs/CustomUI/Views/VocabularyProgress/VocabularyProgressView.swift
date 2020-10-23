@@ -42,7 +42,19 @@ final class VocabularyProgressView: XibView {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        self.layer.cornerRadius = 10.0
+        setupCornerRadius()
+        setupBorders()
+    }
+    
+    // MARK: - Private methods
+    
+    private func setupCornerRadius() {
+        layer.cornerRadius = 10.0
+    }
+    
+    private func setupBorders() {
+        layer.borderColor = UIColor.systemGray2.cgColor
+        layer.borderWidth = 0.25
     }
 
 }

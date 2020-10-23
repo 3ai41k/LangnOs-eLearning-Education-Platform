@@ -3,7 +3,6 @@
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
-        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -77,7 +76,7 @@
                     </subviews>
                 </stackView>
             </subviews>
-            <color key="backgroundColor" name="VocabularyProgress"/>
+            <color key="backgroundColor" systemColor="systemGray5Color" red="0.8980392157" green="0.8980392157" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="pmh-7e-tZJ" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="K94-oo-4JE"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="pmh-7e-tZJ" secondAttribute="bottom" constant="16" id="Lcz-g9-42i"/>
@@ -89,9 +88,4 @@
             <point key="canvasLocation" x="139" y="122"/>
         </view>
     </objects>
-    <resources>
-        <namedColor name="VocabularyProgress">
-            <color red="0.88235294117647056" green="0.90196078431372551" blue="0.94117647058823528" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-    </resources>
 </document>

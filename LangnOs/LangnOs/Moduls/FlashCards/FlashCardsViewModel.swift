@@ -13,10 +13,13 @@ protocol FlashCardsViewModelInputProtocol {
 }
 
 protocol FlashCardsViewModelOutputProtocol {
-    
+    func closeAction()
 }
 
-typealias FlashCardsViewModelProtocol = UniversalTableViewModelProtocol & FlashCardsViewModelInputProtocol & FlashCardsViewModelOutputProtocol
+typealias FlashCardsViewModelProtocol =
+    UniversalTableViewModelProtocol &
+    FlashCardsViewModelInputProtocol &
+    FlashCardsViewModelOutputProtocol
 
 final class FlashCardsViewModel: UniversalTableViewModelProtocol {
     
@@ -25,17 +28,17 @@ final class FlashCardsViewModel: UniversalTableViewModelProtocol {
     var tableSections: [SectionViewModelProtocol]
     
     // MARK: - Private properties
-
+    
+    private let router: FlashCardsCoordinatorProtocol
     private let words: [Word]
     private let speechSynthesizer: SpeakableProtocol
-    private let router: AlertPresentableProtocol
     
     // MARK: - Init
     
-    init(words: [Word], speechSynthesizer: SpeakableProtocol, router: AlertPresentableProtocol) {
+    init(router: FlashCardsCoordinatorProtocol, words: [Word], speechSynthesizer: SpeakableProtocol) {
+        self.router = router
         self.words = words
         self.speechSynthesizer = speechSynthesizer
-        self.router = router
         
         self.tableSections = []
         
@@ -72,5 +75,9 @@ extension FlashCardsViewModel: FlashCardsViewModelInputProtocol {
 // MARK: - FlashCardsViewModelOutputProtocol
 
 extension FlashCardsViewModel: FlashCardsViewModelOutputProtocol {
+    
+    func closeAction() {
+        router.close()
+    }
     
 }

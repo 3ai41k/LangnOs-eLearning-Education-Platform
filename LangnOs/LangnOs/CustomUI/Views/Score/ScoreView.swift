@@ -25,39 +25,19 @@ final class ScoreView: XibView {
         }
     }
     
-    // MARK: - Private properties
-    
-    private var gradientLayer: CALayer = {
-        let layer = CAGradientLayer()
-        layer.startPoint = CGPoint(x: 0.0, y: 1.0)
-        layer.endPoint = CGPoint(x: 0.85, y: 0.0)
-        layer.colors = [
-            UIColor.systemBlue.cgColor,
-            UIColor.systemPurple.cgColor,
-            UIColor.systemPink.cgColor,
-            UIColor.systemOrange.cgColor
-        ]
-        layer.locations = [
-            0.1,
-            0.5,
-            0.75,
-            1.0
-        ]
-        return layer
-    }()
-    
     // MARK: - Override
     
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        self.layer.addSublayer(gradientLayer)
+        setupBorders()
     }
     
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        
-        gradientLayer.frame = self.bounds
+    // MARK: - Private methods
+    
+    private func setupBorders() {
+        layer.borderColor = UIColor.systemGray2.cgColor
+        layer.borderWidth = 0.25
     }
     
 }
