@@ -3,7 +3,6 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
-        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -19,40 +18,20 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="cpJ-f5-Y3h" customClass="UniversalTableView" customModule="LangnOs" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="84" width="414" height="812"/>
-                    <color key="backgroundColor" name="AppBackground"/>
-                </tableView>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bz5-5V-xAI" customClass="TopBarView" customModule="LangnOs" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="44" width="414" height="40"/>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" sectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="cpJ-f5-Y3h" customClass="UniversalTableView" customModule="LangnOs" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="44" width="414" height="852"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="40" id="1ot-CD-jFC"/>
-                    </constraints>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                            <real key="value" value="20"/>
-                        </userDefinedRuntimeAttribute>
-                    </userDefinedRuntimeAttributes>
-                </view>
+                </tableView>
             </subviews>
-            <color key="backgroundColor" name="AppBackground"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="cpJ-f5-Y3h" secondAttribute="bottom" id="AaD-sl-DJE"/>
-                <constraint firstItem="bz5-5V-xAI" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="FKG-P1-zrz"/>
+                <constraint firstItem="cpJ-f5-Y3h" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="FNP-GV-bey"/>
                 <constraint firstItem="cpJ-f5-Y3h" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="OmF-Id-eJS"/>
-                <constraint firstItem="bz5-5V-xAI" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="X80-CM-MnC"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="cpJ-f5-Y3h" secondAttribute="trailing" id="fH2-YJ-fNv"/>
-                <constraint firstItem="cpJ-f5-Y3h" firstAttribute="top" secondItem="bz5-5V-xAI" secondAttribute="bottom" id="jxD-aN-Iff"/>
-                <constraint firstAttribute="trailing" secondItem="bz5-5V-xAI" secondAttribute="trailing" id="mKF-Zz-DAe"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <point key="canvasLocation" x="137.68115942028987" y="142.63392857142856"/>
         </view>
     </objects>
-    <resources>
-        <namedColor name="AppBackground">
-            <color red="0.93699997663497925" green="0.95300000905990601" blue="0.98400002717971802" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-    </resources>
 </document>

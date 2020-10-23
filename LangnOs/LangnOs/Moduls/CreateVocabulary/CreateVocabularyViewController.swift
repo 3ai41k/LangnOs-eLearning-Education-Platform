@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import Combine
 
-final class CreateVocabularyViewController: BindibleViewController<CreateVocabularyViewModelInputProtocol & UniversalTableViewModelProtocol> {
+final class CreateVocabularyViewController: BindibleViewController<CreateVocabularyViewModelProtocol> {
     
     // MARK: - IBOutlets
     
@@ -16,6 +17,7 @@ final class CreateVocabularyViewController: BindibleViewController<CreateVocabul
         didSet {
             tableView.viewModel = viewModel
             tableView.cellFactory = tableViewCellFactory
+            
             tableView.start()
         }
     }
@@ -25,19 +27,39 @@ final class CreateVocabularyViewController: BindibleViewController<CreateVocabul
     var tableViewCellFactory: UniversalTableViewCellFactoryProtocol?
     
     // MARK: - Private properties
-    // MARK: - Lifecycle
     
-    // MARK: - Init
+    private var cancellables: [AnyCancellable?] = []
+    
     // MARK: - Override
     
-    override func setupUI() {
-        navigationItem.drive(model: viewModel?.navigationItemDrivableModel)
-        navigationController?.navigationBar.drive(model: viewModel?.navigationBarDrivableModel)
+    override func bindViewModel() {
+        cancellables = [
+            viewModel?.title.assign(to: \.title, on: self)
+        ]
     }
     
-    // MARK: - Public methods
-    // MARK: - Private methods
+    override func setupUI() {
+        let closeButton = UIBarButtonItem(barButtonSystemItem: .close,
+                                          target: self,
+                                          action: #selector(didCloseButtonTouch))
+        let doneButton = UIBarButtonItem(barButtonSystemItem: .done,
+                                         target: self,
+                                         action: #selector(didDoneButtonTouch))
+        
+        navigationItem.rightBarButtonItem = closeButton
+        navigationItem.leftBarButtonItem = doneButton
+    }
+    
     // MARK: - Actions
     
+    @objc
+    private func didCloseButtonTouch() {
+        viewModel?.closeAction()
+    }
+    
+    @objc
+    private func didDoneButtonTouch() {
+        viewModel?.doneAction()
+    }
 
 }

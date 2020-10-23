@@ -6,16 +6,28 @@
 //  Copyright © 2020 NL. All rights reserved.
 //
 
-import FirebaseAuth
+import Foundation
+import Combine
 
-protocol CreateVocabularyViewModelInputProtocol: NavigatableViewModelProtocol {
-    
+protocol CreateVocabularyViewModelInputProtocol {
+    var title: CurrentValueSubject<String?, Never> { get }
 }
 
-final class CreateVocabularyViewModel: UniversalTableViewModelProtocol {
+protocol CreateVocabularyViewModelOutputProtocol {
+    func doneAction()
+    func closeAction()
+}
+
+typealias CreateVocabularyViewModelProtocol =
+    CreateVocabularyViewModelInputProtocol &
+    CreateVocabularyViewModelOutputProtocol &
+    UniversalTableViewModelProtocol
+
+final class CreateVocabularyViewModel: CreateVocabularyViewModelProtocol {
     
     // MARK: - Public properties
     
+    var title: CurrentValueSubject<String?, Never>
     var tableSections: [SectionViewModelProtocol] = []
     
     // MARK: - Private properties
@@ -32,19 +44,22 @@ final class CreateVocabularyViewModel: UniversalTableViewModelProtocol {
     init(router: CreateVocabularyCoordinatorProtocol) {
         self.router = router
         
-        setupVocabularyInfoSection(&tableSections)
-        setupWordsSection(&tableSections)
+        self.title = .init("New vocabulary".localize)
+        
+        self.setupVocabularyInfoSection(&tableSections)
+        self.setupWordsSection(&tableSections)
     }
     
     // MARK: - Private methods
     
     private func setupVocabularyInfoSection(_ tableSections: inout [SectionViewModelProtocol]) {
-        let vocabularyInfoTableViewCellViewModel = VocabularyInfoTableViewCellViewModel()
-        tableSections.append(TableSectionViewModel(cells: [vocabularyInfoTableViewCellViewModel]))
+        let cellViewModel = VocabularyInfoTableViewCellViewModel()
+        tableSections.append(TableSectionViewModel(cells: [cellViewModel]))
     }
     
     private func setupWordsSection(_ tableSections: inout [SectionViewModelProtocol]) {
-        tableSections.append(TableSectionViewModel(cells: [createWordCellViewModel()]))
+        let cellViewModel = createWordCellViewModel()
+        tableSections.append(TableSectionViewModel(cells: [cellViewModel]))
     }
     
     private func createVocabulary() throws -> Vocabulary {
@@ -91,45 +106,18 @@ final class CreateVocabularyViewModel: UniversalTableViewModelProtocol {
         tableSections[SectionType.words.rawValue].cells.value.append(createWordCellViewModel())
     }
     
-    @objc
-    private func didCloseTouched() {
+}
+
+// MARK: - CreateVocabularyViewModelOutputProtocol
+
+extension CreateVocabularyViewModel {
+    
+    func doneAction() {
         router.close()
     }
     
-    @objc
-    private func didCreateTouched() {
-        do {
-            let vocabulary = try createVocabulary()
-            router.vocabularyDidCreate(vocabulary)
-        } catch {
-            router.showError(error)
-        }
-    }
-    
-}
-
-// MARK: - VocabularyViewModelInputProtocol
-
-extension CreateVocabularyViewModel: CreateVocabularyViewModelInputProtocol {
-    
-    var navigationItemDrivableModel: DrivableModelProtocol {
-        let closeButtonModel = BarButtonDrivableModel(title: "Close".localize,
-                                                      style: .plain,
-                                                      target: self,
-                                                      selector: #selector(didCloseTouched))
-        let createButtonModel = BarButtonDrivableModel(title: "Create".localize,
-                                                       style: .done,
-                                                       target: self,
-                                                       selector: #selector(didCreateTouched))
-        return NavigationItemDrivableModel(title: "Create Vocabulary".localize,
-                                           leftBarButtonDrivableModels: [closeButtonModel],
-                                           rightBarButtonDrivableModels: [createButtonModel])
-    }
-    
-    var navigationBarDrivableModel: DrivableModelProtocol? {
-        NavigationBarDrivableModel(isBottomLineHidden: true,
-                                   backgroundColor: .white,
-                                   prefersLargeTitles: false)
+    func closeAction() {
+        router.close()
     }
     
 }
