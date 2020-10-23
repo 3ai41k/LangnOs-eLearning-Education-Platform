@@ -72,6 +72,7 @@ final class DashboardViewModel: DashboardViewModelProtocol {
         self.bindContext()
         self.bindView()
         
+        self.setupEmptySection(&tableSections)
         self.setupMyWordSection(&tableSections)
         self.setupFavoritesSection(&tableSections)
         self.setupRecentSection(&tableSections)
@@ -98,6 +99,11 @@ final class DashboardViewModel: DashboardViewModelProtocol {
         ]
     }
     
+    private func setupEmptySection(_ tableSections: inout [SectionViewModelProtocol]) {
+        let sectionViewModel = TableSectionViewModel(cells: [])
+        tableSections.append(sectionViewModel)
+    }
+    
     private func setupMyWordSection(_ tableSections: inout [SectionViewModelProtocol]) {
         let cellViewModels = [
             FilterTableViewCellViewModel(filter: .name),
@@ -105,7 +111,7 @@ final class DashboardViewModel: DashboardViewModelProtocol {
             FilterTableViewCellViewModel(filter: .createdDate)
         ]
         let sectionViewModel = TableSectionViewModel(headerView: TitleSectionViewModel(text: "My Work".localize),
-                                                     footerView: TitleSectionViewModel(text: "My Work".localize),
+                                                     footerView: nil,
                                                      cells: cellViewModels)
         tableSections.append(sectionViewModel)
     }
@@ -117,7 +123,7 @@ final class DashboardViewModel: DashboardViewModelProtocol {
             FilterTableViewCellViewModel(filter: .createdDate)
         ]
         let sectionViewModel = TableSectionViewModel(headerView: TitleSectionViewModel(text: "Favorites".localize),
-                                                     footerView: TitleSectionViewModel(text: "Favorites".localize),
+                                                     footerView: nil,
                                                      cells: cellViewModels)
         tableSections.append(sectionViewModel)
     }
@@ -129,7 +135,7 @@ final class DashboardViewModel: DashboardViewModelProtocol {
             FilterTableViewCellViewModel(filter: .createdDate)
         ]
         let sectionViewModel = TableSectionViewModel(headerView: TitleSectionViewModel(text: "Recent".localize),
-                                                     footerView: TitleSectionViewModel(text: "Recent".localize),
+                                                     footerView: nil,
                                                      cells: cellViewModels)
         tableSections.append(sectionViewModel)
     }
