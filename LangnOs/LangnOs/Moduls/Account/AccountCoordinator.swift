@@ -50,6 +50,8 @@ final class AccountCoordinator: Coordinator, AlertPresentableProtocol {
         
         let navigationController = UINavigationController(rootViewController: accountViewController)
         viewController = navigationController
+        
+        (parentViewController as? UINavigationController)?.pushViewController(accountViewController, animated: true)
     }
     
 }

@@ -7,13 +7,9 @@
 //
 
 import UIKit
-import FirebaseAuth
 
 protocol DashboardNavigationProtocol {
-    func navigateToVocabularyStatistic(_ vocabulary: Vocabulary, didVocabularyRemoveHandler: @escaping () -> Void)
-    func navigateToFilter(selectedFilter: VocabularyFilter, selectFilterHandler: @escaping (VocabularyFilter) -> Void)
-    func createNewVocabulary(user: User, didVocabularyCreateHandler: @escaping (Vocabulary) -> Void)
-    func navigateToSingIn()
+    func navigateToUserProfile()
 }
 
 typealias DashboardCoordinatorProtocol = DashboardNavigationProtocol & AlertPresentableProtocol
@@ -57,32 +53,9 @@ final class DashboardCoordinator: Coordinator, DashboardCoordinatorProtocol {
     
     // MARK: - MainNavigationProtocol
     
-    func navigateToVocabularyStatistic(_ vocabulary: Vocabulary, didVocabularyRemoveHandler: @escaping () -> Void) {
-        let vocabularyCoordinator = VocabularyCoordinator(vocabulary: vocabulary,
-                                                          didVocabularyRemoveHandler: didVocabularyRemoveHandler,
-                                                          parentViewController: viewController)
-        vocabularyCoordinator.start()
-    }
-    
-    func navigateToFilter(selectedFilter: VocabularyFilter, selectFilterHandler: @escaping (VocabularyFilter) -> Void) {
-        let vocabularyFilterCoordinator = VocabularyFilterCoordinator(selectedFilter: selectedFilter,
-                                                                      selectFilterHandler: selectFilterHandler,
-                                                                      parentViewController: viewController)
-        vocabularyFilterCoordinator.start()
-    }
-    
-    func createNewVocabulary(user: User, didVocabularyCreateHandler: @escaping (Vocabulary) -> Void) {
-        let createVocabularyCoordinator = CreateVocabularyCoordinator(user: user,
-                                                                      didVocabularyCreateHandler: didVocabularyCreateHandler,
-                                                                      parentViewController: viewController)
-        createVocabularyCoordinator.start()
-    }
-    
-    func navigateToSingIn() {
-        let context = RootContext()
-        let singInCoordinator = SingInCoordinator(context: context,
-                                                  parentViewController: viewController)
-        singInCoordinator.start()
+    func navigateToUserProfile() {
+        let accountCoordinator = AccountCoordinator(context: context, parentViewController: viewController)
+        accountCoordinator.start()
     }
     
 }

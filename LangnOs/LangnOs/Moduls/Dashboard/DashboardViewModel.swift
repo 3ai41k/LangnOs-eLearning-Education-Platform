@@ -24,6 +24,7 @@ protocol DashboardViewModelInputProtocol {
 
 enum DashboardViewModelAction {
     case createVocabulary
+    case userProfile
 }
 
 protocol DashboardViewModelOutputProtocol {
@@ -94,6 +95,8 @@ final class DashboardViewModel: DashboardViewModelProtocol {
                 switch action {
                 case .createVocabulary:
                     print(#function)
+                case .userProfile:
+                    self?.router.navigateToUserProfile()
                 }
             })
         ]

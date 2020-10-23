@@ -24,4 +24,8 @@ struct SFSymbolsImage {
         }
     }
     
+    static func personCircle() -> UIImage {
+        return UIImage(systemName: "person.circle")!
+    }
+    
 }
