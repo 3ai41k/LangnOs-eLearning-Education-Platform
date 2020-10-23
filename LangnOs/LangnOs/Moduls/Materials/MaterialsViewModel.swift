@@ -10,12 +10,15 @@ import Foundation
 import Combine
 
 protocol MaterialsViewModelInputProtocol {
-    
+    var title: CurrentValueSubject<String?, Never> { get }
+    var scopeButtonTitles: CurrentValueSubject<[String]?, Never> { get }
 }
 
 enum MaterialsViewModelAction {
     case fetchData
     case createVocabulary
+    case search(String)
+    case selectedScope(Int)
 }
 
 protocol MaterialsViewModelOutputProtocol {
@@ -40,8 +43,10 @@ final class MaterialsViewModel: MaterialsViewModelProtocol {
     
     // MARK: - Public properties
     
-    var actionSubject = PassthroughSubject<MaterialsViewModelAction, Never>()
-    var isActivityIndicatorHidden = CurrentValueSubject<Bool, Never>(false)
+    var title: CurrentValueSubject<String?, Never>
+    var scopeButtonTitles: CurrentValueSubject<[String]?, Never>
+    var actionSubject: PassthroughSubject<MaterialsViewModelAction, Never>
+    var isActivityIndicatorHidden: CurrentValueSubject<Bool, Never>
     var tableSections: [CollectionSectionViewModelProtocol] = []
     
     // MARK: - Private properties
@@ -73,6 +78,11 @@ final class MaterialsViewModel: MaterialsViewModelProtocol {
         self.dataProvider = dataProvider
         self.securityManager = securityManager
         
+        self.title = .init("Materials".localize)
+        self.scopeButtonTitles = .init(["a", "b", "c"])
+        self.actionSubject = .init()
+        self.isActivityIndicatorHidden = .init(false)
+        
         self.bindView()
         
         self.setupEmptySection(&tableSections)
@@ -97,6 +107,10 @@ final class MaterialsViewModel: MaterialsViewModelProtocol {
                     self?.router.navigateToCreateVocabulary { [weak self] vocabulary in
                         self?.createVocabulary(vocabulary)
                     }
+                case .search(let text):
+                    print(text)
+                case .selectedScope(let index):
+                    print(index)
                 }
             })
         ]

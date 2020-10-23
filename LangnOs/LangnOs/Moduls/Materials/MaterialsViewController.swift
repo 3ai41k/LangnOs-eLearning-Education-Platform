@@ -27,13 +27,18 @@ final class MaterialsViewController: BindibleViewController<MaterialsViewModelPr
         }
     }
     
-    
     // MARK: - Public properties
     
     var layout: UniversalCollectionViewLayoutProtocol?
     var cellFactory: UniversalCollectionViewCellFactoryProtocol?
     
     // MARK: - Private properties
+    
+    private var searchController: UISearchController = {
+        let searchController = UISearchController()
+        searchController.obscuresBackgroundDuringPresentation = false
+        return searchController
+    }()
     
     private var cancellables: [AnyCancellable?] = []
     
@@ -49,6 +54,8 @@ final class MaterialsViewController: BindibleViewController<MaterialsViewModelPr
     
     override func bindViewModel() {
         cancellables = [
+            viewModel?.title.assign(to: \.title, on: self),
+            viewModel?.scopeButtonTitles.assign(to: \.searchBar.scopeButtonTitles, on: searchController),
             viewModel?.isActivityIndicatorHidden.sink(receiveValue: { [weak self] (isHidden) in
                 if isHidden {
                     let createVocabularyButton = UIBarButtonItem(barButtonSystemItem: .add,
@@ -66,33 +73,42 @@ final class MaterialsViewController: BindibleViewController<MaterialsViewModelPr
         ]
     }
     
+    override func configurateComponents() {
+        searchController.searchResultsUpdater = self
+        searchController.searchBar.delegate = self
+    }
+    
     override func setupUI() {
-        let searchController = UISearchController()
-        
         navigationItem.searchController = searchController
         navigationItem.hidesSearchBarWhenScrolling = false
-        
-        title = "Materials".localize
     }
-    
-    override func configurateComponents() {
-        
-    }
-    
-    // MARK: - Public methods
-    
-    
-    
-    
-    // MARK: - Private methods
-    
-    
     
     // MARK: - Actions
     
     @objc
     private func didCreateVocabularyTouch() {
         viewModel?.actionSubject.send(.createVocabulary)
+    }
+    
+}
+
+// MARK: - UISearchResultsUpdating
+
+extension MaterialsViewController: UISearchResultsUpdating {
+    
+    func updateSearchResults(for searchController: UISearchController) {
+        guard let text = searchController.searchBar.text else { return }
+        viewModel?.actionSubject.send(.search(text))
+    }
+    
+}
+
+// MARK: - UISearchBarDelegate
+
+extension MaterialsViewController: UISearchBarDelegate {
+    
+    func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
+        viewModel?.actionSubject.send(.selectedScope(selectedScope))
     }
     
 }
