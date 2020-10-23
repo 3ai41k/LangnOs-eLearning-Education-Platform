@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Combine
 
 final class MaterialsViewController: BindibleViewController<MaterialsViewModelProtocol> {
     
@@ -32,11 +33,9 @@ final class MaterialsViewController: BindibleViewController<MaterialsViewModelPr
     var layout: UniversalCollectionViewLayoutProtocol?
     var cellFactory: UniversalCollectionViewCellFactoryProtocol?
     
-    
     // MARK: - Private properties
     
-    
-    
+    private var cancellables: [AnyCancellable?] = []
     
     // MARK: - Lifecycle
     
@@ -46,24 +45,28 @@ final class MaterialsViewController: BindibleViewController<MaterialsViewModelPr
         viewModel?.actionSubject.send(.fetchData)
     }
     
-    // MARK: - Init
-    
-    
-    
-    
     // MARK: - Override
     
     override func bindViewModel() {
-        
+        cancellables = [
+            viewModel?.isActivityIndicatorHidden.sink(receiveValue: { [weak self] (isHidden) in
+                if isHidden {
+                    let createVocabularyButton = UIBarButtonItem(barButtonSystemItem: .add,
+                                                                 target: self,
+                                                                 action: #selector(self?.didCreateVocabularyTouch))
+                    
+                    self?.navigationItem.rightBarButtonItem = createVocabularyButton
+                } else {
+                    let activityIndicatorView = UIActivityIndicatorView()
+                    activityIndicatorView.startAnimating()
+                    
+                    self?.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: activityIndicatorView)
+                }
+            })
+        ]
     }
     
     override func setupUI() {
-        let createVocabularyButton = UIBarButtonItem(barButtonSystemItem: .add,
-                                                     target: self,
-                                                     action: #selector(didCreateVocabularyTouch))
-        
-        navigationItem.rightBarButtonItem = createVocabularyButton
-        
         let searchController = UISearchController()
         
         navigationItem.searchController = searchController

@@ -16,7 +16,6 @@ protocol MaterialsCoordinatorNavigationProtocol {
 typealias MaterialsCoordinatorProtocol =
     MaterialsCoordinatorNavigationProtocol &
     CoordinatorClosableProtocol &
-    ActivityPresentableProtocol &
     AlertPresentableProtocol
     
 

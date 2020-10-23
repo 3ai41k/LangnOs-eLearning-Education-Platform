@@ -23,7 +23,7 @@ protocol MaterialsViewModelOutputProtocol {
 }
 
 protocol MaterialsViewModelBindingProtocol {
-    
+    var isActivityIndicatorHidden: CurrentValueSubject<Bool, Never> { get }
 }
 
 typealias MaterialsViewModelProtocol =
@@ -41,6 +41,7 @@ final class MaterialsViewModel: MaterialsViewModelProtocol {
     // MARK: - Public properties
     
     var actionSubject = PassthroughSubject<MaterialsViewModelAction, Never>()
+    var isActivityIndicatorHidden = CurrentValueSubject<Bool, Never>(false)
     var tableSections: [CollectionSectionViewModelProtocol] = []
     
     // MARK: - Private properties
@@ -56,6 +57,8 @@ final class MaterialsViewModel: MaterialsViewModelProtocol {
     
     private var vocabularies: [Vocabulary] = [] {
         didSet {
+            isActivityIndicatorHidden.value = true
+            
             let cellViewModels = vocabularies.map({ VocabularyCollectionViewCellViewModel(vocabulary: $0) })
             tableSections[SectionType.vocabulary.rawValue].cells.value = cellViewModels
         }
@@ -120,6 +123,8 @@ final class MaterialsViewModel: MaterialsViewModelProtocol {
     
     private func createVocabulary(_ vocabulary: Vocabulary) {
         guard let userId = securityManager.user?.uid else { return }
+        
+        isActivityIndicatorHidden.value = false
         
         let vocabularyWithUserId = Vocabulary(userId: userId,
                                               title: vocabulary.title,
