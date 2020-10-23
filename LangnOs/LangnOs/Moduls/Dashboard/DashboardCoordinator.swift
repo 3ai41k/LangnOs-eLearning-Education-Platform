@@ -10,6 +10,7 @@ import UIKit
 
 protocol DashboardNavigationProtocol {
     func navigateToUserProfile()
+    func navigateToMaterials()
 }
 
 typealias DashboardCoordinatorProtocol = DashboardNavigationProtocol & AlertPresentableProtocol
@@ -56,6 +57,11 @@ final class DashboardCoordinator: Coordinator, DashboardCoordinatorProtocol {
     func navigateToUserProfile() {
         let accountCoordinator = AccountCoordinator(context: context, parentViewController: viewController)
         accountCoordinator.start()
+    }
+    
+    func navigateToMaterials() {
+        let materialsCoordinator = MaterialsCoordinator(parentViewController: viewController)
+        materialsCoordinator.start()
     }
     
 }

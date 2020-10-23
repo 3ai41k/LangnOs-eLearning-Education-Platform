@@ -9,6 +9,14 @@
 import UIKit
 
 protocol UniversalCollectionViewCellFactoryProtocol {
-    func registerAllCells(collectionView: UICollectionView)
+    var cellTypes: [UniversalCollectionViewCellRegistratable.Type] { get }
     func generateCell(cellViewModel: CellViewModelProtocol, collectionView: UICollectionView, indexPath: IndexPath) -> UICollectionViewCell
+}
+
+extension UniversalCollectionViewCellFactoryProtocol {
+    
+    func registerAllCells(collectionView: UICollectionView) {
+        cellTypes.forEach({ $0.register(collectionView) })
+    }
+    
 }

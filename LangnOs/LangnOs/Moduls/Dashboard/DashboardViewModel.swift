@@ -36,6 +36,12 @@ typealias DashboardViewModelProtocol =
     DashboardViewModelOutputProtocol &
     UniversalTableViewModelProtocol
 
+private enum SectionType: Int {
+    case myWork = 1
+    case favorites
+    case recent
+}
+
 final class DashboardViewModel: DashboardViewModelProtocol {
     
     // MARK: - Public properties
@@ -74,12 +80,26 @@ final class DashboardViewModel: DashboardViewModelProtocol {
         self.bindView()
         
         self.setupEmptySection(&tableSections)
-        self.setupMyWordSection(&tableSections)
+        self.setupMyWorkSection(&tableSections)
         self.setupFavoritesSection(&tableSections)
         self.setupRecentSection(&tableSections)
     }
     
     // MARK: - Public methods
+    
+    func didSelectCellAt(indexPath: IndexPath) {
+        guard let section = SectionType(rawValue: indexPath.section) else { return }
+        switch section {
+        case .myWork:
+            if indexPath.row == 0 {
+                self.router.navigateToMaterials()
+            }
+        case .favorites:
+            print("")
+        case .recent:
+            print("")
+        }
+    }
     
     // MARK: - Private methods
     
@@ -107,7 +127,7 @@ final class DashboardViewModel: DashboardViewModelProtocol {
         tableSections.append(sectionViewModel)
     }
     
-    private func setupMyWordSection(_ tableSections: inout [SectionViewModelProtocol]) {
+    private func setupMyWorkSection(_ tableSections: inout [SectionViewModelProtocol]) {
         let cellViewModels = [
             ColoredImageCellViewModel(text: "Materials", image: SFSymbols.bookmark(for: .normal), color: .systemGreen),
             ColoredImageCellViewModel(text: "Statistic", image: SFSymbols.bookmark(for: .normal), color: .systemBlue),

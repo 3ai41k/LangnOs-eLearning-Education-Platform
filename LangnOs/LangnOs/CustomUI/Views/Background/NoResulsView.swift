@@ -13,19 +13,12 @@ final class NoResulsView: XibView {
     // MARK: - IBOutlets
     
     @IBOutlet private weak var label: UILabel!
-    @IBOutlet private weak var imageView: UIImageView!
     
     // MARK: - Public properties
     
     var title: String? {
         didSet {
             label.text = title
-        }
-    }
-    
-    var image: UIImage? {
-        didSet {
-            imageView.image = image
         }
     }
     

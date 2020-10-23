@@ -9,8 +9,8 @@
 import UIKit
 import Combine
 
-typealias UniversalCollectionViewViewModel =
-    UniversalCollectionViewSectionProtocol &
+typealias UniversalCollectionViewModel =
+    UniversalCollectionViewModelProtocol &
     UniversalCollectionViewOutputProtocol
 
 protocol CollectionReusableViewModelProtocol {
@@ -23,7 +23,7 @@ protocol CollectionSectionViewModelProtocol {
     var sectionFooterViewModel: CollectionReusableViewModelProtocol? { get }
 }
 
-protocol UniversalCollectionViewSectionProtocol {
+protocol UniversalCollectionViewModelProtocol {
     var tableSections: [CollectionSectionViewModelProtocol] { get }
 }
 
@@ -56,7 +56,7 @@ final class UniversalCollectionView: UICollectionView {
     
     // MARK: - Public properties
     
-    var viewModel: UniversalCollectionViewViewModel? {
+    var viewModel: UniversalCollectionViewModel? {
         didSet {
             bindViewModel()
         }
@@ -101,7 +101,7 @@ final class UniversalCollectionView: UICollectionView {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        addRefreshControl()
+        //addRefreshControl()
         addTapGesture()
     }
     
@@ -197,28 +197,28 @@ extension UniversalCollectionView: UICollectionViewDelegate {
         viewModel?.didSelectCellAt(indexPath: indexPath)
     }
     
-    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        let sectionViewModel = viewModel?.tableSections[indexPath.section]
-        var reusableViewModel: CollectionReusableViewModelProtocol?
-        
-        switch kind {
-        case UICollectionView.elementKindSectionHeader:
-            reusableViewModel = sectionViewModel?.sectionHeaderViewModel
-        case UICollectionView.elementKindSectionFooter:
-            reusableViewModel = sectionViewModel?.sectionFooterViewModel
-        default:
-            assert(false, "Unexpected element kind")
-        }
-        
-        guard
-            let viewModel = reusableViewModel,
-            let reusableView = sectionFactory?.generateView(reusableViewModel: viewModel, collectionView: collectionView, indexPath: indexPath)
-        else {
-            return UICollectionReusableView()
-        }
-        
-        return reusableView
-    }
+//    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+//        let sectionViewModel = viewModel?.tableSections[indexPath.section]
+//        var reusableViewModel: CollectionReusableViewModelProtocol?
+//
+//        switch kind {
+//        case UICollectionView.elementKindSectionHeader:
+//            reusableViewModel = sectionViewModel?.sectionHeaderViewModel
+//        case UICollectionView.elementKindSectionFooter:
+//            reusableViewModel = sectionViewModel?.sectionFooterViewModel
+//        default:
+//            assert(false, "Unexpected element kind")
+//        }
+//
+//        guard
+//            let viewModel = reusableViewModel,
+//            let reusableView = sectionFactory?.generateView(reusableViewModel: viewModel, collectionView: collectionView, indexPath: indexPath)
+//        else {
+//            return UICollectionReusableView()
+//        }
+//
+//        return reusableView
+//    }
     
 }
 

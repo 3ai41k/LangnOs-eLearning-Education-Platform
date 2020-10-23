@@ -202,6 +202,11 @@
 		8DF25385254330A6001492AE /* MessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF25383254330A6001492AE /* MessageTableViewCell.swift */; };
 		8DF25386254330A6001492AE /* MessageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DF25384254330A6001492AE /* MessageTableViewCell.xib */; };
 		8DF25388254330B6001492AE /* MessageCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF25387254330B6001492AE /* MessageCellViewModel.swift */; };
+		8DF2538E25434BE9001492AE /* MaterialsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF2538A25434BE9001492AE /* MaterialsCoordinator.swift */; };
+		8DF2538F25434BE9001492AE /* MaterialsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF2538B25434BE9001492AE /* MaterialsViewController.swift */; };
+		8DF2539025434BE9001492AE /* MaterialsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF2538C25434BE9001492AE /* MaterialsViewModel.swift */; };
+		8DF2539125434BE9001492AE /* MaterialsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DF2538D25434BE9001492AE /* MaterialsViewController.xib */; };
+		8DF2539325434F40001492AE /* MaterialsCellFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF2539225434F40001492AE /* MaterialsCellFactory.swift */; };
 		8DF928A9253DDE700052FC31 /* WritingWordModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF928A8253DDE700052FC31 /* WritingWordModel.swift */; };
 		8DF928AC253DEBCF0052FC31 /* WritingProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF928AB253DEBCF0052FC31 /* WritingProgressView.swift */; };
 		8DF928AE253DEBEC0052FC31 /* WritingProgressView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DF928AD253DEBEC0052FC31 /* WritingProgressView.xib */; };
@@ -407,6 +412,11 @@
 		8DF25383254330A6001492AE /* MessageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageTableViewCell.swift; sourceTree = "<group>"; };
 		8DF25384254330A6001492AE /* MessageTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessageTableViewCell.xib; sourceTree = "<group>"; };
 		8DF25387254330B6001492AE /* MessageCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCellViewModel.swift; sourceTree = "<group>"; };
+		8DF2538A25434BE9001492AE /* MaterialsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaterialsCoordinator.swift; sourceTree = "<group>"; };
+		8DF2538B25434BE9001492AE /* MaterialsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaterialsViewController.swift; sourceTree = "<group>"; };
+		8DF2538C25434BE9001492AE /* MaterialsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaterialsViewModel.swift; sourceTree = "<group>"; };
+		8DF2538D25434BE9001492AE /* MaterialsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MaterialsViewController.xib; sourceTree = "<group>"; };
+		8DF2539225434F40001492AE /* MaterialsCellFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaterialsCellFactory.swift; sourceTree = "<group>"; };
 		8DF928A8253DDE700052FC31 /* WritingWordModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WritingWordModel.swift; sourceTree = "<group>"; };
 		8DF928AB253DEBCF0052FC31 /* WritingProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WritingProgressView.swift; sourceTree = "<group>"; };
 		8DF928AD253DEBEC0052FC31 /* WritingProgressView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WritingProgressView.xib; sourceTree = "<group>"; };
@@ -949,9 +959,10 @@
 			children = (
 				8DD28BA225266B1500F59B7D /* Generic */,
 				8DD28BA0252669F500F59B7D /* Root */,
+				8DD28BA125266A1C00F59B7D /* Dashboard */,
+				8DF2538925434BC4001492AE /* Materials */,
 				8DD28C102528ADF500F59B7D /* SingUp */,
 				8DD28C0F2528ADEC00F59B7D /* SingIn */,
-				8DD28BA125266A1C00F59B7D /* Dashboard */,
 				8D524F89252F7E0B002A6E01 /* Courses */,
 				8D524F8A252F7E17002A6E01 /* Messages */,
 				8D524F8B252F7E23002A6E01 /* Account */,
@@ -1230,6 +1241,18 @@
 			path = MessageCell;
 			sourceTree = "<group>";
 		};
+		8DF2538925434BC4001492AE /* Materials */ = {
+			isa = PBXGroup;
+			children = (
+				8DF2538A25434BE9001492AE /* MaterialsCoordinator.swift */,
+				8DF2538C25434BE9001492AE /* MaterialsViewModel.swift */,
+				8DF2538B25434BE9001492AE /* MaterialsViewController.swift */,
+				8DF2538D25434BE9001492AE /* MaterialsViewController.xib */,
+				8DF2539225434F40001492AE /* MaterialsCellFactory.swift */,
+			);
+			path = Materials;
+			sourceTree = "<group>";
+		};
 		8DF928AA253DEBB90052FC31 /* WritingProgress */ = {
 			isa = PBXGroup;
 			children = (
@@ -1329,6 +1352,7 @@
 				8DF2537F254328CD001492AE /* ColoredImageTableViewCell.xib in Resources */,
 				8D83EA70252B9C11004E6098 /* ActivityViewController.xib in Resources */,
 				8D94E830253748B3005FA4B9 /* FilterTableViewCell.xib in Resources */,
+				8DF2539125434BE9001492AE /* MaterialsViewController.xib in Resources */,
 				8D94E7E225363008005FA4B9 /* NoResulsView.xib in Resources */,
 				8DA744B1253F2EA600F9EC8B /* StudyResultViewController.xib in Resources */,
 				8D6625202529F6C000991D45 /* CreateVocabularyViewController.xib in Resources */,
@@ -1432,6 +1456,7 @@
 				8D524FDB2533816D002A6E01 /* UIBarButtonItem+Init.swift in Sources */,
 				8D66255A252B0F9F00991D45 /* VocabularyCreateRequest.swift in Sources */,
 				8D94E85D253B50FC005FA4B9 /* DeleteUserImageFirestoreRequest.swift in Sources */,
+				8DF2538E25434BE9001492AE /* MaterialsCoordinator.swift in Sources */,
 				8DAA554A252912BA00FF5066 /* VocabularyFetchRequest.swift in Sources */,
 				8DD28BB325266F6800F59B7D /* DashboardCoordinator.swift in Sources */,
 				8D524F99252F7EA9002A6E01 /* CoursesCoordinator.swift in Sources */,
@@ -1479,6 +1504,7 @@
 				8D524FE82533BC7B002A6E01 /* FlashCardsViewModel.swift in Sources */,
 				8D94E845253A1F8D005FA4B9 /* ImagePickerCoordinator.swift in Sources */,
 				8DD28BC625267A1700F59B7D /* PresentationCoordinator.swift in Sources */,
+				8DF2539325434F40001492AE /* MaterialsCellFactory.swift in Sources */,
 				8DD28BC3252679F600F59B7D /* PresentationViewController.swift in Sources */,
 				8D94E850253A4039005FA4B9 /* FirebaseFirestoreUploadRequestProtocol.swift in Sources */,
 				8D94E7D92534F772005FA4B9 /* Reachability.swift in Sources */,
@@ -1519,6 +1545,7 @@
 				8D524FEE2533BEC9002A6E01 /* FlashCardTableViewCell.swift in Sources */,
 				8D94E847253A1F8D005FA4B9 /* ImagePickerViewModel.swift in Sources */,
 				8DD28BD52526856B00F59B7D /* NavigationItemDrivableModel.swift in Sources */,
+				8DF2538F25434BE9001492AE /* MaterialsViewController.swift in Sources */,
 				8DF2536C25431819001492AE /* DashboardSectionFactory.swift in Sources */,
 				8D524FDF2533ACC0002A6E01 /* UITextField+Drivable.swift in Sources */,
 				8D94E7C52534D102005FA4B9 /* SpeechSynthesizer.swift in Sources */,
@@ -1531,6 +1558,7 @@
 				8DA744B6253F414300F9EC8B /* ViewAllCollectionReusableViewModel.swift in Sources */,
 				8D94E7D02534E34E005FA4B9 /* VocabularyEntity.swift in Sources */,
 				8D94E7D62534F6DF005FA4B9 /* CDEntityProtocol.swift in Sources */,
+				8DF2539025434BE9001492AE /* MaterialsViewModel.swift in Sources */,
 				8D9985F125292B17009EA144 /* VocabularyViewModel.swift in Sources */,
 				8D66254A252A7BE100991D45 /* UniversalTableViewCellFactoryProtocol.swift in Sources */,
 				8DD28BCB252680EC00F59B7D /* PresentationViewModel.swift in Sources */,
