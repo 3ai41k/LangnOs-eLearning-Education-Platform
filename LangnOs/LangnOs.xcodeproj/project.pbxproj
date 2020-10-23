@@ -199,6 +199,9 @@
 		8DF2537E254328CD001492AE /* ColoredImageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF2537C254328CC001492AE /* ColoredImageTableViewCell.swift */; };
 		8DF2537F254328CD001492AE /* ColoredImageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DF2537D254328CC001492AE /* ColoredImageTableViewCell.xib */; };
 		8DF2538125432B62001492AE /* SFSymbolsImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF2538025432B62001492AE /* SFSymbolsImage.swift */; };
+		8DF25385254330A6001492AE /* MessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF25383254330A6001492AE /* MessageTableViewCell.swift */; };
+		8DF25386254330A6001492AE /* MessageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DF25384254330A6001492AE /* MessageTableViewCell.xib */; };
+		8DF25388254330B6001492AE /* MessageCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF25387254330B6001492AE /* MessageCellViewModel.swift */; };
 		8DF928A9253DDE700052FC31 /* WritingWordModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF928A8253DDE700052FC31 /* WritingWordModel.swift */; };
 		8DF928AC253DEBCF0052FC31 /* WritingProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF928AB253DEBCF0052FC31 /* WritingProgressView.swift */; };
 		8DF928AE253DEBEC0052FC31 /* WritingProgressView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DF928AD253DEBEC0052FC31 /* WritingProgressView.xib */; };
@@ -401,6 +404,9 @@
 		8DF2537C254328CC001492AE /* ColoredImageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColoredImageTableViewCell.swift; sourceTree = "<group>"; };
 		8DF2537D254328CC001492AE /* ColoredImageTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ColoredImageTableViewCell.xib; sourceTree = "<group>"; };
 		8DF2538025432B62001492AE /* SFSymbolsImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFSymbolsImage.swift; sourceTree = "<group>"; };
+		8DF25383254330A6001492AE /* MessageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageTableViewCell.swift; sourceTree = "<group>"; };
+		8DF25384254330A6001492AE /* MessageTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessageTableViewCell.xib; sourceTree = "<group>"; };
+		8DF25387254330B6001492AE /* MessageCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCellViewModel.swift; sourceTree = "<group>"; };
 		8DF928A8253DDE700052FC31 /* WritingWordModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WritingWordModel.swift; sourceTree = "<group>"; };
 		8DF928AB253DEBCF0052FC31 /* WritingProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WritingProgressView.swift; sourceTree = "<group>"; };
 		8DF928AD253DEBEC0052FC31 /* WritingProgressView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WritingProgressView.xib; sourceTree = "<group>"; };
@@ -619,6 +625,7 @@
 			children = (
 				8D662557252A800600991D45 /* UniversalTableViewCellRegistratable.swift */,
 				8DF2537925432832001492AE /* ColoredImageCell */,
+				8DF253822543307A001492AE /* MessageCell */,
 				8D662556252A7FF900991D45 /* Word */,
 				8D83EA62252B8B78004E6098 /* CreateWord */,
 				8D83EA79252BA224004E6098 /* VocabularyInfo */,
@@ -1213,6 +1220,16 @@
 			path = ColoredImageCell;
 			sourceTree = "<group>";
 		};
+		8DF253822543307A001492AE /* MessageCell */ = {
+			isa = PBXGroup;
+			children = (
+				8DF25383254330A6001492AE /* MessageTableViewCell.swift */,
+				8DF25387254330B6001492AE /* MessageCellViewModel.swift */,
+				8DF25384254330A6001492AE /* MessageTableViewCell.xib */,
+			);
+			path = MessageCell;
+			sourceTree = "<group>";
+		};
 		8DF928AA253DEBB90052FC31 /* WritingProgress */ = {
 			isa = PBXGroup;
 			children = (
@@ -1319,6 +1336,7 @@
 				8D524FE42533BA27002A6E01 /* FlashCardsViewController.xib in Resources */,
 				8DA744BC253F421200F9EC8B /* ViewAllCollectionReusableView.xib in Resources */,
 				8D524F93252F7E8B002A6E01 /* MessagesViewController.xib in Resources */,
+				8DF25386254330A6001492AE /* MessageTableViewCell.xib in Resources */,
 				8DF928AE253DEBEC0052FC31 /* WritingProgressView.xib in Resources */,
 				8D524F97252F7E97002A6E01 /* AccountViewController.xib in Resources */,
 				8D662553252A7F5F00991D45 /* WordTableViewCell.xib in Resources */,
@@ -1381,6 +1399,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8DF25388254330B6001492AE /* MessageCellViewModel.swift in Sources */,
 				8D524F9F252F83D2002A6E01 /* AccountViewModel.swift in Sources */,
 				8DC3CF34252CD5CD003CA62A /* SquareGridFlowLayout.swift in Sources */,
 				8D83EA68252B8BE5004E6098 /* CreateWordTableViewCellViewModel.swift in Sources */,
@@ -1448,6 +1467,7 @@
 				8D524FD325337985002A6E01 /* UIToolBar+Drivable.swift in Sources */,
 				8D94E868253CE2AB005FA4B9 /* WritingViewController.swift in Sources */,
 				8D94E869253CE2AB005FA4B9 /* WritingViewModel.swift in Sources */,
+				8DF25385254330A6001492AE /* MessageTableViewCell.swift in Sources */,
 				8DC3CF37252CFB8D003CA62A /* UIView+Shadow.swift in Sources */,
 				8DA744B0253F2EA600F9EC8B /* StudyResultViewModel.swift in Sources */,
 				8D524FA2252F86BC002A6E01 /* UserImageView.swift in Sources */,

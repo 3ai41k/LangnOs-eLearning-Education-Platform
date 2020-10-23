@@ -118,16 +118,22 @@ final class DashboardViewModel: DashboardViewModelProtocol {
     }
     
     private func setupFavoritesSection(_ tableSections: inout [SectionViewModelProtocol]) {
+        let cellViewModels = [
+            MessageCellViewModel(message: "Add favorite sets here to have quick access at any time, without having to search")
+        ]
         let sectionViewModel = TableSectionViewModel(headerView: TitleSectionViewModel(text: "Favorites".localize),
                                                      footerView: nil,
-                                                     cells: [])
+                                                     cells: cellViewModels)
         tableSections.append(sectionViewModel)
     }
     
     private func setupRecentSection(_ tableSections: inout [SectionViewModelProtocol]) {
+        let cellViewModels = [
+            MessageCellViewModel(message: "Add favorite sets here to have quick access at any time, without having to search")
+        ]
         let sectionViewModel = TableSectionViewModel(headerView: TitleSectionViewModel(text: "Recent".localize),
                                                      footerView: nil,
-                                                     cells: [])
+                                                     cells: cellViewModels)
         tableSections.append(sectionViewModel)
     }
     
