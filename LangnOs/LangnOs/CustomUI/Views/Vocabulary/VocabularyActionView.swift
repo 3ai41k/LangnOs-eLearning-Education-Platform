@@ -16,6 +16,14 @@ final class VocabularyActionView: XibView {
     @IBOutlet private weak var imageView: UIImageView!
     @IBOutlet private weak var titleLabel: UILabel!
     
+    // MARK: - Override
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
+        setupBorders()
+    }
+    
     // MARK: - Public properties
     
     @IBInspectable
@@ -37,6 +45,13 @@ final class VocabularyActionView: XibView {
         didSet {
             titleLabel.text = title
         }
+    }
+    
+    // MARK: - Private methods
+    
+    private func setupBorders() {
+        layer.borderColor = UIColor.systemGray2.cgColor
+        layer.borderWidth = 0.25
     }
     
 }

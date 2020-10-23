@@ -34,6 +34,16 @@ struct Vocabulary {
     
 }
 
+// MARK: - Equatable
+
+extension Vocabulary: Equatable {
+    
+    static func == (lhs: Vocabulary, rhs: Vocabulary) -> Bool {
+        lhs.id == rhs.id
+    }
+    
+}
+
 // MARK: - FDEntityProtocol
 
 extension Vocabulary: FDEntityProtocol {

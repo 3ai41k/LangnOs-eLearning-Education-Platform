@@ -9,10 +9,8 @@
 import Foundation
 import Combine
 
-protocol VocabularyViewModelInputProtocol: NavigatableViewModelProtocol {
-    var vocabularyName: String { get }
-    var numberOfWords: String { get }
-    var category: String { get }
+protocol VocabularyViewModelInputProtocol {
+    var title: String { get }
     var phrasesLearned: Int { get }
     var phrasesLeftToLearn: Int { get }
     var totalLearningTime: Double { get }
@@ -26,6 +24,7 @@ enum VocabularyViewModelAction {
     case matching
     case test
     case words
+    case remove
 }
 
 protocol VocabularyViewModelOutputProtocol {
@@ -41,7 +40,6 @@ final class VocabularyViewModel: VocabularyViewModelOutputProtocol {
     // MARK: - Private properties
     
     private let router: VocabularyNavigationProtocol & AlertPresentableProtocol
-    private let dataFacade: DataFacadeDeletingProtocol
     private let vocabulary: Vocabulary
     
     private var actionPublisher: AnyPublisher<VocabularyViewModelAction, Never> {
@@ -53,10 +51,8 @@ final class VocabularyViewModel: VocabularyViewModelOutputProtocol {
     // MARK: - Init
     
     init(router: VocabularyNavigationProtocol & AlertPresentableProtocol,
-         dataFacade: DataFacadeDeletingProtocol,
          vocabulary: Vocabulary) {
         self.router = router
-        self.dataFacade = dataFacade
         self.vocabulary = vocabulary
         
         self.bindView()
@@ -82,6 +78,8 @@ final class VocabularyViewModel: VocabularyViewModelOutputProtocol {
                     self?.router.navigateToFlashCards()
                 case .words:
                     self?.router.navigateToWords()
+                case .remove:
+                    self?.removeVocabularyAction()
                 }
             })
         ]
@@ -89,25 +87,10 @@ final class VocabularyViewModel: VocabularyViewModelOutputProtocol {
     
     // MARK: - Actions
     
-    @objc
-    private func didCloseTouched() {
-        router.close()
-    }
-    
-    @objc
-    private func didRemoveTouched() {
-        router.showAlert(title: "Delete", message: "Are you sure?", actions: [
-            CancelAlertAction(handler: nil),
-            OkAlertAction(handler: {
-                let request = VocabularyDeleteRequest(vocabulary: self.vocabulary)
-                self.dataFacade.delete(request: request) { (error) in
-                    if let error = error {
-                        self.router.showError(error)
-                    } else {
-                        self.router.removeVocabulary()
-                    }
-                }
-            })
+    private func removeVocabularyAction() {
+        router.showAlert(title: "Are you sure?", message: "Do you want to delete this vocabulary ?", actions: [
+            CancelAlertAction(handler: { }),
+            OkAlertAction(handler: { self.router.removeVocabulary() })
         ])
     }
     
@@ -117,36 +100,8 @@ final class VocabularyViewModel: VocabularyViewModelOutputProtocol {
 
 extension VocabularyViewModel: VocabularyViewModelInputProtocol {
     
-    var navigationItemDrivableModel: DrivableModelProtocol {
-        let closeButtonModel = BarButtonDrivableModel(title: "Close".localize,
-                                                      style: .plain,
-                                                      target: self,
-                                                      selector: #selector(didCloseTouched))
-        let removeButtonModel = BarButtonDrivableModel(title: "Remove".localize,
-                                                       style: .done,
-                                                       target: self,
-                                                       selector: #selector(didRemoveTouched))
-        return NavigationItemDrivableModel(title: nil,
-                                           leftBarButtonDrivableModels: [closeButtonModel],
-                                           rightBarButtonDrivableModels: [removeButtonModel])
-    }
-    
-    var navigationBarDrivableModel: DrivableModelProtocol? {
-        NavigationBarDrivableModel(isBottomLineHidden: true,
-                                   backgroundColor: .white,
-                                   prefersLargeTitles: false)
-    }
-    
-    var vocabularyName: String {
+    var title: String {
         vocabulary.title
-    }
-    
-    var numberOfWords: String {
-        String(format: "%d %@", vocabulary.words.count, "cards".localize)
-    }
-    
-    var category: String {
-        vocabulary.category
     }
     
     var phrasesLearned: Int {

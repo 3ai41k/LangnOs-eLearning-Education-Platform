@@ -10,7 +10,7 @@ import UIKit
 
 protocol MaterialsCoordinatorNavigationProtocol {
     func navigateToCreateVocabulary(_ completion: @escaping (VocabularyGeneralInfo, [Word]) -> Void)
-    func navigateToVocabulary(_ vocabulary: Vocabulary)
+    func navigateToVocabulary(_ vocabulary: Vocabulary, removeVocabularyHandler: @escaping () -> Void)
 }
 
 typealias MaterialsCoordinatorProtocol =
@@ -46,12 +46,15 @@ final class MaterialsCoordinator: Coordinator, MaterialsCoordinatorProtocol  {
     // MARK: - MaterialsCoordinatorNavigationProtocol
     
     func navigateToCreateVocabulary(_ completion: @escaping (VocabularyGeneralInfo, [Word]) -> Void) {
-        let createVocabularyCoordinator = CreateVocabularyCoordinator(completion: completion, parentViewController: viewController)
+        let createVocabularyCoordinator = CreateVocabularyCoordinator(completion: completion,
+                                                                      parentViewController: viewController)
         createVocabularyCoordinator.start()
     }
     
-    func navigateToVocabulary(_ vocabulary: Vocabulary) {
-        let vocabularyCoordinator = VocabularyCoordinator(vocabulary: vocabulary, didVocabularyRemoveHandler: { }, parentViewController: viewController)
+    func navigateToVocabulary(_ vocabulary: Vocabulary, removeVocabularyHandler: @escaping () -> Void) {
+        let vocabularyCoordinator = VocabularyCoordinator(vocabulary: vocabulary,
+                                                          removeVocabularyHandler: removeVocabularyHandler,
+                                                          parentViewController: parentViewController)
         vocabularyCoordinator.start()
     }
     

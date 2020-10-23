@@ -47,7 +47,7 @@ final class MaterialsViewModel: MaterialsViewModelProtocol {
     // MARK: - Private properties
     
     private let router: MaterialsCoordinatorProtocol
-    private let dataProvider: DataFacadeFetchingProtocol & DataFacadeCreatingProtocol
+    private let dataProvider: DataFacadeFetchingProtocol & DataFacadeCreatingProtocol & DataFacadeDeletingProtocol
     private let securityManager: SecurityManager
     
     private var vocabularies: [Vocabulary] = [] {
@@ -65,7 +65,7 @@ final class MaterialsViewModel: MaterialsViewModelProtocol {
     // MARK: - Init
     
     init(router: MaterialsCoordinatorProtocol,
-         dataProvider: DataFacadeFetchingProtocol & DataFacadeCreatingProtocol,
+         dataProvider: DataFacadeFetchingProtocol & DataFacadeCreatingProtocol & DataFacadeDeletingProtocol,
          securityManager: SecurityManager) {
         self.router = router
         self.dataProvider = dataProvider
@@ -82,7 +82,9 @@ final class MaterialsViewModel: MaterialsViewModelProtocol {
     
     func didSelectCellAt(indexPath: IndexPath) {
         let vocabulary = vocabularies[indexPath.row]
-        router.navigateToVocabulary(vocabulary)
+        router.navigateToVocabulary(vocabulary) {
+            self.removeVocabulary(vocabulary)
+        }
     }
     
     // MARK: - Private methods
@@ -111,6 +113,17 @@ final class MaterialsViewModel: MaterialsViewModelProtocol {
     private func discardSearch() {
         let cellViewModels = vocabularies.map({ VocabularyCollectionViewCellViewModel(vocabulary: $0) })
         tableSections[SectionType.vocabulary.rawValue].cells.value = cellViewModels
+    }
+    
+    private func removeVocabulary(_ vocabulary: Vocabulary) {
+        let request = VocabularyDeleteRequest(vocabulary: vocabulary)
+        dataProvider.delete(request: request) { (error) in
+            if let error = error {
+                self.router.showError(error)
+            } else {
+                self.vocabularies.removeAll(where: { $0 == vocabulary })
+            }
+        }
     }
     
 }

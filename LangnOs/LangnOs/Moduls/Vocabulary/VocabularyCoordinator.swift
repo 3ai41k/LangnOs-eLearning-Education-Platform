@@ -20,15 +20,15 @@ final class VocabularyCoordinator: Coordinator, AlertPresentableProtocol {
     // MARK: - Private properties
     
     private let vocabulary: Vocabulary
-    private let didVocabularyRemoveHandler: () -> Void
+    private let removeVocabularyHandler: () -> Void
     
     // MARK: - Init
     
     init(vocabulary: Vocabulary,
-         didVocabularyRemoveHandler: @escaping () -> Void,
+         removeVocabularyHandler: @escaping () -> Void,
          parentViewController: UIViewController?) {
         self.vocabulary = vocabulary
-        self.didVocabularyRemoveHandler = didVocabularyRemoveHandler
+        self.removeVocabularyHandler = removeVocabularyHandler
         
         super.init(parentViewController: parentViewController)
     }
@@ -36,16 +36,12 @@ final class VocabularyCoordinator: Coordinator, AlertPresentableProtocol {
     // MARK: - Override
     
     override func start() {
-        let dataFacade = DataFacade()
-        let vocabularyViewModel = VocabularyViewModel(router: self, dataFacade: dataFacade, vocabulary: vocabulary)
-        let vocabularyViewController = VocabularyViewController()
-        vocabularyViewController.viewModel = vocabularyViewModel
+        let viewModel = VocabularyViewModel(router: self, vocabulary: vocabulary)
+        let viewController = VocabularyViewController()
+        viewController.viewModel = viewModel
         
-        let navigationController = UINavigationController(rootViewController: vocabularyViewController)
-        navigationController.modalPresentationStyle = .fullScreen
-        
-        viewController = navigationController
-        parentViewController?.present(navigationController, animated: true, completion: nil)
+        self.viewController = viewController
+        (parentViewController as? UINavigationController)?.pushViewController(viewController, animated: true)
     }
     
 }
@@ -70,9 +66,8 @@ extension VocabularyCoordinator: VocabularyNavigationProtocol {
     }
     
     func removeVocabulary() {
-        close {
-            self.didVocabularyRemoveHandler()
-        }
+        (parentViewController as? UINavigationController)?.popViewController(animated: true)
+        removeVocabularyHandler()
     }
     
 }
