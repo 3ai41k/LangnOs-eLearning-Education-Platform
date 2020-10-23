@@ -34,7 +34,6 @@
                                     <constraint firstItem="9eA-RN-2LY" firstAttribute="leading" secondItem="llF-8l-zgo" secondAttribute="leading" constant="4" id="ixw-04-2A6"/>
                                     <constraint firstAttribute="width" secondItem="llF-8l-zgo" secondAttribute="height" multiplier="1:1" id="lyA-rb-86N"/>
                                     <constraint firstItem="9eA-RN-2LY" firstAttribute="top" secondItem="llF-8l-zgo" secondAttribute="top" constant="4" id="pQY-zd-1ig"/>
-                                    <constraint firstAttribute="height" constant="32" id="y2V-y9-mDE"/>
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IdF-YC-B0o">
