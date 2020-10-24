@@ -12,20 +12,19 @@ import FirebaseDatabase
 // TO DO: Rename
 
 protocol FirebaseDatabaseRequestProtocol {
-    associatedtype Entity: CDEntityProtocol & SerializableProtocol
+    associatedtype Entity: Codable & CDEntityProtocol
     var entity: Entity? { get }
+    func toDicationary() -> [String: Any]?
     func setCollectionPath(_ reference: DatabaseReference) -> DatabaseReference
     func setQuary(_ reference: DatabaseReference) -> DatabaseQuery?
 }
 
 extension FirebaseDatabaseRequestProtocol {
     
-    var entity: Entity? {
-        nil
-    }
+    var entity: Entity? { nil }
     
-    func setQuary(_ reference: DatabaseReference) -> DatabaseQuery? {
-        nil
-    }
+    func toDicationary() -> [String: Any]? { nil }
+    
+    func setQuary(_ reference: DatabaseReference) -> DatabaseQuery? { nil }
     
 }

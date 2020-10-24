@@ -20,16 +20,14 @@ struct VocabularyDeleteRequest {
 
 extension VocabularyDeleteRequest: FirebaseDatabaseRequestProtocol {
     
-    private var collectionPath: String {
-        "Vocabulary"
-    }
+    typealias Entity = Vocabulary
     
     var entity: Vocabulary? {
         vocabulary
     }
     
     func setCollectionPath(_ reference: DatabaseReference) -> DatabaseReference {
-        reference.child(collectionPath).child(vocabulary.id)
+        reference.child("Vocabulary").child(vocabulary.id)
     }
     
 }

@@ -11,10 +11,6 @@
         <attribute name="userId" optional="YES" attributeType="String"/>
         <relationship name="words" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="WordEntity"/>
     </entity>
-    <entity name="VocabularyFilterEntity" representedClassName=".VocabularyFilterEntity" syncable="YES" codeGenerationType="category">
-        <attribute name="name" optional="YES" attributeType="String"/>
-        <attribute name="value" optional="YES" attributeType="String"/>
-    </entity>
     <entity name="WordEntity" representedClassName=".WordEntity" syncable="YES" codeGenerationType="category">
         <attribute name="definition" optional="YES" attributeType="String"/>
         <attribute name="term" optional="YES" attributeType="String"/>
@@ -22,6 +18,5 @@
     <elements>
         <element name="VocabularyEntity" positionX="-45" positionY="0" width="128" height="178"/>
         <element name="WordEntity" positionX="-18" positionY="27" width="128" height="73"/>
-        <element name="VocabularyFilterEntity" positionX="18" positionY="117" width="128" height="73"/>
     </elements>
 </model>

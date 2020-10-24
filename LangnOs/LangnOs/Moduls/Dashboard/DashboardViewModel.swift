@@ -54,7 +54,7 @@ final class DashboardViewModel: DashboardViewModelProtocol {
     private let router: DashboardCoordinatorProtocol
     private let contex: UserSessesionPublisherContextProtocol
     private let securityManager: SecurityManager
-    private let dataFacade: DataFacadeFetchingProtocol
+    private let dataFacade: DataProviderFetchingProtocol
     
     private var cancellables: [AnyCancellable?] = []
     
@@ -67,7 +67,7 @@ final class DashboardViewModel: DashboardViewModelProtocol {
     init(router: DashboardCoordinatorProtocol,
          contex: UserSessesionPublisherContextProtocol,
          securityManager: SecurityManager,
-         dataFacade: DataFacadeFetchingProtocol) {
+         dataFacade: DataProviderFetchingProtocol) {
         self.router = router
         self.contex = contex
         self.securityManager = securityManager

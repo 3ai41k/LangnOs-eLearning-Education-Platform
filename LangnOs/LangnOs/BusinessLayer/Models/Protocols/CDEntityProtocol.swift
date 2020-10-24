@@ -11,11 +11,7 @@ import CoreData
 
 protocol CDEntityProtocol {
     static func select(context: NSManagedObjectContext) throws -> [Self]
-    func insert(context: NSManagedObjectContext)
-    func update(context: NSManagedObjectContext)
-    func delete(context: NSManagedObjectContext) throws
-}
-
-extension CDEntityProtocol {
-    func update(context: NSManagedObjectContext) { }
+    static func insert(context: NSManagedObjectContext, entity: Self)
+    static func update(context: NSManagedObjectContext, entity: Self)
+    static func delete(context: NSManagedObjectContext, entity: Self) throws
 }

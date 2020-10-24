@@ -9,7 +9,7 @@
 import Foundation
 import CoreData
 
-struct Word {
+struct Word: Codable {
     let term: String
     let definition: String
     
@@ -22,45 +22,9 @@ struct Word {
         self.definition = definition
     }
     
-}
-
-// MARK: - FDEntityProtocol
-
-extension Word: FDEntityProtocol {
-    
-    init(dictionary: [String: Any]) {
-        self.term = dictionary["term"] as! String
-        self.definition = dictionary["definition"] as! String
-    }
-    
-    var serialize: [String: Any] {
-        [
-            "term": term,
-            "definition": definition
-        ]
-    }
-    
-}
-
-// MARK: - CDEntityProtocol
-
-extension Word: CDEntityProtocol {
-    
     init(entity: WordEntity) {
         self.term = entity.term!
         self.definition = entity.definition!
-    }
-    
-    static func select(context: NSManagedObjectContext) throws -> [Word] {
-        []
-    }
-    
-    func insert(context: NSManagedObjectContext) {
-        
-    }
-    
-    func delete(context: NSManagedObjectContext) throws {
-        
     }
     
 }

@@ -20,16 +20,18 @@ struct VocabularyCreateRequest {
 
 extension VocabularyCreateRequest: FirebaseDatabaseRequestProtocol {
     
-    private var collectionPath: String {
-        "Vocabulary"
-    }
+    typealias Entity = Vocabulary
     
     var entity: Vocabulary? {
         vocabulary
     }
     
+    func toDicationary() -> [String : Any]? {
+        try? DictionaryEncoder().encode(entity: vocabulary)
+    }
+    
     func setCollectionPath(_ reference: DatabaseReference) -> DatabaseReference {
-        reference.child(collectionPath).child(vocabulary.id)
+        reference.child("Vocabulary").child(vocabulary.id)
     }
     
 }

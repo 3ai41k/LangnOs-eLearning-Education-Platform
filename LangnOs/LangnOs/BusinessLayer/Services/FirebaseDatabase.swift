@@ -6,28 +6,53 @@
 //  Copyright © 2020 NL. All rights reserved.
 //
 
+import Foundation
 import FirebaseDatabase
 
 enum FirebaseDatabaseError: Error {
     case documentsWereNotFound
+    case documentIsEmpty
+    
+    var localizedDescription: String {
+        switch self {
+        case .documentsWereNotFound:
+            return "Documents were not found".localize
+        case .documentIsEmpty:
+            return "Document is empty".localize
+        }
+    }
 }
 
 protocol FirebaseDatabaseFetchingProtocol {
-    func fetch<Entity: FDEntityProtocol, Request: FirebaseDatabaseRequestProtocol>(request: Request, completion: @escaping (Result<[Entity], Error>) -> Void)
+    func fetch<Request: FirebaseDatabaseRequestProtocol>(request: Request, completion: @escaping (Result<[Request.Entity], Error>) -> Void)
 }
 
 protocol FirebaseDatabaseCreatingProtocol {
-    func create<Request: FirebaseDatabaseRequestProtocol>(request: Request, onSuccess: @escaping () -> Void, onError: @escaping (Error) -> Void)
+    func create<Request: FirebaseDatabaseRequestProtocol>(request: Request, completion: @escaping (Result<Void, Error>) -> Void)
 }
 
 protocol FirebaseDatabaseDeletingProtocol {
-    func delete<Request: FirebaseDatabaseRequestProtocol>(request: Request, onSuccess: @escaping () -> Void, onError: @escaping (Error) -> Void)
+    func delete<Request: FirebaseDatabaseRequestProtocol>(request: Request, completion: @escaping (Result<Void, Error>) -> Void)
 }
 
 final class FirebaseDatabase {
     
+    // MARK: - Private properties
+    
     private var dataBase: DatabaseReference {
         Database.database().reference()
+    }
+    
+    // MARK: - Private methods
+    
+    private func decode<Entity: Decodable>(dicationary: [String: Any], onError: (Error) -> Void) -> [Entity] {
+        do {
+            let entities: [String: Entity] = try DictionaryDecoder().decode(dictionary: dicationary)
+            return Array(entities.values)
+        } catch {
+            onError(error)
+        }
+        return []
     }
     
 }
@@ -36,12 +61,13 @@ final class FirebaseDatabase {
 
 extension FirebaseDatabase: FirebaseDatabaseFetchingProtocol {
     
-    func fetch<Entity: FDEntityProtocol, Request: FirebaseDatabaseRequestProtocol>(request: Request, completion: @escaping (Result<[Entity], Error>) -> Void) {
+    func fetch<Request: FirebaseDatabaseRequestProtocol>(request: Request, completion: @escaping (Result<[Request.Entity], Error>) -> Void) {
         var reference = dataBase
         reference = request.setCollectionPath(reference)
         (request.setQuary(reference) ?? reference)?.observeSingleEvent(of: .value, with: { (dataSnapshot) in
             if let documents = dataSnapshot.value as? [String: [String: Any]] {
-                completion(.success(documents.map({ Entity(dictionary: $1) })))
+                let entities: [Request.Entity] = self.decode(dicationary: documents, onError: { completion(.failure($0)) })
+                completion(.success(entities))
             } else {
                 completion(.success([]))
             }
@@ -56,14 +82,19 @@ extension FirebaseDatabase: FirebaseDatabaseFetchingProtocol {
 
 extension FirebaseDatabase: FirebaseDatabaseCreatingProtocol {
     
-    func create<Request: FirebaseDatabaseRequestProtocol>(request: Request, onSuccess: @escaping () -> Void, onError: @escaping (Error) -> Void) {
+    func create<Request: FirebaseDatabaseRequestProtocol>(request: Request, completion: @escaping (Result<Void, Error>) -> Void) {
+        guard let dicationary = request.toDicationary(), !dicationary.isEmpty else {
+            completion(.failure(FirebaseDatabaseError.documentIsEmpty))
+            return
+        }
+        
         var reference = dataBase
         reference = request.setCollectionPath(reference)
-        reference.setValue(request.entity?.serialize) { (error, _) in
+        reference.setValue(dicationary) { (error, _) in
             if let error = error {
-                onError(error)
+                completion(.failure(error))
             } else {
-                onSuccess()
+                completion(.success(()))
             }
         }
     }
@@ -74,14 +105,14 @@ extension FirebaseDatabase: FirebaseDatabaseCreatingProtocol {
 
 extension FirebaseDatabase: FirebaseDatabaseDeletingProtocol {
     
-    func delete<Request: FirebaseDatabaseRequestProtocol>(request: Request, onSuccess: @escaping () -> Void, onError: @escaping (Error) -> Void) {
+    func delete<Request: FirebaseDatabaseRequestProtocol>(request: Request, completion: @escaping (Result<Void, Error>) -> Void) {
         var reference = dataBase
         reference = request.setCollectionPath(reference)
         reference.removeValue { (error, _) in
             if let error = error {
-                onError(error)
+                completion(.failure(error))
             } else {
-                onSuccess()
+                completion(.success(()))
             }
         }
     }

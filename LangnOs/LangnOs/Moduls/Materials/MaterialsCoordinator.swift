@@ -24,7 +24,7 @@ final class MaterialsCoordinator: Coordinator, MaterialsCoordinatorProtocol  {
     // MARK: - Override
     
     override func start() {
-        let dataProvider = DataFacade()
+        let dataProvider = DataProvider()
         let securityManager = SecurityManager.shared
         
         let viewModel = MaterialsViewModel(router: self,

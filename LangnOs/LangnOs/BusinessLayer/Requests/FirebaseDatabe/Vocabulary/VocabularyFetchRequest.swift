@@ -22,12 +22,8 @@ extension VocabularyFetchRequest: FirebaseDatabaseRequestProtocol {
     
     typealias Entity = Vocabulary
     
-    private var collectionPath: String {
-        "Vocabulary"
-    }
-    
     func setCollectionPath(_ reference: DatabaseReference) -> DatabaseReference {
-        reference.child(collectionPath)
+        reference.child("Vocabulary")
     }
     
     func setQuary(_ reference: DatabaseReference) -> DatabaseQuery? {

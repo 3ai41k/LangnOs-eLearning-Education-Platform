@@ -47,7 +47,7 @@ final class MaterialsViewModel: MaterialsViewModelProtocol {
     // MARK: - Private properties
     
     private let router: MaterialsCoordinatorProtocol
-    private let dataProvider: DataFacadeFetchingProtocol & DataFacadeCreatingProtocol & DataFacadeDeletingProtocol
+    private let dataProvider: DataProviderFetchingProtocol & DataProviderCreatingProtocol & DataProviderDeletingProtocol
     private let securityManager: SecurityManager
     
     private var vocabularies: [Vocabulary] = [] {
@@ -65,7 +65,7 @@ final class MaterialsViewModel: MaterialsViewModelProtocol {
     // MARK: - Init
     
     init(router: MaterialsCoordinatorProtocol,
-         dataProvider: DataFacadeFetchingProtocol & DataFacadeCreatingProtocol & DataFacadeDeletingProtocol,
+         dataProvider: DataProviderFetchingProtocol & DataProviderCreatingProtocol & DataProviderDeletingProtocol,
          securityManager: SecurityManager) {
         self.router = router
         self.dataProvider = dataProvider
@@ -101,11 +101,12 @@ final class MaterialsViewModel: MaterialsViewModelProtocol {
         
         let vocabulary = Vocabulary(userId: userId, title: generailInfo.name, category: generailInfo.category, words: words)
         let request = VocabularyCreateRequest(vocabulary: vocabulary)
-        dataProvider.create(request: request) { (error) in
-            if let error = error {
-                self.router.showError(error)
-            } else {
+        dataProvider.create(request: request) { (result) in
+            switch result {
+            case .success:
                 self.vocabularies.append(vocabulary)
+            case .failure(let error):
+                self.router.showError(error)
             }
         }
     }
@@ -117,11 +118,12 @@ final class MaterialsViewModel: MaterialsViewModelProtocol {
     
     private func removeVocabulary(_ vocabulary: Vocabulary) {
         let request = VocabularyDeleteRequest(vocabulary: vocabulary)
-        dataProvider.delete(request: request) { (error) in
-            if let error = error {
-                self.router.showError(error)
-            } else {
+        dataProvider.delete(request: request) { (result) in
+            switch result {
+            case .success:
                 self.vocabularies.removeAll(where: { $0 == vocabulary })
+            case .failure(let error):
+                self.router.showError(error)
             }
         }
     }
