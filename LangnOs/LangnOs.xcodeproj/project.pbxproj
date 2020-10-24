@@ -216,6 +216,10 @@
 		8DF253B42544A051001492AE /* Interactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF253B32544A051001492AE /* Interactor.swift */; };
 		8DF253B62544A069001492AE /* BottomCardPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF253B52544A069001492AE /* BottomCardPresenter.swift */; };
 		8DF253B82544A07A001492AE /* BottomCardDismisser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF253B72544A07A001492AE /* BottomCardDismisser.swift */; };
+		8DF253BC2544A2AD001492AE /* ButtonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF253BA2544A2AD001492AE /* ButtonTableViewCell.swift */; };
+		8DF253BD2544A2AD001492AE /* ButtonTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DF253BB2544A2AD001492AE /* ButtonTableViewCell.xib */; };
+		8DF253BF2544A2BE001492AE /* ButtonCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF253BE2544A2BE001492AE /* ButtonCellViewModel.swift */; };
+		8DF253C12544A3B8001492AE /* VocabularySettingsCellFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF253C02544A3B8001492AE /* VocabularySettingsCellFactory.swift */; };
 		8DF928A9253DDE700052FC31 /* WritingWordModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF928A8253DDE700052FC31 /* WritingWordModel.swift */; };
 		8DF928AC253DEBCF0052FC31 /* WritingProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF928AB253DEBCF0052FC31 /* WritingProgressView.swift */; };
 		8DF928AE253DEBEC0052FC31 /* WritingProgressView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DF928AD253DEBEC0052FC31 /* WritingProgressView.xib */; };
@@ -435,6 +439,10 @@
 		8DF253B32544A051001492AE /* Interactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Interactor.swift; sourceTree = "<group>"; };
 		8DF253B52544A069001492AE /* BottomCardPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomCardPresenter.swift; sourceTree = "<group>"; };
 		8DF253B72544A07A001492AE /* BottomCardDismisser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomCardDismisser.swift; sourceTree = "<group>"; };
+		8DF253BA2544A2AD001492AE /* ButtonTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonTableViewCell.swift; sourceTree = "<group>"; };
+		8DF253BB2544A2AD001492AE /* ButtonTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ButtonTableViewCell.xib; sourceTree = "<group>"; };
+		8DF253BE2544A2BE001492AE /* ButtonCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonCellViewModel.swift; sourceTree = "<group>"; };
+		8DF253C02544A3B8001492AE /* VocabularySettingsCellFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabularySettingsCellFactory.swift; sourceTree = "<group>"; };
 		8DF928A8253DDE700052FC31 /* WritingWordModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WritingWordModel.swift; sourceTree = "<group>"; };
 		8DF928AB253DEBCF0052FC31 /* WritingProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WritingProgressView.swift; sourceTree = "<group>"; };
 		8DF928AD253DEBEC0052FC31 /* WritingProgressView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WritingProgressView.xib; sourceTree = "<group>"; };
@@ -654,6 +662,7 @@
 				8D662557252A800600991D45 /* UniversalTableViewCellRegistratable.swift */,
 				8DF2537925432832001492AE /* ColoredImageCell */,
 				8DF253822543307A001492AE /* MessageCell */,
+				8DF253B92544A292001492AE /* ButtonCell */,
 				8D662556252A7FF900991D45 /* Word */,
 				8D83EA62252B8B78004E6098 /* VocabularyCell */,
 				8D524FEB2533BEAD002A6E01 /* FlashCard */,
@@ -1292,8 +1301,19 @@
 				8DF253AC2544838D001492AE /* VocabularySettingsViewController.swift */,
 				8DF253AD2544838D001492AE /* VocabularySettingsViewModel.swift */,
 				8DF253AE2544838D001492AE /* VocabularySettingsViewController.xib */,
+				8DF253C02544A3B8001492AE /* VocabularySettingsCellFactory.swift */,
 			);
 			path = VocabularySettings;
+			sourceTree = "<group>";
+		};
+		8DF253B92544A292001492AE /* ButtonCell */ = {
+			isa = PBXGroup;
+			children = (
+				8DF253BA2544A2AD001492AE /* ButtonTableViewCell.swift */,
+				8DF253BE2544A2BE001492AE /* ButtonCellViewModel.swift */,
+				8DF253BB2544A2AD001492AE /* ButtonTableViewCell.xib */,
+			);
+			path = ButtonCell;
 			sourceTree = "<group>";
 		};
 		8DF928AA253DEBB90052FC31 /* WritingProgress */ = {
@@ -1404,6 +1424,7 @@
 				8DA744BC253F421200F9EC8B /* ViewAllCollectionReusableView.xib in Resources */,
 				8D524F93252F7E8B002A6E01 /* MessagesViewController.xib in Resources */,
 				8DF25386254330A6001492AE /* MessageTableViewCell.xib in Resources */,
+				8DF253BD2544A2AD001492AE /* ButtonTableViewCell.xib in Resources */,
 				8DF928AE253DEBEC0052FC31 /* WritingProgressView.xib in Resources */,
 				8D524F97252F7E97002A6E01 /* AccountViewController.xib in Resources */,
 				8D662553252A7F5F00991D45 /* WordTableViewCell.xib in Resources */,
@@ -1497,6 +1518,7 @@
 				8DD28BDF2526886200F59B7D /* NavigationBarDrivableModel.swift in Sources */,
 				8D662555252A7FAC00991D45 /* WordTableViewCellViewModel.swift in Sources */,
 				8D524FC92530D22A002A6E01 /* ButtonDrivableModel.swift in Sources */,
+				8DF253BC2544A2AD001492AE /* ButtonTableViewCell.swift in Sources */,
 				8DC3CF2C252CD503003CA62A /* UIEdgeInsets+Init.swift in Sources */,
 				8D524FDB2533816D002A6E01 /* UIBarButtonItem+Init.swift in Sources */,
 				8D66255A252B0F9F00991D45 /* VocabularyCreateRequest.swift in Sources */,
@@ -1550,6 +1572,7 @@
 				8DD28BC625267A1700F59B7D /* PresentationCoordinator.swift in Sources */,
 				8DF253A425446D5C001492AE /* VocabularyFetcher.swift in Sources */,
 				8DF2539325434F40001492AE /* MaterialsCellFactory.swift in Sources */,
+				8DF253BF2544A2BE001492AE /* ButtonCellViewModel.swift in Sources */,
 				8DD28BC3252679F600F59B7D /* PresentationViewController.swift in Sources */,
 				8D94E850253A4039005FA4B9 /* FirebaseFirestoreUploadRequestProtocol.swift in Sources */,
 				8D94E7D92534F772005FA4B9 /* Reachability.swift in Sources */,
@@ -1593,6 +1616,7 @@
 				8D524F5D252E5AAA002A6E01 /* SearchBarCollectionReusableView.swift in Sources */,
 				8DF2539F25446639001492AE /* DictionaryDecoder.swift in Sources */,
 				8D524FEE2533BEC9002A6E01 /* FlashCardTableViewCell.swift in Sources */,
+				8DF253C12544A3B8001492AE /* VocabularySettingsCellFactory.swift in Sources */,
 				8D94E847253A1F8D005FA4B9 /* ImagePickerViewModel.swift in Sources */,
 				8DD28BD52526856B00F59B7D /* NavigationItemDrivableModel.swift in Sources */,
 				8DF2538F25434BE9001492AE /* MaterialsViewController.swift in Sources */,

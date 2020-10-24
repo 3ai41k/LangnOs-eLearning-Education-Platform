@@ -32,4 +32,12 @@ struct SFSymbols {
         return UIImage(systemName: "ellipsis")!
     }
     
+    static func edit() -> UIImage {
+        return UIImage(systemName: "pencil")!
+    }
+    
+    static func reset() -> UIImage {
+        return UIImage(systemName: "arrow.clockwise")!
+    }
+    
 }

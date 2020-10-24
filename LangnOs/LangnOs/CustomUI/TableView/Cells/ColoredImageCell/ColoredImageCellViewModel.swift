@@ -14,11 +14,11 @@ protocol ColoredImageCellViewModelInput {
     var color: UIColor { get }
 }
 
-typealias ColoredImageCellProtocol =
+typealias ColoredImageCellViewModelProtocol =
     CellViewModelProtocol &
     ColoredImageCellViewModelInput
 
-final class ColoredImageCellViewModel: ColoredImageCellProtocol {
+final class ColoredImageCellViewModel: ColoredImageCellViewModelProtocol {
     
     var text: String
     var image: UIImage

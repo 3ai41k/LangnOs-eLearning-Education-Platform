@@ -22,7 +22,7 @@ final class ColoredImageTableViewCell: UITableViewCell, UniversalTableViewCellRe
     
     // MARK: - Public properties
     
-    var viewModel: ColoredImageCellProtocol? {
+    var viewModel: ColoredImageCellViewModelProtocol? {
         didSet {
             bindViewModel()
         }

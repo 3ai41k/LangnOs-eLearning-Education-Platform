@@ -46,6 +46,11 @@ final class VocabularyViewModel: VocabularyViewModelOutputProtocol {
         actionSubject.eraseToAnyPublisher()
     }
     
+    private let settingsActionSubject = PassthroughSubject<VocabularySettingsRowAction, Never>()
+    private var settingsActionPublisher: AnyPublisher<VocabularySettingsRowAction, Never> {
+        settingsActionSubject.eraseToAnyPublisher()
+    }
+    
     private var cancellables: [AnyCancellable?] = []
     
     // MARK: - Init
@@ -79,7 +84,17 @@ final class VocabularyViewModel: VocabularyViewModelOutputProtocol {
                 case .words:
                     self?.router.navigateToWords()
                 case .settings:
-                    self?.router.navigateToSettings()
+                    self?.router.navigateToSettings(actionSubject: self!.settingsActionSubject)
+                }
+            }),
+            settingsActionPublisher.sink(receiveValue: { [weak self] action in
+                switch action {
+                case .rename:
+                    print(#function)
+                case .resetStatistic:
+                    print(#function)
+                case .delete:
+                    self?.removeVocabularyAction()
                 }
             })
         ]
@@ -90,7 +105,7 @@ final class VocabularyViewModel: VocabularyViewModelOutputProtocol {
     private func removeVocabularyAction() {
         router.showAlert(title: "Are you sure ?", message: "Do you want to delete this vocabulary ?", actions: [
             CancelAlertAction(handler: { }),
-            OkAlertAction(handler: { })
+            OkAlertAction(handler: { self.router.removeVocabulary() })
         ])
     }
     

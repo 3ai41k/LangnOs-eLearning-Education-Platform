@@ -7,12 +7,14 @@
 //
 
 import UIKit
+import Combine
 
 protocol VocabularyNavigationProtocol: CoordinatorClosableProtocol {
     func navigateToFlashCards()
     func navigateToWriting()
     func navigateToWords()
-    func navigateToSettings()
+    func navigateToSettings(actionSubject: PassthroughSubject<VocabularySettingsRowAction, Never>)
+    func removeVocabulary()
 }
 
 final class VocabularyCoordinator: Coordinator, AlertPresentableProtocol {
@@ -51,23 +53,33 @@ final class VocabularyCoordinator: Coordinator, AlertPresentableProtocol {
 extension VocabularyCoordinator: VocabularyNavigationProtocol {
     
     func navigateToFlashCards() {
-        let flashCardsCoordinator = FlashCardsCoordinator(words: vocabulary.words, parentViewController: viewController)
+        let flashCardsCoordinator = FlashCardsCoordinator(words: vocabulary.words,
+                                                          parentViewController: viewController)
         flashCardsCoordinator.start()
     }
     
     func navigateToWords() {
-        let wordsCoordinator = WordsCoordinator(words: vocabulary.words, parentViewController: viewController)
+        let wordsCoordinator = WordsCoordinator(words: vocabulary.words,
+                                                parentViewController: viewController)
         wordsCoordinator.start()
     }
     
     func navigateToWriting() {
-        let writingCoordinator = WritingCoordinator(words: vocabulary.words, parentViewController: viewController)
+        let writingCoordinator = WritingCoordinator(words: vocabulary.words,
+                                                    parentViewController: viewController)
         writingCoordinator.start()
     }
     
-    func navigateToSettings() {
-        let vocabularySettingsCoordinator = VocabularySettingsCoordinator(parentViewController: viewController?.tabBarController)
+    func navigateToSettings(actionSubject: PassthroughSubject<VocabularySettingsRowAction, Never>) {
+        let vocabularySettingsCoordinator = VocabularySettingsCoordinator(actionSubject: actionSubject,
+                                                                          parentViewController: viewController?.tabBarController)
         vocabularySettingsCoordinator.start()
+    }
+    
+    func removeVocabulary() {
+        close {
+            self.removeVocabularyHandler()
+        }
     }
     
 }

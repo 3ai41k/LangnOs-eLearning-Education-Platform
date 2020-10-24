@@ -12,12 +12,19 @@ final class VocabularySettingsViewController: BindibleViewController<VocabularyS
     
     // MARK: - IBOutlets
     
-    
+    @IBOutlet private weak var tableView: UniversalTableView! {
+        didSet {
+            tableView.viewModel = viewModel
+            tableView.cellFactory = cellFactory
+            
+            tableView.start()
+        }
+    }
     
     
     // MARK: - Public properties
     
-    
+    var cellFactory: UniversalTableViewCellFactoryProtocol?
     
     
     // MARK: - Private properties

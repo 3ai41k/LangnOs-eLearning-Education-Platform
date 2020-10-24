@@ -7,17 +7,11 @@
 //
 
 import UIKit
-
-protocol VocabularySettingsCoordinatorNavigationProtocol {
-    
-}
+import Combine
 
 typealias VocabularySettingsCoordinatorProtocol =
-    VocabularySettingsCoordinatorNavigationProtocol &
     CoordinatorClosableProtocol &
-    ActivityPresentableProtocol &
     AlertPresentableProtocol
-    
 
 final class VocabularySettingsCoordinator: Coordinator, VocabularySettingsCoordinatorProtocol  {
     
@@ -25,13 +19,15 @@ final class VocabularySettingsCoordinator: Coordinator, VocabularySettingsCoordi
     
     private let interactor: Interactor
     private let transition: BottomCardTransition
+    private let actionSubject: PassthroughSubject<VocabularySettingsRowAction, Never>
     
     // MARK: - Init
     
-    override init(parentViewController: UIViewController?) {
+    init(actionSubject: PassthroughSubject<VocabularySettingsRowAction, Never>, parentViewController: UIViewController?) {
         self.interactor = Interactor()
         self.transition = BottomCardTransition()
         self.transition.interactor = interactor
+        self.actionSubject = actionSubject
         
         super.init(parentViewController: parentViewController)
     }
@@ -39,10 +35,12 @@ final class VocabularySettingsCoordinator: Coordinator, VocabularySettingsCoordi
     // MARK: - Override
     
     override func start() {
-        let viewModel = VocabularySettingsViewModel(router: self)
+        let viewModel = VocabularySettingsViewModel(router: self, actionSubject: actionSubject)
+        let cellFactory = VocabularySettingsCellFactory()
         let viewController = VocabularySettingsViewController()
         viewController.viewModel = viewModel
         viewController.interactor = interactor
+        viewController.cellFactory = cellFactory
         
         let navigationController = UINavigationController(rootViewController: viewController)
         navigationController.transitioningDelegate = transition

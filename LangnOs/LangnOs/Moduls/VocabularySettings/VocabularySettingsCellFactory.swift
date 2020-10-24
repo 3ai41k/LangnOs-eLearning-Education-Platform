@@ -1,19 +1,19 @@
 //
-//  DashboardCellFactory.swift
+//  VocabularySettingsCellFactory.swift
 //  LangnOs
 //
-//  Created by Nikita Lizogubov on 02.10.2020.
+//  Created by Nikita Lizogubov on 24.10.2020.
 //  Copyright © 2020 NL. All rights reserved.
 //
 
 import UIKit
 
-final class DashboardCellFactory: UniversalTableViewCellFactoryProtocol {
+final class VocabularySettingsCellFactory: UniversalTableViewCellFactoryProtocol {
     
     var cellTypes: [UniversalTableViewCellRegistratable.Type] {
         [
             ColoredImageTableViewCell.self,
-            MessageTableViewCell.self
+            ButtonTableViewCell.self
         ]
     }
     
@@ -23,8 +23,8 @@ final class DashboardCellFactory: UniversalTableViewCellFactoryProtocol {
             let cell = ColoredImageTableViewCell.dequeueReusableCell(tableView, for: indexPath)
             cell.viewModel = cellViewModel
             return cell
-        case let cellViewModel as MessageCellViewModelProtocol:
-            let cell = MessageTableViewCell.dequeueReusableCell(tableView, for: indexPath)
+        case let cellViewModel as ButtonCellViewModelProtocol:
+            let cell = ButtonTableViewCell.dequeueReusableCell(tableView, for: indexPath)
             cell.viewModel = cellViewModel
             return cell
         default:

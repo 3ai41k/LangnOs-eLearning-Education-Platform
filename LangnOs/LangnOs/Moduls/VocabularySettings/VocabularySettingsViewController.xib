@@ -9,6 +9,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="VocabularySettingsViewController" customModule="LangnOs" customModuleProvider="target">
             <connections>
+                <outlet property="tableView" destination="H71-sn-1T3" id="Ce2-6p-IyB"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -16,8 +17,20 @@
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-            <color key="backgroundColor" systemColor="systemGray6Color" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <subviews>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" sectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="H71-sn-1T3" customClass="UniversalTableView" customModule="LangnOs" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="44" width="414" height="832"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                </tableView>
+            </subviews>
+            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
             <gestureRecognizers/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="H71-sn-1T3" secondAttribute="bottom" constant="20" symbolic="YES" id="2y6-si-XnB"/>
+                <constraint firstItem="H71-sn-1T3" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="ATN-bh-RqN"/>
+                <constraint firstItem="H71-sn-1T3" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Wji-dl-dic"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="H71-sn-1T3" secondAttribute="trailing" id="uRd-LO-PUc"/>
+            </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <connections>
                 <outletCollection property="gestureRecognizers" destination="VNN-gx-5JA" appends="YES" id="ihb-DE-zU6"/>
