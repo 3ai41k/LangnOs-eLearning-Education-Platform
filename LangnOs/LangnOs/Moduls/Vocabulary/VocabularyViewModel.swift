@@ -24,7 +24,7 @@ enum VocabularyViewModelAction {
     case matching
     case test
     case words
-    case remove
+    case settings
 }
 
 protocol VocabularyViewModelOutputProtocol {
@@ -78,8 +78,8 @@ final class VocabularyViewModel: VocabularyViewModelOutputProtocol {
                     self?.router.navigateToFlashCards()
                 case .words:
                     self?.router.navigateToWords()
-                case .remove:
-                    self?.removeVocabularyAction()
+                case .settings:
+                    self?.router.navigateToSettings()
                 }
             })
         ]
@@ -90,7 +90,7 @@ final class VocabularyViewModel: VocabularyViewModelOutputProtocol {
     private func removeVocabularyAction() {
         router.showAlert(title: "Are you sure ?", message: "Do you want to delete this vocabulary ?", actions: [
             CancelAlertAction(handler: { }),
-            OkAlertAction(handler: { self.router.removeVocabulary() })
+            OkAlertAction(handler: { })
         ])
     }
     

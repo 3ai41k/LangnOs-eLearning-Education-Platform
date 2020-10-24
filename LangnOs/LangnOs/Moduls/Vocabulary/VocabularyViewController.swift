@@ -54,7 +54,7 @@ final class VocabularyViewController: BindibleViewController<VocabularyViewModel
     
     @objc
     private func didMoreButtonTouch() {
-        
+        viewModel?.actionSubject.send(.settings)
     }
     
 }

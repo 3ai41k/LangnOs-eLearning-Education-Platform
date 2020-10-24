@@ -12,7 +12,7 @@ protocol VocabularyNavigationProtocol: CoordinatorClosableProtocol {
     func navigateToFlashCards()
     func navigateToWriting()
     func navigateToWords()
-    func removeVocabulary()
+    func navigateToSettings()
 }
 
 final class VocabularyCoordinator: Coordinator, AlertPresentableProtocol {
@@ -65,9 +65,9 @@ extension VocabularyCoordinator: VocabularyNavigationProtocol {
         writingCoordinator.start()
     }
     
-    func removeVocabulary() {
-        (parentViewController as? UINavigationController)?.popViewController(animated: true)
-        removeVocabularyHandler()
+    func navigateToSettings() {
+        let vocabularySettingsCoordinator = VocabularySettingsCoordinator(parentViewController: viewController?.tabBarController)
+        vocabularySettingsCoordinator.start()
     }
     
 }
