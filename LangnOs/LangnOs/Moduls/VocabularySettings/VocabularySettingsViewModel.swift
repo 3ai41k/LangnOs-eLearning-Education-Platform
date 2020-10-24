@@ -10,7 +10,7 @@ import Foundation
 import Combine
 
 protocol VocabularySettingsViewModelInputProtocol {
-    
+    var title: CurrentValueSubject<String?, Never> { get }
 }
 
 protocol VocabularySettingsViewModelOutputProtocol {
@@ -28,10 +28,11 @@ enum VocabularySettingsRowAction {
     case delete
 }
 
-final class VocabularySettingsViewModel: UniversalTableViewModelProtocol {
+final class VocabularySettingsViewModel: VocabularySettingsViewModelProtocol {
     
     // MARK: - Public properties
     
+    var title: CurrentValueSubject<String?, Never>
     var tableSections: [SectionViewModelProtocol] = []
     
     // MARK: - Private properties
@@ -45,6 +46,8 @@ final class VocabularySettingsViewModel: UniversalTableViewModelProtocol {
          actionSubject: PassthroughSubject<VocabularySettingsRowAction, Never>) {
         self.router = router
         self.actionSubject = actionSubject
+        
+        self.title = .init("Vocabulary Settings".localize)
         
         self.setupGeneralSection(&tableSections)
         self.setupDeleteSection(&tableSections)
@@ -92,17 +95,7 @@ final class VocabularySettingsViewModel: UniversalTableViewModelProtocol {
         }
     }
     
-}
-
-// MARK: - VocabularySettingsViewModelInputProtocol
-
-extension VocabularySettingsViewModel: VocabularySettingsViewModelInputProtocol {
-    
-}
-
-// MARK: - VocabularySettingsViewModelOutputProtocol
-
-extension VocabularySettingsViewModel: VocabularySettingsViewModelOutputProtocol {
+    // MARK: - VocabularySettingsViewModelOutputProtocol
     
     func closeAction() {
         router.close()

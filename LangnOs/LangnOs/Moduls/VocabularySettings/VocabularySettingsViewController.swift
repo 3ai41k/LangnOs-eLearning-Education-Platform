@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Combine
 
 final class VocabularySettingsViewController: BindibleViewController<VocabularySettingsViewModelProtocol> {
     
@@ -24,31 +25,21 @@ final class VocabularySettingsViewController: BindibleViewController<VocabularyS
     
     // MARK: - Public properties
     
+    var interactor: Interactor?
     var cellFactory: UniversalTableViewCellFactoryProtocol?
     
     
     // MARK: - Private properties
     
-    
-    
+    private var cancellables: [AnyCancellable?] = []
     
     // MARK: - Lifecycle
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-    }
-    
-    
-    // MARK: - Init
-    
-    
-    
-    
     // MARK: - Override
     
     override func bindViewModel() {
-        
+        cancellables = [
+            viewModel?.title.assign(to: \.title, on: self)
+        ]
     }
     
     override func setupUI() {
@@ -66,14 +57,7 @@ final class VocabularySettingsViewController: BindibleViewController<VocabularyS
     }
     
     // MARK: - Public methods
-    
-    var interactor: Interactor?
-    
-    
     // MARK: - Private methods
-    
-    
-    
     // MARK: - Actions
     
     @objc

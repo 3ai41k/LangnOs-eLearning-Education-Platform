@@ -220,6 +220,8 @@
 		8DF253BD2544A2AD001492AE /* ButtonTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DF253BB2544A2AD001492AE /* ButtonTableViewCell.xib */; };
 		8DF253BF2544A2BE001492AE /* ButtonCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF253BE2544A2BE001492AE /* ButtonCellViewModel.swift */; };
 		8DF253C12544A3B8001492AE /* VocabularySettingsCellFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF253C02544A3B8001492AE /* VocabularySettingsCellFactory.swift */; };
+		8DF253C42544B07A001492AE /* FlashCardsSettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF253C32544B07A001492AE /* FlashCardsSettingsViewModel.swift */; };
+		8DF253C62544B084001492AE /* FlashCardsSettingsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF253C52544B084001492AE /* FlashCardsSettingsCoordinator.swift */; };
 		8DF928A9253DDE700052FC31 /* WritingWordModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF928A8253DDE700052FC31 /* WritingWordModel.swift */; };
 		8DF928AC253DEBCF0052FC31 /* WritingProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF928AB253DEBCF0052FC31 /* WritingProgressView.swift */; };
 		8DF928AE253DEBEC0052FC31 /* WritingProgressView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DF928AD253DEBEC0052FC31 /* WritingProgressView.xib */; };
@@ -443,6 +445,8 @@
 		8DF253BB2544A2AD001492AE /* ButtonTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ButtonTableViewCell.xib; sourceTree = "<group>"; };
 		8DF253BE2544A2BE001492AE /* ButtonCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonCellViewModel.swift; sourceTree = "<group>"; };
 		8DF253C02544A3B8001492AE /* VocabularySettingsCellFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabularySettingsCellFactory.swift; sourceTree = "<group>"; };
+		8DF253C32544B07A001492AE /* FlashCardsSettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashCardsSettingsViewModel.swift; sourceTree = "<group>"; };
+		8DF253C52544B084001492AE /* FlashCardsSettingsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashCardsSettingsCoordinator.swift; sourceTree = "<group>"; };
 		8DF928A8253DDE700052FC31 /* WritingWordModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WritingWordModel.swift; sourceTree = "<group>"; };
 		8DF928AB253DEBCF0052FC31 /* WritingProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WritingProgressView.swift; sourceTree = "<group>"; };
 		8DF928AD253DEBEC0052FC31 /* WritingProgressView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WritingProgressView.xib; sourceTree = "<group>"; };
@@ -486,13 +490,6 @@
 				8D524F5C252E5AAA002A6E01 /* SearchBarCollectionReusableView.xib */,
 			);
 			path = SearchBar;
-			sourceTree = "<group>";
-		};
-		8D524F86252F7ACC002A6E01 /* Filter */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Filter;
 			sourceTree = "<group>";
 		};
 		8D524F89252F7E0B002A6E01 /* Courses */ = {
@@ -982,6 +979,7 @@
 				8D9985E9252929BF009EA144 /* Vocabulary */,
 				8DF253AA25448371001492AE /* VocabularySettings */,
 				8D524FE02533BA07002A6E01 /* FlashCards */,
+				8DF253C22544B059001492AE /* FlashCardsSettings */,
 				8DD28C102528ADF500F59B7D /* SingUp */,
 				8DD28C0F2528ADEC00F59B7D /* SingIn */,
 				8D524F89252F7E0B002A6E01 /* Courses */,
@@ -989,7 +987,6 @@
 				8D524F8B252F7E23002A6E01 /* Account */,
 				8D94E840253A1F1C005FA4B9 /* ImagePicker */,
 				8DD28BC0252679D300F59B7D /* Presentation */,
-				8D524F86252F7ACC002A6E01 /* Filter */,
 				8D66253D252A715800991D45 /* Words */,
 				8D94E7E525372948005FA4B9 /* VocabularyFilter */,
 				8D94E862253CE291005FA4B9 /* Writing */,
@@ -1316,6 +1313,15 @@
 			path = ButtonCell;
 			sourceTree = "<group>";
 		};
+		8DF253C22544B059001492AE /* FlashCardsSettings */ = {
+			isa = PBXGroup;
+			children = (
+				8DF253C52544B084001492AE /* FlashCardsSettingsCoordinator.swift */,
+				8DF253C32544B07A001492AE /* FlashCardsSettingsViewModel.swift */,
+			);
+			path = FlashCardsSettings;
+			sourceTree = "<group>";
+		};
 		8DF928AA253DEBB90052FC31 /* WritingProgress */ = {
 			isa = PBXGroup;
 			children = (
@@ -1515,6 +1521,7 @@
 				8DA744AF253F2EA600F9EC8B /* StudyResultViewController.swift in Sources */,
 				8D662543252A718400991D45 /* WordsCoordinator.swift in Sources */,
 				8DD28B85252667F600F59B7D /* AppDelegate.swift in Sources */,
+				8DF253C42544B07A001492AE /* FlashCardsSettingsViewModel.swift in Sources */,
 				8DD28BDF2526886200F59B7D /* NavigationBarDrivableModel.swift in Sources */,
 				8D662555252A7FAC00991D45 /* WordTableViewCellViewModel.swift in Sources */,
 				8D524FC92530D22A002A6E01 /* ButtonDrivableModel.swift in Sources */,
@@ -1564,6 +1571,7 @@
 				8DC3CF37252CFB8D003CA62A /* UIView+Shadow.swift in Sources */,
 				8DA744B0253F2EA600F9EC8B /* StudyResultViewModel.swift in Sources */,
 				8D524FA2252F86BC002A6E01 /* UserImageView.swift in Sources */,
+				8DF253C62544B084001492AE /* FlashCardsSettingsCoordinator.swift in Sources */,
 				8DC3CF3E252CFEB5003CA62A /* UIColor+Random.swift in Sources */,
 				8D524FB7252FBC47002A6E01 /* RootContext.swift in Sources */,
 				8DAA55472529129E00FF5066 /* FirebaseDatabaseRequestProtocol.swift in Sources */,

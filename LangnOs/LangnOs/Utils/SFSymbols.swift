@@ -52,4 +52,8 @@ struct SFSymbols {
         return UIImage(systemName: "book")!
     }
     
+    static func planet() -> UIImage {
+        return UIImage(systemName: "globe")!
+    }
+    
 }

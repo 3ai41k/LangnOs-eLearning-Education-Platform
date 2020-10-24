@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Combine
 
 final class FlashCardsViewController: BindibleViewController<FlashCardsViewModelProtocol> {
 
@@ -26,16 +27,30 @@ final class FlashCardsViewController: BindibleViewController<FlashCardsViewModel
     var tableViewCellFactory: UniversalTableViewCellFactoryProtocol?
     
     // MARK: - Private properties
+    
+    private var cancellables: [AnyCancellable?] = []
+    
     // MARK: - Lifecycle
     // MARK: - Init
     // MARK: - Override
+    
+    override func bindViewModel() {
+        cancellables = [
+            viewModel?.title.assign(to: \.title, on: self)
+        ]
+    }
     
     override func setupUI() {
         let doneButton = UIBarButtonItem(barButtonSystemItem: .done,
                                          target: self,
                                          action: #selector(didDoneButtonTouch))
+        let moreButton = UIBarButtonItem(image: SFSymbols.more(),
+                                         style: .plain,
+                                         target: self,
+                                         action: #selector(didMoreButtonTouch))
         
         navigationItem.leftBarButtonItem = doneButton
+        navigationItem.rightBarButtonItem = moreButton
     }
     
     // MARK: - Public methods
@@ -45,6 +60,11 @@ final class FlashCardsViewController: BindibleViewController<FlashCardsViewModel
     @objc
     private func didDoneButtonTouch() {
         viewModel?.closeAction()
+    }
+    
+    @objc
+    private func didMoreButtonTouch() {
+        viewModel?.settingsAction()
     }
     
 }

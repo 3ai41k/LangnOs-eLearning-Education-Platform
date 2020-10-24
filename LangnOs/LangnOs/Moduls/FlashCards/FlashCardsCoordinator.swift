@@ -9,7 +9,7 @@
 import UIKit
 
 protocol FlashCardsNavigationProtocol {
-    
+    func navigateToSettings()
 }
 
 typealias FlashCardsCoordinatorProtocol =
@@ -52,5 +52,10 @@ final class FlashCardsCoordinator: Coordinator, FlashCardsCoordinatorProtocol {
     }
     
     // MARK: - FlashCardsNavigationProtocol
+    
+    func navigateToSettings() {
+        let flashCardsSettingsCoordinator = FlashCardsSettingsCoordinator(parentViewController: viewController)
+        flashCardsSettingsCoordinator.start()
+    }
     
 }

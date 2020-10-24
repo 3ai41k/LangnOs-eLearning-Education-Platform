@@ -7,12 +7,14 @@
 //
 
 import Foundation
+import Combine
 
 protocol FlashCardsViewModelInputProtocol {
-    
+    var title: CurrentValueSubject<String?, Never> { get }
 }
 
 protocol FlashCardsViewModelOutputProtocol {
+    func settingsAction()
     func closeAction()
 }
 
@@ -25,6 +27,7 @@ final class FlashCardsViewModel: UniversalTableViewModelProtocol {
     
     // MARK: - Public properties
     
+    var title: CurrentValueSubject<String?, Never>
     var tableSections: [SectionViewModelProtocol]
     
     // MARK: - Private properties
@@ -40,9 +43,10 @@ final class FlashCardsViewModel: UniversalTableViewModelProtocol {
         self.words = words
         self.speechSynthesizer = speechSynthesizer
         
+        self.title = .init("Flash Cards".localize)
         self.tableSections = []
         
-        setupFlashCardsSection(&tableSections)
+        self.setupFlashCardsSection(&tableSections)
     }
     
     // MARK: - Private methods
@@ -75,6 +79,10 @@ extension FlashCardsViewModel: FlashCardsViewModelInputProtocol {
 // MARK: - FlashCardsViewModelOutputProtocol
 
 extension FlashCardsViewModel: FlashCardsViewModelOutputProtocol {
+    
+    func settingsAction() {
+        router.navigateToSettings()
+    }
     
     func closeAction() {
         router.close()
