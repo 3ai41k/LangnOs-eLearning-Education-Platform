@@ -40,4 +40,16 @@ struct SFSymbols {
         return UIImage(systemName: "arrow.clockwise")!
     }
     
+    static func statistic() -> UIImage {
+        return UIImage(systemName: "chart.pie")!
+    }
+    
+    static func meterials() -> UIImage {
+        return UIImage(systemName: "square.grid.2x2")!
+    }
+    
+    static func book() -> UIImage {
+        return UIImage(systemName: "book")!
+    }
+    
 }
