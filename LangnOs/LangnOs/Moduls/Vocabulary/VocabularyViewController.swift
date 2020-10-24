@@ -27,9 +27,10 @@ final class VocabularyViewController: BindibleViewController<VocabularyViewModel
     }
     
     override func setupUI() {
-        let removeButton = UIBarButtonItem(barButtonSystemItem: .trash,
-                                         target: self,
-                                         action: #selector(didRemoveButtonTouch))
+        let removeButton = UIBarButtonItem(image: SFSymbols.more(),
+                                           style: .plain,
+                                           target: self,
+                                           action: #selector(didMoreButtonTouch))
         
         navigationItem.rightBarButtonItem = removeButton
     }
@@ -52,8 +53,8 @@ final class VocabularyViewController: BindibleViewController<VocabularyViewModel
     }
     
     @objc
-    private func didRemoveButtonTouch() {
-        viewModel?.actionSubject.send(.remove)
+    private func didMoreButtonTouch() {
+        
     }
     
 }

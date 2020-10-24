@@ -28,4 +28,8 @@ struct SFSymbols {
         return UIImage(systemName: "person.circle")!
     }
     
+    static func more() -> UIImage {
+        return UIImage(systemName: "ellipsis")!
+    }
+    
 }
