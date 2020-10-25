@@ -15,13 +15,9 @@ final class MaterialsViewController: BindibleViewController<MaterialsViewModelPr
     
     @IBOutlet private weak var collectionView: UniversalCollectionView! {
         didSet {
-            let backgroundView = NoResulsView()
-            backgroundView.title = "There aren't any materials.".localize
-            
             collectionView.viewModel = viewModel
             collectionView.layout = layout
             collectionView.cellFactory = cellFactory
-            collectionView.customBackgroundView = backgroundView
             
             collectionView.start()
         }
@@ -81,9 +77,33 @@ final class MaterialsViewController: BindibleViewController<MaterialsViewModelPr
     override func setupUI() {
         navigationItem.searchController = searchController
         navigationItem.hidesSearchBarWhenScrolling = false
+        navigationController?.extendedLayoutIncludesOpaqueBars = true
+        
+        setupRefreshControl()
+        setupBackgroundView()
+    }
+    
+    // MARK: - Private methods
+    
+    private func setupRefreshControl() {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(refreshData), for: .valueChanged)
+        collectionView.refreshControl = refreshControl
+    }
+    
+    private func setupBackgroundView() {
+        let backgroundView = NoResulsView()
+        backgroundView.title = "There aren't any materials.".localize
+        collectionView.customBackgroundView = backgroundView
     }
     
     // MARK: - Actions
+    
+    @objc
+    private func refreshData(_ sender: UIRefreshControl) {
+        viewModel?.fetchDataAction()
+        sender.endRefreshing()
+    }
     
     @objc
     private func didCreateVocabularyTouch() {
