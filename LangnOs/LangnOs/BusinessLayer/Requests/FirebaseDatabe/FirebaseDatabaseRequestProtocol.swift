@@ -14,7 +14,7 @@ import FirebaseDatabase
 protocol FirebaseDatabaseRequestProtocol {
     associatedtype Entity: Codable & CDEntityProtocol
     var entity: Entity? { get }
-    func toDicationary() -> [String: Any]?
+    func convertEntityToDicationary() -> [String: Any]?
     func setCollectionPath(_ reference: DatabaseReference) -> DatabaseReference
     func setQuary(_ reference: DatabaseReference) -> DatabaseQuery?
 }
@@ -23,7 +23,7 @@ extension FirebaseDatabaseRequestProtocol {
     
     var entity: Entity? { nil }
     
-    func toDicationary() -> [String: Any]? { nil }
+    func convertEntityToDicationary() -> [String: Any]? { nil }
     
     func setQuary(_ reference: DatabaseReference) -> DatabaseQuery? { nil }
     

@@ -35,6 +35,12 @@ final class InputView: XibView {
         }
     }
     
+    var isEditable: Bool = true {
+        didSet {
+            textField.isUserInteractionEnabled = isEditable
+        }
+    }
+    
     var textFieldInputAccessoryView: UIView? {
         didSet {
             textField.inputAccessoryView = textFieldInputAccessoryView

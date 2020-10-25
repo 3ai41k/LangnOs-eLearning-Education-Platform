@@ -26,10 +26,6 @@ final class FlashCardsViewController: BindibleViewController<FlashCardsViewModel
     
     var tableViewCellFactory: UniversalTableViewCellFactoryProtocol?
     
-    // MARK: - Private properties
-    
-    private var cancellables: [AnyCancellable?] = []
-    
     // MARK: - Override
     
     override func bindViewModel() {

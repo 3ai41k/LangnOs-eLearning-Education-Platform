@@ -7,20 +7,14 @@
 //
 
 import UIKit
-
-//protocol BindibleViewModel {
-//    var updateUI: (() -> Void)? { get set }
-//}
-//
-//extension BindibleViewModel {
-//    var updateUI: (() -> Void)? { nil }
-//}
+import Combine
 
 class BindibleViewController<ViewModel>: UIViewController {
     
     // MARK: - Public properties
     
     var viewModel: ViewModel?
+    var cancellables: [AnyCancellable?] = []
     
     // MARK: - Lifecycle
     
@@ -34,11 +28,7 @@ class BindibleViewController<ViewModel>: UIViewController {
     
     // MARK: - Protected(internal) methods
     
-    internal func bindViewModel() {
-//        viewModel?.updateUI = { [weak self] in
-//            self?.setupUI()
-//        }
-    }
+    internal func bindViewModel() { }
     
     internal func setupUI() { }
     

@@ -36,8 +36,6 @@ final class MaterialsViewController: BindibleViewController<MaterialsViewModelPr
         return searchController
     }()
     
-    private var cancellables: [AnyCancellable?] = []
-    
     // MARK: - Lifecycle
     
     override func viewDidLoad() {

@@ -15,8 +15,8 @@ protocol VocabularyCellViewModelInputProtocol {
     var footerTitle: CurrentValueSubject<String?, Never> { get }
     var footerValue: String? { get }
     var image: CurrentValueSubject<UIImage?, Never> { get }
-    var setBecomeFirstResponder: AnyPublisher<Void, Never> { get }
     var toolbarDrivableModel: DrivableModelProtocol? { get }
+    var isEditable: CurrentValueSubject<Bool, Never> { get }
 }
 
 protocol VocabularyCellViewModelOutputProtocol {
@@ -29,9 +29,6 @@ typealias VocabularyCellViewModelProtocol =
     VocabularyCellViewModelOutputProtocol &
     CellViewModelProtocol
 
-//
-// Virtual class
-//
 class VocabularyCellViewModel: VocabularyCellViewModelProtocol {
     
     // MARK: - Public properties
@@ -48,14 +45,7 @@ class VocabularyCellViewModel: VocabularyCellViewModelProtocol {
     var toolbarDrivableModel: DrivableModelProtocol? {
         nil
     }
-    
-    var setBecomeFirstResponder: AnyPublisher<Void, Never> {
-        setBecomeFirstResponderSubject.eraseToAnyPublisher()
-    }
-    
-    // MARK: - Private properties
-    
-    private var setBecomeFirstResponderSubject = PassthroughSubject<Void, Never>()
+    var isEditable: CurrentValueSubject<Bool, Never>
     
     // MARK: - Init
     
@@ -63,6 +53,7 @@ class VocabularyCellViewModel: VocabularyCellViewModelProtocol {
         self.headerTitle = .init(headerTitle)
         self.footerTitle = .init(footerTitle)
         self.image = .init(nil)
+        self.isEditable = .init(true)
     }
     
     func setHeaderValue(_ text: String) { }

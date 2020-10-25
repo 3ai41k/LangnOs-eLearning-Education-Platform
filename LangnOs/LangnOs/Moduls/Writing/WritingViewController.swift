@@ -30,10 +30,6 @@ final class WritingViewController: BindibleViewController<WritingViewModelProtoc
     }
     @IBOutlet private weak var answerButton: UIButton!
     
-    // MARK: - Private properties
-    
-    private var cancellables: [AnyCancellable?] = []
-    
     // MARK: - Override
     
     override func bindViewModel() {

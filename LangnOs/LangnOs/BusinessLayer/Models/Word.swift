@@ -29,6 +29,16 @@ struct Word: Codable {
     
 }
 
+// MARK: - Equatable
+
+extension Word: Equatable {
+    
+    static func == (lhs: Word, rhs: Word) -> Bool {
+        lhs.term == rhs.term && lhs.definition == rhs.definition
+    }
+    
+}
+
 // MARK: - EmptyableProtocol
 
 extension Word: EmptyableProtocol {

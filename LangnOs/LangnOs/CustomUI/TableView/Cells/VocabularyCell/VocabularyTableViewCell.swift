@@ -55,16 +55,20 @@ final class VocabularyTableViewCell: UITableViewCell, UniversalTableViewCellRegi
     private func bindViewModel() {
         headerInputView.value = viewModel?.headerValue
         footerInputView.value = viewModel?.footerValue
-        [headerInputView, footerInputView].forEach({
-            let sreenWidth = UIScreen.main.bounds.width
-            let rect = CGRect(x: .zero, y: .zero, width: sreenWidth, height: 44.0)
-            let toolbar = UIToolbar(frame: rect)
-            toolbar.drive(model: viewModel?.toolbarDrivableModel)
-            $0?.textFieldInputAccessoryView = toolbar
-        })
+        if let toolbarDrivableModel = viewModel?.toolbarDrivableModel {
+            [headerInputView, footerInputView].forEach({
+                let sreenWidth = UIScreen.main.bounds.width
+                let rect = CGRect(x: .zero, y: .zero, width: sreenWidth, height: 44.0)
+                let toolbar = UIToolbar(frame: rect)
+                toolbar.drive(model: toolbarDrivableModel)
+                $0?.textFieldInputAccessoryView = toolbar
+            })
+        }
         cancellables = [
             viewModel?.headerTitle.assign(to: \.title, on: headerInputView),
             viewModel?.footerTitle.assign(to: \.title, on: footerInputView),
+            viewModel?.isEditable.assign(to: \.isEditable, on: headerInputView),
+            viewModel?.isEditable.assign(to: \.isEditable, on: footerInputView),
             viewModel?.image.sink(receiveValue: { [weak self] image in
                 self?.beginUpdate?()
                 self?.wordImageView.image = image

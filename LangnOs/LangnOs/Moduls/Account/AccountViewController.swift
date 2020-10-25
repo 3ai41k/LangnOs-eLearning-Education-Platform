@@ -29,10 +29,6 @@ final class AccountViewController: BindibleViewController<AccountViewModelProtoc
         }
     }
     
-    // MARK: - Private properties
-    
-    private var cancellables: [AnyCancellable?] = []
-    
     // MARK: - Lifecycle
     
     override func viewDidAppear(_ animated: Bool) {

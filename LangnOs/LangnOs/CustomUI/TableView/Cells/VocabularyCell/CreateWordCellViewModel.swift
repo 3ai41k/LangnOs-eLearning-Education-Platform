@@ -1,5 +1,5 @@
 //
-//  VocabularyWordCellViewModel.swift
+//  CreateWordCellViewModel.swift
 //  LangnOs
 //
 //  Created by Nikita Lizogubov on 24.10.2020.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-final class VocabularyWordCellViewModel: VocabularyCellViewModel {
+final class CreateWordCellViewModel: VocabularyCellViewModel {
     
     // MARK: - Public properties
     

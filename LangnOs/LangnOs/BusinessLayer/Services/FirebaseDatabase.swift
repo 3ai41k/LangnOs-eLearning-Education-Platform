@@ -35,6 +35,10 @@ protocol FirebaseDatabaseDeletingProtocol {
     func delete<Request: FirebaseDatabaseRequestProtocol>(request: Request, completion: @escaping (Result<Void, Error>) -> Void)
 }
 
+protocol FirebaseDatabaseUpdatingProtocol {
+    func update<Request: FirebaseDatabaseRequestProtocol>(request: Request, completion: @escaping (Result<Void, Error>) -> Void)
+}
+
 final class FirebaseDatabase {
     
     // MARK: - Private properties
@@ -83,7 +87,7 @@ extension FirebaseDatabase: FirebaseDatabaseFetchingProtocol {
 extension FirebaseDatabase: FirebaseDatabaseCreatingProtocol {
     
     func create<Request: FirebaseDatabaseRequestProtocol>(request: Request, completion: @escaping (Result<Void, Error>) -> Void) {
-        guard let dicationary = request.toDicationary(), !dicationary.isEmpty else {
+        guard let dicationary = request.convertEntityToDicationary(), !dicationary.isEmpty else {
             completion(.failure(FirebaseDatabaseError.documentIsEmpty))
             return
         }
@@ -109,6 +113,29 @@ extension FirebaseDatabase: FirebaseDatabaseDeletingProtocol {
         var reference = dataBase
         reference = request.setCollectionPath(reference)
         reference.removeValue { (error, _) in
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                completion(.success(()))
+            }
+        }
+    }
+    
+}
+
+// MARK: - FirebaseDatabaseUpdatingProtocol
+
+extension FirebaseDatabase: FirebaseDatabaseUpdatingProtocol {
+    
+    func update<Request: FirebaseDatabaseRequestProtocol>(request: Request, completion: @escaping (Result<Void, Error>) -> Void) {
+        guard let dicationary = request.convertEntityToDicationary(), !dicationary.isEmpty else {
+            completion(.failure(FirebaseDatabaseError.documentIsEmpty))
+            return
+        }
+        
+        var reference = dataBase
+        reference = request.setCollectionPath(reference)
+        reference.updateChildValues(dicationary) { (error, _) in
             if let error = error {
                 completion(.failure(error))
             } else {

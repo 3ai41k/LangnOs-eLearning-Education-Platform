@@ -21,7 +21,7 @@ struct VocabularyGeneralInfo: EmptyableProtocol {
     }
 }
 
-final class VocabularyGeneralInfoViewModel: VocabularyCellViewModel {
+final class GeneralInfoCellViewModel: VocabularyCellViewModel {
     
     // MARK: - Public properties
     

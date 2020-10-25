@@ -33,10 +33,12 @@ protocol UniversalTableViewSectionProtocol {
 
 protocol UniversalTableViewOutputProtocol {
     func didSelectCellAt(indexPath: IndexPath)
+    func deleteItemForRowAt(indexPath: IndexPath)
 }
 
 extension UniversalTableViewOutputProtocol {
     func didSelectCellAt(indexPath: IndexPath) { }
+    func deleteItemForRowAt(indexPath: IndexPath) { }
 }
 
 protocol CellResizableProtocol where Self: UITableViewCell {
@@ -51,7 +53,7 @@ final class UniversalTableView: UITableView {
     var viewModel: UniversalTableViewModelProtocol? {
         didSet {
             viewModel?.tableSections.enumerated().forEach({ index, section in
-                section.cells.sink(receiveValue: { [weak self] cells in
+                section.cells.sink(receiveValue: { [weak self] _ in
                     self?.reloadSections([index], with: .fade)
                 }).store(in: &cancellable)
             })
@@ -152,11 +154,11 @@ extension UniversalTableView: UITableViewDataSource {
         }
         
         if let cell = cell as? CellResizableProtocol {
-            cell.beginUpdate = {
-                tableView.beginUpdates()
+            cell.beginUpdate = { [weak self] in
+                self?.beginUpdates()
             }
-            cell.endUpdate = {
-                tableView.endUpdates()
+            cell.endUpdate = { [weak self] in
+                self?.endUpdates()
             }
         }
         
@@ -182,6 +184,20 @@ extension UniversalTableView: UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         guard let footerViewModel = viewModel?.tableSections[section].sectionFooterViewModel else { return nil }
         return sectionFactory?.generateView(sectionViewModel: footerViewModel)
+    }
+    
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+        if tableView.isEditing {
+            return .delete
+        } else {
+            return .none
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            viewModel?.deleteItemForRowAt(indexPath: indexPath)
+        }
     }
     
 }

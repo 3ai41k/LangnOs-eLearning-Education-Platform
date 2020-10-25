@@ -8,40 +8,39 @@
 
 import UIKit
 
-protocol WordsNavigationProtocol {
-    
-}
+typealias WordsCoordinatorProtocol =
+    AlertPresentableProtocol &
+    ActivityPresentableProtocol
 
-final class WordsCoordinator: Coordinator {
+final class WordsCoordinator: Coordinator, WordsCoordinatorProtocol {
     
     // MARK: - Private properties
     
-    private let words: [Word]
+    private let vocabulary: Vocabulary
     
     // MARK: - Init
     
-    init(words: [Word], parentViewController: UIViewController?) {
-        self.words = words
+    init(vocabulary: Vocabulary, parentViewController: UIViewController?) {
+        self.vocabulary = vocabulary
+        
         super.init(parentViewController: parentViewController)
     }
     
     // MARK: - Override
     
     override func start() {
-        let wordsViewModel = WordsViewModel(words: words, router: self)
-        let wordsCellFactory = WordsCellFactory()
-        let wordsViewController = WordsViewController()
-        wordsViewController.tableViewCellFactory = wordsCellFactory
-        wordsViewController.viewModel = wordsViewModel
+        let dataProvider = DataProvider()
+        let viewModel = WordsViewModel(router: self,
+                                       vocabulary: vocabulary,
+                                       dataProvider: dataProvider)
         
-        viewController = wordsViewController
-        (parentViewController as? UINavigationController)?.pushViewController(wordsViewController, animated: true)
+        let cellFactory = CreateVocabularyCellFactory()
+        let viewController = WordsViewController()
+        viewController.tableViewCellFactory = cellFactory
+        viewController.viewModel = viewModel
+        
+        self.viewController = viewController
+        (parentViewController as? UINavigationController)?.pushViewController(viewController, animated: true)
     }
-    
-}
-
-// MARK: - WordsNavigationProtocol
-
-extension WordsCoordinator: WordsNavigationProtocol {
     
 }

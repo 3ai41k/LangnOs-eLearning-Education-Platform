@@ -28,12 +28,6 @@ final class VocabularySettingsViewController: BindibleViewController<VocabularyS
     var interactor: Interactor?
     var cellFactory: UniversalTableViewCellFactoryProtocol?
     
-    
-    // MARK: - Private properties
-    
-    private var cancellables: [AnyCancellable?] = []
-    
-    // MARK: - Lifecycle
     // MARK: - Override
     
     override func bindViewModel() {
@@ -54,12 +48,6 @@ final class VocabularySettingsViewController: BindibleViewController<VocabularyS
         navigationController?.navigationBar.barTintColor = view.backgroundColor
     }
     
-    override func configurateComponents() {
-        
-    }
-    
-    // MARK: - Public methods
-    // MARK: - Private methods
     // MARK: - Actions
     
     @objc

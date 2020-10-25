@@ -58,12 +58,6 @@ extension VocabularyCoordinator: VocabularyNavigationProtocol {
         flashCardsCoordinator.start()
     }
     
-    func navigateToWords() {
-        let wordsCoordinator = WordsCoordinator(words: vocabulary.words,
-                                                parentViewController: viewController)
-        wordsCoordinator.start()
-    }
-    
     func navigateToWriting() {
         let writingCoordinator = WritingCoordinator(words: vocabulary.words,
                                                     parentViewController: viewController)
@@ -74,6 +68,12 @@ extension VocabularyCoordinator: VocabularyNavigationProtocol {
         let vocabularySettingsCoordinator = VocabularySettingsCoordinator(actionSubject: actionSubject,
                                                                           parentViewController: viewController?.tabBarController)
         vocabularySettingsCoordinator.start()
+    }
+    
+    func navigateToWords() {
+        let wordsCoordinator = WordsCoordinator(vocabulary: vocabulary,
+                                                parentViewController: parentViewController)
+        wordsCoordinator.start()
     }
     
     func removeVocabulary() {

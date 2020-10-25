@@ -84,7 +84,8 @@ final class VocabularyViewModel: VocabularyViewModelOutputProtocol {
                 case .words:
                     self?.router.navigateToWords()
                 case .settings:
-                    self?.router.navigateToSettings(actionSubject: self!.settingsActionSubject)
+                    guard let self = self else { return }
+                    self.router.navigateToSettings(actionSubject: self.settingsActionSubject)
                 }
             }),
             settingsActionPublisher.sink(receiveValue: { [weak self] action in

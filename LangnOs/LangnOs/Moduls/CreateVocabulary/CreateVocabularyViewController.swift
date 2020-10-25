@@ -26,15 +26,13 @@ final class CreateVocabularyViewController: BindibleViewController<CreateVocabul
     
     var tableViewCellFactory: UniversalTableViewCellFactoryProtocol?
     
-    // MARK: - Private properties
-    
-    private var cancellables: [AnyCancellable?] = []
-    
     // MARK: - Override
     
     override func bindViewModel() {
         cancellables = [
-            viewModel?.title.assign(to: \.title, on: self)
+            viewModel?.title.sink(receiveValue: { [weak self] (title) in
+                self?.title = title
+            })
         ]
     }
     

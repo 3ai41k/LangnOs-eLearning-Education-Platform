@@ -46,6 +46,18 @@ struct Vocabulary: Codable {
         })
     }
     
+    init(update: Vocabulary, words: [Word]) {
+        self.id = update.id
+        self.userId = update.userId
+        self.title = update.title
+        self.category = update.category
+        self.phrasesLearned = update.phrasesLearned
+        self.phrasesLeftToLearn = update.phrasesLeftToLearn
+        self.totalLearningTime = update.totalLearningTime
+        self.createdDate = update.createdDate
+        self.words = words
+    }
+    
 }
 
 // MARK: - CDEntityProtocol
@@ -60,8 +72,8 @@ extension Vocabulary: CDEntityProtocol {
         VocabularyFetcher().insert(context: context, entity: entity)
     }
     
-    static func update(context: NSManagedObjectContext, entity: Vocabulary) {
-        VocabularyFetcher().update(context: context, entity: entity)
+    static func update(context: NSManagedObjectContext, entity: Vocabulary) throws {
+        try VocabularyFetcher().update(context: context, entity: entity)
     }
     
     static func delete(context: NSManagedObjectContext, entity: Vocabulary) throws {

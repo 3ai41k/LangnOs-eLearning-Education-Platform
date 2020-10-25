@@ -54,7 +54,7 @@ final class CreateVocabularyViewModel: CreateVocabularyViewModelProtocol {
     
     private func setupVocabularyInfoSection(_ tableSections: inout [SectionViewModelProtocol]) {
         let sectionViewModel = TableSectionViewModel(cells: [
-            VocabularyGeneralInfoViewModel()
+            GeneralInfoCellViewModel()
         ])
         tableSections.append(sectionViewModel)
     }
@@ -76,7 +76,7 @@ final class CreateVocabularyViewModel: CreateVocabularyViewModelProtocol {
     }
     
     private func createWordCellViewModel() -> CellViewModelProtocol {
-        let cellViewModel = VocabularyWordCellViewModel()
+        let cellViewModel = CreateWordCellViewModel()
         cellViewModel.addHandler = { [weak self] in self?.addWordRow() }
         cellViewModel.imageHandler = { [weak self] in self?.addImage() }
         return cellViewModel
@@ -95,9 +95,9 @@ extension CreateVocabularyViewModel {
         tableSections.forEach({ section in
             section.cells.value.forEach({ cell in
                 switch cell {
-                case let cell as VocabularyGeneralInfoViewModel:
+                case let cell as GeneralInfoCellViewModel:
                     generalInfo = cell.vocabularyGeneralInfo
-                case let cell as VocabularyWordCellViewModel:
+                case let cell as CreateWordCellViewModel:
                     if !cell.word.isEmpty {
                         words.append(cell.word)
                     }

@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class WordsViewController: BindibleViewController<WordsViewModelInputProtocol & WordsViewModelOutputProtocol & UniversalTableViewModelProtocol> {
+final class WordsViewController: BindibleViewController<WordsViewModelProtocol> {
     
     // MARK: - IBOutlets
     
@@ -16,6 +16,7 @@ final class WordsViewController: BindibleViewController<WordsViewModelInputProto
         didSet {
             tableView.viewModel = viewModel
             tableView.cellFactory = tableViewCellFactory
+            
             tableView.start()
         }
     }
@@ -28,6 +29,26 @@ final class WordsViewController: BindibleViewController<WordsViewModelInputProto
     // MARK: - Lifecycle
     // MARK: - Init
     // MARK: - Override
+    
+    override func bindViewModel() {
+        cancellables = [
+            viewModel?.title.sink(receiveValue: { [weak self] (title) in
+                self?.title = title
+            })
+        ]
+    }
+    
+    override func setupUI() {
+        navigationItem.rightBarButtonItem = editButtonItem
+    }
+    
+    override func setEditing(_ editing: Bool, animated: Bool) {
+        super.setEditing(editing, animated: animated)
+        
+        tableView.setEditing(editing, animated: animated)
+        viewModel?.setEditingSubject.send(editing)
+    }
+    
     // MARK: - Public methods
     // MARK: - Private methods
     // MARK: - Actions

@@ -16,9 +16,7 @@ final class VocabularyFetcher: CDEntityFather<Vocabulary> {
     override func select(context: NSManagedObjectContext) throws -> [Vocabulary] {
         let request = NSFetchRequest<VocabularyEntity>(entityName: "VocabularyEntity")
         do {
-            return try context.fetch(request).map({
-                Vocabulary(entity: $0)
-            })
+            return try context.fetch(request).map({ Vocabulary(entity: $0) })
         } catch {
             throw error
         }
@@ -42,15 +40,30 @@ final class VocabularyFetcher: CDEntityFather<Vocabulary> {
         })
     }
     
-    override func delete(context: NSManagedObjectContext, entity: Vocabulary) throws {
+    override func update(context: NSManagedObjectContext, entity: Vocabulary) throws {
         let request = NSFetchRequest<VocabularyEntity>(entityName: "VocabularyEntity")
         do {
             let vocabularies = try context.fetch(request)
-            if let vocabularyForDelete = vocabularies.first(where: { $0.id?.uuidString == entity.id }) {
-                context.delete(vocabularyForDelete)
-            } else {
-                throw CDEntityFatherError.duplicate
+            if let vocabulary = vocabularies.first {
+                vocabulary.id = UUID(uuidString: entity.id)
+                vocabulary.userId = entity.userId
+                vocabulary.title = entity.title
+                vocabulary.category = entity.category
+                vocabulary.phrasesLearned = Int32(entity.phrasesLearned)
+                vocabulary.phrasesLeftToLearn = Int32(entity.phrasesLeftToLearn)
+                vocabulary.totalLearningTime = entity.totalLearningTime
+                vocabulary.createdDate = entity.createdDate
+                vocabulary.words = NSSet(object: entity.words)
             }
+        } catch {
+            throw error
+        }
+    }
+    
+    override func delete(context: NSManagedObjectContext, entity: Vocabulary) throws {
+        let request = NSFetchRequest<VocabularyEntity>(entityName: "VocabularyEntity")
+        do {
+            try context.fetch(request).forEach({ context.delete($0) })
         } catch {
             throw error
         }

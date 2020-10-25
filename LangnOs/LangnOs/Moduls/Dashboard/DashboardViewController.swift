@@ -28,10 +28,6 @@ final class DashboardViewController: BindibleViewController<DashboardViewModelPr
     var cellFactory: UniversalTableViewCellFactoryProtocol?
     var sectionFactory: SectionViewFactoryProtocol?
     
-    // MARK: - Private properties
-    
-    private var cancellables: [AnyCancellable?] = []
-    
     // MARK: - Override
     
     override func bindViewModel() {
