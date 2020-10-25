@@ -31,6 +31,7 @@ final class ColoredImageTableViewCell: UITableViewCell, UniversalTableViewCellRe
     // MARK: - Private methods
     
     private func bindViewModel() {
+        accessoryType = viewModel?.accessoryType ?? .none
         label.text = viewModel?.text
         coloredImageView.image = viewModel?.image
         coloredView.backgroundColor = viewModel?.color

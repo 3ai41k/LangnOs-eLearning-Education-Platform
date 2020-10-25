@@ -12,6 +12,7 @@ protocol ColoredImageCellViewModelInput {
     var text: String { get }
     var image: UIImage { get }
     var color: UIColor { get }
+    var accessoryType: UITableViewCell.AccessoryType { get }
 }
 
 typealias ColoredImageCellViewModelProtocol =
@@ -23,11 +24,13 @@ final class ColoredImageCellViewModel: ColoredImageCellViewModelProtocol {
     var text: String
     var image: UIImage
     var color: UIColor
+    var accessoryType: UITableViewCell.AccessoryType
     
-    init(text: String, image: UIImage, color: UIColor) {
+    init(text: String, image: UIImage, color: UIColor, accessoryType: UITableViewCell.AccessoryType = .none) {
         self.text = text
         self.image = image
         self.color = color
+        self.accessoryType = accessoryType
     }
     
 }

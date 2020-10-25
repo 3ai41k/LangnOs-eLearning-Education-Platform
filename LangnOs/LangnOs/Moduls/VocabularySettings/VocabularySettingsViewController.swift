@@ -38,7 +38,9 @@ final class VocabularySettingsViewController: BindibleViewController<VocabularyS
     
     override func bindViewModel() {
         cancellables = [
-            viewModel?.title.assign(to: \.title, on: self)
+            viewModel?.title.sink(receiveValue: { [weak self] (title) in
+                self?.title = title
+            })
         ]
     }
     

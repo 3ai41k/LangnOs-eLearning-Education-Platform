@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Combine
 
 typealias FlashCardsSettingsCoordinatorProtocol =
     CoordinatorClosableProtocol &
@@ -18,13 +19,16 @@ final class FlashCardsSettingsCoordinator: Coordinator, FlashCardsSettingsCoordi
     
     private let interactor: Interactor
     private let transition: BottomCardTransition
+    private let actionSubject: PassthroughSubject<FlashCardsSettingsRowAction, Never>
     
     // MARK: - Init
     
-    override init(parentViewController: UIViewController?) {
+    init(actionSubject: PassthroughSubject<FlashCardsSettingsRowAction, Never>,
+         parentViewController: UIViewController?) {
         self.interactor = Interactor()
         self.transition = BottomCardTransition()
         self.transition.interactor = interactor
+        self.actionSubject = actionSubject
         
         super.init(parentViewController: parentViewController)
     }
@@ -32,7 +36,7 @@ final class FlashCardsSettingsCoordinator: Coordinator, FlashCardsSettingsCoordi
     // MARK: - Override
     
     override func start() {
-        let viewModel = FlashCardsSettingsViewModel(router: self)
+        let viewModel = FlashCardsSettingsViewModel(router: self, actionSubject: actionSubject)
         let cellFactory = VocabularySettingsCellFactory()
         let viewController = VocabularySettingsViewController()
         viewController.viewModel = viewModel
@@ -55,7 +59,7 @@ final class FlashCardsSettingsCoordinator: Coordinator, FlashCardsSettingsCoordi
 extension FlashCardsSettingsCoordinator {
     
     enum Constants {
-        static let contentSize = CGSize(width: .zero, height: 400.0)
+        static let contentSize = CGSize(width: .zero, height: 200.0)
     }
     
 }

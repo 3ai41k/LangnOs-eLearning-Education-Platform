@@ -23,6 +23,10 @@ typealias FlashCardsViewModelProtocol =
     FlashCardsViewModelInputProtocol &
     FlashCardsViewModelOutputProtocol
 
+private enum SectionType: Int {
+    case flashCard
+}
+
 final class FlashCardsViewModel: FlashCardsViewModelProtocol {
     
     // MARK: - Public properties
@@ -36,6 +40,12 @@ final class FlashCardsViewModel: FlashCardsViewModelProtocol {
     private let words: [Word]
     private let speechSynthesizer: SpeakableProtocol
     
+    private var cancellables: [AnyCancellable?] = []
+    private let actionSubject = PassthroughSubject<FlashCardsSettingsRowAction, Never>()
+    private var actionPublisher: AnyPublisher<FlashCardsSettingsRowAction, Never> {
+        actionSubject.eraseToAnyPublisher()
+    }
+    
     // MARK: - Init
     
     init(router: FlashCardsCoordinatorProtocol, words: [Word], speechSynthesizer: SpeakableProtocol) {
@@ -45,10 +55,26 @@ final class FlashCardsViewModel: FlashCardsViewModelProtocol {
         
         self.title = .init("Flash Cards".localize)
         
+        self.bindView()
+        
         self.setupFlashCardsSection(&tableSections)
     }
     
     // MARK: - Private methods
+    
+    private func bindView() {
+        cancellables = [
+            actionPublisher.sink(receiveValue: { [weak self] (action) in
+                switch action {
+                case .changeLanguage:
+                    self?.tableSections[SectionType.flashCard.rawValue].cells.value.forEach({
+                        guard let cellViewModel = $0 as? FlashCardTableViewCellViewModel else { return }
+                        cellViewModel.flip()
+                    })
+                }
+            })
+        ]
+    }
     
     private func setupFlashCardsSection(_ tableSections: inout [SectionViewModelProtocol]) {
         let cells: [CellViewModelProtocol] = words.map({
@@ -70,7 +96,7 @@ final class FlashCardsViewModel: FlashCardsViewModelProtocol {
     // MARK: - FlashCardsViewModelOutputProtocol
     
     func settingsAction() {
-        router.navigateToSettings()
+        router.navigateToSettings(actionSubject: actionSubject)
     }
     
     func closeAction() {

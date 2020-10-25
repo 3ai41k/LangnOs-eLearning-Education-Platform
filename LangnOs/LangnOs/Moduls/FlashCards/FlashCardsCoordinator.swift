@@ -7,9 +7,10 @@
 //
 
 import UIKit
+import Combine
 
 protocol FlashCardsNavigationProtocol {
-    func navigateToSettings()
+    func navigateToSettings(actionSubject: PassthroughSubject<FlashCardsSettingsRowAction, Never>)
 }
 
 typealias FlashCardsCoordinatorProtocol =
@@ -53,8 +54,9 @@ final class FlashCardsCoordinator: Coordinator, FlashCardsCoordinatorProtocol {
     
     // MARK: - FlashCardsNavigationProtocol
     
-    func navigateToSettings() {
-        let flashCardsSettingsCoordinator = FlashCardsSettingsCoordinator(parentViewController: viewController)
+    func navigateToSettings(actionSubject: PassthroughSubject<FlashCardsSettingsRowAction, Never>) {
+        let flashCardsSettingsCoordinator = FlashCardsSettingsCoordinator(actionSubject: actionSubject,
+                                                                          parentViewController: viewController)
         flashCardsSettingsCoordinator.start()
     }
     
