@@ -20,17 +20,32 @@
                         <rect key="frame" x="16" y="8" width="288" height="400"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="32" translatesAutoresizingMaskIntoConstraints="NO" id="0vz-hI-lre">
-                                <rect key="frame" x="107" y="159" width="74" height="82.5"/>
+                                <rect key="frame" x="16" y="115" width="256" height="170"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2IL-JU-8yo">
-                                        <rect key="frame" x="16" y="0.0" width="42" height="20.5"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Header" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zNN-J1-dey">
+                                        <rect key="frame" x="90" y="0.0" width="76.5" height="29"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j0K-tu-8IX">
-                                        <rect key="frame" x="0.0" y="52.5" width="74" height="30"/>
-                                        <state key="normal" title="Pronounce"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Term/Definition" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2IL-JU-8yo">
+                                        <rect key="frame" x="5" y="61" width="246.5" height="41"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="34"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j0K-tu-8IX">
+                                        <rect key="frame" x="64" y="134" width="128" height="36"/>
+                                        <color key="backgroundColor" systemColor="systemGray6Color" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="36" id="bg2-E0-ksm"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <inset key="contentEdgeInsets" minX="15" minY="0.0" maxX="15" maxY="0.0"/>
+                                        <inset key="imageEdgeInsets" minX="-10" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <state key="normal" title="Pronounce" image="play.fill" catalog="system">
+                                            <color key="titleColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
                                         <connections>
                                             <action selector="didPronounceTouch:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="fBc-I2-kMA"/>
                                         </connections>
@@ -42,7 +57,10 @@
                         <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="0vz-hI-lre" firstAttribute="centerY" secondItem="4W6-2C-V0a" secondAttribute="centerY" id="0wZ-Zp-K3E"/>
-                            <constraint firstItem="0vz-hI-lre" firstAttribute="centerX" secondItem="4W6-2C-V0a" secondAttribute="centerX" id="ZxR-8v-gNI"/>
+                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="0vz-hI-lre" secondAttribute="bottom" constant="16" id="8in-tg-hye"/>
+                            <constraint firstItem="0vz-hI-lre" firstAttribute="leading" secondItem="4W6-2C-V0a" secondAttribute="leading" constant="16" id="F1N-2N-hN9"/>
+                            <constraint firstAttribute="trailing" secondItem="0vz-hI-lre" secondAttribute="trailing" constant="16" id="MaJ-of-feG"/>
+                            <constraint firstItem="0vz-hI-lre" firstAttribute="top" relation="greaterThanOrEqual" secondItem="4W6-2C-V0a" secondAttribute="top" constant="16" id="qO1-db-Rxy"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -57,10 +75,14 @@
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="flipContainerView" destination="4W6-2C-V0a" id="Cv7-y0-5ob"/>
+                <outlet property="headerLabel" destination="zNN-J1-dey" id="FYA-1h-z3b"/>
                 <outlet property="pronounceButton" destination="j0K-tu-8IX" id="lRm-sn-vou"/>
-                <outlet property="termLabel" destination="2IL-JU-8yo" id="7Mb-ux-18i"/>
+                <outlet property="termDefinitionLabel" destination="2IL-JU-8yo" id="YK9-8P-079"/>
             </connections>
             <point key="canvasLocation" x="137.68115942028987" y="178.79464285714286"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="play.fill" catalog="system" width="116" height="128"/>
+    </resources>
 </document>

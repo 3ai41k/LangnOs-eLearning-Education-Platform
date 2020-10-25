@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Combine
 
 final class FlashCardTableViewCell: UITableViewCell, UniversalTableViewCellRegistratable {
     
@@ -18,23 +19,27 @@ final class FlashCardTableViewCell: UITableViewCell, UniversalTableViewCellRegis
             flipContainerView.setShadow(color: .black, opacity: 0.25)
         }
     }
-    @IBOutlet private weak var termLabel: UILabel!
-    @IBOutlet private weak var pronounceButton: UIButton!
+    @IBOutlet private weak var headerLabel: UILabel!
+    @IBOutlet private weak var termDefinitionLabel: UILabel!
+    @IBOutlet private weak var pronounceButton: UIButton! {
+        didSet {
+            pronounceButton.layer.cornerRadius = 5.0
+            pronounceButton.layer.borderColor = UIColor.systemGray2.cgColor
+            pronounceButton.layer.borderWidth = 0.25
+        }
+    }
     
     // MARK: - Public properties
     
-    var viewModel: (FlashCardTableViewCellInputProtocol & FlashCardTableViewCellOutputProtocol & FlashCardTableViewCellBindingProtocol)? {
+    var viewModel: FlashCardCellViewModelProtocol? {
         didSet {
-            termLabel.text = viewModel?.term
-            viewModel?.isPronounceButtonEnabled = { (isEnabled) in
-                self.pronounceButton.isEnabled = isEnabled
-            }
+            bindViewModel()
         }
     }
     
     // MARK: - Private properties
     
-    private var isFipped = false
+    private var cancellables: [AnyCancellable?] = []
     
     // MARK: - Override
     
@@ -46,6 +51,18 @@ final class FlashCardTableViewCell: UITableViewCell, UniversalTableViewCellRegis
     
     // MARK: - Private methods
     
+    private func bindViewModel() {
+        cancellables = [
+            viewModel?.header.assign(to: \.text, on: headerLabel),
+            viewModel?.term.assign(to: \.text, on: termDefinitionLabel),
+            viewModel?.isPronounceButtonEnabled.assign(to: \.isEnabled, on: pronounceButton),
+            viewModel?.flipPublisher.sink(receiveValue: { [weak self] in
+                guard let self = self else { return }
+                UIView.transition(with: self.flipContainerView, duration: 0.5, options: .transitionFlipFromRight, animations: nil)
+            })
+        ]
+    }
+    
     private func addTapGesture() {
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(didFlipCard))
         flipContainerView.addGestureRecognizer(tapGestureRecognizer)
@@ -55,16 +72,12 @@ final class FlashCardTableViewCell: UITableViewCell, UniversalTableViewCellRegis
     
     @objc
     private func didFlipCard() {
-        self.isFipped = isFipped ? false : true
-        UIView.transition(with: flipContainerView, duration: 0.5, options: .transitionFlipFromRight, animations: {
-            self.termLabel.text = self.isFipped ? self.viewModel?.definition : self.viewModel?.term
-        })
+        viewModel?.flip()
     }
     
     @IBAction
     private func didPronounceTouch(_ sender: Any) {
-        guard let text = termLabel.text else { return }
-        viewModel?.speak(text: text)
+        viewModel?.pronaunce()
     }
     
 }

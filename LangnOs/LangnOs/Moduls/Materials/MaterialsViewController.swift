@@ -50,7 +50,9 @@ final class MaterialsViewController: BindibleViewController<MaterialsViewModelPr
     
     override func bindViewModel() {
         cancellables = [
-            viewModel?.title.assign(to: \.title, on: self),
+            viewModel?.title.sink(receiveValue: { [weak self] (title) in
+                self?.title = title
+            }),
             viewModel?.scopeButtonTitles.assign(to: \.searchBar.scopeButtonTitles, on: searchController),
             viewModel?.isActivityIndicatorHidden.sink(receiveValue: { [weak self] (isHidden) in
                 if isHidden {

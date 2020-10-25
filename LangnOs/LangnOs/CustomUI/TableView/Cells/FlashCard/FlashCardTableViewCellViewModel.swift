@@ -7,31 +7,43 @@
 //
 
 import Foundation
+import Combine
 
 protocol FlashCardTableViewCellInputProtocol {
-    var term: String { get }
-    var definition: String { get }
+    var header: CurrentValueSubject<String?, Never> { get }
+    var term: CurrentValueSubject<String?, Never> { get }
+    var isPronounceButtonEnabled: CurrentValueSubject<Bool, Never> { get }
+    var flipPublisher: AnyPublisher<Void, Never> { get }
 }
 
 protocol FlashCardTableViewCellOutputProtocol {
-    func speak(text: String)
+    func flip()
+    func pronaunce()
 }
 
-protocol FlashCardTableViewCellBindingProtocol {
-    var isPronounceButtonEnabled: ((Bool) -> Void)? { get set }
-}
-
-final class FlashCardTableViewCellViewModel: CellViewModelProtocol, FlashCardTableViewCellBindingProtocol {
+typealias FlashCardCellViewModelProtocol =
+    FlashCardTableViewCellInputProtocol &
+    FlashCardTableViewCellOutputProtocol
+    
+final class FlashCardTableViewCellViewModel: CellViewModelProtocol, FlashCardCellViewModelProtocol {
     
     // MARK: - Public properties
     
-    var isPronounceButtonEnabled: ((Bool) -> Void)?
+    var header: CurrentValueSubject<String?, Never>
+    var term: CurrentValueSubject<String?, Never>
+    var isPronounceButtonEnabled: CurrentValueSubject<Bool, Never>
+    var flipPublisher: AnyPublisher<Void, Never> {
+        flipSubject.eraseToAnyPublisher()
+    }
     
     // MARK: - Private properties
     
     private let word: Word
     private let speechSynthesizer: SpeakableProtocol
     private let onErrorHandler: (Error) -> Void
+    
+    private var isFipped = false
+    private var flipSubject = PassthroughSubject<Void, Never>()
     
     // MARK: - Init
     
@@ -41,37 +53,30 @@ final class FlashCardTableViewCellViewModel: CellViewModelProtocol, FlashCardTab
         self.word = word
         self.speechSynthesizer = speechSynthesizer
         self.onErrorHandler = onErrorHandler
+        
+        self.header = .init("Term".localize)
+        self.term = .init(word.term)
+        self.isPronounceButtonEnabled = .init(true)
     }
     
-}
-
-// MARK: - FlashCardTableViewCellInputProtocol
-
-extension FlashCardTableViewCellViewModel: FlashCardTableViewCellInputProtocol {
+    // MARK: - FlashCardTableViewCellOutputProtocol
     
-    var term: String {
-        word.term
+    func flip() {
+        flipSubject.send()
+        isFipped = isFipped ? false : true
+        header.value = isFipped ? "Definition".localize : "Term".localize
+        term.value = isFipped ? word.definition : word.term
     }
     
-    var definition: String {
-        word.definition
-    }
-    
-}
-
-// MARK: - FlashCardTableViewCellOutputProtocol
-
-extension FlashCardTableViewCellViewModel: FlashCardTableViewCellOutputProtocol {
-    
-    func speak(text: String) {
+    func pronaunce() {
         speechSynthesizer.didStartHandler = { [weak self] in
-            self?.isPronounceButtonEnabled?(false)
+            self?.isPronounceButtonEnabled.value = false
         }
         speechSynthesizer.didFinishHandler = { [weak self] in
-            self?.isPronounceButtonEnabled?(true)
+            self?.isPronounceButtonEnabled.value = true
         }
         do {
-            try speechSynthesizer.speak(string: text)
+            try speechSynthesizer.speak(string: term.value!)
         } catch {
             onErrorHandler(error)
         }

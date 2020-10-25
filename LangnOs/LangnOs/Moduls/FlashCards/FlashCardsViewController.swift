@@ -30,13 +30,13 @@ final class FlashCardsViewController: BindibleViewController<FlashCardsViewModel
     
     private var cancellables: [AnyCancellable?] = []
     
-    // MARK: - Lifecycle
-    // MARK: - Init
     // MARK: - Override
     
     override func bindViewModel() {
         cancellables = [
-            viewModel?.title.assign(to: \.title, on: self)
+            viewModel?.title.sink(receiveValue: { [weak self] (title) in
+                self?.title = title
+            })
         ]
     }
     
@@ -53,8 +53,6 @@ final class FlashCardsViewController: BindibleViewController<FlashCardsViewModel
         navigationItem.rightBarButtonItem = moreButton
     }
     
-    // MARK: - Public methods
-    // MARK: - Private methods
     // MARK: - Actions
     
     @objc

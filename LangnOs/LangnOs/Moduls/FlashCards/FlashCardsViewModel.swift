@@ -23,12 +23,12 @@ typealias FlashCardsViewModelProtocol =
     FlashCardsViewModelInputProtocol &
     FlashCardsViewModelOutputProtocol
 
-final class FlashCardsViewModel: UniversalTableViewModelProtocol {
+final class FlashCardsViewModel: FlashCardsViewModelProtocol {
     
     // MARK: - Public properties
     
     var title: CurrentValueSubject<String?, Never>
-    var tableSections: [SectionViewModelProtocol]
+    var tableSections: [SectionViewModelProtocol] = []
     
     // MARK: - Private properties
     
@@ -44,7 +44,6 @@ final class FlashCardsViewModel: UniversalTableViewModelProtocol {
         self.speechSynthesizer = speechSynthesizer
         
         self.title = .init("Flash Cards".localize)
-        self.tableSections = []
         
         self.setupFlashCardsSection(&tableSections)
     }
@@ -68,17 +67,7 @@ final class FlashCardsViewModel: UniversalTableViewModelProtocol {
                          actions: [OkAlertAction(handler: { })])
     }
     
-}
-
-// MARK: - FlashCardsViewModelInputProtocol
-
-extension FlashCardsViewModel: FlashCardsViewModelInputProtocol {
-    
-}
-
-// MARK: - FlashCardsViewModelOutputProtocol
-
-extension FlashCardsViewModel: FlashCardsViewModelOutputProtocol {
+    // MARK: - FlashCardsViewModelOutputProtocol
     
     func settingsAction() {
         router.navigateToSettings()
