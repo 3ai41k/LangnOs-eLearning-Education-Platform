@@ -8,6 +8,7 @@
 
 import UIKit
 import Combine
+import Reachability
 
 protocol NavigatableViewModelProtocol {
     var navigationItemDrivableModel: DrivableModelProtocol { get }
@@ -20,6 +21,7 @@ extension NavigatableViewModelProtocol {
 
 protocol DashboardViewModelInputProtocol {
     var title: CurrentValueSubject<String, Never> { get }
+    var isOfflineTitleHiddenPublisher: AnyPublisher<Bool, Never> { get }
 }
 
 enum DashboardViewModelAction {
@@ -46,6 +48,9 @@ final class DashboardViewModel: DashboardViewModelProtocol {
     // MARK: - Public properties
     
     var title: CurrentValueSubject<String, Never>
+    var isOfflineTitleHiddenPublisher: AnyPublisher<Bool, Never> {
+        isOfflineTitleHiddenSubject.eraseToAnyPublisher()
+    }
     var actionSubject = PassthroughSubject<DashboardViewModelAction, Never>()
     var tableSections: [SectionViewModelProtocol] = []
     
@@ -56,8 +61,8 @@ final class DashboardViewModel: DashboardViewModelProtocol {
     private let securityManager: SecurityManager
     private let dataFacade: DataProviderFetchingProtocol
     
-    private var cancellables: [AnyCancellable?] = []
-    
+    private var cancellables: [AnyCancellable] = []
+    private var isOfflineTitleHiddenSubject = PassthroughSubject<Bool, Never>()
     private var actionPublisher: AnyPublisher<DashboardViewModelAction, Never> {
         actionSubject.eraseToAnyPublisher()
     }
@@ -77,11 +82,16 @@ final class DashboardViewModel: DashboardViewModelProtocol {
         
         self.bindContext()
         self.bindView()
+        self.setupNotifications()
         
         self.setupEmptySection(&tableSections)
         self.setupMyWorkSection(&tableSections)
         self.setupFavoritesSection(&tableSections)
         self.setupRecentSection(&tableSections)
+    }
+    
+    deinit {
+        self.removerNotifications()
     }
     
     // MARK: - Public methods
@@ -103,20 +113,30 @@ final class DashboardViewModel: DashboardViewModelProtocol {
     // MARK: - Private methods
     
     private func bindContext() {
-        cancellables = [
-            
-        ]
+        
     }
     
     private func bindView() {
-        cancellables = [
-            actionPublisher.sink(receiveValue: { [weak self] (action) in
-                switch action {
-                case .userProfile:
-                    self?.router.navigateToUserProfile()
-                }
-            })
-        ]
+        actionPublisher.sink(receiveValue: { [weak self] (action) in
+            switch action {
+            case .userProfile:
+                self?.router.navigateToUserProfile()
+            }
+        }).store(in: &cancellables)
+    }
+    
+    private func setupNotifications() {
+        NotificationCenter.default
+            .publisher(for: .reachabilityChanged)
+            .compactMap({ $0.object as? Reachability })
+            .map({ $0.connection })
+            .sink { [weak self] in
+                self?.isOfflineTitleHiddenSubject.send($0 != .unavailable)
+        }.store(in: &cancellables)
+    }
+    
+    private func removerNotifications() {
+        NotificationCenter.default.removeObserver(self)
     }
     
     private func setupEmptySection(_ tableSections: inout [SectionViewModelProtocol]) {

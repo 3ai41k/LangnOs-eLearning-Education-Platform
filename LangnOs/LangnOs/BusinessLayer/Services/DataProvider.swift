@@ -42,14 +42,14 @@ final class DataProvider {
     
     private let firebaseDatabase: FirebaseDatabaseProtocol
     private let coreDataContext: CoreDataContext
-    private let reachability: InternetConnectableProtocol
+    private let network: InternetConnectableProtocol
     
     // MARK: - Init
     
     init() {
         self.firebaseDatabase = FirebaseDatabase()
         self.coreDataContext = CoreDataContext.shared
-        self.reachability = Reachability()
+        self.network = NetworkState.shared
     }
     
     // MARK: - Private methods
@@ -70,7 +70,7 @@ final class DataProvider {
 extension DataProvider: DataProviderFetchingProtocol {
     
     func fetch<Request: FirebaseDatabaseRequestProtocol>(request: Request, completion: @escaping (Result<[Request.Entity], Error>) -> Void) {
-        if reachability.isConnectedToNetwork {
+        if network.isReachable {
             firebaseDatabase.fetch(request: request) { (result: Result<[Request.Entity], Error>) in
                 switch result {
                 case .success(let entities):
@@ -93,7 +93,7 @@ extension DataProvider: DataProviderFetchingProtocol {
 extension DataProvider: DataProviderCreatingProtocol {
     
     func create<Request: FirebaseDatabaseRequestProtocol>(request: Request, completion: @escaping (Result<Void, Error>) -> Void) {
-        if reachability.isConnectedToNetwork {
+        if network.isReachable {
             guard let entity = request.entity else {
                 completion(.failure(DataProviderError.entityHasNoFound))
                 return
@@ -119,7 +119,7 @@ extension DataProvider: DataProviderCreatingProtocol {
 extension DataProvider: DataProviderDeletingProtocol {
     
     func delete<Request: FirebaseDatabaseRequestProtocol>(request: Request, completion: @escaping (Result<Void, Error>) -> Void) {
-        if reachability.isConnectedToNetwork {
+        if network.isReachable {
             guard let entity = request.entity else {
                 completion(.failure(DataProviderError.entityHasNoFound))
                 return
@@ -149,7 +149,7 @@ extension DataProvider: DataProviderDeletingProtocol {
 extension DataProvider: DataProviderUpdatingProtocol {
     
     func update<Request: FirebaseDatabaseRequestProtocol>(request: Request, completion: @escaping (Result<Void, Error>) -> Void) {
-        if reachability.isConnectedToNetwork {
+        if network.isReachable {
             guard let entity = request.entity else {
                 completion(.failure(DataProviderError.entityHasNoFound))
                 return
