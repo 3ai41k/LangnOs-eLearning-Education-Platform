@@ -86,13 +86,12 @@ final class WordsViewModel: WordsViewModelProtocol {
     }
     
     private func saveWordsIfСhanged() {
-        router.showActivity()
-        
         let words: [Word] = tableSections[SectionType.words.rawValue].cells.value.compactMap({
             ($0 as? WordRepresentionCellViewModel)?.word
         })
         
         if vocabulary.words != words {
+            router.showActivity()
             let vocabularyForUpdate = Vocabulary(update: vocabulary, words: words)
             let request = VocabularyUpdateRequest(vocabulary: vocabularyForUpdate)
             dataProvider.update(request: request) { (result) in

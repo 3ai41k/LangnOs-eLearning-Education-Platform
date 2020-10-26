@@ -16,7 +16,7 @@ protocol FirebaseDatabaseRequestProtocol {
     var entity: Entity? { get }
     func convertEntityToDicationary() -> [String: Any]?
     func setCollectionPath(_ reference: DatabaseReference) -> DatabaseReference
-    func setQuary(_ reference: DatabaseReference) -> DatabaseQuery?
+    func setQuary(_ reference: DatabaseReference) -> DatabaseQuery
 }
 
 extension FirebaseDatabaseRequestProtocol {
@@ -25,6 +25,6 @@ extension FirebaseDatabaseRequestProtocol {
     
     func convertEntityToDicationary() -> [String: Any]? { nil }
     
-    func setQuary(_ reference: DatabaseReference) -> DatabaseQuery? { nil }
+    func setQuary(_ reference: DatabaseReference) -> DatabaseQuery { reference }
     
 }

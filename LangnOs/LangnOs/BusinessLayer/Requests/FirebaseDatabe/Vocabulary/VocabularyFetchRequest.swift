@@ -26,7 +26,7 @@ extension VocabularyFetchRequest: FirebaseDatabaseRequestProtocol {
         reference.child("Vocabulary")
     }
     
-    func setQuary(_ reference: DatabaseReference) -> DatabaseQuery? {
+    func setQuary(_ reference: DatabaseReference) -> DatabaseQuery {
         reference.queryOrdered(byChild: "userId").queryEqual(toValue: userId)
     }
     

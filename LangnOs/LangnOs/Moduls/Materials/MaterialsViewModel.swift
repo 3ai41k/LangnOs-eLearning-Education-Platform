@@ -141,7 +141,7 @@ extension MaterialsViewModel {
         dataProvider.fetch(request: request) { (resulr: Result<[Vocabulary], Error>) in
             switch resulr {
             case .success(let vocabularies):
-                self.vocabularies = vocabularies
+                self.vocabularies = vocabularies.sorted(by: \.createdDate, using: >)
             case .failure(let error):
                 self.router.showError(error)
             }

@@ -16,10 +16,6 @@ extension Sequence {
         })
     }
     
-    public func sorted<Value: Comparable>(by keyPath: KeyPath<Self.Element, Value>) -> [Self.Element] {
-        self.sorted(by: keyPath, using: <)
-    }
-    
     func filter<T: Equatable>(where keyPath: KeyPath<Element, T>, equals compareValue: T) -> [Element] {
         return filter { $0[keyPath: keyPath] == compareValue }
     }
