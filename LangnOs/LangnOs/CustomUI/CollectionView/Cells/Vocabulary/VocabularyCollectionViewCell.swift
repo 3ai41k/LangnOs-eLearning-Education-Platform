@@ -15,7 +15,6 @@ final class VocabularyCollectionViewCell: UICollectionViewCell, UniversalCollect
     @IBOutlet private weak var containerView: UIView! {
         didSet {
             containerView.layer.cornerRadius = 20.0
-            containerView.backgroundColor = .systemGreen
         }
     }
     @IBOutlet private weak var categoryLabel: UILabel!
@@ -23,14 +22,12 @@ final class VocabularyCollectionViewCell: UICollectionViewCell, UniversalCollect
     @IBOutlet private weak var phrasesLearnnedView: UIView! {
         didSet {
             phrasesLearnnedView.layer.cornerRadius = phrasesLearnnedView.bounds.height / 2.0
-            phrasesLearnnedView.backgroundColor = .systemGreen
         }
     }
     @IBOutlet private weak var phrasesLearnedLabel: UILabel!
     @IBOutlet private weak var phrasesLeftToLearnView: UIView! {
         didSet {
             phrasesLeftToLearnView.layer.cornerRadius = phrasesLeftToLearnView.bounds.height / 2.0
-            phrasesLeftToLearnView.backgroundColor = .systemGreen
         }
     }
     @IBOutlet private weak var phrasesLeftToLearnLabel: UILabel!
