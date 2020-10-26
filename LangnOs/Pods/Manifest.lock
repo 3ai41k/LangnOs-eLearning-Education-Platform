@@ -62,11 +62,13 @@ PODS:
     - nanopb/encode (= 0.3.9011)
   - nanopb/decode (0.3.9011)
   - nanopb/encode (0.3.9011)
+  - ReachabilitySwift (5.0.0)
 
 DEPENDENCIES:
   - Firebase/Auth
   - Firebase/Database
   - Firebase/Storage
+  - ReachabilitySwift
 
 SPEC REPOS:
   trunk:
@@ -84,6 +86,7 @@ SPEC REPOS:
     - GTMSessionFetcher
     - leveldb-library
     - nanopb
+    - ReachabilitySwift
 
 SPEC CHECKSUMS:
   Firebase: 458d109512200d1aca2e1b9b6cf7d68a869a4a46
@@ -100,7 +103,8 @@ SPEC CHECKSUMS:
   GTMSessionFetcher: 43b8b64263023d4f32caa0b40f4c8bfa3c5f36d8
   leveldb-library: 55d93ee664b4007aac644a782d11da33fba316f7
   nanopb: 18003b5e52dab79db540fe93fe9579f399bd1ccd
+  ReachabilitySwift: 985039c6f7b23a1da463388634119492ff86c825
 
-PODFILE CHECKSUM: c3450b0ae980da196899a8af62a6cb9cb38d15a6
+PODFILE CHECKSUM: b3e28a84322b2b14b2d45776d343c64f9cb6c82d
 
 COCOAPODS: 1.9.1
