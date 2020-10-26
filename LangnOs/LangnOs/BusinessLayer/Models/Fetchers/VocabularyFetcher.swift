@@ -32,16 +32,14 @@ final class VocabularyFetcher: CDEntityFather<Vocabulary> {
         vocabulary.phrasesLeftToLearn = Int32(entity.phrasesLeftToLearn)
         vocabulary.totalLearningTime = entity.totalLearningTime
         vocabulary.createdDate = entity.createdDate
-        entity.words.forEach({
-            let word = WordEntity(context: context)
-            word.term = $0.term
-            word.definition = $0.definition
-            vocabulary.addToWords(word)
-        })
+        vocabulary.words = NSSet(array: entity.words.map({
+            WordEntity(word: $0, context: context)
+        }))
     }
     
     override func update(context: NSManagedObjectContext, entity: Vocabulary) throws {
         let request = NSFetchRequest<VocabularyEntity>(entityName: "VocabularyEntity")
+        request.predicate = NSPredicate(format: "id == %@", UUID(uuidString: entity.id)! as CVarArg)
         do {
             let vocabularies = try context.fetch(request)
             if let vocabulary = vocabularies.first {
@@ -53,7 +51,9 @@ final class VocabularyFetcher: CDEntityFather<Vocabulary> {
                 vocabulary.phrasesLeftToLearn = Int32(entity.phrasesLeftToLearn)
                 vocabulary.totalLearningTime = entity.totalLearningTime
                 vocabulary.createdDate = entity.createdDate
-                vocabulary.words = NSSet(object: entity.words)
+                vocabulary.words = NSSet(array: entity.words.map({
+                    WordEntity(word: $0, context: context)
+                }))
             }
         } catch {
             throw error
@@ -62,6 +62,7 @@ final class VocabularyFetcher: CDEntityFather<Vocabulary> {
     
     override func delete(context: NSManagedObjectContext, entity: Vocabulary) throws {
         let request = NSFetchRequest<VocabularyEntity>(entityName: "VocabularyEntity")
+        request.predicate = NSPredicate(format: "id == %@", UUID(uuidString: entity.id)! as CVarArg)
         do {
             try context.fetch(request).forEach({ context.delete($0) })
         } catch {

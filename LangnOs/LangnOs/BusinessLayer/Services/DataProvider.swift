@@ -36,23 +36,19 @@ typealias FirebaseDatabaseProtocol =
     FirebaseDatabaseDeletingProtocol &
     FirebaseDatabaseUpdatingProtocol
 
-typealias CoreDataContextProtocol =
-    ContextAccessableProtocol &
-    ContextSavableProtocol
-
 final class DataProvider {
     
     // MARK: - Private properties
     
     private let firebaseDatabase: FirebaseDatabaseProtocol
-    private let coreDataContext: CoreDataContextProtocol
+    private let coreDataContext: CoreDataContext
     private let reachability: InternetConnectableProtocol
     
     // MARK: - Init
     
     init() {
         self.firebaseDatabase = FirebaseDatabase()
-        self.coreDataContext = CoreDataContext()
+        self.coreDataContext = CoreDataContext.shared
         self.reachability = Reachability()
     }
     
@@ -60,7 +56,7 @@ final class DataProvider {
     
     private func selectAll<Entity: CDEntityProtocol>(completion: @escaping (Result<[Entity], Error>) -> Void) {
         do {
-            let entitise = try Entity.select(context: coreDataContext.context)
+            let entitise = try Entity.select(context: coreDataContext.persistentContainer.viewContext)
             completion(.success(entitise))
         } catch {
             completion(.failure(error))
@@ -78,8 +74,8 @@ extension DataProvider: DataProviderFetchingProtocol {
             firebaseDatabase.fetch(request: request) { (result: Result<[Request.Entity], Error>) in
                 switch result {
                 case .success(let entities):
-                    entities.forEach({ try? Request.Entity.delete(context: self.coreDataContext.context, entity: $0) })
-                    entities.forEach({ Request.Entity.insert(context: self.coreDataContext.context, entity: $0) })
+                    entities.forEach({ try? Request.Entity.delete(context: self.coreDataContext.viewContext, entity: $0) })
+                    entities.forEach({ Request.Entity.insert(context: self.coreDataContext.viewContext, entity: $0) })
                     self.selectAll(completion: completion)
                 case .failure(let error):
                     completion(.failure(error))
@@ -105,7 +101,7 @@ extension DataProvider: DataProviderCreatingProtocol {
             firebaseDatabase.create(request: request) { (result) in
                 switch result {
                 case .success:
-                    Request.Entity.insert(context: self.coreDataContext.context, entity: entity)
+                    Request.Entity.insert(context: self.coreDataContext.viewContext, entity: entity)
                     completion(.success(()))
                 case .failure(let error):
                     completion(.failure(error))
@@ -132,7 +128,7 @@ extension DataProvider: DataProviderDeletingProtocol {
                 switch result {
                 case .success:
                     do {
-                        try Request.Entity.delete(context: self.coreDataContext.context, entity: entity)
+                        try Request.Entity.delete(context: self.coreDataContext.viewContext, entity: entity)
                         completion(.success(()))
                     } catch {
                         completion(.failure(error))
@@ -162,7 +158,7 @@ extension DataProvider: DataProviderUpdatingProtocol {
                 switch result {
                 case .success:
                     do {
-                        try Request.Entity.update(context: self.coreDataContext.context, entity: entity)
+                        try Request.Entity.update(context: self.coreDataContext.viewContext, entity: entity)
                         completion(.success(()))
                     } catch {
                         completion(.failure(error))

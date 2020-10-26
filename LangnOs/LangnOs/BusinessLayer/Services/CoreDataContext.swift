@@ -9,19 +9,17 @@
 import Foundation
 import CoreData
 
-protocol ContextAccessableProtocol {
-    var context: NSManagedObjectContext { get }
-}
-
-protocol ContextSavableProtocol {
-    func save()
-}
-
 final class CoreDataContext {
 
-    // MARK: - Private properties
+    // MARK: - Public properties
     
-    private lazy var persistentContainer: NSPersistentContainer = {
+    static let shared = CoreDataContext()
+    
+    lazy var viewContext: NSManagedObjectContext = {
+        persistentContainer.viewContext
+    }()
+    
+    lazy var persistentContainer: NSPersistentContainer = {
         let container = NSPersistentContainer(name: "LangnOs")
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
             if let error = error as NSError? {
@@ -31,27 +29,16 @@ final class CoreDataContext {
         return container
     }()
     
-}
-
-// MARK: - ContextAccessableProtocol
-
-extension CoreDataContext: ContextAccessableProtocol {
+    // MARK: - Init
     
-    var context: NSManagedObjectContext {
-        persistentContainer.viewContext
-    }
+    private init() { }
     
-}
-
-// MARK: - ContextSavableProtocol
-
-extension CoreDataContext: ContextSavableProtocol {
+    // MARK: - Public methods
     
     func save() {
-        let context = persistentContainer.viewContext
-        if context.hasChanges {
+        if viewContext.hasChanges {
             do {
-                try context.save()
+                try viewContext.save()
             } catch {
                 let nserror = error as NSError
                 fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
