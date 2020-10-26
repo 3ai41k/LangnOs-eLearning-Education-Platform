@@ -7,13 +7,15 @@
 //
 
 import Foundation
-import SystemConfiguration
 import Reachability
-import Combine
 
 protocol InternetConnectableProtocol {
     var isReachable: Bool { get }
 }
+
+//
+// MARK: Notifications work correctly only on real device
+//
 
 final class NetworkState {
 
@@ -33,7 +35,7 @@ final class NetworkState {
         reachability.stopNotifier()
     }
     
-    // MARK: - Private methods
+    // MARK: - Public methods
     
     func observeReachability(){
         do {

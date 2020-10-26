@@ -20,6 +20,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         FirebaseApp.configure()
         
+        NetworkState.shared.observeReachability()
+        
         setupUIGlobaly()
         
         return true

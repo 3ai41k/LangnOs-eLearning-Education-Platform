@@ -36,8 +36,11 @@ final class DashboardViewController: BindibleViewController<DashboardViewModelPr
                 self?.navigationController?.navigationBar.topItem?.title = title
             }),
             viewModel?.isOfflineTitleHiddenPublisher.sink(receiveValue: { [weak self] (isHidden) in
-                UIView.animate(withDuration: 0.3) {
+                self?.navigationController?.navigationBar.topItem?.titleView?.isHidden = !isHidden
+                UIView.animate(withDuration: 0.3, animations: {
                     self?.navigationController?.navigationBar.topItem?.titleView?.layer.opacity = isHidden ? 0.0 : 1.0
+                }) { (finished) in
+                    self?.navigationController?.navigationBar.topItem?.titleView?.isHidden = isHidden
                 }
             })
         ]
