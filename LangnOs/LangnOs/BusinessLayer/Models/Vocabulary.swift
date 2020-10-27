@@ -14,6 +14,7 @@ struct Vocabulary: Codable {
     let userId: String
     let title: String
     let category: String
+    let isFavorite: Bool
     let phrasesLearned: Int
     let phrasesLeftToLearn: Int
     let totalLearningTime: Double
@@ -25,6 +26,7 @@ struct Vocabulary: Codable {
         self.userId = userId
         self.title = title
         self.category = category
+        self.isFavorite = false
         self.phrasesLearned = 0
         self.phrasesLeftToLearn = 0
         self.totalLearningTime = 0.0
@@ -37,6 +39,7 @@ struct Vocabulary: Codable {
         self.userId = entity.userId!
         self.title = entity.title!
         self.category = entity.category!
+        self.isFavorite = entity.isFavorite
         self.phrasesLearned = Int(entity.phrasesLearned)
         self.phrasesLeftToLearn = Int(entity.phrasesLeftToLearn)
         self.totalLearningTime = entity.totalLearningTime
@@ -51,6 +54,7 @@ struct Vocabulary: Codable {
         self.userId = update.userId
         self.title = update.title
         self.category = update.category
+        self.isFavorite = update.isFavorite
         self.phrasesLearned = update.phrasesLearned
         self.phrasesLeftToLearn = update.phrasesLeftToLearn
         self.totalLearningTime = update.totalLearningTime

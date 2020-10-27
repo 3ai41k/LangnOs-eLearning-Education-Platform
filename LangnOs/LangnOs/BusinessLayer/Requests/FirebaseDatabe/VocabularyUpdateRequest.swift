@@ -1,14 +1,14 @@
 //
-//  VocabularyCreateRequest.swift
+//  VocabularyUpdateRequest.swift
 //  LangnOs
 //
-//  Created by Nikita Lizogubov on 05.10.2020.
+//  Created by Nikita Lizogubov on 25.10.2020.
 //  Copyright © 2020 NL. All rights reserved.
 //
 
-import FirebaseDatabase
+import Foundation
 
-struct VocabularyCreateRequest {
+struct VocabularyUpdateRequest {
     
     // MARK: - Public properties
     
@@ -18,7 +18,7 @@ struct VocabularyCreateRequest {
 
 // MARK: - FirebaseDatabaseRequestProtocol
 
-extension VocabularyCreateRequest: FirebaseDatabaseRequestProtocol {
+extension VocabularyUpdateRequest: FirebaseDatabaseRequestProtocol {
     
     typealias Entity = Vocabulary
     

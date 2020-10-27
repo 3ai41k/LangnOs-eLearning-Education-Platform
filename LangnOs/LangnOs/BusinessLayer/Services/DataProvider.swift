@@ -74,10 +74,9 @@ extension DataProvider: DataProviderFetchingProtocol {
             firebaseDatabase.fetch(request: request) { (result: Result<[Request.Entity], Error>) in
                 switch result {
                 case .success(let entities):
-//                    entities.forEach({ try? Request.Entity.delete(context: self.coreDataContext.viewContext, entity: $0) })
-//                    entities.forEach({ Request.Entity.insert(context: self.coreDataContext.viewContext, entity: $0) })
-//                    self.selectAll(completion: completion)
-                    completion(.success(entities))
+                    entities.forEach({ try? Request.Entity.delete(context: self.coreDataContext.viewContext, entity: $0) })
+                    entities.forEach({ Request.Entity.insert(context: self.coreDataContext.viewContext, entity: $0) })
+                    self.selectAll(completion: completion)
                 case .failure(let error):
                     completion(.failure(error))
                 }

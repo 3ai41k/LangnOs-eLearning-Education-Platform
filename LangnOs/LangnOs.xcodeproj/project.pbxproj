@@ -222,6 +222,7 @@
 		8DF253CD2545FCC1001492AE /* VocabularyUpdateRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF253CC2545FCC1001492AE /* VocabularyUpdateRequest.swift */; };
 		8DF253D025471D10001492AE /* OfflineTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF253CF25471D10001492AE /* OfflineTitleView.swift */; };
 		8DF253D225471D1A001492AE /* OfflineTitleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DF253D125471D19001492AE /* OfflineTitleView.xib */; };
+		8DF253D625485073001492AE /* FavoriteVocabularyFetchRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF253D525485073001492AE /* FavoriteVocabularyFetchRequest.swift */; };
 		8DF928A9253DDE700052FC31 /* WritingWordModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF928A8253DDE700052FC31 /* WritingWordModel.swift */; };
 		8DF928AC253DEBCF0052FC31 /* WritingProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF928AB253DEBCF0052FC31 /* WritingProgressView.swift */; };
 		8DF928AE253DEBEC0052FC31 /* WritingProgressView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DF928AD253DEBEC0052FC31 /* WritingProgressView.xib */; };
@@ -447,6 +448,7 @@
 		8DF253CC2545FCC1001492AE /* VocabularyUpdateRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabularyUpdateRequest.swift; sourceTree = "<group>"; };
 		8DF253CF25471D10001492AE /* OfflineTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfflineTitleView.swift; sourceTree = "<group>"; };
 		8DF253D125471D19001492AE /* OfflineTitleView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OfflineTitleView.xib; sourceTree = "<group>"; };
+		8DF253D525485073001492AE /* FavoriteVocabularyFetchRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteVocabularyFetchRequest.swift; sourceTree = "<group>"; };
 		8DF928A8253DDE700052FC31 /* WritingWordModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WritingWordModel.swift; sourceTree = "<group>"; };
 		8DF928AB253DEBCF0052FC31 /* WritingProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WritingProgressView.swift; sourceTree = "<group>"; };
 		8DF928AD253DEBEC0052FC31 /* WritingProgressView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WritingProgressView.xib; sourceTree = "<group>"; };
@@ -773,7 +775,11 @@
 			isa = PBXGroup;
 			children = (
 				8DAA55462529129E00FF5066 /* FirebaseDatabaseRequestProtocol.swift */,
-				8DC3CF4C252D3083003CA62A /* Vocabulary */,
+				8DF253D525485073001492AE /* FavoriteVocabularyFetchRequest.swift */,
+				8DAA5549252912BA00FF5066 /* VocabularyFetchRequest.swift */,
+				8D662559252B0F9F00991D45 /* VocabularyCreateRequest.swift */,
+				8DC3CF42252D2CBD003CA62A /* VocabularyDeleteRequest.swift */,
+				8DF253CC2545FCC1001492AE /* VocabularyUpdateRequest.swift */,
 			);
 			path = FirebaseDatabe;
 			sourceTree = "<group>";
@@ -782,18 +788,10 @@
 			isa = PBXGroup;
 			children = (
 				8D94E84F253A4039005FA4B9 /* FirebaseFirestoreUploadRequestProtocol.swift */,
-				8D94E85E253B5144005FA4B9 /* UserImage */,
-			);
-			path = FirebaseFirestore;
-			sourceTree = "<group>";
-		};
-		8D94E85E253B5144005FA4B9 /* UserImage */ = {
-			isa = PBXGroup;
-			children = (
 				8D94E851253A4051005FA4B9 /* UserImageFirestoreRequest.swift */,
 				8D94E85C253B50FC005FA4B9 /* DeleteUserImageFirestoreRequest.swift */,
 			);
-			path = UserImage;
+			path = FirebaseFirestore;
 			sourceTree = "<group>";
 		};
 		8D94E85F253CB825005FA4B9 /* Utils */ = {
@@ -874,17 +872,6 @@
 				8DC3CF33252CD5CD003CA62A /* SquareGridFlowLayout.swift */,
 			);
 			path = Layout;
-			sourceTree = "<group>";
-		};
-		8DC3CF4C252D3083003CA62A /* Vocabulary */ = {
-			isa = PBXGroup;
-			children = (
-				8DAA5549252912BA00FF5066 /* VocabularyFetchRequest.swift */,
-				8D662559252B0F9F00991D45 /* VocabularyCreateRequest.swift */,
-				8DC3CF42252D2CBD003CA62A /* VocabularyDeleteRequest.swift */,
-				8DF253CC2545FCC1001492AE /* VocabularyUpdateRequest.swift */,
-			);
-			path = Vocabulary;
 			sourceTree = "<group>";
 		};
 		8DD28B78252667F600F59B7D = {
@@ -1539,6 +1526,7 @@
 				8D94E82125373FB6005FA4B9 /* VocabularyFilterViewController.swift in Sources */,
 				8DF2537E254328CD001492AE /* ColoredImageTableViewCell.swift in Sources */,
 				8D66254C252A7D3900991D45 /* WordsViewModel.swift in Sources */,
+				8DF253D625485073001492AE /* FavoriteVocabularyFetchRequest.swift in Sources */,
 				8D66253A252A6D4600991D45 /* VocabularyProgressView.swift in Sources */,
 				8D83EA76252B9EB9004E6098 /* CoordinatorClosableProtocol.swift in Sources */,
 				8DD28BD32526854300F59B7D /* UINavigationItem+Drivable.swift in Sources */,

@@ -59,7 +59,7 @@ extension FirebaseDatabase: FirebaseDatabaseFetchingProtocol {
             if let error = error {
                 completion(.failure(error))
             } else {
-                if let data = snapshot?.documents.map({ $0.data() }), !data.isEmpty {
+                if let data = snapshot?.documents.map({ $0.data() }) {
                     let entities: [Request.Entity]? = try? DictionaryDecoder().decode(data: data)
                     completion(.success(entities ?? []))
                 } else {

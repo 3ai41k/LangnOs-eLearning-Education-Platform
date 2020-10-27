@@ -1,14 +1,14 @@
 //
-//  VocabularyDeleteRequest.swift
+//  VocabularyCreateRequest.swift
 //  LangnOs
 //
-//  Created by Nikita Lizogubov on 07.10.2020.
+//  Created by Nikita Lizogubov on 05.10.2020.
 //  Copyright © 2020 NL. All rights reserved.
 //
 
-import FirebaseDatabase
+import Foundation
 
-struct VocabularyDeleteRequest {
+struct VocabularyCreateRequest {
     
     // MARK: - Public properties
     
@@ -18,7 +18,7 @@ struct VocabularyDeleteRequest {
 
 // MARK: - FirebaseDatabaseRequestProtocol
 
-extension VocabularyDeleteRequest: FirebaseDatabaseRequestProtocol {
+extension VocabularyCreateRequest: FirebaseDatabaseRequestProtocol {
     
     typealias Entity = Vocabulary
     
@@ -28,6 +28,10 @@ extension VocabularyDeleteRequest: FirebaseDatabaseRequestProtocol {
     
     var path: String {
         "Vocabularies"
+    }
+    
+    var dicationary: [String : Any]? {
+        try? DictionaryEncoder().encode(entity: vocabulary)
     }
     
 }
