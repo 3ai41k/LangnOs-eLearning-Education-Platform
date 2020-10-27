@@ -6,8 +6,7 @@
 //  Copyright © 2020 NL. All rights reserved.
 //
 
-import Foundation
-import FirebaseDatabase
+import FirebaseFirestore
 
 enum FirebaseDatabaseError: Error {
     case documentsWereNotFound
@@ -43,20 +42,8 @@ final class FirebaseDatabase {
     
     // MARK: - Private properties
     
-    private var dataBase: DatabaseReference {
-        Database.database().reference()
-    }
-    
-    // MARK: - Private methods
-    
-    private func decode<Entity: Decodable>(dicationary: [String: Any], onError: (Error) -> Void) -> [Entity] {
-        do {
-            let entities: [String: Entity] = try DictionaryDecoder().decode(dictionary: dicationary)
-            return Array(entities.values)
-        } catch {
-            onError(error)
-        }
-        return []
+    private var dataBase: Firestore {
+        Firestore.firestore()
     }
     
 }
@@ -66,17 +53,19 @@ final class FirebaseDatabase {
 extension FirebaseDatabase: FirebaseDatabaseFetchingProtocol {
     
     func fetch<Request: FirebaseDatabaseRequestProtocol>(request: Request, completion: @escaping (Result<[Request.Entity], Error>) -> Void) {
-        var reference = dataBase
-        reference = request.setCollectionPath(reference)
-        request.setQuary(reference).observeSingleEvent(of: .value, with: { (dataSnapshot) in
-            if let documents = dataSnapshot.value as? [String: [String: Any]] {
-                let entities: [Request.Entity] = self.decode(dicationary: documents, onError: { completion(.failure($0)) })
-                completion(.success(entities))
+        let reference = dataBase.collection(request.path)
+        let query = request.setQuere(reference)
+        query.getDocuments { (snapshot, error) in
+            if let error = error {
+                completion(.failure(error))
             } else {
-                completion(.success([]))
+                if let data = snapshot?.documents.map({ $0.data() }), !data.isEmpty {
+                    let entities: [Request.Entity]? = try? DictionaryDecoder().decode(data: data)
+                    completion(.success(entities ?? []))
+                } else {
+                    completion(.success([]))
+                }
             }
-        }) { (error) in
-            completion(.failure(error))
         }
     }
     
@@ -87,14 +76,12 @@ extension FirebaseDatabase: FirebaseDatabaseFetchingProtocol {
 extension FirebaseDatabase: FirebaseDatabaseCreatingProtocol {
     
     func create<Request: FirebaseDatabaseRequestProtocol>(request: Request, completion: @escaping (Result<Void, Error>) -> Void) {
-        guard let dicationary = request.convertEntityToDicationary(), !dicationary.isEmpty else {
+        guard let data = request.dicationary else {
             completion(.failure(FirebaseDatabaseError.documentIsEmpty))
             return
         }
-        
-        var reference = dataBase
-        reference = request.setCollectionPath(reference)
-        reference.setValue(dicationary) { (error, _) in
+        let reference = dataBase.collection(request.path)
+        reference.addDocument(data: data) { (error) in
             if let error = error {
                 completion(.failure(error))
             } else {
@@ -110,15 +97,7 @@ extension FirebaseDatabase: FirebaseDatabaseCreatingProtocol {
 extension FirebaseDatabase: FirebaseDatabaseDeletingProtocol {
     
     func delete<Request: FirebaseDatabaseRequestProtocol>(request: Request, completion: @escaping (Result<Void, Error>) -> Void) {
-        var reference = dataBase
-        reference = request.setCollectionPath(reference)
-        reference.removeValue { (error, _) in
-            if let error = error {
-                completion(.failure(error))
-            } else {
-                completion(.success(()))
-            }
-        }
+        
     }
     
 }
@@ -128,20 +107,7 @@ extension FirebaseDatabase: FirebaseDatabaseDeletingProtocol {
 extension FirebaseDatabase: FirebaseDatabaseUpdatingProtocol {
     
     func update<Request: FirebaseDatabaseRequestProtocol>(request: Request, completion: @escaping (Result<Void, Error>) -> Void) {
-        guard let dicationary = request.convertEntityToDicationary(), !dicationary.isEmpty else {
-            completion(.failure(FirebaseDatabaseError.documentIsEmpty))
-            return
-        }
         
-        var reference = dataBase
-        reference = request.setCollectionPath(reference)
-        reference.updateChildValues(dicationary) { (error, _) in
-            if let error = error {
-                completion(.failure(error))
-            } else {
-                completion(.success(()))
-            }
-        }
     }
     
 }

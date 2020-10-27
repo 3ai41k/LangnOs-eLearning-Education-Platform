@@ -10,9 +10,9 @@ import Foundation
 
 final class DictionaryDecoder {
     
-    func decode<Entity: Decodable>(dictionary: [String: Any]) throws -> Entity {
+    func decode<Entity: Decodable>(data: Any) throws -> Entity {
         do {
-            let data = try JSONSerialization.data(withJSONObject: dictionary, options: .prettyPrinted)
+            let data = try JSONSerialization.data(withJSONObject: data, options: .prettyPrinted)
             let entity = try JSONDecoder().decode(Entity.self, from: data)
             return entity
         } catch {

@@ -26,8 +26,8 @@ extension VocabularyDeleteRequest: FirebaseDatabaseRequestProtocol {
         vocabulary
     }
     
-    func setCollectionPath(_ reference: DatabaseReference) -> DatabaseReference {
-        reference.child("Vocabulary").child(vocabulary.id)
+    var path: String {
+        "Vocabularies"
     }
     
 }

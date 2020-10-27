@@ -138,8 +138,8 @@ extension MaterialsViewModel {
         guard let userId = securityManager.user?.uid else { return }
         
         let request = VocabularyFetchRequest(userId: userId)
-        dataProvider.fetch(request: request) { (resulr: Result<[Vocabulary], Error>) in
-            switch resulr {
+        dataProvider.fetch(request: request) { (result: Result<[Vocabulary], Error>) in
+            switch result {
             case .success(let vocabularies):
                 self.vocabularies = vocabularies.sorted(by: \.createdDate, using: >)
             case .failure(let error):

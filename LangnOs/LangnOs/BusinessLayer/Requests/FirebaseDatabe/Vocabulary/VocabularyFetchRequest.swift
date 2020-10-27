@@ -6,7 +6,7 @@
 //  Copyright © 2020 NL. All rights reserved.
 //
 
-import FirebaseDatabase
+import FirebaseFirestore
 
 struct VocabularyFetchRequest {
     
@@ -22,12 +22,12 @@ extension VocabularyFetchRequest: FirebaseDatabaseRequestProtocol {
     
     typealias Entity = Vocabulary
     
-    func setCollectionPath(_ reference: DatabaseReference) -> DatabaseReference {
-        reference.child("Vocabulary")
+    var path: String {
+        "Vocabularies"
     }
     
-    func setQuary(_ reference: DatabaseReference) -> DatabaseQuery {
-        reference.queryOrdered(byChild: "userId").queryEqual(toValue: userId)
+    func setQuere(_ reference: CollectionReference) -> Query {
+        reference.whereField("userId", isEqualTo: userId)
     }
     
 }

@@ -26,12 +26,12 @@ extension VocabularyUpdateRequest: FirebaseDatabaseRequestProtocol {
         vocabulary
     }
     
-    func convertEntityToDicationary() -> [String : Any]? {
-        try? DictionaryEncoder().encode(entity: vocabulary)
+    var path: String {
+        "Vocabularies"
     }
     
-    func setCollectionPath(_ reference: DatabaseReference) -> DatabaseReference {
-        reference.child("Vocabulary").child(vocabulary.id)
+    var dicationary: [String : Any]? {
+        try? DictionaryEncoder().encode(entity: vocabulary)
     }
     
 }

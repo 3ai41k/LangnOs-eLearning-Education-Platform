@@ -6,25 +6,24 @@
 //  Copyright © 2020 NL. All rights reserved.
 //
 
-import Foundation
-import FirebaseDatabase
+import FirebaseFirestore
 
 // TO DO: Rename
 
 protocol FirebaseDatabaseRequestProtocol {
     associatedtype Entity: Codable & CDEntityProtocol
     var entity: Entity? { get }
-    func convertEntityToDicationary() -> [String: Any]?
-    func setCollectionPath(_ reference: DatabaseReference) -> DatabaseReference
-    func setQuary(_ reference: DatabaseReference) -> DatabaseQuery
+    var path: String { get }
+    var dicationary: [String: Any]? { get }
+    func setQuere(_ reference: CollectionReference) -> Query
 }
 
 extension FirebaseDatabaseRequestProtocol {
     
     var entity: Entity? { nil }
     
-    func convertEntityToDicationary() -> [String: Any]? { nil }
+    var dicationary: [String: Any]? { nil }
     
-    func setQuary(_ reference: DatabaseReference) -> DatabaseQuery { reference }
+    func setQuere(_ reference: CollectionReference) -> Query { reference }
     
 }
