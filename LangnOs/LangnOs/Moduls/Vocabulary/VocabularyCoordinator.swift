@@ -38,7 +38,10 @@ final class VocabularyCoordinator: Coordinator, AlertPresentableProtocol {
     // MARK: - Override
     
     override func start() {
-        let viewModel = VocabularyViewModel(router: self, vocabulary: vocabulary)
+        let dataProvider = DataProvider()
+        let viewModel = VocabularyViewModel(router: self,
+                                            vocabulary: vocabulary,
+                                            dataProvider: dataProvider)
         let viewController = VocabularyViewController()
         viewController.viewModel = viewModel
         

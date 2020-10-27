@@ -6,7 +6,7 @@
 //  Copyright © 2020 NL. All rights reserved.
 //
 
-import Foundation
+import FirebaseFirestore
 
 struct VocabularyUpdateRequest {
     
@@ -18,11 +18,11 @@ struct VocabularyUpdateRequest {
 
 // MARK: - FirebaseDatabaseRequestProtocol
 
-extension VocabularyUpdateRequest: FirebaseDatabaseRequestProtocol {
+extension VocabularyUpdateRequest: DocumentUpdatingRequestProtocol {
     
     typealias Entity = Vocabulary
     
-    var entity: Vocabulary? {
+    var entity: Vocabulary {
         vocabulary
     }
     
@@ -30,8 +30,12 @@ extension VocabularyUpdateRequest: FirebaseDatabaseRequestProtocol {
         "Vocabularies"
     }
     
-    var dicationary: [String : Any]? {
-        try? DictionaryEncoder().encode(entity: vocabulary)
+    var documentData: [String : Any] {
+        try! DictionaryEncoder().encode(entity: vocabulary)
+    }
+    
+    func prepareReference(_ dataBase: Firestore) -> DocumentReference {
+        dataBase.collection(path).document(vocabulary.id)
     }
     
 }

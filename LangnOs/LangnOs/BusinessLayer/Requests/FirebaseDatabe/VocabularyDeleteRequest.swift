@@ -6,7 +6,7 @@
 //  Copyright © 2020 NL. All rights reserved.
 //
 
-import Foundation
+import FirebaseFirestore
 
 struct VocabularyDeleteRequest {
     
@@ -16,18 +16,22 @@ struct VocabularyDeleteRequest {
     
 }
 
-// MARK: - FirebaseDatabaseRequestProtocol
+// MARK: - DocumentDeletingRequestProtocol
 
-extension VocabularyDeleteRequest: FirebaseDatabaseRequestProtocol {
+extension VocabularyDeleteRequest: DocumentDeletingRequestProtocol {
     
     typealias Entity = Vocabulary
     
-    var entity: Vocabulary? {
+    var entity: Vocabulary {
         vocabulary
     }
     
     var path: String {
         "Vocabularies"
+    }
+    
+    func prepareReference(_ dataBase: Firestore) -> DocumentReference {
+        dataBase.collection(path).document(vocabulary.id)
     }
     
 }

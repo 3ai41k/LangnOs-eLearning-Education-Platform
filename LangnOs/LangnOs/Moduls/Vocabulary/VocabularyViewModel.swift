@@ -40,7 +40,8 @@ final class VocabularyViewModel: VocabularyViewModelOutputProtocol {
     // MARK: - Private properties
     
     private let router: VocabularyNavigationProtocol & AlertPresentableProtocol
-    private let vocabulary: Vocabulary
+    private var vocabulary: Vocabulary
+    private let dataProvider: DataProviderUpdatingProtocol
     
     private var actionPublisher: AnyPublisher<VocabularyViewModelAction, Never> {
         actionSubject.eraseToAnyPublisher()
@@ -56,9 +57,11 @@ final class VocabularyViewModel: VocabularyViewModelOutputProtocol {
     // MARK: - Init
     
     init(router: VocabularyNavigationProtocol & AlertPresentableProtocol,
-         vocabulary: Vocabulary) {
+         vocabulary: Vocabulary,
+         dataProvider: DataProviderUpdatingProtocol) {
         self.router = router
         self.vocabulary = vocabulary
+        self.dataProvider = dataProvider
         
         self.bindView()
     }
@@ -94,6 +97,8 @@ final class VocabularyViewModel: VocabularyViewModelOutputProtocol {
                     print(#function)
                 case .resetStatistic:
                     print(#function)
+                case .favorite:
+                    self?.addVocabularyToFavoriteAction()
                 case .delete:
                     self?.removeVocabularyAction()
                 }
@@ -108,6 +113,19 @@ final class VocabularyViewModel: VocabularyViewModelOutputProtocol {
             CancelAlertAction(handler: { }),
             OkAlertAction(handler: { self.router.removeVocabulary() })
         ])
+    }
+    
+    private func addVocabularyToFavoriteAction() {
+        vocabulary.isFavorite = true
+        let request = UpdateFavoriteVocabularyRequest(vocabulary: vocabulary)
+        dataProvider.update(request: request) { (result) in
+            switch result {
+            case .success:
+                print("Success")
+            case .failure(let error):
+                self.router.showError(error)
+            }
+        }
     }
     
 }

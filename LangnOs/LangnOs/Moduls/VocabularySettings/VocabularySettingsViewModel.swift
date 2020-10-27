@@ -25,6 +25,7 @@ typealias VocabularySettingsViewModelProtocol =
 enum VocabularySettingsRowAction {
     case rename
     case resetStatistic
+    case favorite
     case delete
 }
 
@@ -62,6 +63,8 @@ final class VocabularySettingsViewModel: VocabularySettingsViewModelProtocol {
                 self.actionSubject.send(.rename)
             case (0, 1):
                 self.actionSubject.send(.resetStatistic)
+            case (0, 2):
+                self.actionSubject.send(.favorite)
             default:
                 break
             }
@@ -73,7 +76,8 @@ final class VocabularySettingsViewModel: VocabularySettingsViewModelProtocol {
     private func setupGeneralSection(_ tableSections: inout [SectionViewModelProtocol]) {
         let cellViewModels = [
             ColoredImageCellViewModel(text: "Rename", image: SFSymbols.edit(), color: .systemPurple),
-            ColoredImageCellViewModel(text: "Reset statistic", image: SFSymbols.reset(), color: .systemOrange)
+            ColoredImageCellViewModel(text: "Reset statistic", image: SFSymbols.reset(), color: .systemOrange),
+            ColoredImageCellViewModel(text: "Add to favorite", image: SFSymbols.heart(for: .normal), color: .systemRed)
         ]
         let sectionViewModel = TableSectionViewModel(cells: cellViewModels)
         tableSections.append(sectionViewModel)

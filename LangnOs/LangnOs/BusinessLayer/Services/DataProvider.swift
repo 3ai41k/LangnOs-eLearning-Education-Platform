@@ -15,19 +15,19 @@ enum DataProviderError: Error {
 }
 
 protocol DataProviderFetchingProtocol {
-    func fetch<Request: FirebaseDatabaseRequestProtocol>(request: Request, completion: @escaping (Result<[Request.Entity], Error>) -> Void)
+    func fetch<Request: DocumentFethcingRequestProtocol>(request: Request, completion: @escaping (Result<[Request.Entity], Error>) -> Void)
 }
 
 protocol DataProviderCreatingProtocol {
-    func create<Request: FirebaseDatabaseRequestProtocol>(request: Request, completion: @escaping (Result<Void, Error>) -> Void)
+    func create<Request: DocumentCreatingRequestProtocol>(request: Request, completion: @escaping (Result<Void, Error>) -> Void)
 }
 
 protocol DataProviderDeletingProtocol {
-    func delete<Request: FirebaseDatabaseRequestProtocol>(request: Request, completion: @escaping (Result<Void, Error>) -> Void)
+    func delete<Request: DocumentDeletingRequestProtocol>(request: Request, completion: @escaping (Result<Void, Error>) -> Void)
 }
 
 protocol DataProviderUpdatingProtocol {
-    func update<Request: FirebaseDatabaseRequestProtocol>(request: Request, completion: @escaping (Result<Void, Error>) -> Void)
+    func update<Request: DocumentUpdatingRequestProtocol>(request: Request, completion: @escaping (Result<Void, Error>) -> Void)
 }
 
 typealias FirebaseDatabaseProtocol =
@@ -69,7 +69,7 @@ final class DataProvider {
 
 extension DataProvider: DataProviderFetchingProtocol {
     
-    func fetch<Request: FirebaseDatabaseRequestProtocol>(request: Request, completion: @escaping (Result<[Request.Entity], Error>) -> Void) {
+    func fetch<Request: DocumentFethcingRequestProtocol>(request: Request, completion: @escaping (Result<[Request.Entity], Error>) -> Void) {
         if network.isReachable {
             firebaseDatabase.fetch(request: request) { (result: Result<[Request.Entity], Error>) in
                 switch result {
@@ -92,16 +92,12 @@ extension DataProvider: DataProviderFetchingProtocol {
 
 extension DataProvider: DataProviderCreatingProtocol {
     
-    func create<Request: FirebaseDatabaseRequestProtocol>(request: Request, completion: @escaping (Result<Void, Error>) -> Void) {
+    func create<Request: DocumentCreatingRequestProtocol>(request: Request, completion: @escaping (Result<Void, Error>) -> Void) {
         if network.isReachable {
-            guard let entity = request.entity else {
-                completion(.failure(DataProviderError.entityHasNoFound))
-                return
-            }
             firebaseDatabase.create(request: request) { (result) in
                 switch result {
                 case .success:
-                    Request.Entity.insert(context: self.coreDataContext.viewContext, entity: entity)
+                    Request.Entity.insert(context: self.coreDataContext.viewContext, entity: request.entity)
                     completion(.success(()))
                 case .failure(let error):
                     completion(.failure(error))
@@ -118,17 +114,13 @@ extension DataProvider: DataProviderCreatingProtocol {
 
 extension DataProvider: DataProviderDeletingProtocol {
     
-    func delete<Request: FirebaseDatabaseRequestProtocol>(request: Request, completion: @escaping (Result<Void, Error>) -> Void) {
+    func delete<Request: DocumentDeletingRequestProtocol>(request: Request, completion: @escaping (Result<Void, Error>) -> Void) {
         if network.isReachable {
-            guard let entity = request.entity else {
-                completion(.failure(DataProviderError.entityHasNoFound))
-                return
-            }
             firebaseDatabase.delete(request: request) { (result) in
                 switch result {
                 case .success:
                     do {
-                        try Request.Entity.delete(context: self.coreDataContext.viewContext, entity: entity)
+                        try Request.Entity.delete(context: self.coreDataContext.viewContext, entity: request.entity)
                         completion(.success(()))
                     } catch {
                         completion(.failure(error))
@@ -148,17 +140,13 @@ extension DataProvider: DataProviderDeletingProtocol {
 
 extension DataProvider: DataProviderUpdatingProtocol {
     
-    func update<Request: FirebaseDatabaseRequestProtocol>(request: Request, completion: @escaping (Result<Void, Error>) -> Void) {
+    func update<Request: DocumentUpdatingRequestProtocol>(request: Request, completion: @escaping (Result<Void, Error>) -> Void) {
         if network.isReachable {
-            guard let entity = request.entity else {
-                completion(.failure(DataProviderError.entityHasNoFound))
-                return
-            }
             firebaseDatabase.update(request: request) { (result) in
                 switch result {
                 case .success:
                     do {
-                        try Request.Entity.update(context: self.coreDataContext.viewContext, entity: entity)
+                        try Request.Entity.update(context: self.coreDataContext.viewContext, entity: request.entity)
                         completion(.success(()))
                     } catch {
                         completion(.failure(error))

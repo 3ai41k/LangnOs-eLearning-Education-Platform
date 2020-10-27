@@ -14,12 +14,12 @@ struct Vocabulary: Codable {
     let userId: String
     let title: String
     let category: String
-    let isFavorite: Bool
+    var isFavorite: Bool
     let phrasesLearned: Int
     let phrasesLeftToLearn: Int
     let totalLearningTime: Double
     let createdDate: Date
-    let words: [Word]
+    var words: [Word]
     
     init(userId: String, title: String, category: String, words: [Word]) {
         self.id = UUID().uuidString

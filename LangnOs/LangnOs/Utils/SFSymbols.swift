@@ -56,4 +56,13 @@ struct SFSymbols {
         return UIImage(systemName: "globe")!
     }
     
+    static func heart(for state: ImageState) -> UIImage {
+        switch state {
+        case .normal:
+            return UIImage(systemName: "heart")!
+        case .fill:
+            return UIImage(systemName: "heart.fill")!
+        }
+    }
+    
 }

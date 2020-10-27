@@ -16,9 +16,9 @@ struct FavoriteVocabularyFetchRequest {
     
 }
 
-// MARK: - FirebaseDatabaseRequestProtocol
+// MARK: - DocumentFethcingRequestProtocol
 
-extension FavoriteVocabularyFetchRequest: FirebaseDatabaseRequestProtocol {
+extension FavoriteVocabularyFetchRequest: DocumentFethcingRequestProtocol {
     
     typealias Entity = Vocabulary
     

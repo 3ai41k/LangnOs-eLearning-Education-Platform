@@ -16,9 +16,9 @@ struct VocabularyFetchRequest {
     
 }
 
-// MARK: - FirebaseDatabaseRequestProtocol
+// MARK: - DocumentFethcingRequestProtocol
 
-extension VocabularyFetchRequest: FirebaseDatabaseRequestProtocol {
+extension VocabularyFetchRequest: DocumentFethcingRequestProtocol {
     
     typealias Entity = Vocabulary
     

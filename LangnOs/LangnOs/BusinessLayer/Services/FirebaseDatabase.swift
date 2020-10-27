@@ -23,19 +23,19 @@ enum FirebaseDatabaseError: Error {
 }
 
 protocol FirebaseDatabaseFetchingProtocol {
-    func fetch<Request: FirebaseDatabaseRequestProtocol>(request: Request, completion: @escaping (Result<[Request.Entity], Error>) -> Void)
+    func fetch<Request: DocumentFethcingRequestProtocol>(request: Request, completion: @escaping (Result<[Request.Entity], Error>) -> Void)
 }
 
 protocol FirebaseDatabaseCreatingProtocol {
-    func create<Request: FirebaseDatabaseRequestProtocol>(request: Request, completion: @escaping (Result<Void, Error>) -> Void)
+    func create<Request: DocumentCreatingRequestProtocol>(request: Request, completion: @escaping (Result<Void, Error>) -> Void)
 }
 
 protocol FirebaseDatabaseDeletingProtocol {
-    func delete<Request: FirebaseDatabaseRequestProtocol>(request: Request, completion: @escaping (Result<Void, Error>) -> Void)
+    func delete<Request: DocumentDeletingRequestProtocol>(request: Request, completion: @escaping (Result<Void, Error>) -> Void)
 }
 
 protocol FirebaseDatabaseUpdatingProtocol {
-    func update<Request: FirebaseDatabaseRequestProtocol>(request: Request, completion: @escaping (Result<Void, Error>) -> Void)
+    func update<Request: DocumentUpdatingRequestProtocol>(request: Request, completion: @escaping (Result<Void, Error>) -> Void)
 }
 
 final class FirebaseDatabase {
@@ -52,10 +52,8 @@ final class FirebaseDatabase {
 
 extension FirebaseDatabase: FirebaseDatabaseFetchingProtocol {
     
-    func fetch<Request: FirebaseDatabaseRequestProtocol>(request: Request, completion: @escaping (Result<[Request.Entity], Error>) -> Void) {
-        let reference = dataBase.collection(request.path)
-        let query = request.setQuere(reference)
-        query.getDocuments { (snapshot, error) in
+    func fetch<Request: DocumentFethcingRequestProtocol>(request: Request, completion: @escaping (Result<[Request.Entity], Error>) -> Void) {
+        request.prepareReference(dataBase).getDocuments { (snapshot, error) in
             if let error = error {
                 completion(.failure(error))
             } else {
@@ -75,13 +73,8 @@ extension FirebaseDatabase: FirebaseDatabaseFetchingProtocol {
 
 extension FirebaseDatabase: FirebaseDatabaseCreatingProtocol {
     
-    func create<Request: FirebaseDatabaseRequestProtocol>(request: Request, completion: @escaping (Result<Void, Error>) -> Void) {
-        guard let data = request.dicationary else {
-            completion(.failure(FirebaseDatabaseError.documentIsEmpty))
-            return
-        }
-        let reference = dataBase.collection(request.path)
-        reference.addDocument(data: data) { (error) in
+    func create<Request: DocumentCreatingRequestProtocol>(request: Request, completion: @escaping (Result<Void, Error>) -> Void) {
+        request.prepareReference(dataBase).setData(request.documentData) { (error) in
             if let error = error {
                 completion(.failure(error))
             } else {
@@ -96,8 +89,14 @@ extension FirebaseDatabase: FirebaseDatabaseCreatingProtocol {
 
 extension FirebaseDatabase: FirebaseDatabaseDeletingProtocol {
     
-    func delete<Request: FirebaseDatabaseRequestProtocol>(request: Request, completion: @escaping (Result<Void, Error>) -> Void) {
-        
+    func delete<Request: DocumentDeletingRequestProtocol>(request: Request, completion: @escaping (Result<Void, Error>) -> Void) {
+        request.prepareReference(dataBase).delete { (error) in
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                completion(.success(()))
+            }
+        }
     }
     
 }
@@ -106,8 +105,14 @@ extension FirebaseDatabase: FirebaseDatabaseDeletingProtocol {
 
 extension FirebaseDatabase: FirebaseDatabaseUpdatingProtocol {
     
-    func update<Request: FirebaseDatabaseRequestProtocol>(request: Request, completion: @escaping (Result<Void, Error>) -> Void) {
-        
+    func update<Request: DocumentUpdatingRequestProtocol>(request: Request, completion: @escaping (Result<Void, Error>) -> Void) {
+        request.prepareReference(dataBase).updateData(request.documentData) { (error) in
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                completion(.success(()))
+            }
+        }
     }
     
 }
