@@ -14,19 +14,20 @@ protocol DocumentRequestProtocol {
 }
 
 protocol DocumentFethcingRequestProtocol: DocumentRequestProtocol {
+    var predicate: NSPredicate? { get }
     func prepareReference(_ dataBase: Firestore) -> Query
     func setQuere(_ reference: CollectionReference) -> Query
 }
 
 extension DocumentFethcingRequestProtocol {
     
+    var predicate: NSPredicate? { nil }
+    
     func prepareReference(_ dataBase: Firestore) -> Query {
         setQuere(dataBase.collection(path))
     }
     
-    func setQuere(_ reference: CollectionReference) -> Query {
-        reference
-    }
+    func setQuere(_ reference: CollectionReference) -> Query { reference }
     
 }
 

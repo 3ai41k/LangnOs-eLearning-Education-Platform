@@ -26,6 +26,10 @@ extension FavoriteVocabularyFetchRequest: DocumentFethcingRequestProtocol {
         "Vocabularies"
     }
     
+    var predicate: NSPredicate? {
+        NSPredicate(format: "isFavorite = %d", true)
+    }
+    
     func setQuere(_ reference: CollectionReference) -> Query {
         reference
             .whereField("userId", isEqualTo: userId)

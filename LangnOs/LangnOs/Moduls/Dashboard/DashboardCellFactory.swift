@@ -13,7 +13,8 @@ final class DashboardCellFactory: UniversalTableViewCellFactoryProtocol {
     var cellTypes: [UniversalTableViewCellRegistratable.Type] {
         [
             ColoredImageTableViewCell.self,
-            MessageTableViewCell.self
+            MessageTableViewCell.self,
+            ActivityIndicatorTableViewCell.self
         ]
     }
     
@@ -25,6 +26,10 @@ final class DashboardCellFactory: UniversalTableViewCellFactoryProtocol {
             return cell
         case let cellViewModel as MessageCellViewModelProtocol:
             let cell = MessageTableViewCell.dequeueReusableCell(tableView, for: indexPath)
+            cell.viewModel = cellViewModel
+            return cell
+        case let cellViewModel as ActivityIndicatorCellViewModelProtocol:
+            let cell = ActivityIndicatorTableViewCell.dequeueReusableCell(tableView, for: indexPath)
             cell.viewModel = cellViewModel
             return cell
         default:

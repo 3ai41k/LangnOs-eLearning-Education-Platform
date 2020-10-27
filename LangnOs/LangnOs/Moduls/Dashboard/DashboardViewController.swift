@@ -28,6 +28,14 @@ final class DashboardViewController: BindibleViewController<DashboardViewModelPr
     var cellFactory: UniversalTableViewCellFactoryProtocol?
     var sectionFactory: SectionViewFactoryProtocol?
     
+    // MARK: - Lifecycle
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        viewModel?.fetchFavoriteVocabulary()
+    }
+    
     // MARK: - Override
     
     override func bindViewModel() {
@@ -61,7 +69,7 @@ final class DashboardViewController: BindibleViewController<DashboardViewModelPr
     
     @objc
     private func didUserTouch() {
-        viewModel?.actionSubject.send(.userProfile)
+        viewModel?.userProfileAction()
     }
 
 }

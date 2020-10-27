@@ -24,12 +24,9 @@ protocol DashboardViewModelInputProtocol {
     var isOfflineTitleHiddenPublisher: AnyPublisher<Bool, Never> { get }
 }
 
-enum DashboardViewModelAction {
-    case userProfile
-}
-
 protocol DashboardViewModelOutputProtocol {
-    var actionSubject: PassthroughSubject<DashboardViewModelAction, Never> { get }
+    func userProfileAction()
+    func fetchFavoriteVocabulary()
 }
 
 typealias DashboardViewModelProtocol =
@@ -37,8 +34,16 @@ typealias DashboardViewModelProtocol =
     DashboardViewModelOutputProtocol &
     UniversalTableViewModelProtocol
 
+private enum RowType: Int {
+    case materials
+    case statistic
+    case courses
+    case something
+}
+
 private enum SectionType: Int {
-    case myWork = 1
+    case empty
+    case myWork
     case favorites
     case recent
 }
@@ -51,7 +56,6 @@ final class DashboardViewModel: DashboardViewModelProtocol {
     var isOfflineTitleHiddenPublisher: AnyPublisher<Bool, Never> {
         isOfflineTitleHiddenSubject.eraseToAnyPublisher()
     }
-    var actionSubject = PassthroughSubject<DashboardViewModelAction, Never>()
     var tableSections: [SectionViewModelProtocol] = []
     
     // MARK: - Private properties
@@ -59,29 +63,25 @@ final class DashboardViewModel: DashboardViewModelProtocol {
     private let router: DashboardCoordinatorProtocol
     private let contex: UserSessesionPublisherContextProtocol
     private let securityManager: SecurityManager
-    private let dataFacade: DataProviderFetchingProtocol
+    private let dataProvider: DataProviderFetchingProtocol
     
     private var cancellables: [AnyCancellable] = []
     private var isOfflineTitleHiddenSubject = PassthroughSubject<Bool, Never>()
-    private var actionPublisher: AnyPublisher<DashboardViewModelAction, Never> {
-        actionSubject.eraseToAnyPublisher()
-    }
     
     // MARK: - Init
     
     init(router: DashboardCoordinatorProtocol,
          contex: UserSessesionPublisherContextProtocol,
          securityManager: SecurityManager,
-         dataFacade: DataProviderFetchingProtocol) {
+         dataProvider: DataProviderFetchingProtocol) {
         self.router = router
         self.contex = contex
         self.securityManager = securityManager
-        self.dataFacade = dataFacade
+        self.dataProvider = dataProvider
         
         self.title = .init("Home".localize)
         
         self.bindContext()
-        self.bindView()
         self.setupNotifications()
         
         self.setupEmptySection(&tableSections)
@@ -97,16 +97,34 @@ final class DashboardViewModel: DashboardViewModelProtocol {
     // MARK: - Public methods
     
     func didSelectCellAt(indexPath: IndexPath) {
-        guard let section = SectionType(rawValue: indexPath.section) else { return }
-        switch section {
-        case .myWork:
-            if indexPath.row == 0 {
-                self.router.navigateToMaterials()
+        guard indexPath.section == 1, let row = RowType(rawValue: indexPath.row) else { return }
+        switch row {
+        case .materials:
+            self.router.navigateToMaterials()
+        case .statistic:
+            print("")
+        case .courses:
+            print("")
+        case .something:
+            print("")
+        }
+    }
+    
+    func userProfileAction() {
+        
+    }
+    
+    func fetchFavoriteVocabulary() {
+        guard let userId = securityManager.user?.uid else { return }
+        let request = FavoriteVocabularyFetchRequest(userId: userId)
+        dataProvider.fetch(request: request) { (result: Result<[Vocabulary], Error>) in
+            switch result {
+            case .success(let vocabularies):
+                let cellViewModel = vocabularies.map({ MessageCellViewModel(message: $0.title) })
+                self.tableSections[SectionType.favorites.rawValue].cells.value = cellViewModel
+            case .failure(let error):
+                self.router.showError(error)
             }
-        case .favorites:
-            print("")
-        case .recent:
-            print("")
         }
     }
     
@@ -114,15 +132,6 @@ final class DashboardViewModel: DashboardViewModelProtocol {
     
     private func bindContext() {
         
-    }
-    
-    private func bindView() {
-        actionPublisher.sink(receiveValue: { [weak self] (action) in
-            switch action {
-            case .userProfile:
-                self?.router.navigateToUserProfile()
-            }
-        }).store(in: &cancellables)
     }
     
     private func setupNotifications() {
@@ -159,9 +168,7 @@ final class DashboardViewModel: DashboardViewModelProtocol {
     
     private func setupFavoritesSection(_ tableSections: inout [SectionViewModelProtocol]) {
         let cellViewModels = [
-            MessageCellViewModel(message: "Add favorite sets here to have quick access at any time, without having to search",
-                                 buttonTitle: "Add Favorites",
-                                 buttonHandler: { [weak self] in self?.favoriteButtonTouch() })
+            ActivityIndicatorCellViewModel()
         ]
         let sectionViewModel = TableSectionViewModel(headerView: TitleSectionViewModel(text: "Favorites".localize),
                                                      footerView: nil,

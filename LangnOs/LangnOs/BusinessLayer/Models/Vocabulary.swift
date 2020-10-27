@@ -68,12 +68,12 @@ struct Vocabulary: Codable {
 
 extension Vocabulary: CDEntityProtocol {
     
-    static func select(context: NSManagedObjectContext) throws -> [Vocabulary] {
-        try VocabularyFetcher().select(context: context)
+    static func select(context: NSManagedObjectContext, predicate: NSPredicate?) throws -> [Vocabulary] {
+        try VocabularyFetcher().select(context: context, predicate: predicate)
     }
     
-    static func insert(context: NSManagedObjectContext, entity: Vocabulary) {
-        VocabularyFetcher().insert(context: context, entity: entity)
+    static func insert(context: NSManagedObjectContext, entity: Vocabulary) throws {
+        try VocabularyFetcher().insert(context: context, entity: entity)
     }
     
     static func update(context: NSManagedObjectContext, entity: Vocabulary) throws {

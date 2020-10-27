@@ -93,7 +93,7 @@ final class WordsViewModel: WordsViewModelProtocol {
         if vocabulary.words != words {
             router.showActivity()
             let vocabularyForUpdate = Vocabulary(update: vocabulary, words: words)
-            let request = UpdateFavoriteVocabularyRequest(vocabulary: vocabularyForUpdate)
+            let request = VocabularyUpdateRequest(vocabulary: vocabularyForUpdate)
             dataProvider.update(request: request) { (result) in
                 self.router.closeActivity()
                 switch result {

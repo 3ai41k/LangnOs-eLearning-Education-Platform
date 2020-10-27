@@ -223,6 +223,9 @@
 		8DF253D025471D10001492AE /* OfflineTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF253CF25471D10001492AE /* OfflineTitleView.swift */; };
 		8DF253D225471D1A001492AE /* OfflineTitleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DF253D125471D19001492AE /* OfflineTitleView.xib */; };
 		8DF253D625485073001492AE /* FavoriteVocabularyFetchRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF253D525485073001492AE /* FavoriteVocabularyFetchRequest.swift */; };
+		8DF253DA25488166001492AE /* ActivityIndicatorTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF253D825488166001492AE /* ActivityIndicatorTableViewCell.swift */; };
+		8DF253DB25488166001492AE /* ActivityIndicatorTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DF253D925488166001492AE /* ActivityIndicatorTableViewCell.xib */; };
+		8DF253DD254881C7001492AE /* ActivityIndicatorCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF253DC254881C7001492AE /* ActivityIndicatorCellViewModel.swift */; };
 		8DF928A9253DDE700052FC31 /* WritingWordModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF928A8253DDE700052FC31 /* WritingWordModel.swift */; };
 		8DF928AC253DEBCF0052FC31 /* WritingProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF928AB253DEBCF0052FC31 /* WritingProgressView.swift */; };
 		8DF928AE253DEBEC0052FC31 /* WritingProgressView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DF928AD253DEBEC0052FC31 /* WritingProgressView.xib */; };
@@ -449,6 +452,9 @@
 		8DF253CF25471D10001492AE /* OfflineTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfflineTitleView.swift; sourceTree = "<group>"; };
 		8DF253D125471D19001492AE /* OfflineTitleView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OfflineTitleView.xib; sourceTree = "<group>"; };
 		8DF253D525485073001492AE /* FavoriteVocabularyFetchRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteVocabularyFetchRequest.swift; sourceTree = "<group>"; };
+		8DF253D825488166001492AE /* ActivityIndicatorTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicatorTableViewCell.swift; sourceTree = "<group>"; };
+		8DF253D925488166001492AE /* ActivityIndicatorTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ActivityIndicatorTableViewCell.xib; sourceTree = "<group>"; };
+		8DF253DC254881C7001492AE /* ActivityIndicatorCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicatorCellViewModel.swift; sourceTree = "<group>"; };
 		8DF928A8253DDE700052FC31 /* WritingWordModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WritingWordModel.swift; sourceTree = "<group>"; };
 		8DF928AB253DEBCF0052FC31 /* WritingProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WritingProgressView.swift; sourceTree = "<group>"; };
 		8DF928AD253DEBEC0052FC31 /* WritingProgressView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WritingProgressView.xib; sourceTree = "<group>"; };
@@ -663,6 +669,7 @@
 				8DF253822543307A001492AE /* MessageCell */,
 				8DF253B92544A292001492AE /* ButtonCell */,
 				8D83EA62252B8B78004E6098 /* VocabularyCell */,
+				8DF253D72548812D001492AE /* ActivityIndicatorCell */,
 				8D524FEB2533BEAD002A6E01 /* FlashCard */,
 				8D94E824253747F1005FA4B9 /* Filter */,
 			);
@@ -1309,6 +1316,16 @@
 			path = OfflineTitleView;
 			sourceTree = "<group>";
 		};
+		8DF253D72548812D001492AE /* ActivityIndicatorCell */ = {
+			isa = PBXGroup;
+			children = (
+				8DF253D825488166001492AE /* ActivityIndicatorTableViewCell.swift */,
+				8DF253DC254881C7001492AE /* ActivityIndicatorCellViewModel.swift */,
+				8DF253D925488166001492AE /* ActivityIndicatorTableViewCell.xib */,
+			);
+			path = ActivityIndicatorCell;
+			sourceTree = "<group>";
+		};
 		8DF928AA253DEBB90052FC31 /* WritingProgress */ = {
 			isa = PBXGroup;
 			children = (
@@ -1391,6 +1408,7 @@
 				8DD28C0C2528A86D00F59B7D /* GoogleService-Info.plist in Resources */,
 				8DF2537825431970001492AE /* TitleSectionView.xib in Resources */,
 				8D662531252A3E9800991D45 /* Colors.xcassets in Resources */,
+				8DF253DB25488166001492AE /* ActivityIndicatorTableViewCell.xib in Resources */,
 				8D524FD0253372B0002A6E01 /* TopBarView.xib in Resources */,
 				8DF253B22544838D001492AE /* VocabularySettingsViewController.xib in Resources */,
 				8D662537252A612A00991D45 /* ScoreView.xib in Resources */,
@@ -1531,6 +1549,7 @@
 				8D83EA76252B9EB9004E6098 /* CoordinatorClosableProtocol.swift in Sources */,
 				8DD28BD32526854300F59B7D /* UINavigationItem+Drivable.swift in Sources */,
 				8D94E7CC2534DF03005FA4B9 /* CoreDataContext.swift in Sources */,
+				8DF253DD254881C7001492AE /* ActivityIndicatorCellViewModel.swift in Sources */,
 				8D524F96252F7E97002A6E01 /* AccountViewController.swift in Sources */,
 				8D94E867253CE2AB005FA4B9 /* WritingCoordinator.swift in Sources */,
 				8D524FEA2533BDB2002A6E01 /* FlashCardsCellFactory.swift in Sources */,
@@ -1654,6 +1673,7 @@
 				8D524F9D252F7EC1002A6E01 /* AccountCoordinator.swift in Sources */,
 				8DD28C122528AEC800F59B7D /* SingInCoordinator.swift in Sources */,
 				8D524FE32533BA27002A6E01 /* FlashCardsViewController.swift in Sources */,
+				8DF253DA25488166001492AE /* ActivityIndicatorTableViewCell.swift in Sources */,
 				8DF253A9254482B5001492AE /* BottomCardTransition.swift in Sources */,
 				8DD28BCF252683A100F59B7D /* DashboardViewModel.swift in Sources */,
 				8D524F62252E5C71002A6E01 /* UniversalCollectionViewSectionRegistratable.swift in Sources */,

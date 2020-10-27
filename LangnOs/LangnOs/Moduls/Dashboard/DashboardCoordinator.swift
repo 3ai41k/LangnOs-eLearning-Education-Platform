@@ -33,11 +33,11 @@ final class DashboardCoordinator: Coordinator, DashboardCoordinatorProtocol {
     
     override func start() {
         let securityManager = SecurityManager.shared
-        let dataFacade = DataProvider()
+        let dataProvider = DataProvider()
         let viewModel = DashboardViewModel(router: self,
                                            contex: context,
                                            securityManager: securityManager,
-                                           dataFacade: dataFacade)
+                                           dataProvider: dataProvider)
         
         let cellFactory = DashboardCellFactory()
         let sectionFactory = DashboardSectionFactory()
