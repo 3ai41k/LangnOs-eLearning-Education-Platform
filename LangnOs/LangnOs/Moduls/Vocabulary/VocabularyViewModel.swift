@@ -118,13 +118,10 @@ final class VocabularyViewModel: VocabularyViewModelOutputProtocol {
     private func addVocabularyToFavoriteAction() {
         vocabulary.isFavorite = true
         let request = VocabularyUpdateRequest(vocabulary: vocabulary)
-        dataProvider.update(request: request) { (result) in
-            switch result {
-            case .success:
-                print("Success")
-            case .failure(let error):
-                self.router.showError(error)
-            }
+        dataProvider.update(request: request, onSuccess: {
+            
+        }) { (error) in
+            self.router.showError(error)
         }
     }
     

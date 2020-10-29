@@ -101,13 +101,10 @@ final class MaterialsViewModel: MaterialsViewModelProtocol {
         
         let vocabulary = Vocabulary(userId: userId, title: generailInfo.name, category: generailInfo.category, words: words)
         let request = VocabularyCreateRequest(vocabulary: vocabulary)
-        dataProvider.create(request: request) { (result) in
-            switch result {
-            case .success:
-                self.vocabularies.append(vocabulary)
-            case .failure(let error):
-                self.router.showError(error)
-            }
+        dataProvider.create(request: request, onSuccess: {
+            self.vocabularies.append(vocabulary)
+        }) { (error) in
+            self.router.showError(error)
         }
     }
     
@@ -118,13 +115,10 @@ final class MaterialsViewModel: MaterialsViewModelProtocol {
     
     private func removeVocabulary(_ vocabulary: Vocabulary) {
         let request = VocabularyDeleteRequest(vocabulary: vocabulary)
-        dataProvider.delete(request: request) { (result) in
-            switch result {
-            case .success:
-                self.vocabularies.removeAll(where: { $0 == vocabulary })
-            case .failure(let error):
-                self.router.showError(error)
-            }
+        dataProvider.delete(request: request, onSuccess: {
+            self.vocabularies.removeAll(where: { $0 == vocabulary })
+        }) { (error) in
+            self.router.showError(error)
         }
     }
     
@@ -138,13 +132,10 @@ extension MaterialsViewModel {
         guard let userId = securityManager.user?.uid else { return }
         
         let request = VocabularyFetchRequest(userId: userId)
-        dataProvider.fetch(request: request) { (result: Result<[Vocabulary], Error>) in
-            switch result {
-            case .success(let vocabularies):
-                self.vocabularies = vocabularies.sorted(by: \.createdDate, using: >)
-            case .failure(let error):
-                self.router.showError(error)
-            }
+        dataProvider.fetch(request: request, onSuccess: { (vocabularies: [Vocabulary]) in
+            self.vocabularies = vocabularies.sorted(by: \.createdDate, using: >)
+        }) { (error) in
+            self.router.showError(error)
         }
     }
     

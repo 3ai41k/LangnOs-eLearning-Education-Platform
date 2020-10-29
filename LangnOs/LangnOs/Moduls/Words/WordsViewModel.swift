@@ -94,17 +94,14 @@ final class WordsViewModel: WordsViewModelProtocol {
             router.showActivity()
             let vocabularyForUpdate = Vocabulary(update: vocabulary, words: words)
             let request = VocabularyUpdateRequest(vocabulary: vocabularyForUpdate)
-            dataProvider.update(request: request) { (result) in
+            dataProvider.update(request: request, onSuccess: {
                 self.router.closeActivity()
-                switch result {
-                case .success:
-                    print("Success")
-                case .failure(let error):
-                    self.router.showError(error)
-                    
-                    let cellViewModels = self.vocabulary.words.map({ WordRepresentionCellViewModel(word: $0) })
-                    self.tableSections[SectionType.words.rawValue].cells.value = cellViewModels
-                }
+            }) { (error) in
+                self.router.closeActivity()
+                self.router.showError(error)
+                
+                let cellViewModels = self.vocabulary.words.map({ WordRepresentionCellViewModel(word: $0) })
+                self.tableSections[SectionType.words.rawValue].cells.value = cellViewModels
             }
         }
     }

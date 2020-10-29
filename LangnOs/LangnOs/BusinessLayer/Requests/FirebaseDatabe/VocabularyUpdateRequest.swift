@@ -18,24 +18,20 @@ struct VocabularyUpdateRequest {
 
 // MARK: - FirebaseDatabaseRequestProtocol
 
-extension VocabularyUpdateRequest: DocumentUpdatingRequestProtocol {
+extension VocabularyUpdateRequest: DataProviderRequestProtocol {
     
     typealias Entity = Vocabulary
     
-    var entity: Vocabulary {
-        vocabulary
+    var collectionPath: CollectionPath {
+        .vocabularies
     }
     
-    var path: String {
-        "Vocabularies"
+    var documentPath: String? {
+        vocabulary.id
     }
     
-    var documentData: [String : Any] {
-        try! DictionaryEncoder().encode(entity: vocabulary)
-    }
-    
-    func prepareReference(_ dataBase: Firestore) -> DocumentReference {
-        dataBase.collection(path).document(vocabulary.id)
+    var documentData: [String : Any]? {
+        try? DictionaryEncoder().encode(entity: vocabulary)
     }
     
 }

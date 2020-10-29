@@ -16,22 +16,22 @@ struct VocabularyDeleteRequest {
     
 }
 
-// MARK: - DocumentDeletingRequestProtocol
+// MARK: - DataProviderRequestProtocol
 
-extension VocabularyDeleteRequest: DocumentDeletingRequestProtocol {
+extension VocabularyDeleteRequest: DataProviderRequestProtocol {
     
     typealias Entity = Vocabulary
     
-    var entity: Vocabulary {
-        vocabulary
+    var collectionPath: CollectionPath {
+        .vocabularies
     }
     
-    var path: String {
-        "Vocabularies"
+    var documentPath: String? {
+        vocabulary.id
     }
     
-    func prepareReference(_ dataBase: Firestore) -> DocumentReference {
-        dataBase.collection(path).document(vocabulary.id)
+    var documentData: [String : Any]? {
+        try? DictionaryEncoder().encode(entity: vocabulary)
     }
     
 }

@@ -62,13 +62,10 @@ final class VocabularyListViewModel: VocabularyListViewModelProtocol {
         guard let userId = securityManager.user?.uid else { return }
         
         let request = VocabularyFetchRequest(userId: userId)
-        dataProvider.fetch(request: request) { (result: Result<[Vocabulary], Error>) in
-            switch result {
-            case .success(let vocabularties):
-                self.setupVocabularyCells(vocabularties)
-            case .failure(let error):
-                self.router.showError(error)
-            }
+        dataProvider.fetch(request: request, onSuccess: { (vocabularies: [Vocabulary]) in
+            self.setupVocabularyCells(vocabularies)
+        }) { (error) in
+            self.router.showError(error)
         }
     }
     

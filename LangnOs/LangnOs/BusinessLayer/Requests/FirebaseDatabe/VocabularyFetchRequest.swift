@@ -16,18 +16,23 @@ struct VocabularyFetchRequest {
     
 }
 
-// MARK: - DocumentFethcingRequestProtocol
+// MARK: - DataProviderRequestProtocol
 
-extension VocabularyFetchRequest: DocumentFethcingRequestProtocol {
+extension VocabularyFetchRequest: DataProviderRequestProtocol {
     
     typealias Entity = Vocabulary
     
-    var path: String {
-        "Vocabularies"
+    var collectionPath: CollectionPath {
+        .vocabularies
     }
     
-    func setQuere(_ reference: CollectionReference) -> Query {
-        reference.whereField("userId", isEqualTo: userId)
+    var query: QueryBulderPrototcol? {
+        QueryBulder(connectors: [
+            QueryAndConnector(componets: [
+                IsEqualToComponent("userId", isEqualTo: userId)
+            ])
+        ])
     }
+    
     
 }

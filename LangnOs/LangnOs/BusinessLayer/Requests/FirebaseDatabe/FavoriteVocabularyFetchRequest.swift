@@ -16,24 +16,23 @@ struct FavoriteVocabularyFetchRequest {
     
 }
 
-// MARK: - DocumentFethcingRequestProtocol
+// MARK: - DataProviderRequestProtocol
 
-extension FavoriteVocabularyFetchRequest: DocumentFethcingRequestProtocol {
+extension FavoriteVocabularyFetchRequest: DataProviderRequestProtocol {
     
     typealias Entity = Vocabulary
     
-    var path: String {
-        "Vocabularies"
+    var collectionPath: CollectionPath {
+        .vocabularies
     }
     
-    var predicate: NSPredicate? {
-        NSPredicate(format: "isFavorite = %d", true)
-    }
-    
-    func setQuere(_ reference: CollectionReference) -> Query {
-        reference
-            .whereField("userId", isEqualTo: userId)
-            .whereField("isFavorite", isEqualTo: true)
+    var query: QueryBulderPrototcol? {
+        QueryBulder(connectors: [
+            QueryAndConnector(componets: [
+                IsEqualToComponent("userId", isEqualTo: userId),
+                IsEqualToComponent("isFavorite", isEqualTo: true)
+            ])
+        ])
     }
     
 }

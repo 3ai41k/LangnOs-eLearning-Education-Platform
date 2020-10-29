@@ -20,22 +20,23 @@ enum FirebaseDatabaseError: Error {
             return "Document is empty".localize
         }
     }
+    
 }
 
 protocol FirebaseDatabaseFetchingProtocol {
-    func fetch<Request: DocumentFethcingRequestProtocol>(request: Request, completion: @escaping (Result<[Request.Entity], Error>) -> Void)
+    func fetch<Request: DataProviderRequestProtocol>(request: Request, onSuccess: @escaping ([Request.Entity]) -> Void, onFailure: @escaping (Error) -> Void)
 }
 
 protocol FirebaseDatabaseCreatingProtocol {
-    func create<Request: DocumentCreatingRequestProtocol>(request: Request, completion: @escaping (Result<Void, Error>) -> Void)
+    func create<Request: DataProviderRequestProtocol>(request: Request, onSuccess: @escaping (Request.Entity) -> Void, onFailure: @escaping (Error) -> Void)
 }
 
 protocol FirebaseDatabaseDeletingProtocol {
-    func delete<Request: DocumentDeletingRequestProtocol>(request: Request, completion: @escaping (Result<Void, Error>) -> Void)
+    func delete<Request: DataProviderRequestProtocol>(request: Request, onSuccess: @escaping (Request.Entity) -> Void, onFailure: @escaping (Error) -> Void)
 }
 
 protocol FirebaseDatabaseUpdatingProtocol {
-    func update<Request: DocumentUpdatingRequestProtocol>(request: Request, completion: @escaping (Result<Void, Error>) -> Void)
+    func update<Request: DataProviderRequestProtocol>(request: Request, onSuccess: @escaping (Request.Entity) -> Void, onFailure: @escaping (Error) -> Void)
 }
 
 final class FirebaseDatabase {
@@ -46,22 +47,34 @@ final class FirebaseDatabase {
         Firestore.firestore()
     }
     
+    // MARK: - Private methods
+    
+    private func decode<Entity: Decodable>(data: Any, onSuccess: @escaping (Entity) -> Void, onFailure: @escaping (Error) -> Void) {
+        do {
+            let entity: Entity = try DictionaryDecoder().decode(data: data)
+            onSuccess(entity)
+        } catch {
+            onFailure(error)
+        }
+    }
+    
 }
 
 // MARK: - FirebaseDatabaseFetchingProtocol
 
 extension FirebaseDatabase: FirebaseDatabaseFetchingProtocol {
     
-    func fetch<Request: DocumentFethcingRequestProtocol>(request: Request, completion: @escaping (Result<[Request.Entity], Error>) -> Void) {
-        request.prepareReference(dataBase).getDocuments { (snapshot, error) in
+    func fetch<Request: DataProviderRequestProtocol>(request: Request, onSuccess: @escaping ([Request.Entity]) -> Void, onFailure: @escaping (Error) -> Void) {
+        let collectionReference = dataBase.collection(request.collectionPath.rawValue)
+        let collectionReferenceWithQuery = request.query?.firebaseQuery(collectionReference) ?? collectionReference
+        collectionReferenceWithQuery.getDocuments { (snapshot, error) in
             if let error = error {
-                completion(.failure(error))
+                onFailure(error)
             } else {
                 if let data = snapshot?.documents.map({ $0.data() }) {
-                    let entities: [Request.Entity]? = try? DictionaryDecoder().decode(data: data)
-                    completion(.success(entities ?? []))
+                    self.decode(data: data, onSuccess: onSuccess, onFailure: onFailure)
                 } else {
-                    completion(.success([]))
+                    onSuccess([])
                 }
             }
         }
@@ -73,12 +86,14 @@ extension FirebaseDatabase: FirebaseDatabaseFetchingProtocol {
 
 extension FirebaseDatabase: FirebaseDatabaseCreatingProtocol {
     
-    func create<Request: DocumentCreatingRequestProtocol>(request: Request, completion: @escaping (Result<Void, Error>) -> Void) {
-        request.prepareReference(dataBase).setData(request.documentData) { (error) in
+    func create<Request: DataProviderRequestProtocol>(request: Request, onSuccess: @escaping (Request.Entity) -> Void, onFailure: @escaping (Error) -> Void) {
+        guard let documentData = request.documentData else { onFailure(FirebaseDatabaseError.documentIsEmpty); return }
+        let collectionReference = dataBase.collection(request.collectionPath.rawValue)
+        collectionReference.addDocument(data: documentData) { (error) in
             if let error = error {
-                completion(.failure(error))
+                onFailure(error)
             } else {
-                completion(.success(()))
+                self.decode(data: documentData, onSuccess: onSuccess, onFailure: onFailure)
             }
         }
     }
@@ -89,14 +104,18 @@ extension FirebaseDatabase: FirebaseDatabaseCreatingProtocol {
 
 extension FirebaseDatabase: FirebaseDatabaseDeletingProtocol {
     
-    func delete<Request: DocumentDeletingRequestProtocol>(request: Request, completion: @escaping (Result<Void, Error>) -> Void) {
-        request.prepareReference(dataBase).delete { (error) in
+    func delete<Request: DataProviderRequestProtocol>(request: Request, onSuccess: @escaping (Request.Entity) -> Void, onFailure: @escaping (Error) -> Void) {
+        guard let documentPath = request.documentPath else { onFailure(FirebaseDatabaseError.documentsWereNotFound); return }
+        guard let documentData = request.documentData else { onFailure(FirebaseDatabaseError.documentIsEmpty); return }
+        let collectionReference = dataBase.collection(request.collectionPath.rawValue)
+        let documentReference = collectionReference.document(documentPath)
+        documentReference.delete(completion: { (error) in
             if let error = error {
-                completion(.failure(error))
+                onFailure(error)
             } else {
-                completion(.success(()))
+                self.decode(data: documentData, onSuccess: onSuccess, onFailure: onFailure)
             }
-        }
+        })
     }
     
 }
@@ -105,12 +124,16 @@ extension FirebaseDatabase: FirebaseDatabaseDeletingProtocol {
 
 extension FirebaseDatabase: FirebaseDatabaseUpdatingProtocol {
     
-    func update<Request: DocumentUpdatingRequestProtocol>(request: Request, completion: @escaping (Result<Void, Error>) -> Void) {
-        request.prepareReference(dataBase).updateData(request.documentData) { (error) in
+    func update<Request: DataProviderRequestProtocol>(request: Request, onSuccess: @escaping (Request.Entity) -> Void, onFailure: @escaping (Error) -> Void) {
+        guard let documentPath = request.documentPath else { onFailure(FirebaseDatabaseError.documentsWereNotFound); return }
+        guard let documentData = request.documentData else { onFailure(FirebaseDatabaseError.documentIsEmpty); return }
+        let collectionReference = dataBase.collection(request.collectionPath.rawValue)
+        let documentReference = collectionReference.document(documentPath)
+        documentReference.updateData(documentData) { (error) in
             if let error = error {
-                completion(.failure(error))
+                onFailure(error)
             } else {
-                completion(.success(()))
+                self.decode(data: documentData, onSuccess: onSuccess, onFailure: onFailure)
             }
         }
     }

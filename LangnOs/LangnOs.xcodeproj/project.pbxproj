@@ -8,10 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		61C7EECA589DD05A72E263FD /* Pods_LangnOs.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 838CBE43D71675BA7ED1743C /* Pods_LangnOs.framework */; };
-		8D435A2D254AFB5600838691 /* MaintenanceCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D435A29254AFB5600838691 /* MaintenanceCoordinator.swift */; };
-		8D435A2E254AFB5600838691 /* MaintenanceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D435A2A254AFB5600838691 /* MaintenanceViewController.swift */; };
-		8D435A2F254AFB5600838691 /* MaintenanceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D435A2B254AFB5600838691 /* MaintenanceViewModel.swift */; };
-		8D435A30254AFB5600838691 /* MaintenanceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D435A2C254AFB5600838691 /* MaintenanceViewController.xib */; };
+		8D435A35254B4E0C00838691 /* CollectionPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D435A34254B4E0C00838691 /* CollectionPath.swift */; };
+		8D435A37254B4E2900838691 /* QueryBulderPrototcol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D435A36254B4E2900838691 /* QueryBulderPrototcol.swift */; };
+		8D435A39254B4E3400838691 /* QueryConnectorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D435A38254B4E3400838691 /* QueryConnectorProtocol.swift */; };
+		8D435A3B254B4E5C00838691 /* QueryComponentProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D435A3A254B4E5C00838691 /* QueryComponentProtocol.swift */; };
+		8D435A3D254B4E8F00838691 /* QueryBulder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D435A3C254B4E8F00838691 /* QueryBulder.swift */; };
+		8D435A3F254B4EA500838691 /* QueryAndConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D435A3E254B4EA500838691 /* QueryAndConnector.swift */; };
+		8D435A41254B4ED800838691 /* IsEqualToComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D435A40254B4ED800838691 /* IsEqualToComponent.swift */; };
 		8D524F5D252E5AAA002A6E01 /* SearchBarCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D524F5B252E5AAA002A6E01 /* SearchBarCollectionReusableView.swift */; };
 		8D524F5E252E5AAA002A6E01 /* SearchBarCollectionReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D524F5C252E5AAA002A6E01 /* SearchBarCollectionReusableView.xib */; };
 		8D524F60252E5AE5002A6E01 /* SearchBarCollectionReusableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D524F5F252E5AE5002A6E01 /* SearchBarCollectionReusableViewModel.swift */; };
@@ -129,7 +132,7 @@
 		8DA744C025409A5100F9EC8B /* VocabularyFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA744BF25409A5100F9EC8B /* VocabularyFilter.swift */; };
 		8DAA553E25290FDD00FF5066 /* FirebaseDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DAA553D25290FDD00FF5066 /* FirebaseDatabase.swift */; };
 		8DAA55402529112B00FF5066 /* Vocabulary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DAA553F2529112B00FF5066 /* Vocabulary.swift */; };
-		8DAA55472529129E00FF5066 /* DocumentRequestProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DAA55462529129E00FF5066 /* DocumentRequestProtocol.swift */; };
+		8DAA55472529129E00FF5066 /* DataProviderRequestProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DAA55462529129E00FF5066 /* DataProviderRequestProtocol.swift */; };
 		8DAA554A252912BA00FF5066 /* VocabularyFetchRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DAA5549252912BA00FF5066 /* VocabularyFetchRequest.swift */; };
 		8DAA554E25291D3400FF5066 /* Word.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DAA554D25291D3400FF5066 /* Word.swift */; };
 		8DC3CF23252C67F9003CA62A /* InputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC3CF22252C67F9003CA62A /* InputView.swift */; };
@@ -245,10 +248,13 @@
 		4A5FD3A8E54929BE86BD1584 /* Pods-LangnOs.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LangnOs.debug.xcconfig"; path = "Target Support Files/Pods-LangnOs/Pods-LangnOs.debug.xcconfig"; sourceTree = "<group>"; };
 		838CBE43D71675BA7ED1743C /* Pods_LangnOs.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LangnOs.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		857C62CE9E52E6B51FA9DA81 /* Pods-LangnOs.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LangnOs.release.xcconfig"; path = "Target Support Files/Pods-LangnOs/Pods-LangnOs.release.xcconfig"; sourceTree = "<group>"; };
-		8D435A29254AFB5600838691 /* MaintenanceCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaintenanceCoordinator.swift; sourceTree = "<group>"; };
-		8D435A2A254AFB5600838691 /* MaintenanceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaintenanceViewController.swift; sourceTree = "<group>"; };
-		8D435A2B254AFB5600838691 /* MaintenanceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaintenanceViewModel.swift; sourceTree = "<group>"; };
-		8D435A2C254AFB5600838691 /* MaintenanceViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MaintenanceViewController.xib; sourceTree = "<group>"; };
+		8D435A34254B4E0C00838691 /* CollectionPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionPath.swift; sourceTree = "<group>"; };
+		8D435A36254B4E2900838691 /* QueryBulderPrototcol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueryBulderPrototcol.swift; sourceTree = "<group>"; };
+		8D435A38254B4E3400838691 /* QueryConnectorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueryConnectorProtocol.swift; sourceTree = "<group>"; };
+		8D435A3A254B4E5C00838691 /* QueryComponentProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueryComponentProtocol.swift; sourceTree = "<group>"; };
+		8D435A3C254B4E8F00838691 /* QueryBulder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueryBulder.swift; sourceTree = "<group>"; };
+		8D435A3E254B4EA500838691 /* QueryAndConnector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueryAndConnector.swift; sourceTree = "<group>"; };
+		8D435A40254B4ED800838691 /* IsEqualToComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IsEqualToComponent.swift; sourceTree = "<group>"; };
 		8D524F5B252E5AAA002A6E01 /* SearchBarCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarCollectionReusableView.swift; sourceTree = "<group>"; };
 		8D524F5C252E5AAA002A6E01 /* SearchBarCollectionReusableView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchBarCollectionReusableView.xib; sourceTree = "<group>"; };
 		8D524F5F252E5AE5002A6E01 /* SearchBarCollectionReusableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarCollectionReusableViewModel.swift; sourceTree = "<group>"; };
@@ -366,7 +372,7 @@
 		8DA744BF25409A5100F9EC8B /* VocabularyFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabularyFilter.swift; sourceTree = "<group>"; };
 		8DAA553D25290FDD00FF5066 /* FirebaseDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseDatabase.swift; sourceTree = "<group>"; };
 		8DAA553F2529112B00FF5066 /* Vocabulary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vocabulary.swift; sourceTree = "<group>"; };
-		8DAA55462529129E00FF5066 /* DocumentRequestProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentRequestProtocol.swift; sourceTree = "<group>"; };
+		8DAA55462529129E00FF5066 /* DataProviderRequestProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataProviderRequestProtocol.swift; sourceTree = "<group>"; };
 		8DAA5549252912BA00FF5066 /* VocabularyFetchRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabularyFetchRequest.swift; sourceTree = "<group>"; };
 		8DAA554D25291D3400FF5066 /* Word.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Word.swift; sourceTree = "<group>"; };
 		8DC3CF22252C67F9003CA62A /* InputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputView.swift; sourceTree = "<group>"; };
@@ -500,15 +506,42 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		8D435A00254AF4CF00838691 /* Maintenance */ = {
+		8D435A31254B4DCC00838691 /* QueryMapper */ = {
 			isa = PBXGroup;
 			children = (
-				8D435A29254AFB5600838691 /* MaintenanceCoordinator.swift */,
-				8D435A2A254AFB5600838691 /* MaintenanceViewController.swift */,
-				8D435A2B254AFB5600838691 /* MaintenanceViewModel.swift */,
-				8D435A2C254AFB5600838691 /* MaintenanceViewController.xib */,
+				8D435A32254B4DE600838691 /* Protocols */,
+				8D435A42254B4EF700838691 /* Connectors */,
+				8D435A43254B4EFF00838691 /* Components */,
+				8D435A34254B4E0C00838691 /* CollectionPath.swift */,
+				8D435A3C254B4E8F00838691 /* QueryBulder.swift */,
 			);
-			path = Maintenance;
+			path = QueryMapper;
+			sourceTree = "<group>";
+		};
+		8D435A32254B4DE600838691 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				8D435A36254B4E2900838691 /* QueryBulderPrototcol.swift */,
+				8D435A38254B4E3400838691 /* QueryConnectorProtocol.swift */,
+				8D435A3A254B4E5C00838691 /* QueryComponentProtocol.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		8D435A42254B4EF700838691 /* Connectors */ = {
+			isa = PBXGroup;
+			children = (
+				8D435A3E254B4EA500838691 /* QueryAndConnector.swift */,
+			);
+			path = Connectors;
+			sourceTree = "<group>";
+		};
+		8D435A43254B4EFF00838691 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				8D435A40254B4ED800838691 /* IsEqualToComponent.swift */,
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 		8D524F58252E52A0002A6E01 /* ReusableViews */ = {
@@ -811,7 +844,7 @@
 		8D94E84D253A3FDB005FA4B9 /* FirebaseDatabe */ = {
 			isa = PBXGroup;
 			children = (
-				8DAA55462529129E00FF5066 /* DocumentRequestProtocol.swift */,
+				8DAA55462529129E00FF5066 /* DataProviderRequestProtocol.swift */,
 				8DF253D525485073001492AE /* FavoriteVocabularyFetchRequest.swift */,
 				8DAA5549252912BA00FF5066 /* VocabularyFetchRequest.swift */,
 				8D662559252B0F9F00991D45 /* VocabularyCreateRequest.swift */,
@@ -988,7 +1021,6 @@
 			children = (
 				8DD28BA225266B1500F59B7D /* Generic */,
 				8DD28BA0252669F500F59B7D /* Root */,
-				8D435A00254AF4CF00838691 /* Maintenance */,
 				8DD28BA125266A1C00F59B7D /* Dashboard */,
 				8D524F8B252F7E23002A6E01 /* Account */,
 				8DF2538925434BC4001492AE /* Materials */,
@@ -1053,6 +1085,7 @@
 		8DD28BAD25266EAD00F59B7D /* BusinessLayer */ = {
 			isa = PBXGroup;
 			children = (
+				8D435A31254B4DCC00838691 /* QueryMapper */,
 				8DD28C0E2528AA2C00F59B7D /* Models */,
 				8DAA5548252912A400FF5066 /* Requests */,
 				8DD28C0D2528AA2200F59B7D /* Services */,
@@ -1483,7 +1516,6 @@
 				8DF253EE2549B17C001492AE /* VocabularyListViewController.xib in Resources */,
 				8D524F93252F7E8B002A6E01 /* MessagesViewController.xib in Resources */,
 				8DF25386254330A6001492AE /* MessageTableViewCell.xib in Resources */,
-				8D435A30254AFB5600838691 /* MaintenanceViewController.xib in Resources */,
 				8DF253BD2544A2AD001492AE /* ButtonTableViewCell.xib in Resources */,
 				8DF253F52549B396001492AE /* AddToFavoriteTableViewCell.xib in Resources */,
 				8DF928AE253DEBEC0052FC31 /* WritingProgressView.xib in Resources */,
@@ -1551,7 +1583,6 @@
 				8DF25388254330B6001492AE /* MessageCellViewModel.swift in Sources */,
 				8D524F9F252F83D2002A6E01 /* AccountViewModel.swift in Sources */,
 				8DF253FD2549B4B2001492AE /* AddToFavoriteCellViewModel.swift in Sources */,
-				8D435A2E254AFB5600838691 /* MaintenanceViewController.swift in Sources */,
 				8DC3CF34252CD5CD003CA62A /* SquareGridFlowLayout.swift in Sources */,
 				8D83EA68252B8BE5004E6098 /* VocabularyCellViewModel.swift in Sources */,
 				8D94E7E025362FE5005FA4B9 /* NoResulsView.swift in Sources */,
@@ -1560,6 +1591,7 @@
 				8D94E832253749CE005FA4B9 /* VocabularyFilterCellFactory.swift in Sources */,
 				8D94E82225373FB6005FA4B9 /* VocabularyFilterViewModel.swift in Sources */,
 				8DA744AE253F2EA600F9EC8B /* StudyResultCoordinator.swift in Sources */,
+				8D435A3D254B4E8F00838691 /* QueryBulder.swift in Sources */,
 				8DF253B62544A069001492AE /* BottomCardPresenter.swift in Sources */,
 				8DD28BE12526889200F59B7D /* UINavigationBar+Drivable.swift in Sources */,
 				8D94E84A253A2ABF005FA4B9 /* UIView+CornerRadius.swift in Sources */,
@@ -1571,7 +1603,6 @@
 				8DC3CF46252D2DA6003CA62A /* AlertPresentableProtocol.swift in Sources */,
 				8DD28BA825266C8200F59B7D /* RootTabBarController.swift in Sources */,
 				8DF253B42544A051001492AE /* Interactor.swift in Sources */,
-				8D435A2F254AFB5600838691 /* MaintenanceViewModel.swift in Sources */,
 				8D524FC72530D1D8002A6E01 /* UIButton+Drivable.swift in Sources */,
 				8D83EA86252BBBD1004E6098 /* TableSectionViewModel.swift in Sources */,
 				8DA744AF253F2EA600F9EC8B /* StudyResultViewController.swift in Sources */,
@@ -1627,7 +1658,6 @@
 				8D524FD325337985002A6E01 /* UIToolBar+Drivable.swift in Sources */,
 				8D94E868253CE2AB005FA4B9 /* WritingViewController.swift in Sources */,
 				8D94E869253CE2AB005FA4B9 /* WritingViewModel.swift in Sources */,
-				8D435A2D254AFB5600838691 /* MaintenanceCoordinator.swift in Sources */,
 				8DF25385254330A6001492AE /* MessageTableViewCell.swift in Sources */,
 				8DC3CF37252CFB8D003CA62A /* UIView+Shadow.swift in Sources */,
 				8DA744B0253F2EA600F9EC8B /* StudyResultViewModel.swift in Sources */,
@@ -1635,7 +1665,7 @@
 				8DF253C62544B084001492AE /* FlashCardsSettingsCoordinator.swift in Sources */,
 				8DC3CF3E252CFEB5003CA62A /* UIColor+Random.swift in Sources */,
 				8D524FB7252FBC47002A6E01 /* RootContext.swift in Sources */,
-				8DAA55472529129E00FF5066 /* DocumentRequestProtocol.swift in Sources */,
+				8DAA55472529129E00FF5066 /* DataProviderRequestProtocol.swift in Sources */,
 				8D524FE82533BC7B002A6E01 /* FlashCardsViewModel.swift in Sources */,
 				8D94E845253A1F8D005FA4B9 /* ImagePickerCoordinator.swift in Sources */,
 				8DD28BC625267A1700F59B7D /* PresentationCoordinator.swift in Sources */,
@@ -1645,7 +1675,9 @@
 				8D94E850253A4039005FA4B9 /* FirebaseFirestoreUploadRequestProtocol.swift in Sources */,
 				8D94E7D92534F772005FA4B9 /* NetworkState.swift in Sources */,
 				8D83EA6A252B8FEA004E6098 /* CreateVocabularyCellFactory.swift in Sources */,
+				8D435A37254B4E2900838691 /* QueryBulderPrototcol.swift in Sources */,
 				8D524F64252E5E8F002A6E01 /* UniversalCollectionSectionViewModel.swift in Sources */,
+				8D435A35254B4E0C00838691 /* CollectionPath.swift in Sources */,
 				8DF2537625431968001492AE /* TitleSectionViewModel.swift in Sources */,
 				8DF253B82544A07A001492AE /* BottomCardDismisser.swift in Sources */,
 				8DC3CF23252C67F9003CA62A /* InputView.swift in Sources */,
@@ -1678,6 +1710,8 @@
 				8DAA553E25290FDD00FF5066 /* FirebaseDatabase.swift in Sources */,
 				8DF253B12544838D001492AE /* VocabularySettingsViewModel.swift in Sources */,
 				8D524FB1252FB3CB002A6E01 /* SingUpCoordinator.swift in Sources */,
+				8D435A3F254B4EA500838691 /* QueryAndConnector.swift in Sources */,
+				8D435A39254B4E3400838691 /* QueryConnectorProtocol.swift in Sources */,
 				8D524F92252F7E8B002A6E01 /* MessagesViewController.swift in Sources */,
 				8DF2539B25437CDA001492AE /* CreateWordCellViewModel.swift in Sources */,
 				8D94E83F2539FA2D005FA4B9 /* SecurityManager.swift in Sources */,
@@ -1697,6 +1731,7 @@
 				8D662529252A386500991D45 /* VocabularyActionView.swift in Sources */,
 				8DF2539525436C0C001492AE /* Sequence+KeyPathSorting.swift in Sources */,
 				8DD28BEE2527A52100F59B7D /* BarButtonDrivableModel.swift in Sources */,
+				8D435A3B254B4E5C00838691 /* QueryComponentProtocol.swift in Sources */,
 				8DC3CF43252D2CBD003CA62A /* VocabularyDeleteRequest.swift in Sources */,
 				8D524FD525337A22002A6E01 /* ToolbarDrivableModel.swift in Sources */,
 				8DA744B6253F414300F9EC8B /* ViewAllCollectionReusableViewModel.swift in Sources */,
@@ -1719,6 +1754,7 @@
 				8DF2538125432B62001492AE /* SFSymbols.swift in Sources */,
 				8D66251F2529F6C000991D45 /* CreateVocabularyViewController.swift in Sources */,
 				8DD28BFB2527B76800F59B7D /* DashboardCellFactory.swift in Sources */,
+				8D435A41254B4ED800838691 /* IsEqualToComponent.swift in Sources */,
 				8D524FA7252F8A9F002A6E01 /* Authorizator.swift in Sources */,
 				8D94E846253A1F8D005FA4B9 /* ImagePickerViewController.swift in Sources */,
 				8DF2537B254328B3001492AE /* ColoredImageCellViewModel.swift in Sources */,

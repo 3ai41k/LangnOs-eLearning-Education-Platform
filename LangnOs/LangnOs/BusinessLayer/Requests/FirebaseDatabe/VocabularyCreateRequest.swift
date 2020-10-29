@@ -16,26 +16,18 @@ struct VocabularyCreateRequest {
     
 }
 
-// MARK: - DocumentCreatingRequestProtocol
+// MARK: - DataProviderRequestProtocol
 
-extension VocabularyCreateRequest: DocumentCreatingRequestProtocol {
+extension VocabularyCreateRequest: DataProviderRequestProtocol {
     
     typealias Entity = Vocabulary
     
-    var entity: Vocabulary {
-        vocabulary
+    var collectionPath: CollectionPath {
+        .vocabularies
     }
     
-    var path: String {
-        "Vocabularies"
-    }
-    
-    var documentData: [String : Any] {
-        try! DictionaryEncoder().encode(entity: vocabulary)
-    }
-    
-    func prepareReference(_ dataBase: Firestore) -> DocumentReference {
-        dataBase.collection(path).document(vocabulary.id)
+    var documentData: [String : Any]? {
+        try? DictionaryEncoder().encode(entity: vocabulary)
     }
     
 }
