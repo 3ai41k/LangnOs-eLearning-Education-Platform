@@ -1,6 +1,7 @@
 //___FILEHEADER___
 
 import Foundation
+import Combine
 
 protocol ___FILEBASENAMEASIDENTIFIER___InputProtocol {
     
@@ -10,25 +11,14 @@ protocol ___FILEBASENAMEASIDENTIFIER___OutputProtocol {
     
 }
 
-protocol ___FILEBASENAMEASIDENTIFIER___BindingProtocol {
-    
-}
-
 typealias ___FILEBASENAMEASIDENTIFIER___Protocol =
     ___FILEBASENAMEASIDENTIFIER___InputProtocol &
-    ___FILEBASENAMEASIDENTIFIER___OutputProtocol &
-    ___FILEBASENAMEASIDENTIFIER___BindingProtocol
+    ___FILEBASENAMEASIDENTIFIER___OutputProtocol
 
-final class ___FILEBASENAMEASIDENTIFIER___: ___FILEBASENAMEASIDENTIFIER___BindingProtocol {
+final class ___FILEBASENAMEASIDENTIFIER___: ___FILEBASENAMEASIDENTIFIER___Protocol {
     
     // MARK: - Public properties
-    
-    
-    
     // MARK: - Private properties
-    
-    
-    
     // MARK: - Init
     
     init() {
@@ -36,25 +26,7 @@ final class ___FILEBASENAMEASIDENTIFIER___: ___FILEBASENAMEASIDENTIFIER___Bindin
     }
     
     // MARK: - Public methods
-    
-    
-    
     // MARK: - Private methods
-    
-    
-    
-}
-
-// MARK: - ___FILEBASENAMEASIDENTIFIER___InputProtocol
-
-extension ___FILEBASENAMEASIDENTIFIER___: ___FILEBASENAMEASIDENTIFIER___InputProtocol {
-    
-}
-
-// MARK: - ___FILEBASENAMEASIDENTIFIER___OutputProtocol
-
-extension ___FILEBASENAMEASIDENTIFIER___: ___FILEBASENAMEASIDENTIFIER___OutputProtocol {
-    
 }
 
 

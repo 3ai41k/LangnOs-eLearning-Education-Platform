@@ -1,9 +1,15 @@
-//___FILEHEADER___
+//
+//  MaintenanceViewController.swift
+//  LangnOs
+//
+//  Created by Nikita Lizogubov on 29.10.2020.
+//  Copyright © 2020 NL. All rights reserved.
+//
 
 import UIKit
 import Combine
 
-final class ___FILEBASENAMEASIDENTIFIER___: BindibleViewController<___VARIABLE_productName:identifier___ViewModel> {
+final class MaintenanceViewController: BindibleViewController<MaintenanceViewModel> {
     
     // MARK: - IBOutlets
     // MARK: - Public properties

@@ -11,20 +11,34 @@ import UIKit
 protocol TitleSectionViewModelInput {
     var text: String { get }
     var font: UIFont { get }
+    var buttonText: String? { get }
+}
+
+protocol TitleSectionViewModelOutput {
+    func selectAction()
 }
 
 typealias TitleSectionViewModelProtocol =
-    SectionViewViewModelProtocol &
-    TitleSectionViewModelInput
+    TitleSectionViewModelInput &
+    TitleSectionViewModelOutput &
+    SectionViewViewModelProtocol
 
 final class TitleSectionViewModel: TitleSectionViewModelProtocol {
     
     let text: String
     let font: UIFont
+    let buttonText: String?
+    let buttonHandler: (() -> Void)?
     
-    init(text: String) {
+    init(text: String, buttonText: String? = nil, buttonHandler: (() -> Void)? = nil) {
         self.text = text
         self.font = .boldSystemFont(ofSize: 21.0)
+        self.buttonText = buttonText
+        self.buttonHandler = buttonHandler
+    }
+    
+    func selectAction() {
+        buttonHandler?()
     }
     
 }

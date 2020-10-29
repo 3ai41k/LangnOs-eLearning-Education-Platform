@@ -14,7 +14,7 @@ protocol InternetConnectableProtocol {
 }
 
 //
-// MARK: Notifications work correctly only on real device
+// MARK: Notifications work correctly only on a real device
 //
 
 final class NetworkState {

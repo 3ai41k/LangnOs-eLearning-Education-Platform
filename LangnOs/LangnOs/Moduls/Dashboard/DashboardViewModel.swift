@@ -27,6 +27,7 @@ protocol DashboardViewModelInputProtocol {
 protocol DashboardViewModelOutputProtocol {
     func userProfileAction()
     func fetchFavoriteVocabulary()
+    func refreshData(completion: () -> Void)
 }
 
 typealias DashboardViewModelProtocol =
@@ -45,7 +46,6 @@ private enum SectionType: Int {
     case empty
     case myWork
     case favorites
-    case recent
 }
 
 final class DashboardViewModel: DashboardViewModelProtocol {
@@ -87,7 +87,6 @@ final class DashboardViewModel: DashboardViewModelProtocol {
         self.setupEmptySection(&tableSections)
         self.setupMyWorkSection(&tableSections)
         self.setupFavoritesSection(&tableSections)
-        self.setupRecentSection(&tableSections)
     }
     
     deinit {
@@ -120,12 +119,22 @@ final class DashboardViewModel: DashboardViewModelProtocol {
         dataProvider.fetch(request: request) { (result: Result<[Vocabulary], Error>) in
             switch result {
             case .success(let vocabularies):
-                let cellViewModel = vocabularies.map({ MessageCellViewModel(message: $0.title) })
-                self.tableSections[SectionType.favorites.rawValue].cells.value = cellViewModel
+                if vocabularies.isEmpty {
+                    self.setupAddToFavoriteCell()
+                } else {
+                    self.setupFavoriteVocabularyCells(vocabularies)
+                }
             case .failure(let error):
                 self.router.showError(error)
             }
         }
+    }
+    
+    // MARK: FIX IT
+    
+    func refreshData(completion: () -> Void) {
+        fetchFavoriteVocabulary()
+        completion()
     }
     
     // MARK: - Private methods
@@ -176,20 +185,24 @@ final class DashboardViewModel: DashboardViewModelProtocol {
         tableSections.append(sectionViewModel)
     }
     
-    private func setupRecentSection(_ tableSections: inout [SectionViewModelProtocol]) {
-        let cellViewModels = [
-            MessageCellViewModel(message: "Add favorite sets here to have quick access at any time, without having to search")
-        ]
-        let sectionViewModel = TableSectionViewModel(headerView: TitleSectionViewModel(text: "Recent".localize),
-                                                     footerView: nil,
-                                                     cells: cellViewModels)
-        tableSections.append(sectionViewModel)
+    private func setupFavoriteVocabularyCells(_ vocabularies: [Vocabulary]) {
+        let cellViewModels = vocabularies.map({ MessageCellViewModel(message: $0.title) })
+        tableSections[SectionType.favorites.rawValue].cells.value = cellViewModels
     }
     
-    // MARK: - Action
-    
-    private func favoriteButtonTouch() {
-        print(#function)
+    private func setupAddToFavoriteCell() {
+        let cellViewModels = [
+            MessageCellViewModel(message: "Add favorite sets here to have quick access at any time, without having to search",
+                                 buttonTitle: "Add to favorite",
+                                 buttonHandler: { [weak self] in self?.router.navigateToVocabularyList() })
+        ]
+        let headerViewModel = TitleSectionViewModel(text: "Favorites".localize,
+                                                    buttonText: "Edit".localize,
+                                                    buttonHandler: { [weak self] in self?.router.navigateToVocabularyList() })
+        let sectionViewModel = TableSectionViewModel(headerView: headerViewModel,
+                                                     footerView: nil,
+                                                     cells: cellViewModels)
+        tableSections[SectionType.favorites.rawValue] = sectionViewModel
     }
     
 }

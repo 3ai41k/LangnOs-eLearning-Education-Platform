@@ -13,19 +13,34 @@ final class TitleSectionView: UIView {
     // MARK: - IBOutlets
     
     @IBOutlet private weak var label: UILabel!
+    @IBOutlet private weak var button: UIButton!
     
     // MARK: - Public properties
     
-    var viewModel: TitleSectionViewModelInput? {
+    var viewModel: TitleSectionViewModelProtocol? {
         didSet {
             bindViewModel()
         }
     }
+    
     // MARK: - Private methods
     
     private func bindViewModel() {
         label.text = viewModel?.text
         label.font = viewModel?.font
+        
+        if let buttonText = viewModel?.buttonText {
+            button.setTitle(buttonText, for: .normal)
+        } else {
+            button.isHidden = true
+        }
+    }
+    
+    // MARK: - Actions
+    
+    @IBAction
+    private func didButtonTouch(_ sender: Any) {
+        viewModel?.selectAction()
     }
     
 }

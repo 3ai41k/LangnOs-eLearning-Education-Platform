@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097.3" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="AddToFavoriteTableViewCell" customModule="LangnOs" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="200"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="200"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HYt-hd-hG5">
+                        <rect key="frame" x="260" y="82" width="36" height="36"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="36" id="3DX-uj-7as"/>
+                            <constraint firstAttribute="width" secondItem="HYt-hd-hG5" secondAttribute="height" multiplier="1:1" id="jdQ-HH-gof"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="tintColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <state key="normal" image="heart" catalog="system">
+                            <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="24"/>
+                        </state>
+                        <connections>
+                            <action selector="didHeartButtonTouch:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="Nuh-Vi-EZc"/>
+                        </connections>
+                    </button>
+                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="bon-cZ-xcS">
+                        <rect key="frame" x="24" y="19" width="228" height="162"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IUv-3J-QDc">
+                                <rect key="frame" x="0.0" y="0.0" width="228" height="48.5"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="26"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Category" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bIY-kQ-Jnx">
+                                <rect key="frame" x="0.0" y="56.5" width="228" height="49"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total words: 0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S0J-O1-r3h">
+                                <rect key="frame" x="0.0" y="113.5" width="228" height="48.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                    </stackView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="bon-cZ-xcS" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="8" id="WQh-2i-fkN"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="bon-cZ-xcS" secondAttribute="bottom" constant="8" id="Y3X-Yh-S3g"/>
+                    <constraint firstItem="HYt-hd-hG5" firstAttribute="leading" secondItem="bon-cZ-xcS" secondAttribute="trailing" constant="8" id="ZWj-PS-o8N"/>
+                    <constraint firstItem="bon-cZ-xcS" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="8" id="dys-pV-WjZ"/>
+                    <constraint firstItem="HYt-hd-hG5" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="ucw-S9-DXW"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="HYt-hd-hG5" secondAttribute="trailing" constant="8" id="xR5-vd-5h4"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="categoryLabel" destination="bIY-kQ-Jnx" id="cYh-aK-gAc"/>
+                <outlet property="heartButton" destination="HYt-hd-hG5" id="GOp-ej-Ewi"/>
+                <outlet property="nameLabel" destination="IUv-3J-QDc" id="r3B-QH-gTA"/>
+                <outlet property="totalWordsLabel" destination="S0J-O1-r3h" id="mrh-rH-Vxp"/>
+            </connections>
+            <point key="canvasLocation" x="131.8840579710145" y="135.9375"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="heart" catalog="system" width="128" height="109"/>
+    </resources>
+</document>

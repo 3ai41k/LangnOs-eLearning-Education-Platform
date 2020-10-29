@@ -11,6 +11,7 @@ import UIKit
 protocol DashboardNavigationProtocol {
     func navigateToUserProfile()
     func navigateToMaterials()
+    func navigateToVocabularyList()
 }
 
 typealias DashboardCoordinatorProtocol = DashboardNavigationProtocol & AlertPresentableProtocol
@@ -62,6 +63,11 @@ final class DashboardCoordinator: Coordinator, DashboardCoordinatorProtocol {
     func navigateToMaterials() {
         let materialsCoordinator = MaterialsCoordinator(parentViewController: viewController)
         materialsCoordinator.start()
+    }
+    
+    func navigateToVocabularyList() {
+        let vocabularyListCoordinator = VocabularyListCoordinator(parentViewController: viewController)
+        vocabularyListCoordinator.start()
     }
     
 }

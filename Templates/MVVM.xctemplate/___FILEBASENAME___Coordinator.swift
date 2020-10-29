@@ -13,24 +13,18 @@ typealias ___FILEBASENAMEASIDENTIFIER___Protocol =
     AlertPresentableProtocol
     
 
-final class ___FILEBASENAMEASIDENTIFIER___: Coordinator  {
+final class ___FILEBASENAMEASIDENTIFIER___: Coordinator, ___FILEBASENAMEASIDENTIFIER___Protocol  {
     
     // MARK: - Override
     
     override func start() {
-        let viewModel =
-        let viewController = 
+        let viewModel = ___VARIABLE_productName:identifier___ViewModel()
+        let viewController = ___VARIABLE_productName:identifier___ViewController()
         viewController.viewModel = viewModel
         
         self.viewController = viewController
         self.parentViewController?.present(viewController, animated: true, completion: nil)
     }
-    
-}
-
-// MARK: - ___FILEBASENAMEASIDENTIFIER___NavigationProtocol
-
-extension ___FILEBASENAMEASIDENTIFIER___: ___FILEBASENAMEASIDENTIFIER___NavigationProtocol {
     
 }
 

@@ -54,6 +54,10 @@ final class DashboardViewController: BindibleViewController<DashboardViewModelPr
         ]
     }
     
+    override func configurateComponents() {
+        setupPullToRefresh()
+    }
+    
     override func setupUI() {
         let userButton = UIBarButtonItem(image: SFSymbols.personCircle(),
                                          style: .plain,
@@ -65,7 +69,22 @@ final class DashboardViewController: BindibleViewController<DashboardViewModelPr
         navigationController?.navigationBar.topItem?.titleView = OfflineTitleView()
     }
     
+    // MARK: - Private methods
+    
+    private func setupPullToRefresh() {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(refreshData), for: .valueChanged)
+        self.tableView.refreshControl = refreshControl
+    }
+    
     // MARK: - Actions
+    
+    @objc
+    private func refreshData(_ sender: UIRefreshControl) {
+        viewModel?.refreshData {
+            sender.endRefreshing()
+        }
+    }
     
     @objc
     private func didUserTouch() {
