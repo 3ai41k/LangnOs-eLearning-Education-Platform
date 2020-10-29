@@ -27,11 +27,9 @@ extension FavoriteVocabularyFetchRequest: DataProviderRequestProtocol {
     }
     
     var query: QueryBulderPrototcol? {
-        QueryBulder(connectors: [
-            QueryAndConnector(componets: [
-                IsEqualToComponent("userId", isEqualTo: userId),
-                IsEqualToComponent("isFavorite", isEqualTo: true)
-            ])
+        QueryAndConnector(componets: [
+            IsEqualToComponent("userId", isEqualTo: userId),
+            IsEqualToComponent("isFavorite", isEqualTo: true)
         ])
     }
     

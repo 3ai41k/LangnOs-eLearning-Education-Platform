@@ -11,9 +11,7 @@
 		61C7EECA589DD05A72E263FD /* Pods_LangnOs.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 838CBE43D71675BA7ED1743C /* Pods_LangnOs.framework */; };
 		8D435A35254B4E0C00838691 /* CollectionPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D435A34254B4E0C00838691 /* CollectionPath.swift */; };
 		8D435A37254B4E2900838691 /* QueryBulderPrototcol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D435A36254B4E2900838691 /* QueryBulderPrototcol.swift */; };
-		8D435A39254B4E3400838691 /* QueryConnectorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D435A38254B4E3400838691 /* QueryConnectorProtocol.swift */; };
 		8D435A3B254B4E5C00838691 /* QueryComponentProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D435A3A254B4E5C00838691 /* QueryComponentProtocol.swift */; };
-		8D435A3D254B4E8F00838691 /* QueryBulder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D435A3C254B4E8F00838691 /* QueryBulder.swift */; };
 		8D435A3F254B4EA500838691 /* QueryAndConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D435A3E254B4EA500838691 /* QueryAndConnector.swift */; };
 		8D435A41254B4ED800838691 /* IsEqualToComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D435A40254B4ED800838691 /* IsEqualToComponent.swift */; };
 		8D435A65254B6B0C00838691 /* QueryBulderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D435A64254B6B0C00838691 /* QueryBulderTests.swift */; };
@@ -264,9 +262,7 @@
 		857C62CE9E52E6B51FA9DA81 /* Pods-LangnOs.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LangnOs.release.xcconfig"; path = "Target Support Files/Pods-LangnOs/Pods-LangnOs.release.xcconfig"; sourceTree = "<group>"; };
 		8D435A34254B4E0C00838691 /* CollectionPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionPath.swift; sourceTree = "<group>"; };
 		8D435A36254B4E2900838691 /* QueryBulderPrototcol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueryBulderPrototcol.swift; sourceTree = "<group>"; };
-		8D435A38254B4E3400838691 /* QueryConnectorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueryConnectorProtocol.swift; sourceTree = "<group>"; };
 		8D435A3A254B4E5C00838691 /* QueryComponentProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueryComponentProtocol.swift; sourceTree = "<group>"; };
-		8D435A3C254B4E8F00838691 /* QueryBulder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueryBulder.swift; sourceTree = "<group>"; };
 		8D435A3E254B4EA500838691 /* QueryAndConnector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueryAndConnector.swift; sourceTree = "<group>"; };
 		8D435A40254B4ED800838691 /* IsEqualToComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IsEqualToComponent.swift; sourceTree = "<group>"; };
 		8D435A59254B64FD00838691 /* LangnOsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LangnOsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -540,7 +536,6 @@
 				8D435A42254B4EF700838691 /* Connectors */,
 				8D435A43254B4EFF00838691 /* Components */,
 				8D435A34254B4E0C00838691 /* CollectionPath.swift */,
-				8D435A3C254B4E8F00838691 /* QueryBulder.swift */,
 			);
 			path = QueryMapper;
 			sourceTree = "<group>";
@@ -549,7 +544,6 @@
 			isa = PBXGroup;
 			children = (
 				8D435A36254B4E2900838691 /* QueryBulderPrototcol.swift */,
-				8D435A38254B4E3400838691 /* QueryConnectorProtocol.swift */,
 				8D435A3A254B4E5C00838691 /* QueryComponentProtocol.swift */,
 			);
 			path = Protocols;
@@ -1692,7 +1686,6 @@
 				8D94E832253749CE005FA4B9 /* VocabularyFilterCellFactory.swift in Sources */,
 				8D94E82225373FB6005FA4B9 /* VocabularyFilterViewModel.swift in Sources */,
 				8DA744AE253F2EA600F9EC8B /* StudyResultCoordinator.swift in Sources */,
-				8D435A3D254B4E8F00838691 /* QueryBulder.swift in Sources */,
 				8DF253B62544A069001492AE /* BottomCardPresenter.swift in Sources */,
 				8DD28BE12526889200F59B7D /* UINavigationBar+Drivable.swift in Sources */,
 				8D94E84A253A2ABF005FA4B9 /* UIView+CornerRadius.swift in Sources */,
@@ -1812,7 +1805,6 @@
 				8DF253B12544838D001492AE /* VocabularySettingsViewModel.swift in Sources */,
 				8D524FB1252FB3CB002A6E01 /* SingUpCoordinator.swift in Sources */,
 				8D435A3F254B4EA500838691 /* QueryAndConnector.swift in Sources */,
-				8D435A39254B4E3400838691 /* QueryConnectorProtocol.swift in Sources */,
 				8D524F92252F7E8B002A6E01 /* MessagesViewController.swift in Sources */,
 				8DF2539B25437CDA001492AE /* CreateWordCellViewModel.swift in Sources */,
 				8D94E83F2539FA2D005FA4B9 /* SecurityManager.swift in Sources */,

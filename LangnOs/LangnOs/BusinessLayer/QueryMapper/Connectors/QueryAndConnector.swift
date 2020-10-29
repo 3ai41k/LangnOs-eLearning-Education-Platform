@@ -8,19 +8,19 @@
 
 import FirebaseFirestore
 
-struct QueryAndConnector: QueryConnectorProtocol {
+struct QueryAndConnector: QueryBulderPrototcol {
     
     let componets: [QueryComponentProtocol]
     
-    func databaseFormat() -> String {
-        componets.map({ $0.format + "%@" }).joined(separator: " AND ")
+    func databaseQuery() -> NSPredicate? {
+        guard !componets.isEmpty else { return nil }
+        let format = componets.map({ $0.format + "%@" }).joined(separator: " AND ")
+        let argumets = componets.map({ $0.argument })
+        return NSPredicate(format: format, argumentArray: argumets)
     }
     
-    func databaseArguments() -> [Any] {
-        componets.map({ $0.argument })
-    }
-    
-    func firebaseQuery(_ reference: CollectionReference) -> Query {
+    func firebaseQuery(_ reference: CollectionReference) -> Query? {
+        guard !componets.isEmpty else { return nil }
         var query: Query = reference
         for componet in componets {
             query = componet.firebaseFormat(reference)
