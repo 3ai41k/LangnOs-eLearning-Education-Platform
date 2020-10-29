@@ -11,4 +11,8 @@ target 'LangnOs' do
   pod 'Firebase/Storage'
   pod 'Firebase/Firestore'
 
+  target 'LangnOsTests' do
+    inherit! :search_paths
+  end
+
 end

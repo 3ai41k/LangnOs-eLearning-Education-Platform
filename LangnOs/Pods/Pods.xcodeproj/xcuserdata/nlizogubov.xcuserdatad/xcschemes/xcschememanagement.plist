@@ -74,6 +74,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Pods-LangnOsTests.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>ReachabilitySwift.xcscheme</key>
 		<dict>
 			<key>isShown</key>
