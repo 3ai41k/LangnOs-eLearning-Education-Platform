@@ -109,7 +109,6 @@ final class AccountViewModel: AccountViewModelProtocol {
         } else {
             userPhoto.value = SFSymbols.personCircle()
         }
-        
     }
     
     private func setupEmptySection(_ tableSections: inout [SectionViewModelProtocol]) {
@@ -152,8 +151,8 @@ final class AccountViewModel: AccountViewModelProtocol {
         guard
             let user = securityManager.user,
             let data = image.jpegData(compressionQuality: 0.25)
-            else {
-                return
+        else {
+            return
         }
         
         userPhoto.value = nil

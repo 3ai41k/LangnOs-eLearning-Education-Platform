@@ -176,25 +176,23 @@ final class DashboardViewModel: DashboardViewModelProtocol {
     }
     
     private func downloadUserPhoto() {
-//        let userDefaults = UserDefaults.standard
-//        let userDefaultsKey = UserDefaultsKey.userImage.rawValue
-//        if let data = userDefaults.data(forKey: userDefaultsKey), let image = UIImage(data: data) {
-//            userImage.value = image.resized(to: CGSize(width: 44.0, height: 44.0))
-//        } else if let photoURL = securityManager.user?.photoURL {
-//            mediaDownloader.downloadMedia(url: photoURL, onSucces: { (data) in
-//                guard let image = UIImage(data: data) else {
-//                    self.userImage.value = SFSymbols.personCircle()
-//                    return
-//                }
-//                userDefaults.set(data, forKey: UserDefaultsKey.userImage.rawValue)
-//                self.userImage.value = image.resized(to: CGSize(width: 44.0, height: 44.0))
-//            }) { (error) in
-//                self.userImage.value = SFSymbols.personCircle()
-//                self.router.showError(error)
-//            }
-//        } else {
+        if let data = UserDefaults.standard.data(forKey: UserDefaultsKey.userImage.rawValue), let image = UIImage(data: data) {
+            userImage.value = image
+        } else if let photoURL = securityManager.user?.photoURL {
+            mediaDownloader.downloadMedia(url: photoURL, onSucces: { (data) in
+                if let image = UIImage(data: data)  {
+                    UserDefaults.standard.set(data, forKey: UserDefaultsKey.userImage.rawValue)
+                    self.userImage.value = image
+                } else {
+                    self.userImage.value = SFSymbols.personCircle()
+                }
+            }) { (error) in
+                self.userImage.value = SFSymbols.personCircle()
+                self.router.showError(error)
+            }
+        } else {
             userImage.value = SFSymbols.personCircle()
-//        }
+        }
     }
     
     private func setupEmptySection(_ tableSections: inout [SectionViewModelProtocol]) {

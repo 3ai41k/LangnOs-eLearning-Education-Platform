@@ -28,15 +28,6 @@ final class DashboardViewController: BindibleViewController<DashboardViewModelPr
     var cellFactory: UniversalTableViewCellFactoryProtocol?
     var sectionFactory: SectionViewFactoryProtocol?
     
-    // MARK: - Private properties
-    
-    private var activityBarButton: UIBarButtonItem {
-        let activityIndicatorView = UIActivityIndicatorView()
-        activityIndicatorView.startAnimating()
-        
-        return UIBarButtonItem(customView: activityIndicatorView)
-    }
-    
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
@@ -54,13 +45,9 @@ final class DashboardViewController: BindibleViewController<DashboardViewModelPr
             }),
             viewModel?.userImage.sink(receiveValue: { [weak self] (image) in
                 if let image = image {
-                    let accountButton = UIBarButtonItem(image: image,
-                                                        style: .plain,
-                                                        target: self,
-                                                        action: #selector(self?.didUserTouch))
-                    self?.navigationItem.leftBarButtonItem = accountButton
+                    self?.setupUserProfileButton(image: image)
                 } else {
-                    self?.navigationItem.leftBarButtonItem = self?.activityBarButton
+                    self?.setupActivityButton()
                 }
             }),
             viewModel?.isOfflineTitleHiddenPublisher.sink(receiveValue: { [weak self] (isHidden) in
@@ -91,6 +78,32 @@ final class DashboardViewController: BindibleViewController<DashboardViewModelPr
         self.tableView.refreshControl = refreshControl
     }
     
+    // TO DO: Create custom view
+    
+    private func setupUserProfileButton(image: UIImage) {
+        let button = UIButton()
+        button.setImage(image, for: .normal)
+        button.addTarget(self, action: #selector(didProfileTouch), for: .touchUpInside)
+        
+        button.clipsToBounds = true
+        button.layer.cornerRadius = 16.0
+        
+        button.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            button.heightAnchor.constraint(equalToConstant: 32.0),
+            button.widthAnchor.constraint(equalToConstant: 32.0)
+        ])
+        
+        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: button)
+    }
+    
+    private func setupActivityButton() {
+        let activityIndicatorView = UIActivityIndicatorView()
+        activityIndicatorView.startAnimating()
+        
+        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: activityIndicatorView)
+    }
+    
     // MARK: - Actions
     
     @objc
@@ -101,7 +114,7 @@ final class DashboardViewController: BindibleViewController<DashboardViewModelPr
     }
     
     @objc
-    private func didUserTouch() {
+    private func didProfileTouch() {
         viewModel?.userProfileAction()
     }
 
