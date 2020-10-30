@@ -129,7 +129,10 @@ final class MaterialsViewModel: MaterialsViewModelProtocol {
 extension MaterialsViewModel {
     
     func fetchDataAction() {
-        guard let userId = securityManager.user?.uid else { return }
+        guard let userId = securityManager.user?.uid else {
+            self.vocabularies = .empty
+            return
+        }
         
         let request = VocabularyFetchRequest(userId: userId)
         dataProvider.fetch(request: request, onSuccess: { (vocabularies: [Vocabulary]) in
