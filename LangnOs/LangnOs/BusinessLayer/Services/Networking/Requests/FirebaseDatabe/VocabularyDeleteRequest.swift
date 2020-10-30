@@ -26,12 +26,12 @@ extension VocabularyDeleteRequest: DataProviderRequestProtocol {
         .vocabularies
     }
     
-    var documentPath: String? {
-        vocabulary.id
-    }
-    
     var documentData: [String : Any]? {
         try? DictionaryEncoder().encode(entity: vocabulary)
+    }
+    
+    var documentPath: String? {
+        vocabulary.id
     }
     
 }

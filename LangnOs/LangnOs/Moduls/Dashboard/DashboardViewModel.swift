@@ -114,17 +114,17 @@ final class DashboardViewModel: DashboardViewModelProtocol {
     }
     
     func fetchFavoriteVocabulary() {
-//        guard let userId = securityManager.user?.uid else { return }
-//        let request = FavoriteVocabularyFetchRequest(userId: userId)
-//        dataProvider.fetch(request: request, onSuccess: { (vocabularies: [Vocabulary]) in
-//            if vocabularies.isEmpty {
-//                self.setupAddToFavoriteCell()
-//            } else {
-//                self.setupFavoriteVocabularyCells(vocabularies)
-//            }
-//        }) { (error) in
-//            self.router.showError(error)
-//        }
+        guard let userId = securityManager.user?.uid else { return }
+        let request = FavoriteVocabularyFetchRequest(userId: userId)
+        dataProvider.fetch(request: request, onSuccess: { (vocabularies: [Vocabulary]) in
+            if vocabularies.isEmpty {
+                self.setupAddToFavoriteCell()
+            } else {
+                self.setupFavoriteVocabularyCells(vocabularies)
+            }
+        }) { (error) in
+            self.router.showError(error)
+        }
     }
     
     // MARK: FIX IT

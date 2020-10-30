@@ -30,4 +30,8 @@ extension VocabularyCreateRequest: DataProviderRequestProtocol {
         try? DictionaryEncoder().encode(entity: vocabulary)
     }
     
+    var documentPath: String? {
+        vocabulary.id
+    }
+    
 }

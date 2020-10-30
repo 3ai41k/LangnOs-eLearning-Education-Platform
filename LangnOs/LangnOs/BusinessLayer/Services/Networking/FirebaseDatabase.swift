@@ -87,9 +87,11 @@ extension FirebaseDatabase: FirebaseDatabaseFetchingProtocol {
 extension FirebaseDatabase: FirebaseDatabaseCreatingProtocol {
     
     func create<Request: DataProviderRequestProtocol>(request: Request, onSuccess: @escaping (Request.Entity) -> Void, onFailure: @escaping (Error) -> Void) {
+        guard let documentPath = request.documentPath else { onFailure(FirebaseDatabaseError.documentsWereNotFound); return }
         guard let documentData = request.documentData else { onFailure(FirebaseDatabaseError.documentIsEmpty); return }
         let collectionReference = dataBase.collection(request.collectionPath.rawValue)
-        collectionReference.addDocument(data: documentData) { (error) in
+        let documentReference = collectionReference.document(documentPath)
+        documentReference.setData(documentData) { (error) in
             if let error = error {
                 onFailure(error)
             } else {
