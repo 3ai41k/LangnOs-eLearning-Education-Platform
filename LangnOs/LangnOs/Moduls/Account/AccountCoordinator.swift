@@ -46,7 +46,6 @@ final class AccountCoordinator: Coordinator, AlertPresentableProtocol {
         
         let accountViewController = AccountViewController()
         accountViewController.viewModel = accountViewModel
-        accountViewController.tabBarItem = UITabBarItem(provider: .account)
         
         let navigationController = UINavigationController(rootViewController: accountViewController)
         viewController = navigationController

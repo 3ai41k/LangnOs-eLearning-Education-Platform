@@ -65,4 +65,8 @@ struct SFSymbols {
         }
     }
     
+    static func search() -> UIImage {
+        return UIImage(systemName: "magnifyingglass")!
+    }
+    
 }

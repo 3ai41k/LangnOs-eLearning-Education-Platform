@@ -12,7 +12,7 @@ enum TabBarProvider: Int, CaseIterable {
     case dashboard
     case courses
     case messages
-    case account
+    case search
     
     var title: String {
         switch self {
@@ -22,8 +22,8 @@ enum TabBarProvider: Int, CaseIterable {
             return "Courses".localize
         case .messages:
             return "Messages".localize
-        case .account:
-            return "Account".localize
+        case .search:
+            return "Search".localize
         }
     }
     
@@ -35,8 +35,8 @@ enum TabBarProvider: Int, CaseIterable {
             return UIImage(systemName: "book.fill")!
         case .messages:
             return UIImage(systemName: "ellipses.bubble.fill")!
-        case .account:
-            return UIImage(systemName: "person.fill")!
+        case .search:
+            return SFSymbols.search()
         }
     }
     
@@ -48,21 +48,8 @@ enum TabBarProvider: Int, CaseIterable {
             return UIImage(systemName: "book")!
         case .messages:
             return UIImage(systemName: "ellipses.bubble")!
-        case .account:
-            return UIImage(systemName: "person")!
-        }
-    }
-    
-    var isLoced: Bool {
-        switch self {
-        case .dashboard:
-            return false
-        case .courses:
-            return true
-        case .messages:
-            return true
-        case .account:
-            return false
+        case .search:
+            return SFSymbols.search()
         }
     }
     
@@ -74,8 +61,8 @@ enum TabBarProvider: Int, CaseIterable {
             return CoursesCoordinator(parentViewController: parentViewController)
         case .messages:
             return MessagesCoordinator(parentViewController: parentViewController)
-        case .account:
-            return AccountCoordinator(context: context, parentViewController: parentViewController)
+        case .search:
+            return SearchVocabularyCoordinator(parentViewController: parentViewController)
         }
     }
     
