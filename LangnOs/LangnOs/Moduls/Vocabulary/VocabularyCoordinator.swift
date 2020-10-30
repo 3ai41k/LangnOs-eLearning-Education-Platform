@@ -49,6 +49,13 @@ final class VocabularyCoordinator: Coordinator, AlertPresentableProtocol {
         (parentViewController as? UINavigationController)?.pushViewController(viewController, animated: true)
     }
     
+    // MARK: - CoordinatorClosableProtocol
+    
+    func close(completion: (() -> Void)?) {
+        (parentViewController as? UINavigationController)?.popViewController(animated: true)
+        completion?()
+    }
+    
 }
 
 // MARK: - VocabularyNavigationProtocol
