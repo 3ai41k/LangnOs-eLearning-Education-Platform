@@ -29,7 +29,7 @@ final class RootTabBarController: UITabBarController {
     // MARK: - Private methods
     
     private func initializeComponents() {
-        //delegate = self
+        
     }
     
     private func bindViewModel() {
@@ -37,18 +37,6 @@ final class RootTabBarController: UITabBarController {
             $0.start()
             return $0.viewController
         })
-    }
-    
-}
-
-// MARK: - CentreButtonTabBarControllerDelegate
-
-extension RootTabBarController: CentreButtonTabBarControllerDelegate {
-    
-    func centreButtonTabBarControllerfor(_ centreButtonTabBarControllerfor: CentreButtonTabBarController, didCentreButtonTouchFor viewController: UIViewController) {
-        if let index = centreButtonTabBarControllerfor.viewControllers.firstIndex(of: viewController) {
-            viewModel?.didCentreButtonTouch(by: index)
-        }
     }
     
 }

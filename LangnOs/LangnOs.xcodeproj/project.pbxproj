@@ -41,8 +41,6 @@
 		8D524FB7252FBC47002A6E01 /* RootContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D524FB6252FBC47002A6E01 /* RootContext.swift */; };
 		8D524FC72530D1D8002A6E01 /* UIButton+Drivable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D524FC62530D1D8002A6E01 /* UIButton+Drivable.swift */; };
 		8D524FC92530D22A002A6E01 /* ButtonDrivableModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D524FC82530D22A002A6E01 /* ButtonDrivableModel.swift */; };
-		8D524FCE253372A3002A6E01 /* TopBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D524FCD253372A3002A6E01 /* TopBarView.swift */; };
-		8D524FD0253372B0002A6E01 /* TopBarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D524FCF253372B0002A6E01 /* TopBarView.xib */; };
 		8D524FD325337985002A6E01 /* UIToolBar+Drivable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D524FD225337985002A6E01 /* UIToolBar+Drivable.swift */; };
 		8D524FD525337A22002A6E01 /* ToolbarDrivableModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D524FD425337A22002A6E01 /* ToolbarDrivableModel.swift */; };
 		8D524FDB2533816D002A6E01 /* UIBarButtonItem+Init.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D524FDA2533816D002A6E01 /* UIBarButtonItem+Init.swift */; };
@@ -77,7 +75,6 @@
 		8D66254C252A7D3900991D45 /* WordsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D66254B252A7D3900991D45 /* WordsViewModel.swift */; };
 		8D662558252A800600991D45 /* UniversalTableViewCellRegistratable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D662557252A800600991D45 /* UniversalTableViewCellRegistratable.swift */; };
 		8D66255A252B0F9F00991D45 /* VocabularyCreateRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D662559252B0F9F00991D45 /* VocabularyCreateRequest.swift */; };
-		8D82FB562541D6A90005B137 /* CentreButtonTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D82FB552541D6A90005B137 /* CentreButtonTabBarController.swift */; };
 		8D83EA65252B8BB7004E6098 /* VocabularyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D83EA63252B8BB7004E6098 /* VocabularyTableViewCell.swift */; };
 		8D83EA66252B8BB7004E6098 /* VocabularyTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D83EA64252B8BB7004E6098 /* VocabularyTableViewCell.xib */; };
 		8D83EA68252B8BE5004E6098 /* VocabularyCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D83EA67252B8BE5004E6098 /* VocabularyCellViewModel.swift */; };
@@ -294,8 +291,6 @@
 		8D524FB6252FBC47002A6E01 /* RootContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootContext.swift; sourceTree = "<group>"; };
 		8D524FC62530D1D8002A6E01 /* UIButton+Drivable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Drivable.swift"; sourceTree = "<group>"; };
 		8D524FC82530D22A002A6E01 /* ButtonDrivableModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonDrivableModel.swift; sourceTree = "<group>"; };
-		8D524FCD253372A3002A6E01 /* TopBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopBarView.swift; sourceTree = "<group>"; };
-		8D524FCF253372B0002A6E01 /* TopBarView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TopBarView.xib; sourceTree = "<group>"; };
 		8D524FD225337985002A6E01 /* UIToolBar+Drivable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIToolBar+Drivable.swift"; sourceTree = "<group>"; };
 		8D524FD425337A22002A6E01 /* ToolbarDrivableModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolbarDrivableModel.swift; sourceTree = "<group>"; };
 		8D524FDA2533816D002A6E01 /* UIBarButtonItem+Init.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIBarButtonItem+Init.swift"; sourceTree = "<group>"; };
@@ -330,7 +325,6 @@
 		8D66254B252A7D3900991D45 /* WordsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordsViewModel.swift; sourceTree = "<group>"; };
 		8D662557252A800600991D45 /* UniversalTableViewCellRegistratable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniversalTableViewCellRegistratable.swift; sourceTree = "<group>"; };
 		8D662559252B0F9F00991D45 /* VocabularyCreateRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabularyCreateRequest.swift; sourceTree = "<group>"; };
-		8D82FB552541D6A90005B137 /* CentreButtonTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CentreButtonTabBarController.swift; sourceTree = "<group>"; };
 		8D83EA63252B8BB7004E6098 /* VocabularyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabularyTableViewCell.swift; sourceTree = "<group>"; };
 		8D83EA64252B8BB7004E6098 /* VocabularyTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VocabularyTableViewCell.xib; sourceTree = "<group>"; };
 		8D83EA67252B8BE5004E6098 /* VocabularyCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabularyCellViewModel.swift; sourceTree = "<group>"; };
@@ -574,6 +568,29 @@
 			path = LangnOsTests;
 			sourceTree = "<group>";
 		};
+		8D435A66254C15E000838691 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				8D94E7CB2534DF03005FA4B9 /* CoreDataContext.swift */,
+				8DD28B8D252667F600F59B7D /* LangnOs.xcdatamodeld */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
+		8D435A67254C15F700838691 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				8DAA5548252912A400FF5066 /* Requests */,
+				8D94E7D82534F772005FA4B9 /* NetworkState.swift */,
+				8DAA553D25290FDD00FF5066 /* FirebaseDatabase.swift */,
+				8D94E84B253A344F005FA4B9 /* FirebaseStorage.swift */,
+				8D524FA6252F8A9F002A6E01 /* Authorizator.swift */,
+				8DF2539E25446639001492AE /* DictionaryDecoder.swift */,
+				8DF253A025446BA0001492AE /* DictionaryEncoder.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
 		8D524F58252E52A0002A6E01 /* ReusableViews */ = {
 			isa = PBXGroup;
 			children = (
@@ -646,15 +663,6 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		8D524FCC25337288002A6E01 /* TopBar */ = {
-			isa = PBXGroup;
-			children = (
-				8D524FCD253372A3002A6E01 /* TopBarView.swift */,
-				8D524FCF253372B0002A6E01 /* TopBarView.xib */,
-			);
-			path = TopBar;
-			sourceTree = "<group>";
-		};
 		8D524FE02533BA07002A6E01 /* FlashCards */ = {
 			isa = PBXGroup;
 			children = (
@@ -692,10 +700,8 @@
 		8D662527252A384200991D45 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				8DF253CE25471CFB001492AE /* OfflineTitleView */,
 				8DF928AA253DEBB90052FC31 /* WritingProgress */,
 				8D94E7DE25362FA5005FA4B9 /* Background */,
-				8D524FCC25337288002A6E01 /* TopBar */,
 				8D524FA0252F8698002A6E01 /* UserImage */,
 				8D662538252A6CF400991D45 /* VocabularyProgress */,
 				8D662535252A611900991D45 /* Score */,
@@ -796,7 +802,6 @@
 		8D83EA73252B9E72004E6098 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				8D82FB552541D6A90005B137 /* CentreButtonTabBarController.swift */,
 				8DD28BCC2526815C00F59B7D /* BindibleViewController.swift */,
 				8D83EA74252B9E7B004E6098 /* ActivityViewController */,
 			);
@@ -1005,7 +1010,6 @@
 				8DD28BAD25266EAD00F59B7D /* BusinessLayer */,
 				8DD28B9F252669EF00F59B7D /* Moduls */,
 				8DD28B9B252668D600F59B7D /* Resources */,
-				8DD28B8D252667F600F59B7D /* LangnOs.xcdatamodeld */,
 			);
 			path = LangnOs;
 			sourceTree = "<group>";
@@ -1093,6 +1097,7 @@
 		8DD28BA125266A1C00F59B7D /* Dashboard */ = {
 			isa = PBXGroup;
 			children = (
+				8DF253CE25471CFB001492AE /* OfflineTitleView */,
 				8DF2536E25431925001492AE /* TitleSection */,
 				8DF253822543307A001492AE /* MessageCell */,
 				8DD28BB225266F6800F59B7D /* DashboardCoordinator.swift */,
@@ -1117,9 +1122,7 @@
 		8DD28BAD25266EAD00F59B7D /* BusinessLayer */ = {
 			isa = PBXGroup;
 			children = (
-				8D435A31254B4DCC00838691 /* QueryMapper */,
 				8DD28C0E2528AA2C00F59B7D /* Models */,
-				8DAA5548252912A400FF5066 /* Requests */,
 				8DD28C0D2528AA2200F59B7D /* Services */,
 			);
 			path = BusinessLayer;
@@ -1258,16 +1261,12 @@
 		8DD28C0D2528AA2200F59B7D /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				8D94E7D82534F772005FA4B9 /* NetworkState.swift */,
+				8D435A31254B4DCC00838691 /* QueryMapper */,
+				8D435A67254C15F700838691 /* Networking */,
+				8D435A66254C15E000838691 /* CoreData */,
 				8D94E7D32534E3DC005FA4B9 /* DataProvider.swift */,
-				8DAA553D25290FDD00FF5066 /* FirebaseDatabase.swift */,
-				8D94E84B253A344F005FA4B9 /* FirebaseStorage.swift */,
-				8D94E7CB2534DF03005FA4B9 /* CoreDataContext.swift */,
 				8D94E7C42534D102005FA4B9 /* SpeechSynthesizer.swift */,
 				8D94E83E2539FA2D005FA4B9 /* SecurityManager.swift */,
-				8D524FA6252F8A9F002A6E01 /* Authorizator.swift */,
-				8DF2539E25446639001492AE /* DictionaryDecoder.swift */,
-				8DF253A025446BA0001492AE /* DictionaryEncoder.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -1553,7 +1552,6 @@
 				8DF2537825431970001492AE /* TitleSectionView.xib in Resources */,
 				8D662531252A3E9800991D45 /* Colors.xcassets in Resources */,
 				8DF253DB25488166001492AE /* ActivityIndicatorTableViewCell.xib in Resources */,
-				8D524FD0253372B0002A6E01 /* TopBarView.xib in Resources */,
 				8DF253B22544838D001492AE /* VocabularySettingsViewController.xib in Resources */,
 				8D662537252A612A00991D45 /* ScoreView.xib in Resources */,
 				8DD28B94252667F800F59B7D /* LaunchScreen.storyboard in Resources */,
@@ -1690,7 +1688,6 @@
 				8DD28BE12526889200F59B7D /* UINavigationBar+Drivable.swift in Sources */,
 				8D94E84A253A2ABF005FA4B9 /* UIView+CornerRadius.swift in Sources */,
 				8DF253722543194E001492AE /* TitleSectionView.swift in Sources */,
-				8D524FCE253372A3002A6E01 /* TopBarView.swift in Sources */,
 				8D524FE62533BA46002A6E01 /* FlashCardsCoordinator.swift in Sources */,
 				8DD28BAC25266EA500F59B7D /* TabBarProvider.swift in Sources */,
 				8D524F9B252F7EB5002A6E01 /* MessagesCoordinator.swift in Sources */,
@@ -1786,7 +1783,6 @@
 				8D6625242529F79B00991D45 /* CreateVocabularyViewModel.swift in Sources */,
 				8DAA554E25291D3400FF5066 /* Word.swift in Sources */,
 				8DF928AC253DEBCF0052FC31 /* WritingProgressView.swift in Sources */,
-				8D82FB562541D6A90005B137 /* CentreButtonTabBarController.swift in Sources */,
 				8D524F8E252F7E7D002A6E01 /* CoursesViewController.swift in Sources */,
 				8DD28BAA25266CDB00F59B7D /* RootViewModel.swift in Sources */,
 				8DF253AF2544838D001492AE /* VocabularySettingsCoordinator.swift in Sources */,
