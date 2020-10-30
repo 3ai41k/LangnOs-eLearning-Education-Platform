@@ -7,52 +7,116 @@
 //
 
 import XCTest
+@testable import FirebaseFirestore
 @testable import LangnOs
 
-class QueryBulderTests: XCTestCase {
+final class QueryBulderTests: XCTestCase {
     
-    func testIsDatabaseQueryNotNil() {
+    func testAndOrConnectorForDatabase() {
         let userId = UUID().uuidString
         
-        let andConnector1 = QueryAndConnector(componets: [
+        let connector = QueryAndConnector(components: [
             IsEqualToComponent("userId", isEqualTo: userId),
-        ])
-        
-        let andConnector2 = QueryAndConnector(componets: [
             IsEqualToComponent("isFavorite", isEqualTo: true),
+            QueryOrConnector(components: [
+                IsEqualToComponent("isPrivate", isEqualTo: false),
+                IsEqualToComponent("isEditable", isEqualTo: true)
+            ])
         ])
         
-        let queryBulder = QueryBulder(connectors: [
-            andConnector1, andConnector2
+        let predicates = NSCompoundPredicate(andPredicateWithSubpredicates: [
+            NSPredicate(format: "%@ == %@", argumentArray: ["userId", userId]),
+            NSPredicate(format: "%@ == %@", argumentArray: ["isFavorite", true]),
+            NSCompoundPredicate(orPredicateWithSubpredicates: [
+                NSPredicate(format: "%@ == %@", argumentArray: ["isPrivate", false]),
+                NSPredicate(format: "%@ == %@", argumentArray: ["isEditable", true])
+            ])
         ])
         
-        XCTAssertNotNil(queryBulder.databaseQuery())
+        print(#function, ": ", connector.databaseQuery(), " - ", predicates)
+        
+        XCTAssertEqual(connector.databaseQuery(), predicates)
     }
     
-    func testIsDatabaseQueryNil() {
-        let queryBulder = QueryBulder(connectors: [])
+    func testOrConnectorForDatabase() {
+        let userId = UUID().uuidString
         
-        XCTAssertNil(queryBulder.databaseQuery())
+        let andConnector = QueryOrConnector(components: [
+            IsEqualToComponent("userId", isEqualTo: userId),
+            IsEqualToComponent("isFavorite", isEqualTo: true),
+            IsEqualToComponent("isPrivate", isEqualTo: false),
+        ])
+        
+        let predicates = NSCompoundPredicate(orPredicateWithSubpredicates: [
+            NSPredicate(format: "%@ == %@", argumentArray: ["userId", userId]),
+            NSPredicate(format: "%@ == %@", argumentArray: ["isFavorite", true]),
+            NSPredicate(format: "%@ == %@", argumentArray: ["isPrivate", false])
+        ])
+        
+        print(#function, ": ", andConnector.databaseQuery(), " - ", predicates)
+        
+        XCTAssertEqual(andConnector.databaseQuery(), predicates)
+    }
+    
+    func testAndConnectorForFirebase() {
+        let userId = UUID().uuidString
+        
+        let andConnector = QueryAndConnector(components: [
+            IsEqualToComponent("userId", isEqualTo: userId),
+            IsEqualToComponent("isFavorite", isEqualTo: true)
+        ])
+        
+        let collectionReference = Firestore.firestore().collection(CollectionPath.vocabularies.rawValue)
+        let query = collectionReference.whereField("userId", isEqualTo: userId).whereField("isFavorite", isEqualTo: true)
+        
+        print(#function, ": ", andConnector.firebaseQuery(collectionReference), " - ", query)
+        
+        XCTAssertEqual(andConnector.firebaseQuery(collectionReference), query)
     }
 
-    func testAndConnector() {
+    func testAndConnectorForDatabase() {
         let userId = UUID().uuidString
         
-        let andConnector = QueryAndConnector(componets: [
+        let andConnector = QueryAndConnector(components: [
             IsEqualToComponent("userId", isEqualTo: userId),
             IsEqualToComponent("isFavorite", isEqualTo: true),
-            IsEqualToComponent("isPrivate", isEqualTo: false)
+            IsEqualToComponent("isPrivate", isEqualTo: false),
         ])
         
-        XCTAssertEqual(andConnector.databaseFormat(), "userId == %@ AND isFavorite == %@ AND isPrivate == %@")
+        let predicates = NSCompoundPredicate(andPredicateWithSubpredicates: [
+            NSPredicate(format: "%@ == %@", argumentArray: ["userId", userId]),
+            NSPredicate(format: "%@ == %@", argumentArray: ["isFavorite", true]),
+            NSPredicate(format: "%@ == %@", argumentArray: ["isPrivate", false])
+        ])
+        
+        print(#function, ": ", andConnector.databaseQuery(), " - ", predicates)
+        
+        XCTAssertEqual(andConnector.databaseQuery(), predicates)
     }
     
-    func testIsEqualToComonent() {
+    func testIsEqualToComonentForFirebase() {
         let userId = UUID().uuidString
         
         let component = IsEqualToComponent("userId", isEqualTo: userId)
         
-        XCTAssertEqual(component.format, "userId == ")
+        let collectionReference = Firestore.firestore().collection(CollectionPath.vocabularies.rawValue)
+        let query = collectionReference.whereField("userId", isEqualTo: userId)
+        
+        print(#function, ": ", component.firebaseQuery(collectionReference), " - ", query)
+        
+        XCTAssertEqual(component.firebaseQuery(collectionReference), query)
+    }
+    
+    func testIsEqualToComonentForDatabase() {
+        let userId = UUID().uuidString
+        
+        let component = IsEqualToComponent("userId", isEqualTo: userId)
+        
+        let predicate = NSPredicate(format: "%@ == %@", argumentArray: ["userId", userId])
+        
+        print(#function, ": ", component.databaseQuery(), " - ", predicate)
+        
+        XCTAssertEqual(component.databaseQuery(), predicate)
     }
     
 }

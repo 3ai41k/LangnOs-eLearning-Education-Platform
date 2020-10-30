@@ -10,19 +10,19 @@ import FirebaseFirestore
 
 struct IsEqualToComponent: QueryComponentProtocol {
     
-    let field: String
-    let argument: Any
+    private let field: String
+    private let argument: Any
     
     init(_ field: String, isEqualTo argument: Any) {
         self.field = field
         self.argument = argument
     }
     
-    var format: String {
-        String(format: "%@ %@ ", field, "==")
+    func databaseQuery() -> NSPredicate {
+        NSPredicate(format: "%@ == %@", argumentArray: [field, argument])
     }
     
-    func firebaseFormat(_ reference: CollectionReference) -> Query {
+    func firebaseQuery(_ reference: CollectionReference) -> Query {
         reference.whereField(field, isEqualTo: argument)
     }
     

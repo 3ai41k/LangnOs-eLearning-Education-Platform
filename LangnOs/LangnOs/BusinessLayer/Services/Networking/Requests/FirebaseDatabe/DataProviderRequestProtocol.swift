@@ -11,13 +11,13 @@ import FirebaseFirestore
 protocol DataProviderRequestProtocol {
     associatedtype Entity: Codable & CDEntityProtocol
     var collectionPath: CollectionPath { get }
-    var query: QueryBulderPrototcol? { get }
+    var query: QueryComponentProtocol? { get }
     var documentData: [String: Any]? { get }
     var documentPath: String? { get }
 }
 
 extension DataProviderRequestProtocol {
-    var query: QueryBulderPrototcol? { nil }
+    var query: QueryComponentProtocol? { nil }
     var documentData: [String: Any]? { nil }
     var documentPath: String? { nil }
 }

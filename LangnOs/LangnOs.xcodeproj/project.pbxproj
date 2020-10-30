@@ -10,11 +10,11 @@
 		4A5C4BF5DB24242E45BCEF2B /* Pods_LangnOsTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 780DBDB11495221AFA5D783C /* Pods_LangnOsTests.framework */; };
 		61C7EECA589DD05A72E263FD /* Pods_LangnOs.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 838CBE43D71675BA7ED1743C /* Pods_LangnOs.framework */; };
 		8D435A35254B4E0C00838691 /* CollectionPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D435A34254B4E0C00838691 /* CollectionPath.swift */; };
-		8D435A37254B4E2900838691 /* QueryBulderPrototcol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D435A36254B4E2900838691 /* QueryBulderPrototcol.swift */; };
 		8D435A3B254B4E5C00838691 /* QueryComponentProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D435A3A254B4E5C00838691 /* QueryComponentProtocol.swift */; };
-		8D435A3F254B4EA500838691 /* QueryAndConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D435A3E254B4EA500838691 /* QueryAndConnector.swift */; };
 		8D435A41254B4ED800838691 /* IsEqualToComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D435A40254B4ED800838691 /* IsEqualToComponent.swift */; };
 		8D435A65254B6B0C00838691 /* QueryBulderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D435A64254B6B0C00838691 /* QueryBulderTests.swift */; };
+		8D435A6B254C223400838691 /* QueryAndConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D435A6A254C223400838691 /* QueryAndConnector.swift */; };
+		8D435A70254C25D300838691 /* QueryOrConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D435A6F254C25D300838691 /* QueryOrConnector.swift */; };
 		8D524F5D252E5AAA002A6E01 /* SearchBarCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D524F5B252E5AAA002A6E01 /* SearchBarCollectionReusableView.swift */; };
 		8D524F5E252E5AAA002A6E01 /* SearchBarCollectionReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D524F5C252E5AAA002A6E01 /* SearchBarCollectionReusableView.xib */; };
 		8D524F60252E5AE5002A6E01 /* SearchBarCollectionReusableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D524F5F252E5AE5002A6E01 /* SearchBarCollectionReusableViewModel.swift */; };
@@ -258,13 +258,13 @@
 		838CBE43D71675BA7ED1743C /* Pods_LangnOs.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LangnOs.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		857C62CE9E52E6B51FA9DA81 /* Pods-LangnOs.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LangnOs.release.xcconfig"; path = "Target Support Files/Pods-LangnOs/Pods-LangnOs.release.xcconfig"; sourceTree = "<group>"; };
 		8D435A34254B4E0C00838691 /* CollectionPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionPath.swift; sourceTree = "<group>"; };
-		8D435A36254B4E2900838691 /* QueryBulderPrototcol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueryBulderPrototcol.swift; sourceTree = "<group>"; };
 		8D435A3A254B4E5C00838691 /* QueryComponentProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueryComponentProtocol.swift; sourceTree = "<group>"; };
-		8D435A3E254B4EA500838691 /* QueryAndConnector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueryAndConnector.swift; sourceTree = "<group>"; };
 		8D435A40254B4ED800838691 /* IsEqualToComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IsEqualToComponent.swift; sourceTree = "<group>"; };
 		8D435A59254B64FD00838691 /* LangnOsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LangnOsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D435A5D254B64FD00838691 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8D435A64254B6B0C00838691 /* QueryBulderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueryBulderTests.swift; sourceTree = "<group>"; };
+		8D435A6A254C223400838691 /* QueryAndConnector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueryAndConnector.swift; sourceTree = "<group>"; };
+		8D435A6F254C25D300838691 /* QueryOrConnector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueryOrConnector.swift; sourceTree = "<group>"; };
 		8D524F5B252E5AAA002A6E01 /* SearchBarCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarCollectionReusableView.swift; sourceTree = "<group>"; };
 		8D524F5C252E5AAA002A6E01 /* SearchBarCollectionReusableView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchBarCollectionReusableView.xib; sourceTree = "<group>"; };
 		8D524F5F252E5AE5002A6E01 /* SearchBarCollectionReusableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarCollectionReusableViewModel.swift; sourceTree = "<group>"; };
@@ -527,7 +527,7 @@
 			isa = PBXGroup;
 			children = (
 				8D435A32254B4DE600838691 /* Protocols */,
-				8D435A42254B4EF700838691 /* Connectors */,
+				8D435A6C254C22A300838691 /* Connectors */,
 				8D435A43254B4EFF00838691 /* Components */,
 				8D435A34254B4E0C00838691 /* CollectionPath.swift */,
 			);
@@ -537,18 +537,9 @@
 		8D435A32254B4DE600838691 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
-				8D435A36254B4E2900838691 /* QueryBulderPrototcol.swift */,
 				8D435A3A254B4E5C00838691 /* QueryComponentProtocol.swift */,
 			);
 			path = Protocols;
-			sourceTree = "<group>";
-		};
-		8D435A42254B4EF700838691 /* Connectors */ = {
-			isa = PBXGroup;
-			children = (
-				8D435A3E254B4EA500838691 /* QueryAndConnector.swift */,
-			);
-			path = Connectors;
 			sourceTree = "<group>";
 		};
 		8D435A43254B4EFF00838691 /* Components */ = {
@@ -589,6 +580,15 @@
 				8DF253A025446BA0001492AE /* DictionaryEncoder.swift */,
 			);
 			path = Networking;
+			sourceTree = "<group>";
+		};
+		8D435A6C254C22A300838691 /* Connectors */ = {
+			isa = PBXGroup;
+			children = (
+				8D435A6A254C223400838691 /* QueryAndConnector.swift */,
+				8D435A6F254C25D300838691 /* QueryOrConnector.swift */,
+			);
+			path = Connectors;
 			sourceTree = "<group>";
 		};
 		8D524F58252E52A0002A6E01 /* ReusableViews */ = {
@@ -1711,6 +1711,7 @@
 				8DF2538E25434BE9001492AE /* MaterialsCoordinator.swift in Sources */,
 				8DF253E62549AFDB001492AE /* VocabularyListViewController.swift in Sources */,
 				8DF253C82545DDC8001492AE /* WordRepresentionCellViewModel.swift in Sources */,
+				8D435A70254C25D300838691 /* QueryOrConnector.swift in Sources */,
 				8DAA554A252912BA00FF5066 /* VocabularyFetchRequest.swift in Sources */,
 				8DD28BB325266F6800F59B7D /* DashboardCoordinator.swift in Sources */,
 				8D524F99252F7EA9002A6E01 /* CoursesCoordinator.swift in Sources */,
@@ -1766,7 +1767,6 @@
 				8D94E850253A4039005FA4B9 /* FirebaseFirestoreUploadRequestProtocol.swift in Sources */,
 				8D94E7D92534F772005FA4B9 /* NetworkState.swift in Sources */,
 				8D83EA6A252B8FEA004E6098 /* CreateVocabularyCellFactory.swift in Sources */,
-				8D435A37254B4E2900838691 /* QueryBulderPrototcol.swift in Sources */,
 				8D524F64252E5E8F002A6E01 /* UniversalCollectionSectionViewModel.swift in Sources */,
 				8D435A35254B4E0C00838691 /* CollectionPath.swift in Sources */,
 				8DF2537625431968001492AE /* TitleSectionViewModel.swift in Sources */,
@@ -1782,6 +1782,7 @@
 				8DD28BA625266BCE00F59B7D /* RootCoordinator.swift in Sources */,
 				8D6625242529F79B00991D45 /* CreateVocabularyViewModel.swift in Sources */,
 				8DAA554E25291D3400FF5066 /* Word.swift in Sources */,
+				8D435A6B254C223400838691 /* QueryAndConnector.swift in Sources */,
 				8DF928AC253DEBCF0052FC31 /* WritingProgressView.swift in Sources */,
 				8D524F8E252F7E7D002A6E01 /* CoursesViewController.swift in Sources */,
 				8DD28BAA25266CDB00F59B7D /* RootViewModel.swift in Sources */,
@@ -1800,7 +1801,6 @@
 				8DAA553E25290FDD00FF5066 /* FirebaseDatabase.swift in Sources */,
 				8DF253B12544838D001492AE /* VocabularySettingsViewModel.swift in Sources */,
 				8D524FB1252FB3CB002A6E01 /* SingUpCoordinator.swift in Sources */,
-				8D435A3F254B4EA500838691 /* QueryAndConnector.swift in Sources */,
 				8D524F92252F7E8B002A6E01 /* MessagesViewController.swift in Sources */,
 				8DF2539B25437CDA001492AE /* CreateWordCellViewModel.swift in Sources */,
 				8D94E83F2539FA2D005FA4B9 /* SecurityManager.swift in Sources */,

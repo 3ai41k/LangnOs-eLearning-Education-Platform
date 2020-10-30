@@ -1,5 +1,5 @@
 //
-//  QueryAndConnector.swift
+//  QueryOrConnector.swift
 //  LangnOs
 //
 //  Created by Nikita Lizogubov on 30.10.2020.
@@ -8,13 +8,13 @@
 
 import FirebaseFirestore
 
-struct QueryAndConnector: QueryComponentProtocol {
+struct QueryOrConnector: QueryComponentProtocol {
     
     let components: [QueryComponentProtocol]
     
     func databaseQuery() -> NSPredicate {
         let predicates = components.map({ $0.databaseQuery() })
-        return NSCompoundPredicate(andPredicateWithSubpredicates: predicates)
+        return NSCompoundPredicate(orPredicateWithSubpredicates: predicates)
     }
     
     func firebaseQuery(_ reference: CollectionReference) -> Query {

@@ -131,7 +131,7 @@ extension MaterialsViewModel {
     func fetchDataAction() {
         guard let userId = securityManager.user?.uid else { return }
         
-        let request = VocabularyFetchRequest(userId: userId)
+        let request = FavoriteVocabularyFetchRequest(userId: userId)
         dataProvider.fetch(request: request, onSuccess: { (vocabularies: [Vocabulary]) in
             self.vocabularies = vocabularies.sorted(by: \.createdDate, using: >)
         }) { (error) in

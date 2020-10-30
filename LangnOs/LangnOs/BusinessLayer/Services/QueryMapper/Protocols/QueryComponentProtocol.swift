@@ -9,7 +9,6 @@
 import FirebaseFirestore
 
 protocol QueryComponentProtocol {
-    var format: String { get }
-    var argument: Any { get }
-    func firebaseFormat(_ reference: CollectionReference) -> Query
+    func databaseQuery() -> NSPredicate
+    func firebaseQuery(_ reference: CollectionReference) -> Query
 }
