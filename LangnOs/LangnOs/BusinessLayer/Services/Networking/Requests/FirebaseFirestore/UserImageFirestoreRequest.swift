@@ -11,19 +11,10 @@ import FirebaseAuth
 
 struct UserImageFirestoreRequest {
     
-    // MARK: - Private properties
+    // MARK: - Public properties
     
-    private let user: User
-    private let image: UIImage
-    private let compressionQuality: CGFloat
-    
-    // MARK: - Init
-    
-    init(user: User, image: UIImage, compressionQuality: CGFloat) {
-        self.user = user
-        self.image = image
-        self.compressionQuality = compressionQuality
-    }
+    let userId: String
+    let data: Data
     
 }
 
@@ -32,11 +23,7 @@ struct UserImageFirestoreRequest {
 extension UserImageFirestoreRequest: FirebaseFirestoreUploadRequestProtocol {
     
     var path: String {
-        "user/\(user.uid)/images/profile/profileImage.jpg"
-    }
-    
-    var data: Data? {
-        image.jpegData(compressionQuality: compressionQuality)
+        "users/\(userId)/images/profileImage.jpg"
     }
     
     var contentType: FirestoreContentType {

@@ -15,6 +15,8 @@ enum ImageState {
 
 struct SFSymbols {
     
+    private init() { }
+    
     static func bookmark(for state: ImageState) -> UIImage {
         switch state {
         case .normal:
@@ -67,6 +69,27 @@ struct SFSymbols {
     
     static func search() -> UIImage {
         return UIImage(systemName: "magnifyingglass")!
+    }
+    
+    static func bell(for state: ImageState) -> UIImage {
+        switch state {
+        case .normal:
+            return UIImage(systemName: "bell")!
+        case .fill:
+            return UIImage(systemName: "bell.fill")!
+        }
+    }
+    
+    static func feedback() -> UIImage {
+        return UIImage(systemName: "text.bubble")!
+    }
+    
+    static func apperance() -> UIImage {
+        return UIImage(systemName: "rays")!
+    }
+    
+    static func photo() -> UIImage {
+        return UIImage(systemName: "photo")!
     }
     
 }

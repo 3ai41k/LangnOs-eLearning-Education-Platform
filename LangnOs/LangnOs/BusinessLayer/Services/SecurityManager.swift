@@ -8,6 +8,11 @@
 
 import FirebaseAuth
 
+protocol UserProfileExtandableProtocol {
+    func updatePhotoURL(_ url: URL, completion: @escaping (Error?) -> Void)
+    func removePhotoURL(completion: @escaping (Error?) -> Void)
+}
+
 final class SecurityManager {
     
     // MARK: - Public properties
@@ -30,6 +35,28 @@ final class SecurityManager {
     
     func removeUser() {
         self.user = nil
+    }
+    
+}
+
+// MARK: - UserProfileExtandableProtocol
+
+extension SecurityManager: UserProfileExtandableProtocol {
+    
+    func updatePhotoURL(_ url: URL, completion: @escaping (Error?) -> Void) {
+        profileChangeRequest(photoUrl: url, completion: completion)
+    }
+    
+    func removePhotoURL(completion: @escaping (Error?) -> Void) {
+        profileChangeRequest(photoUrl: nil, completion: completion)
+    }
+    
+    private func profileChangeRequest(photoUrl url: URL?, completion: @escaping (Error?) -> Void) {
+        let request = user?.createProfileChangeRequest()
+        request?.photoURL = url
+        request?.commitChanges(completion: { (error) in
+            completion(error)
+        })
     }
     
 }

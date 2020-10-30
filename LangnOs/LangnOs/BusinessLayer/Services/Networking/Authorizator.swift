@@ -12,18 +12,13 @@ enum AuthorizatorError: Error {
     case userWasNotFound
 }
 
-protocol LoginableProtocol {
-    func logOut(completion: (Error?) -> Void)
+protocol LogOutableProtocol {
+    func logOut(onSuccess: () -> Void, onError: (Error) -> Void)
 }
 
 protocol RegistratableProtocol {
     func singInWith(email: String, password: String, completion: @escaping (Result<User, Error>) -> Void)
     func singUpWith(name: String?, email: String, password: String, completion: @escaping (Result<User, Error>) -> Void)
-}
-
-protocol UserProfileExtandableProtocol {
-    func setImage(url: URL, completion: @escaping (Error?) -> Void)
-    func removeImage(completion: @escaping (Error?) -> Void)
 }
 
 final class Authorizator {
@@ -42,14 +37,14 @@ final class Authorizator {
 
 // MARK: - LoginableProtocol
 
-extension Authorizator: LoginableProtocol {
+extension Authorizator: LogOutableProtocol {
     
-    func logOut(completion: (Error?) -> Void) {
+    func logOut(onSuccess: () -> Void, onError: (Error) -> Void) {
         do {
             try auth.signOut()
-            completion(nil)
+            onSuccess()
         } catch {
-            completion(error)
+            onError(error)
         }
     }
     
@@ -104,28 +99,6 @@ extension Authorizator: RegistratableProtocol {
                 }
                 completion(.success(currentUser))
             }
-        })
-    }
-    
-}
-
-// MARK: - UserProfileExtandableProtocol
-
-extension Authorizator: UserProfileExtandableProtocol {
-    
-    func setImage(url: URL, completion: @escaping (Error?) -> Void) {
-        updateImageURL(url, completion: completion)
-    }
-    
-    func removeImage(completion: @escaping (Error?) -> Void) {
-        updateImageURL(nil, completion: completion)
-    }
-    
-    private func updateImageURL(_ url: URL?, completion: @escaping (Error?) -> Void) {
-        let request = currentUser?.createProfileChangeRequest()
-        request?.photoURL = url
-        request?.commitChanges(completion: { (error) in
-            completion(error)
         })
     }
     

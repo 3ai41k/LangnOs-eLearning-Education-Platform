@@ -24,6 +24,7 @@ final class SingInCoordinator: Coordinator, SingInCoordinatorProtocol {
     
     init(context: RootContextProtocol, parentViewController: UIViewController?) {
         self.context = context
+        
         super.init(parentViewController: parentViewController)
     }
     
@@ -31,7 +32,12 @@ final class SingInCoordinator: Coordinator, SingInCoordinatorProtocol {
     
     override func start() {
         let authorizator = Authorizator()
-        let singInViewModel = SingInViewModel(router: self, authorizator: authorizator, context: context)
+        let securityManager = SecurityManager.shared
+        let singInViewModel = SingInViewModel(context: context,
+                                              router: self,
+                                              authorizator: authorizator,
+                                              securityManager: securityManager)
+        
         let singInViewController = SingInViewController()
         singInViewController.viewModel = singInViewModel
         

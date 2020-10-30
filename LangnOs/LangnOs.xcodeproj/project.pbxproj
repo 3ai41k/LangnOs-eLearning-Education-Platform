@@ -19,6 +19,11 @@
 		8D435A79254C3A1E00838691 /* SearchVocabularyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D435A75254C3A1E00838691 /* SearchVocabularyViewController.swift */; };
 		8D435A7A254C3A1E00838691 /* SearchVocabularyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D435A76254C3A1E00838691 /* SearchVocabularyViewModel.swift */; };
 		8D435A7B254C3A1E00838691 /* SearchVocabularyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D435A77254C3A1E00838691 /* SearchVocabularyViewController.xib */; };
+		8D435A7F254C3DFA00838691 /* UserInfoHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D435A7E254C3DFA00838691 /* UserInfoHeaderView.swift */; };
+		8D435A81254C3E1900838691 /* UserInfoHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D435A80254C3E1900838691 /* UserInfoHeaderView.xib */; };
+		8D435A83254C4E4400838691 /* MediaDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D435A82254C4E4300838691 /* MediaDownloader.swift */; };
+		8D435A86254C51AF00838691 /* UIImag+Size.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D435A85254C51AF00838691 /* UIImag+Size.swift */; };
+		8D435A88254C526200838691 /* UserDefaultsKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D435A87254C526200838691 /* UserDefaultsKey.swift */; };
 		8D524F5D252E5AAA002A6E01 /* SearchBarCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D524F5B252E5AAA002A6E01 /* SearchBarCollectionReusableView.swift */; };
 		8D524F5E252E5AAA002A6E01 /* SearchBarCollectionReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D524F5C252E5AAA002A6E01 /* SearchBarCollectionReusableView.xib */; };
 		8D524F60252E5AE5002A6E01 /* SearchBarCollectionReusableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D524F5F252E5AE5002A6E01 /* SearchBarCollectionReusableViewModel.swift */; };
@@ -273,6 +278,11 @@
 		8D435A75254C3A1E00838691 /* SearchVocabularyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchVocabularyViewController.swift; sourceTree = "<group>"; };
 		8D435A76254C3A1E00838691 /* SearchVocabularyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchVocabularyViewModel.swift; sourceTree = "<group>"; };
 		8D435A77254C3A1E00838691 /* SearchVocabularyViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchVocabularyViewController.xib; sourceTree = "<group>"; };
+		8D435A7E254C3DFA00838691 /* UserInfoHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoHeaderView.swift; sourceTree = "<group>"; };
+		8D435A80254C3E1900838691 /* UserInfoHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserInfoHeaderView.xib; sourceTree = "<group>"; };
+		8D435A82254C4E4300838691 /* MediaDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaDownloader.swift; sourceTree = "<group>"; };
+		8D435A85254C51AF00838691 /* UIImag+Size.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImag+Size.swift"; sourceTree = "<group>"; };
+		8D435A87254C526200838691 /* UserDefaultsKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsKey.swift; sourceTree = "<group>"; };
 		8D524F5B252E5AAA002A6E01 /* SearchBarCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarCollectionReusableView.swift; sourceTree = "<group>"; };
 		8D524F5C252E5AAA002A6E01 /* SearchBarCollectionReusableView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchBarCollectionReusableView.xib; sourceTree = "<group>"; };
 		8D524F5F252E5AE5002A6E01 /* SearchBarCollectionReusableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarCollectionReusableViewModel.swift; sourceTree = "<group>"; };
@@ -619,6 +629,15 @@
 			path = Application;
 			sourceTree = "<group>";
 		};
+		8D435A7D254C3DDB00838691 /* UserInfoHeaderView */ = {
+			isa = PBXGroup;
+			children = (
+				8D435A7E254C3DFA00838691 /* UserInfoHeaderView.swift */,
+				8D435A80254C3E1900838691 /* UserInfoHeaderView.xib */,
+			);
+			path = UserInfoHeaderView;
+			sourceTree = "<group>";
+		};
 		8D524F58252E52A0002A6E01 /* ReusableViews */ = {
 			isa = PBXGroup;
 			children = (
@@ -662,6 +681,7 @@
 		8D524F8B252F7E23002A6E01 /* Account */ = {
 			isa = PBXGroup;
 			children = (
+				8D435A7D254C3DDB00838691 /* UserInfoHeaderView */,
 				8D524F9C252F7EC1002A6E01 /* AccountCoordinator.swift */,
 				8D524F9E252F83D2002A6E01 /* AccountViewModel.swift */,
 				8D524F94252F7E97002A6E01 /* AccountViewController.swift */,
@@ -1168,6 +1188,7 @@
 				8DC3CF3D252CFEB5003CA62A /* UIColor+Random.swift */,
 				8D524F66252F0355002A6E01 /* UICollectionView+Extensions.swift */,
 				8D524FDA2533816D002A6E01 /* UIBarButtonItem+Init.swift */,
+				8D435A85254C51AF00838691 /* UIImag+Size.swift */,
 			);
 			path = "UIKit+Extensions";
 			sourceTree = "<group>";
@@ -1295,6 +1316,8 @@
 				8D94E7D32534E3DC005FA4B9 /* DataProvider.swift */,
 				8D94E7C42534D102005FA4B9 /* SpeechSynthesizer.swift */,
 				8D94E83E2539FA2D005FA4B9 /* SecurityManager.swift */,
+				8D435A87254C526200838691 /* UserDefaultsKey.swift */,
+				8D435A82254C4E4300838691 /* MediaDownloader.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -1609,6 +1632,7 @@
 				8DF25386254330A6001492AE /* MessageTableViewCell.xib in Resources */,
 				8D435A7B254C3A1E00838691 /* SearchVocabularyViewController.xib in Resources */,
 				8DF253BD2544A2AD001492AE /* ButtonTableViewCell.xib in Resources */,
+				8D435A81254C3E1900838691 /* UserInfoHeaderView.xib in Resources */,
 				8DF253F52549B396001492AE /* AddToFavoriteTableViewCell.xib in Resources */,
 				8DF928AE253DEBEC0052FC31 /* WritingProgressView.xib in Resources */,
 				8D524F97252F7E97002A6E01 /* AccountViewController.xib in Resources */,
@@ -1781,11 +1805,13 @@
 				8D94E868253CE2AB005FA4B9 /* WritingViewController.swift in Sources */,
 				8D94E869253CE2AB005FA4B9 /* WritingViewModel.swift in Sources */,
 				8DF25385254330A6001492AE /* MessageTableViewCell.swift in Sources */,
+				8D435A7F254C3DFA00838691 /* UserInfoHeaderView.swift in Sources */,
 				8DC3CF37252CFB8D003CA62A /* UIView+Shadow.swift in Sources */,
 				8DA744B0253F2EA600F9EC8B /* StudyResultViewModel.swift in Sources */,
 				8D524FA2252F86BC002A6E01 /* UserImageView.swift in Sources */,
 				8DF253C62544B084001492AE /* FlashCardsSettingsCoordinator.swift in Sources */,
 				8DC3CF3E252CFEB5003CA62A /* UIColor+Random.swift in Sources */,
+				8D435A83254C4E4400838691 /* MediaDownloader.swift in Sources */,
 				8D524FB7252FBC47002A6E01 /* RootContext.swift in Sources */,
 				8DAA55472529129E00FF5066 /* DataProviderRequestProtocol.swift in Sources */,
 				8D524FE82533BC7B002A6E01 /* FlashCardsViewModel.swift in Sources */,
@@ -1794,6 +1820,7 @@
 				8DF2539325434F40001492AE /* MaterialsCellFactory.swift in Sources */,
 				8DF253BF2544A2BE001492AE /* ButtonCellViewModel.swift in Sources */,
 				8DD28BC3252679F600F59B7D /* PresentationViewController.swift in Sources */,
+				8D435A88254C526200838691 /* UserDefaultsKey.swift in Sources */,
 				8D94E850253A4039005FA4B9 /* FirebaseFirestoreUploadRequestProtocol.swift in Sources */,
 				8D94E7D92534F772005FA4B9 /* NetworkState.swift in Sources */,
 				8D83EA6A252B8FEA004E6098 /* CreateVocabularyCellFactory.swift in Sources */,
@@ -1841,6 +1868,7 @@
 				8D524FEE2533BEC9002A6E01 /* FlashCardTableViewCell.swift in Sources */,
 				8DF253C12544A3B8001492AE /* VocabularySettingsCellFactory.swift in Sources */,
 				8D94E847253A1F8D005FA4B9 /* ImagePickerViewModel.swift in Sources */,
+				8D435A86254C51AF00838691 /* UIImag+Size.swift in Sources */,
 				8DD28BD52526856B00F59B7D /* NavigationItemDrivableModel.swift in Sources */,
 				8DF2538F25434BE9001492AE /* MaterialsViewController.swift in Sources */,
 				8DF2536C25431819001492AE /* DashboardSectionFactory.swift in Sources */,

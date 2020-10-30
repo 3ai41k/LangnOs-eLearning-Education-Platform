@@ -28,6 +28,15 @@ final class DashboardViewController: BindibleViewController<DashboardViewModelPr
     var cellFactory: UniversalTableViewCellFactoryProtocol?
     var sectionFactory: SectionViewFactoryProtocol?
     
+    // MARK: - Private properties
+    
+    private var activityBarButton: UIBarButtonItem {
+        let activityIndicatorView = UIActivityIndicatorView()
+        activityIndicatorView.startAnimating()
+        
+        return UIBarButtonItem(customView: activityIndicatorView)
+    }
+    
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
@@ -42,6 +51,17 @@ final class DashboardViewController: BindibleViewController<DashboardViewModelPr
         cancellables = [
             viewModel?.title.sink(receiveValue: { [weak self] (title) in
                 self?.navigationController?.navigationBar.topItem?.title = title
+            }),
+            viewModel?.userImage.sink(receiveValue: { [weak self] (image) in
+                if let image = image {
+                    let accountButton = UIBarButtonItem(image: image,
+                                                        style: .plain,
+                                                        target: self,
+                                                        action: #selector(self?.didUserTouch))
+                    self?.navigationItem.leftBarButtonItem = accountButton
+                } else {
+                    self?.navigationItem.leftBarButtonItem = self?.activityBarButton
+                }
             }),
             viewModel?.isOfflineTitleHiddenPublisher.sink(receiveValue: { [weak self] (isHidden) in
                 self?.navigationController?.navigationBar.topItem?.titleView?.isHidden = !isHidden
@@ -59,12 +79,6 @@ final class DashboardViewController: BindibleViewController<DashboardViewModelPr
     }
     
     override func setupUI() {
-        let userButton = UIBarButtonItem(image: SFSymbols.personCircle(),
-                                         style: .plain,
-                                         target: self,
-                                         action: #selector(didUserTouch))
-        
-        navigationItem.leftBarButtonItem = userButton
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationController?.navigationBar.topItem?.titleView = OfflineTitleView()
     }

@@ -9,6 +9,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AccountViewController" customModule="LangnOs" customModuleProvider="target">
             <connections>
+                <outlet property="tableView" destination="HGi-9b-fT3" id="rPs-T2-ez0"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -16,7 +17,19 @@
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="HGi-9b-fT3" customClass="UniversalTableView" customModule="LangnOs" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                </tableView>
+            </subviews>
             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+            <constraints>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="HGi-9b-fT3" secondAttribute="bottom" id="9ms-Vp-0oE"/>
+                <constraint firstItem="HGi-9b-fT3" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="NbE-X3-29x"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="HGi-9b-fT3" secondAttribute="trailing" id="WM6-Cg-8Lz"/>
+                <constraint firstItem="HGi-9b-fT3" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="huP-6k-3U4"/>
+            </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <point key="canvasLocation" x="137.68115942028987" y="152.67857142857142"/>
         </view>

@@ -6,12 +6,9 @@
 //  Copyright © 2020 NL. All rights reserved.
 //
 
-import UIKit
-import FirebaseAuth
 import FirebaseStorage
 
 enum FirebaseStorageError: Error {
-    case dataNotFound
     case urlNotFound
 }
 
@@ -36,13 +33,8 @@ final class FirebaseStorage {
 extension FirebaseStorage: FirebaseStorageUploadingProtocol {
     
     func upload(request: FirebaseFirestoreUploadRequestProtocol, completion: @escaping (Result<URL, Error>) -> Void) {
-        guard let data = request.data else {
-            completion(.failure(FirebaseStorageError.dataNotFound))
-            return
-        }
-        
         let reference = storage.reference(withPath: request.path)
-        reference.putData(data, metadata: request.metaData) { (metaData, error) in
+        reference.putData(request.data, metadata: request.metaData) { (metaData, error) in
             if let error = error {
                 completion(.failure(error))
             } else {

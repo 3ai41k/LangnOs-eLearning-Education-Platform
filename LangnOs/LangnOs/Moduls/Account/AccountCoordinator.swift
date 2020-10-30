@@ -9,16 +9,15 @@
 import UIKit
 
 protocol AccountNavigationProtocol {
-    func navigateToSingIn()
-    func navigateToPresention()
     func navigateToImagePicker(sourceType: UIImagePickerController.SourceType, didImageSelect: @escaping (UIImage) -> Void)
 }
 
 typealias AccountCoordinatorProtocol =
     AccountNavigationProtocol &
-    AlertPresentableProtocol
+    AlertPresentableProtocol &
+    CoordinatorClosableProtocol
 
-final class AccountCoordinator: Coordinator, AlertPresentableProtocol {
+final class AccountCoordinator: Coordinator, AccountCoordinatorProtocol {
     
     // MARK: - Private methods
     
@@ -36,38 +35,30 @@ final class AccountCoordinator: Coordinator, AlertPresentableProtocol {
     
     override func start() {
         let securityManager = SecurityManager.shared
-        let storage = FirebaseStorage()
         let authorizator = Authorizator()
-        let accountViewModel = AccountViewModel(router: self,
-                                                context: context,
-                                                securityManager: securityManager,
-                                                storage: storage,
-                                                authorizator: authorizator)
+        let storage = FirebaseStorage()
+        let viewModel = AccountViewModel(router: self,
+                                         securityManager: securityManager,
+                                         authorizator: authorizator,
+                                         storage: storage)
         
-        let accountViewController = AccountViewController()
-        accountViewController.viewModel = accountViewModel
+        let cellFactory = VocabularySettingsCellFactory()
+        let viewController = AccountViewController()
+        viewController.viewModel = viewModel
+        viewController.cellFactory = cellFactory
         
-        let navigationController = UINavigationController(rootViewController: accountViewController)
-        viewController = navigationController
-        
-        (parentViewController as? UINavigationController)?.pushViewController(accountViewController, animated: true)
+        self.viewController = viewController
+        (parentViewController as? UINavigationController)?.pushViewController(viewController, animated: true)
     }
     
-}
-
-// MARK: - AccountNavigationProtocol
-
-extension AccountCoordinator: AccountNavigationProtocol {
+    // MARK: - CoordinatorClosableProtocol
     
-    func navigateToSingIn() {
-        let singInCoordinator = SingInCoordinator(context: context, parentViewController: viewController)
-        singInCoordinator.start()
+    func close(completion: (() -> Void)?) {
+        (parentViewController as? UINavigationController)?.popViewController(animated: true)
+        completion?()
     }
     
-    func navigateToPresention() {
-        let presentationCoordinator = PresentationCoordinator(parentViewController: viewController)
-        presentationCoordinator.start()
-    }
+    // MARK: - AccountNavigationProtocol
     
     func navigateToImagePicker(sourceType: UIImagePickerController.SourceType, didImageSelect: @escaping (UIImage) -> Void) {
         let imagePickerCoordinator = ImagePickerCoordinator(sourceType: sourceType,

@@ -10,6 +10,7 @@ import UIKit
 
 protocol DashboardNavigationProtocol {
     func navigateToUserProfile()
+    func navigateToLogin()
     func navigateToMaterials()
     func navigateToVocabularyList()
 }
@@ -35,10 +36,12 @@ final class DashboardCoordinator: Coordinator, DashboardCoordinatorProtocol {
     override func start() {
         let securityManager = SecurityManager.shared
         let dataProvider = DataProvider()
+        let mediaDownloader = MediaDownloader()
         let viewModel = DashboardViewModel(router: self,
                                            contex: context,
                                            securityManager: securityManager,
-                                           dataProvider: dataProvider)
+                                           dataProvider: dataProvider,
+                                           mediaDownloader: mediaDownloader)
         
         let cellFactory = DashboardCellFactory()
         let sectionFactory = DashboardSectionFactory()
@@ -58,6 +61,11 @@ final class DashboardCoordinator: Coordinator, DashboardCoordinatorProtocol {
     func navigateToUserProfile() {
         let accountCoordinator = AccountCoordinator(context: context, parentViewController: viewController)
         accountCoordinator.start()
+    }
+    
+    func navigateToLogin() {
+        let singInCoordinator = SingInCoordinator(context: context, parentViewController: viewController)
+        singInCoordinator.start()
     }
     
     func navigateToMaterials() {

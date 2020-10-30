@@ -21,6 +21,7 @@ extension NavigatableViewModelProtocol {
 
 protocol DashboardViewModelInputProtocol {
     var title: CurrentValueSubject<String, Never> { get }
+    var userImage: CurrentValueSubject<UIImage?, Never> { get }
     var isOfflineTitleHiddenPublisher: AnyPublisher<Bool, Never> { get }
 }
 
@@ -53,6 +54,7 @@ final class DashboardViewModel: DashboardViewModelProtocol {
     // MARK: - Public properties
     
     var title: CurrentValueSubject<String, Never>
+    var userImage: CurrentValueSubject<UIImage?, Never>
     var isOfflineTitleHiddenPublisher: AnyPublisher<Bool, Never> {
         isOfflineTitleHiddenSubject.eraseToAnyPublisher()
     }
@@ -64,6 +66,7 @@ final class DashboardViewModel: DashboardViewModelProtocol {
     private let contex: UserSessesionPublisherContextProtocol
     private let securityManager: SecurityManager
     private let dataProvider: DataProviderFetchingProtocol
+    private let mediaDownloader: MediaDownloadableProtocol
     
     private var cancellables: [AnyCancellable] = []
     private var isOfflineTitleHiddenSubject = PassthroughSubject<Bool, Never>()
@@ -73,13 +76,16 @@ final class DashboardViewModel: DashboardViewModelProtocol {
     init(router: DashboardCoordinatorProtocol,
          contex: UserSessesionPublisherContextProtocol,
          securityManager: SecurityManager,
-         dataProvider: DataProviderFetchingProtocol) {
+         dataProvider: DataProviderFetchingProtocol,
+         mediaDownloader: MediaDownloadableProtocol) {
         self.router = router
         self.contex = contex
         self.securityManager = securityManager
         self.dataProvider = dataProvider
+        self.mediaDownloader = mediaDownloader
         
         self.title = .init("Home".localize)
+        self.userImage = .init(nil)
         
         self.bindContext()
         self.setupNotifications()
@@ -87,6 +93,8 @@ final class DashboardViewModel: DashboardViewModelProtocol {
         self.setupEmptySection(&tableSections)
         self.setupMyWorkSection(&tableSections)
         self.setupFavoritesSection(&tableSections)
+        
+        self.downloadUserPhoto()
     }
     
     deinit {
@@ -110,7 +118,11 @@ final class DashboardViewModel: DashboardViewModelProtocol {
     }
     
     func userProfileAction() {
-        router.navigateToUserProfile()
+        if let _ = securityManager.user {
+            router.navigateToUserProfile()
+        } else {
+            router.navigateToLogin()
+        }
     }
     
     func fetchFavoriteVocabulary() {
@@ -137,7 +149,16 @@ final class DashboardViewModel: DashboardViewModelProtocol {
     // MARK: - Private methods
     
     private func bindContext() {
-        
+        cancellables = [
+            contex.userSessionPublisher.sink(receiveValue: { [weak self] (state) in
+                switch state {
+                case .didSet:
+                    print("")
+                case .didRemove:
+                    print("")
+                }
+            })
+        ]
     }
     
     private func setupNotifications() {
@@ -152,6 +173,28 @@ final class DashboardViewModel: DashboardViewModelProtocol {
     
     private func removerNotifications() {
         NotificationCenter.default.removeObserver(self)
+    }
+    
+    private func downloadUserPhoto() {
+//        let userDefaults = UserDefaults.standard
+//        let userDefaultsKey = UserDefaultsKey.userImage.rawValue
+//        if let data = userDefaults.data(forKey: userDefaultsKey), let image = UIImage(data: data) {
+//            userImage.value = image.resized(to: CGSize(width: 44.0, height: 44.0))
+//        } else if let photoURL = securityManager.user?.photoURL {
+//            mediaDownloader.downloadMedia(url: photoURL, onSucces: { (data) in
+//                guard let image = UIImage(data: data) else {
+//                    self.userImage.value = SFSymbols.personCircle()
+//                    return
+//                }
+//                userDefaults.set(data, forKey: UserDefaultsKey.userImage.rawValue)
+//                self.userImage.value = image.resized(to: CGSize(width: 44.0, height: 44.0))
+//            }) { (error) in
+//                self.userImage.value = SFSymbols.personCircle()
+//                self.router.showError(error)
+//            }
+//        } else {
+            userImage.value = SFSymbols.personCircle()
+//        }
     }
     
     private func setupEmptySection(_ tableSections: inout [SectionViewModelProtocol]) {

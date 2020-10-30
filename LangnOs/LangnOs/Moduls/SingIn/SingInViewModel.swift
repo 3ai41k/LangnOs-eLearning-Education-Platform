@@ -24,9 +24,10 @@ final class SingInViewModel {
     
     // MARK: - Private properties
     
+    private let context: SingInContextProtocol & SingUpPublisherContextProtocol
     private let router: SingInCoordinatorProtocol
     private let authorizator: RegistratableProtocol
-    private let context: SingInContextProtocol & SingUpPublisherContextProtocol
+    private let securityManager: SecurityManager
     
     private var cancellables: [AnyCancellable]
     
@@ -35,12 +36,14 @@ final class SingInViewModel {
     
     // MARK: - Init
     
-    init(router: SingInCoordinatorProtocol,
+    init(context: SingInContextProtocol & SingUpPublisherContextProtocol,
+         router: SingInCoordinatorProtocol,
          authorizator: RegistratableProtocol,
-         context: SingInContextProtocol & SingUpPublisherContextProtocol) {
+         securityManager: SecurityManager) {
+        self.context = context
         self.router = router
         self.authorizator = authorizator
-        self.context = context
+        self.securityManager = securityManager
         
         self.cancellables = []
         
@@ -129,6 +132,7 @@ extension SingInViewModel: SingInOutputProtocol {
         authorizator.singInWith(email: email, password: password) { (result) in
             switch result {
             case .success(let user):
+                self.securityManager.setUser(user)
                 self.context.userDidSingIn(user)
                 self.router.close()
             case .failure(let error):

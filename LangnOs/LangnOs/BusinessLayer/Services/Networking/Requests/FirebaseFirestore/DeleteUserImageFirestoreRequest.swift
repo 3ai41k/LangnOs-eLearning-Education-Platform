@@ -13,12 +13,12 @@ struct DeleteUserImageFirestoreRequest {
     
     // MARK: - Private properties
     
-    private let user: User
+    private let userId: String
     
     // MARK: - Init
     
-    init(user: User) {
-        self.user = user
+    init(userId: String) {
+        self.userId = userId
     }
     
 }
@@ -28,7 +28,7 @@ struct DeleteUserImageFirestoreRequest {
 extension DeleteUserImageFirestoreRequest: FirebaseFirestoreDeleteRequestProtocol {
     
     var path: String {
-        "user/\(user.uid)/images/profile/profileImage.jpg"
+        "users/\(userId)/images/profileImage.jpg"
     }
     
 }
