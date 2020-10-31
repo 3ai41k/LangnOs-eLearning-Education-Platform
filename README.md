@@ -1,1 +1,2 @@
-# LangnOs-eLearning-Education-Platform
+# Language Os - ELearning Education Platform
+Modern competence-based approaches to learn involve the widespread use of interactive forms of conducting classes using games, case studies, and chat rooms for interacting with the teacher. To enhance the effectiveness of teaching foren languages using interactive forms of learning, the Language Os platform is proposed. The developed platform is designed for interactive learning of grammar, vocabulary, as well as vocabulary replenishment in the form of a game. The dashoboard section allows user to expand his vocabulary not only in the traditional form of flashcards and tests, but also in a form of a game. The grammar section offers interactive tutoring in a private chat with the teacher.
