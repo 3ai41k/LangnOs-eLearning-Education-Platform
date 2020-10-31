@@ -20,14 +20,13 @@ extension NavigatableViewModelProtocol {
 }
 
 protocol DashboardViewModelInputProtocol {
-    var title: CurrentValueSubject<String, Never> { get }
+    var title: String { get }
     var userImage: CurrentValueSubject<UIImage?, Never> { get }
     var isOfflineTitleHiddenPublisher: AnyPublisher<Bool, Never> { get }
 }
 
 protocol DashboardViewModelOutputProtocol {
     func userProfileAction()
-    func fetchFavoriteVocabulary()
     func refreshData(completion: () -> Void)
 }
 
@@ -53,7 +52,9 @@ final class DashboardViewModel: DashboardViewModelProtocol {
     
     // MARK: - Public properties
     
-    var title: CurrentValueSubject<String, Never>
+    var title: String {
+        "Home".localize
+    }
     var userImage: CurrentValueSubject<UIImage?, Never>
     var isOfflineTitleHiddenPublisher: AnyPublisher<Bool, Never> {
         isOfflineTitleHiddenSubject.eraseToAnyPublisher()
@@ -81,7 +82,6 @@ final class DashboardViewModel: DashboardViewModelProtocol {
         self.dataProvider = dataProvider
         self.mediaDownloader = mediaDownloader
         
-        self.title = .init("Home".localize)
         self.userImage = .init(nil)
         
         self.bindContext()
@@ -92,6 +92,7 @@ final class DashboardViewModel: DashboardViewModelProtocol {
         self.setupFavoritesSection(&tableSections)
         
         self.downloadUserPhoto()
+        self.fetchFavoriteVocabulary()
     }
     
     deinit {
@@ -122,20 +123,6 @@ final class DashboardViewModel: DashboardViewModelProtocol {
         }
     }
     
-    func fetchFavoriteVocabulary() {
-        guard let userId = userSession.userId else { return }
-        let request = FavoriteVocabularyFetchRequest(userId: userId)
-        dataProvider.fetch(request: request, onSuccess: { (vocabularies: [Vocabulary]) in
-            if vocabularies.isEmpty {
-                self.setupAddToFavoriteCell()
-            } else {
-                self.setupFavoriteVocabularyCells(vocabularies)
-            }
-        }) { (error) in
-            self.router.showError(error)
-        }
-    }
-    
     // MARK: FIX IT
     
     func refreshData(completion: () -> Void) {
@@ -152,6 +139,7 @@ final class DashboardViewModel: DashboardViewModelProtocol {
                 case .didUserLogin:
                     self?.downloadUserPhoto()
                 case .didUserLogout:
+                    // TO DO - Delete dababase info
                     self?.clearUserCash()
                 }
             })
@@ -170,6 +158,23 @@ final class DashboardViewModel: DashboardViewModelProtocol {
     
     private func removerNotifications() {
         NotificationCenter.default.removeObserver(self)
+    }
+    
+    private func fetchFavoriteVocabulary() {
+        guard let userId = userSession.userId else { return }
+        
+        let request = FavoriteVocabularyFetchRequest(userId: userId)
+        dataProvider.fetch(request: request, onSuccess: { (vocabularies: [Vocabulary]) in
+            if vocabularies.isEmpty {
+                let cellViewModel = MessageCellViewModel(message: "Add favorite sets here to have quick access at any time, without having to search".localize)
+                self.tableSections[SectionType.favorites.rawValue].cells.value = [cellViewModel]
+            } else {
+                let cellViewModels = vocabularies.map({ MessageCellViewModel(message: $0.title) })
+                self.tableSections[SectionType.favorites.rawValue].cells.value = cellViewModels
+            }
+        }) { (error) in
+            self.router.showError(error)
+        }
     }
     
     private func downloadUserPhoto() {
@@ -219,30 +224,15 @@ final class DashboardViewModel: DashboardViewModelProtocol {
         let cellViewModels = [
             ActivityIndicatorCellViewModel()
         ]
-        let sectionViewModel = TableSectionViewModel(headerView: TitleSectionViewModel(text: "Favorites".localize),
-                                                     footerView: nil,
-                                                     cells: cellViewModels)
-        tableSections.append(sectionViewModel)
-    }
-    
-    private func setupFavoriteVocabularyCells(_ vocabularies: [Vocabulary]) {
-        let cellViewModels = vocabularies.map({ MessageCellViewModel(message: $0.title) })
-        tableSections[SectionType.favorites.rawValue].cells.value = cellViewModels
-    }
-    
-    private func setupAddToFavoriteCell() {
-        let cellViewModels = [
-            MessageCellViewModel(message: "Add favorite sets here to have quick access at any time, without having to search",
-                                 buttonTitle: "Add to favorite",
-                                 buttonHandler: { [weak self] in self?.router.navigateToVocabularyList() })
-        ]
         let headerViewModel = TitleSectionViewModel(text: "Favorites".localize,
                                                     buttonText: "Edit".localize,
-                                                    buttonHandler: { [weak self] in self?.router.navigateToVocabularyList() })
+                                                    buttonHandler: { [weak self] in
+                                                        self?.router.navigateToVocabularyList()
+                                                    })
         let sectionViewModel = TableSectionViewModel(headerView: headerViewModel,
                                                      footerView: nil,
                                                      cells: cellViewModels)
-        tableSections[SectionType.favorites.rawValue] = sectionViewModel
+        tableSections.append(sectionViewModel)
     }
     
 }

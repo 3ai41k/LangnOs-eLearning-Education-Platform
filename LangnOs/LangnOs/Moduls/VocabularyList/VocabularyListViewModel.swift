@@ -14,7 +14,7 @@ protocol VocabularyListViewModelInputProtocol {
 }
 
 protocol VocabularyListViewModelOutputProtocol {
-    func fetchData()
+    
 }
 
 typealias VocabularyListViewModelProtocol =
@@ -54,11 +54,13 @@ final class VocabularyListViewModel: VocabularyListViewModelProtocol {
         self.userSession = userSession
         
         self.setupMainSection(&tableSections)
+        
+        self.fetchData()
     }
     
-    // MARK: - Public methods
+    // MARK: - Private methods
     
-    func fetchData() {
+    private func fetchData() {
         guard let userId = userSession.userId else { return }
         
         let request = VocabularyFetchRequest(userId: userId)
@@ -68,8 +70,6 @@ final class VocabularyListViewModel: VocabularyListViewModelProtocol {
             self.router.showError(error)
         }
     }
-    
-    // MARK: - Private methods
     
     private func setupMainSection(_ tableSections: inout [SectionViewModelProtocol]) {
         let sectionViewModel = TableSectionViewModel(cells: [])

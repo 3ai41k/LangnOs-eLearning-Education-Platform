@@ -16,39 +16,22 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="128"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="HU4-Tv-A3A">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t32-pX-gUV">
                         <rect key="frame" x="24" y="24" width="272" height="80"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t32-pX-gUV">
-                                <rect key="frame" x="0.0" y="0.0" width="272" height="18"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BoR-ua-4KY">
-                                <rect key="frame" x="0.0" y="34" width="272" height="46"/>
-                                <color key="backgroundColor" systemColor="systemGray5Color" red="0.8980392157" green="0.8980392157" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="46" id="iRf-fw-1Ll"/>
-                                </constraints>
-                                <state key="normal" title="Button"/>
-                                <connections>
-                                    <action selector="didButtonTouch:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="v93-4W-Ox6"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                    </stackView>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="bottom" secondItem="HU4-Tv-A3A" secondAttribute="bottom" constant="24" id="6rE-23-cOe"/>
-                    <constraint firstItem="HU4-Tv-A3A" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="24" id="9ba-sT-917"/>
-                    <constraint firstAttribute="trailing" secondItem="HU4-Tv-A3A" secondAttribute="trailing" constant="24" id="EmM-Tu-0cR"/>
-                    <constraint firstItem="HU4-Tv-A3A" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="24" id="aTb-Yu-t7Z"/>
+                    <constraint firstAttribute="bottom" secondItem="t32-pX-gUV" secondAttribute="bottom" constant="24" id="LSl-bQ-w4T"/>
+                    <constraint firstItem="t32-pX-gUV" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="24" id="a1C-DO-kAu"/>
+                    <constraint firstItem="t32-pX-gUV" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="24" id="kUe-Kj-mO0"/>
+                    <constraint firstAttribute="trailing" secondItem="t32-pX-gUV" secondAttribute="trailing" constant="24" id="rhd-tA-8nl"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
-                <outlet property="button" destination="BoR-ua-4KY" id="FoP-LM-i8g"/>
                 <outlet property="label" destination="t32-pX-gUV" id="h6Q-jI-087"/>
             </connections>
             <point key="canvasLocation" x="132" y="141"/>

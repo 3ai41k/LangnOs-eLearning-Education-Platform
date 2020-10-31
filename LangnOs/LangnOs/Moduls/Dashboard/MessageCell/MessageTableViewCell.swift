@@ -13,13 +13,6 @@ final class MessageTableViewCell: UITableViewCell, UniversalTableViewCellRegistr
     // MARK: - IBOutlets
     
     @IBOutlet private weak var label: UILabel!
-    @IBOutlet private weak var button: UIButton! {
-        didSet {
-            button.layer.cornerRadius = 5.0
-            button.layer.borderColor = UIColor.systemGray2.cgColor
-            button.layer.borderWidth = 0.25
-        }
-    }
     
     // MARK: - Public properties
     
@@ -33,15 +26,6 @@ final class MessageTableViewCell: UITableViewCell, UniversalTableViewCellRegistr
     
     private func bindViewModel() {
         label.text = viewModel?.message
-        button.isHidden = viewModel?.isButtonHidden ?? true
-        button.setTitle(viewModel?.buttonTitle, for: .normal)
-    }
-    
-    // MARK: - Actions
-    
-    @IBAction
-    private func didButtonTouch(_ sender: Any) {
-        viewModel?.buttonAction()
     }
 
 }

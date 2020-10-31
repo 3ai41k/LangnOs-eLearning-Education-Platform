@@ -95,7 +95,7 @@ final class AccountViewModel: AccountViewModelProtocol {
                 self.router.navigateToImagePicker(sourceType: .photoLibrary, didImageSelect: self.selectImageAction)
             }),
             RemovePhotoAlertAction(handler: {
-                self.removeImage()
+                self.removeImageAction()
             }),
             CancelAlertAction(handler: { })
         ])
@@ -175,7 +175,7 @@ final class AccountViewModel: AccountViewModelProtocol {
         }
     }
     
-    private func removeImage() {
+    private func removeImageAction() {
         guard let userId = userSession.userId else { return }
         
         userPhoto.value = nil

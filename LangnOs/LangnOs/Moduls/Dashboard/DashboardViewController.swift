@@ -28,21 +28,11 @@ final class DashboardViewController: BindibleViewController<DashboardViewModelPr
     var cellFactory: UniversalTableViewCellFactoryProtocol?
     var sectionFactory: SectionViewFactoryProtocol?
     
-    // MARK: - Lifecycle
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        viewModel?.fetchFavoriteVocabulary()
-    }
-    
     // MARK: - Override
     
     override func bindViewModel() {
+        title = viewModel?.title
         cancellables = [
-            viewModel?.title.sink(receiveValue: { [weak self] (title) in
-                self?.navigationController?.navigationBar.topItem?.title = title
-            }),
             viewModel?.userImage.sink(receiveValue: { [weak self] (image) in
                 if let image = image {
                     self?.setupUserProfileButton(image: image)

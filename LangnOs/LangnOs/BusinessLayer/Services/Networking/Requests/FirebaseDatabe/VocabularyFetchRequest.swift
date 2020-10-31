@@ -27,9 +27,7 @@ extension VocabularyFetchRequest: DataProviderRequestProtocol {
     }
     
     var query: QueryComponentProtocol? {
-        QueryAndConnector(components: [
-            IsEqualToComponent("userId", isEqualTo: userId)
-        ])
+        IsEqualToComponent("userId", isEqualTo: userId)
     }
     
     

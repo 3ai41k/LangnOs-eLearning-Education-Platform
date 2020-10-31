@@ -32,12 +32,6 @@ final class VocabularyListViewController: BindibleViewController<VocabularyListV
     
     // MARK: - Lifecycle
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        viewModel?.fetchData()
-    }
-    
     // MARK: - Init
     
     

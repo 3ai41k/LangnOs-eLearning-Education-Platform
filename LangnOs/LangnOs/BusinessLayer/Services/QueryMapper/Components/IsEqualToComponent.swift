@@ -19,7 +19,7 @@ struct IsEqualToComponent: QueryComponentProtocol {
     }
     
     func databaseQuery() -> NSPredicate {
-        NSPredicate(format: "%@ == %@", argumentArray: [field, argument])
+        NSPredicate(format: "userId == %@", argumentArray: [argument])
     }
     
     func firebaseQuery(_ reference: CollectionReference) -> Query {
