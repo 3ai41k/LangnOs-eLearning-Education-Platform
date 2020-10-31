@@ -14,7 +14,6 @@ final class SingUpViewModel {
     
     private let router: SingUpCoordinatorProtocol
     private let authorizator: RegistratableProtocol
-    private let context: SingUpContextProtocol
     
     private var name: String
     private var email: String
@@ -23,11 +22,9 @@ final class SingUpViewModel {
     // MARK: - Init
     
     init(router: SingUpCoordinatorProtocol,
-         authorizator: RegistratableProtocol,
-         context: SingUpContextProtocol) {
+         authorizator: RegistratableProtocol) {
         self.router = router
         self.authorizator = authorizator
-        self.context = context
         
         self.name = ""
         self.email = ""
@@ -101,7 +98,7 @@ extension SingUpViewModel: SingInOutputProtocol {
             switch result {
             case .success(let user):
                 self.router.close {
-                    self.context.userDidCreate(user)
+                    
                 }
             case .failure(let error):
                 // TO DO: errror handling

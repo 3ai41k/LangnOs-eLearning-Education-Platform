@@ -40,7 +40,7 @@ final class VocabularyListViewModel: VocabularyListViewModelProtocol {
     
     private let router: VocabularyListCoordinatorProtocol
     private let dataProvider: DataProviderFetchingProtocol
-    private let securityManager: SecurityManager
+    private let userSession: SessionInfoProtocol
     
     private var cancellables: [AnyCancellable] = []
     
@@ -48,10 +48,10 @@ final class VocabularyListViewModel: VocabularyListViewModelProtocol {
     
     init(router: VocabularyListCoordinatorProtocol,
          dataProvider: DataProviderFetchingProtocol,
-         securityManager: SecurityManager) {
+         userSession: SessionInfoProtocol) {
         self.router = router
         self.dataProvider = dataProvider
-        self.securityManager = securityManager
+        self.userSession = userSession
         
         self.setupMainSection(&tableSections)
     }
@@ -59,7 +59,7 @@ final class VocabularyListViewModel: VocabularyListViewModelProtocol {
     // MARK: - Public methods
     
     func fetchData() {
-        guard let userId = securityManager.user?.uid else { return }
+        guard let userId = userSession.userId else { return }
         
         let request = VocabularyFetchRequest(userId: userId)
         dataProvider.fetch(request: request, onSuccess: { (vocabularies: [Vocabulary]) in

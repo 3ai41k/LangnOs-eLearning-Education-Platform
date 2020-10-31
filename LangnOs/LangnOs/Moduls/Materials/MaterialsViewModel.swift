@@ -48,7 +48,7 @@ final class MaterialsViewModel: MaterialsViewModelProtocol {
     
     private let router: MaterialsCoordinatorProtocol
     private let dataProvider: DataProviderFetchingProtocol & DataProviderCreatingProtocol & DataProviderDeletingProtocol
-    private let securityManager: SecurityManager
+    private let userSession: SessionInfoProtocol
     
     private var vocabularies: [Vocabulary] = [] {
         didSet {
@@ -66,10 +66,10 @@ final class MaterialsViewModel: MaterialsViewModelProtocol {
     
     init(router: MaterialsCoordinatorProtocol,
          dataProvider: DataProviderFetchingProtocol & DataProviderCreatingProtocol & DataProviderDeletingProtocol,
-         securityManager: SecurityManager) {
+         userSession: SessionInfoProtocol) {
         self.router = router
         self.dataProvider = dataProvider
-        self.securityManager = securityManager
+        self.userSession = userSession
         
         self.title = .init("Materials".localize)
         self.scopeButtonTitles = .init(filters.map({ $0.title }))
@@ -95,7 +95,7 @@ final class MaterialsViewModel: MaterialsViewModelProtocol {
     }
     
     private func createVocabulary(_ generailInfo: VocabularyGeneralInfo, words: [Word]) {
-        guard let userId = securityManager.user?.uid else { return }
+        guard let userId = userSession.userId else { return }
         
         isActivityIndicatorHidden.value = false
         
@@ -129,7 +129,7 @@ final class MaterialsViewModel: MaterialsViewModelProtocol {
 extension MaterialsViewModel {
     
     func fetchDataAction() {
-        guard let userId = securityManager.user?.uid else {
+        guard let userId = userSession.userId else {
             self.vocabularies = .empty
             return
         }

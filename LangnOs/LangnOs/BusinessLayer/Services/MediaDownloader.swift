@@ -22,10 +22,12 @@ extension MediaDownloader: MediaDownloadableProtocol {
     
     func downloadMedia(url: URL, onSucces: @escaping (Data) -> Void, onFailure: @escaping (Error) -> Void) {
         URLSession.shared.dataTask(with: url) { (data, response, error) in
-            if let error = error {
-                onFailure(error)
-            } else if let response = response as? HTTPURLResponse, response.statusCode == 200, let data = data {
-                onSucces(data)
+            DispatchQueue.main.async {
+                if let error = error {
+                    onFailure(error)
+                } else if let response = response as? HTTPURLResponse, response.statusCode == 200, let data = data {
+                    onSucces(data)
+                }
             }
         }.resume()
     }

@@ -25,11 +25,10 @@ final class MaterialsCoordinator: Coordinator, MaterialsCoordinatorProtocol  {
     
     override func start() {
         let dataProvider = DataProvider()
-        let securityManager = SecurityManager.shared
-        
+        let userSession = UserSession.shared
         let viewModel = MaterialsViewModel(router: self,
                                            dataProvider: dataProvider,
-                                           securityManager: securityManager)
+                                           userSession: userSession)
         
         let cellFactory = MaterialsCellFactory()
         let layout = SquareGridFlowLayout(numberOfItemsPerRow: 2)

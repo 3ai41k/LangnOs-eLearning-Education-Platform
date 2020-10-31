@@ -24,10 +24,8 @@ final class SingInViewModel {
     
     // MARK: - Private properties
     
-    private let context: SingInContextProtocol & SingUpPublisherContextProtocol
     private let router: SingInCoordinatorProtocol
     private let authorizator: RegistratableProtocol
-    private let securityManager: SecurityManager
     
     private var cancellables: [AnyCancellable]
     
@@ -36,14 +34,10 @@ final class SingInViewModel {
     
     // MARK: - Init
     
-    init(context: SingInContextProtocol & SingUpPublisherContextProtocol,
-         router: SingInCoordinatorProtocol,
-         authorizator: RegistratableProtocol,
-         securityManager: SecurityManager) {
-        self.context = context
+    init(router: SingInCoordinatorProtocol,
+         authorizator: RegistratableProtocol) {
         self.router = router
         self.authorizator = authorizator
-        self.securityManager = securityManager
         
         self.cancellables = []
         
@@ -56,9 +50,7 @@ final class SingInViewModel {
     // MARK: - Private methods
     
     private func bindContext() {
-        context.backToAuthorizePublisher.sink { [weak self] _ in
-            self?.router.close()
-        }.store(in: &cancellables)
+        
     }
     
     // MARK: - Actions
@@ -125,15 +117,13 @@ extension SingInViewModel: SingInOutputProtocol {
     func nextAction() {
         guard !email.isEmpty, !password.isEmpty else {
             self.router.showAlert(title: "Attention!", message: "One of the fields in empty", actions: [
-                OkAlertAction(handler: {})
+                OkAlertAction(handler: { })
             ])
             return
         }
         authorizator.singInWith(email: email, password: password) { (result) in
             switch result {
             case .success(let user):
-                self.securityManager.setUser(user)
-                self.context.userDidSingIn(user)
                 self.router.close()
             case .failure(let error):
                 print(error.localizedDescription)

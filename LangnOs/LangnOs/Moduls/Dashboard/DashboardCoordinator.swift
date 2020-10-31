@@ -19,27 +19,14 @@ typealias DashboardCoordinatorProtocol = DashboardNavigationProtocol & AlertPres
 
 final class DashboardCoordinator: Coordinator, DashboardCoordinatorProtocol {
     
-    // MARK: - Private properties
-    
-    private let context: RootContextProtocol
-    
-    // MARK: - Init
-    
-    init(context: RootContextProtocol, parentViewController: UIViewController?) {
-        self.context = context
-        
-        super.init(parentViewController: parentViewController)
-    }
-    
     // MARK: - Override
     
     override func start() {
-        let securityManager = SecurityManager.shared
+        let userSession = UserSession.shared
         let dataProvider = DataProvider()
         let mediaDownloader = MediaDownloader()
         let viewModel = DashboardViewModel(router: self,
-                                           contex: context,
-                                           securityManager: securityManager,
+                                           userSession: userSession,
                                            dataProvider: dataProvider,
                                            mediaDownloader: mediaDownloader)
         
@@ -59,12 +46,12 @@ final class DashboardCoordinator: Coordinator, DashboardCoordinatorProtocol {
     // MARK: - MainNavigationProtocol
     
     func navigateToUserProfile() {
-        let accountCoordinator = AccountCoordinator(context: context, parentViewController: viewController)
+        let accountCoordinator = AccountCoordinator(parentViewController: viewController)
         accountCoordinator.start()
     }
     
     func navigateToLogin() {
-        let singInCoordinator = SingInCoordinator(context: context, parentViewController: viewController)
+        let singInCoordinator = SingInCoordinator(parentViewController: viewController)
         singInCoordinator.start()
     }
     

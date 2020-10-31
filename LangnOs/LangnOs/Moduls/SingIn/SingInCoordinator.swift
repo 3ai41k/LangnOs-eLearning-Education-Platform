@@ -16,27 +16,12 @@ typealias SingInCoordinatorProtocol = SingInNavigationProtocol & AlertPresentabl
 
 final class SingInCoordinator: Coordinator, SingInCoordinatorProtocol {
     
-    // MARK: - Private properties
-    
-    private let context: RootContextProtocol
-    
-    // MARK: - Init
-    
-    init(context: RootContextProtocol, parentViewController: UIViewController?) {
-        self.context = context
-        
-        super.init(parentViewController: parentViewController)
-    }
-    
     // MARK: - Override
     
     override func start() {
         let authorizator = Authorizator()
-        let securityManager = SecurityManager.shared
-        let singInViewModel = SingInViewModel(context: context,
-                                              router: self,
-                                              authorizator: authorizator,
-                                              securityManager: securityManager)
+        let singInViewModel = SingInViewModel(router: self,
+                                              authorizator: authorizator)
         
         let singInViewController = SingInViewController()
         singInViewController.viewModel = singInViewModel
@@ -48,7 +33,7 @@ final class SingInCoordinator: Coordinator, SingInCoordinatorProtocol {
     // MARK: - SingInNavigationProtocol
     
     func navigateToSingUp() {
-        let singUpCoordinator = SingUpCoordinator(context: context, parentViewController: viewController)
+        let singUpCoordinator = SingUpCoordinator(parentViewController: viewController)
         singUpCoordinator.start()
     }
     

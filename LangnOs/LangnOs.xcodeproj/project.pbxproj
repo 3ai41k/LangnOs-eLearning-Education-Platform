@@ -48,7 +48,6 @@
 		8D524FAF252FA7FB002A6E01 /* SingInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D524FAE252FA7FB002A6E01 /* SingInViewModel.swift */; };
 		8D524FB1252FB3CB002A6E01 /* SingUpCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D524FB0252FB3CB002A6E01 /* SingUpCoordinator.swift */; };
 		8D524FB3252FB654002A6E01 /* SingUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D524FB2252FB654002A6E01 /* SingUpViewModel.swift */; };
-		8D524FB7252FBC47002A6E01 /* RootContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D524FB6252FBC47002A6E01 /* RootContext.swift */; };
 		8D524FC72530D1D8002A6E01 /* UIButton+Drivable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D524FC62530D1D8002A6E01 /* UIButton+Drivable.swift */; };
 		8D524FC92530D22A002A6E01 /* ButtonDrivableModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D524FC82530D22A002A6E01 /* ButtonDrivableModel.swift */; };
 		8D524FD325337985002A6E01 /* UIToolBar+Drivable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D524FD225337985002A6E01 /* UIToolBar+Drivable.swift */; };
@@ -111,7 +110,7 @@
 		8D94E82F253748B3005FA4B9 /* FilterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D94E82D253748B3005FA4B9 /* FilterTableViewCell.swift */; };
 		8D94E830253748B3005FA4B9 /* FilterTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D94E82E253748B3005FA4B9 /* FilterTableViewCell.xib */; };
 		8D94E832253749CE005FA4B9 /* VocabularyFilterCellFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D94E831253749CE005FA4B9 /* VocabularyFilterCellFactory.swift */; };
-		8D94E83F2539FA2D005FA4B9 /* SecurityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D94E83E2539FA2D005FA4B9 /* SecurityManager.swift */; };
+		8D94E83F2539FA2D005FA4B9 /* UserSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D94E83E2539FA2D005FA4B9 /* UserSession.swift */; };
 		8D94E845253A1F8D005FA4B9 /* ImagePickerCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D94E841253A1F8D005FA4B9 /* ImagePickerCoordinator.swift */; };
 		8D94E846253A1F8D005FA4B9 /* ImagePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D94E842253A1F8D005FA4B9 /* ImagePickerViewController.swift */; };
 		8D94E847253A1F8D005FA4B9 /* ImagePickerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D94E843253A1F8D005FA4B9 /* ImagePickerViewModel.swift */; };
@@ -308,7 +307,6 @@
 		8D524FAE252FA7FB002A6E01 /* SingInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingInViewModel.swift; sourceTree = "<group>"; };
 		8D524FB0252FB3CB002A6E01 /* SingUpCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingUpCoordinator.swift; sourceTree = "<group>"; };
 		8D524FB2252FB654002A6E01 /* SingUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingUpViewModel.swift; sourceTree = "<group>"; };
-		8D524FB6252FBC47002A6E01 /* RootContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootContext.swift; sourceTree = "<group>"; };
 		8D524FC62530D1D8002A6E01 /* UIButton+Drivable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Drivable.swift"; sourceTree = "<group>"; };
 		8D524FC82530D22A002A6E01 /* ButtonDrivableModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonDrivableModel.swift; sourceTree = "<group>"; };
 		8D524FD225337985002A6E01 /* UIToolBar+Drivable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIToolBar+Drivable.swift"; sourceTree = "<group>"; };
@@ -371,7 +369,7 @@
 		8D94E82D253748B3005FA4B9 /* FilterTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterTableViewCell.swift; sourceTree = "<group>"; };
 		8D94E82E253748B3005FA4B9 /* FilterTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FilterTableViewCell.xib; sourceTree = "<group>"; };
 		8D94E831253749CE005FA4B9 /* VocabularyFilterCellFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabularyFilterCellFactory.swift; sourceTree = "<group>"; };
-		8D94E83E2539FA2D005FA4B9 /* SecurityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecurityManager.swift; sourceTree = "<group>"; };
+		8D94E83E2539FA2D005FA4B9 /* UserSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSession.swift; sourceTree = "<group>"; };
 		8D94E841253A1F8D005FA4B9 /* ImagePickerCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerCoordinator.swift; sourceTree = "<group>"; };
 		8D94E842253A1F8D005FA4B9 /* ImagePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerViewController.swift; sourceTree = "<group>"; };
 		8D94E843253A1F8D005FA4B9 /* ImagePickerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerViewModel.swift; sourceTree = "<group>"; };
@@ -1136,7 +1134,6 @@
 			isa = PBXGroup;
 			children = (
 				8DD28BAB25266EA500F59B7D /* TabBarProvider.swift */,
-				8D524FB6252FBC47002A6E01 /* RootContext.swift */,
 				8DD28BA525266BCE00F59B7D /* RootCoordinator.swift */,
 				8DD28BA725266C8200F59B7D /* RootTabBarController.swift */,
 				8DD28BA925266CDB00F59B7D /* RootViewModel.swift */,
@@ -1318,7 +1315,7 @@
 				8D435A66254C15E000838691 /* CoreData */,
 				8D94E7D32534E3DC005FA4B9 /* DataProvider.swift */,
 				8D94E7C42534D102005FA4B9 /* SpeechSynthesizer.swift */,
-				8D94E83E2539FA2D005FA4B9 /* SecurityManager.swift */,
+				8D94E83E2539FA2D005FA4B9 /* UserSession.swift */,
 				8D435A87254C526200838691 /* UserDefaultsKey.swift */,
 				8D435A82254C4E4300838691 /* MediaDownloader.swift */,
 			);
@@ -1816,7 +1813,6 @@
 				8DF253C62544B084001492AE /* FlashCardsSettingsCoordinator.swift in Sources */,
 				8DC3CF3E252CFEB5003CA62A /* UIColor+Random.swift in Sources */,
 				8D435A83254C4E4400838691 /* MediaDownloader.swift in Sources */,
-				8D524FB7252FBC47002A6E01 /* RootContext.swift in Sources */,
 				8DAA55472529129E00FF5066 /* DataProviderRequestProtocol.swift in Sources */,
 				8D524FE82533BC7B002A6E01 /* FlashCardsViewModel.swift in Sources */,
 				8D94E845253A1F8D005FA4B9 /* ImagePickerCoordinator.swift in Sources */,
@@ -1865,7 +1861,7 @@
 				8D524FB1252FB3CB002A6E01 /* SingUpCoordinator.swift in Sources */,
 				8D524F92252F7E8B002A6E01 /* MessagesViewController.swift in Sources */,
 				8DF2539B25437CDA001492AE /* CreateWordCellViewModel.swift in Sources */,
-				8D94E83F2539FA2D005FA4B9 /* SecurityManager.swift in Sources */,
+				8D94E83F2539FA2D005FA4B9 /* UserSession.swift in Sources */,
 				8D94E82F253748B3005FA4B9 /* FilterTableViewCell.swift in Sources */,
 				8D524F5D252E5AAA002A6E01 /* SearchBarCollectionReusableView.swift in Sources */,
 				8DF2539F25446639001492AE /* DictionaryDecoder.swift in Sources */,

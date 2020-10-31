@@ -25,10 +25,10 @@ final class VocabularyListCoordinator: Coordinator, VocabularyListCoordinatorPro
     
     override func start() {
         let dataProvider = DataProvider()
-        let securityManager = SecurityManager.shared
+        let userSession = UserSession.shared
         let viewModel = VocabularyListViewModel(router: self,
                                                 dataProvider: dataProvider,
-                                                securityManager: securityManager)
+                                                userSession: userSession)
         
         let cellFactory = VocabularyListCellFactory()
         let viewController = VocabularyListViewController()

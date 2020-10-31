@@ -63,8 +63,7 @@ final class DashboardViewModel: DashboardViewModelProtocol {
     // MARK: - Private properties
     
     private let router: DashboardCoordinatorProtocol
-    private let contex: UserSessesionPublisherContextProtocol
-    private let securityManager: SecurityManager
+    private let userSession: SessionInfoProtocol & SessionStatePublisherProtocol
     private let dataProvider: DataProviderFetchingProtocol
     private let mediaDownloader: MediaDownloadableProtocol
     
@@ -74,13 +73,11 @@ final class DashboardViewModel: DashboardViewModelProtocol {
     // MARK: - Init
     
     init(router: DashboardCoordinatorProtocol,
-         contex: UserSessesionPublisherContextProtocol,
-         securityManager: SecurityManager,
+         userSession: SessionInfoProtocol & SessionStatePublisherProtocol,
          dataProvider: DataProviderFetchingProtocol,
          mediaDownloader: MediaDownloadableProtocol) {
         self.router = router
-        self.contex = contex
-        self.securityManager = securityManager
+        self.userSession = userSession
         self.dataProvider = dataProvider
         self.mediaDownloader = mediaDownloader
         
@@ -118,7 +115,7 @@ final class DashboardViewModel: DashboardViewModelProtocol {
     }
     
     func userProfileAction() {
-        if let _ = securityManager.user {
+        if let _ = userSession.userId {
             router.navigateToUserProfile()
         } else {
             router.navigateToLogin()
@@ -126,7 +123,7 @@ final class DashboardViewModel: DashboardViewModelProtocol {
     }
     
     func fetchFavoriteVocabulary() {
-        guard let userId = securityManager.user?.uid else { return }
+        guard let userId = userSession.userId else { return }
         let request = FavoriteVocabularyFetchRequest(userId: userId)
         dataProvider.fetch(request: request, onSuccess: { (vocabularies: [Vocabulary]) in
             if vocabularies.isEmpty {
@@ -150,12 +147,12 @@ final class DashboardViewModel: DashboardViewModelProtocol {
     
     private func bindContext() {
         cancellables = [
-            contex.userSessionPublisher.sink(receiveValue: { [weak self] (state) in
+            userSession.sessionStatePublisher.sink(receiveValue: { [weak self] (state) in
                 switch state {
-                case .didSet:
-                    print("")
-                case .didRemove:
-                    print("")
+                case .didUserLogin:
+                    self?.downloadUserPhoto()
+                case .didUserLogout:
+                    self?.clearUserCash()
                 }
             })
         ]
@@ -178,7 +175,7 @@ final class DashboardViewModel: DashboardViewModelProtocol {
     private func downloadUserPhoto() {
         if let data = UserDefaults.standard.data(forKey: UserDefaultsKey.userImage.rawValue), let image = UIImage(data: data) {
             userImage.value = image
-        } else if let photoURL = securityManager.user?.photoURL {
+        } else if let photoURL = userSession.photoURL {
             mediaDownloader.downloadMedia(url: photoURL, onSucces: { (data) in
                 if let image = UIImage(data: data)  {
                     UserDefaults.standard.set(data, forKey: UserDefaultsKey.userImage.rawValue)
@@ -193,6 +190,11 @@ final class DashboardViewModel: DashboardViewModelProtocol {
         } else {
             userImage.value = SFSymbols.personCircle()
         }
+    }
+    
+    private func clearUserCash() {
+        UserDefaults.standard.removeObject(forKey: UserDefaultsKey.userImage.rawValue)
+        userImage.value = SFSymbols.personCircle()
     }
     
     private func setupEmptySection(_ tableSections: inout [SectionViewModelProtocol]) {

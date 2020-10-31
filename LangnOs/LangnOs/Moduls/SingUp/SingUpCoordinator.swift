@@ -12,23 +12,11 @@ typealias SingUpCoordinatorProtocol = AlertPresentableProtocol & CoordinatorClos
 
 final class SingUpCoordinator: Coordinator, SingUpCoordinatorProtocol {
     
-    // MARK: - Private properties
-    
-    private let context: SingUpContextProtocol
-    
-    // MARK: - Init
-    
-    init(context: SingUpContextProtocol, parentViewController: UIViewController?) {
-        self.context = context
-        
-        super.init(parentViewController: parentViewController)
-    }
-    
     // MARK: - Override
     
     override func start() {
         let authorizator = Authorizator()
-        let singUpViewModel = SingUpViewModel(router: self, authorizator: authorizator, context: context)
+        let singUpViewModel = SingUpViewModel(router: self, authorizator: authorizator)
         let singInViewController = SingInViewController()
         singInViewController.viewModel = singUpViewModel
         

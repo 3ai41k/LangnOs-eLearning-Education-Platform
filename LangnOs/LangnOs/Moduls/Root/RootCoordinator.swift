@@ -13,13 +13,11 @@ final class RootCoordinator: Coordinator, AlertPresentableProtocol {
     // MARK: - Private properties
     
     private let window: UIWindow
-    private let context: RootContextProtocol
     
     // MARK: - Init
     
     init(window: UIWindow) {
         self.window = window
-        self.context = RootContext()
         
         super.init(parentViewController: nil)
     }
@@ -27,7 +25,7 @@ final class RootCoordinator: Coordinator, AlertPresentableProtocol {
     // MARK: - Override
     
     override func start() {
-        let tabBarViewModel = RootViewModel(router: self, context: context)
+        let tabBarViewModel = RootViewModel(router: self)
         let tabBarController = RootTabBarController()
         tabBarController.viewModel = tabBarViewModel
         

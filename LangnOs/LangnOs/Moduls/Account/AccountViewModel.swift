@@ -23,7 +23,7 @@ protocol AccountOutputProtocol {
 typealias AccountViewModelProtocol =
     AccountInputProtocol &
     AccountOutputProtocol &
-UniversalTableViewModelProtocol
+    UniversalTableViewModelProtocol
 
 final class AccountViewModel: AccountViewModelProtocol {
     
@@ -36,7 +36,7 @@ final class AccountViewModel: AccountViewModelProtocol {
     var userPhoto: CurrentValueSubject<UIImage?, Never>
     
     var username: String {
-        if let username = securityManager.user?.displayName {
+        if let username = userSession.username {
             return username
         } else {
             return "Anonim".localize
@@ -44,7 +44,7 @@ final class AccountViewModel: AccountViewModelProtocol {
     }
     
     var email: String {
-        if let email = securityManager.user?.email {
+        if let email = userSession.email {
             return email
         } else {
             return "_______@____.___".localize
@@ -57,18 +57,18 @@ final class AccountViewModel: AccountViewModelProtocol {
     
     private let router: AccountCoordinatorProtocol
     private let authorizator: LogOutableProtocol
-    private let securityManager: SecurityManager
+    private let userSession: SessionInfoProtocol & ProfileExtandableProtocol
     private let storage: FirebaseStorageUploadingProtocol & FirebaseStorageRemovingProtocol
     
     // MARK: - Init
     
     init(router: AccountCoordinatorProtocol,
-         securityManager: SecurityManager,
          authorizator: LogOutableProtocol,
+         userSession: SessionInfoProtocol & ProfileExtandableProtocol,
          storage: FirebaseStorageUploadingProtocol & FirebaseStorageRemovingProtocol) {
         self.router = router
-        self.securityManager = securityManager
         self.authorizator = authorizator
+        self.userSession = userSession
         self.storage = storage
         
         self.userPhoto = .init(nil)
@@ -149,7 +149,7 @@ final class AccountViewModel: AccountViewModelProtocol {
     
     private func selectImageAction(_ image: UIImage) {
         guard
-            let user = securityManager.user,
+            let userId = userSession.userId,
             let data = image.jpegData(compressionQuality: 0.25)
         else {
             return
@@ -157,11 +157,11 @@ final class AccountViewModel: AccountViewModelProtocol {
         
         userPhoto.value = nil
         
-        let request = UserImageFirestoreRequest(userId: user.uid, data: data)
+        let request = UserImageFirestoreRequest(userId: userId, data: data)
         storage.upload(request: request) { (result) in
             switch result {
             case .success(let photoURL):
-                self.securityManager.updatePhotoURL(photoURL) { (error) in
+                self.userSession.updatePhotoURL(photoURL) { (error) in
                     if let error = error {
                         self.router.showError(error)
                     } else {
@@ -176,16 +176,16 @@ final class AccountViewModel: AccountViewModelProtocol {
     }
     
     private func removeImage() {
-        guard let user = securityManager.user else { return }
+        guard let userId = userSession.userId else { return }
         
         userPhoto.value = nil
         
-        let request = DeleteUserImageFirestoreRequest(userId: user.uid)
+        let request = DeleteUserImageFirestoreRequest(userId: userId)
         storage.delete(request: request) { (error) in
             if let error = error {
                 self.router.showError(error)
             } else {
-                self.securityManager.removePhotoURL { (error) in
+                self.userSession.removePhotoURL { (error) in
                     if let error = error {
                         self.router.showError(error)
                     } else {
@@ -202,7 +202,6 @@ final class AccountViewModel: AccountViewModelProtocol {
             CancelAlertAction(handler: { }),
             OkAlertAction(handler: {
                 self.authorizator.logOut(onSuccess: {
-                    self.securityManager.removeUser()
                     self.router.close()
                 }) { (error) in
                     self.router.showError(error)

@@ -12,7 +12,7 @@ final class RootTabBarController: UITabBarController {
     
     // MARK: - Public properties
     
-    var viewModel: (RootViewModelInputProtocol & RootViewModelOutputProtocol)? {
+    var viewModel: RootViewModelInputProtocol? {
         didSet {
             bindViewModel()
         }

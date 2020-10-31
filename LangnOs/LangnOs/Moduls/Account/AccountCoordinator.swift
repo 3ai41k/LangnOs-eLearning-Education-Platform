@@ -19,27 +19,15 @@ typealias AccountCoordinatorProtocol =
 
 final class AccountCoordinator: Coordinator, AccountCoordinatorProtocol {
     
-    // MARK: - Private methods
-    
-    private let context: RootContextProtocol
-    
-    // MARK: - Init
-    
-    init(context: RootContextProtocol, parentViewController: UIViewController?) {
-        self.context = context
-        
-        super.init(parentViewController: parentViewController)
-    }
-    
     // MARK: - Override
     
     override func start() {
-        let securityManager = SecurityManager.shared
         let authorizator = Authorizator()
+        let userSession = UserSession.shared
         let storage = FirebaseStorage()
         let viewModel = AccountViewModel(router: self,
-                                         securityManager: securityManager,
                                          authorizator: authorizator,
+                                         userSession: userSession,
                                          storage: storage)
         
         let cellFactory = VocabularySettingsCellFactory()
