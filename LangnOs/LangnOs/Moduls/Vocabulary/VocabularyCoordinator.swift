@@ -9,28 +9,33 @@
 import UIKit
 import Combine
 
-protocol VocabularyNavigationProtocol: CoordinatorClosableProtocol {
+protocol VocabularyNavigationProtocol {
     func navigateToFlashCards()
     func navigateToWriting()
     func navigateToWords()
     func navigateToSettings(actionSubject: PassthroughSubject<VocabularySettingsRowAction, Never>)
-    func removeVocabulary()
 }
 
-final class VocabularyCoordinator: Coordinator, AlertPresentableProtocol {
+typealias VocabularyCoordinatorProtocol =
+    VocabularyNavigationProtocol &
+    CoordinatorClosableProtocol &
+    AlertPresentableProtocol &
+    ActivityPresentableProtocol
+
+final class VocabularyCoordinator: Coordinator, VocabularyCoordinatorProtocol {
     
     // MARK: - Private properties
     
     private let vocabulary: Vocabulary
-    private let removeVocabularyHandler: () -> Void
+    
+    // MARK: - Public properties
+    
+    var removeVocabularyHandler: (() -> Void)?
     
     // MARK: - Init
     
-    init(vocabulary: Vocabulary,
-         removeVocabularyHandler: @escaping () -> Void,
-         parentViewController: UIViewController?) {
+    init(vocabulary: Vocabulary, parentViewController: UIViewController?) {
         self.vocabulary = vocabulary
-        self.removeVocabularyHandler = removeVocabularyHandler
         
         super.init(parentViewController: parentViewController)
     }
@@ -54,13 +59,10 @@ final class VocabularyCoordinator: Coordinator, AlertPresentableProtocol {
     func close(completion: (() -> Void)?) {
         (parentViewController as? UINavigationController)?.popViewController(animated: true)
         completion?()
+        removeVocabularyHandler?()
     }
     
-}
-
-// MARK: - VocabularyNavigationProtocol
-
-extension VocabularyCoordinator: VocabularyNavigationProtocol {
+    // MARK: - VocabularyNavigationProtocol
     
     func navigateToFlashCards() {
         let flashCardsCoordinator = FlashCardsCoordinator(words: vocabulary.words,
@@ -84,12 +86,6 @@ extension VocabularyCoordinator: VocabularyNavigationProtocol {
         let wordsCoordinator = WordsCoordinator(vocabulary: vocabulary,
                                                 parentViewController: parentViewController)
         wordsCoordinator.start()
-    }
-    
-    func removeVocabulary() {
-        close {
-            self.removeVocabularyHandler()
-        }
     }
     
 }

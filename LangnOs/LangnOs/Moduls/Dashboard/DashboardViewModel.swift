@@ -35,13 +35,6 @@ typealias DashboardViewModelProtocol =
     DashboardViewModelOutputProtocol &
     UniversalTableViewModelProtocol
 
-private enum RowType: Int {
-    case materials
-    case statistic
-    case courses
-    case something
-}
-
 private enum SectionType: Int {
     case empty
     case myWork
@@ -68,6 +61,13 @@ final class DashboardViewModel: DashboardViewModelProtocol {
     private let dataProvider: DataProviderFetchingProtocol
     private let mediaDownloader: MediaDownloadableProtocol
     
+    private var favoriteVocabularies: [Vocabulary] = [] {
+        didSet {
+            let cellViewModels = favoriteVocabularies.map({ MessageCellViewModel(message: $0.title) })
+            self.tableSections[SectionType.favorites.rawValue].cells.value = cellViewModels
+        }
+    }
+    
     private var cancellables: [AnyCancellable] = []
     private var isOfflineTitleHiddenSubject = PassthroughSubject<Bool, Never>()
     
@@ -92,7 +92,7 @@ final class DashboardViewModel: DashboardViewModelProtocol {
         self.setupFavoritesSection(&tableSections)
         
         self.downloadUserPhoto()
-        self.fetchFavoriteVocabulary()
+        self.fetchFavoriteVocabularies()
     }
     
     deinit {
@@ -102,16 +102,15 @@ final class DashboardViewModel: DashboardViewModelProtocol {
     // MARK: - Public methods
     
     func didSelectCellAt(indexPath: IndexPath) {
-        guard indexPath.section == 1, let row = RowType(rawValue: indexPath.row) else { return }
-        switch row {
-        case .materials:
-            self.router.navigateToMaterials()
-        case .statistic:
-            print("")
-        case .courses:
-            print("")
-        case .something:
-            print("")
+        guard let section = SectionType(rawValue: indexPath.section) else { return }
+        switch section {
+        case .empty:
+            break
+        case .myWork:
+            if indexPath.row == 0 { router.navigateToMaterials() }
+        case .favorites:
+            let vocabulary = favoriteVocabularies[indexPath.row]
+            router.navigateToVocabulary(vocabulary)
         }
     }
     
@@ -126,7 +125,7 @@ final class DashboardViewModel: DashboardViewModelProtocol {
     // MARK: FIX IT
     
     func refreshData(completion: () -> Void) {
-        fetchFavoriteVocabulary()
+        fetchFavoriteVocabularies()
         completion()
     }
     
@@ -160,17 +159,15 @@ final class DashboardViewModel: DashboardViewModelProtocol {
         NotificationCenter.default.removeObserver(self)
     }
     
-    private func fetchFavoriteVocabulary() {
+    private func fetchFavoriteVocabularies() {
         guard let userId = userSession.userId else { return }
         
         let request = FavoriteVocabularyFetchRequest(userId: userId)
         dataProvider.fetch(request: request, onSuccess: { (vocabularies: [Vocabulary]) in
             if vocabularies.isEmpty {
-                let cellViewModel = MessageCellViewModel(message: "Add favorite sets here to have quick access at any time, without having to search".localize)
-                self.tableSections[SectionType.favorites.rawValue].cells.value = [cellViewModel]
+                self.updateFavoritesSection()
             } else {
-                let cellViewModels = vocabularies.map({ MessageCellViewModel(message: $0.title) })
-                self.tableSections[SectionType.favorites.rawValue].cells.value = cellViewModels
+                self.favoriteVocabularies = vocabularies
             }
         }) { (error) in
             self.router.showError(error)
@@ -233,6 +230,11 @@ final class DashboardViewModel: DashboardViewModelProtocol {
                                                      footerView: nil,
                                                      cells: cellViewModels)
         tableSections.append(sectionViewModel)
+    }
+    
+    private func updateFavoritesSection() {
+        let cellViewModel = MessageCellViewModel(message: "Add favorite sets here to have quick access at any time, without having to search".localize)
+        self.tableSections[SectionType.favorites.rawValue].cells.value = [cellViewModel]
     }
     
 }

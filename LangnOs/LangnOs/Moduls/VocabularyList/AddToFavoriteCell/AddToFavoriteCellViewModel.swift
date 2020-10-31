@@ -45,25 +45,25 @@ final class AddToFavoriteCellViewModel: AddToFavoriteCellViewModelProtocol {
     
     // MARK: - Private properties
     
-    private var vocabulary: Vocabulary
+    private let vocabulary: Vocabulary
+    private let favoriteHandler: (Bool) -> Void
+    
     private var cancellables: [AnyCancellable] = []
     
     // MARK: - Init
     
-    init(vocabulary: Vocabulary) {
+    init(vocabulary: Vocabulary, favoriteHandler: @escaping (Bool) -> Void) {
         self.vocabulary = vocabulary
+        self.favoriteHandler = favoriteHandler
         self.isFavorite = .init(vocabulary.isFavorite)
     }
-    
-    // MARK: - Public methods
-    // MARK: - Private methods
     
     // MARK: - Actions
     
     func favoriteAction() {
-        let state = vocabulary.isFavorite ? false : true
-        vocabulary.isFavorite = state
-        isFavorite.value = state
+        let updateState = isFavorite.value ? false : true
+        isFavorite.value = updateState
+        favoriteHandler(updateState)
     }
     
 }

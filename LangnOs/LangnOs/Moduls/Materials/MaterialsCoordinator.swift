@@ -52,8 +52,8 @@ final class MaterialsCoordinator: Coordinator, MaterialsCoordinatorProtocol  {
     
     func navigateToVocabulary(_ vocabulary: Vocabulary, removeVocabularyHandler: @escaping () -> Void) {
         let vocabularyCoordinator = VocabularyCoordinator(vocabulary: vocabulary,
-                                                          removeVocabularyHandler: removeVocabularyHandler,
                                                           parentViewController: parentViewController)
+        vocabularyCoordinator.removeVocabularyHandler = removeVocabularyHandler
         vocabularyCoordinator.start()
     }
     

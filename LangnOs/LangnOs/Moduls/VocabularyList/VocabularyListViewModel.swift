@@ -23,7 +23,7 @@ typealias VocabularyListViewModelProtocol =
     UniversalTableViewModelProtocol
 
 private enum SectionType: Int {
-    case main
+    case vocabulary
 }
 
 final class VocabularyListViewModel: VocabularyListViewModelProtocol {
@@ -39,7 +39,7 @@ final class VocabularyListViewModel: VocabularyListViewModelProtocol {
     // MARK: - Private properties
     
     private let router: VocabularyListCoordinatorProtocol
-    private let dataProvider: DataProviderFetchingProtocol
+    private let dataProvider: DataProviderFetchingProtocol & DataProviderUpdatingProtocol
     private let userSession: SessionInfoProtocol
     
     private var cancellables: [AnyCancellable] = []
@@ -47,46 +47,52 @@ final class VocabularyListViewModel: VocabularyListViewModelProtocol {
     // MARK: - Init
     
     init(router: VocabularyListCoordinatorProtocol,
-         dataProvider: DataProviderFetchingProtocol,
+         dataProvider: DataProviderFetchingProtocol & DataProviderUpdatingProtocol,
          userSession: SessionInfoProtocol) {
         self.router = router
         self.dataProvider = dataProvider
         self.userSession = userSession
         
-        self.setupMainSection(&tableSections)
+        self.setupVocabularySection(&tableSections)
         
         self.fetchData()
     }
     
     // MARK: - Private methods
     
+    private func setupVocabularySection(_ tableSections: inout [SectionViewModelProtocol]) {
+        let sectionViewModel = TableSectionViewModel(cells: [])
+        tableSections.append(sectionViewModel)
+    }
+    
     private func fetchData() {
         guard let userId = userSession.userId else { return }
         
         let request = VocabularyFetchRequest(userId: userId)
         dataProvider.fetch(request: request, onSuccess: { (vocabularies: [Vocabulary]) in
-            self.setupVocabularyCells(vocabularies)
+            self.updateVocabularySection(vocabularies)
         }) { (error) in
             self.router.showError(error)
         }
     }
     
-    private func setupMainSection(_ tableSections: inout [SectionViewModelProtocol]) {
-        let sectionViewModel = TableSectionViewModel(cells: [])
-        tableSections.append(sectionViewModel)
+    private func updateVocabularySection(_ vocabularies: [Vocabulary]) {
+        let cellViewModels = vocabularies.map({ (vocabulary) in
+            AddToFavoriteCellViewModel(vocabulary: vocabulary) { [weak self] isFavorite in
+                vocabulary.isFavorite = isFavorite
+                self?.updateVocabulary(vocabulary)
+            }
+        })
+        tableSections[SectionType.vocabulary.rawValue].cells.value = cellViewModels
     }
     
-    private func setupVocabularyCells(_ vocabularies: [Vocabulary]) {
-        let cellViewModels: [CellViewModelProtocol] = vocabularies.map({ (vocabulary) in
-            let cellViewModel = AddToFavoriteCellViewModel(vocabulary: vocabulary)
-            cellViewModel.isFavorite.sink { [weak self] (isFavorite) in
-                if isFavorite != vocabulary.isFavorite {
-                    print("Value did change")
-                }
-            }.store(in: &cancellables)
-            return cellViewModel
-        })
-        tableSections[SectionType.main.rawValue].cells.value = cellViewModels
+    private func updateVocabulary(_ vocabulary: Vocabulary) {
+        let request = VocabularyUpdateRequest(vocabulary: vocabulary)
+        dataProvider.update(request: request, onSuccess: {
+            print("Success")
+        }) { (error) in
+            self.router.showError(error)
+        }
     }
     
 }

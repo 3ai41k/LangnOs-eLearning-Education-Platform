@@ -47,7 +47,7 @@ final class MaterialsViewModel: MaterialsViewModelProtocol {
     // MARK: - Private properties
     
     private let router: MaterialsCoordinatorProtocol
-    private let dataProvider: DataProviderFetchingProtocol & DataProviderCreatingProtocol & DataProviderDeletingProtocol
+    private let dataProvider: DataProviderFetchingProtocol & DataProviderCreatingProtocol
     private let userSession: SessionInfoProtocol
     
     private var vocabularies: [Vocabulary] = [] {
@@ -65,7 +65,7 @@ final class MaterialsViewModel: MaterialsViewModelProtocol {
     // MARK: - Init
     
     init(router: MaterialsCoordinatorProtocol,
-         dataProvider: DataProviderFetchingProtocol & DataProviderCreatingProtocol & DataProviderDeletingProtocol,
+         dataProvider: DataProviderFetchingProtocol & DataProviderCreatingProtocol,
          userSession: SessionInfoProtocol) {
         self.router = router
         self.dataProvider = dataProvider
@@ -83,7 +83,7 @@ final class MaterialsViewModel: MaterialsViewModelProtocol {
     func didSelectCellAt(indexPath: IndexPath) {
         let vocabulary = vocabularies[indexPath.row]
         router.navigateToVocabulary(vocabulary) {
-            self.removeVocabulary(vocabulary)
+            self.vocabularies.removeAll(where: { $0 == vocabulary })
         }
     }
     
@@ -111,15 +111,6 @@ final class MaterialsViewModel: MaterialsViewModelProtocol {
     private func discardSearch() {
         let cellViewModels = vocabularies.map({ VocabularyCollectionViewCellViewModel(vocabulary: $0) })
         tableSections[SectionType.vocabulary.rawValue].cells.value = cellViewModels
-    }
-    
-    private func removeVocabulary(_ vocabulary: Vocabulary) {
-        let request = VocabularyDeleteRequest(vocabulary: vocabulary)
-        dataProvider.delete(request: request, onSuccess: {
-            self.vocabularies.removeAll(where: { $0 == vocabulary })
-        }) { (error) in
-            self.router.showError(error)
-        }
     }
     
 }

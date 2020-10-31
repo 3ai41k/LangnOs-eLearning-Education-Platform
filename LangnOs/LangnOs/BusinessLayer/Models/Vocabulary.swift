@@ -9,7 +9,7 @@
 import Foundation
 import CoreData
 
-struct Vocabulary: Codable {
+final class Vocabulary: Codable {
     let id: String
     let userId: String
     let title: String
@@ -47,21 +47,6 @@ struct Vocabulary: Codable {
         self.words = (entity.words?.allObjects as? [WordEntity])!.map({
             Word(entity: $0)
         })
-    }
-    
-    // MARK: FIX IT
-    
-    init(update: Vocabulary, words: [Word]) {
-        self.id = update.id
-        self.userId = update.userId
-        self.title = update.title
-        self.category = update.category
-        self.isFavorite = update.isFavorite
-        self.phrasesLearned = update.phrasesLearned
-        self.phrasesLeftToLearn = update.phrasesLeftToLearn
-        self.totalLearningTime = update.totalLearningTime
-        self.createdDate = update.createdDate
-        self.words = words
     }
     
 }

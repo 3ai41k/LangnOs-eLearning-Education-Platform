@@ -63,7 +63,7 @@ final class DataProvider {
     
     // MARK: - Private methods
     
-    private func selectAllEntities<Entity: CDEntityProtocol>(predicate: NSPredicate?, onSuccess: @escaping ([Entity]) -> Void, onFailure: @escaping (Error) -> Void){
+    private func selectEntities<Entity: CDEntityProtocol>(predicate: NSPredicate?, onSuccess: @escaping ([Entity]) -> Void, onFailure: @escaping (Error) -> Void){
         do {
             let entities = try Entity.select(context: coreDataContext.viewContext, predicate: predicate)
             onSuccess(entities)
@@ -73,7 +73,7 @@ final class DataProvider {
         }
     }
     
-    private func insertAllEntities<Entity: CDEntityProtocol>(_ entities: [Entity], onFailure: @escaping (Error) -> Void) {
+    private func insertEntities<Entity: CDEntityProtocol>(_ entities: [Entity], onFailure: @escaping (Error) -> Void) {
         do {
             for entity in entities {
                 try Entity.insert(context: coreDataContext.viewContext, entity: entity)
@@ -90,16 +90,18 @@ final class DataProvider {
 extension DataProvider: DataProviderFetchingProtocol {
     
     func fetch<Request: DataProviderRequestProtocol>(request: Request, onSuccess: @escaping ([Request.Entity]) -> Void, onFailure: @escaping (Error) -> Void) {
-        selectAllEntities(predicate: request.query?.databaseQuery(), onSuccess: { (dataBaseEntities: [Request.Entity]) in
-            if dataBaseEntities.isEmpty && self.networkState.isReachable {
-                self.firebaseDatabase.fetch(request: request, onSuccess: { (firebaseEntities) in
-                    self.insertAllEntities(firebaseEntities, onFailure: onFailure)
+        if networkState.isReachable {
+            firebaseDatabase.fetch(request: request, onSuccess: { (firebaseEntities: [Request.Entity]) in
+                if firebaseEntities.isEmpty {
+                    onSuccess(.empty)
+                } else {
+                    self.insertEntities(firebaseEntities, onFailure: onFailure)
                     onSuccess(firebaseEntities)
-                }, onFailure: onFailure)
-            } else {
-                onSuccess(dataBaseEntities)
-            }
-        }, onFailure: onFailure)
+                }
+            }, onFailure: onFailure)
+        } else {
+            selectEntities(predicate: request.query?.databaseQuery(), onSuccess: onSuccess, onFailure: onFailure)
+        }
     }
     
 }

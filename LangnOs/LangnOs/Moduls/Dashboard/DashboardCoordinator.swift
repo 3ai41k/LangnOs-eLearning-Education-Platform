@@ -12,6 +12,7 @@ protocol DashboardNavigationProtocol {
     func navigateToUserProfile()
     func navigateToLogin()
     func navigateToMaterials()
+    func navigateToVocabulary(_ vocabulary: Vocabulary)
     func navigateToVocabularyList()
 }
 
@@ -58,6 +59,11 @@ final class DashboardCoordinator: Coordinator, DashboardCoordinatorProtocol {
     func navigateToMaterials() {
         let materialsCoordinator = MaterialsCoordinator(parentViewController: viewController)
         materialsCoordinator.start()
+    }
+    
+    func navigateToVocabulary(_ vocabulary: Vocabulary) {
+        let vocabularyCoordinator = VocabularyCoordinator(vocabulary: vocabulary, parentViewController: viewController)
+        vocabularyCoordinator.start()
     }
     
     func navigateToVocabularyList() {

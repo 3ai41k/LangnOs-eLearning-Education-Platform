@@ -39,9 +39,9 @@ final class VocabularyViewModel: VocabularyViewModelOutputProtocol {
     
     // MARK: - Private properties
     
-    private let router: VocabularyNavigationProtocol & AlertPresentableProtocol
+    private let router: VocabularyCoordinatorProtocol
     private var vocabulary: Vocabulary
-    private let dataProvider: DataProviderUpdatingProtocol
+    private let dataProvider: DataProviderUpdatingProtocol & DataProviderDeletingProtocol
     
     private var actionPublisher: AnyPublisher<VocabularyViewModelAction, Never> {
         actionSubject.eraseToAnyPublisher()
@@ -56,9 +56,9 @@ final class VocabularyViewModel: VocabularyViewModelOutputProtocol {
     
     // MARK: - Init
     
-    init(router: VocabularyNavigationProtocol & AlertPresentableProtocol,
+    init(router: VocabularyCoordinatorProtocol,
          vocabulary: Vocabulary,
-         dataProvider: DataProviderUpdatingProtocol) {
+         dataProvider: DataProviderUpdatingProtocol & DataProviderDeletingProtocol) {
         self.router = router
         self.vocabulary = vocabulary
         self.dataProvider = dataProvider
@@ -98,28 +98,37 @@ final class VocabularyViewModel: VocabularyViewModelOutputProtocol {
                 case .resetStatistic:
                     print(#function)
                 case .favorite:
-                    self?.addVocabularyToFavoriteAction()
+                    self?.addVocabularyToFavorite()
                 case .delete:
-                    self?.removeVocabularyAction()
+                    self?.deleteVocavulary()
                 }
             })
         ]
     }
     
-    // MARK: - Actions
-    
-    private func removeVocabularyAction() {
+    private func deleteVocavulary() {
         router.showAlert(title: "Are you sure ?", message: "Do you want to delete this vocabulary ?", actions: [
             CancelAlertAction(handler: { }),
-            OkAlertAction(handler: { self.router.removeVocabulary() })
+            OkAlertAction(handler: {
+                self.router.showActivity()
+                
+                let request = VocabularyDeleteRequest(vocabulary: self.vocabulary)
+                self.dataProvider.delete(request: request, onSuccess: {
+                    self.router.closeActivity()
+                    self.router.close()
+                }) { (error) in
+                    self.router.closeActivity()
+                    self.router.showError(error)
+                }
+            })
         ])
     }
     
-    private func addVocabularyToFavoriteAction() {
-        vocabulary.isFavorite = true
+    private func addVocabularyToFavorite() {
+        vocabulary.isFavorite = vocabulary.isFavorite ? false : true
         let request = VocabularyUpdateRequest(vocabulary: vocabulary)
         dataProvider.update(request: request, onSuccess: {
-            
+            print("Success")
         }) { (error) in
             self.router.showError(error)
         }
