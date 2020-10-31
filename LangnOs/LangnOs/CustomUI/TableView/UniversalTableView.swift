@@ -88,6 +88,20 @@ final class UniversalTableView: UITableView {
         removeNotifications()
     }
     
+    // MARK: - Override
+    
+    override func reloadData() {
+        super.reloadData()
+        
+        hideBackgroundViewIfSectionsAreEmpty()
+    }
+    
+    override func reloadSections(_ sections: IndexSet, with animation: UITableView.RowAnimation) {
+        super.reloadSections(sections, with: animation)
+        
+        hideBackgroundViewIfSectionsAreEmpty()
+    }
+    
     // MARK: - Public methods
     
     func start() {
@@ -116,6 +130,16 @@ final class UniversalTableView: UITableView {
     
     private func removeNotifications() {
         NotificationCenter.default.removeObserver(self)
+    }
+    
+    private func hideBackgroundViewIfSectionsAreEmpty() {
+        if let sections = viewModel?.tableSections {
+            if sections.map({ $0.cells.value.isEmpty }).contains(false) {
+                backgroundView?.isHidden = true
+            } else {
+                backgroundView?.isHidden = false
+            }
+        }
     }
     
     // MARK: - Actions

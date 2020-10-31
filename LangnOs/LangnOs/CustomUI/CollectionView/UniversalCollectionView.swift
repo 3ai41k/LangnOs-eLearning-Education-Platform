@@ -81,8 +81,6 @@ final class UniversalCollectionView: UICollectionView {
         }
     }
     
-    var customBackgroundView: UIView?
-    
     // MARK: - Private properties
     
     private var cancellable: [AnyCancellable] = []
@@ -108,13 +106,13 @@ final class UniversalCollectionView: UICollectionView {
     override func reloadData() {
         super.reloadData()
         
-        setBackgroundViewIfSectionsAreEmpty()
+        hideBackgroundViewIfSectionsAreEmpty()
     }
     
     override func reloadSections(_ sections: IndexSet) {
         super.reloadSections(sections)
         
-        setBackgroundViewIfSectionsAreEmpty()
+        hideBackgroundViewIfSectionsAreEmpty()
     }
     
     // MARK: - Private methods
@@ -127,12 +125,12 @@ final class UniversalCollectionView: UICollectionView {
         })
     }
     
-    private func setBackgroundViewIfSectionsAreEmpty() {
+    private func hideBackgroundViewIfSectionsAreEmpty() {
         if let sections = viewModel?.tableSections {
             if sections.map({ $0.cells.value.isEmpty }).contains(false) {
-                backgroundView = nil
+                backgroundView?.isHidden = true
             } else {
-                backgroundView = customBackgroundView
+                backgroundView?.isHidden = false
             }
         }
     }

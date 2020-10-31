@@ -94,7 +94,7 @@ final class MaterialsViewController: BindibleViewController<MaterialsViewModelPr
     private func setupBackgroundView() {
         let backgroundView = NoResulsView()
         backgroundView.title = "There aren't any materials.".localize
-        collectionView.customBackgroundView = backgroundView
+        collectionView.backgroundView = backgroundView
     }
     
     // MARK: - Actions

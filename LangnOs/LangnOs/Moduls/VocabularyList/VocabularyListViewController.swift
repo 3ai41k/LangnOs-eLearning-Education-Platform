@@ -32,6 +32,12 @@ final class VocabularyListViewController: BindibleViewController<VocabularyListV
     
     // MARK: - Lifecycle
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        setupBackgroundView()
+    }
+    
     // MARK: - Init
     
     
@@ -58,7 +64,11 @@ final class VocabularyListViewController: BindibleViewController<VocabularyListV
     
     // MARK: - Private methods
     
-    
+    private func setupBackgroundView() {
+        let backgroundView = NoResulsView()
+        backgroundView.title = "There aren't any materials.".localize
+        tableView.backgroundView = backgroundView
+    }
     
     // MARK: - Actions
     
