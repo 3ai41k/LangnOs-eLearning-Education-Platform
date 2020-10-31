@@ -27,7 +27,6 @@ protocol DashboardViewModelInputProtocol {
 
 protocol DashboardViewModelOutputProtocol {
     func userProfileAction()
-    func refreshData(completion: () -> Void)
 }
 
 typealias DashboardViewModelProtocol =
@@ -122,13 +121,6 @@ final class DashboardViewModel: DashboardViewModelProtocol {
         }
     }
     
-    // MARK: FIX IT
-    
-    func refreshData(completion: () -> Void) {
-        fetchFavoriteVocabularies()
-        completion()
-    }
-    
     // MARK: - Private methods
     
     private func bindContext() {
@@ -165,7 +157,7 @@ final class DashboardViewModel: DashboardViewModelProtocol {
         let request = FavoriteVocabularyFetchRequest(userId: userId)
         dataProvider.fetch(request: request, onSuccess: { (vocabularies: [Vocabulary]) in
             if vocabularies.isEmpty {
-                self.updateFavoritesSection()
+                self.setEmptyFavoritesSection()
             } else {
                 self.favoriteVocabularies = vocabularies
             }
@@ -224,7 +216,7 @@ final class DashboardViewModel: DashboardViewModelProtocol {
         let headerViewModel = TitleSectionViewModel(text: "Favorites".localize,
                                                     buttonText: "Edit".localize,
                                                     buttonHandler: { [weak self] in
-                                                        self?.router.navigateToVocabularyList()
+                                                        self?.editFavoritesSection()
                                                     })
         let sectionViewModel = TableSectionViewModel(headerView: headerViewModel,
                                                      footerView: nil,
@@ -232,9 +224,17 @@ final class DashboardViewModel: DashboardViewModelProtocol {
         tableSections.append(sectionViewModel)
     }
     
-    private func updateFavoritesSection() {
-        let cellViewModel = MessageCellViewModel(message: "Add favorite sets here to have quick access at any time, without having to search".localize)
-        self.tableSections[SectionType.favorites.rawValue].cells.value = [cellViewModel]
+    private func setEmptyFavoritesSection() {
+        let cellViewModels = [
+            MessageCellViewModel(message: "Add favorite sets here to have quick access at any time, without having to search".localize)
+        ]
+        tableSections[SectionType.favorites.rawValue].cells.value = cellViewModels
+    }
+    
+    private func editFavoritesSection() {
+        router.navigateToVocabularyList {
+            self.fetchFavoriteVocabularies()
+        }
     }
     
 }

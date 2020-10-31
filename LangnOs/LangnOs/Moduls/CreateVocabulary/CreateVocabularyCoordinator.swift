@@ -23,13 +23,13 @@ final class CreateVocabularyCoordinator: Coordinator, CreateVocabularyCoordinato
     
     // MARK: - Private properties
     
-    private let completion: (VocabularyGeneralInfo, [Word]) -> Void
+    private let didCreateHandler: (VocabularyGeneralInfo, [Word]) -> Void
     
     // MARK: - Init
     
     init(completion: @escaping (VocabularyGeneralInfo, [Word]) -> Void,
          parentViewController: UIViewController?) {
-        self.completion = completion
+        self.didCreateHandler = completion
         
         super.init(parentViewController: parentViewController)
     }
@@ -54,7 +54,7 @@ final class CreateVocabularyCoordinator: Coordinator, CreateVocabularyCoordinato
     
     func finish(_ generalInfo: VocabularyGeneralInfo, words: [Word]) {
         close {
-            self.completion(generalInfo, words)
+            self.didCreateHandler(generalInfo, words)
         }
     }
     

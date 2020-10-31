@@ -13,7 +13,7 @@ protocol DashboardNavigationProtocol {
     func navigateToLogin()
     func navigateToMaterials()
     func navigateToVocabulary(_ vocabulary: Vocabulary)
-    func navigateToVocabularyList()
+    func navigateToVocabularyList(_ completion: @escaping () -> Void)
 }
 
 typealias DashboardCoordinatorProtocol = DashboardNavigationProtocol & AlertPresentableProtocol
@@ -66,8 +66,9 @@ final class DashboardCoordinator: Coordinator, DashboardCoordinatorProtocol {
         vocabularyCoordinator.start()
     }
     
-    func navigateToVocabularyList() {
+    func navigateToVocabularyList(_ completion: @escaping () -> Void) {
         let vocabularyListCoordinator = VocabularyListCoordinator(parentViewController: viewController)
+        vocabularyListCoordinator.completion = completion
         vocabularyListCoordinator.start()
     }
     

@@ -34,7 +34,7 @@ final class AddToFavoriteCellViewModel: AddToFavoriteCellViewModelProtocol {
     }
     
     var category: String {
-        "Categroy: ".localize + vocabulary.category
+        "Category: ".localize + vocabulary.category
     }
     
     var totalWords: String {

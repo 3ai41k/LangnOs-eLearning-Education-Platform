@@ -51,22 +51,12 @@ final class DashboardViewController: BindibleViewController<DashboardViewModelPr
         ]
     }
     
-    override func configurateComponents() {
-        setupPullToRefresh()
-    }
-    
     override func setupUI() {
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationController?.navigationBar.topItem?.titleView = OfflineTitleView()
     }
     
     // MARK: - Private methods
-    
-    private func setupPullToRefresh() {
-        let refreshControl = UIRefreshControl()
-        refreshControl.addTarget(self, action: #selector(refreshData), for: .valueChanged)
-        self.tableView.refreshControl = refreshControl
-    }
     
     // TO DO: Create custom view
     
@@ -95,13 +85,6 @@ final class DashboardViewController: BindibleViewController<DashboardViewModelPr
     }
     
     // MARK: - Actions
-    
-    @objc
-    private func refreshData(_ sender: UIRefreshControl) {
-        viewModel?.refreshData {
-            sender.endRefreshing()
-        }
-    }
     
     @objc
     private func didProfileTouch() {

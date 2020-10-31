@@ -10,6 +10,10 @@ import UIKit
 
 class Coordinator {
     
+    // MARK: - Public properties
+    
+    var completion: (() -> Void)?
+    
     // MARK: - Protected(Internal) properties
     
     internal weak var parentViewController: UIViewController?
@@ -22,6 +26,8 @@ class Coordinator {
     }
     
     deinit {
+        completion?()
+        
         print("=> deinit \(self)")
     }
     
