@@ -129,6 +129,7 @@ final class DashboardViewModel: DashboardViewModelProtocol {
                 switch state {
                 case .didUserLogin:
                     self?.downloadUserPhoto()
+                    self?.fetchFavoriteVocabularies()
                 case .didUserLogout:
                     // TO DO - Delete dababase info
                     self?.clearUserCash()
@@ -189,6 +190,8 @@ final class DashboardViewModel: DashboardViewModelProtocol {
     private func clearUserCash() {
         UserDefaults.standard.removeObject(forKey: UserDefaultsKey.userImage.rawValue)
         userImage.value = SFSymbols.personCircle()
+        
+        setEmptyFavoritesSection()
     }
     
     private func setupEmptySection(_ tableSections: inout [SectionViewModelProtocol]) {
@@ -199,9 +202,7 @@ final class DashboardViewModel: DashboardViewModelProtocol {
     private func setupMyWorkSection(_ tableSections: inout [SectionViewModelProtocol]) {
         let cellViewModels = [
             ColoredImageCellViewModel(text: "Materials", image: SFSymbols.meterials(), color: .systemGreen, accessoryType: .disclosureIndicator),
-            ColoredImageCellViewModel(text: "Statistic", image: SFSymbols.statistic(), color: .systemBlue, accessoryType: .disclosureIndicator),
-            ColoredImageCellViewModel(text: "Courses", image: SFSymbols.book(), color: .systemPurple, accessoryType: .disclosureIndicator),
-            ColoredImageCellViewModel(text: "Something", image: SFSymbols.bookmark(for: .normal), color: .systemOrange, accessoryType: .disclosureIndicator)
+            ColoredImageCellViewModel(text: "Statistic", image: SFSymbols.statistic(), color: .systemBlue, accessoryType: .disclosureIndicator)
         ]
         let sectionViewModel = TableSectionViewModel(headerView: TitleSectionViewModel(text: "My Work".localize),
                                                      footerView: nil,

@@ -31,7 +31,7 @@ final class DashboardViewController: BindibleViewController<DashboardViewModelPr
     // MARK: - Override
     
     override func bindViewModel() {
-        title = viewModel?.title
+        navigationController?.navigationBar.topItem?.title = viewModel?.title
         cancellables = [
             viewModel?.userImage.sink(receiveValue: { [weak self] (image) in
                 if let image = image {

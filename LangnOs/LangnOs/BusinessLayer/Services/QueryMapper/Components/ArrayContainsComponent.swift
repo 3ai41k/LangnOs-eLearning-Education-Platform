@@ -1,19 +1,19 @@
 //
-//  IsEqualToComponent.swift
+//  ContainsInComponent.swift
 //  LangnOs
 //
-//  Created by Nikita Lizogubov on 29.10.2020.
+//  Created by Nikita Lizogubov on 31.10.2020.
 //  Copyright © 2020 NL. All rights reserved.
 //
 
 import FirebaseFirestore
 
-struct IsEqualToComponent: QueryComponentProtocol {
+struct ArrayContainsComponent: QueryComponentProtocol {
     
     private let field: String
     private let argument: Any
     
-    init(_ field: String, isEqualTo argument: Any) {
+    init(_ field: String, contains argument: Any) {
         self.field = field
         self.argument = argument
     }
@@ -23,7 +23,8 @@ struct IsEqualToComponent: QueryComponentProtocol {
     }
     
     func firebaseQuery(_ reference: CollectionReference) -> Query {
-        reference.whereField(field, isEqualTo: argument)
+        reference.whereField(field, arrayContainsAny: [argument])
     }
+    
     
 }
