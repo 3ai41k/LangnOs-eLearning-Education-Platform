@@ -10,7 +10,7 @@ import UIKit
 import FirebaseAuth
 
 protocol CreateVocabularyNavigationProtocol: CoordinatorClosableProtocol {
-    func finish(_ generalInfo: VocabularyGeneralInfo, words: [Word])
+    func didCreateVocabulary(_ vocabulary: Vocabulary)
     func navigateToImagePicker(sourceType: UIImagePickerController.SourceType, didImageSelect: @escaping (UIImage) -> Void)
 }
 
@@ -23,13 +23,13 @@ final class CreateVocabularyCoordinator: Coordinator, CreateVocabularyCoordinato
     
     // MARK: - Private properties
     
-    private let didCreateHandler: (VocabularyGeneralInfo, [Word]) -> Void
+    private let createHandler: (Vocabulary) -> Void
     
     // MARK: - Init
     
-    init(completion: @escaping (VocabularyGeneralInfo, [Word]) -> Void,
+    init(createHandler: @escaping (Vocabulary) -> Void,
          parentViewController: UIViewController?) {
-        self.didCreateHandler = completion
+        self.createHandler = createHandler
         
         super.init(parentViewController: parentViewController)
     }
@@ -37,7 +37,12 @@ final class CreateVocabularyCoordinator: Coordinator, CreateVocabularyCoordinato
     // MARK: - Override
     
     override func start() {
-        let viewModel = CreateVocabularyViewModel(router: self)
+        let dataProvider = DataProvider()
+        let userSession = UserSession.shared
+        let viewModel = CreateVocabularyViewModel(router: self,
+                                                  dataProvider: dataProvider,
+                                                  userSession: userSession)
+        
         let cellFactory = CreateVocabularyCellFactory()
         let viewController = CreateVocabularyViewController()
         viewController.tableViewCellFactory = cellFactory
@@ -52,9 +57,9 @@ final class CreateVocabularyCoordinator: Coordinator, CreateVocabularyCoordinato
     
     // MARK: - CreateVocabularyNavigationProtocol
     
-    func finish(_ generalInfo: VocabularyGeneralInfo, words: [Word]) {
+    func didCreateVocabulary(_ vocabulary: Vocabulary) {
         close {
-            self.didCreateHandler(generalInfo, words)
+            self.createHandler(vocabulary)
         }
     }
     

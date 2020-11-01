@@ -47,7 +47,7 @@ final class MaterialsViewModel: MaterialsViewModelProtocol {
     // MARK: - Private properties
     
     private let router: MaterialsCoordinatorProtocol
-    private let dataProvider: DataProviderFetchingProtocol & DataProviderCreatingProtocol
+    private let dataProvider: DataProviderFetchingProtocol
     private let userSession: SessionInfoProtocol
     
     private var vocabularies: [Vocabulary] = [] {
@@ -65,7 +65,7 @@ final class MaterialsViewModel: MaterialsViewModelProtocol {
     // MARK: - Init
     
     init(router: MaterialsCoordinatorProtocol,
-         dataProvider: DataProviderFetchingProtocol & DataProviderCreatingProtocol,
+         dataProvider: DataProviderFetchingProtocol,
          userSession: SessionInfoProtocol) {
         self.router = router
         self.dataProvider = dataProvider
@@ -94,20 +94,6 @@ final class MaterialsViewModel: MaterialsViewModelProtocol {
         tableSections.append(sectionViewModel)
     }
     
-    private func createVocabulary(_ generailInfo: VocabularyGeneralInfo, words: [Word]) {
-        guard let userId = userSession.userId else { return }
-        
-        isActivityIndicatorHidden.value = false
-        
-        let vocabulary = Vocabulary(userId: userId, title: generailInfo.name, category: generailInfo.category, words: words)
-        let request = VocabularyCreateRequest(vocabulary: vocabulary)
-        dataProvider.create(request: request, onSuccess: {
-            self.vocabularies.append(vocabulary)
-        }) { (error) in
-            self.router.showError(error)
-        }
-    }
-    
     private func discardSearch() {
         let cellViewModels = vocabularies.map({ VocabularyCollectionViewCellViewModel(vocabulary: $0) })
         tableSections[SectionType.vocabulary.rawValue].cells.value = cellViewModels
@@ -134,8 +120,8 @@ extension MaterialsViewModel {
     }
     
     func createVocabularyAction() {
-        router.navigateToCreateVocabulary { (generalInfo, words)  in
-            self.createVocabulary(generalInfo, words: words)
+        router.navigateToCreateVocabulary { (vocabulary) in
+            self.vocabularies.append(vocabulary)
         }
     }
     

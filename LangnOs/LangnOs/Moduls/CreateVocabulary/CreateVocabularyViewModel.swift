@@ -33,6 +33,8 @@ final class CreateVocabularyViewModel: CreateVocabularyViewModelProtocol {
     // MARK: - Private properties
     
     private let router: CreateVocabularyCoordinatorProtocol
+    private let dataProvider: DataProviderCreatingProtocol
+    private let userSession: SessionInfoProtocol
     
     private enum SectionType: Int {
         case vocabularylInfo
@@ -41,8 +43,12 @@ final class CreateVocabularyViewModel: CreateVocabularyViewModelProtocol {
     
     // MARK: - Init
     
-    init(router: CreateVocabularyCoordinatorProtocol) {
+    init(router: CreateVocabularyCoordinatorProtocol,
+         dataProvider: DataProviderCreatingProtocol,
+         userSession: SessionInfoProtocol) {
         self.router = router
+        self.dataProvider = dataProvider
+        self.userSession = userSession
         
         self.title = .init("New vocabulary".localize)
         
@@ -112,7 +118,28 @@ extension CreateVocabularyViewModel {
                              message: "General information is empty. Because of this we could not create this vocabulary. Please, enter name and category",
                              actions: [OkAlertAction(handler: { })])
         } else {
-            router.finish(generalInfo, words: words)
+            guard let userId = userSession.userId else {
+                router.showAlert(title: "Sorry!",
+                                 message: "You are not authorized",
+                                 actions: [OkAlertAction(handler: { })])
+                return
+            }
+            
+            router.showActivity()
+            
+            let vocabulary = Vocabulary(userId: userId,
+                                        title: generalInfo.name,
+                                        category: generalInfo.category,
+                                        words: words)
+            
+            let request = VocabularyCreateRequest(vocabulary: vocabulary)
+            dataProvider.create(request: request, onSuccess: {
+                self.router.closeActivity()
+                self.router.didCreateVocabulary(vocabulary)
+            }) { (error) in
+                self.router.closeActivity()
+                self.router.showError(error)
+            }
         }
     }
     
