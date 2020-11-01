@@ -33,7 +33,7 @@ extension SearchVocabularyRequest: DataProviderRequestProtocol {
     }
     
     var query: QueryComponentProtocol? {
-        IsEqualToComponent(searchBy.rawValue, isEqualTo: searchText)
+        SearchComponets(searchBy.rawValue, search: searchText)
     }
     
     

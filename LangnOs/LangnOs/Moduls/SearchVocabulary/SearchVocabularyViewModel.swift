@@ -9,11 +9,24 @@
 import Foundation
 import Combine
 
+protocol SearchVocabularyViewModelInputProtocol {
+    var title: String { get }
+}
+
+protocol SearchVocabularyViewModelOutputProtocol {
+    func search(text: String)
+}
+
 private enum SectionType: Int {
     case vocabulary
 }
 
-final class SearchVocabularyViewModel: VocabularyListViewModelProtocol {
+typealias SearchVocabularyViewModelPrtotocol =
+    SearchVocabularyViewModelInputProtocol &
+    SearchVocabularyViewModelOutputProtocol &
+    UniversalTableViewModelProtocol
+
+final class SearchVocabularyViewModel: SearchVocabularyViewModelPrtotocol {
     
     var title: String {
         "Search".localize
@@ -38,14 +51,17 @@ final class SearchVocabularyViewModel: VocabularyListViewModelProtocol {
         self.userSession = userSession
         
         self.setupVocabularySection(&tableSections)
-        
-        self.fetchData()
     }
     
     // MARK: - Public methods
     
-    func fetchData() {
-        let request = SearchVocabularyRequest(searchText: "1", searchBy: .name)
+    func search(text: String) {
+        guard !text.isEmpty else {
+            tableSections[SectionType.vocabulary.rawValue].cells.value = .empty
+            return
+        }
+        
+        let request = SearchVocabularyRequest(searchText: text, searchBy: .name)
         firebaseDatabase.fetch(request: request, onSuccess: { (vocabularies: [Vocabulary]) in
             let cellViewModesl = vocabularies.map({ AddToFavoriteCellViewModel(vocabulary: $0, favoriteHandler: { _ in }) })
             self.tableSections[SectionType.vocabulary.rawValue].cells.value = cellViewModesl

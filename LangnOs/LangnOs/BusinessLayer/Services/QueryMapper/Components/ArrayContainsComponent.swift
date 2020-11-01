@@ -26,5 +26,4 @@ struct ArrayContainsComponent: QueryComponentProtocol {
         reference.whereField(field, arrayContains: argument)
     }
     
-    
 }

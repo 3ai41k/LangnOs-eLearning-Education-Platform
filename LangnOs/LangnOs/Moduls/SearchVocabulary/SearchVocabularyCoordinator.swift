@@ -30,7 +30,7 @@ final class SearchVocabularyCoordinator: Coordinator, SearchVocabularyCoordinato
                                                   userSession: userSeession)
         
         let cellFactory = VocabularyListCellFactory()
-        let viewController = VocabularyListViewController()
+        let viewController = SearchVocabularyViewController()
         viewController.viewModel = viewModel
         viewController.cellFactory = cellFactory
         
