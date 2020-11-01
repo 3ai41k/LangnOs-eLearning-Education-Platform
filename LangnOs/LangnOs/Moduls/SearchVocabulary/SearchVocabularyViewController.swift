@@ -17,6 +17,8 @@ final class SearchVocabularyViewController: BindibleViewController<SearchVocabul
         didSet {
             tableView.viewModel = viewModel
             tableView.cellFactory = cellFactory
+            tableView.backgroundView = backgroundView
+            tableView.tableFooterView = UIView()
             
             tableView.start()
         }
@@ -34,26 +36,27 @@ final class SearchVocabularyViewController: BindibleViewController<SearchVocabul
         return searchController
     }()
     
-    // MARK: - Lifecycle
-    // MARK: - Init
+    private let backgroundView: NoResulsView = {
+        let backgroundView = NoResulsView()
+        return backgroundView
+    }()
+    
     // MARK: - Override
     
     override func bindViewModel() {
-        
+        title = viewModel?.title
+        backgroundView.title = viewModel?.backgoundViewTitle
+        searchController.searchBar.scopeButtonTitles = viewModel?.scopeButtonTitles
     }
     
     override func configurateComponents() {
         searchController.searchResultsUpdater = self
+        searchController.searchBar.delegate = self
     }
     
     override func setupUI() {
-        title = viewModel?.title
         navigationItem.searchController = searchController
     }
-    
-    // MARK: - Public methods
-    // MARK: - Private methods
-    // MARK: - Actions
     
 }
 
@@ -64,6 +67,16 @@ extension SearchVocabularyViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         guard let text = searchController.searchBar.text else { return }
         viewModel?.search(text: text)
+    }
+    
+}
+
+// MARK: - UISearchBarDelegate
+
+extension SearchVocabularyViewController: UISearchBarDelegate {
+    
+    func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
+        viewModel?.selectedScopeButtonFor(index: selectedScope)
     }
     
 }

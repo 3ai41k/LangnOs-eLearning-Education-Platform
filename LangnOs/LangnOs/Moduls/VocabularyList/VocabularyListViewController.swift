@@ -32,12 +32,6 @@ final class VocabularyListViewController: BindibleViewController<VocabularyListV
     
     // MARK: - Lifecycle
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        setupBackgroundView()
-    }
-    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
@@ -60,7 +54,7 @@ final class VocabularyListViewController: BindibleViewController<VocabularyListV
     }
     
     override func configurateComponents() {
-        
+        setupBackgroundView()
     }
     
     // MARK: - Public methods

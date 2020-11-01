@@ -9,12 +9,16 @@
 import UIKit
 import Combine
 
+protocol DrivableNavigationItemProtocol {
+    var navigationItemDrivableModel: CurrentValueSubject<DrivableModelProtocol, Never> { get }
+}
+
 class BindibleViewController<ViewModel>: UIViewController {
     
-    // MARK: - Public properties
+    // MARK: - Protected(internal) methods
     
-    var viewModel: ViewModel?
-    var cancellables: [AnyCancellable?] = []
+    internal var viewModel: ViewModel?
+    internal var cancellables: [AnyCancellable?] = []
     
     // MARK: - Lifecycle
     
@@ -22,16 +26,22 @@ class BindibleViewController<ViewModel>: UIViewController {
         super.viewDidLoad()
         
         bindViewModel()
-        setupUI()
         configurateComponents()
+        setupUI()
     }
     
     // MARK: - Protected(internal) methods
     
-    internal func bindViewModel() { }
-    
-    internal func setupUI() { }
+    internal func bindViewModel() {
+//        if let viewModel = ViewModel.self as? DrivableNavigationItemProtocol {
+//            viewModel.navigationItemDrivableModel.sink { [weak self] (model) in
+//                self?.navigationItem.drive(model: model)
+//            }.store(in: &cancellables)
+//        }
+    }
     
     internal func configurateComponents() { }
+    
+    internal func setupUI() { }
     
 }

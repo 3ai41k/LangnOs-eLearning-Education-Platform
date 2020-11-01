@@ -7,9 +7,9 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SearchVocabularyViewController">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ListViewController" customModule="LangnOs" customModuleProvider="target">
             <connections>
-                <outlet property="tableView" destination="bHi-p5-GLR" id="Sci-td-782"/>
+                <outlet property="tableView" destination="1pW-kx-37h" id="JrP-An-aL7"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -18,20 +18,20 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" sectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="bHi-p5-GLR" customClass="UniversalTableView" customModule="LangnOs" customModuleProvider="target">
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" sectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="1pW-kx-37h" customClass="UniversalTableView" customModule="LangnOs" customModuleProvider="target">
                     <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                 </tableView>
             </subviews>
             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
             <constraints>
-                <constraint firstItem="bHi-p5-GLR" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="C0b-NK-iWb"/>
-                <constraint firstItem="bHi-p5-GLR" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="alm-7z-Zr9"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="bHi-p5-GLR" secondAttribute="trailing" id="jPD-cw-Z2L"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="bHi-p5-GLR" secondAttribute="bottom" id="x1z-1r-LFW"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="1pW-kx-37h" secondAttribute="bottom" id="3MX-wZ-jGm"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="1pW-kx-37h" secondAttribute="trailing" id="K7e-CE-BQ6"/>
+                <constraint firstItem="1pW-kx-37h" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="OgP-8x-3t8"/>
+                <constraint firstItem="1pW-kx-37h" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="etm-8F-5fO"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
-            <point key="canvasLocation" x="139" y="127"/>
+            <point key="canvasLocation" x="132" y="154"/>
         </view>
     </objects>
 </document>

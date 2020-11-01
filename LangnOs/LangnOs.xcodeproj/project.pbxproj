@@ -32,6 +32,8 @@
 		8D435A9B254EE3D100838691 /* SearchVocabularyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D435A99254EE3D100838691 /* SearchVocabularyViewController.swift */; };
 		8D435A9C254EE3D100838691 /* SearchVocabularyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D435A9A254EE3D100838691 /* SearchVocabularyViewController.xib */; };
 		8D435AA2254EECE100838691 /* SearchComponets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D435AA1254EECE100838691 /* SearchComponets.swift */; };
+		8D435AA6254EF97000838691 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D435AA4254EF97000838691 /* ListViewController.swift */; };
+		8D435AA7254EF97000838691 /* ListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D435AA5254EF97000838691 /* ListViewController.xib */; };
 		8D524F5D252E5AAA002A6E01 /* SearchBarCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D524F5B252E5AAA002A6E01 /* SearchBarCollectionReusableView.swift */; };
 		8D524F5E252E5AAA002A6E01 /* SearchBarCollectionReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D524F5C252E5AAA002A6E01 /* SearchBarCollectionReusableView.xib */; };
 		8D524F60252E5AE5002A6E01 /* SearchBarCollectionReusableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D524F5F252E5AE5002A6E01 /* SearchBarCollectionReusableViewModel.swift */; };
@@ -295,6 +297,8 @@
 		8D435A99254EE3D100838691 /* SearchVocabularyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchVocabularyViewController.swift; sourceTree = "<group>"; };
 		8D435A9A254EE3D100838691 /* SearchVocabularyViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchVocabularyViewController.xib; sourceTree = "<group>"; };
 		8D435AA1254EECE100838691 /* SearchComponets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchComponets.swift; sourceTree = "<group>"; };
+		8D435AA4254EF97000838691 /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
+		8D435AA5254EF97000838691 /* ListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListViewController.xib; sourceTree = "<group>"; };
 		8D524F5B252E5AAA002A6E01 /* SearchBarCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarCollectionReusableView.swift; sourceTree = "<group>"; };
 		8D524F5C252E5AAA002A6E01 /* SearchBarCollectionReusableView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchBarCollectionReusableView.xib; sourceTree = "<group>"; };
 		8D524F5F252E5AE5002A6E01 /* SearchBarCollectionReusableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarCollectionReusableViewModel.swift; sourceTree = "<group>"; };
@@ -648,6 +652,15 @@
 			path = UserInfoHeaderView;
 			sourceTree = "<group>";
 		};
+		8D435AA3254EF94C00838691 /* ListViewController */ = {
+			isa = PBXGroup;
+			children = (
+				8D435AA4254EF97000838691 /* ListViewController.swift */,
+				8D435AA5254EF97000838691 /* ListViewController.xib */,
+			);
+			path = ListViewController;
+			sourceTree = "<group>";
+		};
 		8D524F58252E52A0002A6E01 /* ReusableViews */ = {
 			isa = PBXGroup;
 			children = (
@@ -862,6 +875,7 @@
 			isa = PBXGroup;
 			children = (
 				8DD28BCC2526815C00F59B7D /* BindibleViewController.swift */,
+				8D435AA3254EF94C00838691 /* ListViewController */,
 				8D83EA74252B9E7B004E6098 /* ActivityViewController */,
 			);
 			path = ViewControllers;
@@ -1640,6 +1654,7 @@
 				8DF253D225471D1A001492AE /* OfflineTitleView.xib in Resources */,
 				8DF253EE2549B17C001492AE /* VocabularyListViewController.xib in Resources */,
 				8D524F93252F7E8B002A6E01 /* MessagesViewController.xib in Resources */,
+				8D435AA7254EF97000838691 /* ListViewController.xib in Resources */,
 				8DF25386254330A6001492AE /* MessageTableViewCell.xib in Resources */,
 				8DF253BD2544A2AD001492AE /* ButtonTableViewCell.xib in Resources */,
 				8D435A81254C3E1900838691 /* UserInfoHeaderView.xib in Resources */,
@@ -1841,6 +1856,7 @@
 				8DF253B82544A07A001492AE /* BottomCardDismisser.swift in Sources */,
 				8DC3CF23252C67F9003CA62A /* InputView.swift in Sources */,
 				8DF253CD2545FCC1001492AE /* VocabularyUpdateRequest.swift in Sources */,
+				8D435AA6254EF97000838691 /* ListViewController.swift in Sources */,
 				8D435A8E254DF84B00838691 /* ArrayContainsComponent.swift in Sources */,
 				8D662558252A800600991D45 /* UniversalTableViewCellRegistratable.swift in Sources */,
 				8D524FF12533BF47002A6E01 /* FlashCardTableViewCellViewModel.swift in Sources */,

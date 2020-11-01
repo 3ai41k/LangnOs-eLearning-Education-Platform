@@ -8,9 +8,18 @@
 
 import Foundation
 
-enum SearchVocabularBy: String {
+enum SearchVocabularBy: String, CaseIterable {
     case name = "title"
     case category = "category"
+    
+    var title: String {
+        switch self {
+        case .name:
+            return "Name".localize
+        case .category:
+            return "Category".localize
+        }
+    }
 }
 
 struct SearchVocabularyRequest {
