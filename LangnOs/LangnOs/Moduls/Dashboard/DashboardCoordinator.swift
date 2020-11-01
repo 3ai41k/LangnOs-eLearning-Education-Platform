@@ -25,10 +25,12 @@ final class DashboardCoordinator: Coordinator, DashboardCoordinatorProtocol {
     override func start() {
         let userSession = UserSession.shared
         let dataProvider = DataProvider()
+        let coreDataStack = CoreDataStack.shared
         let mediaDownloader = MediaDownloader()
         let viewModel = DashboardViewModel(router: self,
                                            userSession: userSession,
                                            dataProvider: dataProvider,
+                                           coreDataStack: coreDataStack,
                                            mediaDownloader: mediaDownloader)
         
         let cellFactory = DashboardCellFactory()

@@ -58,6 +58,7 @@ final class DashboardViewModel: DashboardViewModelProtocol {
     private let router: DashboardCoordinatorProtocol
     private let userSession: SessionInfoProtocol & SessionStatePublisherProtocol
     private let dataProvider: DataProviderFetchingProtocol
+    private let coreDataStack: CoreDataClearableProtocol
     private let mediaDownloader: MediaDownloadableProtocol
     
     private var favoriteVocabularies: [Vocabulary] = [] {
@@ -75,10 +76,12 @@ final class DashboardViewModel: DashboardViewModelProtocol {
     init(router: DashboardCoordinatorProtocol,
          userSession: SessionInfoProtocol & SessionStatePublisherProtocol,
          dataProvider: DataProviderFetchingProtocol,
+         coreDataStack: CoreDataClearableProtocol,
          mediaDownloader: MediaDownloadableProtocol) {
         self.router = router
         self.userSession = userSession
         self.dataProvider = dataProvider
+        self.coreDataStack = coreDataStack
         self.mediaDownloader = mediaDownloader
         
         self.userImage = .init(nil)
@@ -192,6 +195,7 @@ final class DashboardViewModel: DashboardViewModelProtocol {
         userImage.value = SFSymbols.personCircle()
         
         setEmptyFavoritesSection()
+        coreDataStack.clear()
     }
     
     private func setupEmptySection(_ tableSections: inout [SectionViewModelProtocol]) {

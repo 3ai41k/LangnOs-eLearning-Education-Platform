@@ -50,14 +50,14 @@ final class DataProvider {
     // MARK: - Private properties
     
     private let firebaseDatabase: FirebaseDatabaseProtocol
-    private let coreDataContext: CoreDataContext
+    private let coreDataContext: CoreDataStack
     private let networkState: InternetConnectableProtocol
     
     // MARK: - Init
     
     init() {
         self.firebaseDatabase = FirebaseDatabase()
-        self.coreDataContext = CoreDataContext.shared
+        self.coreDataContext = CoreDataStack.shared
         self.networkState = NetworkState.shared
     }
     

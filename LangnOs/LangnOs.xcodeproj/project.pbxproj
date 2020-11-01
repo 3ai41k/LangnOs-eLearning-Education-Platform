@@ -98,7 +98,7 @@
 		8D83EA78252B9ECD004E6098 /* ActivityPresentableProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D83EA77252B9ECD004E6098 /* ActivityPresentableProtocol.swift */; };
 		8D83EA86252BBBD1004E6098 /* TableSectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D83EA85252BBBD1004E6098 /* TableSectionViewModel.swift */; };
 		8D94E7C52534D102005FA4B9 /* SpeechSynthesizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D94E7C42534D102005FA4B9 /* SpeechSynthesizer.swift */; };
-		8D94E7CC2534DF03005FA4B9 /* CoreDataContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D94E7CB2534DF03005FA4B9 /* CoreDataContext.swift */; };
+		8D94E7CC2534DF03005FA4B9 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D94E7CB2534DF03005FA4B9 /* CoreDataStack.swift */; };
 		8D94E7D02534E34E005FA4B9 /* VocabularyEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D94E7CF2534E34E005FA4B9 /* VocabularyEntity.swift */; };
 		8D94E7D22534E376005FA4B9 /* WordEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D94E7D12534E376005FA4B9 /* WordEntity.swift */; };
 		8D94E7D42534E3DC005FA4B9 /* DataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D94E7D32534E3DC005FA4B9 /* DataProvider.swift */; };
@@ -361,7 +361,7 @@
 		8D83EA77252B9ECD004E6098 /* ActivityPresentableProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityPresentableProtocol.swift; sourceTree = "<group>"; };
 		8D83EA85252BBBD1004E6098 /* TableSectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableSectionViewModel.swift; sourceTree = "<group>"; };
 		8D94E7C42534D102005FA4B9 /* SpeechSynthesizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechSynthesizer.swift; sourceTree = "<group>"; };
-		8D94E7CB2534DF03005FA4B9 /* CoreDataContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataContext.swift; sourceTree = "<group>"; };
+		8D94E7CB2534DF03005FA4B9 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		8D94E7CF2534E34E005FA4B9 /* VocabularyEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabularyEntity.swift; sourceTree = "<group>"; };
 		8D94E7D12534E376005FA4B9 /* WordEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordEntity.swift; sourceTree = "<group>"; };
 		8D94E7D32534E3DC005FA4B9 /* DataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataProvider.swift; sourceTree = "<group>"; };
@@ -590,7 +590,7 @@
 		8D435A66254C15E000838691 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
-				8D94E7CB2534DF03005FA4B9 /* CoreDataContext.swift */,
+				8D94E7CB2534DF03005FA4B9 /* CoreDataStack.swift */,
 				8DD28B8D252667F600F59B7D /* LangnOs.xcdatamodeld */,
 			);
 			path = CoreData;
@@ -1790,7 +1790,7 @@
 				8D66253A252A6D4600991D45 /* VocabularyProgressView.swift in Sources */,
 				8D83EA76252B9EB9004E6098 /* CoordinatorClosableProtocol.swift in Sources */,
 				8DD28BD32526854300F59B7D /* UINavigationItem+Drivable.swift in Sources */,
-				8D94E7CC2534DF03005FA4B9 /* CoreDataContext.swift in Sources */,
+				8D94E7CC2534DF03005FA4B9 /* CoreDataStack.swift in Sources */,
 				8DF253FB2549B46D001492AE /* VocabularyListCellFactory.swift in Sources */,
 				8DF253DD254881C7001492AE /* ActivityIndicatorCellViewModel.swift in Sources */,
 				8D524F96252F7E97002A6E01 /* AccountViewController.swift in Sources */,
