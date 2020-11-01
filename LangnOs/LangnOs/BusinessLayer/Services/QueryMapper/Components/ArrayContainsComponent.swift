@@ -23,7 +23,7 @@ struct ArrayContainsComponent: QueryComponentProtocol {
     }
     
     func firebaseQuery(_ reference: CollectionReference) -> Query {
-        reference.whereField(field, arrayContainsAny: [argument])
+        reference.whereField(field, arrayContains: argument)
     }
     
     

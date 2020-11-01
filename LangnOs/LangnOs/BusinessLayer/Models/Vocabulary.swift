@@ -15,6 +15,7 @@ final class Vocabulary: Codable {
     let title: String
     let category: String
     var isFavorite: Bool
+    var isPrivate: Bool
     let phrasesLearned: Int
     let phrasesLeftToLearn: Int
     let totalLearningTime: Double
@@ -27,6 +28,7 @@ final class Vocabulary: Codable {
         self.title = title
         self.category = category
         self.isFavorite = false
+        self.isPrivate = false
         self.phrasesLearned = 0
         self.phrasesLeftToLearn = 0
         self.totalLearningTime = 0.0
@@ -40,6 +42,7 @@ final class Vocabulary: Codable {
         self.title = entity.title!
         self.category = entity.category!
         self.isFavorite = entity.isFavorite
+        self.isPrivate = entity.isPrivate
         self.phrasesLearned = Int(entity.phrasesLearned)
         self.phrasesLeftToLearn = Int(entity.phrasesLeftToLearn)
         self.totalLearningTime = entity.totalLearningTime
@@ -88,6 +91,8 @@ extension Vocabulary: CDEntityProtocol {
                 vocabulary.userId = entity.userId
                 vocabulary.title = entity.title
                 vocabulary.category = entity.category
+                vocabulary.isFavorite = entity.isFavorite
+                vocabulary.isPrivate = entity.isPrivate
                 vocabulary.phrasesLearned = Int32(entity.phrasesLearned)
                 vocabulary.phrasesLeftToLearn = Int32(entity.phrasesLeftToLearn)
                 vocabulary.totalLearningTime = entity.totalLearningTime

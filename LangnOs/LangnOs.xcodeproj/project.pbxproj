@@ -16,9 +16,7 @@
 		8D435A6B254C223400838691 /* QueryAndConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D435A6A254C223400838691 /* QueryAndConnector.swift */; };
 		8D435A70254C25D300838691 /* QueryOrConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D435A6F254C25D300838691 /* QueryOrConnector.swift */; };
 		8D435A78254C3A1E00838691 /* SearchVocabularyCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D435A74254C3A1E00838691 /* SearchVocabularyCoordinator.swift */; };
-		8D435A79254C3A1E00838691 /* SearchVocabularyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D435A75254C3A1E00838691 /* SearchVocabularyViewController.swift */; };
 		8D435A7A254C3A1E00838691 /* SearchVocabularyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D435A76254C3A1E00838691 /* SearchVocabularyViewModel.swift */; };
-		8D435A7B254C3A1E00838691 /* SearchVocabularyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D435A77254C3A1E00838691 /* SearchVocabularyViewController.xib */; };
 		8D435A7F254C3DFA00838691 /* UserInfoHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D435A7E254C3DFA00838691 /* UserInfoHeaderView.swift */; };
 		8D435A81254C3E1900838691 /* UserInfoHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D435A80254C3E1900838691 /* UserInfoHeaderView.xib */; };
 		8D435A83254C4E4400838691 /* MediaDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D435A82254C4E4300838691 /* MediaDownloader.swift */; };
@@ -26,19 +24,21 @@
 		8D435A88254C526200838691 /* UserDefaultsKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D435A87254C526200838691 /* UserDefaultsKey.swift */; };
 		8D435A8C254C7CC500838691 /* Array+Empty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D435A8B254C7CC500838691 /* Array+Empty.swift */; };
 		8D435A8E254DF84B00838691 /* ArrayContainsComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D435A8D254DF84B00838691 /* ArrayContainsComponent.swift */; };
+		8D435A93254DFBC300838691 /* CoursesCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D435A8F254DFBC300838691 /* CoursesCoordinator.swift */; };
+		8D435A94254DFBC300838691 /* CoursesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D435A90254DFBC300838691 /* CoursesViewController.swift */; };
+		8D435A95254DFBC300838691 /* CoursesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D435A91254DFBC300838691 /* CoursesViewModel.swift */; };
+		8D435A96254DFBC300838691 /* CoursesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D435A92254DFBC300838691 /* CoursesViewController.xib */; };
+		8D435A98254E051900838691 /* SearchVocabularyRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D435A97254E051900838691 /* SearchVocabularyRequest.swift */; };
 		8D524F5D252E5AAA002A6E01 /* SearchBarCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D524F5B252E5AAA002A6E01 /* SearchBarCollectionReusableView.swift */; };
 		8D524F5E252E5AAA002A6E01 /* SearchBarCollectionReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D524F5C252E5AAA002A6E01 /* SearchBarCollectionReusableView.xib */; };
 		8D524F60252E5AE5002A6E01 /* SearchBarCollectionReusableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D524F5F252E5AE5002A6E01 /* SearchBarCollectionReusableViewModel.swift */; };
 		8D524F62252E5C71002A6E01 /* UniversalCollectionViewSectionRegistratable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D524F61252E5C71002A6E01 /* UniversalCollectionViewSectionRegistratable.swift */; };
 		8D524F64252E5E8F002A6E01 /* UniversalCollectionSectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D524F63252E5E8F002A6E01 /* UniversalCollectionSectionViewModel.swift */; };
 		8D524F67252F0355002A6E01 /* UICollectionView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D524F66252F0355002A6E01 /* UICollectionView+Extensions.swift */; };
-		8D524F8E252F7E7D002A6E01 /* CoursesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D524F8C252F7E7D002A6E01 /* CoursesViewController.swift */; };
-		8D524F8F252F7E7D002A6E01 /* CoursesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D524F8D252F7E7D002A6E01 /* CoursesViewController.xib */; };
 		8D524F92252F7E8B002A6E01 /* MessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D524F90252F7E8B002A6E01 /* MessagesViewController.swift */; };
 		8D524F93252F7E8B002A6E01 /* MessagesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D524F91252F7E8B002A6E01 /* MessagesViewController.xib */; };
 		8D524F96252F7E97002A6E01 /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D524F94252F7E97002A6E01 /* AccountViewController.swift */; };
 		8D524F97252F7E97002A6E01 /* AccountViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D524F95252F7E97002A6E01 /* AccountViewController.xib */; };
-		8D524F99252F7EA9002A6E01 /* CoursesCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D524F98252F7EA9002A6E01 /* CoursesCoordinator.swift */; };
 		8D524F9B252F7EB5002A6E01 /* MessagesCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D524F9A252F7EB5002A6E01 /* MessagesCoordinator.swift */; };
 		8D524F9D252F7EC1002A6E01 /* AccountCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D524F9C252F7EC1002A6E01 /* AccountCoordinator.swift */; };
 		8D524F9F252F83D2002A6E01 /* AccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D524F9E252F83D2002A6E01 /* AccountViewModel.swift */; };
@@ -276,9 +276,7 @@
 		8D435A6A254C223400838691 /* QueryAndConnector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueryAndConnector.swift; sourceTree = "<group>"; };
 		8D435A6F254C25D300838691 /* QueryOrConnector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueryOrConnector.swift; sourceTree = "<group>"; };
 		8D435A74254C3A1E00838691 /* SearchVocabularyCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchVocabularyCoordinator.swift; sourceTree = "<group>"; };
-		8D435A75254C3A1E00838691 /* SearchVocabularyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchVocabularyViewController.swift; sourceTree = "<group>"; };
 		8D435A76254C3A1E00838691 /* SearchVocabularyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchVocabularyViewModel.swift; sourceTree = "<group>"; };
-		8D435A77254C3A1E00838691 /* SearchVocabularyViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchVocabularyViewController.xib; sourceTree = "<group>"; };
 		8D435A7E254C3DFA00838691 /* UserInfoHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoHeaderView.swift; sourceTree = "<group>"; };
 		8D435A80254C3E1900838691 /* UserInfoHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserInfoHeaderView.xib; sourceTree = "<group>"; };
 		8D435A82254C4E4300838691 /* MediaDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaDownloader.swift; sourceTree = "<group>"; };
@@ -286,19 +284,21 @@
 		8D435A87254C526200838691 /* UserDefaultsKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsKey.swift; sourceTree = "<group>"; };
 		8D435A8B254C7CC500838691 /* Array+Empty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Empty.swift"; sourceTree = "<group>"; };
 		8D435A8D254DF84B00838691 /* ArrayContainsComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayContainsComponent.swift; sourceTree = "<group>"; };
+		8D435A8F254DFBC300838691 /* CoursesCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursesCoordinator.swift; sourceTree = "<group>"; };
+		8D435A90254DFBC300838691 /* CoursesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursesViewController.swift; sourceTree = "<group>"; };
+		8D435A91254DFBC300838691 /* CoursesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursesViewModel.swift; sourceTree = "<group>"; };
+		8D435A92254DFBC300838691 /* CoursesViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CoursesViewController.xib; sourceTree = "<group>"; };
+		8D435A97254E051900838691 /* SearchVocabularyRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchVocabularyRequest.swift; sourceTree = "<group>"; };
 		8D524F5B252E5AAA002A6E01 /* SearchBarCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarCollectionReusableView.swift; sourceTree = "<group>"; };
 		8D524F5C252E5AAA002A6E01 /* SearchBarCollectionReusableView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchBarCollectionReusableView.xib; sourceTree = "<group>"; };
 		8D524F5F252E5AE5002A6E01 /* SearchBarCollectionReusableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarCollectionReusableViewModel.swift; sourceTree = "<group>"; };
 		8D524F61252E5C71002A6E01 /* UniversalCollectionViewSectionRegistratable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniversalCollectionViewSectionRegistratable.swift; sourceTree = "<group>"; };
 		8D524F63252E5E8F002A6E01 /* UniversalCollectionSectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniversalCollectionSectionViewModel.swift; sourceTree = "<group>"; };
 		8D524F66252F0355002A6E01 /* UICollectionView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Extensions.swift"; sourceTree = "<group>"; };
-		8D524F8C252F7E7D002A6E01 /* CoursesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursesViewController.swift; sourceTree = "<group>"; };
-		8D524F8D252F7E7D002A6E01 /* CoursesViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CoursesViewController.xib; sourceTree = "<group>"; };
 		8D524F90252F7E8B002A6E01 /* MessagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesViewController.swift; sourceTree = "<group>"; };
 		8D524F91252F7E8B002A6E01 /* MessagesViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessagesViewController.xib; sourceTree = "<group>"; };
 		8D524F94252F7E97002A6E01 /* AccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
 		8D524F95252F7E97002A6E01 /* AccountViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AccountViewController.xib; sourceTree = "<group>"; };
-		8D524F98252F7EA9002A6E01 /* CoursesCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursesCoordinator.swift; sourceTree = "<group>"; };
 		8D524F9A252F7EB5002A6E01 /* MessagesCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesCoordinator.swift; sourceTree = "<group>"; };
 		8D524F9C252F7EC1002A6E01 /* AccountCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountCoordinator.swift; sourceTree = "<group>"; };
 		8D524F9E252F83D2002A6E01 /* AccountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewModel.swift; sourceTree = "<group>"; };
@@ -616,9 +616,7 @@
 			isa = PBXGroup;
 			children = (
 				8D435A74254C3A1E00838691 /* SearchVocabularyCoordinator.swift */,
-				8D435A75254C3A1E00838691 /* SearchVocabularyViewController.swift */,
 				8D435A76254C3A1E00838691 /* SearchVocabularyViewModel.swift */,
-				8D435A77254C3A1E00838691 /* SearchVocabularyViewController.xib */,
 			);
 			path = SearchVocabulary;
 			sourceTree = "<group>";
@@ -664,9 +662,10 @@
 		8D524F89252F7E0B002A6E01 /* Courses */ = {
 			isa = PBXGroup;
 			children = (
-				8D524F98252F7EA9002A6E01 /* CoursesCoordinator.swift */,
-				8D524F8C252F7E7D002A6E01 /* CoursesViewController.swift */,
-				8D524F8D252F7E7D002A6E01 /* CoursesViewController.xib */,
+				8D435A8F254DFBC300838691 /* CoursesCoordinator.swift */,
+				8D435A90254DFBC300838691 /* CoursesViewController.swift */,
+				8D435A91254DFBC300838691 /* CoursesViewModel.swift */,
+				8D435A92254DFBC300838691 /* CoursesViewController.xib */,
 			);
 			path = Courses;
 			sourceTree = "<group>";
@@ -932,6 +931,7 @@
 			children = (
 				8DAA55462529129E00FF5066 /* DataProviderRequestProtocol.swift */,
 				8DF253D525485073001492AE /* FavoriteVocabularyFetchRequest.swift */,
+				8D435A97254E051900838691 /* SearchVocabularyRequest.swift */,
 				8DAA5549252912BA00FF5066 /* VocabularyFetchRequest.swift */,
 				8D662559252B0F9F00991D45 /* VocabularyCreateRequest.swift */,
 				8DC3CF42252D2CBD003CA62A /* VocabularyDeleteRequest.swift */,
@@ -1612,7 +1612,6 @@
 				8DD28C162528AEEF00F59B7D /* SingInViewController.xib in Resources */,
 				8D662541252A717500991D45 /* WordsViewController.xib in Resources */,
 				8DD28B91252667F800F59B7D /* Assets.xcassets in Resources */,
-				8D524F8F252F7E7D002A6E01 /* CoursesViewController.xib in Resources */,
 				8DD28B8C252667F600F59B7D /* Main.storyboard in Resources */,
 				8D94E86A253CE2AB005FA4B9 /* WritingViewController.xib in Resources */,
 				8D66253C252A6D4E00991D45 /* VocabularyProgressView.xib in Resources */,
@@ -1633,7 +1632,6 @@
 				8DF253EE2549B17C001492AE /* VocabularyListViewController.xib in Resources */,
 				8D524F93252F7E8B002A6E01 /* MessagesViewController.xib in Resources */,
 				8DF25386254330A6001492AE /* MessageTableViewCell.xib in Resources */,
-				8D435A7B254C3A1E00838691 /* SearchVocabularyViewController.xib in Resources */,
 				8DF253BD2544A2AD001492AE /* ButtonTableViewCell.xib in Resources */,
 				8D435A81254C3E1900838691 /* UserInfoHeaderView.xib in Resources */,
 				8DF253F52549B396001492AE /* AddToFavoriteTableViewCell.xib in Resources */,
@@ -1644,6 +1642,7 @@
 				8D9985ED252929E7009EA144 /* VocabularyViewController.xib in Resources */,
 				8D94E82325373FB6005FA4B9 /* VocabularyFilterViewController.xib in Resources */,
 				8DD28C0525289C5300F59B7D /* VocabularyCollectionViewCell.xib in Resources */,
+				8D435A96254DFBC300838691 /* CoursesViewController.xib in Resources */,
 				8D524FA4252F86D1002A6E01 /* UserImageView.xib in Resources */,
 				8DC3CF27252C680C003CA62A /* InputView.xib in Resources */,
 			);
@@ -1749,6 +1748,7 @@
 				8D524F9B252F7EB5002A6E01 /* MessagesCoordinator.swift in Sources */,
 				8DC3CF46252D2DA6003CA62A /* AlertPresentableProtocol.swift in Sources */,
 				8DD28BA825266C8200F59B7D /* RootTabBarController.swift in Sources */,
+				8D435A95254DFBC300838691 /* CoursesViewModel.swift in Sources */,
 				8DF253B42544A051001492AE /* Interactor.swift in Sources */,
 				8D524FC72530D1D8002A6E01 /* UIButton+Drivable.swift in Sources */,
 				8D83EA86252BBBD1004E6098 /* TableSectionViewModel.swift in Sources */,
@@ -1770,7 +1770,6 @@
 				8D435A70254C25D300838691 /* QueryOrConnector.swift in Sources */,
 				8DAA554A252912BA00FF5066 /* VocabularyFetchRequest.swift in Sources */,
 				8DD28BB325266F6800F59B7D /* DashboardCoordinator.swift in Sources */,
-				8D524F99252F7EA9002A6E01 /* CoursesCoordinator.swift in Sources */,
 				8DD28BA425266B2500F59B7D /* Coordinator.swift in Sources */,
 				8DD28BDB2526864400F59B7D /* DrivableModelProtocol.swift in Sources */,
 				8D435A8C254C7CC500838691 /* Array+Empty.swift in Sources */,
@@ -1789,7 +1788,6 @@
 				8D524FEA2533BDB2002A6E01 /* FlashCardsCellFactory.swift in Sources */,
 				8D83EA65252B8BB7004E6098 /* VocabularyTableViewCell.swift in Sources */,
 				8DC3CF31252CD5B6003CA62A /* UniversalCollectionViewLayoutProtocol.swift in Sources */,
-				8D435A79254C3A1E00838691 /* SearchVocabularyViewController.swift in Sources */,
 				8DD28BFF2527BCBF00F59B7D /* UniversalCollectionViewCellRegistratable.swift in Sources */,
 				8D83EA6F252B9C11004E6098 /* ActivityViewController.swift in Sources */,
 				8D524F60252E5AE5002A6E01 /* SearchBarCollectionReusableViewModel.swift in Sources */,
@@ -1845,7 +1843,6 @@
 				8DAA554E25291D3400FF5066 /* Word.swift in Sources */,
 				8D435A6B254C223400838691 /* QueryAndConnector.swift in Sources */,
 				8DF928AC253DEBCF0052FC31 /* WritingProgressView.swift in Sources */,
-				8D524F8E252F7E7D002A6E01 /* CoursesViewController.swift in Sources */,
 				8DD28BAA25266CDB00F59B7D /* RootViewModel.swift in Sources */,
 				8DF253AF2544838D001492AE /* VocabularySettingsCoordinator.swift in Sources */,
 				8DD28BB6252675F800F59B7D /* UITabBarItem+Init.swift in Sources */,
@@ -1875,11 +1872,14 @@
 				8D435A86254C51AF00838691 /* UIImag+Size.swift in Sources */,
 				8DD28BD52526856B00F59B7D /* NavigationItemDrivableModel.swift in Sources */,
 				8DF2538F25434BE9001492AE /* MaterialsViewController.swift in Sources */,
+				8D435A93254DFBC300838691 /* CoursesCoordinator.swift in Sources */,
 				8DF2536C25431819001492AE /* DashboardSectionFactory.swift in Sources */,
 				8D524FDF2533ACC0002A6E01 /* UITextField+Drivable.swift in Sources */,
 				8D94E7C52534D102005FA4B9 /* SpeechSynthesizer.swift in Sources */,
+				8D435A94254DFBC300838691 /* CoursesViewController.swift in Sources */,
 				8DD28B87252667F600F59B7D /* SceneDelegate.swift in Sources */,
 				8DD28C0725289C8C00F59B7D /* VocabularyCollectionViewCellViewModel.swift in Sources */,
+				8D435A98254E051900838691 /* SearchVocabularyRequest.swift in Sources */,
 				8D662529252A386500991D45 /* VocabularyActionView.swift in Sources */,
 				8DF2539525436C0C001492AE /* Sequence+KeyPathSorting.swift in Sources */,
 				8DD28BEE2527A52100F59B7D /* BarButtonDrivableModel.swift in Sources */,

@@ -38,6 +38,12 @@ final class VocabularyListViewController: BindibleViewController<VocabularyListV
         setupBackgroundView()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        viewModel?.fetchData()
+    }
+    
     // MARK: - Init
     
     

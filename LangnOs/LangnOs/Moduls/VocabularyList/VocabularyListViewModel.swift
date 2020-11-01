@@ -14,7 +14,7 @@ protocol VocabularyListViewModelInputProtocol {
 }
 
 protocol VocabularyListViewModelOutputProtocol {
-    
+    func fetchData()
 }
 
 typealias VocabularyListViewModelProtocol =
@@ -58,14 +58,9 @@ final class VocabularyListViewModel: VocabularyListViewModelProtocol {
         self.fetchData()
     }
     
-    // MARK: - Private methods
+    // MARK: - Public methods
     
-    private func setupVocabularySection(_ tableSections: inout [SectionViewModelProtocol]) {
-        let sectionViewModel = TableSectionViewModel(cells: [])
-        tableSections.append(sectionViewModel)
-    }
-    
-    private func fetchData() {
+    func fetchData() {
         guard let userId = userSession.userId else { return }
         
         let request = VocabularyFetchRequest(userId: userId)
@@ -74,6 +69,13 @@ final class VocabularyListViewModel: VocabularyListViewModelProtocol {
         }) { (error) in
             self.router.showError(error)
         }
+    }
+    
+    // MARK: - Private methods
+    
+    private func setupVocabularySection(_ tableSections: inout [SectionViewModelProtocol]) {
+        let sectionViewModel = TableSectionViewModel(cells: [])
+        tableSections.append(sectionViewModel)
     }
     
     private func updateVocabularySection(_ vocabularies: [Vocabulary]) {

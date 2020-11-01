@@ -23,9 +23,16 @@ final class SearchVocabularyCoordinator: Coordinator, SearchVocabularyCoordinato
     // MARK: - Override
     
     override func start() {
-        let viewModel = SearchVocabularyViewModel()
-        let viewController = SearchVocabularyViewController()
+        let firebaseDatabase = FirebaseDatabase()
+        let userSeession = UserSession.shared
+        let viewModel = SearchVocabularyViewModel(router: self,
+                                                  firebaseDatabase: firebaseDatabase,
+                                                  userSession: userSeession)
+        
+        let cellFactory = VocabularyListCellFactory()
+        let viewController = VocabularyListViewController()
         viewController.viewModel = viewModel
+        viewController.cellFactory = cellFactory
         
         let navigationController = UINavigationController(rootViewController: viewController)
         navigationController.tabBarItem = UITabBarItem(provider: .search)

@@ -2,22 +2,34 @@
 //  CoursesCoordinator.swift
 //  LangnOs
 //
-//  Created by Nikita Lizogubov on 08.10.2020.
+//  Created by Nikita Lizogubov on 31.10.2020.
 //  Copyright © 2020 NL. All rights reserved.
 //
 
 import UIKit
 
-final class CoursesCoordinator: Coordinator {
+protocol CoursesCoordinatorNavigationProtocol {
+    
+}
+
+typealias CoursesCoordinatorProtocol =
+    CoursesCoordinatorNavigationProtocol &
+    CoordinatorClosableProtocol &
+    ActivityPresentableProtocol &
+    AlertPresentableProtocol
+
+final class CoursesCoordinator: Coordinator, CoursesCoordinatorProtocol  {
     
     // MARK: - Override
     
     override func start() {
-        let coursesViewController = CoursesViewController()
-        coursesViewController.tabBarItem = UITabBarItem(provider: .courses)
+        let viewModel = CoursesViewModel()
+        let viewController = CoursesViewController()
+        viewController.viewModel = viewModel
         
-        let navigationController = UINavigationController(rootViewController: coursesViewController)
-        viewController = navigationController
+        self.viewController = viewController
     }
     
 }
+
+
