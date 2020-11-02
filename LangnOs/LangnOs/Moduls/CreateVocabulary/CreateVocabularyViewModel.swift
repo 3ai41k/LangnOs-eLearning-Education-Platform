@@ -34,7 +34,7 @@ final class CreateVocabularyViewModel: CreateVocabularyViewModelProtocol {
     // MARK: - Private properties
     
     private let router: CreateVocabularyCoordinatorProtocol
-    private let dataProvider: DataProviderCreatingProtocol
+    private let dataProvider: FirebaseDatabaseCreatingProtocol
     private let userSession: SessionInfoProtocol
     
     private enum SectionType: Int {
@@ -45,7 +45,7 @@ final class CreateVocabularyViewModel: CreateVocabularyViewModelProtocol {
     // MARK: - Init
     
     init(router: CreateVocabularyCoordinatorProtocol,
-         dataProvider: DataProviderCreatingProtocol,
+         dataProvider: FirebaseDatabaseCreatingProtocol,
          userSession: SessionInfoProtocol) {
         self.router = router
         self.dataProvider = dataProvider

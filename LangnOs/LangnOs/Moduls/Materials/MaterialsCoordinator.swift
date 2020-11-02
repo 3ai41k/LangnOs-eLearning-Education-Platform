@@ -24,7 +24,8 @@ final class MaterialsCoordinator: Coordinator, MaterialsCoordinatorProtocol  {
     // MARK: - Override
     
     override func start() {
-        let dataProvider = DataProvider()
+        let firebaseDatabase = FirebaseDatabase.shared
+        let dataProvider = DataProvider(firebaseDatabase: firebaseDatabase)
         let userSession = UserSession.shared
         let viewModel = MaterialsViewModel(router: self,
                                            dataProvider: dataProvider,

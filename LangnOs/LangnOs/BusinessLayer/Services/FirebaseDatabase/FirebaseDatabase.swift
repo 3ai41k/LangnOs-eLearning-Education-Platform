@@ -41,21 +41,18 @@ protocol FirebaseDatabaseUpdatingProtocol {
 
 final class FirebaseDatabase {
     
+    // MARK: - Public properties
+    
+    static let shared = FirebaseDatabase()
+    
     // MARK: - Private properties
     
-    private var dataBase: Firestore {
-        Firestore.firestore()
-    }
+    private var dataBase: Firestore
     
-    // MARK: - Private methods
+    // MARK: - Init
     
-    private func decode<Entity: Decodable>(data: Any, onSuccess: @escaping (Entity) -> Void, onFailure: @escaping (Error) -> Void) {
-        do {
-            let entity: Entity = try DictionaryDecoder().decode(data: data)
-            onSuccess(entity)
-        } catch {
-            onFailure(error)
-        }
+    private init() {
+        self.dataBase = Firestore.firestore()
     }
     
 }
@@ -71,8 +68,8 @@ extension FirebaseDatabase: FirebaseDatabaseFetchingProtocol {
             if let error = error {
                 onFailure(error)
             } else {
-                if let data = snapshot?.documents.map({ $0.data() }) {
-                    self.decode(data: data, onSuccess: onSuccess, onFailure: onFailure)
+                if let data = snapshot?.documents.map({ $0.data() }), let entities: [Request.Entity] = try? DictionaryDecoder().decode(data: data) {
+                    onSuccess(entities)
                 } else {
                     onSuccess([])
                 }

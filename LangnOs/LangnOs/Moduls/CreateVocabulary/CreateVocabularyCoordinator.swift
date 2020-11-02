@@ -38,7 +38,8 @@ final class CreateVocabularyCoordinator: Coordinator, CreateVocabularyCoordinato
     // MARK: - Override
     
     override func start() {
-        let dataProvider = DataProvider()
+        let firebaseDatabase = FirebaseDatabase.shared
+        let dataProvider = DataProvider(firebaseDatabase: firebaseDatabase)
         let userSession = UserSession.shared
         let viewModel = CreateVocabularyViewModel(router: self,
                                                   dataProvider: dataProvider,

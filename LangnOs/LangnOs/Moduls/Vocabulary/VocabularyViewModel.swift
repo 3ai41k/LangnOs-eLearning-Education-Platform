@@ -41,7 +41,7 @@ final class VocabularyViewModel: VocabularyViewModelOutputProtocol {
     
     private let router: VocabularyCoordinatorProtocol
     private var vocabulary: Vocabulary
-    private let dataProvider: DataProviderUpdatingProtocol & DataProviderDeletingProtocol
+    private let dataProvider: FirebaseDatabaseUpdatingProtocol & FirebaseDatabaseDeletingProtocol
     
     private var actionPublisher: AnyPublisher<VocabularyViewModelAction, Never> {
         actionSubject.eraseToAnyPublisher()
@@ -58,7 +58,7 @@ final class VocabularyViewModel: VocabularyViewModelOutputProtocol {
     
     init(router: VocabularyCoordinatorProtocol,
          vocabulary: Vocabulary,
-         dataProvider: DataProviderUpdatingProtocol & DataProviderDeletingProtocol) {
+         dataProvider: FirebaseDatabaseUpdatingProtocol & FirebaseDatabaseDeletingProtocol) {
         self.router = router
         self.vocabulary = vocabulary
         self.dataProvider = dataProvider

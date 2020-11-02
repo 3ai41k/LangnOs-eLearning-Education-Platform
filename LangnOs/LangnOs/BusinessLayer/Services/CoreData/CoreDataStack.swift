@@ -17,10 +17,6 @@ protocol CoreDataClearableProtocol {
     func clear()
 }
 
-protocol CoreDataSynchronizableProtocol {
-    func synchronizableEntities() -> [NSEntityDescription]
-}
-
 final class CoreDataStack {
 
     // MARK: - Public properties
@@ -85,23 +81,6 @@ extension CoreDataStack: CoreDataClearableProtocol {
     func clear() {
         let entities = persistentContainer.managedObjectModel.entities
         entities.compactMap({ $0.name }).forEach(clearDeepObjectEntity)
-    }
-    
-}
-
-// MARK: - CoreDataSynchronizableProtocol
-
-extension CoreDataStack: CoreDataSynchronizableProtocol {
-    
-    func synchronizableEntities() -> [NSEntityDescription] {
-        let entities = persistentContainer.managedObjectModel.entities
-        return entities.compactMap({
-            if $0.properties.contains(where: { $0.name == "isSynchronized" }) {
-                return $0
-            } else {
-                return nil
-            }
-        })
     }
     
 }

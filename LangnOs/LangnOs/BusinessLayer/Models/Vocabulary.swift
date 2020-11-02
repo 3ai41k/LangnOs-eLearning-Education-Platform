@@ -7,9 +7,11 @@
 //
 
 import Foundation
-import CoreData
 
-final class Vocabulary: Codable, CDSynchronizableEntityProtocol {
+final class Vocabulary {
+    
+    // MARK: - Public properties
+    
     let id: String
     let userId: String
     var isSynchronized: Bool
@@ -22,6 +24,8 @@ final class Vocabulary: Codable, CDSynchronizableEntityProtocol {
     let totalLearningTime: Double
     let createdDate: Date
     var words: [Word]
+    
+    // MARK: - Init
     
     init(userId: String, title: String, category: String, words: [Word]) {
         self.id = UUID().uuidString
@@ -36,6 +40,22 @@ final class Vocabulary: Codable, CDSynchronizableEntityProtocol {
         self.totalLearningTime = 0.0
         self.createdDate = Date()
         self.words = words
+    }
+    
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        id = try container.decode(String.self, forKey: .id)
+        userId = try container.decode(String.self, forKey: .userId)
+        isSynchronized = false
+        title = try container.decode(String.self, forKey: .title)
+        category = try container.decode(String.self, forKey: .category)
+        isFavorite = try container.decode(Bool.self, forKey: .isFavorite)
+        isPrivate = try container.decode(Bool.self, forKey: .isPrivate)
+        phrasesLearned = try container.decode(Int.self, forKey: .phrasesLearned)
+        phrasesLeftToLearn = try container.decode(Int.self, forKey: .phrasesLeftToLearn)
+        totalLearningTime = try container.decode(Double.self, forKey: .totalLearningTime)
+        createdDate = try container.decode(Date.self, forKey: .createdDate)
+        words = try container.decode([Word].self, forKey: .words)
     }
     
     init(entity: VocabularyEntity) {
@@ -53,67 +73,6 @@ final class Vocabulary: Codable, CDSynchronizableEntityProtocol {
         self.words = (entity.words?.allObjects as? [WordEntity])!.map({
             Word(entity: $0)
         })
-    }
-    
-    // MARK: - CDEntityProtocol
-    
-    static func select(context: NSManagedObjectContext, predicate: NSPredicate?) throws -> [Vocabulary] {
-        let request = NSFetchRequest<VocabularyEntity>(entityName: "VocabularyEntity")
-        request.predicate = predicate
-        do {
-            return try context.fetch(request).map({ Vocabulary(entity: $0) })
-        } catch {
-            throw error
-        }
-    }
-    
-    static func insert(context: NSManagedObjectContext, entity: Vocabulary) throws {
-        let request = NSFetchRequest<VocabularyEntity>(entityName: "VocabularyEntity")
-        request.predicate = NSPredicate(format: "id == %@", UUID(uuidString: entity.id)! as CVarArg)
-        do {
-            let vocabularies = try context.fetch(request)
-            if vocabularies.isEmpty {
-                _ = VocabularyEntity(vocabulary: entity, context: context)
-            }
-        } catch {
-            throw error
-        }
-    }
-    
-    static func update(context: NSManagedObjectContext, entity: Vocabulary) throws {
-        let request = NSFetchRequest<VocabularyEntity>(entityName: "VocabularyEntity")
-        request.predicate = NSPredicate(format: "id == %@", UUID(uuidString: entity.id)! as CVarArg)
-        do {
-            let vocabularies = try context.fetch(request)
-            if let vocabulary = vocabularies.first {
-                vocabulary.id = UUID(uuidString: entity.id)
-                vocabulary.userId = entity.userId
-                vocabulary.isSynchronized = entity.isSynchronized
-                vocabulary.title = entity.title
-                vocabulary.category = entity.category
-                vocabulary.isFavorite = entity.isFavorite
-                vocabulary.isPrivate = entity.isPrivate
-                vocabulary.phrasesLearned = Int32(entity.phrasesLearned)
-                vocabulary.phrasesLeftToLearn = Int32(entity.phrasesLeftToLearn)
-                vocabulary.totalLearningTime = entity.totalLearningTime
-                vocabulary.createdDate = entity.createdDate
-                vocabulary.words = NSSet(array: entity.words.map({
-                    WordEntity(word: $0, context: context)
-                }))
-            }
-        } catch {
-            throw error
-        }
-    }
-    
-    static func delete(context: NSManagedObjectContext, entity: Vocabulary) throws {
-        let request = NSFetchRequest<VocabularyEntity>(entityName: "VocabularyEntity")
-        request.predicate = NSPredicate(format: "id == %@", UUID(uuidString: entity.id)! as CVarArg)
-        do {
-            try context.fetch(request).forEach({ context.delete($0) })
-        } catch {
-            throw error
-        }
     }
     
 }

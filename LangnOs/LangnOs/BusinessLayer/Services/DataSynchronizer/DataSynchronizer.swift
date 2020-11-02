@@ -7,55 +7,8 @@
 //
 
 import Foundation
-import CoreData
 import Reachability
 import Combine
-
-class SyncronizeOperation: Operation {
-    
-    let firebaseDatabase: FirebaseDatabase
-    
-    override init() {
-        self.firebaseDatabase = FirebaseDatabase()
-        
-        super.init()
-    }
-    
-    override func main() {
-        syncronize()
-    }
-    
-    func syncronize() {
-        
-    }
-    
-}
-
-final class VocabularySyncronizeOperation: SyncronizeOperation {
-    
-    private let userId: String
-    
-    init(userId: String) {
-        self.userId = userId
-        
-        super.init()
-    }
-    
-    override func syncronize() {
-        let predicate = NSPredicate(format: "userId == %@ AND isSynchronized == %@", userId, false)
-        let entities = try? Vocabulary.select(context: CoreDataStack.shared.viewContext, predicate: predicate)
-        entities?.forEach({ (entity) in
-            let reqest = VocabularyCreateRequest(vocabulary: entity)
-            firebaseDatabase.create(request: reqest, onSuccess: {
-                entity.isSynchronized = true
-                try? Vocabulary.update(context: CoreDataStack.shared.viewContext, entity: entity)
-            }) { (error) in
-                print("Error")
-            }
-        })
-    }
-    
-}
 
 final class DataSynchronizer {
     
@@ -65,6 +18,7 @@ final class DataSynchronizer {
     private let coreDataStack: CoreDataStack
     private let firebaseDatabase: FirebaseDatabaseFetchingProtocol & FirebaseDatabaseCreatingProtocol
     
+    private let operationQueue: OperationQueue
     private var cancellables: [AnyCancellable] = []
     
     // MARK: - Init
@@ -72,13 +26,19 @@ final class DataSynchronizer {
     private init() {
         self.userSession = UserSession.shared
         self.coreDataStack = CoreDataStack.shared
-        self.firebaseDatabase = FirebaseDatabase()
+        self.firebaseDatabase = FirebaseDatabase.shared
+        
+        self.operationQueue = OperationQueue()
     }
     
     // MARK: - Public methods
     
     func configure() {
         setupNofifications()
+    }
+    
+    func cancelAllOperations() {
+        operationQueue.cancelAllOperations()
     }
     
     // MARK: - Private methods
@@ -98,7 +58,6 @@ final class DataSynchronizer {
     private func synchronize() {
         guard let userId = userSession.userId else { return }
         
-        let operationQueue = OperationQueue()
         operationQueue.qualityOfService = .background
         operationQueue.addOperations([
             VocabularySyncronizeOperation(userId: userId)

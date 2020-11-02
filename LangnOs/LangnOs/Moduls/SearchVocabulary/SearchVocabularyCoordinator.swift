@@ -23,7 +23,7 @@ final class SearchVocabularyCoordinator: Coordinator, SearchVocabularyCoordinato
     // MARK: - Override
     
     override func start() {
-        let firebaseDatabase = FirebaseDatabase()
+        let firebaseDatabase = FirebaseDatabase.shared
         let userSeession = UserSession.shared
         let viewModel = SearchVocabularyViewModel(router: self,
                                                   firebaseDatabase: firebaseDatabase,

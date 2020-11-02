@@ -47,7 +47,7 @@ final class MaterialsViewModel: MaterialsViewModelProtocol {
     // MARK: - Private properties
     
     private let router: MaterialsCoordinatorProtocol
-    private let dataProvider: DataProviderFetchingProtocol
+    private let dataProvider: FirebaseDatabaseFetchingProtocol
     private let userSession: SessionInfoProtocol
     
     private var vocabularies: [Vocabulary] = [] {
@@ -65,7 +65,7 @@ final class MaterialsViewModel: MaterialsViewModelProtocol {
     // MARK: - Init
     
     init(router: MaterialsCoordinatorProtocol,
-         dataProvider: DataProviderFetchingProtocol,
+         dataProvider: FirebaseDatabaseFetchingProtocol,
          userSession: SessionInfoProtocol) {
         self.router = router
         self.dataProvider = dataProvider

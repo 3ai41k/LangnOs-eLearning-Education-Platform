@@ -39,7 +39,7 @@ final class VocabularyListViewModel: VocabularyListViewModelProtocol {
     // MARK: - Private properties
     
     private let router: VocabularyListCoordinatorProtocol
-    private let dataProvider: DataProviderFetchingProtocol & DataProviderUpdatingProtocol
+    private let dataProvider: FirebaseDatabaseFetchingProtocol & FirebaseDatabaseUpdatingProtocol
     private let userSession: SessionInfoProtocol
     
     private var cancellables: [AnyCancellable] = []
@@ -47,7 +47,7 @@ final class VocabularyListViewModel: VocabularyListViewModelProtocol {
     // MARK: - Init
     
     init(router: VocabularyListCoordinatorProtocol,
-         dataProvider: DataProviderFetchingProtocol & DataProviderUpdatingProtocol,
+         dataProvider: FirebaseDatabaseFetchingProtocol & FirebaseDatabaseUpdatingProtocol,
          userSession: SessionInfoProtocol) {
         self.router = router
         self.dataProvider = dataProvider

@@ -10,6 +10,7 @@ import Foundation
 import CoreData
 
 struct Word: Codable {
+    
     let term: String
     let definition: String
     

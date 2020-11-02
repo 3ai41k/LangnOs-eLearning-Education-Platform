@@ -38,7 +38,7 @@ final class WordsViewModel: WordsViewModelProtocol {
     
     private let router: WordsCoordinatorProtocol
     private let vocabulary: Vocabulary
-    private let dataProvider: DataProviderUpdatingProtocol
+    private let dataProvider: FirebaseDatabaseUpdatingProtocol
     
     private var setEditingPublisher: AnyPublisher<Bool, Never> {
         setEditingSubject.eraseToAnyPublisher()
@@ -47,7 +47,7 @@ final class WordsViewModel: WordsViewModelProtocol {
     
     // MARK: - Init
     
-    init(router: WordsCoordinatorProtocol, vocabulary: Vocabulary, dataProvider: DataProviderUpdatingProtocol) {
+    init(router: WordsCoordinatorProtocol, vocabulary: Vocabulary, dataProvider: FirebaseDatabaseUpdatingProtocol) {
         self.router = router
         self.vocabulary = vocabulary
         self.dataProvider = dataProvider

@@ -29,7 +29,8 @@ final class WordsCoordinator: Coordinator, WordsCoordinatorProtocol {
     // MARK: - Override
     
     override func start() {
-        let dataProvider = DataProvider()
+        let firebaseDatabase = FirebaseDatabase.shared
+        let dataProvider = DataProvider(firebaseDatabase: firebaseDatabase)
         let viewModel = WordsViewModel(router: self,
                                        vocabulary: vocabulary,
                                        dataProvider: dataProvider)

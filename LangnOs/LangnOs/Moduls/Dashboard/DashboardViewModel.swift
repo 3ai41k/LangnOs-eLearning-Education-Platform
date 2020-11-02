@@ -57,7 +57,7 @@ final class DashboardViewModel: DashboardViewModelProtocol {
     
     private let router: DashboardCoordinatorProtocol
     private let userSession: SessionInfoProtocol & SessionStatePublisherProtocol
-    private let dataProvider: DataProviderFetchingProtocol
+    private let dataProvider: FirebaseDatabaseFetchingProtocol
     private let coreDataStack: CoreDataClearableProtocol
     private let mediaDownloader: MediaDownloadableProtocol
     
@@ -75,7 +75,7 @@ final class DashboardViewModel: DashboardViewModelProtocol {
     
     init(router: DashboardCoordinatorProtocol,
          userSession: SessionInfoProtocol & SessionStatePublisherProtocol,
-         dataProvider: DataProviderFetchingProtocol,
+         dataProvider: FirebaseDatabaseFetchingProtocol,
          coreDataStack: CoreDataClearableProtocol,
          mediaDownloader: MediaDownloadableProtocol) {
         self.router = router

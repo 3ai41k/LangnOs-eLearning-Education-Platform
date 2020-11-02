@@ -24,7 +24,8 @@ final class DashboardCoordinator: Coordinator, DashboardCoordinatorProtocol {
     
     override func start() {
         let userSession = UserSession.shared
-        let dataProvider = DataProvider()
+        let firebaseDatabase = FirebaseDatabase.shared
+        let dataProvider = DataProvider(firebaseDatabase: firebaseDatabase)
         let coreDataStack = CoreDataStack.shared
         let mediaDownloader = MediaDownloader()
         let viewModel = DashboardViewModel(router: self,
