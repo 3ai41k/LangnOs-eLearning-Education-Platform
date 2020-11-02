@@ -9,9 +9,10 @@
 import Foundation
 import CoreData
 
-final class Vocabulary: Codable {
+final class Vocabulary: Codable, CDSynchronizableEntityProtocol {
     let id: String
     let userId: String
+    var isSynchronized: Bool
     let title: String
     let category: String
     var isFavorite: Bool
@@ -25,6 +26,7 @@ final class Vocabulary: Codable {
     init(userId: String, title: String, category: String, words: [Word]) {
         self.id = UUID().uuidString
         self.userId = userId
+        self.isSynchronized = false
         self.title = title
         self.category = category
         self.isFavorite = false
@@ -39,6 +41,7 @@ final class Vocabulary: Codable {
     init(entity: VocabularyEntity) {
         self.id = entity.id!.uuidString
         self.userId = entity.userId!
+        self.isSynchronized = entity.isSynchronized
         self.title = entity.title!
         self.category = entity.category!
         self.isFavorite = entity.isFavorite
@@ -52,11 +55,7 @@ final class Vocabulary: Codable {
         })
     }
     
-}
-
-// MARK: - CDEntityProtocol
-
-extension Vocabulary: CDEntityProtocol {
+    // MARK: - CDEntityProtocol
     
     static func select(context: NSManagedObjectContext, predicate: NSPredicate?) throws -> [Vocabulary] {
         let request = NSFetchRequest<VocabularyEntity>(entityName: "VocabularyEntity")
@@ -89,6 +88,7 @@ extension Vocabulary: CDEntityProtocol {
             if let vocabulary = vocabularies.first {
                 vocabulary.id = UUID(uuidString: entity.id)
                 vocabulary.userId = entity.userId
+                vocabulary.isSynchronized = entity.isSynchronized
                 vocabulary.title = entity.title
                 vocabulary.category = entity.category
                 vocabulary.isFavorite = entity.isFavorite

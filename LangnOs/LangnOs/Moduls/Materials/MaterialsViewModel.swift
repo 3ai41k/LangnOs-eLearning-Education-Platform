@@ -115,6 +115,7 @@ extension MaterialsViewModel {
         dataProvider.fetch(request: request, onSuccess: { (vocabularies: [Vocabulary]) in
             self.vocabularies = vocabularies.sorted(by: \.createdDate, using: >)
         }) { (error) in
+            self.vocabularies = .empty
             self.router.showError(error)
         }
     }

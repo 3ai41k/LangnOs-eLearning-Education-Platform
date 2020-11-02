@@ -97,10 +97,6 @@ final class DashboardViewModel: DashboardViewModelProtocol {
         self.fetchFavoriteVocabularies()
     }
     
-    deinit {
-        self.removerNotifications()
-    }
-    
     // MARK: - Public methods
     
     func didSelectCellAt(indexPath: IndexPath) {
@@ -149,10 +145,6 @@ final class DashboardViewModel: DashboardViewModelProtocol {
             .sink { [weak self] in
                 self?.isOfflineTitleHiddenSubject.send($0 != .unavailable)
         }.store(in: &cancellables)
-    }
-    
-    private func removerNotifications() {
-        NotificationCenter.default.removeObserver(self)
     }
     
     private func fetchFavoriteVocabularies() {

@@ -59,52 +59,17 @@ final class CreateVocabularyViewModel: CreateVocabularyViewModelProtocol {
     // MARK: - Public methods
     
     func doneAction() {
-        //        var generalInfo: VocabularyGeneralInfo = .empty
-        //        var words: [Word] = []
-        //
-        //        tableSections.forEach({ section in
-        //            section.cells.value.forEach({ cell in
-        //                switch cell {
-        //                case let cell as GeneralInfoCellViewModel:
-        //                    generalInfo = cell.vocabularyGeneralInfo
-        //                case let cell as CreateWordCellViewModel:
-        //                    if !cell.word.isEmpty {
-        //                        words.append(cell.word)
-        //                    }
-        //                default:
-        //                    break
-        //                }
-        //            })
-        //        })
-        //
-        //        if generalInfo.isEmpty {
-        //            router.showAlert(title: "Sorry!",
-        //                             message: "General information is empty. Because of this we could not create this vocabulary. Please, enter name and category",
-        //                             actions: [OkAlertAction(handler: { })])
-        //        } else {
-        //            guard let userId = userSession.userId else {
-        //                router.showAlert(title: "Sorry!",
-        //                                 message: "You are not authorized",
-        //                                 actions: [OkAlertAction(handler: { })])
-        //                return
-        //            }
-        //
-        //            router.showActivity()
-        //
-        //            let vocabulary = Vocabulary(userId: userId,
-        //                                        title: generalInfo.name,
-        //                                        category: generalInfo.category,
-        //                                        words: words)
-        //
-        //            let request = VocabularyCreateRequest(vocabulary: vocabulary)
-        //            dataProvider.create(request: request, onSuccess: {
-        //                self.router.closeActivity()
-        //                self.router.didCreateVocabulary(vocabulary)
-        //            }) { (error) in
-        //                self.router.closeActivity()
-        //                self.router.showError(error)
-        //            }
-        //        }
+        guard let userId = userSession.userId else { return }
+        
+        let vocabulary = Vocabulary(userId: userId, title: "Test", category: "Test", words: [Word(term: "Test1", definition: "Test1")])
+        let request = VocabularyCreateRequest(vocabulary: vocabulary)
+        dataProvider.create(request: request, onSuccess: {
+            self.router.closeActivity()
+            self.router.didCreateVocabulary(vocabulary)
+        }) { (error) in
+            self.router.closeActivity()
+            self.router.showError(error)
+        }
     }
     
     // ViewModel mustn't know about UI, but if you want to present popover you need to use sourceView.

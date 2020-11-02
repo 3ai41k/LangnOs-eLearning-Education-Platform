@@ -20,14 +20,12 @@ struct VocabularyCreateRequest {
 
 extension VocabularyCreateRequest: DataProviderRequestProtocol {
     
-    typealias Entity = Vocabulary
+    var entity: Vocabulary? {
+        vocabulary
+    }
     
     var collectionPath: CollectionPath {
         .vocabularies
-    }
-    
-    var documentData: [String : Any]? {
-        try? DictionaryEncoder().encode(entity: vocabulary)
     }
     
     var documentPath: String? {

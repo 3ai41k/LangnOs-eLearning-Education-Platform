@@ -113,17 +113,24 @@ extension DataProvider: DataProviderFetchingProtocol {
 extension DataProvider: DataProviderCreatingProtocol {
     
     func create<Request: DataProviderRequestProtocol>(request: Request, onSuccess: @escaping () -> Void, onFailure: @escaping (Error) -> Void) {
+        guard let entity = request.entity else { onFailure(DataProviderError.entityWasNoFound); return }
+        
         if networkState.isReachable {
-            firebaseDatabase.create(request: request, onSuccess: { (firebaseEntity) in
+            firebaseDatabase.create(request: request, onSuccess: {
                 do {
-                    try Request.Entity.insert(context: self.coreDataContext.viewContext, entity: firebaseEntity)
+                    try Request.Entity.insert(context: self.coreDataContext.viewContext, entity: entity)
                     onSuccess()
                 } catch {
                     onFailure(error)
                 }
             }, onFailure: onFailure)
         } else {
-            onFailure(DataProviderError.isNotConnectedToNetwork)
+            do {
+                try Request.Entity.insert(context: self.coreDataContext.viewContext, entity: entity)
+                onSuccess()
+            } catch {
+                onFailure(error)
+            }
         }
     }
     
@@ -134,10 +141,12 @@ extension DataProvider: DataProviderCreatingProtocol {
 extension DataProvider: DataProviderDeletingProtocol {
     
     func delete<Request: DataProviderRequestProtocol>(request: Request, onSuccess: @escaping () -> Void, onFailure: @escaping (Error) -> Void) {
+        guard let entity = request.entity else { onFailure(DataProviderError.entityWasNoFound); return }
+        
         if networkState.isReachable {
-            firebaseDatabase.delete(request: request, onSuccess: { (firebaseEntity) in
+            firebaseDatabase.delete(request: request, onSuccess: {
                 do {
-                    try Request.Entity.delete(context: self.coreDataContext.viewContext, entity: firebaseEntity)
+                    try Request.Entity.delete(context: self.coreDataContext.viewContext, entity: entity)
                     onSuccess()
                 } catch {
                     onFailure(error)
@@ -155,10 +164,12 @@ extension DataProvider: DataProviderDeletingProtocol {
 extension DataProvider: DataProviderUpdatingProtocol {
     
     func update<Request: DataProviderRequestProtocol>(request: Request, onSuccess: @escaping () -> Void, onFailure: @escaping (Error) -> Void) {
+        guard let entity = request.entity else { onFailure(DataProviderError.entityWasNoFound); return }
+        
         if networkState.isReachable {
-            firebaseDatabase.update(request: request, onSuccess: { (firebaseEntity) in
+            firebaseDatabase.update(request: request, onSuccess: {
                 do {
-                    try Request.Entity.update(context: self.coreDataContext.viewContext, entity: firebaseEntity)
+                    try Request.Entity.update(context: self.coreDataContext.viewContext, entity: entity)
                     onSuccess()
                 } catch {
                     onFailure(error)

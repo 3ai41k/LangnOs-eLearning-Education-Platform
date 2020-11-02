@@ -6,6 +6,7 @@
         <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="isFavorite" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="isPrivate" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="isSynchronized" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="phrasesLearned" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="phrasesLeftToLearn" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="title" attributeType="String"/>
@@ -18,7 +19,7 @@
         <attribute name="term" attributeType="String"/>
     </entity>
     <elements>
-        <element name="VocabularyEntity" positionX="-45" positionY="0" width="128" height="208"/>
+        <element name="VocabularyEntity" positionX="-45" positionY="0" width="128" height="223"/>
         <element name="WordEntity" positionX="-258.03125" positionY="148.203125" width="128" height="73"/>
     </elements>
 </model>

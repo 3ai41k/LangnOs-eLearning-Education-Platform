@@ -40,6 +40,8 @@
 		8D435AC2254F534E00838691 /* VocabularyCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D435ABE254F534E00838691 /* VocabularyCategoryViewController.swift */; };
 		8D435AC3254F534E00838691 /* VocabularyCategoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D435ABF254F534E00838691 /* VocabularyCategoryViewModel.swift */; };
 		8D435AC4254F534E00838691 /* VocabularyCategoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D435AC0254F534E00838691 /* VocabularyCategoryViewController.xib */; };
+		8D435AC92550641C00838691 /* CDSynchronizableEntityProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D435AC82550641C00838691 /* CDSynchronizableEntityProtocol.swift */; };
+		8D435ACB255065A500838691 /* DataSynchronizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D435ACA255065A500838691 /* DataSynchronizer.swift */; };
 		8D524F5D252E5AAA002A6E01 /* SearchBarCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D524F5B252E5AAA002A6E01 /* SearchBarCollectionReusableView.swift */; };
 		8D524F5E252E5AAA002A6E01 /* SearchBarCollectionReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D524F5C252E5AAA002A6E01 /* SearchBarCollectionReusableView.xib */; };
 		8D524F60252E5AE5002A6E01 /* SearchBarCollectionReusableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D524F5F252E5AE5002A6E01 /* SearchBarCollectionReusableViewModel.swift */; };
@@ -310,6 +312,8 @@
 		8D435ABE254F534E00838691 /* VocabularyCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabularyCategoryViewController.swift; sourceTree = "<group>"; };
 		8D435ABF254F534E00838691 /* VocabularyCategoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabularyCategoryViewModel.swift; sourceTree = "<group>"; };
 		8D435AC0254F534E00838691 /* VocabularyCategoryViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VocabularyCategoryViewController.xib; sourceTree = "<group>"; };
+		8D435AC82550641C00838691 /* CDSynchronizableEntityProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CDSynchronizableEntityProtocol.swift; sourceTree = "<group>"; };
+		8D435ACA255065A500838691 /* DataSynchronizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSynchronizer.swift; sourceTree = "<group>"; };
 		8D524F5B252E5AAA002A6E01 /* SearchBarCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarCollectionReusableView.swift; sourceTree = "<group>"; };
 		8D524F5C252E5AAA002A6E01 /* SearchBarCollectionReusableView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchBarCollectionReusableView.xib; sourceTree = "<group>"; };
 		8D524F5F252E5AE5002A6E01 /* SearchBarCollectionReusableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarCollectionReusableViewModel.swift; sourceTree = "<group>"; };
@@ -933,6 +937,7 @@
 			isa = PBXGroup;
 			children = (
 				8D94E7D52534F6DF005FA4B9 /* CDEntityProtocol.swift */,
+				8D435AC82550641C00838691 /* CDSynchronizableEntityProtocol.swift */,
 				8DC3CF58252D3977003CA62A /* EmptyableProtocol.swift */,
 			);
 			path = Protocols;
@@ -1371,6 +1376,7 @@
 				8D435A67254C15F700838691 /* Networking */,
 				8D435A66254C15E000838691 /* CoreData */,
 				8D94E7D32534E3DC005FA4B9 /* DataProvider.swift */,
+				8D435ACA255065A500838691 /* DataSynchronizer.swift */,
 				8D94E7C42534D102005FA4B9 /* SpeechSynthesizer.swift */,
 				8D94E83E2539FA2D005FA4B9 /* UserSession.swift */,
 				8D435A87254C526200838691 /* UserDefaultsKey.swift */,
@@ -1929,6 +1935,7 @@
 				8DF2539F25446639001492AE /* DictionaryDecoder.swift in Sources */,
 				8D524FEE2533BEC9002A6E01 /* FlashCardTableViewCell.swift in Sources */,
 				8DF253C12544A3B8001492AE /* VocabularySettingsCellFactory.swift in Sources */,
+				8D435AC92550641C00838691 /* CDSynchronizableEntityProtocol.swift in Sources */,
 				8D94E847253A1F8D005FA4B9 /* ImagePickerViewModel.swift in Sources */,
 				8D435A86254C51AF00838691 /* UIImag+Size.swift in Sources */,
 				8DD28BD52526856B00F59B7D /* NavigationItemDrivableModel.swift in Sources */,
@@ -1966,6 +1973,7 @@
 				8DF253F42549B396001492AE /* AddToFavoriteTableViewCell.swift in Sources */,
 				8DC3CF59252D3977003CA62A /* EmptyableProtocol.swift in Sources */,
 				8D662533252A610B00991D45 /* ScoreView.swift in Sources */,
+				8D435ACB255065A500838691 /* DataSynchronizer.swift in Sources */,
 				8DF2538125432B62001492AE /* SFSymbols.swift in Sources */,
 				8D66251F2529F6C000991D45 /* CreateVocabularyViewController.swift in Sources */,
 				8DD28BFB2527B76800F59B7D /* DashboardCellFactory.swift in Sources */,

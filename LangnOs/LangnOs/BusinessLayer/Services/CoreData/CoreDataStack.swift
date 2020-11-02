@@ -9,8 +9,16 @@
 import Foundation
 import CoreData
 
+protocol CoreDataSavableProtocol {
+    func save()
+}
+
 protocol CoreDataClearableProtocol {
     func clear()
+}
+
+protocol CoreDataSynchronizableProtocol {
+    func synchronizableEntities() -> [NSEntityDescription]
 }
 
 final class CoreDataStack {
@@ -37,19 +45,6 @@ final class CoreDataStack {
     
     private init() { }
     
-    // MARK: - Public methods
-    
-    func save() {
-        if viewContext.hasChanges {
-            do {
-                try viewContext.save()
-            } catch {
-                let nserror = error as NSError
-                fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
-            }
-        }
-    }
-    
     // MARK: - Private methods
 
     private func clearDeepObjectEntity(_ entity: String) {
@@ -66,6 +61,23 @@ final class CoreDataStack {
     
 }
 
+// MARK: - CoreDataSavableProtocol
+
+extension CoreDataStack: CoreDataSavableProtocol {
+    
+    func save() {
+        if viewContext.hasChanges {
+            do {
+                try viewContext.save()
+            } catch {
+                let nserror = error as NSError
+                fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+            }
+        }
+    }
+    
+}
+
 // MARK: - CoreDataClearableProtocol
 
 extension CoreDataStack: CoreDataClearableProtocol {
@@ -73,6 +85,23 @@ extension CoreDataStack: CoreDataClearableProtocol {
     func clear() {
         let entities = persistentContainer.managedObjectModel.entities
         entities.compactMap({ $0.name }).forEach(clearDeepObjectEntity)
+    }
+    
+}
+
+// MARK: - CoreDataSynchronizableProtocol
+
+extension CoreDataStack: CoreDataSynchronizableProtocol {
+    
+    func synchronizableEntities() -> [NSEntityDescription] {
+        let entities = persistentContainer.managedObjectModel.entities
+        return entities.compactMap({
+            if $0.properties.contains(where: { $0.name == "isSynchronized" }) {
+                return $0
+            } else {
+                return nil
+            }
+        })
     }
     
 }
