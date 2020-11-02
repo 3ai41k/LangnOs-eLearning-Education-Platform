@@ -7,17 +7,20 @@
 //
 
 import Foundation
+import CoreData
 
 final class VocabularySyncronizeOperation: SyncronizeOperation {
     
     // MARK: - Private properties
     
     private let userId: String
+    private let context: NSManagedObjectContext
     
     // MARK: - Init
     
-    init(userId: String) {
+    init(userId: String, context: NSManagedObjectContext) {
         self.userId = userId
+        self.context = context
         
         super.init()
     }
@@ -25,12 +28,12 @@ final class VocabularySyncronizeOperation: SyncronizeOperation {
     // MARK: - Override
     
     override func syncronize() {
-        let predicate = NSPredicate(format: "userId == %@ AND isSynchronized == %@", userId, false)
-        let entities = try? Vocabulary.select(context: CoreDataStack.shared.viewContext, predicate: predicate)
+        let predicate = NSPredicate(format: "userId == %@ AND isSynchronized == %@", argumentArray: [userId, false])
+        let entities = try? Vocabulary.select(context: context, predicate: predicate)
         entities?.forEach({ (entity) in
             let reqest = VocabularyCreateRequest(vocabulary: entity)
             firebaseDatabase.create(request: reqest, onSuccess: {
-                try? Vocabulary.update(context: CoreDataStack.shared.viewContext, entity: entity, mode: .online)
+                try? entity.update(context: CoreDataStack.shared.viewContext, mode: .online)
             }) { (error) in
                 print("Unresolved error \(error.localizedDescription)")
             }

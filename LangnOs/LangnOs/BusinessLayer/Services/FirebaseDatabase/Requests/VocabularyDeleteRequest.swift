@@ -20,7 +20,9 @@ struct VocabularyDeleteRequest {
 
 extension VocabularyDeleteRequest: DataProviderRequestProtocol {
     
-    typealias Entity = Vocabulary
+    var entity: Vocabulary? {
+        vocabulary
+    }
     
     var collectionPath: CollectionPath {
         .vocabularies

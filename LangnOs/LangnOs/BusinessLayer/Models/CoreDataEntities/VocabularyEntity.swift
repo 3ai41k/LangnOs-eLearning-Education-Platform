@@ -18,6 +18,7 @@ final class VocabularyEntity: NSManagedObject {
         
         self.id = UUID(uuidString: vocabulary.id)
         self.userId = vocabulary.userId
+        self.isSynchronized = vocabulary.isSynchronized
         self.title = vocabulary.title
         self.category = vocabulary.category
         self.isFavorite = vocabulary.isFavorite

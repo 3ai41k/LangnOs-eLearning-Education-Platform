@@ -16,16 +16,16 @@ enum DataBaseMode {
     var isNeedToSynchronize: Bool {
         switch self {
         case .online:
-            return false
-        case .offline:
             return true
+        case .offline:
+            return false
         }
     }
 }
 
 protocol CDEntityProtocol {
     static func select(context: NSManagedObjectContext, predicate: NSPredicate?) throws -> [Self]
-    static func insert(context: NSManagedObjectContext, entity: Self, mode: DataBaseMode) throws
-    static func update(context: NSManagedObjectContext, entity: Self, mode: DataBaseMode) throws
-    static func delete(context: NSManagedObjectContext, entity: Self, mode: DataBaseMode) throws
+    func insert(context: NSManagedObjectContext, mode: DataBaseMode) throws
+    func update(context: NSManagedObjectContext, mode: DataBaseMode) throws
+    func delete(context: NSManagedObjectContext, mode: DataBaseMode) throws
 }

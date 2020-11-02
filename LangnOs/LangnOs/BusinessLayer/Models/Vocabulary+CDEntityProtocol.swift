@@ -21,38 +21,38 @@ extension Vocabulary: CDEntityProtocol {
         }
     }
     
-    static func insert(context: NSManagedObjectContext, entity: Vocabulary, mode: DataBaseMode) throws {
+    func insert(context: NSManagedObjectContext, mode: DataBaseMode) throws {
         let request = NSFetchRequest<VocabularyEntity>(entityName: "VocabularyEntity")
-        request.predicate = NSPredicate(format: "id == %@", UUID(uuidString: entity.id)! as CVarArg)
+        request.predicate = NSPredicate(format: "id == %@", UUID(uuidString: self.id)! as CVarArg)
         do {
             let vocabularies = try context.fetch(request)
+            if mode == .offline { self.needSynchronize() }
             if vocabularies.isEmpty {
-                entity.isSynchronized = mode.isNeedToSynchronize
-                _ = VocabularyEntity(vocabulary: entity, context: context)
+                _ = VocabularyEntity(vocabulary: self, context: context)
             }
         } catch {
             throw error
         }
     }
     
-    static func update(context: NSManagedObjectContext, entity: Vocabulary, mode: DataBaseMode) throws {
+    func update(context: NSManagedObjectContext, mode: DataBaseMode) throws {
         let request = NSFetchRequest<VocabularyEntity>(entityName: "VocabularyEntity")
-        request.predicate = NSPredicate(format: "id == %@", UUID(uuidString: entity.id)! as CVarArg)
+        request.predicate = NSPredicate(format: "id == %@", UUID(uuidString: self.id)! as CVarArg)
         do {
             let vocabularies = try context.fetch(request)
             if let vocabulary = vocabularies.first {
-                vocabulary.id = UUID(uuidString: entity.id)
-                vocabulary.userId = entity.userId
+                vocabulary.id = UUID(uuidString: self.id)
+                vocabulary.userId = self.userId
                 vocabulary.isSynchronized = mode.isNeedToSynchronize
-                vocabulary.title = entity.title
-                vocabulary.category = entity.category
-                vocabulary.isFavorite = entity.isFavorite
-                vocabulary.isPrivate = entity.isPrivate
-                vocabulary.phrasesLearned = Int32(entity.phrasesLearned)
-                vocabulary.phrasesLeftToLearn = Int32(entity.phrasesLeftToLearn)
-                vocabulary.totalLearningTime = entity.totalLearningTime
-                vocabulary.createdDate = entity.createdDate
-                vocabulary.words = NSSet(array: entity.words.map({
+                vocabulary.title = self.title
+                vocabulary.category = self.category
+                vocabulary.isFavorite = self.isFavorite
+                vocabulary.isPrivate = self.isPrivate
+                vocabulary.phrasesLearned = Int32(self.phrasesLearned)
+                vocabulary.phrasesLeftToLearn = Int32(self.phrasesLeftToLearn)
+                vocabulary.totalLearningTime = self.totalLearningTime
+                vocabulary.createdDate = self.createdDate
+                vocabulary.words = NSSet(array: self.words.map({
                     WordEntity(word: $0, context: context)
                 }))
             }
@@ -61,9 +61,9 @@ extension Vocabulary: CDEntityProtocol {
         }
     }
     
-    static func delete(context: NSManagedObjectContext, entity: Vocabulary, mode: DataBaseMode) throws {
+    func delete(context: NSManagedObjectContext, mode: DataBaseMode) throws {
         let request = NSFetchRequest<VocabularyEntity>(entityName: "VocabularyEntity")
-        request.predicate = NSPredicate(format: "id == %@", UUID(uuidString: entity.id)! as CVarArg)
+        request.predicate = NSPredicate(format: "id == %@", UUID(uuidString: self.id)! as CVarArg)
         do {
             try context.fetch(request).forEach({ context.delete($0) })
         } catch {

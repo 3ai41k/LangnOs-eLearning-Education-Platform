@@ -60,7 +60,7 @@ final class DataSynchronizer {
         
         operationQueue.qualityOfService = .background
         operationQueue.addOperations([
-            VocabularySyncronizeOperation(userId: userId)
+            VocabularySyncronizeOperation(userId: userId, context: coreDataStack.viewContext)
         ], waitUntilFinished: false)
     }
     

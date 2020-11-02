@@ -45,7 +45,7 @@ extension DataProvider: FirebaseDatabaseFetchingProtocol {
                     onSuccess(.empty)
                 } else {
                     firebaseEntities.forEach({
-                        try? Request.Entity.insert(context: self.coreDataContext.viewContext, entity: $0, mode: .online)
+                        try? $0.insert(context: self.coreDataContext.viewContext, mode: .online)
                     })
                     onSuccess(firebaseEntities)
                 }
@@ -65,11 +65,11 @@ extension DataProvider: FirebaseDatabaseCreatingProtocol {
         guard let entity = request.entity else { onFailure(FirebaseDatabaseError.documentsWereNotFound); return }
         if networkState.isReachable {
             firebaseDatabase.create(request: request, onSuccess: {
-                try? Request.Entity.insert(context: self.coreDataContext.viewContext, entity: entity, mode: .online)
+                try? entity.insert(context: self.coreDataContext.viewContext, mode: .online)
                 onSuccess()
             }, onFailure: onFailure)
         } else {
-            try? Request.Entity.insert(context: coreDataContext.viewContext, entity: entity, mode: .offline)
+            try? entity.insert(context: coreDataContext.viewContext, mode: .offline)
             onSuccess()
         }
     }
@@ -82,10 +82,9 @@ extension DataProvider: FirebaseDatabaseDeletingProtocol {
     
     func delete<Request: DataProviderRequestProtocol>(request: Request, onSuccess: @escaping () -> Void, onFailure: @escaping (Error) -> Void) {
         guard let entity = request.entity else { onFailure(FirebaseDatabaseError.documentsWereNotFound); return }
-        
         if networkState.isReachable {
             firebaseDatabase.delete(request: request, onSuccess: {
-                try? Request.Entity.delete(context: self.coreDataContext.viewContext, entity: entity, mode: .online)
+                try? entity.delete(context: self.coreDataContext.viewContext, mode: .online)
                 onSuccess()
             }, onFailure: onFailure)
         } else {
@@ -103,11 +102,11 @@ extension DataProvider: FirebaseDatabaseUpdatingProtocol {
         guard let entity = request.entity else { onFailure(FirebaseDatabaseError.documentsWereNotFound); return }
         if networkState.isReachable {
             firebaseDatabase.update(request: request, onSuccess: {
-                try? Request.Entity.update(context: self.coreDataContext.viewContext, entity: entity, mode: .online)
+                try? entity.update(context: self.coreDataContext.viewContext, mode: .online)
                 onSuccess()
             }, onFailure: onFailure)
         } else {
-            try? Request.Entity.update(context: coreDataContext.viewContext, entity: entity, mode: .offline)
+            try? entity.update(context: coreDataContext.viewContext, mode: .offline)
             onSuccess()
         }
     }

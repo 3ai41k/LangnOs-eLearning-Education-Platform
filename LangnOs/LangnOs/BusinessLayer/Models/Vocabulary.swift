@@ -14,7 +14,7 @@ final class Vocabulary {
     
     let id: String
     let userId: String
-    var isSynchronized: Bool
+    private(set) var isSynchronized: Bool
     let title: String
     let category: String
     var isFavorite: Bool
@@ -73,6 +73,12 @@ final class Vocabulary {
         self.words = (entity.words?.allObjects as? [WordEntity])!.map({
             Word(entity: $0)
         })
+    }
+    
+    // MARK: - Public methods
+    
+    func needSynchronize() {
+        isSynchronized = false
     }
     
 }
