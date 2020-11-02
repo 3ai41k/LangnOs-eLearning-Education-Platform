@@ -18,6 +18,12 @@ final class CreateVocabularyViewController: BindibleViewController<CreateVocabul
             tableView.viewModel = viewModel
             tableView.cellFactory = tableViewCellFactory
             
+            let rect = CGRect(x: .zero, y: .zero, width: .zero, height: 220.0)
+            let infoView = VocabularyInfoView(frame: rect)
+            infoView.selectCategoryHandler = viewModel?.selectCategory
+            
+            tableView.tableHeaderView = infoView
+            
             tableView.start()
         }
     }

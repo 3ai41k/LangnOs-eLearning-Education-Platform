@@ -1,5 +1,5 @@
 //
-//  CreateWordTableViewCell.swift
+//  VocabularyTableViewCell.swift
 //  LangnOs
 //
 //  Created by Nikita Lizogubov on 05.10.2020.

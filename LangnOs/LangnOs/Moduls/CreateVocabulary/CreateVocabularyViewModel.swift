@@ -6,7 +6,7 @@
 //  Copyright © 2020 NL. All rights reserved.
 //
 
-import Foundation
+import UIKit
 import Combine
 
 protocol CreateVocabularyViewModelInputProtocol {
@@ -15,13 +15,14 @@ protocol CreateVocabularyViewModelInputProtocol {
 
 protocol CreateVocabularyViewModelOutputProtocol {
     func doneAction()
+    func selectCategory(sourceView: UIView) -> String
     func closeAction()
 }
 
 typealias CreateVocabularyViewModelProtocol =
     CreateVocabularyViewModelInputProtocol &
     CreateVocabularyViewModelOutputProtocol &
-    UniversalTableViewModelProtocol
+UniversalTableViewModelProtocol
 
 final class CreateVocabularyViewModel: CreateVocabularyViewModelProtocol {
     
@@ -52,18 +53,75 @@ final class CreateVocabularyViewModel: CreateVocabularyViewModelProtocol {
         
         self.title = .init("New vocabulary".localize)
         
-        self.setupVocabularyInfoSection(&tableSections)
         self.setupWordsSection(&tableSections)
     }
     
-    // MARK: - Private methods
+    // MARK: - Public methods
     
-    private func setupVocabularyInfoSection(_ tableSections: inout [SectionViewModelProtocol]) {
-        let sectionViewModel = TableSectionViewModel(cells: [
-            GeneralInfoCellViewModel()
-        ])
-        tableSections.append(sectionViewModel)
+    func doneAction() {
+        //        var generalInfo: VocabularyGeneralInfo = .empty
+        //        var words: [Word] = []
+        //
+        //        tableSections.forEach({ section in
+        //            section.cells.value.forEach({ cell in
+        //                switch cell {
+        //                case let cell as GeneralInfoCellViewModel:
+        //                    generalInfo = cell.vocabularyGeneralInfo
+        //                case let cell as CreateWordCellViewModel:
+        //                    if !cell.word.isEmpty {
+        //                        words.append(cell.word)
+        //                    }
+        //                default:
+        //                    break
+        //                }
+        //            })
+        //        })
+        //
+        //        if generalInfo.isEmpty {
+        //            router.showAlert(title: "Sorry!",
+        //                             message: "General information is empty. Because of this we could not create this vocabulary. Please, enter name and category",
+        //                             actions: [OkAlertAction(handler: { })])
+        //        } else {
+        //            guard let userId = userSession.userId else {
+        //                router.showAlert(title: "Sorry!",
+        //                                 message: "You are not authorized",
+        //                                 actions: [OkAlertAction(handler: { })])
+        //                return
+        //            }
+        //
+        //            router.showActivity()
+        //
+        //            let vocabulary = Vocabulary(userId: userId,
+        //                                        title: generalInfo.name,
+        //                                        category: generalInfo.category,
+        //                                        words: words)
+        //
+        //            let request = VocabularyCreateRequest(vocabulary: vocabulary)
+        //            dataProvider.create(request: request, onSuccess: {
+        //                self.router.closeActivity()
+        //                self.router.didCreateVocabulary(vocabulary)
+        //            }) { (error) in
+        //                self.router.closeActivity()
+        //                self.router.showError(error)
+        //            }
+        //        }
     }
+    
+    // ViewModel mustn't know about UI, but if you want to present popover you need to use sourceView.
+    // This method is an exception
+    
+    func selectCategory(sourceView: UIView) -> String {
+        router.showCategoryPopover(sourceView: sourceView)
+        
+        
+        return "SAS"
+    }
+    
+    func closeAction() {
+        router.close()
+    }
+    
+    // MARK: - Private methods
     
     private func setupWordsSection(_ tableSections: inout [SectionViewModelProtocol]) {
         let sectionViewModel = TableSectionViewModel(cells: [
@@ -86,65 +144,6 @@ final class CreateVocabularyViewModel: CreateVocabularyViewModelProtocol {
         cellViewModel.addHandler = { [weak self] in self?.addWordRow() }
         cellViewModel.imageHandler = { [weak self] in self?.addImage() }
         return cellViewModel
-    }
-    
-}
-
-// MARK: - CreateVocabularyViewModelOutputProtocol
-
-extension CreateVocabularyViewModel {
-    
-    func doneAction() {
-        var generalInfo: VocabularyGeneralInfo = .empty
-        var words: [Word] = []
-        
-        tableSections.forEach({ section in
-            section.cells.value.forEach({ cell in
-                switch cell {
-                case let cell as GeneralInfoCellViewModel:
-                    generalInfo = cell.vocabularyGeneralInfo
-                case let cell as CreateWordCellViewModel:
-                    if !cell.word.isEmpty {
-                        words.append(cell.word)
-                    }
-                default:
-                    break
-                }
-            })
-        })
-        
-        if generalInfo.isEmpty {
-            router.showAlert(title: "Sorry!",
-                             message: "General information is empty. Because of this we could not create this vocabulary. Please, enter name and category",
-                             actions: [OkAlertAction(handler: { })])
-        } else {
-            guard let userId = userSession.userId else {
-                router.showAlert(title: "Sorry!",
-                                 message: "You are not authorized",
-                                 actions: [OkAlertAction(handler: { })])
-                return
-            }
-            
-            router.showActivity()
-            
-            let vocabulary = Vocabulary(userId: userId,
-                                        title: generalInfo.name,
-                                        category: generalInfo.category,
-                                        words: words)
-            
-            let request = VocabularyCreateRequest(vocabulary: vocabulary)
-            dataProvider.create(request: request, onSuccess: {
-                self.router.closeActivity()
-                self.router.didCreateVocabulary(vocabulary)
-            }) { (error) in
-                self.router.closeActivity()
-                self.router.showError(error)
-            }
-        }
-    }
-    
-    func closeAction() {
-        router.close()
     }
     
 }

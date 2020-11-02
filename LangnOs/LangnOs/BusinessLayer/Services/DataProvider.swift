@@ -63,6 +63,8 @@ final class DataProvider {
     
     // MARK: - Private methods
     
+    // Move this methods
+    
     private func selectEntities<Entity: CDEntityProtocol>(predicate: NSPredicate?, onSuccess: @escaping ([Entity]) -> Void, onFailure: @escaping (Error) -> Void){
         do {
             let entities = try Entity.select(context: coreDataContext.viewContext, predicate: predicate)
