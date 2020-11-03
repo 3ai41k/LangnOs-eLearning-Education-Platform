@@ -8,9 +8,9 @@
 
 import Foundation
 
-class SyncronizeOperation: Operation {
+class SyncronizeOperation: AsyncOperation {
     
-    // MARK: - protexted(internal) properties
+    // MARK: - Protexted(internal) properties
     
     internal let firebaseDatabase = FirebaseDatabase.shared
     

@@ -34,8 +34,10 @@ final class VocabularySyncronizeOperation: SyncronizeOperation {
             let reqest = VocabularyCreateRequest(vocabulary: entity)
             firebaseDatabase.create(request: reqest, onSuccess: {
                 try? entity.update(context: CoreDataStack.shared.viewContext, mode: .online)
+                self.state = .finishsed
             }) { (error) in
                 print("Unresolved error \(error.localizedDescription)")
+                self.state = .finishsed
             }
         })
     }

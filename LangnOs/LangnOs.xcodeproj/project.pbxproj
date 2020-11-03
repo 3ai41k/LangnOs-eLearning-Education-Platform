@@ -45,6 +45,7 @@
 		8D435ACF25509CD500838691 /* Vocabulary+CDEntityProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D435ACE25509CD500838691 /* Vocabulary+CDEntityProtocol.swift */; };
 		8D435AD22550A1DB00838691 /* SyncronizeOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D435AD12550A1DB00838691 /* SyncronizeOperation.swift */; };
 		8D435AD42550A2C400838691 /* VocabularySyncronizeOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D435AD32550A2C400838691 /* VocabularySyncronizeOperation.swift */; };
+		8D435AE0255166A500838691 /* AsyncOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D435ADF255166A500838691 /* AsyncOperation.swift */; };
 		8D524F5D252E5AAA002A6E01 /* SearchBarCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D524F5B252E5AAA002A6E01 /* SearchBarCollectionReusableView.swift */; };
 		8D524F5E252E5AAA002A6E01 /* SearchBarCollectionReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D524F5C252E5AAA002A6E01 /* SearchBarCollectionReusableView.xib */; };
 		8D524F60252E5AE5002A6E01 /* SearchBarCollectionReusableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D524F5F252E5AE5002A6E01 /* SearchBarCollectionReusableViewModel.swift */; };
@@ -320,6 +321,7 @@
 		8D435ACE25509CD500838691 /* Vocabulary+CDEntityProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Vocabulary+CDEntityProtocol.swift"; sourceTree = "<group>"; };
 		8D435AD12550A1DB00838691 /* SyncronizeOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncronizeOperation.swift; sourceTree = "<group>"; };
 		8D435AD32550A2C400838691 /* VocabularySyncronizeOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabularySyncronizeOperation.swift; sourceTree = "<group>"; };
+		8D435ADF255166A500838691 /* AsyncOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncOperation.swift; sourceTree = "<group>"; };
 		8D524F5B252E5AAA002A6E01 /* SearchBarCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarCollectionReusableView.swift; sourceTree = "<group>"; };
 		8D524F5C252E5AAA002A6E01 /* SearchBarCollectionReusableView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchBarCollectionReusableView.xib; sourceTree = "<group>"; };
 		8D524F5F252E5AE5002A6E01 /* SearchBarCollectionReusableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarCollectionReusableViewModel.swift; sourceTree = "<group>"; };
@@ -750,6 +752,7 @@
 		8D435ADA2550A3D600838691 /* Operations */ = {
 			isa = PBXGroup;
 			children = (
+				8D435ADF255166A500838691 /* AsyncOperation.swift */,
 				8D435AD12550A1DB00838691 /* SyncronizeOperation.swift */,
 				8D435AD32550A2C400838691 /* VocabularySyncronizeOperation.swift */,
 			);
@@ -1874,6 +1877,7 @@
 				8DD28BDF2526886200F59B7D /* NavigationBarDrivableModel.swift in Sources */,
 				8D435ACD25509CA700838691 /* Vocabulary+Codable.swift in Sources */,
 				8D524FC92530D22A002A6E01 /* ButtonDrivableModel.swift in Sources */,
+				8D435AE0255166A500838691 /* AsyncOperation.swift in Sources */,
 				8DF253BC2544A2AD001492AE /* ButtonTableViewCell.swift in Sources */,
 				8DC3CF2C252CD503003CA62A /* UIEdgeInsets+Init.swift in Sources */,
 				8D524FDB2533816D002A6E01 /* UIBarButtonItem+Init.swift in Sources */,

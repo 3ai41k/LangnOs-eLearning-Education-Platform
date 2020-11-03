@@ -12,7 +12,11 @@ import Combine
 
 final class DataSynchronizer {
     
+    // MARK: - Public methods
+    
     static let shared = DataSynchronizer()
+    
+    // MARK: - Private methods
     
     private let userSession: SessionInfoProtocol
     private let coreDataStack: CoreDataStack
@@ -58,10 +62,11 @@ final class DataSynchronizer {
     private func synchronize() {
         guard let userId = userSession.userId else { return }
         
-        operationQueue.qualityOfService = .background
         operationQueue.addOperations([
             VocabularySyncronizeOperation(userId: userId, context: coreDataStack.viewContext)
-        ], waitUntilFinished: false)
+        ], waitUntilFinished: true)
+        
+        print("Operations are finished")
     }
     
 }
