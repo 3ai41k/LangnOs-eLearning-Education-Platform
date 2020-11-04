@@ -6,29 +6,13 @@
 //  Copyright © 2020 NL. All rights reserved.
 //
 
-import Foundation
-import FirebaseAuth
-import Combine
+import UIKit
 
 protocol SessionInfoProtocol {
-    var userId: String? { get }
-    var username: String? { get }
-    var email: String? { get }
-    var photoURL: URL? { get }
-}
-
-protocol ProfileExtandableProtocol {
-    func updatePhotoURL(_ url: URL, completion: @escaping (Error?) -> Void)
-    func removePhotoURL(completion: @escaping (Error?) -> Void)
-}
-
-enum UserSessionState {
-    case didUserLogin
-    case didUserLogout
-}
-
-protocol SessionStatePublisherProtocol {
-    var sessionStatePublisher: AnyPublisher<UserSessionState, Never> { get }
+    var userInfo: UserInfoProtocol { get }
+    func getUserPhoto(_ completion: @escaping (UIImage?) -> Void)
+    func removeUserPhoto(_ completion: @escaping () -> Void)
+    func updateUserPhoto(_ photo: UIImage, completion: @escaping () -> Void)
 }
 
 final class UserSession {
@@ -39,34 +23,49 @@ final class UserSession {
     
     // MARK: - Private properties
     
-    private let auth = Auth.auth()
-    private let sessionStateSubject = PassthroughSubject<UserSessionState, Never>()
-    private var authStateDidChangeListenerHandle: AuthStateDidChangeListenerHandle!
+    private var _userInfo: UserInfoProtocol & UserInfoChangeStateProtocol
+    private let userProfile: UserProfileExtandableProtocol
+    private let mediaDownloader: MediaDownloadableProtocol
+    private let storage: FirebaseStorageUploadingProtocol & FirebaseStorageRemovingProtocol
+    
+    private var coreDataStack: CoreDataStack {
+        CoreDataStack.shared
+    }
+    
+    private var networkState: InternetConnectableProtocol {
+        NetworkState.shared
+    }
+    
+    private var userDefaults: UserDefaults {
+        UserDefaults.standard
+    }
     
     // MARK: - Init
     
-    init() {
-        self.setupNotifications()
-    }
-    
-    deinit {
-        self.removeNotifications()
+    private init() {
+        self._userInfo = UserInfo()
+        self.userProfile = UserProfile()
+        self.mediaDownloader = MediaDownloader()
+        self.storage = FirebaseStorage()
+        
+        self.setupUserInfoChangeStateNotifications()
     }
     
     // MARK: - Private methods
     
-    private func setupNotifications() {
-        authStateDidChangeListenerHandle = auth.addStateDidChangeListener { [weak self] (_, user) in
-            if user == nil {
-                self?.sessionStateSubject.send(.didUserLogout)
-            } else if self?.auth.currentUser != user {
-                self?.sessionStateSubject.send(.didUserLogin)
-            }
+    private func setupUserInfoChangeStateNotifications() {
+        _userInfo.didNewUserLoginHandler = {
+            NotificationCenter.default.post(name: .didNewUserLogin, object: nil)
+        }
+        _userInfo.didUserLogoutHandler = {
+            self.clearUserMetaData()
+            NotificationCenter.default.post(name: .didUserLogout, object: nil)
         }
     }
     
-    private func removeNotifications() {
-        auth.removeStateDidChangeListener(authStateDidChangeListenerHandle)
+    private func clearUserMetaData() {
+        userDefaults.removeObject(forKey: UserDefaultsKey.userImage.rawValue)
+        coreDataStack.clear()
     }
     
 }
@@ -75,52 +74,64 @@ final class UserSession {
 
 extension UserSession: SessionInfoProtocol {
     
-    var userId: String? {
-        auth.currentUser?.uid
+    var userInfo: UserInfoProtocol {
+        _userInfo
     }
     
-    var email: String? {
-        auth.currentUser?.email
+    func getUserPhoto(_ completion: @escaping (UIImage?) -> Void) {
+        if let data = userDefaults.data(forKey: UserDefaultsKey.userImage.rawValue) {
+            completion(UIImage(data: data))
+        } else {
+            if networkState.isReachable, let photoURL = _userInfo.photoURL {
+                mediaDownloader.downloadMedia(url: photoURL, onSucces: { (data) in
+                    self.userDefaults.set(data, forKey: UserDefaultsKey.userImage.rawValue)
+                    completion(UIImage(data: data))
+                }) { (error) in
+                    print("Unresolved error \(error.localizedDescription)")
+                    completion(nil)
+                }
+            } else {
+                completion(nil)
+            }
+        }
     }
     
-    var username: String? {
-        auth.currentUser?.displayName
+    func removeUserPhoto(_ completion: @escaping () -> Void) {
+        let handleAnError: (Error) -> Void = { (error) in
+            print("Unresolved error \(error.localizedDescription)")
+            completion()
+        }
+        if networkState.isReachable, let userId = _userInfo.id {
+            let request = DeleteUserImageFirestoreRequest(userId: userId)
+            storage.delete(request: request, onSuccess: {
+                self.userProfile.removePhoto(onSuccess: {
+                    self.userDefaults.removeObject(forKey: UserDefaultsKey.userImage.rawValue)
+                    completion()
+                }, onFailure: handleAnError)
+            }, onFailure: handleAnError)
+        } else {
+            print("There is not iternet connection")
+            completion()
+        }
     }
     
-    var photoURL: URL? {
-        auth.currentUser?.photoURL
-    }
-    
-}
-
-// MARK: - ProfileExtandableProtocol
-
-extension UserSession: ProfileExtandableProtocol {
-    
-    func updatePhotoURL(_ url: URL, completion: @escaping (Error?) -> Void) {
-        changePhotoURL(url, completion: completion)
-    }
-    
-    func removePhotoURL(completion: @escaping (Error?) -> Void) {
-        changePhotoURL(nil, completion: completion)
-    }
-    
-    private func changePhotoURL(_ url: URL?, completion: @escaping (Error?) -> Void) {
-        let request = auth.currentUser?.createProfileChangeRequest()
-        request?.photoURL = url
-        request?.commitChanges(completion: { (error) in
-            completion(error)
-        })
-    }
-    
-}
-
-// MARK: - SessionStatePublisherProtocol
-
-extension UserSession: SessionStatePublisherProtocol {
-    
-    var sessionStatePublisher: AnyPublisher<UserSessionState, Never> {
-        sessionStateSubject.eraseToAnyPublisher()
+    func updateUserPhoto(_ image: UIImage, completion: @escaping () -> Void) {
+        let handleAnError: (Error) -> Void = { (error) in
+            print("Unresolved error \(error.localizedDescription)")
+            completion()
+        }
+        if networkState.isReachable, let userId = _userInfo.id, let data = image.jpegData(compressionQuality: 0.25) {
+            let request = UserImageFirestoreRequest(userId: userId, data: data)
+            storage.upload(request: request, onSuccess: { (photoURL) in
+                self.userProfile.updatePhoto(url: photoURL, onSuccess: {
+                    self.userDefaults.set(data, forKey: UserDefaultsKey.userImage.rawValue)
+                    completion()
+                }, onFailure: handleAnError)
+            }, onFailure: handleAnError)
+        } else {
+            print("There is not iternet connection")
+            completion()
+        }
     }
     
 }

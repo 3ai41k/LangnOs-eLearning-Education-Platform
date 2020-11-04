@@ -59,7 +59,7 @@ final class CreateVocabularyViewModel: CreateVocabularyViewModelProtocol {
     // MARK: - Public methods
     
     func doneAction() {
-        guard let userId = userSession.userId else { return }
+        guard let userId = userSession.userInfo.id else { return }
         
         let vocabulary = Vocabulary(userId: userId, title: "Test", category: "Test", words: [Word(term: "Test1", definition: "Test1")])
         let request = VocabularyCreateRequest(vocabulary: vocabulary)

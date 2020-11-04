@@ -61,10 +61,8 @@ final class DashboardViewModel: DashboardViewModelProtocol {
     // MARK: - Private properties
     
     private let router: DashboardCoordinatorProtocol
-    private let userSession: SessionInfoProtocol & SessionStatePublisherProtocol
+    private let userSession: SessionInfoProtocol
     private let dataProvider: FirebaseDatabaseFetchingProtocol
-    private let coreDataStack: CoreDataClearableProtocol
-    private let mediaDownloader: MediaDownloadableProtocol
     
     private var favoriteVocabularies: [Vocabulary] = [] {
         didSet {
@@ -79,27 +77,22 @@ final class DashboardViewModel: DashboardViewModelProtocol {
     // MARK: - Init
     
     init(router: DashboardCoordinatorProtocol,
-         userSession: SessionInfoProtocol & SessionStatePublisherProtocol,
-         dataProvider: FirebaseDatabaseFetchingProtocol,
-         coreDataStack: CoreDataClearableProtocol,
-         mediaDownloader: MediaDownloadableProtocol) {
+         userSession: SessionInfoProtocol,
+         dataProvider: FirebaseDatabaseFetchingProtocol) {
         self.router = router
         self.userSession = userSession
         self.dataProvider = dataProvider
-        self.coreDataStack = coreDataStack
-        self.mediaDownloader = mediaDownloader
         
         self.userImage = .init(nil)
         
-        self.bindUserSession()
         self.setupNotifications()
         
         self.setupEmptySection(&tableSections)
         self.setupMyWorkSection(&tableSections)
         self.setupFavoritesSection(&tableSections)
         
-        self.downloadUserPhoto()
         self.fetchFavoriteVocabularies()
+        self.setUserPhoto()
     }
     
     // MARK: - Public methods
@@ -118,7 +111,7 @@ final class DashboardViewModel: DashboardViewModelProtocol {
     }
     
     func userProfileAction() {
-        if let _ = userSession.userId {
+        if userSession.userInfo.isLogin == true {
             router.navigateToUserProfile()
         } else {
             router.navigateToLogin()
@@ -126,18 +119,6 @@ final class DashboardViewModel: DashboardViewModelProtocol {
     }
     
     // MARK: - Private methods
-    
-    private func bindUserSession() {
-        userSession.sessionStatePublisher.sink(receiveValue: { [weak self] (state) in
-            switch state {
-            case .didUserLogin:
-                self?.downloadUserPhoto()
-                self?.fetchFavoriteVocabularies()
-            case .didUserLogout:
-                self?.clearUserCash()
-            }
-        }).store(in: &cancellables)
-    }
     
     private func setupNotifications() {
         NotificationCenter.default
@@ -147,10 +128,26 @@ final class DashboardViewModel: DashboardViewModelProtocol {
             .sink { [weak self] in
                 self?.titleViewStateSubject.send($0 == .unavailable ? .offline : .hide)
         }.store(in: &cancellables)
+        NotificationCenter.default
+            .publisher(for: .didNewUserLogin)
+            .sink { [weak self] _ in
+                self?.setUserPhoto()
+        }.store(in: &cancellables)
+        NotificationCenter.default
+            .publisher(for: .didUserLogout)
+            .sink { [weak self] _ in
+                self?.userImage.value = SFSymbols.personCircle()
+        }.store(in: &cancellables)
+    }
+    
+    private func setUserPhoto() {
+        userSession.getUserPhoto({ (image) in
+            self.userImage.value = image != nil ? image : SFSymbols.personCircle()
+        })
     }
     
     private func fetchFavoriteVocabularies() {
-        guard let userId = userSession.userId else { return }
+        guard let userId = userSession.userInfo.id else { return }
         
         let request = FavoriteVocabularyFetchRequest(userId: userId)
         dataProvider.fetch(request: request, onSuccess: { (vocabularies: [Vocabulary]) in
@@ -162,34 +159,6 @@ final class DashboardViewModel: DashboardViewModelProtocol {
         }) { (error) in
             self.router.showError(error)
         }
-    }
-    
-    private func downloadUserPhoto() {
-        if let data = UserDefaults.standard.data(forKey: UserDefaultsKey.userImage.rawValue), let image = UIImage(data: data) {
-            userImage.value = image
-        } else if let photoURL = userSession.photoURL {
-            mediaDownloader.downloadMedia(url: photoURL, onSucces: { (data) in
-                if let image = UIImage(data: data)  {
-                    UserDefaults.standard.set(data, forKey: UserDefaultsKey.userImage.rawValue)
-                    self.userImage.value = image
-                } else {
-                    self.userImage.value = SFSymbols.personCircle()
-                }
-            }) { (error) in
-                self.userImage.value = SFSymbols.personCircle()
-                self.router.showError(error)
-            }
-        } else {
-            userImage.value = SFSymbols.personCircle()
-        }
-    }
-    
-    private func clearUserCash() {
-        UserDefaults.standard.removeObject(forKey: UserDefaultsKey.userImage.rawValue)
-        userImage.value = SFSymbols.personCircle()
-        
-        setEmptyFavoritesSection()
-        coreDataStack.clear()
     }
     
     private func setupEmptySection(_ tableSections: inout [SectionViewModelProtocol]) {

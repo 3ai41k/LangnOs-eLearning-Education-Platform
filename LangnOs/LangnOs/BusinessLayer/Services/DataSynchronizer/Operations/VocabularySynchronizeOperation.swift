@@ -34,7 +34,7 @@ final class VocabularySynchronizeOperation: SynchronizeOperation {
     // MARK: - Private methods
     
     private func getUnsynchronizedVocabularies() -> [Vocabulary] {
-        guard let userId = UserSession.shared.userId else { return [] }
+        guard let userId = UserSession.shared.userInfo.id else { return [] }
         
         let predicate = NSPredicate(format: "userId == %@ AND isSynchronized == %@", argumentArray: [userId, false])
         do {

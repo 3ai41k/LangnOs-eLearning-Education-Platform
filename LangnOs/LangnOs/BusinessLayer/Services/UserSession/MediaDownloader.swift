@@ -18,8 +18,6 @@ final class MediaDownloader { }
 
 extension MediaDownloader: MediaDownloadableProtocol {
     
-    // MARK: Refactot it
-    
     func downloadMedia(url: URL, onSucces: @escaping (Data) -> Void, onFailure: @escaping (Error) -> Void) {
         URLSession.shared.dataTask(with: url) { (data, response, error) in
             DispatchQueue.main.async {

@@ -13,11 +13,11 @@ enum FirebaseStorageError: Error {
 }
 
 protocol FirebaseStorageUploadingProtocol {
-    func upload(request: FirebaseFirestoreUploadRequestProtocol, completion: @escaping (Result<URL, Error>) -> Void)
+    func upload(request: FirebaseFirestoreUploadRequestProtocol, onSuccess: @escaping (URL) -> Void, onFailure: @escaping (Error) -> Void)
 }
 
 protocol FirebaseStorageRemovingProtocol {
-    func delete(request: FirebaseFirestoreDeleteRequestProtocol, completion: @escaping (Error?) -> Void)
+    func delete(request: FirebaseFirestoreDeleteRequestProtocol, onSuccess: @escaping () -> Void, onFailure: @escaping (Error) -> Void)
 }
 
 final class FirebaseStorage {
@@ -32,21 +32,21 @@ final class FirebaseStorage {
 
 extension FirebaseStorage: FirebaseStorageUploadingProtocol {
     
-    func upload(request: FirebaseFirestoreUploadRequestProtocol, completion: @escaping (Result<URL, Error>) -> Void) {
+    func upload(request: FirebaseFirestoreUploadRequestProtocol, onSuccess: @escaping (URL) -> Void, onFailure: @escaping (Error) -> Void) {
         let reference = storage.reference(withPath: request.path)
         reference.putData(request.data, metadata: request.metaData) { (metaData, error) in
             if let error = error {
-                completion(.failure(error))
+                onFailure(error)
             } else {
                 reference.downloadURL { (url, error) in
                     if let error = error {
-                        completion(.failure(error))
+                        onFailure(error)
                     } else {
                         guard let url = url else {
-                            completion(.failure(FirebaseStorageError.urlNotFound))
+                            onFailure(FirebaseStorageError.urlNotFound)
                             return
                         }
-                        completion(.success(url))
+                        onSuccess(url)
                     }
                 }
             }
@@ -59,10 +59,14 @@ extension FirebaseStorage: FirebaseStorageUploadingProtocol {
 
 extension FirebaseStorage: FirebaseStorageRemovingProtocol {
     
-    func delete(request: FirebaseFirestoreDeleteRequestProtocol, completion: @escaping (Error?) -> Void) {
+    func delete(request: FirebaseFirestoreDeleteRequestProtocol, onSuccess: @escaping () -> Void, onFailure: @escaping (Error) -> Void) {
         let reference = storage.reference(withPath: request.path)
         reference.delete { (error) in
-            completion(error)
+            if let error = error {
+                onFailure(error)
+            } else {
+                onSuccess()
+            }
         }
     }
     

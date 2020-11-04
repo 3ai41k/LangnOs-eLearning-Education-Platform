@@ -36,7 +36,7 @@ final class AccountViewModel: AccountViewModelProtocol {
     var userPhoto: CurrentValueSubject<UIImage?, Never>
     
     var username: String {
-        if let username = userSession.username {
+        if let username = userSession.userInfo.name {
             return username
         } else {
             return "Anonim".localize
@@ -44,7 +44,7 @@ final class AccountViewModel: AccountViewModelProtocol {
     }
     
     var email: String {
-        if let email = userSession.email {
+        if let email = userSession.userInfo.email {
             return email
         } else {
             return "_______@____.___".localize
@@ -57,14 +57,14 @@ final class AccountViewModel: AccountViewModelProtocol {
     
     private let router: AccountCoordinatorProtocol
     private let authorizator: LogOutableProtocol
-    private let userSession: SessionInfoProtocol & ProfileExtandableProtocol
+    private let userSession: SessionInfoProtocol
     private let storage: FirebaseStorageUploadingProtocol & FirebaseStorageRemovingProtocol
     
     // MARK: - Init
     
     init(router: AccountCoordinatorProtocol,
          authorizator: LogOutableProtocol,
-         userSession: SessionInfoProtocol & ProfileExtandableProtocol,
+         userSession: SessionInfoProtocol,
          storage: FirebaseStorageUploadingProtocol & FirebaseStorageRemovingProtocol) {
         self.router = router
         self.authorizator = authorizator
@@ -85,18 +85,10 @@ final class AccountViewModel: AccountViewModelProtocol {
     
     func editPhoto() {
         router.showActionSheet(title: nil, message: nil, actions: [
-            TakePhotoAlertAction(handler: {
-                self.router.navigateToImagePicker(sourceType: .photoLibrary, didImageSelect: self.selectImageAction)
-            }),
-            CameraRollAlertAction(handler: {
-                self.router.navigateToImagePicker(sourceType: .camera, didImageSelect: self.selectImageAction)
-            }),
-            PhotoLibraryAlertAction(handler: {
-                self.router.navigateToImagePicker(sourceType: .photoLibrary, didImageSelect: self.selectImageAction)
-            }),
-            RemovePhotoAlertAction(handler: {
-                self.removeImageAction()
-            }),
+            TakePhotoAlertAction(handler: selectImageAction),
+            CameraRollAlertAction(handler: selectImageAction),
+            PhotoLibraryAlertAction(handler: selectImageAction),
+            RemovePhotoAlertAction(handler: removeImageAction),
             CancelAlertAction(handler: { })
         ])
     }
@@ -104,10 +96,8 @@ final class AccountViewModel: AccountViewModelProtocol {
     // MARK: - Private methods
     
     private func downloadUserPhoto() {
-        if let data = UserDefaults.standard.data(forKey: UserDefaultsKey.userImage.rawValue), let image = UIImage(data: data) {
-            userPhoto.value = image
-        } else {
-            userPhoto.value = SFSymbols.personCircle()
+        userSession.getUserPhoto { (image) in
+            self.userPhoto.value = image != nil ? image : SFSymbols.personCircle()
         }
     }
     
@@ -147,53 +137,17 @@ final class AccountViewModel: AccountViewModelProtocol {
     
     // MARK: - Actions
     
-    private func selectImageAction(_ image: UIImage) {
-        guard
-            let userId = userSession.userId,
-            let data = image.jpegData(compressionQuality: 0.25)
-        else {
-            return
-        }
-        
-        userPhoto.value = nil
-        
-        let request = UserImageFirestoreRequest(userId: userId, data: data)
-        storage.upload(request: request) { (result) in
-            switch result {
-            case .success(let photoURL):
-                self.userSession.updatePhotoURL(photoURL) { (error) in
-                    if let error = error {
-                        self.router.showError(error)
-                    } else {
-                        UserDefaults.standard.set(data, forKey: UserDefaultsKey.userImage.rawValue)
-                        self.userPhoto.value = image
-                    }
-                }
-            case .failure(let error):
-                self.router.showError(error)
+    private func selectImageAction() {
+        router.navigateToImagePicker(sourceType: .photoLibrary) { (image) in
+            self.userSession.updateUserPhoto(image) {
+                self.userPhoto.value = image
             }
         }
     }
     
     private func removeImageAction() {
-        guard let userId = userSession.userId else { return }
-        
-        userPhoto.value = nil
-        
-        let request = DeleteUserImageFirestoreRequest(userId: userId)
-        storage.delete(request: request) { (error) in
-            if let error = error {
-                self.router.showError(error)
-            } else {
-                self.userSession.removePhotoURL { (error) in
-                    if let error = error {
-                        self.router.showError(error)
-                    } else {
-                        UserDefaults.standard.removeObject(forKey: UserDefaultsKey.userImage.rawValue)
-                        self.userPhoto.value = SFSymbols.personCircle()
-                    }
-                }
-            }
+        userSession.removeUserPhoto {
+            self.userPhoto.value = SFSymbols.personCircle()
         }
     }
     
