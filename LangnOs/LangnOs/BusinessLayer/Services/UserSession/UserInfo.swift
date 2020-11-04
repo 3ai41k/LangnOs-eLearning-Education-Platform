@@ -58,7 +58,7 @@ final class UserInfo: UserInfoChangeStateProtocol {
         userStateHandeler = auth.addStateDidChangeListener { [weak self] (auth, newUser) in
             if newUser == nil {
                 self?.didUserLogoutHandler?()
-            } else if newUser != auth.currentUser {
+            } else {
                 self?.didNewUserLoginHandler?()
             }
         }

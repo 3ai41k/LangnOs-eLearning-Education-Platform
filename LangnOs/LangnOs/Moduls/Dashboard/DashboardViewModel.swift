@@ -85,14 +85,11 @@ final class DashboardViewModel: DashboardViewModelProtocol {
         
         self.userImage = .init(nil)
         
-        self.setupNotifications()
-        
         self.setupEmptySection(&tableSections)
         self.setupMyWorkSection(&tableSections)
         self.setupFavoritesSection(&tableSections)
         
-        self.fetchFavoriteVocabularies()
-        self.setUserPhoto()
+        self.setupNotifications()
     }
     
     // MARK: - Public methods
@@ -132,11 +129,13 @@ final class DashboardViewModel: DashboardViewModelProtocol {
             .publisher(for: .didNewUserLogin)
             .sink { [weak self] _ in
                 self?.setUserPhoto()
+                self?.fetchFavoriteVocabularies()
         }.store(in: &cancellables)
         NotificationCenter.default
             .publisher(for: .didUserLogout)
             .sink { [weak self] _ in
-                self?.userImage.value = SFSymbols.personCircle()
+                self?.setUserPhoto()
+                self?.fetchFavoriteVocabularies()
         }.store(in: &cancellables)
         NotificationCenter.default
             .publisher(for: .didUserChangePhoto)
@@ -146,13 +145,16 @@ final class DashboardViewModel: DashboardViewModelProtocol {
     }
     
     private func setUserPhoto() {
-        userSession.getUserPhoto({ (image) in
+        userSession.getUserPhoto { (image) in
             self.userImage.value = image != nil ? image : SFSymbols.personCircle()
-        })
+        }
     }
     
     private func fetchFavoriteVocabularies() {
-        guard let userId = userSession.userInfo.id else { return }
+        guard let userId = userSession.userInfo.id else {
+            self.setEmptyFavoritesSection()
+            return
+        }
         
         let request = FavoriteVocabularyFetchRequest(userId: userId)
         dataProvider.fetch(request: request, onSuccess: { (vocabularies: [Vocabulary]) in
