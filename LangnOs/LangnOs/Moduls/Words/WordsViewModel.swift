@@ -37,7 +37,7 @@ final class WordsViewModel: WordsViewModelProtocol {
     // MARK: - Private properties
     
     private let router: WordsCoordinatorProtocol
-    private let vocabulary: Vocabulary
+    private var vocabulary: Vocabulary
     private let dataProvider: FirebaseDatabaseUpdatingProtocol
     
     private var setEditingPublisher: AnyPublisher<Bool, Never> {
@@ -93,7 +93,7 @@ final class WordsViewModel: WordsViewModelProtocol {
         if vocabulary.words != words {
             router.showActivity()
             
-            vocabulary.words = words
+            vocabulary.updateWords(words)
             
             let request = VocabularyUpdateRequest(vocabulary: vocabulary)
             dataProvider.update(request: request, onSuccess: {

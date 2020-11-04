@@ -79,12 +79,18 @@ final class VocabularyListViewModel: VocabularyListViewModelProtocol {
     }
     
     private func updateVocabularySection(_ vocabularies: [Vocabulary]) {
-        let cellViewModels = vocabularies.map({ (vocabulary) in
-            AddToFavoriteCellViewModel(vocabulary: vocabulary) { [weak self] isFavorite in
-                vocabulary.isFavorite = isFavorite
+        var cellViewModels: [CellViewModelProtocol] = []
+        for var vocabulary in vocabularies {
+            let cellViewModel = AddToFavoriteCellViewModel(vocabulary: vocabulary) { [weak self] isFavorite in
+                if isFavorite {
+                    vocabulary.makeFavorite()
+                } else {
+                    vocabulary.makeUnfavorite()
+                }
                 self?.updateVocabulary(vocabulary)
             }
-        })
+            cellViewModels.append(cellViewModel)
+        }
         tableSections[SectionType.vocabulary.rawValue].cells.value = cellViewModels
     }
     

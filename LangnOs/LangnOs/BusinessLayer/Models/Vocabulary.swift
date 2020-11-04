@@ -8,29 +8,27 @@
 
 import Foundation
 
-final class Vocabulary {
+struct Vocabulary: Codable {
     
     // MARK: - Public properties
     
     let id: String
     let userId: String
-    private(set) var isSynchronized: Bool
     let title: String
     let category: String
-    var isFavorite: Bool
-    var isPrivate: Bool
+    private(set) var isFavorite: Bool
+    private(set) var isPrivate: Bool
     let phrasesLearned: Int
     let phrasesLeftToLearn: Int
     let totalLearningTime: Double
     let createdDate: Date
-    var words: [Word]
+    private(set) var words: [Word]
     
     // MARK: - Init
     
     init(userId: String, title: String, category: String, words: [Word]) {
         self.id = UUID().uuidString
         self.userId = userId
-        self.isSynchronized = false
         self.title = title
         self.category = category
         self.isFavorite = false
@@ -42,26 +40,9 @@ final class Vocabulary {
         self.words = words
     }
     
-    init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        id = try container.decode(String.self, forKey: .id)
-        userId = try container.decode(String.self, forKey: .userId)
-        isSynchronized = false
-        title = try container.decode(String.self, forKey: .title)
-        category = try container.decode(String.self, forKey: .category)
-        isFavorite = try container.decode(Bool.self, forKey: .isFavorite)
-        isPrivate = try container.decode(Bool.self, forKey: .isPrivate)
-        phrasesLearned = try container.decode(Int.self, forKey: .phrasesLearned)
-        phrasesLeftToLearn = try container.decode(Int.self, forKey: .phrasesLeftToLearn)
-        totalLearningTime = try container.decode(Double.self, forKey: .totalLearningTime)
-        createdDate = try container.decode(Date.self, forKey: .createdDate)
-        words = try container.decode([Word].self, forKey: .words)
-    }
-    
     init(entity: VocabularyEntity) {
         self.id = entity.id!.uuidString
         self.userId = entity.userId!
-        self.isSynchronized = entity.isSynchronized
         self.title = entity.title!
         self.category = entity.category!
         self.isFavorite = entity.isFavorite
@@ -77,8 +58,20 @@ final class Vocabulary {
     
     // MARK: - Public methods
     
-    func needSynchronize() {
-        isSynchronized = false
+    mutating func makeFavorite() {
+        self.isFavorite = true
+    }
+    
+    mutating func makeUnfavorite() {
+        self.isFavorite = false
+    }
+    
+    mutating func makePrivate() {
+        self.isPrivate = true
+    }
+    
+    mutating func updateWords(_ words: [Word]) {
+        self.words = words
     }
     
 }

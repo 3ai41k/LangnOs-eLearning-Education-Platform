@@ -26,7 +26,6 @@ extension Vocabulary: CDEntityProtocol {
         request.predicate = NSPredicate(format: "id == %@", UUID(uuidString: self.id)! as CVarArg)
         do {
             let vocabularies = try context.fetch(request)
-            if NetworkState.shared.isReachable { self.needSynchronize() }
             if vocabularies.isEmpty {
                 _ = VocabularyEntity(vocabulary: self, context: context)
             }
@@ -41,20 +40,7 @@ extension Vocabulary: CDEntityProtocol {
         do {
             let vocabularies = try context.fetch(request)
             if let vocabulary = vocabularies.first {
-                vocabulary.id = UUID(uuidString: self.id)
-                vocabulary.userId = self.userId
-                vocabulary.isSynchronized = NetworkState.shared.isReachable
-                vocabulary.title = self.title
-                vocabulary.category = self.category
-                vocabulary.isFavorite = self.isFavorite
-                vocabulary.isPrivate = self.isPrivate
-                vocabulary.phrasesLearned = Int32(self.phrasesLearned)
-                vocabulary.phrasesLeftToLearn = Int32(self.phrasesLeftToLearn)
-                vocabulary.totalLearningTime = self.totalLearningTime
-                vocabulary.createdDate = self.createdDate
-                vocabulary.words = NSSet(array: self.words.map({
-                    WordEntity(word: $0, context: context)
-                }))
+                vocabulary.update(self, context: context)
             }
         } catch {
             throw error

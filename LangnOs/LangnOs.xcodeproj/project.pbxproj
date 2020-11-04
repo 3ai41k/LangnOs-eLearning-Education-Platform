@@ -41,7 +41,6 @@
 		8D435AC3254F534E00838691 /* VocabularyCategoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D435ABF254F534E00838691 /* VocabularyCategoryViewModel.swift */; };
 		8D435AC4254F534E00838691 /* VocabularyCategoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D435AC0254F534E00838691 /* VocabularyCategoryViewController.xib */; };
 		8D435ACB255065A500838691 /* DataSynchronizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D435ACA255065A500838691 /* DataSynchronizer.swift */; };
-		8D435ACD25509CA700838691 /* Vocabulary+Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D435ACC25509CA700838691 /* Vocabulary+Codable.swift */; };
 		8D435ACF25509CD500838691 /* Vocabulary+CDEntityProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D435ACE25509CD500838691 /* Vocabulary+CDEntityProtocol.swift */; };
 		8D435AD22550A1DB00838691 /* SynchronizeOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D435AD12550A1DB00838691 /* SynchronizeOperation.swift */; };
 		8D435AD42550A2C400838691 /* VocabularySynchronizeOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D435AD32550A2C400838691 /* VocabularySynchronizeOperation.swift */; };
@@ -317,7 +316,6 @@
 		8D435ABF254F534E00838691 /* VocabularyCategoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabularyCategoryViewModel.swift; sourceTree = "<group>"; };
 		8D435AC0254F534E00838691 /* VocabularyCategoryViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VocabularyCategoryViewController.xib; sourceTree = "<group>"; };
 		8D435ACA255065A500838691 /* DataSynchronizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSynchronizer.swift; sourceTree = "<group>"; };
-		8D435ACC25509CA700838691 /* Vocabulary+Codable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Vocabulary+Codable.swift"; sourceTree = "<group>"; };
 		8D435ACE25509CD500838691 /* Vocabulary+CDEntityProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Vocabulary+CDEntityProtocol.swift"; sourceTree = "<group>"; };
 		8D435AD12550A1DB00838691 /* SynchronizeOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SynchronizeOperation.swift; sourceTree = "<group>"; };
 		8D435AD32550A2C400838691 /* VocabularySynchronizeOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabularySynchronizeOperation.swift; sourceTree = "<group>"; };
@@ -1441,7 +1439,6 @@
 				8D94E7CE2534E0FD005FA4B9 /* Protocols */,
 				8D94E7CD2534E0F1005FA4B9 /* CoreDataEntities */,
 				8DAA553F2529112B00FF5066 /* Vocabulary.swift */,
-				8D435ACC25509CA700838691 /* Vocabulary+Codable.swift */,
 				8D435ACE25509CD500838691 /* Vocabulary+CDEntityProtocol.swift */,
 				8DAA554D25291D3400FF5066 /* Word.swift */,
 			);
@@ -1875,7 +1872,6 @@
 				8DD28B85252667F600F59B7D /* AppDelegate.swift in Sources */,
 				8DF253C42544B07A001492AE /* FlashCardsSettingsViewModel.swift in Sources */,
 				8DD28BDF2526886200F59B7D /* NavigationBarDrivableModel.swift in Sources */,
-				8D435ACD25509CA700838691 /* Vocabulary+Codable.swift in Sources */,
 				8D524FC92530D22A002A6E01 /* ButtonDrivableModel.swift in Sources */,
 				8D435AE0255166A500838691 /* AsyncOperation.swift in Sources */,
 				8DF253BC2544A2AD001492AE /* ButtonTableViewCell.swift in Sources */,
