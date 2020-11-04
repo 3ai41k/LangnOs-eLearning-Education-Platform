@@ -39,12 +39,8 @@ final class UserSession {
     
     // MARK: - Private properties
     
-    private var auth: Auth {
-        Auth.auth()
-    }
-    
+    private let auth = Auth.auth()
     private let sessionStateSubject = PassthroughSubject<UserSessionState, Never>()
-    
     private var authStateDidChangeListenerHandle: AuthStateDidChangeListenerHandle!
     
     // MARK: - Init
@@ -61,10 +57,10 @@ final class UserSession {
     
     private func setupNotifications() {
         authStateDidChangeListenerHandle = auth.addStateDidChangeListener { [weak self] (_, user) in
-            if let _ = user {
-                self?.sessionStateSubject.send(.didUserLogin)
-            } else {
+            if user == nil {
                 self?.sessionStateSubject.send(.didUserLogout)
+            } else if self?.auth.currentUser != user {
+                self?.sessionStateSubject.send(.didUserLogin)
             }
         }
     }

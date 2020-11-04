@@ -40,12 +40,12 @@ final class DashboardViewController: BindibleViewController<DashboardViewModelPr
                     self?.setupActivityButton()
                 }
             }),
-            viewModel?.isOfflineTitleHiddenPublisher.sink(receiveValue: { [weak self] (isHidden) in
-                self?.navigationController?.navigationBar.topItem?.titleView?.isHidden = !isHidden
-                UIView.animate(withDuration: 0.3, animations: {
-                    self?.navigationController?.navigationBar.topItem?.titleView?.layer.opacity = isHidden ? 0.0 : 1.0
-                }) { (finished) in
-                    self?.navigationController?.navigationBar.topItem?.titleView?.isHidden = isHidden
+            viewModel?.titleViewStatePublisher.sink(receiveValue: { [weak self] (state) in
+                switch state {
+                case .offline:
+                    self?.navigationController?.navigationBar.topItem?.titleView = OfflineTitleView()
+                case .hide:
+                    self?.navigationController?.navigationBar.topItem?.titleView = nil
                 }
             })
         ]
@@ -53,7 +53,6 @@ final class DashboardViewController: BindibleViewController<DashboardViewModelPr
     
     override func setupUI() {
         navigationController?.navigationBar.prefersLargeTitles = true
-        navigationController?.navigationBar.topItem?.titleView = OfflineTitleView()
     }
     
     // MARK: - Private methods

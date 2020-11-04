@@ -43,8 +43,8 @@
 		8D435ACB255065A500838691 /* DataSynchronizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D435ACA255065A500838691 /* DataSynchronizer.swift */; };
 		8D435ACD25509CA700838691 /* Vocabulary+Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D435ACC25509CA700838691 /* Vocabulary+Codable.swift */; };
 		8D435ACF25509CD500838691 /* Vocabulary+CDEntityProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D435ACE25509CD500838691 /* Vocabulary+CDEntityProtocol.swift */; };
-		8D435AD22550A1DB00838691 /* SyncronizeOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D435AD12550A1DB00838691 /* SyncronizeOperation.swift */; };
-		8D435AD42550A2C400838691 /* VocabularySyncronizeOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D435AD32550A2C400838691 /* VocabularySyncronizeOperation.swift */; };
+		8D435AD22550A1DB00838691 /* SynchronizeOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D435AD12550A1DB00838691 /* SynchronizeOperation.swift */; };
+		8D435AD42550A2C400838691 /* VocabularySynchronizeOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D435AD32550A2C400838691 /* VocabularySynchronizeOperation.swift */; };
 		8D435AE0255166A500838691 /* AsyncOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D435ADF255166A500838691 /* AsyncOperation.swift */; };
 		8D524F5D252E5AAA002A6E01 /* SearchBarCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D524F5B252E5AAA002A6E01 /* SearchBarCollectionReusableView.swift */; };
 		8D524F5E252E5AAA002A6E01 /* SearchBarCollectionReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D524F5C252E5AAA002A6E01 /* SearchBarCollectionReusableView.xib */; };
@@ -319,8 +319,8 @@
 		8D435ACA255065A500838691 /* DataSynchronizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSynchronizer.swift; sourceTree = "<group>"; };
 		8D435ACC25509CA700838691 /* Vocabulary+Codable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Vocabulary+Codable.swift"; sourceTree = "<group>"; };
 		8D435ACE25509CD500838691 /* Vocabulary+CDEntityProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Vocabulary+CDEntityProtocol.swift"; sourceTree = "<group>"; };
-		8D435AD12550A1DB00838691 /* SyncronizeOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncronizeOperation.swift; sourceTree = "<group>"; };
-		8D435AD32550A2C400838691 /* VocabularySyncronizeOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabularySyncronizeOperation.swift; sourceTree = "<group>"; };
+		8D435AD12550A1DB00838691 /* SynchronizeOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SynchronizeOperation.swift; sourceTree = "<group>"; };
+		8D435AD32550A2C400838691 /* VocabularySynchronizeOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabularySynchronizeOperation.swift; sourceTree = "<group>"; };
 		8D435ADF255166A500838691 /* AsyncOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncOperation.swift; sourceTree = "<group>"; };
 		8D524F5B252E5AAA002A6E01 /* SearchBarCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarCollectionReusableView.swift; sourceTree = "<group>"; };
 		8D524F5C252E5AAA002A6E01 /* SearchBarCollectionReusableView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchBarCollectionReusableView.xib; sourceTree = "<group>"; };
@@ -753,8 +753,8 @@
 			isa = PBXGroup;
 			children = (
 				8D435ADF255166A500838691 /* AsyncOperation.swift */,
-				8D435AD12550A1DB00838691 /* SyncronizeOperation.swift */,
-				8D435AD32550A2C400838691 /* VocabularySyncronizeOperation.swift */,
+				8D435AD12550A1DB00838691 /* SynchronizeOperation.swift */,
+				8D435AD32550A2C400838691 /* VocabularySynchronizeOperation.swift */,
 			);
 			path = Operations;
 			sourceTree = "<group>";
@@ -1937,7 +1937,7 @@
 				8DAA55472529129E00FF5066 /* DataProviderRequestProtocol.swift in Sources */,
 				8D524FE82533BC7B002A6E01 /* FlashCardsViewModel.swift in Sources */,
 				8D94E845253A1F8D005FA4B9 /* ImagePickerCoordinator.swift in Sources */,
-				8D435AD42550A2C400838691 /* VocabularySyncronizeOperation.swift in Sources */,
+				8D435AD42550A2C400838691 /* VocabularySynchronizeOperation.swift in Sources */,
 				8DD28BC625267A1700F59B7D /* PresentationCoordinator.swift in Sources */,
 				8DF2539325434F40001492AE /* MaterialsCellFactory.swift in Sources */,
 				8DF253BF2544A2BE001492AE /* ButtonCellViewModel.swift in Sources */,
@@ -1945,7 +1945,7 @@
 				8D435A88254C526200838691 /* UserDefaultsKey.swift in Sources */,
 				8D94E850253A4039005FA4B9 /* FirebaseFirestoreUploadRequestProtocol.swift in Sources */,
 				8D94E7D92534F772005FA4B9 /* NetworkState.swift in Sources */,
-				8D435AD22550A1DB00838691 /* SyncronizeOperation.swift in Sources */,
+				8D435AD22550A1DB00838691 /* SynchronizeOperation.swift in Sources */,
 				8D83EA6A252B8FEA004E6098 /* CreateVocabularyCellFactory.swift in Sources */,
 				8D524F64252E5E8F002A6E01 /* UniversalCollectionSectionViewModel.swift in Sources */,
 				8D435A35254B4E0C00838691 /* CollectionPath.swift in Sources */,

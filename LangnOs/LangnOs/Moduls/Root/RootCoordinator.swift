@@ -8,7 +8,11 @@
 
 import UIKit
 
-final class RootCoordinator: Coordinator, AlertPresentableProtocol {
+protocol RootNavigationProtocol {
+    
+}
+
+final class RootCoordinator: Coordinator {
     
     // MARK: - Private properties
     
@@ -34,5 +38,12 @@ final class RootCoordinator: Coordinator, AlertPresentableProtocol {
         window.rootViewController = tabBarController
         window.becomeKey()
     }
+    
+}
+
+// MARK: - RootNavigationProtocol
+
+extension RootCoordinator: RootNavigationProtocol {
+    
     
 }

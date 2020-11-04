@@ -19,7 +19,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FirebaseApp.configure()
         
         NetworkState.shared.observeReachability()
-        DataSynchronizer.shared.configure()
         
         setupUIGlobaly()
         

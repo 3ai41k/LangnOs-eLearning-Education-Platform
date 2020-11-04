@@ -21,12 +21,12 @@ extension Vocabulary: CDEntityProtocol {
         }
     }
     
-    func insert(context: NSManagedObjectContext, mode: DataBaseMode) throws {
+    func insert(context: NSManagedObjectContext) throws {
         let request = NSFetchRequest<VocabularyEntity>(entityName: "VocabularyEntity")
         request.predicate = NSPredicate(format: "id == %@", UUID(uuidString: self.id)! as CVarArg)
         do {
             let vocabularies = try context.fetch(request)
-            if mode == .offline { self.needSynchronize() }
+            if NetworkState.shared.isReachable { self.needSynchronize() }
             if vocabularies.isEmpty {
                 _ = VocabularyEntity(vocabulary: self, context: context)
             }
@@ -35,7 +35,7 @@ extension Vocabulary: CDEntityProtocol {
         }
     }
     
-    func update(context: NSManagedObjectContext, mode: DataBaseMode) throws {
+    func update(context: NSManagedObjectContext) throws {
         let request = NSFetchRequest<VocabularyEntity>(entityName: "VocabularyEntity")
         request.predicate = NSPredicate(format: "id == %@", UUID(uuidString: self.id)! as CVarArg)
         do {
@@ -43,7 +43,7 @@ extension Vocabulary: CDEntityProtocol {
             if let vocabulary = vocabularies.first {
                 vocabulary.id = UUID(uuidString: self.id)
                 vocabulary.userId = self.userId
-                vocabulary.isSynchronized = mode.isNeedToSynchronize
+                vocabulary.isSynchronized = NetworkState.shared.isReachable
                 vocabulary.title = self.title
                 vocabulary.category = self.category
                 vocabulary.isFavorite = self.isFavorite
@@ -61,7 +61,7 @@ extension Vocabulary: CDEntityProtocol {
         }
     }
     
-    func delete(context: NSManagedObjectContext, mode: DataBaseMode) throws {
+    func delete(context: NSManagedObjectContext) throws {
         let request = NSFetchRequest<VocabularyEntity>(entityName: "VocabularyEntity")
         request.predicate = NSPredicate(format: "id == %@", UUID(uuidString: self.id)! as CVarArg)
         do {

@@ -16,14 +16,12 @@ final class RootViewModel {
     
     // MARK: - Private properties
     
-    private let router: AlertPresentableProtocol
-    private let tabBarProviders: [TabBarProvider]
+    private let router: RootNavigationProtocol
     
     // MARK: - Init
     
-    init(router: AlertPresentableProtocol) {
+    init(router: RootNavigationProtocol) {
         self.router = router
-        self.tabBarProviders = TabBarProvider.allCases
     }
     
 }
@@ -33,7 +31,7 @@ final class RootViewModel {
 extension RootViewModel: RootViewModelInputProtocol {
     
     func getTabBarCoordinators() -> [Coordinator] {
-        tabBarProviders.map({
+        TabBarProvider.allCases.map({
             $0.generateCoordinator(parentViewController: nil)
         })
     }

@@ -30,5 +30,4 @@ extension VocabularyFetchRequest: DataProviderRequestProtocol {
         IsEqualToComponent("userId", isEqualTo: userId)
     }
     
-    
 }

@@ -18,19 +18,7 @@ final class RootTabBarController: UITabBarController {
         }
     }
     
-    // MARK: - Lifecycle
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        initializeComponents()
-    }
-    
     // MARK: - Private methods
-    
-    private func initializeComponents() {
-        
-    }
     
     private func bindViewModel() {
         viewControllers = viewModel?.getTabBarCoordinators().compactMap({

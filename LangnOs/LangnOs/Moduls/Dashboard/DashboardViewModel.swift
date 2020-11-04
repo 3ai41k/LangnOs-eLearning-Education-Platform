@@ -19,10 +19,15 @@ extension NavigatableViewModelProtocol {
     var navigationBarDrivableModel: DrivableModelProtocol? { nil }
 }
 
+enum TitleViewState {
+    case offline
+    case hide
+}
+
 protocol DashboardViewModelInputProtocol {
     var title: String { get }
     var userImage: CurrentValueSubject<UIImage?, Never> { get }
-    var isOfflineTitleHiddenPublisher: AnyPublisher<Bool, Never> { get }
+    var titleViewStatePublisher: AnyPublisher<TitleViewState, Never> { get }
 }
 
 protocol DashboardViewModelOutputProtocol {
@@ -48,8 +53,8 @@ final class DashboardViewModel: DashboardViewModelProtocol {
         "Home".localize
     }
     var userImage: CurrentValueSubject<UIImage?, Never>
-    var isOfflineTitleHiddenPublisher: AnyPublisher<Bool, Never> {
-        isOfflineTitleHiddenSubject.eraseToAnyPublisher()
+    var titleViewStatePublisher: AnyPublisher<TitleViewState, Never> {
+        titleViewStateSubject.eraseToAnyPublisher()
     }
     var tableSections: [SectionViewModelProtocol] = []
     
@@ -69,7 +74,7 @@ final class DashboardViewModel: DashboardViewModelProtocol {
     }
     
     private var cancellables: [AnyCancellable] = []
-    private var isOfflineTitleHiddenSubject = PassthroughSubject<Bool, Never>()
+    private var titleViewStateSubject = PassthroughSubject<TitleViewState, Never>()
     
     // MARK: - Init
     
@@ -86,7 +91,7 @@ final class DashboardViewModel: DashboardViewModelProtocol {
         
         self.userImage = .init(nil)
         
-        self.bindContext()
+        self.bindUserSession()
         self.setupNotifications()
         
         self.setupEmptySection(&tableSections)
@@ -122,19 +127,16 @@ final class DashboardViewModel: DashboardViewModelProtocol {
     
     // MARK: - Private methods
     
-    private func bindContext() {
-        cancellables = [
-            userSession.sessionStatePublisher.sink(receiveValue: { [weak self] (state) in
-                switch state {
-                case .didUserLogin:
-                    self?.downloadUserPhoto()
-                    self?.fetchFavoriteVocabularies()
-                case .didUserLogout:
-                    // TO DO - Delete dababase info
-                    self?.clearUserCash()
-                }
-            })
-        ]
+    private func bindUserSession() {
+        userSession.sessionStatePublisher.sink(receiveValue: { [weak self] (state) in
+            switch state {
+            case .didUserLogin:
+                self?.downloadUserPhoto()
+                self?.fetchFavoriteVocabularies()
+            case .didUserLogout:
+                self?.clearUserCash()
+            }
+        }).store(in: &cancellables)
     }
     
     private func setupNotifications() {
@@ -143,7 +145,7 @@ final class DashboardViewModel: DashboardViewModelProtocol {
             .compactMap({ $0.object as? Reachability })
             .map({ $0.connection })
             .sink { [weak self] in
-                self?.isOfflineTitleHiddenSubject.send($0 != .unavailable)
+                self?.titleViewStateSubject.send($0 == .unavailable ? .offline : .hide)
         }.store(in: &cancellables)
     }
     

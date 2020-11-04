@@ -45,7 +45,7 @@ extension DataProvider: FirebaseDatabaseFetchingProtocol {
                     onSuccess(.empty)
                 } else {
                     firebaseEntities.forEach({
-                        try? $0.insert(context: self.coreDataContext.viewContext, mode: .online)
+                        try? $0.insert(context: self.coreDataContext.viewContext)
                     })
                     onSuccess(firebaseEntities)
                 }
@@ -65,11 +65,11 @@ extension DataProvider: FirebaseDatabaseCreatingProtocol {
         guard let entity = request.entity else { onFailure(FirebaseDatabaseError.documentsWereNotFound); return }
         if networkState.isReachable {
             firebaseDatabase.create(request: request, onSuccess: {
-                try? entity.insert(context: self.coreDataContext.viewContext, mode: .online)
+                try? entity.insert(context: self.coreDataContext.viewContext)
                 onSuccess()
             }, onFailure: onFailure)
         } else {
-            try? entity.insert(context: coreDataContext.viewContext, mode: .offline)
+            try? entity.insert(context: coreDataContext.viewContext)
             onSuccess()
         }
     }
@@ -84,11 +84,12 @@ extension DataProvider: FirebaseDatabaseDeletingProtocol {
         guard let entity = request.entity else { onFailure(FirebaseDatabaseError.documentsWereNotFound); return }
         if networkState.isReachable {
             firebaseDatabase.delete(request: request, onSuccess: {
-                try? entity.delete(context: self.coreDataContext.viewContext, mode: .online)
+                try? entity.delete(context: self.coreDataContext.viewContext)
                 onSuccess()
             }, onFailure: onFailure)
         } else {
             // TO DO - Offline deleting
+            onFailure(FirebaseDatabaseError.isNotConnectionToTheInternet)
         }
     }
     
@@ -102,11 +103,11 @@ extension DataProvider: FirebaseDatabaseUpdatingProtocol {
         guard let entity = request.entity else { onFailure(FirebaseDatabaseError.documentsWereNotFound); return }
         if networkState.isReachable {
             firebaseDatabase.update(request: request, onSuccess: {
-                try? entity.update(context: self.coreDataContext.viewContext, mode: .online)
+                try? entity.update(context: self.coreDataContext.viewContext)
                 onSuccess()
             }, onFailure: onFailure)
         } else {
-            try? entity.update(context: coreDataContext.viewContext, mode: .offline)
+            try? entity.update(context: coreDataContext.viewContext)
             onSuccess()
         }
     }

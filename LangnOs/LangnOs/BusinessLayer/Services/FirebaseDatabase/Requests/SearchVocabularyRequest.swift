@@ -9,6 +9,7 @@
 import Foundation
 
 enum SearchVocabularBy: String, CaseIterable {
+    
     case name = "title"
     case category = "category"
     

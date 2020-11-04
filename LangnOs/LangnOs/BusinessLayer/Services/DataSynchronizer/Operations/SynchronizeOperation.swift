@@ -8,16 +8,23 @@
 
 import Foundation
 
-class SyncronizeOperation: AsyncOperation {
+class SynchronizeOperation: AsyncOperation {
     
     // MARK: - Protexted(internal) properties
     
     internal let firebaseDatabase = FirebaseDatabase.shared
+    internal let dispatchGroup: DispatchGroup
     
     // MARK: - Lifecycle
     
+    init(dispatchGroup: DispatchGroup) {
+        self.dispatchGroup = dispatchGroup
+        
+        super.init()
+    }
+    
     deinit {
-        print("=> ", self)
+        print("=> deinit ", self)
     }
     
     // MARK: - Override

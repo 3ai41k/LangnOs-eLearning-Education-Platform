@@ -15,7 +15,7 @@ class AsyncOperation: Operation {
     internal enum State: String {
         case ready
         case executing
-        case finishsed
+        case finished
         
         var keyPath: String {
             "is" + rawValue.capitalized
@@ -28,8 +28,8 @@ class AsyncOperation: Operation {
             willChangeValue(forKey: state.keyPath)
         }
         didSet {
-            willChangeValue(forKey: oldValue.keyPath)
-            willChangeValue(forKey: state.keyPath)
+            didChangeValue(forKey: oldValue.keyPath)
+            didChangeValue(forKey: state.keyPath)
         }
     }
     
@@ -44,7 +44,7 @@ class AsyncOperation: Operation {
     }
     
     override var isFinished: Bool {
-        state == .finishsed
+        state == .finished
     }
     
     override var isAsynchronous: Bool {
@@ -53,7 +53,7 @@ class AsyncOperation: Operation {
     
     override func start() {
         if isCancelled {
-            state = .finishsed
+            state = .finished
         } else {
             main()
             state = .executing
@@ -62,7 +62,7 @@ class AsyncOperation: Operation {
     
     override func cancel() {
         super.cancel()
-        state = .finishsed
+        state = .finished
     }
     
 }
