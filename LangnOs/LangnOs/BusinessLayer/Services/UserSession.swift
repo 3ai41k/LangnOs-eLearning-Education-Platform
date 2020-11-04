@@ -125,6 +125,7 @@ extension UserSession: SessionInfoProtocol {
             storage.upload(request: request, onSuccess: { (photoURL) in
                 self.userProfile.updatePhoto(url: photoURL, onSuccess: {
                     self.userDefaults.set(data, forKey: UserDefaultsKey.userImage.rawValue)
+                    NotificationCenter.default.post(name: .didUserChangePhoto, object: nil)
                     completion()
                 }, onFailure: handleAnError)
             }, onFailure: handleAnError)

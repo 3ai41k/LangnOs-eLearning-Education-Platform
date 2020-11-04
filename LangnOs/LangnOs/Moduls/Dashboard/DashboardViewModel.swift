@@ -138,6 +138,11 @@ final class DashboardViewModel: DashboardViewModelProtocol {
             .sink { [weak self] _ in
                 self?.userImage.value = SFSymbols.personCircle()
         }.store(in: &cancellables)
+        NotificationCenter.default
+            .publisher(for: .didUserChangePhoto)
+            .sink { [weak self] _ in
+                self?.setUserPhoto()
+        }.store(in: &cancellables)
     }
     
     private func setUserPhoto() {

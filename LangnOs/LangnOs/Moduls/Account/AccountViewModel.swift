@@ -86,7 +86,6 @@ final class AccountViewModel: AccountViewModelProtocol {
     func editPhoto() {
         router.showActionSheet(title: nil, message: nil, actions: [
             TakePhotoAlertAction(handler: selectImageAction),
-            CameraRollAlertAction(handler: selectImageAction),
             PhotoLibraryAlertAction(handler: selectImageAction),
             RemovePhotoAlertAction(handler: removeImageAction),
             CancelAlertAction(handler: { })
@@ -139,6 +138,7 @@ final class AccountViewModel: AccountViewModelProtocol {
     
     private func selectImageAction() {
         router.navigateToImagePicker(sourceType: .photoLibrary) { (image) in
+            self.userPhoto.value = nil
             self.userSession.updateUserPhoto(image) {
                 self.userPhoto.value = image
             }
@@ -146,6 +146,7 @@ final class AccountViewModel: AccountViewModelProtocol {
     }
     
     private func removeImageAction() {
+        userPhoto.value = nil
         userSession.removeUserPhoto {
             self.userPhoto.value = SFSymbols.personCircle()
         }

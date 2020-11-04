@@ -705,6 +705,7 @@
 			isa = PBXGroup;
 			children = (
 				8D435AD62550A37E00838691 /* Requests */,
+				8DAA55462529129E00FF5066 /* DataProviderRequestProtocol.swift */,
 				8DAA553D25290FDD00FF5066 /* FirebaseDatabase.swift */,
 				8D94E7D32534E3DC005FA4B9 /* DataProvider.swift */,
 			);
@@ -714,7 +715,6 @@
 		8D435AD62550A37E00838691 /* Requests */ = {
 			isa = PBXGroup;
 			children = (
-				8DAA55462529129E00FF5066 /* DataProviderRequestProtocol.swift */,
 				8DF253D525485073001492AE /* FavoriteVocabularyFetchRequest.swift */,
 				8D435A97254E051900838691 /* SearchVocabularyRequest.swift */,
 				8DAA5549252912BA00FF5066 /* VocabularyFetchRequest.swift */,
@@ -729,6 +729,7 @@
 			isa = PBXGroup;
 			children = (
 				8D435AD82550A3B500838691 /* Requests */,
+				8D94E84F253A4039005FA4B9 /* FirebaseFirestoreUploadRequestProtocol.swift */,
 				8D94E84B253A344F005FA4B9 /* FirebaseStorage.swift */,
 			);
 			path = FirebaseStorage;
@@ -737,7 +738,6 @@
 		8D435AD82550A3B500838691 /* Requests */ = {
 			isa = PBXGroup;
 			children = (
-				8D94E84F253A4039005FA4B9 /* FirebaseFirestoreUploadRequestProtocol.swift */,
 				8D94E851253A4051005FA4B9 /* UserImageFirestoreRequest.swift */,
 				8D94E85C253B50FC005FA4B9 /* DeleteUserImageFirestoreRequest.swift */,
 			);

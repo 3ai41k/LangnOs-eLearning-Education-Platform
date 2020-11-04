@@ -11,4 +11,5 @@ import Foundation
 extension Notification.Name {
     static let didNewUserLogin = Notification.Name("didNewUserLogin")
     static let didUserLogout = Notification.Name("didUserLogout")
+    static let didUserChangePhoto = Notification.Name("didUserChangePhoto")
 }
