@@ -7,28 +7,31 @@
 //
 
 import UIKit
-import Combine
 
 protocol CreateVocabularyViewModelInputProtocol {
-    var title: CurrentValueSubject<String?, Never> { get }
+    var title: String { get }
 }
 
 protocol CreateVocabularyViewModelOutputProtocol {
+    func setVocabularyName(_ name: String)
+    func setPrivate(_ isPrivate: Bool)
+    func selectCategory(sourceView: UIView)
     func doneAction()
-    func selectCategory(sourceView: UIView) -> String
     func closeAction()
 }
 
 typealias CreateVocabularyViewModelProtocol =
     CreateVocabularyViewModelInputProtocol &
     CreateVocabularyViewModelOutputProtocol &
-UniversalTableViewModelProtocol
+    UniversalTableViewModelProtocol
 
 final class CreateVocabularyViewModel: CreateVocabularyViewModelProtocol {
     
     // MARK: - Public properties
     
-    var title: CurrentValueSubject<String?, Never>
+    var title: String {
+        "New vocabulary".localize
+    }
     var tableSections: [SectionViewModelProtocol] = []
     
     // MARK: - Private properties
@@ -51,12 +54,24 @@ final class CreateVocabularyViewModel: CreateVocabularyViewModelProtocol {
         self.dataProvider = dataProvider
         self.userSession = userSession
         
-        self.title = .init("New vocabulary".localize)
-        
         self.setupWordsSection(&tableSections)
     }
     
     // MARK: - Public methods
+    
+    func setVocabularyName(_ name: String) {
+        print(name)
+    }
+    
+    func setPrivate(_ isPrivate: Bool) {
+        print(isPrivate)
+    }
+    
+    // ViewModel mustn't know about UI, but if you want to present popover you need to use sourceView.
+    
+    func selectCategory(sourceView: UIView) {
+        router.showCategoryPopover(sourceView: sourceView)
+    }
     
     func doneAction() {
         guard let userId = userSession.userInfo.id else { return }
@@ -72,16 +87,6 @@ final class CreateVocabularyViewModel: CreateVocabularyViewModelProtocol {
         }
     }
     
-    // ViewModel mustn't know about UI, but if you want to present popover you need to use sourceView.
-    // This method is an exception
-    
-    func selectCategory(sourceView: UIView) -> String {
-        router.showCategoryPopover(sourceView: sourceView)
-        
-        
-        return "SAS"
-    }
-    
     func closeAction() {
         router.close()
     }
@@ -95,6 +100,13 @@ final class CreateVocabularyViewModel: CreateVocabularyViewModelProtocol {
         tableSections.append(sectionViewModel)
     }
     
+    private func createWordCellViewModel() -> CellViewModelProtocol {
+        let cellViewModel = CreateWordCellViewModel()
+        cellViewModel.addHandler = { [weak self] in self?.addWordRow() }
+        cellViewModel.imageHandler = { [weak self] in self?.addImage() }
+        return cellViewModel
+    }
+    
     private func addWordRow() {
         let cellViewModel = createWordCellViewModel()
         tableSections[SectionType.words.rawValue].cells.value.append(cellViewModel)
@@ -102,13 +114,6 @@ final class CreateVocabularyViewModel: CreateVocabularyViewModelProtocol {
     
     private func addImage() {
         print(#function)
-    }
-    
-    private func createWordCellViewModel() -> CellViewModelProtocol {
-        let cellViewModel = CreateWordCellViewModel()
-        cellViewModel.addHandler = { [weak self] in self?.addWordRow() }
-        cellViewModel.imageHandler = { [weak self] in self?.addImage() }
-        return cellViewModel
     }
     
 }

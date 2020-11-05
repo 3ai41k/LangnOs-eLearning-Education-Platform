@@ -18,12 +18,6 @@ final class CreateVocabularyViewController: BindibleViewController<CreateVocabul
             tableView.viewModel = viewModel
             tableView.cellFactory = tableViewCellFactory
             
-            let rect = CGRect(x: .zero, y: .zero, width: .zero, height: 220.0)
-            let infoView = VocabularyInfoView(frame: rect)
-            infoView.selectCategoryHandler = viewModel?.selectCategory
-            
-            tableView.tableHeaderView = infoView
-            
             tableView.start()
         }
     }
@@ -35,11 +29,7 @@ final class CreateVocabularyViewController: BindibleViewController<CreateVocabul
     // MARK: - Override
     
     override func bindViewModel() {
-        cancellables = [
-            viewModel?.title.sink(receiveValue: { [weak self] (title) in
-                self?.title = title
-            })
-        ]
+        title = viewModel?.title
     }
     
     override func setupUI() {
@@ -52,6 +42,26 @@ final class CreateVocabularyViewController: BindibleViewController<CreateVocabul
         
         navigationItem.rightBarButtonItem = closeButton
         navigationItem.leftBarButtonItem = doneButton
+        
+        setupVocabularyInfoView()
+    }
+    
+    // MARK: - Private methods
+    
+    private func setupVocabularyInfoView() {
+        let rect = CGRect(x: .zero, y: .zero, width: .zero, height: 220.0)
+        let view = VocabularyInfoView(frame: rect)
+        view.nameHandler = { [weak self] in
+            self?.viewModel?.setVocabularyName($0)
+        }
+        view.selectCategoryHandler = { [weak self] in
+            self?.viewModel?.selectCategory(sourceView: $0)
+        }
+        view.isPrivateOnHandler = { [weak self] in
+            self?.viewModel?.setPrivate($0)
+        }
+        
+        tableView.tableHeaderView = view
     }
     
     // MARK: - Actions

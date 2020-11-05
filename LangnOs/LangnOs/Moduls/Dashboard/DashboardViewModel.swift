@@ -81,14 +81,12 @@ final class DashboardViewModel: DashboardViewModelProtocol {
     private let router: DashboardCoordinatorProtocol
     private let userSession: SessionInfoProtocol & SessionSatePublisherProtocol
     private let dataProvider: FirebaseDatabaseFetchingProtocol
-    
     private var favoriteVocabularies: [Vocabulary] = [] {
         didSet {
             let cellViewModels = favoriteVocabularies.map({ MessageCellViewModel(message: $0.title) })
             self.tableSections[SectionType.favorites.rawValue].cells.value = cellViewModels
         }
     }
-    
     private var cancellables: [AnyCancellable] = []
     private var titleViewStateSubject = PassthroughSubject<TitleViewState, Never>()
     
