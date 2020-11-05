@@ -16,7 +16,8 @@ final class CreateVocabularyViewController: BindibleViewController<CreateVocabul
     @IBOutlet private weak var tableView: UniversalTableView! {
         didSet {
             tableView.viewModel = viewModel
-            tableView.cellFactory = tableViewCellFactory
+            tableView.cellFactory = cellFactory
+            tableView.tableHeaderView = vocabularyInfoView
             
             tableView.start()
         }
@@ -24,12 +25,34 @@ final class CreateVocabularyViewController: BindibleViewController<CreateVocabul
     
     // MARK: - Public properties
     
-    var tableViewCellFactory: UniversalTableViewCellFactoryProtocol?
+    var cellFactory: UniversalTableViewCellFactoryProtocol?
+    
+    // MARK: - Private properties
+    
+    private let vocabularyInfoView: VocabularyInfoView = {
+        let rect = CGRect(x: .zero, y: .zero, width: .zero, height: 220.0)
+        let view = VocabularyInfoView(frame: rect)
+        return view
+    }()
     
     // MARK: - Override
     
     override func bindViewModel() {
         title = viewModel?.title
+        
+        cancellables = [
+            viewModel?.categoryButtonTitle.assign(to: \.selectButtonTitle, on: vocabularyInfoView)
+        ]
+        
+        vocabularyInfoView.nameHandler = { [weak self] in
+            self?.viewModel?.setVocabularyName($0)
+        }
+        vocabularyInfoView.selectCategoryHandler = { [weak self] in
+            self?.viewModel?.selectCategory(sourceView: $0)
+        }
+        vocabularyInfoView.isPrivateOnHandler = { [weak self] in
+            self?.viewModel?.setPrivate($0)
+        }
     }
     
     override func setupUI() {
@@ -42,26 +65,6 @@ final class CreateVocabularyViewController: BindibleViewController<CreateVocabul
         
         navigationItem.rightBarButtonItem = closeButton
         navigationItem.leftBarButtonItem = doneButton
-        
-        setupVocabularyInfoView()
-    }
-    
-    // MARK: - Private methods
-    
-    private func setupVocabularyInfoView() {
-        let rect = CGRect(x: .zero, y: .zero, width: .zero, height: 220.0)
-        let view = VocabularyInfoView(frame: rect)
-        view.nameHandler = { [weak self] in
-            self?.viewModel?.setVocabularyName($0)
-        }
-        view.selectCategoryHandler = { [weak self] in
-            self?.viewModel?.selectCategory(sourceView: $0)
-        }
-        view.isPrivateOnHandler = { [weak self] in
-            self?.viewModel?.setPrivate($0)
-        }
-        
-        tableView.tableHeaderView = view
     }
     
     // MARK: - Actions

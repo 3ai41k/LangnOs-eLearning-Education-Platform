@@ -39,13 +39,3 @@ extension Word: Equatable {
     }
     
 }
-
-// MARK: - EmptyableProtocol
-
-extension Word: EmptyableProtocol {
-    
-    var isEmpty: Bool {
-        term.isEmpty && definition.isEmpty
-    }
-    
-}

@@ -12,33 +12,19 @@ import Combine
 final class VocabularyCategoryViewController: BindibleViewController<VocabularyCategoryViewModel> {
     
     // MARK: - IBOutlets
+    
+    @IBOutlet private weak var tableView: UniversalTableView! {
+        didSet {
+            tableView.viewModel = viewModel
+            tableView.cellFactory = cellFactory
+            
+            tableView.start()
+        }
+    }
+    
     // MARK: - Public properties
-    // MARK: - Private properties
-    // MARK: - Lifecycle
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-    }
-    
-    // MARK: - Init
-    // MARK: - Override
-    
-    override func bindViewModel() {
-        
-    }
-    
-    override func setupUI() {
-        
-    }
-    
-    override func configurateComponents() {
-        
-    }
-    
-    // MARK: - Public methods
-    // MARK: - Private methods
-    // MARK: - Actions
+    var cellFactory: UniversalTableViewCellFactoryProtocol?
     
 }
 

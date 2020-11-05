@@ -9,6 +9,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="VocabularyCategoryViewController">
             <connections>
+                <outlet property="tableView" destination="fBV-C5-u8S" id="GkC-ai-RBN"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -16,7 +17,19 @@
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" sectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="fBV-C5-u8S" customClass="UniversalTableView" customModule="LangnOs" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                </tableView>
+            </subviews>
             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+            <constraints>
+                <constraint firstItem="fBV-C5-u8S" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="F8C-cj-XDL"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="fBV-C5-u8S" secondAttribute="trailing" id="K1k-yu-e0L"/>
+                <constraint firstItem="fBV-C5-u8S" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="TLc-uR-Gyy"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="fBV-C5-u8S" secondAttribute="bottom" id="bSi-i3-IL8"/>
+            </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <point key="canvasLocation" x="139" y="127"/>
         </view>

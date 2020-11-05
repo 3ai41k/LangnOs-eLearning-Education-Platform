@@ -26,13 +26,13 @@ struct Vocabulary: Codable {
     
     // MARK: - Init
     
-    init(userId: String, title: String, category: String, words: [Word]) {
+    init(userId: String, title: String, category: Category, isPrivate: Bool, words: [Word]) {
         self.id = UUID().uuidString
         self.userId = userId
         self.title = title
-        self.category = category
+        self.category = category.rawValue
         self.isFavorite = false
-        self.isPrivate = false
+        self.isPrivate = isPrivate
         self.phrasesLearned = 0
         self.phrasesLeftToLearn = 0
         self.totalLearningTime = 0.0
@@ -82,25 +82,6 @@ extension Vocabulary: Equatable {
     
     static func == (lhs: Vocabulary, rhs: Vocabulary) -> Bool {
         lhs.id == rhs.id
-    }
-    
-}
-
-// MARK: - EmptyableProtocol
-
-extension Vocabulary: EmptyableProtocol {
-    
-    var isEmpty: Bool {
-        title.isEmpty && category.isEmpty && areWordsEmpty
-    }
-    
-    private var areWordsEmpty: Bool {
-        for word in words {
-            if word.isEmpty {
-                return true
-            }
-        }
-        return false
     }
     
 }

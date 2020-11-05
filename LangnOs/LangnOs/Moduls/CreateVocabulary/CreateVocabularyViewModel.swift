@@ -7,9 +7,11 @@
 //
 
 import UIKit
+import Combine
 
 protocol CreateVocabularyViewModelInputProtocol {
     var title: String { get }
+    var categoryButtonTitle: CurrentValueSubject<String?, Never> { get }
 }
 
 protocol CreateVocabularyViewModelOutputProtocol {
@@ -25,6 +27,16 @@ typealias CreateVocabularyViewModelProtocol =
     CreateVocabularyViewModelOutputProtocol &
     UniversalTableViewModelProtocol
 
+private enum SectionType: Int {
+    case words
+}
+
+private struct VocabularyGeneralInfo {
+    var name = ""
+    var category: Category = .entertainment
+    var isPrivate = false
+}
+
 final class CreateVocabularyViewModel: CreateVocabularyViewModelProtocol {
     
     // MARK: - Public properties
@@ -32,6 +44,7 @@ final class CreateVocabularyViewModel: CreateVocabularyViewModelProtocol {
     var title: String {
         "New vocabulary".localize
     }
+    var categoryButtonTitle: CurrentValueSubject<String?, Never>
     var tableSections: [SectionViewModelProtocol] = []
     
     // MARK: - Private properties
@@ -40,10 +53,7 @@ final class CreateVocabularyViewModel: CreateVocabularyViewModelProtocol {
     private let dataProvider: FirebaseDatabaseCreatingProtocol
     private let userSession: SessionInfoProtocol
     
-    private enum SectionType: Int {
-        case vocabularylInfo
-        case words
-    }
+    private var generalInfo: VocabularyGeneralInfo
     
     // MARK: - Init
     
@@ -54,29 +64,44 @@ final class CreateVocabularyViewModel: CreateVocabularyViewModelProtocol {
         self.dataProvider = dataProvider
         self.userSession = userSession
         
-        self.setupWordsSection(&tableSections)
+        self.categoryButtonTitle = .init("Select".localize)
+        self.generalInfo = VocabularyGeneralInfo()
+        
+        self.setupWordsSection()
     }
     
     // MARK: - Public methods
     
     func setVocabularyName(_ name: String) {
-        print(name)
+        generalInfo.name = name
     }
     
     func setPrivate(_ isPrivate: Bool) {
-        print(isPrivate)
+        generalInfo.isPrivate = isPrivate
     }
     
     // ViewModel mustn't know about UI, but if you want to present popover you need to use sourceView.
     
     func selectCategory(sourceView: UIView) {
-        router.showCategoryPopover(sourceView: sourceView)
+        router.showCategoryPopover(sourceView: sourceView) { (category) in
+            self.generalInfo.category = category
+            self.categoryButtonTitle.value = category.rawValue
+        }
     }
     
     func doneAction() {
         guard let userId = userSession.userInfo.id else { return }
         
-        let vocabulary = Vocabulary(userId: userId, title: "Test", category: "Test", words: [Word(term: "Test1", definition: "Test1")])
+        let words = tableSections[SectionType.words.rawValue].cells.value.compactMap({
+            ($0 as? CreateWordCellViewModel)?.word
+        })
+        
+        let vocabulary = Vocabulary(userId: userId,
+                                    title: generalInfo.name,
+                                    category: generalInfo.category,
+                                    isPrivate: generalInfo.isPrivate,
+                                    words: words)
+        
         let request = VocabularyCreateRequest(vocabulary: vocabulary)
         dataProvider.create(request: request, onSuccess: {
             self.router.closeActivity()
@@ -93,7 +118,7 @@ final class CreateVocabularyViewModel: CreateVocabularyViewModelProtocol {
     
     // MARK: - Private methods
     
-    private func setupWordsSection(_ tableSections: inout [SectionViewModelProtocol]) {
+    private func setupWordsSection() {
         let sectionViewModel = TableSectionViewModel(cells: [
             createWordCellViewModel()
         ])

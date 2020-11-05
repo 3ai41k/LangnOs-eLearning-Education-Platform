@@ -11,7 +11,7 @@ import FirebaseAuth
 
 protocol CreateVocabularyNavigationProtocol: CoordinatorClosableProtocol {
     func didCreateVocabulary(_ vocabulary: Vocabulary)
-    func showCategoryPopover(sourceView: UIView)
+    func showCategoryPopover(sourceView: UIView, didCategorySelect: @escaping (Category) -> Void)
     func navigateToImagePicker(sourceType: UIImagePickerController.SourceType, didImageSelect: @escaping (UIImage) -> Void)
 }
 
@@ -47,7 +47,7 @@ final class CreateVocabularyCoordinator: Coordinator, CreateVocabularyCoordinato
         
         let cellFactory = CreateVocabularyCellFactory()
         let viewController = CreateVocabularyViewController()
-        viewController.tableViewCellFactory = cellFactory
+        viewController.cellFactory = cellFactory
         viewController.viewModel = viewModel
         
         let navigationController = UINavigationController(rootViewController: viewController)
@@ -65,8 +65,10 @@ final class CreateVocabularyCoordinator: Coordinator, CreateVocabularyCoordinato
         }
     }
     
-    func showCategoryPopover(sourceView: UIView) {
-        let vocabularyCategoryCoordinator = VocabularyCategoryCoordinator(sourceView: sourceView, parentViewController: viewController)
+    func showCategoryPopover(sourceView: UIView, didCategorySelect: @escaping (Category) -> Void) {
+        let vocabularyCategoryCoordinator = VocabularyCategoryCoordinator(sourceView: sourceView,
+                                                                          didCategorySelect: didCategorySelect,
+                                                                          parentViewController: viewController)
         vocabularyCategoryCoordinator.start()
     }
     
