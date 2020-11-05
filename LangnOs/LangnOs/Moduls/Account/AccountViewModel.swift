@@ -95,8 +95,10 @@ final class AccountViewModel: AccountViewModelProtocol {
     // MARK: - Private methods
     
     private func downloadUserPhoto() {
-        userSession.getUserPhoto { (image) in
+        userSession.getUserPhoto(onSuccess: { (image) in
             self.userPhoto.value = image != nil ? image : SFSymbols.personCircle()
+        }) { (error) in
+            self.router.showError(error)
         }
     }
     
@@ -139,16 +141,20 @@ final class AccountViewModel: AccountViewModelProtocol {
     private func selectImageAction() {
         router.navigateToImagePicker(sourceType: .photoLibrary) { (image) in
             self.userPhoto.value = nil
-            self.userSession.updateUserPhoto(image) {
+            self.userSession.updateUserPhoto(image, onSuccess: {
                 self.userPhoto.value = image
+            }) { (error) in
+                self.router.showError(error)
             }
         }
     }
     
     private func removeImageAction() {
         userPhoto.value = nil
-        userSession.removeUserPhoto {
+        userSession.removeUserPhoto(onSuccess: {
             self.userPhoto.value = SFSymbols.personCircle()
+        }) { (error) in
+            self.router.showError(error)
         }
     }
     

@@ -10,8 +10,8 @@ import Foundation
 import FirebaseAuth
 
 protocol UserProfileExtandableProtocol {
-    func updatePhoto(url: URL, onSuccess: @escaping () -> Void, onFailure: @escaping (Error) -> Void)
-    func removePhoto(onSuccess: @escaping () -> Void, onFailure: @escaping (Error) -> Void)
+    func updatePhotoURL(_ url: URL, onSuccess: @escaping () -> Void, onFailure: @escaping (Error) -> Void)
+    func removePhotoURL(onSuccess: @escaping () -> Void, onFailure: @escaping (Error) -> Void)
 }
 
 final class UserProfile {
@@ -36,7 +36,7 @@ final class UserProfile {
 
 extension UserProfile: UserProfileExtandableProtocol {
     
-    func updatePhoto(url: URL, onSuccess: @escaping () -> Void, onFailure: @escaping (Error) -> Void) {
+    func updatePhotoURL(_ url: URL, onSuccess: @escaping () -> Void, onFailure: @escaping (Error) -> Void) {
         changeRequest(photoURL: url)?.commitChanges(completion: { (error) in
             if let error = error {
                 onFailure(error)
@@ -46,7 +46,7 @@ extension UserProfile: UserProfileExtandableProtocol {
         })
     }
     
-    func removePhoto(onSuccess: @escaping () -> Void, onFailure: @escaping (Error) -> Void) {
+    func removePhotoURL(onSuccess: @escaping () -> Void, onFailure: @escaping (Error) -> Void) {
         changeRequest(photoURL: nil)?.commitChanges(completion: { (error) in
             if let error = error {
                 onFailure(error)

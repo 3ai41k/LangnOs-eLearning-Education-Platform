@@ -11,7 +11,6 @@ import FirebaseFirestore
 enum FirebaseDatabaseError: Error {
     case documentsWereNotFound
     case documentIsEmpty
-    case isNotConnectionToTheInternet
     
     var localizedDescription: String {
         switch self {
@@ -19,8 +18,6 @@ enum FirebaseDatabaseError: Error {
             return "Documents were not found".localize
         case .documentIsEmpty:
             return "Document is empty".localize
-        case .isNotConnectionToTheInternet:
-            return "Is not connection to the internet".localize
         }
     }
     

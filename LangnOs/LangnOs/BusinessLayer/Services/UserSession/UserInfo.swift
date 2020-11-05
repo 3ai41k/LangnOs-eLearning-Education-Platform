@@ -19,7 +19,7 @@ protocol UserInfoProtocol {
 }
 
 protocol UserInfoChangeStateProtocol {
-    var didNewUserLoginHandler: (() -> Void)? { get set }
+    var didUserLoginHandler: (() -> Void)? { get set }
     var didUserLogoutHandler: (() -> Void)? { get set }
 }
 
@@ -39,7 +39,7 @@ final class UserInfo: UserInfoChangeStateProtocol {
     
     // MARK: - Public properties
     
-    var didNewUserLoginHandler: (() -> Void)?
+    var didUserLoginHandler: (() -> Void)?
     var didUserLogoutHandler: (() -> Void)?
     
     // MARK: - Lifecycle
@@ -55,11 +55,11 @@ final class UserInfo: UserInfoChangeStateProtocol {
     // MARK: - Private methods
     
     private func setupUserStateNotification() {
-        userStateHandeler = auth.addStateDidChangeListener { [weak self] (auth, newUser) in
+        userStateHandeler = auth.addStateDidChangeListener { [weak self] (_, newUser) in
             if newUser == nil {
                 self?.didUserLogoutHandler?()
             } else {
-                self?.didNewUserLoginHandler?()
+                self?.didUserLoginHandler?()
             }
         }
     }

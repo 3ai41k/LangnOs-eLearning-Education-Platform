@@ -9,6 +9,18 @@
 import Foundation
 import Reachability
 
+enum NetworkSatatError: Error {
+    case isNotConnectionToTheInternet
+    
+    var localizedDescription: String {
+        switch self {
+        case .isNotConnectionToTheInternet:
+            return "Is not connection to the internet".localize
+        }
+    }
+
+}
+
 protocol InternetConnectableProtocol {
     var isReachable: Bool { get }
 }

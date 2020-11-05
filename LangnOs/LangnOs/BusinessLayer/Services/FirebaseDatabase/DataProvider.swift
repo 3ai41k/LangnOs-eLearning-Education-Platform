@@ -89,7 +89,7 @@ extension DataProvider: FirebaseDatabaseDeletingProtocol {
             }, onFailure: onFailure)
         } else {
             // TO DO - Offline deleting
-            onFailure(FirebaseDatabaseError.isNotConnectionToTheInternet)
+            onFailure(NetworkSatatError.isNotConnectionToTheInternet)
         }
     }
     

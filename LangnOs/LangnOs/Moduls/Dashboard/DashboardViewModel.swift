@@ -40,9 +40,27 @@ typealias DashboardViewModelProtocol =
     UniversalTableViewModelProtocol
 
 private enum SectionType: Int {
-    case empty
-    case myWork
+    case myWork = 1
     case favorites
+}
+
+private enum RowType {
+    case materials
+    case statistic
+    case vocabulary
+    
+    init?(indexPath: IndexPath) {
+        switch (indexPath.section, indexPath.row) {
+        case (1, 0):
+            self = .materials
+        case (1, 1):
+            self = .statistic
+        case (2, _):
+            self = .vocabulary
+        default:
+            return nil
+        }
+    }
 }
 
 final class DashboardViewModel: DashboardViewModelProtocol {
@@ -61,7 +79,7 @@ final class DashboardViewModel: DashboardViewModelProtocol {
     // MARK: - Private properties
     
     private let router: DashboardCoordinatorProtocol
-    private let userSession: SessionInfoProtocol
+    private let userSession: SessionInfoProtocol & SessionSatePublisherProtocol
     private let dataProvider: FirebaseDatabaseFetchingProtocol
     
     private var favoriteVocabularies: [Vocabulary] = [] {
@@ -77,7 +95,7 @@ final class DashboardViewModel: DashboardViewModelProtocol {
     // MARK: - Init
     
     init(router: DashboardCoordinatorProtocol,
-         userSession: SessionInfoProtocol,
+         userSession: SessionInfoProtocol & SessionSatePublisherProtocol,
          dataProvider: FirebaseDatabaseFetchingProtocol) {
         self.router = router
         self.userSession = userSession
@@ -89,19 +107,20 @@ final class DashboardViewModel: DashboardViewModelProtocol {
         self.setupMyWorkSection(&tableSections)
         self.setupFavoritesSection(&tableSections)
         
+        self.bindUserSession()
         self.setupNotifications()
     }
     
     // MARK: - Public methods
     
     func didSelectCellAt(indexPath: IndexPath) {
-        guard let section = SectionType(rawValue: indexPath.section) else { return }
-        switch section {
-        case .empty:
-            break
-        case .myWork:
-            if indexPath.row == 0 { router.navigateToMaterials() }
-        case .favorites:
+        guard let row = RowType(indexPath: indexPath) else { return }
+        switch row {
+        case .materials:
+            router.navigateToMaterials()
+        case .statistic:
+            print(#function)
+        case .vocabulary:
             let vocabulary = favoriteVocabularies[indexPath.row]
             router.navigateToVocabulary(vocabulary)
         }
@@ -117,6 +136,19 @@ final class DashboardViewModel: DashboardViewModelProtocol {
     
     // MARK: - Private methods
     
+    private func bindUserSession() {
+        userSession.sessionSatePublisher.sink { [weak self] (state) in
+            self?.updateUserPhoto()
+            
+            switch state {
+            case .login, .logout:
+                self?.fetchFavoriteVocabularies()
+            case .changePhoto:
+                break
+            }
+        }.store(in: &cancellables)
+    }
+    
     private func setupNotifications() {
         NotificationCenter.default
             .publisher(for: .reachabilityChanged)
@@ -125,34 +157,19 @@ final class DashboardViewModel: DashboardViewModelProtocol {
             .sink { [weak self] in
                 self?.titleViewStateSubject.send($0 == .unavailable ? .offline : .hide)
         }.store(in: &cancellables)
-        NotificationCenter.default
-            .publisher(for: .didNewUserLogin)
-            .sink { [weak self] _ in
-                self?.setUserPhoto()
-                self?.fetchFavoriteVocabularies()
-        }.store(in: &cancellables)
-        NotificationCenter.default
-            .publisher(for: .didUserLogout)
-            .sink { [weak self] _ in
-                self?.setUserPhoto()
-                self?.fetchFavoriteVocabularies()
-        }.store(in: &cancellables)
-        NotificationCenter.default
-            .publisher(for: .didUserChangePhoto)
-            .sink { [weak self] _ in
-                self?.setUserPhoto()
-        }.store(in: &cancellables)
     }
     
-    private func setUserPhoto() {
-        userSession.getUserPhoto { (image) in
+    private func updateUserPhoto() {
+        userSession.getUserPhoto(onSuccess: { (image) in
             self.userImage.value = image != nil ? image : SFSymbols.personCircle()
+        }) { (error) in
+            self.router.showError(error)
         }
     }
     
     private func fetchFavoriteVocabularies() {
         guard let userId = userSession.userInfo.id else {
-            self.setEmptyFavoritesSection()
+            setEmptyFavoritesSection()
             return
         }
         
@@ -167,6 +184,8 @@ final class DashboardViewModel: DashboardViewModelProtocol {
             self.router.showError(error)
         }
     }
+    
+    // MARK: - Table View Configuration
     
     private func setupEmptySection(_ tableSections: inout [SectionViewModelProtocol]) {
         let sectionViewModel = TableSectionViewModel(cells: [])

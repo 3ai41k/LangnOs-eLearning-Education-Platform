@@ -94,16 +94,10 @@ extension SingUpViewModel: SingInOutputProtocol {
             ])
             return
         }
-        authorizator.singUpWith(name: name, email: email, password: password) { (result) in
-            switch result {
-            case .success(let user):
-                self.router.close {
-                    
-                }
-            case .failure(let error):
-                // TO DO: errror handling
-                print(error.localizedDescription)
-            }
+        authorizator.singUpWith(name: name, email: email, password: password, onSuccess: {
+            self.router.close()
+        }) { (error) in
+            self.router.showError(error)
         }
     }
     

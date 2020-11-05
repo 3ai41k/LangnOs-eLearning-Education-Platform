@@ -7,19 +7,34 @@
 //
 
 import UIKit
+import Combine
 
 protocol SessionInfoProtocol {
     var userInfo: UserInfoProtocol { get }
-    func getUserPhoto(_ completion: @escaping (UIImage?) -> Void)
-    func removeUserPhoto(_ completion: @escaping () -> Void)
-    func updateUserPhoto(_ photo: UIImage, completion: @escaping () -> Void)
+    func getUserPhoto(onSuccess: @escaping (UIImage?) -> Void, onFailure: @escaping (Error) -> Void)
+    func removeUserPhoto(onSuccess: @escaping () -> Void, onFailure: @escaping (Error) -> Void)
+    func updateUserPhoto(_ photo: UIImage, onSuccess: @escaping () -> Void, onFailure: @escaping (Error) -> Void)
 }
 
-final class UserSession {
+enum SessionSate {
+    case login
+    case logout
+    case changePhoto
+}
+
+protocol SessionSatePublisherProtocol {
+    var sessionSatePublisher: AnyPublisher<SessionSate, Never> { get }
+}
+
+final class UserSession: SessionSatePublisherProtocol {
     
     // MARK: - Public properties
     
     static let shared = UserSession()
+    
+    var sessionSatePublisher: AnyPublisher<SessionSate, Never> {
+        sessionSateSubject.eraseToAnyPublisher()
+    }
     
     // MARK: - Private properties
     
@@ -27,6 +42,7 @@ final class UserSession {
     private let userProfile: UserProfileExtandableProtocol
     private let mediaDownloader: MediaDownloadableProtocol
     private let storage: FirebaseStorageUploadingProtocol & FirebaseStorageRemovingProtocol
+    private let sessionSateSubject: PassthroughSubject<SessionSate, Never>
     
     private var coreDataStack: CoreDataStack {
         CoreDataStack.shared
@@ -47,6 +63,7 @@ final class UserSession {
         self.userProfile = UserProfile()
         self.mediaDownloader = MediaDownloader()
         self.storage = FirebaseStorage()
+        self.sessionSateSubject = .init()
         
         self.setupUserInfoChangeStateNotifications()
     }
@@ -54,12 +71,12 @@ final class UserSession {
     // MARK: - Private methods
     
     private func setupUserInfoChangeStateNotifications() {
-        _userInfo.didNewUserLoginHandler = {
-            NotificationCenter.default.post(name: .didNewUserLogin, object: nil)
+        _userInfo.didUserLoginHandler = {
+            self.sessionSateSubject.send(.login)
         }
         _userInfo.didUserLogoutHandler = {
             self.clearUserMetaData()
-            NotificationCenter.default.post(name: .didUserLogout, object: nil)
+            self.sessionSateSubject.send(.logout)
         }
     }
     
@@ -78,60 +95,47 @@ extension UserSession: SessionInfoProtocol {
         _userInfo
     }
     
-    func getUserPhoto(_ completion: @escaping (UIImage?) -> Void) {
+    func getUserPhoto(onSuccess: @escaping (UIImage?) -> Void, onFailure: @escaping (Error) -> Void) {
         if let data = userDefaults.data(forKey: UserDefaultsKey.userImage.rawValue) {
-            completion(UIImage(data: data))
+            onSuccess(UIImage(data: data))
         } else {
             if networkState.isReachable, let photoURL = _userInfo.photoURL {
                 mediaDownloader.downloadMedia(url: photoURL, onSucces: { (data) in
                     self.userDefaults.set(data, forKey: UserDefaultsKey.userImage.rawValue)
-                    completion(UIImage(data: data))
-                }) { (error) in
-                    print("Unresolved error \(error.localizedDescription)")
-                    completion(nil)
-                }
+                    onSuccess(UIImage(data: data))
+                }, onFailure: onFailure)
             } else {
-                completion(nil)
+                onSuccess(nil)
             }
         }
     }
     
-    func removeUserPhoto(_ completion: @escaping () -> Void) {
-        let handleAnError: (Error) -> Void = { (error) in
-            print("Unresolved error \(error.localizedDescription)")
-            completion()
-        }
+    func removeUserPhoto(onSuccess: @escaping () -> Void, onFailure: @escaping (Error) -> Void) {
         if networkState.isReachable, let userId = _userInfo.id {
             let request = DeleteUserImageFirestoreRequest(userId: userId)
             storage.delete(request: request, onSuccess: {
-                self.userProfile.removePhoto(onSuccess: {
+                self.userProfile.removePhotoURL(onSuccess: {
                     self.userDefaults.removeObject(forKey: UserDefaultsKey.userImage.rawValue)
-                    completion()
-                }, onFailure: handleAnError)
-            }, onFailure: handleAnError)
+                    onSuccess()
+                }, onFailure: onFailure)
+            }, onFailure: onFailure)
         } else {
-            print("There is not iternet connection")
-            completion()
+            onFailure(NetworkSatatError.isNotConnectionToTheInternet)
         }
     }
     
-    func updateUserPhoto(_ image: UIImage, completion: @escaping () -> Void) {
-        let handleAnError: (Error) -> Void = { (error) in
-            print("Unresolved error \(error.localizedDescription)")
-            completion()
-        }
+    func updateUserPhoto(_ image: UIImage, onSuccess: @escaping () -> Void, onFailure: @escaping (Error) -> Void) {
         if networkState.isReachable, let userId = _userInfo.id, let data = image.jpegData(compressionQuality: 0.25) {
             let request = UserImageFirestoreRequest(userId: userId, data: data)
             storage.upload(request: request, onSuccess: { (photoURL) in
-                self.userProfile.updatePhoto(url: photoURL, onSuccess: {
+                self.userProfile.updatePhotoURL(photoURL, onSuccess: {
                     self.userDefaults.set(data, forKey: UserDefaultsKey.userImage.rawValue)
-                    NotificationCenter.default.post(name: .didUserChangePhoto, object: nil)
-                    completion()
-                }, onFailure: handleAnError)
-            }, onFailure: handleAnError)
+                    self.sessionSateSubject.send(.logout)
+                    onSuccess()
+                }, onFailure: onFailure)
+            }, onFailure: onFailure)
         } else {
-            print("There is not iternet connection")
-            completion()
+            onFailure(NetworkSatatError.isNotConnectionToTheInternet)
         }
     }
     

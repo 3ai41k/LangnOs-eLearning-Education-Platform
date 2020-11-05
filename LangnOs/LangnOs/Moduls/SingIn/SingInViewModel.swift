@@ -121,13 +121,10 @@ extension SingInViewModel: SingInOutputProtocol {
             ])
             return
         }
-        authorizator.singInWith(email: email, password: password) { (result) in
-            switch result {
-            case .success(let user):
-                self.router.close()
-            case .failure(let error):
-                print(error.localizedDescription)
-            }
+        authorizator.singInWith(email: email, password: password, onSuccess: {
+            self.router.close()
+        }) { (error) in
+            self.router.showError(error)
         }
     }
     
