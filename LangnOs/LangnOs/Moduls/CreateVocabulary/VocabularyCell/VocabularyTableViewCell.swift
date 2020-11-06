@@ -19,18 +19,22 @@ final class VocabularyTableViewCell: UITableViewCell, UniversalTableViewCellRegi
             containerView.setShadow(color: .black, opacity: 0.25)
         }
     }
-    @IBOutlet private weak var wordImageView: UIImageView!
+    @IBOutlet private weak var termImageView: UIImageView! {
+        didSet {
+            termImageView.layer.cornerRadius = 10.0
+        }
+    }
     @IBOutlet private weak var headerInputView: InputView! {
         didSet {
-            headerInputView.textDidEnter = { [weak self] (text) in
-                self?.viewModel?.setHeaderValue(text)
+            headerInputView.textDidEnter = { (text) in
+                self.viewModel?.setHeaderValue(text)
             }
         }
     }
     @IBOutlet private weak var footerInputView: InputView! {
         didSet {
-            footerInputView.textDidEnter = { [weak self] (text) in
-                self?.viewModel?.setFooterValue(text)
+            footerInputView.textDidEnter = { (text) in
+                self.viewModel?.setFooterValue(text)
             }
         }
     }
@@ -71,8 +75,8 @@ final class VocabularyTableViewCell: UITableViewCell, UniversalTableViewCellRegi
             viewModel?.isEditable.assign(to: \.isEditable, on: footerInputView),
             viewModel?.image.sink(receiveValue: { [weak self] image in
                 self?.beginUpdate?()
-                self?.wordImageView.image = image
-                self?.wordImageView.isHidden = image == nil
+                self?.termImageView.image = image
+                self?.termImageView.isHidden = image == nil
                 self?.endUpdate?()
             })
         ]

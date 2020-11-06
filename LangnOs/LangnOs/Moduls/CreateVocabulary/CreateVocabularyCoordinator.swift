@@ -40,9 +40,11 @@ final class CreateVocabularyCoordinator: Coordinator, CreateVocabularyCoordinato
     override func start() {
         let firebaseDatabase = FirebaseDatabase.shared
         let dataProvider = DataProvider(firebaseDatabase: firebaseDatabase)
+        let storage = FirebaseStorage()
         let userSession = UserSession.shared
         let viewModel = CreateVocabularyViewModel(router: self,
                                                   dataProvider: dataProvider,
+                                                  storage: storage,
                                                   userSession: userSession)
         
         let cellFactory = CreateVocabularyCellFactory()

@@ -34,7 +34,7 @@ extension FirebaseStorage: FirebaseStorageUploadingProtocol {
     
     func upload(request: FirebaseFirestoreUploadRequestProtocol, onSuccess: @escaping (URL) -> Void, onFailure: @escaping (Error) -> Void) {
         let reference = storage.reference(withPath: request.path)
-        reference.putData(request.data, metadata: request.metaData) { (metaData, error) in
+        reference.putData(request.imageData, metadata: request.metaData) { (metaData, error) in
             if let error = error {
                 onFailure(error)
             } else {

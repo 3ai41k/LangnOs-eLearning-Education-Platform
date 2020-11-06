@@ -126,7 +126,7 @@ extension UserSession: SessionInfoProtocol {
     
     func updateUserPhoto(_ image: UIImage, onSuccess: @escaping () -> Void, onFailure: @escaping (Error) -> Void) {
         if networkState.isReachable, let userId = _userInfo.id, let data = image.jpegData(compressionQuality: 0.25) {
-            let request = UserImageFirestoreRequest(userId: userId, data: data)
+            let request = UserImageFirestoreRequest(userId: userId, imageData: data)
             storage.upload(request: request, onSuccess: { (photoURL) in
                 self.userProfile.updatePhotoURL(photoURL, onSuccess: {
                     self.userDefaults.set(data, forKey: UserDefaultsKey.userImage.rawValue)

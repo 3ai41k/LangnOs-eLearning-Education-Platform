@@ -26,7 +26,7 @@ struct Vocabulary: Codable {
     
     // MARK: - Init
     
-    init(userId: String, title: String, category: Category, isPrivate: Bool, words: [Word]) {
+    init(userId: String, title: String, category: Category, isPrivate: Bool) {
         self.id = UUID().uuidString
         self.userId = userId
         self.title = title
@@ -37,7 +37,7 @@ struct Vocabulary: Codable {
         self.phrasesLeftToLearn = 0
         self.totalLearningTime = 0.0
         self.createdDate = Date()
-        self.words = words
+        self.words = []
     }
     
     init(entity: VocabularyEntity) {

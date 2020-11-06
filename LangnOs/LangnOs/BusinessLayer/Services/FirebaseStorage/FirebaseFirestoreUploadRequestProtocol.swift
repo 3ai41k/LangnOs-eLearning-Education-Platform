@@ -18,7 +18,7 @@ protocol FirebaseFirestoreDeleteRequestProtocol {
 }
 
 protocol FirebaseFirestoreUploadRequestProtocol: FirebaseFirestoreDeleteRequestProtocol {
-    var data: Data { get }
+    var imageData: Data { get }
     var contentType: FirestoreContentType { get }
     var metaData: StorageMetadata { get }
 }

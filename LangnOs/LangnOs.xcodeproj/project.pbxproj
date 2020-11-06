@@ -50,6 +50,7 @@
 		8D435B2725548C2600838691 /* TextTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D435B2525548C2600838691 /* TextTableViewCell.xib */; };
 		8D435B2925548C4200838691 /* TextCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D435B2825548C4200838691 /* TextCellViewModel.swift */; };
 		8D435B2B25548E6A00838691 /* VocabularyCategoryCellFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D435B2A25548E6A00838691 /* VocabularyCategoryCellFactory.swift */; };
+		8D435B2D25549DB500838691 /* UploadTermImageRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D435B2C25549DB500838691 /* UploadTermImageRequest.swift */; };
 		8D524F5D252E5AAA002A6E01 /* SearchBarCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D524F5B252E5AAA002A6E01 /* SearchBarCollectionReusableView.swift */; };
 		8D524F5E252E5AAA002A6E01 /* SearchBarCollectionReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D524F5C252E5AAA002A6E01 /* SearchBarCollectionReusableView.xib */; };
 		8D524F60252E5AE5002A6E01 /* SearchBarCollectionReusableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D524F5F252E5AE5002A6E01 /* SearchBarCollectionReusableViewModel.swift */; };
@@ -329,6 +330,7 @@
 		8D435B2525548C2600838691 /* TextTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TextTableViewCell.xib; sourceTree = "<group>"; };
 		8D435B2825548C4200838691 /* TextCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextCellViewModel.swift; sourceTree = "<group>"; };
 		8D435B2A25548E6A00838691 /* VocabularyCategoryCellFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabularyCategoryCellFactory.swift; sourceTree = "<group>"; };
+		8D435B2C25549DB500838691 /* UploadTermImageRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadTermImageRequest.swift; sourceTree = "<group>"; };
 		8D524F5B252E5AAA002A6E01 /* SearchBarCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarCollectionReusableView.swift; sourceTree = "<group>"; };
 		8D524F5C252E5AAA002A6E01 /* SearchBarCollectionReusableView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchBarCollectionReusableView.xib; sourceTree = "<group>"; };
 		8D524F5F252E5AE5002A6E01 /* SearchBarCollectionReusableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarCollectionReusableViewModel.swift; sourceTree = "<group>"; };
@@ -735,6 +737,7 @@
 			children = (
 				8D94E851253A4051005FA4B9 /* UserImageFirestoreRequest.swift */,
 				8D94E85C253B50FC005FA4B9 /* DeleteUserImageFirestoreRequest.swift */,
+				8D435B2C25549DB500838691 /* UploadTermImageRequest.swift */,
 			);
 			path = Requests;
 			sourceTree = "<group>";
@@ -1869,6 +1872,7 @@
 				8DA744AE253F2EA600F9EC8B /* StudyResultCoordinator.swift in Sources */,
 				8DF253B62544A069001492AE /* BottomCardPresenter.swift in Sources */,
 				8DD28BE12526889200F59B7D /* UINavigationBar+Drivable.swift in Sources */,
+				8D435B2D25549DB500838691 /* UploadTermImageRequest.swift in Sources */,
 				8D94E84A253A2ABF005FA4B9 /* UIView+CornerRadius.swift in Sources */,
 				8DF253722543194E001492AE /* TitleSectionView.swift in Sources */,
 				8D435AB0254F45E500838691 /* VocabularyInfoView.swift in Sources */,
