@@ -216,6 +216,7 @@
 		8DD28C122528AEC800F59B7D /* SingInCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD28C112528AEC800F59B7D /* SingInCoordinator.swift */; };
 		8DD28C152528AEEF00F59B7D /* SingInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD28C132528AEEF00F59B7D /* SingInViewController.swift */; };
 		8DD28C162528AEEF00F59B7D /* SingInViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DD28C142528AEEF00F59B7D /* SingInViewController.xib */; };
+		8DF0FD93255596C200D5B225 /* DeleteTermImageRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF0FD92255596C200D5B225 /* DeleteTermImageRequest.swift */; };
 		8DF2536C25431819001492AE /* DashboardSectionFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF2536B25431819001492AE /* DashboardSectionFactory.swift */; };
 		8DF253722543194E001492AE /* TitleSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF253712543194E001492AE /* TitleSectionView.swift */; };
 		8DF2537625431968001492AE /* TitleSectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF2537525431968001492AE /* TitleSectionViewModel.swift */; };
@@ -498,6 +499,7 @@
 		8DD28C112528AEC800F59B7D /* SingInCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingInCoordinator.swift; sourceTree = "<group>"; };
 		8DD28C132528AEEF00F59B7D /* SingInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingInViewController.swift; sourceTree = "<group>"; };
 		8DD28C142528AEEF00F59B7D /* SingInViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SingInViewController.xib; sourceTree = "<group>"; };
+		8DF0FD92255596C200D5B225 /* DeleteTermImageRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteTermImageRequest.swift; sourceTree = "<group>"; };
 		8DF2536B25431819001492AE /* DashboardSectionFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardSectionFactory.swift; sourceTree = "<group>"; };
 		8DF253712543194E001492AE /* TitleSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleSectionView.swift; sourceTree = "<group>"; };
 		8DF2537525431968001492AE /* TitleSectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleSectionViewModel.swift; sourceTree = "<group>"; };
@@ -738,6 +740,7 @@
 				8D94E851253A4051005FA4B9 /* UserImageFirestoreRequest.swift */,
 				8D94E85C253B50FC005FA4B9 /* DeleteUserImageFirestoreRequest.swift */,
 				8D435B2C25549DB500838691 /* UploadTermImageRequest.swift */,
+				8DF0FD92255596C200D5B225 /* DeleteTermImageRequest.swift */,
 			);
 			path = Requests;
 			sourceTree = "<group>";
@@ -1901,6 +1904,7 @@
 				8D94E85D253B50FC005FA4B9 /* DeleteUserImageFirestoreRequest.swift in Sources */,
 				8DF2538E25434BE9001492AE /* MaterialsCoordinator.swift in Sources */,
 				8DF253E62549AFDB001492AE /* VocabularyListViewController.swift in Sources */,
+				8DF0FD93255596C200D5B225 /* DeleteTermImageRequest.swift in Sources */,
 				8DF253C82545DDC8001492AE /* WordRepresentionCellViewModel.swift in Sources */,
 				8D435A70254C25D300838691 /* QueryOrConnector.swift in Sources */,
 				8DAA554A252912BA00FF5066 /* VocabularyFetchRequest.swift in Sources */,

@@ -78,6 +78,7 @@ final class CreateWordCellViewModel: VocabularyCellViewModel {
             dispatchGroup.leave()
         }) { (error) in
             print(error.localizedDescription)
+            dispatchGroup.leave()
         }
     }
     

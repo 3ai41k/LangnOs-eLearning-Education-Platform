@@ -43,11 +43,13 @@ final class VocabularyCoordinator: Coordinator, VocabularyCoordinatorProtocol {
     // MARK: - Override
     
     override func start() {
-        let firebaseDatabase = FirebaseDatabase.shared
-        let dataProvider = DataProvider(firebaseDatabase: firebaseDatabase)
+        let dataProvider = DataProvider(firebaseDatabase: FirebaseDatabase.shared)
+        let storage = FirebaseStorage()
         let viewModel = VocabularyViewModel(router: self,
                                             vocabulary: vocabulary,
-                                            dataProvider: dataProvider)
+                                            dataProvider: dataProvider,
+                                            storage: storage)
+        
         let viewController = VocabularyViewController()
         viewController.viewModel = viewModel
         

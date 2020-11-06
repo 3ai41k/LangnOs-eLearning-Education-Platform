@@ -40,8 +40,9 @@ final class VocabularyViewModel: VocabularyViewModelOutputProtocol {
     // MARK: - Private properties
     
     private let router: VocabularyCoordinatorProtocol
-    private var vocabulary: Vocabulary
+    private let vocabulary: Vocabulary
     private let dataProvider: FirebaseDatabaseUpdatingProtocol & FirebaseDatabaseDeletingProtocol
+    private let storage: FirebaseStorageRemovingProtocol
     
     private var actionPublisher: AnyPublisher<VocabularyViewModelAction, Never> {
         actionSubject.eraseToAnyPublisher()
@@ -58,10 +59,12 @@ final class VocabularyViewModel: VocabularyViewModelOutputProtocol {
     
     init(router: VocabularyCoordinatorProtocol,
          vocabulary: Vocabulary,
-         dataProvider: FirebaseDatabaseUpdatingProtocol & FirebaseDatabaseDeletingProtocol) {
+         dataProvider: FirebaseDatabaseUpdatingProtocol & FirebaseDatabaseDeletingProtocol,
+         storage: FirebaseStorageRemovingProtocol) {
         self.router = router
         self.vocabulary = vocabulary
         self.dataProvider = dataProvider
+        self.storage = storage
         
         self.bindView()
     }
@@ -111,17 +114,34 @@ final class VocabularyViewModel: VocabularyViewModelOutputProtocol {
             CancelAlertAction(handler: { }),
             OkAlertAction(handler: {
                 self.router.showActivity()
-                
-                let request = VocabularyDeleteRequest(vocabulary: self.vocabulary)
-                self.dataProvider.delete(request: request, onSuccess: {
-                    self.router.closeActivity()
-                    self.router.close()
-                }) { (error) in
-                    self.router.closeActivity()
-                    self.router.showError(error)
+                self.deleteVocabularyImages {
+                    let request = VocabularyDeleteRequest(vocabulary: self.vocabulary)
+                    self.dataProvider.delete(request: request, onSuccess: {
+                        self.router.closeActivity()
+                        self.router.close()
+                    }) { (error) in
+                        self.router.closeActivity()
+                        self.router.showError(error)
+                    }
                 }
             })
         ])
+    }
+    
+    private func deleteVocabularyImages(completion: @escaping () -> Void) {
+        let dispatchGroup = DispatchGroup()
+        vocabulary.words.forEach({
+            let request = DeleteTermImageRequest(userId: vocabulary.userId, vocabularyId: vocabulary.id, imageName: $0.term)
+            
+            dispatchGroup.enter()
+            self.storage.delete(request: request, onSuccess: {
+                dispatchGroup.leave()
+            }) { (error) in
+                print(error.localizedDescription)
+                dispatchGroup.leave()
+            }
+        })
+        dispatchGroup.notify(queue: .main, execute: completion)
     }
     
     private func addVocabularyToFavorite() {
