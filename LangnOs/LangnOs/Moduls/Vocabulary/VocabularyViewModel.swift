@@ -16,26 +16,18 @@ protocol VocabularyViewModelInputProtocol {
     var totalLearningTime: Double { get }
 }
 
-enum VocabularyViewModelAction {
-    case flashCards
-    case writing
-    case listening
-    case speaking
-    case matching
-    case test
-    case words
-    case settings
-}
-
 protocol VocabularyViewModelOutputProtocol {
-    var actionSubject: PassthroughSubject<VocabularyViewModelAction, Never> { get }
+    func flashCardsAction()
+    func writingAction()
+    func listeningAction()
+    func speakingAction()
+    func matchingAction()
+    func testAction()
+    func wordsAction()
+    func settingsAction()
 }
 
-final class VocabularyViewModel: VocabularyViewModelOutputProtocol {
-    
-    // MARK: - Public properties
-    
-    let actionSubject = PassthroughSubject<VocabularyViewModelAction, Never>()
+final class VocabularyViewModel {
     
     // MARK: - Private properties
     
@@ -43,10 +35,6 @@ final class VocabularyViewModel: VocabularyViewModelOutputProtocol {
     private let vocabulary: Vocabulary
     private let dataProvider: FirebaseDatabaseUpdatingProtocol & FirebaseDatabaseDeletingProtocol
     private let storage: FirebaseStorageRemovingProtocol
-    
-    private var actionPublisher: AnyPublisher<VocabularyViewModelAction, Never> {
-        actionSubject.eraseToAnyPublisher()
-    }
     
     private let settingsActionSubject = PassthroughSubject<VocabularySettingsRowAction, Never>()
     private var settingsActionPublisher: AnyPublisher<VocabularySettingsRowAction, Never> {
@@ -73,27 +61,6 @@ final class VocabularyViewModel: VocabularyViewModelOutputProtocol {
     
     private func bindView() {
         cancellables = [
-            actionPublisher.sink(receiveValue: { [weak self] action in
-                switch action {
-                case .flashCards:
-                    self?.router.navigateToFlashCards()
-                case .writing:
-                    self?.router.navigateToWriting()
-                case .listening:
-                    self?.router.navigateToFlashCards()
-                case .speaking:
-                    self?.router.navigateToFlashCards()
-                case .matching:
-                    self?.router.navigateToFlashCards()
-                case .test:
-                    self?.router.navigateToFlashCards()
-                case .words:
-                    self?.router.navigateToWords()
-                case .settings:
-                    guard let self = self else { return }
-                    self.router.navigateToSettings(actionSubject: self.settingsActionSubject)
-                }
-            }),
             settingsActionPublisher.sink(receiveValue: { [weak self] action in
                 switch action {
                 case .rename:
@@ -174,6 +141,44 @@ extension VocabularyViewModel: VocabularyViewModelInputProtocol {
     
     var totalLearningTime: Double {
         vocabulary.totalLearningTime
+    }
+    
+}
+
+// MARK: - VocabularyViewModelOutputProtocol
+
+extension VocabularyViewModel: VocabularyViewModelOutputProtocol {
+    
+    func flashCardsAction() {
+        router.navigateToFlashCards()
+    }
+    
+    func writingAction() {
+        router.navigateToWriting()
+    }
+    
+    func listeningAction() {
+        router.navigateToFlashCards()
+    }
+    
+    func speakingAction() {
+        router.navigateToFlashCards()
+    }
+    
+    func matchingAction() {
+        router.navigateToFlashCards()
+    }
+    
+    func testAction() {
+        router.navigateToFlashCards()
+    }
+    
+    func wordsAction() {
+        router.navigateToWords()
+    }
+    
+    func settingsAction() {
+        router.navigateToSettings(actionSubject: settingsActionSubject)
     }
     
 }

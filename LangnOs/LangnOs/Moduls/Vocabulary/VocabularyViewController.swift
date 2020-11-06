@@ -17,13 +17,10 @@ final class VocabularyViewController: BindibleViewController<VocabularyViewModel
     // MARK: - Override
     
     override func bindViewModel() {
-        guard let viewModel = viewModel else { return }
-        
-        title = viewModel.title
-        
-        vocabularyProgressView.phrasesLearned = viewModel.phrasesLearned
-        vocabularyProgressView.phrasesLeftToLearn = viewModel.phrasesLeftToLearn
-        vocabularyProgressView.totalLearningTime = viewModel.totalLearningTime
+        title = viewModel?.title
+        vocabularyProgressView.phrasesLearned = viewModel?.phrasesLearned ?? 0
+        vocabularyProgressView.phrasesLeftToLearn = viewModel?.phrasesLeftToLearn ?? 0
+        vocabularyProgressView.totalLearningTime = viewModel?.totalLearningTime ?? 0
     }
     
     override func setupUI() {
@@ -39,22 +36,22 @@ final class VocabularyViewController: BindibleViewController<VocabularyViewModel
     
     @IBAction
     private func didFlashCardsTouch(_ sender: Any) {
-        viewModel?.actionSubject.send(.flashCards)
+        viewModel?.flashCardsAction()
     }
     
     @IBAction
     private func didWritingTouch(_ sender: Any) {
-        viewModel?.actionSubject.send(.writing)
+        viewModel?.writingAction()
     }
     
     @IBAction
     private func didShowWordsTouch(_ sender: Any) {
-        viewModel?.actionSubject.send(.words)
+        viewModel?.wordsAction()
     }
     
     @objc
     private func didMoreButtonTouch() {
-        viewModel?.actionSubject.send(.settings)
+        viewModel?.settingsAction()
     }
     
 }
