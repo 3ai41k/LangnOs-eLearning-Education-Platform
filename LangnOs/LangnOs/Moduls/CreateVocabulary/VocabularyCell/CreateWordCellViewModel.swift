@@ -92,7 +92,7 @@ final class CreateWordCellViewModel: VocabularyCellViewModel {
     @objc
     private func didImageTouch() {
         imageHandler? { (image) in
-            self.image.value = image
+            self.image.value = image.resized(to: CGSize(width: 256, height: 210))
         }
     }
     

@@ -19,6 +19,7 @@ final class VocabularyTableViewCell: UITableViewCell, UniversalTableViewCellRegi
             containerView.setShadow(color: .black, opacity: 0.25)
         }
     }
+    @IBOutlet private weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet private weak var termImageView: UIImageView! {
         didSet {
             termImageView.layer.cornerRadius = 10.0
@@ -71,6 +72,9 @@ final class VocabularyTableViewCell: UITableViewCell, UniversalTableViewCellRegi
         cancellables = [
             viewModel?.headerTitle.assign(to: \.title, on: headerInputView),
             viewModel?.footerTitle.assign(to: \.title, on: footerInputView),
+            viewModel?.showActivity.sink(receiveValue: { [weak self] (showActivity) in
+                self?.activityIndicator.isHidden = !showActivity
+            }),
             viewModel?.isEditable.assign(to: \.isEditable, on: headerInputView),
             viewModel?.isEditable.assign(to: \.isEditable, on: footerInputView),
             viewModel?.image.sink(receiveValue: { [weak self] image in

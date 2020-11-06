@@ -14,6 +14,7 @@ protocol VocabularyCellViewModelInputProtocol {
     var headerValue: String? { get }
     var footerTitle: CurrentValueSubject<String?, Never> { get }
     var footerValue: String? { get }
+    var showActivity: CurrentValueSubject<Bool, Never> { get }
     var image: CurrentValueSubject<UIImage?, Never> { get }
     var toolbarDrivableModel: DrivableModelProtocol? { get }
     var isEditable: CurrentValueSubject<Bool, Never> { get }
@@ -41,6 +42,7 @@ class VocabularyCellViewModel: VocabularyCellViewModelProtocol {
     var footerValue: String? {
         nil
     }
+    var showActivity: CurrentValueSubject<Bool, Never>
     var image: CurrentValueSubject<UIImage?, Never>
     var toolbarDrivableModel: DrivableModelProtocol? {
         nil
@@ -52,6 +54,7 @@ class VocabularyCellViewModel: VocabularyCellViewModelProtocol {
     init(headerTitle: String, footerTitle: String) {
         self.headerTitle = .init(headerTitle)
         self.footerTitle = .init(footerTitle)
+        self.showActivity = .init(false)
         self.image = .init(nil)
         self.isEditable = .init(true)
     }

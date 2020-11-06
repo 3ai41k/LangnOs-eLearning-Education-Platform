@@ -22,21 +22,21 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="Ix9-Bn-WMW">
                                 <rect key="frame" x="16" y="16" width="256" height="342"/>
                                 <subviews>
+                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="mYH-ME-pI4">
+                                        <rect key="frame" x="0.0" y="0.0" width="256" height="20"/>
+                                    </activityIndicatorView>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="tb7-fd-Hbk">
-                                        <rect key="frame" x="0.0" y="0.0" width="256" height="256"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" secondItem="tb7-fd-Hbk" secondAttribute="height" multiplier="1:1" id="hdH-B7-kWJ"/>
-                                        </constraints>
+                                        <rect key="frame" x="0.0" y="36" width="256" height="158"/>
                                     </imageView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="U5l-X3-M4v">
-                                        <rect key="frame" x="0.0" y="272" width="256" height="70"/>
+                                        <rect key="frame" x="0.0" y="210" width="256" height="132"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0gL-rs-s8t" customClass="InputView" customModule="LangnOs" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="256" height="27"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="256" height="58"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cTf-fv-YQH" customClass="InputView" customModule="LangnOs" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="43" width="256" height="27"/>
+                                                <rect key="frame" x="0.0" y="74" width="256" height="58"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                             </view>
                                         </subviews>
@@ -63,6 +63,7 @@
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="activityIndicator" destination="mYH-ME-pI4" id="0nf-YE-tSR"/>
                 <outlet property="containerView" destination="Zr2-6t-HAh" id="ddi-bE-wUW"/>
                 <outlet property="footerInputView" destination="cTf-fv-YQH" id="Pgw-Qq-aWs"/>
                 <outlet property="headerInputView" destination="0gL-rs-s8t" id="Ncm-GF-tQ0"/>

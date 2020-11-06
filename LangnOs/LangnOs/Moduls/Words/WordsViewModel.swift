@@ -39,6 +39,7 @@ final class WordsViewModel: WordsViewModelProtocol {
     private let router: WordsCoordinatorProtocol
     private var vocabulary: Vocabulary
     private let dataProvider: FirebaseDatabaseUpdatingProtocol
+    private let mediaDownloader: MediaDownloadableProtocol
     
     private var setEditingPublisher: AnyPublisher<Bool, Never> {
         setEditingSubject.eraseToAnyPublisher()
@@ -47,10 +48,14 @@ final class WordsViewModel: WordsViewModelProtocol {
     
     // MARK: - Init
     
-    init(router: WordsCoordinatorProtocol, vocabulary: Vocabulary, dataProvider: FirebaseDatabaseUpdatingProtocol) {
+    init(router: WordsCoordinatorProtocol,
+         vocabulary: Vocabulary,
+         dataProvider: FirebaseDatabaseUpdatingProtocol,
+         mediaDownloader: MediaDownloadableProtocol) {
         self.router = router
         self.vocabulary = vocabulary
         self.dataProvider = dataProvider
+        self.mediaDownloader = mediaDownloader
         
         self.bindView()
         
@@ -80,7 +85,7 @@ final class WordsViewModel: WordsViewModelProtocol {
     
     private func setupWordSection(_ tableSections: inout [SectionViewModelProtocol]) {
         let cellViewModels = vocabulary.words.map({
-            WordRepresentionCellViewModel(word: $0)
+            WordRepresentionCellViewModel(word: $0, mediaDownloader: mediaDownloader)
         })
         tableSections.append(TableSectionViewModel(cells: cellViewModels))
     }
@@ -102,7 +107,7 @@ final class WordsViewModel: WordsViewModelProtocol {
                 self.router.closeActivity()
                 self.router.showError(error)
                 
-                let cellViewModels = self.vocabulary.words.map({ WordRepresentionCellViewModel(word: $0) })
+                let cellViewModels = self.vocabulary.words.map({ WordRepresentionCellViewModel(word: $0, mediaDownloader: self.mediaDownloader) })
                 self.tableSections[SectionType.words.rawValue].cells.value = cellViewModels
             }
         }
