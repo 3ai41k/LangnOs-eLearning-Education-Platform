@@ -7,14 +7,14 @@
 //
 
 import Foundation
-import Combine
 
 protocol VocabularyListViewModelInputProtocol {
     var title: String { get }
+    var backgroudTitle: String { get }
 }
 
 protocol VocabularyListViewModelOutputProtocol {
-    func fetchData()
+    
 }
 
 typealias VocabularyListViewModelProtocol =
@@ -34,6 +34,10 @@ final class VocabularyListViewModel: VocabularyListViewModelProtocol {
         "Favorites".localize
     }
     
+    var backgroudTitle: String {
+        "There aren't any materials.".localize
+    }
+    
     var tableSections: [SectionViewModelProtocol] = []
     
     // MARK: - Private properties
@@ -41,8 +45,6 @@ final class VocabularyListViewModel: VocabularyListViewModelProtocol {
     private let router: VocabularyListCoordinatorProtocol
     private let dataProvider: FirebaseDatabaseFetchingProtocol & FirebaseDatabaseUpdatingProtocol
     private let userSession: SessionInfoProtocol
-    
-    private var cancellables: [AnyCancellable] = []
     
     // MARK: - Init
     
@@ -53,14 +55,14 @@ final class VocabularyListViewModel: VocabularyListViewModelProtocol {
         self.dataProvider = dataProvider
         self.userSession = userSession
         
-        self.setupVocabularySection(&tableSections)
+        self.appendVocabularySection()
         
-        self.fetchData()
+        self.fetchVocabulary()
     }
     
     // MARK: - Public methods
     
-    func fetchData() {
+    private func fetchVocabulary() {
         guard let userId = userSession.userInfo.id else { return }
         
         let request = VocabularyFetchRequest(userId: userId)
@@ -73,7 +75,7 @@ final class VocabularyListViewModel: VocabularyListViewModelProtocol {
     
     // MARK: - Private methods
     
-    private func setupVocabularySection(_ tableSections: inout [SectionViewModelProtocol]) {
+    private func appendVocabularySection() {
         let sectionViewModel = TableSectionViewModel(cells: [])
         tableSections.append(sectionViewModel)
     }

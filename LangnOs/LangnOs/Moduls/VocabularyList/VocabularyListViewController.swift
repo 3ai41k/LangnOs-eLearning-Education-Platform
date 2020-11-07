@@ -16,6 +16,8 @@ final class VocabularyListViewController: BindibleViewController<VocabularyListV
         didSet {
             tableView.viewModel = viewModel
             tableView.cellFactory = cellFactory
+            tableView.backgroundView = backgroundView
+            tableView.tableFooterView = UIView()
             
             tableView.start()
         }
@@ -25,52 +27,16 @@ final class VocabularyListViewController: BindibleViewController<VocabularyListV
     
     var cellFactory: UniversalTableViewCellFactoryProtocol?
     
-    
     // MARK: - Private properties
     
-    
-    
-    // MARK: - Lifecycle
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        viewModel?.fetchData()
-    }
-    
-    // MARK: - Init
-    
-    
-    
+    private let backgroundView = NoResulsView()
     
     // MARK: - Override
     
     override func bindViewModel() {
         title = viewModel?.title
+        backgroundView.title = viewModel?.backgroudTitle
     }
-    
-    override func setupUI() {
-        
-    }
-    
-    override func configurateComponents() {
-        setupBackgroundView()
-    }
-    
-    // MARK: - Public methods
-    
-    
-    
-    
-    // MARK: - Private methods
-    
-    private func setupBackgroundView() {
-        let backgroundView = NoResulsView()
-        backgroundView.title = "There aren't any materials.".localize
-        tableView.backgroundView = backgroundView
-    }
-    
-    // MARK: - Actions
     
 }
 
