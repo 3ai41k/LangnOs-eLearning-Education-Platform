@@ -31,11 +31,7 @@ final class WordsViewController: BindibleViewController<WordsViewModelProtocol> 
     // MARK: - Override
     
     override func bindViewModel() {
-        cancellables = [
-            viewModel?.title.sink(receiveValue: { [weak self] (title) in
-                self?.title = title
-            })
-        ]
+        title = viewModel?.title
     }
     
     override func setupUI() {

@@ -10,7 +10,7 @@ import Foundation
 import Combine
 
 protocol WordsViewModelInputProtocol {
-    var title: CurrentValueSubject<String?, Never> { get }
+    var title: String { get }
 }
 
 protocol WordsViewModelOutputProtocol {
@@ -30,7 +30,10 @@ final class WordsViewModel: WordsViewModelProtocol {
     
     // MARK: - Public properties
     
-    var title = CurrentValueSubject<String?, Never>("Words".localize)
+    var title: String {
+        "Words".localize
+    }
+    
     var setEditingSubject = PassthroughSubject<Bool, Never>()
     var tableSections: [SectionViewModelProtocol] = []
     
@@ -59,7 +62,7 @@ final class WordsViewModel: WordsViewModelProtocol {
         
         self.bindView()
         
-        self.setupWordSection(&tableSections)
+        self.appendWordSection()
     }
     
     // MARK: - Public methods
@@ -83,7 +86,7 @@ final class WordsViewModel: WordsViewModelProtocol {
         ]
     }
     
-    private func setupWordSection(_ tableSections: inout [SectionViewModelProtocol]) {
+    private func appendWordSection() {
         let cellViewModels = vocabulary.words.map({
             WordRepresentionCellViewModel(word: $0, mediaDownloader: mediaDownloader)
         })
