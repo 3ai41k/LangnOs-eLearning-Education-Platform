@@ -8,18 +8,35 @@
 
 import UIKit
 
-protocol VocabularyListCoordinatorNavigationProtocol {
-    
+protocol VocabularyListNavigationProtocol {
+    func addFavaoriteVocabulary(_ vocabulary: Vocabulary)
+    func removeFavaoriteVocabulary(_ vocabulary: Vocabulary)
 }
 
 typealias VocabularyListCoordinatorProtocol =
-    VocabularyListCoordinatorNavigationProtocol &
+    VocabularyListNavigationProtocol &
     CoordinatorClosableProtocol &
     ActivityPresentableProtocol &
     AlertPresentableProtocol
     
 
 final class VocabularyListCoordinator: Coordinator, VocabularyListCoordinatorProtocol  {
+    
+    // MARK: - Private properties
+    
+    private let addVocabularyHandler: (Vocabulary) -> Void
+    private let removeVocabularyHandler: (Vocabulary) -> Void
+    
+    // MARK: - Init
+    
+    init(addVocabularyHandler: @escaping (Vocabulary) -> Void,
+         removeVocabularyHandler: @escaping (Vocabulary) -> Void,
+         parentViewController: UIViewController?) {
+        self.addVocabularyHandler = addVocabularyHandler
+        self.removeVocabularyHandler = removeVocabularyHandler
+        
+        super.init(parentViewController: parentViewController)
+    }
     
     // MARK: - Override
     
@@ -38,6 +55,16 @@ final class VocabularyListCoordinator: Coordinator, VocabularyListCoordinatorPro
         
         self.viewController = viewController
         (parentViewController as? UINavigationController)?.pushViewController(viewController, animated: true)
+    }
+    
+    // MARK: - VocabularyListNavigationProtocol
+    
+    func addFavaoriteVocabulary(_ vocabulary: Vocabulary) {
+        addVocabularyHandler(vocabulary)
+    }
+    
+    func removeFavaoriteVocabulary(_ vocabulary: Vocabulary) {
+        removeVocabularyHandler(vocabulary)
     }
     
 }

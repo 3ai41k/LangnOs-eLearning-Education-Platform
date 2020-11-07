@@ -83,8 +83,9 @@ final class DashboardViewModel: DashboardViewModelProtocol {
     private let dataProvider: FirebaseDatabaseFetchingProtocol
     private var favoriteVocabularies: [Vocabulary] = [] {
         didSet {
-            let cellViewModels = favoriteVocabularies.map({ MessageCellViewModel(message: $0.title) })
-            self.tableSections[SectionType.favorites.rawValue].cells.value = cellViewModels
+            favoriteVocabularies.isEmpty ?
+                setupEmptyFavoriteVocabularySection() :
+                setupFavoriteVocabularySection()
         }
     }
     private var cancellables: [AnyCancellable] = []
@@ -101,9 +102,9 @@ final class DashboardViewModel: DashboardViewModelProtocol {
         
         self.userImage = .init(nil)
         
-        self.setupEmptySection(&tableSections)
-        self.setupMyWorkSection(&tableSections)
-        self.setupFavoritesSection(&tableSections)
+        self.appendEmptySection()
+        self.appendMyWorkSection()
+        self.appendFavoriteVocabularySection()
         
         self.bindUserSession()
         self.setupNotifications()
@@ -140,7 +141,7 @@ final class DashboardViewModel: DashboardViewModelProtocol {
             
             switch state {
             case .login, .logout:
-                self?.fetchFavoriteVocabularies()
+                self?.fetchFavoriteVocabulary()
             case .changePhoto:
                 break
             }
@@ -165,19 +166,15 @@ final class DashboardViewModel: DashboardViewModelProtocol {
         }
     }
     
-    private func fetchFavoriteVocabularies() {
+    private func fetchFavoriteVocabulary() {
         guard let userId = userSession.userInfo.id else {
-            setEmptyFavoritesSection()
+            favoriteVocabularies = .empty
             return
         }
         
         let request = FavoriteVocabularyFetchRequest(userId: userId)
         dataProvider.fetch(request: request, onSuccess: { (vocabularies: [Vocabulary]) in
-            if vocabularies.isEmpty {
-                self.setEmptyFavoritesSection()
-            } else {
-                self.favoriteVocabularies = vocabularies
-            }
+            self.favoriteVocabularies = vocabularies
         }) { (error) in
             self.router.showError(error)
         }
@@ -185,47 +182,58 @@ final class DashboardViewModel: DashboardViewModelProtocol {
     
     // MARK: - Table View Configuration
     
-    private func setupEmptySection(_ tableSections: inout [SectionViewModelProtocol]) {
+    private func appendEmptySection() {
         let sectionViewModel = TableSectionViewModel(cells: [])
         tableSections.append(sectionViewModel)
     }
     
-    private func setupMyWorkSection(_ tableSections: inout [SectionViewModelProtocol]) {
+    private func appendMyWorkSection() {
         let cellViewModels = [
-            ColoredImageCellViewModel(text: "Materials", image: SFSymbols.meterials(), color: .systemGreen, accessoryType: .disclosureIndicator),
-            ColoredImageCellViewModel(text: "Statistic", image: SFSymbols.statistic(), color: .systemBlue, accessoryType: .disclosureIndicator)
+            ColoredImageCellViewModel(text: "Materials".localize,
+                                      image: SFSymbols.meterials(),
+                                      color: .systemGreen,
+                                      accessoryType: .disclosureIndicator),
+            ColoredImageCellViewModel(text: "Statistic".localize,
+                                      image: SFSymbols.statistic(),
+                                      color: .systemBlue,
+                                      accessoryType: .disclosureIndicator)
         ]
-        let sectionViewModel = TableSectionViewModel(headerView: TitleSectionViewModel(text: "My Work".localize),
-                                                     footerView: nil,
-                                                     cells: cellViewModels)
-        tableSections.append(sectionViewModel)
-    }
-    
-    private func setupFavoritesSection(_ tableSections: inout [SectionViewModelProtocol]) {
-        let cellViewModels = [
-            ActivityIndicatorCellViewModel()
-        ]
-        let headerViewModel = TitleSectionViewModel(text: "Favorites".localize,
-                                                    buttonText: "Edit".localize,
-                                                    buttonHandler: { [weak self] in
-                                                        self?.editFavoritesSection()
-                                                    })
+        let headerViewModel = TitleSectionViewModel(text: "My Work".localize)
         let sectionViewModel = TableSectionViewModel(headerView: headerViewModel,
                                                      footerView: nil,
                                                      cells: cellViewModels)
         tableSections.append(sectionViewModel)
     }
     
-    private func setEmptyFavoritesSection() {
+    private func appendFavoriteVocabularySection() {
+        let headerViewModel = TitleSectionViewModel(text: "Favorites".localize,
+                                                    buttonText: "Edit".localize,
+                                                    buttonHandler: { [weak self] in self?.editFavoriteVocabularySection() })
+        let sectionViewModel = TableSectionViewModel(headerView: headerViewModel,
+                                                     footerView: nil,
+                                                     cells: [ActivityIndicatorCellViewModel()])
+        tableSections.append(sectionViewModel)
+    }
+    
+    private func setupEmptyFavoriteVocabularySection() {
         let cellViewModels = [
             MessageCellViewModel(message: "Add favorite sets here to have quick access at any time, without having to search".localize)
         ]
         tableSections[SectionType.favorites.rawValue].cells.value = cellViewModels
     }
     
-    private func editFavoritesSection() {
-        router.navigateToVocabularyList {
-            self.fetchFavoriteVocabularies()
+    private func setupFavoriteVocabularySection() {
+        let cellViewModels = favoriteVocabularies.map({
+            MessageCellViewModel(message: $0.title)
+        })
+        tableSections[SectionType.favorites.rawValue].cells.value = cellViewModels
+    }
+    
+    private func editFavoriteVocabularySection() {
+        router.navigateToVocabularyList(addVocabularyHandler: { (vocabulary) in
+            self.favoriteVocabularies.append(vocabulary)
+        }) { (vocabularyForRemove) in
+            self.favoriteVocabularies.removeAll(where: { $0 == vocabularyForRemove })
         }
     }
     

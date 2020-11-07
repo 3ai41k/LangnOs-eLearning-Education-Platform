@@ -82,11 +82,9 @@ final class VocabularyListViewModel: VocabularyListViewModelProtocol {
         var cellViewModels: [CellViewModelProtocol] = []
         for var vocabulary in vocabularies {
             let cellViewModel = AddToFavoriteCellViewModel(vocabulary: vocabulary) { [weak self] isFavorite in
-                if isFavorite {
-                    vocabulary.makeFavorite()
-                } else {
+                isFavorite ?
+                    vocabulary.makeFavorite() :
                     vocabulary.makeUnfavorite()
-                }
                 self?.updateVocabulary(vocabulary)
             }
             cellViewModels.append(cellViewModel)
@@ -97,7 +95,9 @@ final class VocabularyListViewModel: VocabularyListViewModelProtocol {
     private func updateVocabulary(_ vocabulary: Vocabulary) {
         let request = VocabularyUpdateRequest(vocabulary: vocabulary)
         dataProvider.update(request: request, onSuccess: {
-            print("Success")
+            vocabulary.isFavorite ?
+                self.router.addFavaoriteVocabulary(vocabulary) :
+                self.router.removeFavaoriteVocabulary(vocabulary)
         }) { (error) in
             self.router.showError(error)
         }
