@@ -217,6 +217,9 @@
 		8DD28C152528AEEF00F59B7D /* SingInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD28C132528AEEF00F59B7D /* SingInViewController.swift */; };
 		8DD28C162528AEEF00F59B7D /* SingInViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DD28C142528AEEF00F59B7D /* SingInViewController.xib */; };
 		8DF0FD93255596C200D5B225 /* DeleteTermImageRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF0FD92255596C200D5B225 /* DeleteTermImageRequest.swift */; };
+		8DF0FD972556F23100D5B225 /* FavoriteVocabularyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF0FD952556F23100D5B225 /* FavoriteVocabularyTableViewCell.swift */; };
+		8DF0FD982556F23100D5B225 /* FavoriteVocabularyTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DF0FD962556F23100D5B225 /* FavoriteVocabularyTableViewCell.xib */; };
+		8DF0FD9A2556F24A00D5B225 /* FavoriteVocabularyCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF0FD992556F24A00D5B225 /* FavoriteVocabularyCellViewModel.swift */; };
 		8DF2536C25431819001492AE /* DashboardSectionFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF2536B25431819001492AE /* DashboardSectionFactory.swift */; };
 		8DF253722543194E001492AE /* TitleSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF253712543194E001492AE /* TitleSectionView.swift */; };
 		8DF2537625431968001492AE /* TitleSectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF2537525431968001492AE /* TitleSectionViewModel.swift */; };
@@ -500,6 +503,9 @@
 		8DD28C132528AEEF00F59B7D /* SingInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingInViewController.swift; sourceTree = "<group>"; };
 		8DD28C142528AEEF00F59B7D /* SingInViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SingInViewController.xib; sourceTree = "<group>"; };
 		8DF0FD92255596C200D5B225 /* DeleteTermImageRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteTermImageRequest.swift; sourceTree = "<group>"; };
+		8DF0FD952556F23100D5B225 /* FavoriteVocabularyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteVocabularyTableViewCell.swift; sourceTree = "<group>"; };
+		8DF0FD962556F23100D5B225 /* FavoriteVocabularyTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FavoriteVocabularyTableViewCell.xib; sourceTree = "<group>"; };
+		8DF0FD992556F24A00D5B225 /* FavoriteVocabularyCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteVocabularyCellViewModel.swift; sourceTree = "<group>"; };
 		8DF2536B25431819001492AE /* DashboardSectionFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardSectionFactory.swift; sourceTree = "<group>"; };
 		8DF253712543194E001492AE /* TitleSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleSectionView.swift; sourceTree = "<group>"; };
 		8DF2537525431968001492AE /* TitleSectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleSectionViewModel.swift; sourceTree = "<group>"; };
@@ -1273,6 +1279,7 @@
 				8DF253CE25471CFB001492AE /* OfflineTitleView */,
 				8DF2536E25431925001492AE /* TitleSection */,
 				8DF253822543307A001492AE /* MessageCell */,
+				8DF0FD942556F1D200D5B225 /* FavoriteVocabularyCell */,
 				8DD28BB225266F6800F59B7D /* DashboardCoordinator.swift */,
 				8DD28BCE252683A100F59B7D /* DashboardViewModel.swift */,
 				8DD28BAE25266F4000F59B7D /* DashboardViewController.swift */,
@@ -1481,6 +1488,16 @@
 				8D524FB2252FB654002A6E01 /* SingUpViewModel.swift */,
 			);
 			path = SingUp;
+			sourceTree = "<group>";
+		};
+		8DF0FD942556F1D200D5B225 /* FavoriteVocabularyCell */ = {
+			isa = PBXGroup;
+			children = (
+				8DF0FD952556F23100D5B225 /* FavoriteVocabularyTableViewCell.swift */,
+				8DF0FD992556F24A00D5B225 /* FavoriteVocabularyCellViewModel.swift */,
+				8DF0FD962556F23100D5B225 /* FavoriteVocabularyTableViewCell.xib */,
+			);
+			path = FavoriteVocabularyCell;
 			sourceTree = "<group>";
 		};
 		8DF2536D25431915001492AE /* Sections */ = {
@@ -1772,6 +1789,7 @@
 				8D524FEF2533BEC9002A6E01 /* FlashCardTableViewCell.xib in Resources */,
 				8D9985ED252929E7009EA144 /* VocabularyViewController.xib in Resources */,
 				8D94E82325373FB6005FA4B9 /* VocabularyFilterViewController.xib in Resources */,
+				8DF0FD982556F23100D5B225 /* FavoriteVocabularyTableViewCell.xib in Resources */,
 				8DD28C0525289C5300F59B7D /* VocabularyCollectionViewCell.xib in Resources */,
 				8D435A96254DFBC300838691 /* CoursesViewController.xib in Resources */,
 				8D524FA4252F86D1002A6E01 /* UserImageView.xib in Resources */,
@@ -1932,6 +1950,7 @@
 				8DC3CF31252CD5B6003CA62A /* UniversalCollectionViewLayoutProtocol.swift in Sources */,
 				8DD28BFF2527BCBF00F59B7D /* UniversalCollectionViewCellRegistratable.swift in Sources */,
 				8D83EA6F252B9C11004E6098 /* ActivityViewController.swift in Sources */,
+				8DF0FD972556F23100D5B225 /* FavoriteVocabularyTableViewCell.swift in Sources */,
 				8D524F60252E5AE5002A6E01 /* SearchBarCollectionReusableViewModel.swift in Sources */,
 				8D6625222529F6CA00991D45 /* CreateVocabularyCoordinator.swift in Sources */,
 				8D662540252A717500991D45 /* WordsViewController.swift in Sources */,
@@ -1971,6 +1990,7 @@
 				8D83EA6A252B8FEA004E6098 /* CreateVocabularyCellFactory.swift in Sources */,
 				8D524F64252E5E8F002A6E01 /* UniversalCollectionSectionViewModel.swift in Sources */,
 				8D435A35254B4E0C00838691 /* CollectionPath.swift in Sources */,
+				8DF0FD9A2556F24A00D5B225 /* FavoriteVocabularyCellViewModel.swift in Sources */,
 				8DF2537625431968001492AE /* TitleSectionViewModel.swift in Sources */,
 				8DF253B82544A07A001492AE /* BottomCardDismisser.swift in Sources */,
 				8DC3CF23252C67F9003CA62A /* InputView.swift in Sources */,

@@ -224,7 +224,7 @@ final class DashboardViewModel: DashboardViewModelProtocol {
     
     private func setupFavoriteVocabularySection() {
         let cellViewModels = favoriteVocabularies.map({
-            MessageCellViewModel(message: $0.title)
+            FavoriteVocabularyCellViewModel(vocabulary: $0)
         })
         tableSections[SectionType.favorites.rawValue].cells.value = cellViewModels
     }
