@@ -47,10 +47,6 @@ final class UserSession: SessionInfoProtocol {
         CoreDataStack.shared
     }
     
-    private var networkState: InternetConnectableProtocol {
-        NetworkState.shared
-    }
-    
     private var userDefaults: UserDefaults {
         UserDefaults.standard
     }

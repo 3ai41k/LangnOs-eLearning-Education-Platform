@@ -160,11 +160,6 @@ final class DashboardViewModel: DashboardViewModelProtocol {
     
     private func updateUserPhoto() {
         userImage.value = SFSymbols.personCircle()
-//        userSession.getUserPhoto(onSuccess: { (image) in
-//            self.userImage.value = image != nil ? image : SFSymbols.personCircle()
-//        }) { (error) in
-//            self.router.showError(error)
-//        }
     }
     
     private func fetchFavoriteVocabulary() {

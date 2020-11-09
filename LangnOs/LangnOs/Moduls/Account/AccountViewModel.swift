@@ -70,10 +70,10 @@ final class AccountViewModel: AccountViewModelProtocol {
         
         self.userPhoto = .init(nil)
         
-        self.setupEmptySection(&tableSections)
-        self.setupMainSettinsSection(&tableSections)
-        self.setupFeedbackSection(&tableSections)
-        self.setupLogoutSection(&tableSections)
+        self.setupEmptySection()
+        self.setupMainSettinsSection()
+        self.setupFeedbackSection()
+        self.setupLogoutSection()
         
         self.downloadUserPhoto()
     }
@@ -92,19 +92,15 @@ final class AccountViewModel: AccountViewModelProtocol {
     // MARK: - Private methods
     
     private func downloadUserPhoto() {
-//        userSession.getUserPhoto(onSuccess: { (image) in
-//            self.userPhoto.value = image != nil ? image : SFSymbols.personCircle()
-//        }) { (error) in
-//            self.router.showError(error)
-//        }
+        userPhoto.value = SFSymbols.personCircle()
     }
     
-    private func setupEmptySection(_ tableSections: inout [SectionViewModelProtocol]) {
+    private func setupEmptySection() {
         let sectionViewModel = TableSectionViewModel(cells: [])
         tableSections.append(sectionViewModel)
     }
     
-    private func setupMainSettinsSection(_ tableSections: inout [SectionViewModelProtocol]) {
+    private func setupMainSettinsSection() {
         let cellViewModels = [
             ColoredImageCellViewModel(text: "Appearance", image: SFSymbols.apperance(), color: .systemGray3, accessoryType: .disclosureIndicator),
             ColoredImageCellViewModel(text: "App Icon", image: SFSymbols.photo(), color: .systemGray3, accessoryType: .disclosureIndicator),
@@ -115,7 +111,7 @@ final class AccountViewModel: AccountViewModelProtocol {
         tableSections.append(sectionViewModel)
     }
     
-    private func setupFeedbackSection(_ tableSections: inout [SectionViewModelProtocol]) {
+    private func setupFeedbackSection() {
         let cellViewModels = [
             ColoredImageCellViewModel(text: "Share Feedback", image: SFSymbols.feedback(), color: .systemGray3, accessoryType: .disclosureIndicator)
         ]
@@ -123,7 +119,7 @@ final class AccountViewModel: AccountViewModelProtocol {
         tableSections.append(sectionViewModel)
     }
     
-    private func setupLogoutSection(_ tableSections: inout [SectionViewModelProtocol]) {
+    private func setupLogoutSection() {
         let cellViewModels = [
             ButtonCellViewModel(title: "Log out", titleColor: .systemRed, buttonHandler: { [weak self] in
                 self?.logoutAction()
@@ -137,22 +133,12 @@ final class AccountViewModel: AccountViewModelProtocol {
     
     private func selectImageAction() {
         router.navigateToImagePicker(sourceType: .photoLibrary) { (image) in
-            self.userPhoto.value = nil
-//            self.userSession.updateUserPhoto(image, onSuccess: {
-//                self.userPhoto.value = image
-//            }) { (error) in
-//                self.router.showError(error)
-//            }
+            self.userPhoto.value = image
         }
     }
     
     private func removeImageAction() {
         userPhoto.value = nil
-//        userSession.removeUserPhoto(onSuccess: {
-//            self.userPhoto.value = SFSymbols.personCircle()
-//        }) { (error) in
-//            self.router.showError(error)
-//        }
     }
     
     private func logoutAction() {
