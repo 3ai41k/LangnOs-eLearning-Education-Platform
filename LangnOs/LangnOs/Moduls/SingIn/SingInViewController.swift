@@ -27,7 +27,7 @@ final class SingInViewController: BindibleViewController<SingInInputProtocol & S
     
     // MARK: - Override
     
-    override func configurateComponents() {
+    override func bindViewModel() {
         headerLabel.text = viewModel?.header
         descriptionLabel.text = viewModel?.description
     }

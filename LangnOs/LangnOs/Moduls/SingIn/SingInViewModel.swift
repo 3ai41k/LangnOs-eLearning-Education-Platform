@@ -89,7 +89,7 @@ extension SingInViewModel: SingInInputProtocol {
     var buttonsDrivingModels: [DrivableModelProtocol] {
         [
             ButtonDrivableModel(title: "Sing up".localize,
-                                titleColor: .black,
+                                titleColor: .label,
                                 target: self,
                                 selector: #selector(didSingup))
         ]

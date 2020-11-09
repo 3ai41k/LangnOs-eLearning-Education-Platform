@@ -205,13 +205,13 @@
 		8DD28C122528AEC800F59B7D /* SingInCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD28C112528AEC800F59B7D /* SingInCoordinator.swift */; };
 		8DD28C152528AEEF00F59B7D /* SingInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD28C132528AEEF00F59B7D /* SingInViewController.swift */; };
 		8DD28C162528AEEF00F59B7D /* SingInViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DD28C142528AEEF00F59B7D /* SingInViewController.xib */; };
+		8DD745A42559A18600370285 /* User+CDEntityProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD745A32559A18600370285 /* User+CDEntityProtocol.swift */; };
 		8DF0FD93255596C200D5B225 /* DeleteTermImageRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF0FD92255596C200D5B225 /* DeleteTermImageRequest.swift */; };
 		8DF0FD972556F23100D5B225 /* FavoriteVocabularyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF0FD952556F23100D5B225 /* FavoriteVocabularyTableViewCell.swift */; };
 		8DF0FD982556F23100D5B225 /* FavoriteVocabularyTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DF0FD962556F23100D5B225 /* FavoriteVocabularyTableViewCell.xib */; };
 		8DF0FD9A2556F24A00D5B225 /* FavoriteVocabularyCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF0FD992556F24A00D5B225 /* FavoriteVocabularyCellViewModel.swift */; };
 		8DF0FD9C2558375500D5B225 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF0FD9B2558375500D5B225 /* User.swift */; };
 		8DF0FD9E2558395200D5B225 /* UserFetchRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF0FD9D2558395200D5B225 /* UserFetchRequest.swift */; };
-		8DF0FDA0255839E500D5B225 /* User+CDEntityProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF0FD9F255839E500D5B225 /* User+CDEntityProtocol.swift */; };
 		8DF0FDA225583D6C00D5B225 /* Right.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF0FDA125583D6C00D5B225 /* Right.swift */; };
 		8DF0FDA42558464300D5B225 /* UserCreateRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF0FDA32558464300D5B225 /* UserCreateRequest.swift */; };
 		8DF2536C25431819001492AE /* DashboardSectionFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF2536B25431819001492AE /* DashboardSectionFactory.swift */; };
@@ -485,13 +485,13 @@
 		8DD28C112528AEC800F59B7D /* SingInCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingInCoordinator.swift; sourceTree = "<group>"; };
 		8DD28C132528AEEF00F59B7D /* SingInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingInViewController.swift; sourceTree = "<group>"; };
 		8DD28C142528AEEF00F59B7D /* SingInViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SingInViewController.xib; sourceTree = "<group>"; };
+		8DD745A32559A18600370285 /* User+CDEntityProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "User+CDEntityProtocol.swift"; sourceTree = "<group>"; };
 		8DF0FD92255596C200D5B225 /* DeleteTermImageRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteTermImageRequest.swift; sourceTree = "<group>"; };
 		8DF0FD952556F23100D5B225 /* FavoriteVocabularyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteVocabularyTableViewCell.swift; sourceTree = "<group>"; };
 		8DF0FD962556F23100D5B225 /* FavoriteVocabularyTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FavoriteVocabularyTableViewCell.xib; sourceTree = "<group>"; };
 		8DF0FD992556F24A00D5B225 /* FavoriteVocabularyCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteVocabularyCellViewModel.swift; sourceTree = "<group>"; };
 		8DF0FD9B2558375500D5B225 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		8DF0FD9D2558395200D5B225 /* UserFetchRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserFetchRequest.swift; sourceTree = "<group>"; };
-		8DF0FD9F255839E500D5B225 /* User+CDEntityProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+CDEntityProtocol.swift"; sourceTree = "<group>"; };
 		8DF0FDA125583D6C00D5B225 /* Right.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Right.swift; sourceTree = "<group>"; };
 		8DF0FDA32558464300D5B225 /* UserCreateRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCreateRequest.swift; sourceTree = "<group>"; };
 		8DF2536B25431819001492AE /* DashboardSectionFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardSectionFactory.swift; sourceTree = "<group>"; };
@@ -1426,7 +1426,7 @@
 				8D94E7CE2534E0FD005FA4B9 /* Protocols */,
 				8D94E7CD2534E0F1005FA4B9 /* CoreDataEntities */,
 				8DF0FD9B2558375500D5B225 /* User.swift */,
-				8DF0FD9F255839E500D5B225 /* User+CDEntityProtocol.swift */,
+				8DD745A32559A18600370285 /* User+CDEntityProtocol.swift */,
 				8DF0FDA125583D6C00D5B225 /* Right.swift */,
 				8DAA553F2529112B00FF5066 /* Vocabulary.swift */,
 				8D435ACE25509CD500838691 /* Vocabulary+CDEntityProtocol.swift */,
@@ -1898,6 +1898,7 @@
 				8D66253A252A6D4600991D45 /* VocabularyProgressView.swift in Sources */,
 				8D83EA76252B9EB9004E6098 /* CoordinatorClosableProtocol.swift in Sources */,
 				8DD28BD32526854300F59B7D /* UINavigationItem+Drivable.swift in Sources */,
+				8DD745A42559A18600370285 /* User+CDEntityProtocol.swift in Sources */,
 				8D94E7CC2534DF03005FA4B9 /* CoreDataStack.swift in Sources */,
 				8DF253FB2549B46D001492AE /* VocabularyListCellFactory.swift in Sources */,
 				8DF253DD254881C7001492AE /* ActivityIndicatorCellViewModel.swift in Sources */,
@@ -1995,7 +1996,6 @@
 				8DD28BD52526856B00F59B7D /* NavigationItemDrivableModel.swift in Sources */,
 				8DF2538F25434BE9001492AE /* MaterialsViewController.swift in Sources */,
 				8D435AC2254F534E00838691 /* VocabularyCategoryViewController.swift in Sources */,
-				8DF0FDA0255839E500D5B225 /* User+CDEntityProtocol.swift in Sources */,
 				8D435A93254DFBC300838691 /* CoursesCoordinator.swift in Sources */,
 				8DF2536C25431819001492AE /* DashboardSectionFactory.swift in Sources */,
 				8D524FDF2533ACC0002A6E01 /* UITextField+Drivable.swift in Sources */,
