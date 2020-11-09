@@ -63,7 +63,7 @@ final class VocabularyListViewModel: VocabularyListViewModelProtocol {
     // MARK: - Public methods
     
     private func fetchVocabulary() {
-        guard let userId = userSession.userInfo.id else { return }
+        guard let userId = userSession.currentUser?.id else { return }
         
         let request = VocabularyFetchRequest(userId: userId)
         dataProvider.fetch(request: request, onSuccess: { (vocabularies: [Vocabulary]) in

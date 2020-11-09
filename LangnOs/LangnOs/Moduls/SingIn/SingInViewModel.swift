@@ -25,44 +25,31 @@ final class SingInViewModel {
     // MARK: - Private properties
     
     private let router: SingInCoordinatorProtocol
-    private let authorizator: RegistratableProtocol
-    
-    private var cancellables: [AnyCancellable]
-    
-    private var email: String
-    private var password: String
+    private let dataProvider: FirebaseDatabaseFetchingProtocol
+    private let userSession: SessionLifecycleProtocol
+    private var user: User1
     
     // MARK: - Init
     
     init(router: SingInCoordinatorProtocol,
-         authorizator: RegistratableProtocol) {
+         dataProvider: FirebaseDatabaseFetchingProtocol,
+         userSession: SessionLifecycleProtocol) {
         self.router = router
-        self.authorizator = authorizator
-        
-        self.cancellables = []
-        
-        self.email = ""
-        self.password = ""
-        
-        bindContext()
-    }
-    
-    // MARK: - Private methods
-    
-    private func bindContext() {
-        
+        self.dataProvider = dataProvider
+        self.userSession = userSession
+        self.user = .empty
     }
     
     // MARK: - Actions
     
     @objc
     private func didEmailEnter(_ email: String) {
-        self.email = email
+        user.email = email
     }
     
     @objc
     private func didPasswordEnter(_ password: String) {
-        self.password = password
+        user.password = password
     }
     
     @objc
@@ -115,13 +102,10 @@ extension SingInViewModel: SingInInputProtocol {
 extension SingInViewModel: SingInOutputProtocol {
     
     func nextAction() {
-        guard !email.isEmpty, !password.isEmpty else {
-            self.router.showAlert(title: "Attention!", message: "One of the fields in empty", actions: [
-                OkAlertAction(handler: { })
-            ])
-            return
-        }
-        authorizator.singInWith(email: email, password: password, onSuccess: {
+        let request = UserFetchRequest(email: user.email, password: user.password)
+        dataProvider.fetch(request: request, onSuccess: { (users: [User1]) in
+            guard let user = users.first else { return }
+            self.userSession.starSession(with: user)
             self.router.close()
         }) { (error) in
             self.router.showError(error)

@@ -26,8 +26,10 @@ final class CoursesCoordinator: Coordinator, CoursesCoordinatorProtocol  {
         let viewModel = CoursesViewModel()
         let viewController = CoursesViewController()
         viewController.viewModel = viewModel
+        viewController.tabBarItem = UITabBarItem(provider: .courses)
         
-        self.viewController = viewController
+        let navigationController = UINavigationController(rootViewController: viewController)
+        self.viewController = navigationController
     }
     
 }

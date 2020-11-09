@@ -93,7 +93,7 @@ final class CreateVocabularyViewModel: CreateVocabularyViewModelProtocol {
     }
     
     func doneAction() {
-        guard let userId = userSession.userInfo.id else { return }
+        guard let userId = userSession.currentUser?.id else { return }
         
         var vocabulary = Vocabulary(userId: userId,
                                     title: generalInfo.name,

@@ -36,7 +36,7 @@ final class AccountViewModel: AccountViewModelProtocol {
     var userPhoto: CurrentValueSubject<UIImage?, Never>
     
     var username: String {
-        if let username = userSession.userInfo.name {
+        if let username = userSession.currentUser?.name {
             return username
         } else {
             return "Anonim".localize
@@ -44,7 +44,7 @@ final class AccountViewModel: AccountViewModelProtocol {
     }
     
     var email: String {
-        if let email = userSession.userInfo.email {
+        if let email = userSession.currentUser?.email {
             return email
         } else {
             return "_______@____.___".localize
@@ -56,18 +56,15 @@ final class AccountViewModel: AccountViewModelProtocol {
     // MARK: - Private properties
     
     private let router: AccountCoordinatorProtocol
-    private let authorizator: LogOutableProtocol
-    private let userSession: SessionInfoProtocol
+    private let userSession: SessionInfoProtocol & SessionLifecycleProtocol
     private let storage: FirebaseStorageUploadingProtocol & FirebaseStorageRemovingProtocol
     
     // MARK: - Init
     
     init(router: AccountCoordinatorProtocol,
-         authorizator: LogOutableProtocol,
-         userSession: SessionInfoProtocol,
+         userSession: SessionInfoProtocol & SessionLifecycleProtocol,
          storage: FirebaseStorageUploadingProtocol & FirebaseStorageRemovingProtocol) {
         self.router = router
-        self.authorizator = authorizator
         self.userSession = userSession
         self.storage = storage
         
@@ -95,11 +92,11 @@ final class AccountViewModel: AccountViewModelProtocol {
     // MARK: - Private methods
     
     private func downloadUserPhoto() {
-        userSession.getUserPhoto(onSuccess: { (image) in
-            self.userPhoto.value = image != nil ? image : SFSymbols.personCircle()
-        }) { (error) in
-            self.router.showError(error)
-        }
+//        userSession.getUserPhoto(onSuccess: { (image) in
+//            self.userPhoto.value = image != nil ? image : SFSymbols.personCircle()
+//        }) { (error) in
+//            self.router.showError(error)
+//        }
     }
     
     private func setupEmptySection(_ tableSections: inout [SectionViewModelProtocol]) {
@@ -141,32 +138,29 @@ final class AccountViewModel: AccountViewModelProtocol {
     private func selectImageAction() {
         router.navigateToImagePicker(sourceType: .photoLibrary) { (image) in
             self.userPhoto.value = nil
-            self.userSession.updateUserPhoto(image, onSuccess: {
-                self.userPhoto.value = image
-            }) { (error) in
-                self.router.showError(error)
-            }
+//            self.userSession.updateUserPhoto(image, onSuccess: {
+//                self.userPhoto.value = image
+//            }) { (error) in
+//                self.router.showError(error)
+//            }
         }
     }
     
     private func removeImageAction() {
         userPhoto.value = nil
-        userSession.removeUserPhoto(onSuccess: {
-            self.userPhoto.value = SFSymbols.personCircle()
-        }) { (error) in
-            self.router.showError(error)
-        }
+//        userSession.removeUserPhoto(onSuccess: {
+//            self.userPhoto.value = SFSymbols.personCircle()
+//        }) { (error) in
+//            self.router.showError(error)
+//        }
     }
     
     private func logoutAction() {
         router.showAlert(title: "Are you sure?", message: nil, actions: [
             CancelAlertAction(handler: { }),
             OkAlertAction(handler: {
-                self.authorizator.logOut(onSuccess: {
-                    self.router.close()
-                }) { (error) in
-                    self.router.showError(error)
-                }
+                self.userSession.finishSession()
+                self.router.close()
             })
         ])
     }

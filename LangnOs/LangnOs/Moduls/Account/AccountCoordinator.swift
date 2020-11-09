@@ -22,11 +22,9 @@ final class AccountCoordinator: Coordinator, AccountCoordinatorProtocol {
     // MARK: - Override
     
     override func start() {
-        let authorizator = Authorizator()
         let userSession = UserSession.shared
         let storage = FirebaseStorage()
         let viewModel = AccountViewModel(router: self,
-                                         authorizator: authorizator,
                                          userSession: userSession,
                                          storage: storage)
         

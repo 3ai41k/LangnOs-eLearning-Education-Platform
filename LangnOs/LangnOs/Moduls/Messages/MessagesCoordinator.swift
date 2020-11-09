@@ -13,11 +13,11 @@ final class MessagesCoordinator: Coordinator {
     // MARK: - Override
     
     override func start() {
-        let messagesViewController = MessagesViewController()
-        messagesViewController.tabBarItem = UITabBarItem(provider: .messages)
+        let viewController = MessagesViewController()
+        viewController.tabBarItem = UITabBarItem(provider: .messages)
         
-        let navigationController = UINavigationController(rootViewController: messagesViewController)
-        viewController = navigationController
+        let navigationController = UINavigationController(rootViewController: viewController)
+        self.viewController = navigationController
     }
     
 }

@@ -43,8 +43,6 @@
 		8D435AD22550A1DB00838691 /* SynchronizeOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D435AD12550A1DB00838691 /* SynchronizeOperation.swift */; };
 		8D435AD42550A2C400838691 /* VocabularySynchronizeOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D435AD32550A2C400838691 /* VocabularySynchronizeOperation.swift */; };
 		8D435AE0255166A500838691 /* AsyncOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D435ADF255166A500838691 /* AsyncOperation.swift */; };
-		8D435B0925531C3D00838691 /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D435B0825531C3D00838691 /* UserInfo.swift */; };
-		8D435B0B25531CAB00838691 /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D435B0A25531CAB00838691 /* UserProfile.swift */; };
 		8D435B2225548A1900838691 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D435B2125548A1900838691 /* Category.swift */; };
 		8D435B2625548C2600838691 /* TextTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D435B2425548C2600838691 /* TextTableViewCell.swift */; };
 		8D435B2725548C2600838691 /* TextTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D435B2525548C2600838691 /* TextTableViewCell.xib */; };
@@ -66,7 +64,6 @@
 		8D524F9F252F83D2002A6E01 /* AccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D524F9E252F83D2002A6E01 /* AccountViewModel.swift */; };
 		8D524FA2252F86BC002A6E01 /* UserImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D524FA1252F86BC002A6E01 /* UserImageView.swift */; };
 		8D524FA4252F86D1002A6E01 /* UserImageView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D524FA3252F86D1002A6E01 /* UserImageView.xib */; };
-		8D524FA7252F8A9F002A6E01 /* Authorizator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D524FA6252F8A9F002A6E01 /* Authorizator.swift */; };
 		8D524FAD252FA755002A6E01 /* InputViewDrivableModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D524FAC252FA755002A6E01 /* InputViewDrivableModel.swift */; };
 		8D524FAF252FA7FB002A6E01 /* SingInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D524FAE252FA7FB002A6E01 /* SingInViewModel.swift */; };
 		8D524FB1252FB3CB002A6E01 /* SingUpCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D524FB0252FB3CB002A6E01 /* SingUpCoordinator.swift */; };
@@ -212,6 +209,11 @@
 		8DF0FD972556F23100D5B225 /* FavoriteVocabularyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF0FD952556F23100D5B225 /* FavoriteVocabularyTableViewCell.swift */; };
 		8DF0FD982556F23100D5B225 /* FavoriteVocabularyTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DF0FD962556F23100D5B225 /* FavoriteVocabularyTableViewCell.xib */; };
 		8DF0FD9A2556F24A00D5B225 /* FavoriteVocabularyCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF0FD992556F24A00D5B225 /* FavoriteVocabularyCellViewModel.swift */; };
+		8DF0FD9C2558375500D5B225 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF0FD9B2558375500D5B225 /* User.swift */; };
+		8DF0FD9E2558395200D5B225 /* UserFetchRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF0FD9D2558395200D5B225 /* UserFetchRequest.swift */; };
+		8DF0FDA0255839E500D5B225 /* User+CDEntityProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF0FD9F255839E500D5B225 /* User+CDEntityProtocol.swift */; };
+		8DF0FDA225583D6C00D5B225 /* Right.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF0FDA125583D6C00D5B225 /* Right.swift */; };
+		8DF0FDA42558464300D5B225 /* UserCreateRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF0FDA32558464300D5B225 /* UserCreateRequest.swift */; };
 		8DF2536C25431819001492AE /* DashboardSectionFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF2536B25431819001492AE /* DashboardSectionFactory.swift */; };
 		8DF253722543194E001492AE /* TitleSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF253712543194E001492AE /* TitleSectionView.swift */; };
 		8DF2537625431968001492AE /* TitleSectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF2537525431968001492AE /* TitleSectionViewModel.swift */; };
@@ -319,8 +321,6 @@
 		8D435AD12550A1DB00838691 /* SynchronizeOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SynchronizeOperation.swift; sourceTree = "<group>"; };
 		8D435AD32550A2C400838691 /* VocabularySynchronizeOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabularySynchronizeOperation.swift; sourceTree = "<group>"; };
 		8D435ADF255166A500838691 /* AsyncOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncOperation.swift; sourceTree = "<group>"; };
-		8D435B0825531C3D00838691 /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
-		8D435B0A25531CAB00838691 /* UserProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfile.swift; sourceTree = "<group>"; };
 		8D435B2125548A1900838691 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		8D435B2425548C2600838691 /* TextTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextTableViewCell.swift; sourceTree = "<group>"; };
 		8D435B2525548C2600838691 /* TextTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TextTableViewCell.xib; sourceTree = "<group>"; };
@@ -342,7 +342,6 @@
 		8D524F9E252F83D2002A6E01 /* AccountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewModel.swift; sourceTree = "<group>"; };
 		8D524FA1252F86BC002A6E01 /* UserImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserImageView.swift; sourceTree = "<group>"; };
 		8D524FA3252F86D1002A6E01 /* UserImageView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserImageView.xib; sourceTree = "<group>"; };
-		8D524FA6252F8A9F002A6E01 /* Authorizator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Authorizator.swift; sourceTree = "<group>"; };
 		8D524FAC252FA755002A6E01 /* InputViewDrivableModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputViewDrivableModel.swift; sourceTree = "<group>"; };
 		8D524FAE252FA7FB002A6E01 /* SingInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingInViewModel.swift; sourceTree = "<group>"; };
 		8D524FB0252FB3CB002A6E01 /* SingUpCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingUpCoordinator.swift; sourceTree = "<group>"; };
@@ -490,6 +489,11 @@
 		8DF0FD952556F23100D5B225 /* FavoriteVocabularyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteVocabularyTableViewCell.swift; sourceTree = "<group>"; };
 		8DF0FD962556F23100D5B225 /* FavoriteVocabularyTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FavoriteVocabularyTableViewCell.xib; sourceTree = "<group>"; };
 		8DF0FD992556F24A00D5B225 /* FavoriteVocabularyCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteVocabularyCellViewModel.swift; sourceTree = "<group>"; };
+		8DF0FD9B2558375500D5B225 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		8DF0FD9D2558395200D5B225 /* UserFetchRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserFetchRequest.swift; sourceTree = "<group>"; };
+		8DF0FD9F255839E500D5B225 /* User+CDEntityProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+CDEntityProtocol.swift"; sourceTree = "<group>"; };
+		8DF0FDA125583D6C00D5B225 /* Right.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Right.swift; sourceTree = "<group>"; };
+		8DF0FDA32558464300D5B225 /* UserCreateRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCreateRequest.swift; sourceTree = "<group>"; };
 		8DF2536B25431819001492AE /* DashboardSectionFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardSectionFactory.swift; sourceTree = "<group>"; };
 		8DF253712543194E001492AE /* TitleSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleSectionView.swift; sourceTree = "<group>"; };
 		8DF2537525431968001492AE /* TitleSectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleSectionViewModel.swift; sourceTree = "<group>"; };
@@ -704,6 +708,8 @@
 		8D435AD62550A37E00838691 /* Requests */ = {
 			isa = PBXGroup;
 			children = (
+				8DF0FD9D2558395200D5B225 /* UserFetchRequest.swift */,
+				8DF0FDA32558464300D5B225 /* UserCreateRequest.swift */,
 				8DF253D525485073001492AE /* FavoriteVocabularyFetchRequest.swift */,
 				8D435A97254E051900838691 /* SearchVocabularyRequest.swift */,
 				8DAA5549252912BA00FF5066 /* VocabularyFetchRequest.swift */,
@@ -774,11 +780,9 @@
 		8D435B03255315F100838691 /* UserSession */ = {
 			isa = PBXGroup;
 			children = (
+				8D435A87254C526200838691 /* UserDefaultsKey.swift */,
 				8D94E83E2539FA2D005FA4B9 /* UserSession.swift */,
-				8D435B0825531C3D00838691 /* UserInfo.swift */,
-				8D435B0A25531CAB00838691 /* UserProfile.swift */,
 				8D435A82254C4E4300838691 /* MediaDownloader.swift */,
-				8D524FA6252F8A9F002A6E01 /* Authorizator.swift */,
 			);
 			path = UserSession;
 			sourceTree = "<group>";
@@ -1412,7 +1416,6 @@
 				8D435ADB2550A42600838691 /* Dicationary-Data Mappers */,
 				8D435ADC2550A45B00838691 /* SpeechSynthesizer */,
 				8D435A67254C15F700838691 /* NetworkState */,
-				8D435A87254C526200838691 /* UserDefaultsKey.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -1422,6 +1425,9 @@
 			children = (
 				8D94E7CE2534E0FD005FA4B9 /* Protocols */,
 				8D94E7CD2534E0F1005FA4B9 /* CoreDataEntities */,
+				8DF0FD9B2558375500D5B225 /* User.swift */,
+				8DF0FD9F255839E500D5B225 /* User+CDEntityProtocol.swift */,
+				8DF0FDA125583D6C00D5B225 /* Right.swift */,
 				8DAA553F2529112B00FF5066 /* Vocabulary.swift */,
 				8D435ACE25509CD500838691 /* Vocabulary+CDEntityProtocol.swift */,
 				8DAA554D25291D3400FF5066 /* Word.swift */,
@@ -1845,7 +1851,6 @@
 				8D9985EF252929FF009EA144 /* VocabularyCoordinator.swift in Sources */,
 				8DD28C152528AEEF00F59B7D /* SingInViewController.swift in Sources */,
 				8D435B2625548C2600838691 /* TextTableViewCell.swift in Sources */,
-				8D435B0B25531CAB00838691 /* UserProfile.swift in Sources */,
 				8DA744AE253F2EA600F9EC8B /* StudyResultCoordinator.swift in Sources */,
 				8DF253B62544A069001492AE /* BottomCardPresenter.swift in Sources */,
 				8DD28BE12526889200F59B7D /* UINavigationBar+Drivable.swift in Sources */,
@@ -1888,7 +1893,6 @@
 				8D435A8C254C7CC500838691 /* Array+Empty.swift in Sources */,
 				8DF2537E254328CD001492AE /* ColoredImageTableViewCell.swift in Sources */,
 				8D66254C252A7D3900991D45 /* WordsViewModel.swift in Sources */,
-				8D435B0925531C3D00838691 /* UserInfo.swift in Sources */,
 				8D435B2B25548E6A00838691 /* VocabularyCategoryCellFactory.swift in Sources */,
 				8DF253D625485073001492AE /* FavoriteVocabularyFetchRequest.swift in Sources */,
 				8D66253A252A6D4600991D45 /* VocabularyProgressView.swift in Sources */,
@@ -1930,6 +1934,7 @@
 				8DC3CF3E252CFEB5003CA62A /* UIColor+Random.swift in Sources */,
 				8D435A83254C4E4400838691 /* MediaDownloader.swift in Sources */,
 				8DAA55472529129E00FF5066 /* DataProviderRequestProtocol.swift in Sources */,
+				8DF0FDA42558464300D5B225 /* UserCreateRequest.swift in Sources */,
 				8D524FE82533BC7B002A6E01 /* FlashCardsViewModel.swift in Sources */,
 				8D94E845253A1F8D005FA4B9 /* ImagePickerCoordinator.swift in Sources */,
 				8D435AD42550A2C400838691 /* VocabularySynchronizeOperation.swift in Sources */,
@@ -1990,6 +1995,7 @@
 				8DD28BD52526856B00F59B7D /* NavigationItemDrivableModel.swift in Sources */,
 				8DF2538F25434BE9001492AE /* MaterialsViewController.swift in Sources */,
 				8D435AC2254F534E00838691 /* VocabularyCategoryViewController.swift in Sources */,
+				8DF0FDA0255839E500D5B225 /* User+CDEntityProtocol.swift in Sources */,
 				8D435A93254DFBC300838691 /* CoursesCoordinator.swift in Sources */,
 				8DF2536C25431819001492AE /* DashboardSectionFactory.swift in Sources */,
 				8D524FDF2533ACC0002A6E01 /* UITextField+Drivable.swift in Sources */,
@@ -2011,6 +2017,7 @@
 				8DF2539025434BE9001492AE /* MaterialsViewModel.swift in Sources */,
 				8D9985F125292B17009EA144 /* VocabularyViewModel.swift in Sources */,
 				8D66254A252A7BE100991D45 /* UniversalTableViewCellFactoryProtocol.swift in Sources */,
+				8DF0FD9E2558395200D5B225 /* UserFetchRequest.swift in Sources */,
 				8DD28BCB252680EC00F59B7D /* PresentationViewModel.swift in Sources */,
 				8DF253A125446BA0001492AE /* DictionaryEncoder.swift in Sources */,
 				8DD28BF52527ADF300F59B7D /* UniversalCollectionView.swift in Sources */,
@@ -2027,7 +2034,6 @@
 				8DD28BFB2527B76800F59B7D /* DashboardCellFactory.swift in Sources */,
 				8D435A41254B4ED800838691 /* IsEqualToComponent.swift in Sources */,
 				8D435A78254C3A1E00838691 /* SearchVocabularyCoordinator.swift in Sources */,
-				8D524FA7252F8A9F002A6E01 /* Authorizator.swift in Sources */,
 				8D94E846253A1F8D005FA4B9 /* ImagePickerViewController.swift in Sources */,
 				8DF2537B254328B3001492AE /* ColoredImageCellViewModel.swift in Sources */,
 				8D435A9B254EE3D100838691 /* SearchVocabularyViewController.swift in Sources */,
@@ -2036,12 +2042,14 @@
 				8DF928A9253DDE700052FC31 /* WritingWordModel.swift in Sources */,
 				8DAA55402529112B00FF5066 /* Vocabulary.swift in Sources */,
 				8D524F9D252F7EC1002A6E01 /* AccountCoordinator.swift in Sources */,
+				8DF0FDA225583D6C00D5B225 /* Right.swift in Sources */,
 				8DD28C122528AEC800F59B7D /* SingInCoordinator.swift in Sources */,
 				8D524FE32533BA27002A6E01 /* FlashCardsViewController.swift in Sources */,
 				8DF253DA25488166001492AE /* ActivityIndicatorTableViewCell.swift in Sources */,
 				8DF253A9254482B5001492AE /* BottomCardTransition.swift in Sources */,
 				8DD28BCF252683A100F59B7D /* DashboardViewModel.swift in Sources */,
 				8D524F62252E5C71002A6E01 /* UniversalCollectionViewSectionRegistratable.swift in Sources */,
+				8DF0FD9C2558375500D5B225 /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

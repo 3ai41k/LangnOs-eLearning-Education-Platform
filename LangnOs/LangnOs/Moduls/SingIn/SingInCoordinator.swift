@@ -19,9 +19,11 @@ final class SingInCoordinator: Coordinator, SingInCoordinatorProtocol {
     // MARK: - Override
     
     override func start() {
-        let authorizator = Authorizator()
+        let dataProvider = FirebaseDatabase.shared
+        let userSession = UserSession.shared
         let singInViewModel = SingInViewModel(router: self,
-                                              authorizator: authorizator)
+                                              dataProvider: dataProvider,
+                                              userSession: userSession)
         
         let singInViewController = SingInViewController()
         singInViewController.viewModel = singInViewModel

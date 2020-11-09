@@ -108,6 +108,9 @@ final class DashboardViewModel: DashboardViewModelProtocol {
         
         self.bindUserSession()
         self.setupNotifications()
+        
+        self.updateUserPhoto()
+        self.fetchFavoriteVocabulary()
     }
     
     // MARK: - Public methods
@@ -126,7 +129,7 @@ final class DashboardViewModel: DashboardViewModelProtocol {
     }
     
     func userProfileAction() {
-        if userSession.userInfo.isLogin == true {
+        if userSession.currentUser != nil {
             router.navigateToUserProfile()
         } else {
             router.navigateToLogin()
@@ -137,13 +140,10 @@ final class DashboardViewModel: DashboardViewModelProtocol {
     
     private func bindUserSession() {
         userSession.sessionSatePublisher.sink { [weak self] (state) in
-            self?.updateUserPhoto()
-            
             switch state {
-            case .login, .logout:
+            case .start, .finish:
+                self?.updateUserPhoto()
                 self?.fetchFavoriteVocabulary()
-            case .changePhoto:
-                break
             }
         }.store(in: &cancellables)
     }
@@ -159,15 +159,16 @@ final class DashboardViewModel: DashboardViewModelProtocol {
     }
     
     private func updateUserPhoto() {
-        userSession.getUserPhoto(onSuccess: { (image) in
-            self.userImage.value = image != nil ? image : SFSymbols.personCircle()
-        }) { (error) in
-            self.router.showError(error)
-        }
+        userImage.value = SFSymbols.personCircle()
+//        userSession.getUserPhoto(onSuccess: { (image) in
+//            self.userImage.value = image != nil ? image : SFSymbols.personCircle()
+//        }) { (error) in
+//            self.router.showError(error)
+//        }
     }
     
     private func fetchFavoriteVocabulary() {
-        guard let userId = userSession.userInfo.id else {
+        guard let userId = userSession.currentUser?.id else {
             favoriteVocabularies = .empty
             return
         }

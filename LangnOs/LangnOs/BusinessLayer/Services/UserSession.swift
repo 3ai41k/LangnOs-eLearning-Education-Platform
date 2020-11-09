@@ -10,39 +10,38 @@ import UIKit
 import Combine
 
 protocol SessionInfoProtocol {
-    var userInfo: UserInfoProtocol { get }
-    func getUserPhoto(onSuccess: @escaping (UIImage?) -> Void, onFailure: @escaping (Error) -> Void)
-    func removeUserPhoto(onSuccess: @escaping () -> Void, onFailure: @escaping (Error) -> Void)
-    func updateUserPhoto(_ photo: UIImage, onSuccess: @escaping () -> Void, onFailure: @escaping (Error) -> Void)
+    var currentUser: User1? { get }
 }
 
-enum SessionSate {
-    case login
-    case logout
-    case changePhoto
+protocol SessionLifecycleProtocol {
+    func starSession(with user: User1)
+    func finishSession()
+}
+
+enum SessionState {
+    case start
+    case finish
 }
 
 protocol SessionSatePublisherProtocol {
-    var sessionSatePublisher: AnyPublisher<SessionSate, Never> { get }
+    var sessionSatePublisher: AnyPublisher<SessionState, Never> { get }
 }
 
-final class UserSession: SessionSatePublisherProtocol {
+final class UserSession: SessionInfoProtocol {
     
     // MARK: - Public properties
     
     static let shared = UserSession()
     
-    var sessionSatePublisher: AnyPublisher<SessionSate, Never> {
-        sessionSateSubject.eraseToAnyPublisher()
+    private(set) var currentUser: User1? {
+        didSet {
+            currentUser != nil ?
+                sessionStateeSubject.send(.start) :
+                sessionStateeSubject.send(.finish)
+        }
     }
     
     // MARK: - Private properties
-    
-    private var _userInfo: UserInfoProtocol & UserInfoChangeStateProtocol
-    private let userProfile: UserProfileExtandableProtocol
-    private let mediaDownloader: MediaDownloadableProtocol
-    private let storage: FirebaseStorageUploadingProtocol & FirebaseStorageRemovingProtocol
-    private let sessionSateSubject: PassthroughSubject<SessionSate, Never>
     
     private var coreDataStack: CoreDataStack {
         CoreDataStack.shared
@@ -56,87 +55,56 @@ final class UserSession: SessionSatePublisherProtocol {
         UserDefaults.standard
     }
     
+    private let sessionStateeSubject: PassthroughSubject<SessionState, Never>
+    
     // MARK: - Init
     
     private init() {
-        self._userInfo = UserInfo()
-        self.userProfile = UserProfile()
-        self.mediaDownloader = MediaDownloader()
-        self.storage = FirebaseStorage()
-        self.sessionSateSubject = .init()
-        
-        self.setupUserInfoChangeStateNotifications()
+        self.sessionStateeSubject = .init()
+        self.tryToSetupCurrentUser()
     }
     
     // MARK: - Private methods
     
-    private func setupUserInfoChangeStateNotifications() {
-        _userInfo.didUserLoginHandler = {
-            self.sessionSateSubject.send(.login)
-        }
-        _userInfo.didUserLogoutHandler = {
-            self.clearUserMetaData()
-            self.sessionSateSubject.send(.logout)
-        }
-    }
-    
-    private func clearUserMetaData() {
-        userDefaults.removeObject(forKey: UserDefaultsKey.userImage.rawValue)
-        coreDataStack.clear()
-    }
-    
-}
-
-// MARK: - SessionInfoProtocol
-
-extension UserSession: SessionInfoProtocol {
-    
-    var userInfo: UserInfoProtocol {
-        _userInfo
-    }
-    
-    func getUserPhoto(onSuccess: @escaping (UIImage?) -> Void, onFailure: @escaping (Error) -> Void) {
-        if let data = userDefaults.data(forKey: UserDefaultsKey.userImage.rawValue) {
-            onSuccess(UIImage(data: data))
-        } else {
-            if networkState.isReachable, let photoURL = _userInfo.photoURL {
-                mediaDownloader.downloadMedia(url: photoURL, onSucces: { (data) in
-                    self.userDefaults.set(data, forKey: UserDefaultsKey.userImage.rawValue)
-                    onSuccess(UIImage(data: data))
-                }, onFailure: onFailure)
-            } else {
-                onSuccess(nil)
+    private func tryToSetupCurrentUser() {
+        if let data = userDefaults.data(forKey: UserDefaultsKey.user.rawValue) {
+            do {
+                currentUser = try JSONDecoder().decode(User1.self, from: data)
+            } catch {
+                print(self, "decoding error: ", error.localizedDescription)
             }
         }
     }
     
-    func removeUserPhoto(onSuccess: @escaping () -> Void, onFailure: @escaping (Error) -> Void) {
-        if networkState.isReachable, let userId = _userInfo.id {
-            let request = DeleteUserImageFirestoreRequest(userId: userId)
-            storage.delete(request: request, onSuccess: {
-                self.userProfile.removePhotoURL(onSuccess: {
-                    self.userDefaults.removeObject(forKey: UserDefaultsKey.userImage.rawValue)
-                    onSuccess()
-                }, onFailure: onFailure)
-            }, onFailure: onFailure)
-        } else {
-            onFailure(NetworkSatatError.isNotConnectionToTheInternet)
+}
+
+// MARK: - SessionLifecycleProtocol
+
+extension UserSession: SessionLifecycleProtocol {
+    
+    func starSession(with user: User1) {
+        do {
+            let data = try JSONEncoder().encode(user)
+            userDefaults.set(data, forKey: UserDefaultsKey.user.rawValue)
+            currentUser = user
+        } catch {
+            print(self, "encoding error: ", error.localizedDescription)
         }
     }
     
-    func updateUserPhoto(_ image: UIImage, onSuccess: @escaping () -> Void, onFailure: @escaping (Error) -> Void) {
-        if networkState.isReachable, let userId = _userInfo.id, let data = image.jpegData(compressionQuality: 0.25) {
-            let request = UserImageFirestoreRequest(userId: userId, imageData: data)
-            storage.upload(request: request, onSuccess: { (photoURL) in
-                self.userProfile.updatePhotoURL(photoURL, onSuccess: {
-                    self.userDefaults.set(data, forKey: UserDefaultsKey.userImage.rawValue)
-                    self.sessionSateSubject.send(.logout)
-                    onSuccess()
-                }, onFailure: onFailure)
-            }, onFailure: onFailure)
-        } else {
-            onFailure(NetworkSatatError.isNotConnectionToTheInternet)
-        }
+    func finishSession() {
+        userDefaults.removeObject(forKey: UserDefaultsKey.user.rawValue)
+        currentUser = nil
+    }
+    
+}
+
+// MARK: - SessionSatePublisherProtocol
+
+extension UserSession: SessionSatePublisherProtocol {
+    
+    var sessionSatePublisher: AnyPublisher<SessionState, Never> {
+        sessionStateeSubject.eraseToAnyPublisher()
     }
     
 }

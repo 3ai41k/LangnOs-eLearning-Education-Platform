@@ -13,39 +13,38 @@ final class SingUpViewModel {
     // MARK: - Private properties
     
     private let router: SingUpCoordinatorProtocol
-    private let authorizator: RegistratableProtocol
+    private let dataProvider: FirebaseDatabaseCreatingProtocol
+    private let userSession: SessionLifecycleProtocol
     
-    private var name: String
-    private var email: String
-    private var password: String
+    private var user: User1
     
     // MARK: - Init
     
     init(router: SingUpCoordinatorProtocol,
-         authorizator: RegistratableProtocol) {
+         dataProvider: FirebaseDatabaseCreatingProtocol,
+         userSession: SessionLifecycleProtocol) {
         self.router = router
-        self.authorizator = authorizator
+        self.dataProvider = dataProvider
+        self.userSession = userSession
         
-        self.name = ""
-        self.email = ""
-        self.password = ""
+        self.user = .empty
     }
     
     // MARK: - Actions
     
     @objc
     private func didPasswordEnter(_ password: String) {
-        self.password = password
+        user.password = password
     }
     
     @objc
     private func didEmailEnter(_ email: String) {
-        self.email = email
+        user.email = email
     }
     
     @objc
     private func didNameEnter(_ name: String) {
-        self.name = name
+        user.name = name
     }
     
 }
@@ -88,13 +87,9 @@ extension SingUpViewModel: SingInInputProtocol {
 extension SingUpViewModel: SingInOutputProtocol {
     
     func nextAction() {
-        guard !email.isEmpty, !password.isEmpty else {
-            self.router.showAlert(title: "Attention!", message: "One of the fields in empty", actions: [
-                OkAlertAction(handler: {})
-            ])
-            return
-        }
-        authorizator.singUpWith(name: name, email: email, password: password, onSuccess: {
+        let request = UserCreateRequest(user: user)
+        dataProvider.create(request: request, onSuccess: {
+            self.userSession.starSession(with: self.user)
             self.router.close()
         }) { (error) in
             self.router.showError(error)

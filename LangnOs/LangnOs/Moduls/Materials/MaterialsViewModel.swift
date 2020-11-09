@@ -106,7 +106,7 @@ final class MaterialsViewModel: MaterialsViewModelProtocol {
 extension MaterialsViewModel {
     
     func fetchDataAction() {
-        guard let userId = userSession.userInfo.id else {
+        guard let userId = userSession.currentUser?.id else {
             self.vocabularies = .empty
             return
         }
