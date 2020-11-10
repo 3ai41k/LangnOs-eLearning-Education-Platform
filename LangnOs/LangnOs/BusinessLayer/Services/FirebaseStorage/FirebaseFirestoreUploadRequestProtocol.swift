@@ -13,11 +13,11 @@ enum FirestoreContentType: String {
     case image = "image/jpg"
 }
 
-protocol FirebaseFirestoreDeleteRequestProtocol {
+protocol FirebaseFirestoreRequestProtocol {
     var path: String { get }
 }
 
-protocol FirebaseFirestoreUploadRequestProtocol: FirebaseFirestoreDeleteRequestProtocol {
+protocol FirebaseFirestoreUploadRequestProtocol: FirebaseFirestoreRequestProtocol {
     var imageData: Data { get }
     var contentType: FirestoreContentType { get }
     var metaData: StorageMetadata { get }

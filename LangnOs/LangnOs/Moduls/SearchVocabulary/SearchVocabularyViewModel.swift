@@ -49,12 +49,15 @@ final class SearchVocabularyViewModel: SearchVocabularyViewModelPrtotocol {
     // MARK: - Private properties
     
     private let router: SearchVocabularyCoordinatorProtocol
-    private let firebaseDatabase: FirebaseDatabaseFetchingProtocol
+    private let dataProvider: FirebaseDatabaseFetchingProtocol
+    private let storage: FirebaseStorageFetchingProtocol
     private let userSession: SessionInfoProtocol
     
     private var vocabularies: [Vocabulary] = [] {
         didSet {
-            let cellViewModesl = vocabularies.map({ AddToFavoriteCellViewModel(vocabulary: $0, favoriteHandler: { _ in }) })
+            let cellViewModesl = vocabularies.map({
+                SearchVocabularyCellViewModel(vocabulary: $0, storage: storage)
+            })
             tableSections[SectionType.vocabulary.rawValue].cells.value = cellViewModesl
         }
     }
@@ -63,20 +66,22 @@ final class SearchVocabularyViewModel: SearchVocabularyViewModelPrtotocol {
     // MARK: - Init
     
     init(router: SearchVocabularyCoordinatorProtocol,
-         firebaseDatabase: FirebaseDatabaseFetchingProtocol,
+         dataProvider: FirebaseDatabaseFetchingProtocol,
+         storage: FirebaseStorageFetchingProtocol,
          userSession: SessionInfoProtocol) {
         self.router = router
-        self.firebaseDatabase = firebaseDatabase
+        self.dataProvider = dataProvider
+        self.storage = storage
         self.userSession = userSession
         
-        self.setupVocabularySection(&tableSections)
+        self.setupVocabularySection()
     }
     
     // MARK: - Public methods
     
     func didSelectCellAt(indexPath: IndexPath) {
         let vocabulary = vocabularies[indexPath.row]
-        print(vocabulary)
+        router.navigateToVocabularyPreview(vocabulary)
     }
     
     func selectedScopeButtonFor(index: Int) {
@@ -85,12 +90,12 @@ final class SearchVocabularyViewModel: SearchVocabularyViewModelPrtotocol {
     
     func search(text: String) {
         guard !text.isEmpty else {
-            tableSections[SectionType.vocabulary.rawValue].cells.value = .empty
+            vocabularies = .empty
             return
         }
         
         let request = SearchVocabularyRequest(searchText: text, searchBy: searchVocabularBy)
-        firebaseDatabase.fetch(request: request, onSuccess: { (vocabularies: [Vocabulary]) in
+        dataProvider.fetch(request: request, onSuccess: { (vocabularies: [Vocabulary]) in
             self.vocabularies = vocabularies
         }) { (error) in
             self.router.showError(error)
@@ -99,7 +104,7 @@ final class SearchVocabularyViewModel: SearchVocabularyViewModelPrtotocol {
     
     // MARK: - Private methods
     
-    private func setupVocabularySection(_ tableSections: inout [SectionViewModelProtocol]) {
+    private func setupVocabularySection() {
         let sectionViewModel = TableSectionViewModel(cells: [])
         tableSections.append(sectionViewModel)
     }

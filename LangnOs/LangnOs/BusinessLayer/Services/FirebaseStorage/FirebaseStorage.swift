@@ -12,18 +12,46 @@ enum FirebaseStorageError: Error {
     case urlNotFound
 }
 
+protocol FirebaseStorageFetchingProtocol {
+    func fetch(request: FirebaseFirestoreRequestProtocol, onSuccess: @escaping (UIImage?) -> Void, onFailure: @escaping (Error) -> Void)
+}
+
 protocol FirebaseStorageUploadingProtocol {
     func upload(request: FirebaseFirestoreUploadRequestProtocol, onSuccess: @escaping (URL) -> Void, onFailure: @escaping (Error) -> Void)
 }
 
 protocol FirebaseStorageRemovingProtocol {
-    func delete(request: FirebaseFirestoreDeleteRequestProtocol, onSuccess: @escaping () -> Void, onFailure: @escaping (Error) -> Void)
+    func delete(request: FirebaseFirestoreRequestProtocol, onSuccess: @escaping () -> Void, onFailure: @escaping (Error) -> Void)
 }
 
 final class FirebaseStorage {
     
+    // MARK: - Private properties
+    
     private var storage: Storage {
         Storage.storage()
+    }
+    
+}
+
+// MARK: - FirebaseStorageFetchingProtocol
+
+extension FirebaseStorage: FirebaseStorageFetchingProtocol {
+    
+    func fetch(request: FirebaseFirestoreRequestProtocol, onSuccess: @escaping (UIImage?) -> Void, onFailure: @escaping (Error) -> Void) {
+        let reference = storage.reference(withPath: request.path)
+        reference.getData(maxSize: 1 * 1024 * 1024) { (data, error) in
+            if let error = error {
+                onFailure(error)
+            } else {
+                if let data = data {
+                    let image = UIImage(data: data)
+                    onSuccess(image)
+                } else {
+                    onSuccess(nil)
+                }
+            }
+        }
     }
     
 }
@@ -59,7 +87,7 @@ extension FirebaseStorage: FirebaseStorageUploadingProtocol {
 
 extension FirebaseStorage: FirebaseStorageRemovingProtocol {
     
-    func delete(request: FirebaseFirestoreDeleteRequestProtocol, onSuccess: @escaping () -> Void, onFailure: @escaping (Error) -> Void) {
+    func delete(request: FirebaseFirestoreRequestProtocol, onSuccess: @escaping () -> Void, onFailure: @escaping (Error) -> Void) {
         let reference = storage.reference(withPath: request.path)
         reference.delete { (error) in
             if let error = error {

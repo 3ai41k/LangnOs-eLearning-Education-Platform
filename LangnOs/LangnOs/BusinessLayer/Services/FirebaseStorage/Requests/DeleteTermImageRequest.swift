@@ -20,7 +20,7 @@ struct DeleteTermImageRequest {
 
 // MARK: - FirebaseFirestoreUploadRequestProtocol
 
-extension DeleteTermImageRequest: FirebaseFirestoreDeleteRequestProtocol {
+extension DeleteTermImageRequest: FirebaseFirestoreRequestProtocol {
     
     var path: String {
         "users/\(userId)/images/vocabularies/\(vocabularyId)/\(imageName).jpg"

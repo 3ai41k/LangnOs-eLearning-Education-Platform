@@ -25,7 +25,7 @@ struct DeleteUserImageFirestoreRequest {
 
 // MARK: - FirestoreRequest
 
-extension DeleteUserImageFirestoreRequest: FirebaseFirestoreDeleteRequestProtocol {
+extension DeleteUserImageFirestoreRequest: FirebaseFirestoreRequestProtocol {
     
     var path: String {
         "users/\(userId)/images/profileImage.jpg"

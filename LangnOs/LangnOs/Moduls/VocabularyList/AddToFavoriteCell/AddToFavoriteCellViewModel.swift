@@ -34,11 +34,11 @@ final class AddToFavoriteCellViewModel: AddToFavoriteCellViewModelProtocol {
     }
     
     var category: String {
-        "Category: ".localize + vocabulary.category
+        vocabulary.category
     }
     
     var totalWords: String {
-        "Total words: ".localize + String(vocabulary.words.count)
+        "Words: ".localize + String(vocabulary.words.count)
     }
     
     var isFavorite: CurrentValueSubject<Bool, Never>

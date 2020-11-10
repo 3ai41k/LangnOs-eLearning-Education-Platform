@@ -55,6 +55,7 @@ final class SearchVocabularyViewController: BindibleViewController<SearchVocabul
     }
     
     override func setupUI() {
+        navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.searchController = searchController
     }
     

@@ -13,6 +13,11 @@ final class AddToFavoriteTableViewCell: UITableViewCell, UniversalTableViewCellR
     
     // MARK: - IBOutlets
     
+    @IBOutlet private weak var conteinerView: UIView! {
+        didSet {
+            conteinerView.layer.cornerRadius = 10.0
+        }
+    }
     @IBOutlet private weak var nameLabel: UILabel!
     @IBOutlet private weak var categoryLabel: UILabel!
     @IBOutlet private weak var totalWordsLabel: UILabel!
@@ -30,10 +35,6 @@ final class AddToFavoriteTableViewCell: UITableViewCell, UniversalTableViewCellR
     
     private var cancellables: [AnyCancellable] = []
     
-    // MARK: - Lifecycle
-    // MARK: - Init
-    // MARK: - Override
-    // MARK: - Public methods
     // MARK: - Private methods
     
     private func bindViewModel() {

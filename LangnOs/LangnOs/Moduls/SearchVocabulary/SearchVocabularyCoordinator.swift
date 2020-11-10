@@ -9,7 +9,7 @@
 import UIKit
 
 protocol SearchVocabularyCoordinatorNavigationProtocol {
-    
+    func navigateToVocabularyPreview(_ vocabulary: Vocabulary)
 }
 
 typealias SearchVocabularyCoordinatorProtocol =
@@ -23,13 +23,15 @@ final class SearchVocabularyCoordinator: Coordinator, SearchVocabularyCoordinato
     // MARK: - Override
     
     override func start() {
-        let firebaseDatabase = FirebaseDatabase.shared
+        let dataProvider = FirebaseDatabase.shared
         let userSeession = UserSession.shared
+        let storage = FirebaseStorage()
         let viewModel = SearchVocabularyViewModel(router: self,
-                                                  firebaseDatabase: firebaseDatabase,
+                                                  dataProvider: dataProvider,
+                                                  storage: storage,
                                                   userSession: userSeession)
         
-        let cellFactory = VocabularyListCellFactory()
+        let cellFactory = SeachVocabularyCellFactory()
         let viewController = SearchVocabularyViewController()
         viewController.viewModel = viewModel
         viewController.cellFactory = cellFactory
@@ -38,6 +40,13 @@ final class SearchVocabularyCoordinator: Coordinator, SearchVocabularyCoordinato
         navigationController.tabBarItem = UITabBarItem(provider: .search)
         
         self.viewController = navigationController
+    }
+    
+    // MARK: - SearchVocabularyCoordinatorNavigationProtocol
+    
+    func navigateToVocabularyPreview(_ vocabulary: Vocabulary) {
+        let vocabularyCoordinator = VocabularyCoordinator(vocabulary: vocabulary, parentViewController: viewController)
+        vocabularyCoordinator.start()
     }
     
 }
