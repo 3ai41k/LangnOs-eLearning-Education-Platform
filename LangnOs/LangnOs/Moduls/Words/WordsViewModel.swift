@@ -7,14 +7,13 @@
 //
 
 import Foundation
-import Combine
 
 protocol WordsViewModelInputProtocol {
     var title: String { get }
 }
 
 protocol WordsViewModelOutputProtocol {
-    var setEditingSubject: PassthroughSubject<Bool, Never> { get }
+    func setEditing(_ editing: Bool)
 }
 
 typealias WordsViewModelProtocol =
@@ -34,7 +33,6 @@ final class WordsViewModel: WordsViewModelProtocol {
         "Words".localize
     }
     
-    var setEditingSubject = PassthroughSubject<Bool, Never>()
     var tableSections: [SectionViewModelProtocol] = []
     
     // MARK: - Private properties
@@ -44,11 +42,6 @@ final class WordsViewModel: WordsViewModelProtocol {
     private let dataProvider: FirebaseDatabaseUpdatingProtocol
     private let userSession: SessionInfoProtocol
     private let storage: FirebaseStorageFetchingProtocol
-    
-    private var setEditingPublisher: AnyPublisher<Bool, Never> {
-        setEditingSubject.eraseToAnyPublisher()
-    }
-    private var cancellables: [AnyCancellable?] = []
     
     // MARK: - Init
     
@@ -63,8 +56,6 @@ final class WordsViewModel: WordsViewModelProtocol {
         self.userSession = userSession
         self.storage = storage
         
-        self.bindView()
-        
         self.appendWordSection()
     }
     
@@ -74,20 +65,16 @@ final class WordsViewModel: WordsViewModelProtocol {
         tableSections[SectionType.words.rawValue].cells.value.remove(at: indexPath.row)
     }
     
-    // MARK: - Private methods
-    
-    private func bindView() {
-        cancellables = [
-            setEditingPublisher.sink(receiveValue: { [weak self] (isEditing) in
-                self?.tableSections[SectionType.words.rawValue].cells.value.forEach({
-                    ($0 as? WordRepresentionCellViewModel)?.isEditable.value = isEditing
-                })
-                if isEditing == false {
-                    self?.saveWordsIfСhanged()
-                }
-            })
-        ]
+    func setEditing(_ editing: Bool) {
+        tableSections[SectionType.words.rawValue].cells.value.forEach({
+            ($0 as? WordRepresentionCellViewModel)?.isEditable.value = editing
+        })
+        if editing == false {
+            saveWordsIfСhanged()
+        }
     }
+    
+    // MARK: - Private methods
     
     private func appendWordSection() {
         let cellViewModels = vocabulary.words.map({
@@ -100,14 +87,14 @@ final class WordsViewModel: WordsViewModelProtocol {
     }
     
     private func saveWordsIfСhanged() {
-        let words: [Word] = tableSections[SectionType.words.rawValue].cells.value.compactMap({
+        let words = tableSections[SectionType.words.rawValue].cells.value.compactMap({
             ($0 as? WordRepresentionCellViewModel)?.word
         })
         
         if vocabulary.words != words {
             router.showActivity()
             
-            vocabulary.updateWords(words)
+            vocabulary.words = words
             
             let request = VocabularyUpdateRequest(vocabulary: vocabulary)
             dataProvider.update(request: request, onSuccess: {

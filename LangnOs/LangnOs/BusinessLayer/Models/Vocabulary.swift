@@ -16,13 +16,13 @@ struct Vocabulary: Codable {
     let userId: String
     let title: String
     let category: String
-    private(set) var isFavorite: Bool
-    private(set) var isPrivate: Bool
+    var isFavorite: Bool
+    var isPrivate: Bool
     let phrasesLearned: Int
     let phrasesLeftToLearn: Int
     let totalLearningTime: Double
     let createdDate: Date
-    private(set) var words: [Word]
+    var words: [Word]
     
     // MARK: - Init
     
@@ -54,24 +54,6 @@ struct Vocabulary: Codable {
         self.words = (entity.words?.allObjects as? [WordEntity])!.map({
             Word(entity: $0)
         })
-    }
-    
-    // MARK: - Public methods
-    
-    mutating func makeFavorite() {
-        self.isFavorite = true
-    }
-    
-    mutating func makeUnfavorite() {
-        self.isFavorite = false
-    }
-    
-    mutating func makePrivate() {
-        self.isPrivate = true
-    }
-    
-    mutating func updateWords(_ words: [Word]) {
-        self.words = words
     }
     
 }

@@ -84,9 +84,7 @@ final class VocabularyListViewModel: VocabularyListViewModelProtocol {
         var cellViewModels: [CellViewModelProtocol] = []
         for var vocabulary in vocabularies {
             let cellViewModel = AddToFavoriteCellViewModel(vocabulary: vocabulary) { [weak self] isFavorite in
-                isFavorite ?
-                    vocabulary.makeFavorite() :
-                    vocabulary.makeUnfavorite()
+                vocabulary.isFavorite = isFavorite
                 self?.updateVocabulary(vocabulary)
             }
             cellViewModels.append(cellViewModel)

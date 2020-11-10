@@ -102,7 +102,7 @@ final class CreateVocabularyViewModel: CreateVocabularyViewModelProtocol {
         
         router.showActivity()
         uploadTermImages(userId: userId, vocabularyId: vocabulary.id) {
-            vocabulary.updateWords(self.getAllWords())
+            vocabulary.words = self.getAllWords()
             
             let request = VocabularyCreateRequest(vocabulary: vocabulary)
             self.dataProvider.create(request: request, onSuccess: {

@@ -42,7 +42,7 @@ final class WordsViewController: BindibleViewController<WordsViewModelProtocol> 
         super.setEditing(editing, animated: animated)
         
         tableView.setEditing(editing, animated: animated)
-        viewModel?.setEditingSubject.send(editing)
+        viewModel?.setEditing(editing)
     }
     
     // MARK: - Public methods
