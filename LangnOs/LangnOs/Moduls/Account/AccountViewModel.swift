@@ -57,13 +57,13 @@ final class AccountViewModel: AccountViewModelProtocol {
     
     private let router: AccountCoordinatorProtocol
     private let userSession: SessionInfoProtocol & SessionLifecycleProtocol
-    private let storage: FirebaseStorageUploadingProtocol & FirebaseStorageRemovingProtocol
+    private let storage: FirebaseStorageProtocol
     
     // MARK: - Init
     
     init(router: AccountCoordinatorProtocol,
          userSession: SessionInfoProtocol & SessionLifecycleProtocol,
-         storage: FirebaseStorageUploadingProtocol & FirebaseStorageRemovingProtocol) {
+         storage: FirebaseStorageProtocol) {
         self.router = router
         self.userSession = userSession
         self.storage = storage
@@ -92,7 +92,14 @@ final class AccountViewModel: AccountViewModelProtocol {
     // MARK: - Private methods
     
     private func downloadUserPhoto() {
-        userPhoto.value = SFSymbols.personCircle()
+        guard let userId = userSession.currentUser?.id else { return }
+        
+        let request = FetchUserImageRequest(userId: userId)
+        storage.fetch(request: request, onSuccess: { (image) in
+            self.userPhoto.value = image != nil ? image : SFSymbols.personCircle()
+        }) { (error) in
+            self.router.showError(error)
+        }
     }
     
     private func setupEmptySection() {
@@ -132,13 +139,27 @@ final class AccountViewModel: AccountViewModelProtocol {
     // MARK: - Actions
     
     private func selectImageAction() {
+        guard let userId = userSession.currentUser?.id else { return }
+        
         router.navigateToImagePicker(sourceType: .photoLibrary) { (image) in
-            self.userPhoto.value = image
+            let request = UploadUserImageRequest(userId: userId, imageData: image.jpegData(compressionQuality: 0.25)!)
+            self.storage.upload(request: request, onSuccess: {
+                self.userPhoto.value = image
+            }) { (error) in
+                self.router.showError(error)
+            }
         }
     }
     
     private func removeImageAction() {
-        userPhoto.value = nil
+        guard let userId = userSession.currentUser?.id else { return }
+        
+        let request = DeleteUserImageRequest(userId: userId)
+        storage.delete(request: request, onSuccess: {
+            self.userPhoto.value = nil
+        }) { (error) in
+            self.router.showError(error)
+        }
     }
     
     private func logoutAction() {

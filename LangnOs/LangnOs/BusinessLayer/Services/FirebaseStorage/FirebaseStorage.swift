@@ -24,6 +24,11 @@ protocol FirebaseStorageRemovingProtocol {
     func delete(request: FirebaseFirestoreRequestProtocol, onSuccess: @escaping () -> Void, onFailure: @escaping (Error) -> Void)
 }
 
+typealias FirebaseStorageProtocol =
+    FirebaseStorageFetchingProtocol &
+    FirebaseStorageUploadingProtocol &
+    FirebaseStorageRemovingProtocol
+
 final class FirebaseStorage {
     
     // MARK: - Private properties

@@ -81,6 +81,8 @@ final class DashboardViewModel: DashboardViewModelProtocol {
     private let router: DashboardCoordinatorProtocol
     private let userSession: SessionInfoProtocol & SessionSatePublisherProtocol
     private let dataProvider: FirebaseDatabaseFetchingProtocol
+    private let storage: FirebaseStorageFetchingProtocol
+    
     private var favoriteVocabularies: [Vocabulary] = [] {
         didSet {
             favoriteVocabularies.isEmpty ?
@@ -95,10 +97,12 @@ final class DashboardViewModel: DashboardViewModelProtocol {
     
     init(router: DashboardCoordinatorProtocol,
          userSession: SessionInfoProtocol & SessionSatePublisherProtocol,
-         dataProvider: FirebaseDatabaseFetchingProtocol) {
+         dataProvider: FirebaseDatabaseFetchingProtocol,
+         storage: FirebaseStorageFetchingProtocol) {
         self.router = router
         self.userSession = userSession
         self.dataProvider = dataProvider
+        self.storage = storage
         
         self.userImage = .init(nil)
         
@@ -159,7 +163,14 @@ final class DashboardViewModel: DashboardViewModelProtocol {
     }
     
     private func updateUserPhoto() {
-        userImage.value = SFSymbols.personCircle()
+        guard let userId = userSession.currentUser?.id else { return }
+        
+        let request = FetchUserImageRequest(userId: userId)
+        storage.fetch(request: request, onSuccess: { (image) in
+            self.userImage.value = image != nil ? image : SFSymbols.personCircle()
+        }) { (error) in
+            self.router.showError(error)
+        }
     }
     
     private func fetchFavoriteVocabulary() {

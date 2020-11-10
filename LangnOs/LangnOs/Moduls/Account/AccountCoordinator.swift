@@ -23,7 +23,7 @@ final class AccountCoordinator: Coordinator, AccountCoordinatorProtocol {
     
     override func start() {
         let userSession = UserSession.shared
-        let storage = FirebaseStorage()
+        let storage = UserStorage(storage: FirebaseStorage())
         let viewModel = AccountViewModel(router: self,
                                          userSession: userSession,
                                          storage: storage)
