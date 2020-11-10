@@ -13,12 +13,11 @@ struct User1: Codable {
     var name: String
     var email: String
     var phone: String
-    var photoURL: URL?
     var password: String
     var rights: [Right]
     
     static var empty: User1 {
-        User1(id: UUID().uuidString, name: "", email: "", phone: "", photoURL: nil, password: "", rights: [
+        User1(id: UUID().uuidString, name: "", email: "", phone: "", password: "", rights: [
             Right(name: "isTeacher", value: false)
         ])
     }

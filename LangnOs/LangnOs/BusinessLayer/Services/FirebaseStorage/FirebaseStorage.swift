@@ -17,7 +17,7 @@ protocol FirebaseStorageFetchingProtocol {
 }
 
 protocol FirebaseStorageUploadingProtocol {
-    func upload(request: FirebaseFirestoreUploadRequestProtocol, onSuccess: @escaping (URL) -> Void, onFailure: @escaping (Error) -> Void)
+    func upload(request: FirebaseFirestoreUploadRequestProtocol, onSuccess: @escaping () -> Void, onFailure: @escaping (Error) -> Void)
 }
 
 protocol FirebaseStorageRemovingProtocol {
@@ -60,23 +60,13 @@ extension FirebaseStorage: FirebaseStorageFetchingProtocol {
 
 extension FirebaseStorage: FirebaseStorageUploadingProtocol {
     
-    func upload(request: FirebaseFirestoreUploadRequestProtocol, onSuccess: @escaping (URL) -> Void, onFailure: @escaping (Error) -> Void) {
+    func upload(request: FirebaseFirestoreUploadRequestProtocol, onSuccess: @escaping () -> Void, onFailure: @escaping (Error) -> Void) {
         let reference = storage.reference(withPath: request.path)
         reference.putData(request.imageData, metadata: request.metaData) { (metaData, error) in
             if let error = error {
                 onFailure(error)
             } else {
-                reference.downloadURL { (url, error) in
-                    if let error = error {
-                        onFailure(error)
-                    } else {
-                        guard let url = url else {
-                            onFailure(FirebaseStorageError.urlNotFound)
-                            return
-                        }
-                        onSuccess(url)
-                    }
-                }
+                onSuccess()
             }
         }
     }

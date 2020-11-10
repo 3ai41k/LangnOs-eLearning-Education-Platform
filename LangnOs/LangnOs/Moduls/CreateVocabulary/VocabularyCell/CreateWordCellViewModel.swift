@@ -73,7 +73,7 @@ final class CreateWordCellViewModel: VocabularyCellViewModel {
                                              imageData: data)
         
         dispatchGroup.enter()
-        storage.upload(request: request, onSuccess: { (photoURL) in
+        storage.upload(request: request, onSuccess: {
             dispatchGroup.leave()
         }) { (error) in
             print(error.localizedDescription)
