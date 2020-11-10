@@ -98,6 +98,7 @@ final class AccountViewModel: AccountViewModelProtocol {
         storage.fetch(request: request, onSuccess: { (image) in
             self.userPhoto.value = image != nil ? image : SFSymbols.personCircle()
         }) { (error) in
+            self.userPhoto.value = SFSymbols.personCircle()
             self.router.showError(error)
         }
     }

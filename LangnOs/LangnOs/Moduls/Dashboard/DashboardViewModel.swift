@@ -172,6 +172,7 @@ final class DashboardViewModel: DashboardViewModelProtocol {
         storage.fetch(request: request, onSuccess: { (image) in
             self.userImage.value = image != nil ? image : SFSymbols.personCircle()
         }) { (error) in
+            self.userImage.value = SFSymbols.personCircle()
             self.router.showError(error)
         }
     }

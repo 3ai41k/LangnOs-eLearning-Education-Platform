@@ -90,6 +90,7 @@ extension UserSession: SessionLifecycleProtocol {
     
     func finishSession() {
         userDefaults.removeObject(forKey: UserDefaultsKey.user.rawValue)
+        userDefaults.removeObject(forKey: UserDefaultsKey.userImage.rawValue)
         currentUser = nil
     }
     
