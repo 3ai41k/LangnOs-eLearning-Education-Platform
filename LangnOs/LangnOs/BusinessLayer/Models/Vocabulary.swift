@@ -26,11 +26,11 @@ struct Vocabulary: Codable {
     
     // MARK: - Init
     
-    init(userId: String, title: String, category: Category, isPrivate: Bool) {
+    init(userId: String, title: String, category: String, isPrivate: Bool) {
         self.id = UUID().uuidString
         self.userId = userId
         self.title = title
-        self.category = category.rawValue
+        self.category = category
         self.isFavorite = false
         self.isPrivate = isPrivate
         self.phrasesLearned = 0

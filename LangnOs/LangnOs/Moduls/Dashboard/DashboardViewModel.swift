@@ -163,7 +163,10 @@ final class DashboardViewModel: DashboardViewModelProtocol {
     }
     
     private func updateUserPhoto() {
-        guard let userId = userSession.currentUser?.id else { return }
+        guard let userId = userSession.currentUser?.id else {
+            userImage.value = SFSymbols.personCircle()
+            return
+        }
         
         let request = FetchUserImageRequest(userId: userId)
         storage.fetch(request: request, onSuccess: { (image) in

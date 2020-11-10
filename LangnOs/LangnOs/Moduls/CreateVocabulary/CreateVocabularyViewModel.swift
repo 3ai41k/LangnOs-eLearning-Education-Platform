@@ -97,7 +97,7 @@ final class CreateVocabularyViewModel: CreateVocabularyViewModelProtocol {
         
         var vocabulary = Vocabulary(userId: userId,
                                     title: generalInfo.name,
-                                    category: generalInfo.category,
+                                    category: generalInfo.category.rawValue,
                                     isPrivate: generalInfo.isPrivate)
         
         router.showActivity()

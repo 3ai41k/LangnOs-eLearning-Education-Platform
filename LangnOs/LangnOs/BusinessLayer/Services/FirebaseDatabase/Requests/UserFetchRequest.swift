@@ -28,10 +28,7 @@ extension UserFetchRequest: DataProviderRequestProtocol {
     }
     
     var query: QueryComponentProtocol? {
-        QueryAndConnector(components: [
-            IsEqualToComponent("email", isEqualTo: email),
-            IsEqualToComponent("password", isEqualTo: password)
-        ])
+        IsEqualToComponent("email", isEqualTo: email)
     }
     
 }

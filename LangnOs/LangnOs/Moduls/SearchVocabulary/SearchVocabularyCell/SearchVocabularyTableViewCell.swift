@@ -60,4 +60,11 @@ final class SearchVocabularyTableViewCell: UITableViewCell, UniversalTableViewCe
         }).store(in: &cancellables)
     }
     
+    // MARK: - Actions
+    
+    @IBAction
+    private func didSaveTouch(_ sender: Any) {
+        viewModel?.save()
+    }
+    
 }

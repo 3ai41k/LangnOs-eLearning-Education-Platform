@@ -15,8 +15,13 @@ protocol SearchVocabularyCellInputProtocol {
     var image: CurrentValueSubject<UIImage?, Never> { get }
 }
 
+protocol SearchVocabularyCellOutputProtocol {
+    func save()
+}
+
 typealias SearchVocabularyCellProtocol =
     SearchVocabularyCellInputProtocol &
+    SearchVocabularyCellOutputProtocol &
     CellViewModelProtocol
 
 final class SearchVocabularyCellViewModel: SearchVocabularyCellProtocol {
@@ -37,17 +42,26 @@ final class SearchVocabularyCellViewModel: SearchVocabularyCellProtocol {
     
     private let vocabulary: Vocabulary
     private let storage: FirebaseStorageFetchingProtocol
+    private let saveHandler: () -> Void
     
     // MARK: - Init
     
     init(vocabulary: Vocabulary,
-         storage: FirebaseStorageFetchingProtocol) {
+         storage: FirebaseStorageFetchingProtocol,
+         saveHandler: @escaping () -> Void) {
         self.vocabulary = vocabulary
         self.storage = storage
+        self.saveHandler = saveHandler
         
         self.image = .init(nil)
         
         self.downloadUserPhoto()
+    }
+    
+    // MARK: - Public methods
+    
+    func save() {
+        saveHandler()
     }
     
     // MARK: - Private methods

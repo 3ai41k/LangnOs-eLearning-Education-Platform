@@ -49,14 +49,16 @@ final class SearchVocabularyViewModel: SearchVocabularyViewModelPrtotocol {
     // MARK: - Private properties
     
     private let router: SearchVocabularyCoordinatorProtocol
-    private let dataProvider: FirebaseDatabaseFetchingProtocol
+    private let dataProvider: FirebaseDatabaseFetchingProtocol & FirebaseDatabaseCreatingProtocol
     private let storage: FirebaseStorageFetchingProtocol
     private let userSession: SessionInfoProtocol
     
     private var vocabularies: [Vocabulary] = [] {
         didSet {
-            let cellViewModesl = vocabularies.map({
-                SearchVocabularyCellViewModel(vocabulary: $0, storage: storage)
+            let cellViewModesl = vocabularies.map({ (vocabulary) in
+                SearchVocabularyCellViewModel(vocabulary: vocabulary, storage: storage) { [weak self] in
+                    self?.saveVocabulary(vocabulary)
+                }
             })
             tableSections[SectionType.vocabulary.rawValue].cells.value = cellViewModesl
         }
@@ -66,7 +68,7 @@ final class SearchVocabularyViewModel: SearchVocabularyViewModelPrtotocol {
     // MARK: - Init
     
     init(router: SearchVocabularyCoordinatorProtocol,
-         dataProvider: FirebaseDatabaseFetchingProtocol,
+         dataProvider: FirebaseDatabaseFetchingProtocol & FirebaseDatabaseCreatingProtocol,
          storage: FirebaseStorageFetchingProtocol,
          userSession: SessionInfoProtocol) {
         self.router = router
@@ -107,6 +109,29 @@ final class SearchVocabularyViewModel: SearchVocabularyViewModelPrtotocol {
     private func setupVocabularySection() {
         let sectionViewModel = TableSectionViewModel(cells: [])
         tableSections.append(sectionViewModel)
+    }
+    
+    private func saveVocabulary(_ vocabulary: Vocabulary) {
+        guard let userId = userSession.currentUser?.id, vocabulary.id != userId else {
+            router.showAlert(title: "Error!",
+                             message: "You can not save your own vocabulary",
+                             actions: [OkAlertAction(handler: { })])
+            return
+        }
+        
+        var newVocabulary = Vocabulary(userId: userId,
+                                       title: vocabulary.title,
+                                       category: vocabulary.category,
+                                       isPrivate: false)
+        newVocabulary.words = vocabulary.words
+        
+        router.showActivity()
+        let request = VocabularyCreateRequest(vocabulary: newVocabulary)
+        dataProvider.create(request: request, onSuccess: {
+            self.router.closeActivity()
+        }) { (error) in
+            self.router.showError(error)
+        }
     }
     
 }
