@@ -24,13 +24,20 @@ final class WordRepresentionCellViewModel: VocabularyCellViewModel {
     
     // MARK: - Private properties
     
-    private let mediaDownloader: MediaDownloadableProtocol
+    private let vocabularyId: String
+    private let userSession: SessionInfoProtocol
+    private let storage: FirebaseStorageFetchingProtocol
     
     // MARK: - Init
     
-    init(word: Word, mediaDownloader: MediaDownloadableProtocol) {
+    init(vocabularyId: String,
+         word: Word,
+         userSession: SessionInfoProtocol,
+         storage: FirebaseStorageFetchingProtocol) {
+        self.vocabularyId = vocabularyId
         self.word = word
-        self.mediaDownloader = mediaDownloader
+        self.userSession = userSession
+        self.storage = storage
         
         super.init(headerTitle: "Term".localize, footerTitle: "Definition".localize)
         
@@ -52,12 +59,13 @@ final class WordRepresentionCellViewModel: VocabularyCellViewModel {
     // MARK: - Private methods
     
     private func downloadPhoto() {
-        guard let photURL = word.photoURL else { return }
+        guard let userId = userSession.currentUser?.id else { return }
         showActivity.value = true
         
-        mediaDownloader.downloadMedia(url: photURL, onSucces: { (data) in
+        let request = FetchTermImageRequest(userId: userId, vocabularyId: vocabularyId, imageName: word.term)
+        storage.fetch(request: request, onSuccess: { (image) in
             self.showActivity.value = false
-            self.image.value = UIImage(data: data)?.resized(to: CGSize(width: 256.0, height: 210.0))
+            self.image.value = image?.resized(to: CGSize(width: 256.0, height: 210.0))
         }) { (error) in
             self.showActivity.value = false
             print(error.localizedDescription)

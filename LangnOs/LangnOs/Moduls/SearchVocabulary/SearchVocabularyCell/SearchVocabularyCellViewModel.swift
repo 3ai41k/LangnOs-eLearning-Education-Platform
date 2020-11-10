@@ -53,7 +53,7 @@ final class SearchVocabularyCellViewModel: SearchVocabularyCellProtocol {
     // MARK: - Private methods
     
     private func downloadUserPhoto() {
-        let request = UserImageFetchFirestoreRequest(userId: vocabulary.userId)
+        let request = FetchUserImageRequest(userId: vocabulary.userId)
         storage.fetch(request: request, onSuccess: { (image) in
             self.image.value = image
         }) { (error) in

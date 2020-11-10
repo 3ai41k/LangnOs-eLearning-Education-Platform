@@ -42,7 +42,8 @@ final class WordsViewModel: WordsViewModelProtocol {
     private let router: WordsCoordinatorProtocol
     private var vocabulary: Vocabulary
     private let dataProvider: FirebaseDatabaseUpdatingProtocol
-    private let mediaDownloader: MediaDownloadableProtocol
+    private let userSession: SessionInfoProtocol
+    private let storage: FirebaseStorageFetchingProtocol
     
     private var setEditingPublisher: AnyPublisher<Bool, Never> {
         setEditingSubject.eraseToAnyPublisher()
@@ -54,11 +55,13 @@ final class WordsViewModel: WordsViewModelProtocol {
     init(router: WordsCoordinatorProtocol,
          vocabulary: Vocabulary,
          dataProvider: FirebaseDatabaseUpdatingProtocol,
-         mediaDownloader: MediaDownloadableProtocol) {
+         userSession: SessionInfoProtocol,
+         storage: FirebaseStorageFetchingProtocol) {
         self.router = router
         self.vocabulary = vocabulary
         self.dataProvider = dataProvider
-        self.mediaDownloader = mediaDownloader
+        self.userSession = userSession
+        self.storage = storage
         
         self.bindView()
         
@@ -88,7 +91,10 @@ final class WordsViewModel: WordsViewModelProtocol {
     
     private func appendWordSection() {
         let cellViewModels = vocabulary.words.map({
-            WordRepresentionCellViewModel(word: $0, mediaDownloader: mediaDownloader)
+            WordRepresentionCellViewModel(vocabularyId: vocabulary.id,
+                                          word: $0,
+                                          userSession: userSession,
+                                          storage: storage)
         })
         tableSections.append(TableSectionViewModel(cells: cellViewModels))
     }
@@ -110,7 +116,12 @@ final class WordsViewModel: WordsViewModelProtocol {
                 self.router.closeActivity()
                 self.router.showError(error)
                 
-                let cellViewModels = self.vocabulary.words.map({ WordRepresentionCellViewModel(word: $0, mediaDownloader: self.mediaDownloader) })
+                let cellViewModels = self.vocabulary.words.map({
+                    WordRepresentionCellViewModel(vocabularyId: self.vocabulary.id,
+                                                  word: $0,
+                                                  userSession: self.userSession,
+                                                  storage: self.storage)
+                })
                 self.tableSections[SectionType.words.rawValue].cells.value = cellViewModels
             }
         }

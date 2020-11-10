@@ -18,7 +18,6 @@ final class WordEntity: NSManagedObject {
         
         self.term = word.term
         self.definition = word.definition
-        self.photoURL = word.photoURL
     }
     
 }

@@ -1,14 +1,14 @@
 //
-//  UserImageFetchFirestoreRequest.swift
+//  DeleteUserImageRequest.swift
 //  LangnOs
 //
-//  Created by Nikita Lizogubov on 10.11.2020.
+//  Created by Nikita Lizogubov on 17.10.2020.
 //  Copyright © 2020 NL. All rights reserved.
 //
 
 import Foundation
 
-struct UserImageFetchFirestoreRequest {
+struct DeleteUserImageRequest {
     
     // MARK: - Public properties
     
@@ -16,9 +16,9 @@ struct UserImageFetchFirestoreRequest {
     
 }
 
-// MARK: - FirebaseFirestoreRequestProtocol
+// MARK: - FirestoreRequest
 
-extension UserImageFetchFirestoreRequest: FirebaseFirestoreRequestProtocol {
+extension DeleteUserImageRequest: FirebaseFirestoreRequestProtocol {
     
     var path: String {
         "users/\(userId)/images/profileImage.jpg"

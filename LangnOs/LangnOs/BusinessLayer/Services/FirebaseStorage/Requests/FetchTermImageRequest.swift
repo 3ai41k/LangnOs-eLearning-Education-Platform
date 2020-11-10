@@ -1,14 +1,14 @@
 //
-//  DeleteTermImageRequest.swift
+//  FetchTermImageRequest.swift
 //  LangnOs
 //
-//  Created by Nikita Lizogubov on 06.11.2020.
+//  Created by Nikita Lizogubov on 10.11.2020.
 //  Copyright © 2020 NL. All rights reserved.
 //
 
 import Foundation
 
-struct DeleteTermImageRequest {
+struct FetchTermImageRequest {
     
     // MARK: - Public properties
     
@@ -20,14 +20,10 @@ struct DeleteTermImageRequest {
 
 // MARK: - FirebaseFirestoreRequestProtocol
 
-extension DeleteTermImageRequest: FirebaseFirestoreRequestProtocol {
+extension FetchTermImageRequest: FirebaseFirestoreRequestProtocol {
     
     var path: String {
         "users/\(userId)/images/vocabularies/\(vocabularyId)/\(imageName).jpg"
-    }
-    
-    var contentType: FirestoreContentType {
-        .image
     }
     
 }

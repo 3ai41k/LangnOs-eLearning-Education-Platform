@@ -12,7 +12,6 @@ struct Word: Codable {
     
     var term: String
     var definition: String
-    var photoURL: URL?
     
     static var empty: Word {
         Word(term: "", definition: "")
@@ -21,13 +20,11 @@ struct Word: Codable {
     init(term: String, definition: String) {
         self.term = term
         self.definition = definition
-        self.photoURL = nil
     }
     
     init(entity: WordEntity) {
         self.term = entity.term!
         self.definition = entity.definition!
-        self.photoURL = entity.photoURL
     }
     
 }

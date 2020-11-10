@@ -1,5 +1,5 @@
 //
-//  UserImageFirestoreRequest.swift
+//  UploadUserImageRequest.swift
 //  LangnOs
 //
 //  Created by Nikita Lizogubov on 16.10.2020.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct UserImageFirestoreRequest {
+struct UploadUserImageRequest {
     
     // MARK: - Public properties
     
@@ -19,7 +19,7 @@ struct UserImageFirestoreRequest {
 
 // MARK: - FirebaseFirestoreUploadRequestProtocol
 
-extension UserImageFirestoreRequest: FirebaseFirestoreUploadRequestProtocol {
+extension UploadUserImageRequest: FirebaseFirestoreUploadRequestProtocol {
     
     var path: String {
         "users/\(userId)/images/profileImage.jpg"
