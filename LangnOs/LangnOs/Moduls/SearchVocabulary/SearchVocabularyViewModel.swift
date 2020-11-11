@@ -119,14 +119,14 @@ final class SearchVocabularyViewModel: SearchVocabularyViewModelPrtotocol {
             return
         }
         
-        var newVocabulary = Vocabulary(userId: userId,
-                                       title: vocabulary.title,
-                                       category: vocabulary.category,
-                                       isPrivate: false)
-        newVocabulary.words = vocabulary.words
+        let vocabulary = Vocabulary(userId: userId,
+                                    title: vocabulary.title,
+                                    category: vocabulary.category,
+                                    isPrivate: false,
+                                    words: vocabulary.words)
         
         router.showActivity()
-        let request = VocabularyCreateRequest(vocabulary: newVocabulary)
+        let request = VocabularyCreateRequest(vocabulary: vocabulary)
         dataProvider.create(request: request, onSuccess: {
             self.router.closeActivity()
         }) { (error) in

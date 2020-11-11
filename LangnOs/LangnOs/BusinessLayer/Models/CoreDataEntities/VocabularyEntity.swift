@@ -62,6 +62,7 @@ extension VocabularyEntity: CDEntityProtocol {
     static func selectAllBy(userId: String, context: NSManagedObjectContext) throws -> [Vocabulary] {
         let request = NSFetchRequest<VocabularyEntity>(entityName: "VocabularyEntity")
         request.predicate = NSPredicate(format: "userId == %@", userId)
+        request.sortDescriptors = [NSSortDescriptor(key: "createdDate", ascending: false)]
         do {
             return try context.fetch(request).map({ Vocabulary(entity: $0) })
         } catch {

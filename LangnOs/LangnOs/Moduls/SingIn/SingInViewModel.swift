@@ -105,6 +105,7 @@ extension SingInViewModel: SingInOutputProtocol {
         let request = AuthorizeUserRequest(email: user.email, password: user.password)
         dataProvider.fetch(request: request, onSuccess: { (users: [User1]) in
             guard let user = users.first else { return }
+            
             self.userSession.starSession(with: user)
             self.router.close()
         }) { (error) in

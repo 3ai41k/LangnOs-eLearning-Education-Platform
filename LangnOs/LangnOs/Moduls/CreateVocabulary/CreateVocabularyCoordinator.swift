@@ -41,10 +41,14 @@ final class CreateVocabularyCoordinator: Coordinator, CreateVocabularyCoordinato
         let dataProvider = FirebaseDatabase.shared
         let storage = FirebaseStorage()
         let userSession = UserSession.shared
+        let networkState = NetworkState.shared
+        let coreDataStack = CoreDataStack.shared
         let viewModel = CreateVocabularyViewModel(router: self,
                                                   dataProvider: dataProvider,
                                                   storage: storage,
-                                                  userSession: userSession)
+                                                  userSession: userSession,
+                                                  networkState: networkState,
+                                                  coreDataStack: coreDataStack)
         
         let cellFactory = CreateVocabularyCellFactory()
         let viewController = CreateVocabularyViewController()

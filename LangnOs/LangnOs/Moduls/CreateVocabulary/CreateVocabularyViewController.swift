@@ -71,12 +71,12 @@ final class CreateVocabularyViewController: BindibleViewController<CreateVocabul
     
     @objc
     private func didCloseButtonTouch() {
-        viewModel?.closeAction()
+        viewModel?.close()
     }
     
     @objc
     private func didDoneButtonTouch() {
-        viewModel?.doneAction()
+        viewModel?.done()
     }
 
 }

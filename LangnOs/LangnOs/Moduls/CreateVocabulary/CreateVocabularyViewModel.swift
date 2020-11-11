@@ -18,8 +18,8 @@ protocol CreateVocabularyViewModelOutputProtocol {
     func setVocabularyName(_ name: String)
     func setPrivate(_ isPrivate: Bool)
     func selectCategory(sourceView: UIView)
-    func doneAction()
-    func closeAction()
+    func done()
+    func close()
 }
 
 typealias CreateVocabularyViewModelProtocol =
@@ -53,6 +53,8 @@ final class CreateVocabularyViewModel: CreateVocabularyViewModelProtocol {
     private let dataProvider: FirebaseDatabaseCreatingProtocol
     private let storage: FirebaseStorageUploadingProtocol
     private let userSession: SessionInfoProtocol
+    private let networkState: InternetConnectableProtocol
+    private let coreDataStack: CoreDataStack
     
     private var generalInfo: VocabularyGeneralInfo
     
@@ -61,11 +63,15 @@ final class CreateVocabularyViewModel: CreateVocabularyViewModelProtocol {
     init(router: CreateVocabularyCoordinatorProtocol,
          dataProvider: FirebaseDatabaseCreatingProtocol,
          storage: FirebaseStorageUploadingProtocol,
-         userSession: SessionInfoProtocol) {
+         userSession: SessionInfoProtocol,
+         networkState: InternetConnectableProtocol,
+         coreDataStack: CoreDataStack) {
         self.router = router
         self.dataProvider = dataProvider
         self.storage = storage
         self.userSession = userSession
+        self.networkState = networkState
+        self.coreDataStack = coreDataStack
         
         self.categoryButtonTitle = .init("Select".localize)
         self.generalInfo = VocabularyGeneralInfo()
@@ -92,30 +98,35 @@ final class CreateVocabularyViewModel: CreateVocabularyViewModelProtocol {
         }
     }
     
-    func doneAction() {
+    func done() {
         guard let userId = userSession.currentUser?.id else { return }
         
-        var vocabulary = Vocabulary(userId: userId,
+        let vocabulary = Vocabulary(userId: userId,
                                     title: generalInfo.name,
                                     category: generalInfo.category.rawValue,
-                                    isPrivate: generalInfo.isPrivate)
+                                    isPrivate: generalInfo.isPrivate,
+                                    words: getWords())
         
-        router.showActivity()
-        uploadTermImages(userId: userId, vocabularyId: vocabulary.id) {
-            vocabulary.words = self.getAllWords()
-            
-            let request = VocabularyCreateRequest(vocabulary: vocabulary)
-            self.dataProvider.create(request: request, onSuccess: {
-                self.router.closeActivity()
-                self.router.didCreateVocabulary(vocabulary)
-            }) { (error) in
-                self.router.closeActivity()
-                self.router.showError(error)
+        if networkState.isReachable {
+            router.showActivity()
+            uploadTermImages(userId: userId, vocabularyId: vocabulary.id) {
+                let request = VocabularyCreateRequest(vocabulary: vocabulary)
+                self.dataProvider.create(request: request, onSuccess: {
+                    try? VocabularyEntity.insert(entity: vocabulary, context: self.coreDataStack.viewContext)
+                    self.router.closeActivity()
+                    self.router.didCreateVocabulary(vocabulary)
+                }) { (error) in
+                    self.router.closeActivity()
+                    self.router.showError(error)
+                }
             }
+        } else {
+            try? VocabularyEntity.insert(entity: vocabulary, context: coreDataStack.viewContext)
+            router.didCreateVocabulary(vocabulary)
         }
     }
     
-    func closeAction() {
+    func close() {
         router.close()
     }
     
@@ -129,7 +140,7 @@ final class CreateVocabularyViewModel: CreateVocabularyViewModelProtocol {
         dispatchGroup.notify(queue: .main, execute: completiom)
     }
     
-    private func getAllWords() -> [Word] {
+    private func getWords() -> [Word] {
         tableSections[SectionType.words.rawValue].cells.value.compactMap({
             ($0 as? CreateWordCellViewModel)?.word
         })
