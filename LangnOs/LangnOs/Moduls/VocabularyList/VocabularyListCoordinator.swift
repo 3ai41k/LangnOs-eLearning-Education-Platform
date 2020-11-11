@@ -43,9 +43,11 @@ final class VocabularyListCoordinator: Coordinator, VocabularyListCoordinatorPro
     override func start() {
         let dataProvider = FirebaseDatabase.shared
         let userSession = UserSession.shared
+        let networkState = NetworkState.shared
         let viewModel = VocabularyListViewModel(router: self,
                                                 dataProvider: dataProvider,
-                                                userSession: userSession)
+                                                userSession: userSession,
+                                                networkState: networkState)
         
         let cellFactory = VocabularyListCellFactory()
         let viewController = VocabularyListViewController()

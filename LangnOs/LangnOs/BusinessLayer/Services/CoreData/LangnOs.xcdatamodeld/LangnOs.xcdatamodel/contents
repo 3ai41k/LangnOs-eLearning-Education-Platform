@@ -7,6 +7,7 @@
         <attribute name="isFavorite" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="isPrivate" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="isSynchronized" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="modifiedDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="phrasesLearned" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="phrasesLeftToLearn" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="title" attributeType="String"/>
@@ -19,7 +20,7 @@
         <attribute name="term" attributeType="String"/>
     </entity>
     <elements>
-        <element name="VocabularyEntity" positionX="-45" positionY="0" width="128" height="223"/>
+        <element name="VocabularyEntity" positionX="-45" positionY="0" width="128" height="238"/>
         <element name="WordEntity" positionX="-258.03125" positionY="148.203125" width="128" height="73"/>
     </elements>
 </model>

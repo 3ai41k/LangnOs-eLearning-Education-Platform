@@ -45,31 +45,56 @@ final class VocabularyListViewModel: VocabularyListViewModelProtocol {
     private let router: VocabularyListCoordinatorProtocol
     private let dataProvider: FirebaseDatabaseFetchingProtocol & FirebaseDatabaseUpdatingProtocol
     private let userSession: SessionInfoProtocol
+    private let networkState: InternetConnectableProtocol
+    
+    private var vocabularies: [Vocabulary] = [] {
+        didSet {
+            var cellViewModels: [CellViewModelProtocol] = []
+            for var vocabulary in vocabularies {
+                let cellViewModel = AddToFavoriteCellViewModel(vocabulary: vocabulary) { [weak self] isFavorite in
+                    vocabulary.isFavorite = isFavorite
+                    self?.addToFavorite(vocabulary: vocabulary)
+                }
+                cellViewModels.append(cellViewModel)
+            }
+            tableSections[SectionType.vocabulary.rawValue].cells.value = cellViewModels
+        }
+    }
     
     // MARK: - Init
     
     init(router: VocabularyListCoordinatorProtocol,
          dataProvider: FirebaseDatabaseFetchingProtocol & FirebaseDatabaseUpdatingProtocol,
-         userSession: SessionInfoProtocol) {
+         userSession: SessionInfoProtocol,
+         networkState: InternetConnectableProtocol) {
         self.router = router
         self.dataProvider = dataProvider
         self.userSession = userSession
+        self.networkState = networkState
         
         self.appendVocabularySection()
         
-        self.fetchVocabulary()
+        self.fetchData()
     }
     
     // MARK: - Public methods
     
-    private func fetchVocabulary() {
+    private func fetchData() {
         guard let userId = userSession.currentUser?.id else { return }
         
-        let request = VocabularyFetchRequest(userId: userId)
-        dataProvider.fetch(request: request, onSuccess: { (vocabularies: [Vocabulary]) in
-            self.updateVocabularySection(vocabularies)
-        }) { (error) in
-            self.router.showError(error)
+        if networkState.isReachable {
+            let request = VocabularyFetchRequest(userId: userId)
+            dataProvider.fetch(request: request, onSuccess: { (vocabularies: [Vocabulary]) in
+                self.vocabularies = vocabularies
+            }) { (error) in
+                self.router.showError(error)
+            }
+        } else {
+            do {
+                vocabularies = try VocabularyEntity.selectAllBy(userId: userId)
+            } catch {
+                vocabularies = .empty
+            }
         }
     }
     
@@ -80,27 +105,24 @@ final class VocabularyListViewModel: VocabularyListViewModelProtocol {
         tableSections.append(sectionViewModel)
     }
     
-    private func updateVocabularySection(_ vocabularies: [Vocabulary]) {
-        var cellViewModels: [CellViewModelProtocol] = []
-        for var vocabulary in vocabularies {
-            let cellViewModel = AddToFavoriteCellViewModel(vocabulary: vocabulary) { [weak self] isFavorite in
-                vocabulary.isFavorite = isFavorite
-                self?.updateVocabulary(vocabulary)
+    private func addToFavorite(vocabulary: Vocabulary) {
+        if networkState.isReachable {
+            let request = VocabularyUpdateRequest(vocabulary: vocabulary)
+            dataProvider.update(request: request, onSuccess: {
+                self.update(vocabulary: vocabulary)
+            }) { (error) in
+                self.router.showError(error)
             }
-            cellViewModels.append(cellViewModel)
+        } else {
+            update(vocabulary: vocabulary)
         }
-        tableSections[SectionType.vocabulary.rawValue].cells.value = cellViewModels
     }
     
-    private func updateVocabulary(_ vocabulary: Vocabulary) {
-        let request = VocabularyUpdateRequest(vocabulary: vocabulary)
-        dataProvider.update(request: request, onSuccess: {
-            vocabulary.isFavorite ?
-                self.router.addFavaoriteVocabulary(vocabulary) :
-                self.router.removeFavaoriteVocabulary(vocabulary)
-        }) { (error) in
-            self.router.showError(error)
-        }
+    private func update(vocabulary: Vocabulary) {
+        try? VocabularyEntity.update(entity: vocabulary)
+        vocabulary.isFavorite ?
+            self.router.addFavaoriteVocabulary(vocabulary) :
+            self.router.removeFavaoriteVocabulary(vocabulary)
     }
     
 }

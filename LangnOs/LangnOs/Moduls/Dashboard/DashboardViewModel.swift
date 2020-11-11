@@ -82,6 +82,7 @@ final class DashboardViewModel: DashboardViewModelProtocol {
     private let userSession: SessionInfoProtocol & SessionSatePublisherProtocol
     private let dataProvider: FirebaseDatabaseFetchingProtocol
     private let storage: FirebaseStorageFetchingProtocol
+    private let networkState: InternetConnectableProtocol
     
     private var favoriteVocabularies: [Vocabulary] = [] {
         didSet {
@@ -98,11 +99,13 @@ final class DashboardViewModel: DashboardViewModelProtocol {
     init(router: DashboardCoordinatorProtocol,
          userSession: SessionInfoProtocol & SessionSatePublisherProtocol,
          dataProvider: FirebaseDatabaseFetchingProtocol,
-         storage: FirebaseStorageFetchingProtocol) {
+         storage: FirebaseStorageFetchingProtocol,
+         networkState: InternetConnectableProtocol) {
         self.router = router
         self.userSession = userSession
         self.dataProvider = dataProvider
         self.storage = storage
+        self.networkState = networkState
         
         self.userImage = .init(nil)
         
@@ -183,7 +186,7 @@ final class DashboardViewModel: DashboardViewModelProtocol {
             return
         }
         
-        if NetworkState.shared.isReachable {
+        if networkState.isReachable {
             let request = FavoriteVocabularyFetchRequest(userId: userId)
             dataProvider.fetch(request: request, onSuccess: { (vocabularies: [Vocabulary]) in
                 self.favoriteVocabularies = vocabularies

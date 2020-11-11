@@ -27,6 +27,7 @@ final class VocabularyEntity: NSManagedObject {
         self.phrasesLeftToLearn = Int32(vocabulary.phrasesLeftToLearn)
         self.totalLearningTime = vocabulary.totalLearningTime
         self.createdDate = vocabulary.createdDate
+        self.modifiedDate = vocabulary.modifiedDate
         self.words = NSSet(array: vocabulary.words.map({
             WordEntity(word: $0, context: context)
         }))
@@ -46,6 +47,7 @@ final class VocabularyEntity: NSManagedObject {
         self.phrasesLeftToLearn = Int32(vocabulary.phrasesLeftToLearn)
         self.totalLearningTime = vocabulary.totalLearningTime
         self.createdDate = vocabulary.createdDate
+        self.modifiedDate = Date()
         self.words = NSSet(array: vocabulary.words.map({
             WordEntity(word: $0, context: context)
         }))
@@ -63,7 +65,9 @@ extension VocabularyEntity: CDEntityProtocol {
         let context = CoreDataStack.shared.viewContext
         let request = NSFetchRequest<VocabularyEntity>(entityName: "VocabularyEntity")
         request.predicate = NSPredicate(format: "userId == %@", userId)
-        request.sortDescriptors = [NSSortDescriptor(key: "createdDate", ascending: false)]
+        request.sortDescriptors = [
+            NSSortDescriptor(key: "createdDate", ascending: false)
+        ]
         do {
             return try context.fetch(request).map({ Vocabulary(entity: $0) })
         } catch {
@@ -74,8 +78,10 @@ extension VocabularyEntity: CDEntityProtocol {
     static func selectFavotite(userId: String) throws -> [Vocabulary] {
         let context = CoreDataStack.shared.viewContext
         let request = NSFetchRequest<VocabularyEntity>(entityName: "VocabularyEntity")
-        request.predicate = NSPredicate(format: "userId == %@ AND isFavorite", userId, true)
-        request.sortDescriptors = [NSSortDescriptor(key: "createdDate", ascending: false)]
+        request.predicate = NSPredicate(format: "userId == %@ AND isFavorite == %d", userId, true)
+        request.sortDescriptors = [
+            NSSortDescriptor(key: "modifiedDate", ascending: false)
+        ]
         do {
             return try context.fetch(request).map({ Vocabulary(entity: $0) })
         } catch {
@@ -86,7 +92,7 @@ extension VocabularyEntity: CDEntityProtocol {
     static func selectUnsynchronized(userId: String) throws -> [Vocabulary]  {
         let context = CoreDataStack.shared.viewContext
         let request = NSFetchRequest<VocabularyEntity>(entityName: "VocabularyEntity")
-        request.predicate = NSPredicate(format: "userId == %@ AND isSynchronized == %@", userId, false)
+        request.predicate = NSPredicate(format: "userId == %@ AND isSynchronized == %d", userId, false)
         do {
             return try context.fetch(request).map({ Vocabulary(entity: $0) })
         } catch {

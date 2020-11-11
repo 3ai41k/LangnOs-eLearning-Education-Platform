@@ -70,7 +70,7 @@ final class WordsViewModel: WordsViewModelProtocol {
             ($0 as? WordRepresentionCellViewModel)?.isEditable.value = editing
         })
         if editing == false {
-            saveWordsIfСhanged()
+            updateWords()
         }
     }
     
@@ -86,7 +86,7 @@ final class WordsViewModel: WordsViewModelProtocol {
         tableSections.append(TableSectionViewModel(cells: cellViewModels))
     }
     
-    private func saveWordsIfСhanged() {
+    private func updateWords() {
         let words = tableSections[SectionType.words.rawValue].cells.value.compactMap({
             ($0 as? WordRepresentionCellViewModel)?.word
         })

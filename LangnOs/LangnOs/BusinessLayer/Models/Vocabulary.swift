@@ -16,13 +16,26 @@ struct Vocabulary: Codable {
     let userId: String
     let title: String
     let category: String
-    var isFavorite: Bool
-    var isPrivate: Bool
+    var isFavorite: Bool {
+        didSet {
+            modifiedDate = Date()
+        }
+    }
+    var isPrivate: Bool {
+        didSet {
+            modifiedDate = Date()
+        }
+    }
     let phrasesLearned: Int
     let phrasesLeftToLearn: Int
     let totalLearningTime: Double
     let createdDate: Date
-    var words: [Word]
+    var modifiedDate: Date
+    var words: [Word] {
+        didSet {
+            modifiedDate = Date()
+        }
+    }
     
     // MARK: - Init
     
@@ -37,6 +50,7 @@ struct Vocabulary: Codable {
         self.phrasesLeftToLearn = 0
         self.totalLearningTime = 0.0
         self.createdDate = Date()
+        self.modifiedDate = Date()
         self.words = words
     }
     
@@ -51,6 +65,7 @@ struct Vocabulary: Codable {
         self.phrasesLeftToLearn = Int(entity.phrasesLeftToLearn)
         self.totalLearningTime = entity.totalLearningTime
         self.createdDate = entity.createdDate!
+        self.modifiedDate = entity.modifiedDate!
         self.words = (entity.words?.allObjects as? [WordEntity])!.map({
             Word(entity: $0)
         })

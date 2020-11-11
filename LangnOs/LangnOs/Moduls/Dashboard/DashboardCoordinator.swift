@@ -27,10 +27,12 @@ final class DashboardCoordinator: Coordinator, DashboardCoordinatorProtocol {
         let userSession = UserSession.shared
         let dataProvider = FirebaseDatabase.shared
         let storage = UserStorage(storage: FirebaseStorage())
+        let networkState = NetworkState.shared
         let viewModel = DashboardViewModel(router: self,
                                            userSession: userSession,
                                            dataProvider: dataProvider,
-                                           storage: storage)
+                                           storage: storage,
+                                           networkState: networkState)
         
         let cellFactory = DashboardCellFactory()
         let sectionFactory = DashboardSectionFactory()
