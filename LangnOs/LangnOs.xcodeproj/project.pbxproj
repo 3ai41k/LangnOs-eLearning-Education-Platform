@@ -952,6 +952,17 @@
 			path = Validator;
 			sourceTree = "<group>";
 		};
+		8D768CD5255C888E00E8B778 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				8DF253A72544827B001492AE /* Transitions */,
+				8DD28BC72526803500F59B7D /* UIComponents */,
+				8DD28BB72526773100F59B7D /* Foundation+Extensions */,
+				8DD28BB4252675E400F59B7D /* UIKit+Extensions */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
 		8D83EA62252B8B78004E6098 /* VocabularyCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -1116,12 +1127,9 @@
 			isa = PBXGroup;
 			children = (
 				8D94E85F253CB825005FA4B9 /* Utils */,
-				8DF253A72544827B001492AE /* Transitions */,
-				8DD28BC72526803500F59B7D /* CustomUI */,
-				8DD28BB72526773100F59B7D /* Foundation+Extensions */,
-				8DD28BB4252675E400F59B7D /* UIKit+Extensions */,
+				8D768CD5255C888E00E8B778 /* Common */,
 				8DD28BAD25266EAD00F59B7D /* BusinessLayer */,
-				8DD28B9F252669EF00F59B7D /* Moduls */,
+				8DD28B9F252669EF00F59B7D /* Modules */,
 				8DD28B9B252668D600F59B7D /* Resources */,
 			);
 			path = LangnOs;
@@ -1165,7 +1173,7 @@
 			path = PropertyLists;
 			sourceTree = "<group>";
 		};
-		8DD28B9F252669EF00F59B7D /* Moduls */ = {
+		8DD28B9F252669EF00F59B7D /* Modules */ = {
 			isa = PBXGroup;
 			children = (
 				8D435A7C254C3A3100838691 /* Application */,
@@ -1192,7 +1200,7 @@
 				8D94E862253CE291005FA4B9 /* Writing */,
 				8DA744A9253F2E8800F9EC8B /* StudyResult */,
 			);
-			path = Moduls;
+			path = Modules;
 			sourceTree = "<group>";
 		};
 		8DD28BA0252669F500F59B7D /* Root */ = {
@@ -1288,7 +1296,7 @@
 			path = Presentation;
 			sourceTree = "<group>";
 		};
-		8DD28BC72526803500F59B7D /* CustomUI */ = {
+		8DD28BC72526803500F59B7D /* UIComponents */ = {
 			isa = PBXGroup;
 			children = (
 				8D662527252A384200991D45 /* Views */,
@@ -1297,7 +1305,7 @@
 				8DD28BD12526849000F59B7D /* Buttons */,
 				8DD28BD02526848100F59B7D /* Drivable */,
 			);
-			path = CustomUI;
+			path = UIComponents;
 			sourceTree = "<group>";
 		};
 		8DD28BD02526848100F59B7D /* Drivable */ = {
