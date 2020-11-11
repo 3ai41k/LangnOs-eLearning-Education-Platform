@@ -55,7 +55,6 @@ final class MaterialsViewModel: MaterialsViewModelProtocol {
     private let dataProvider: FirebaseDatabaseFetchingProtocol
     private let userSession: SessionInfoProtocol
     private let networkState: InternetConnectableProtocol
-    private let coreDataStack: CoreDataStack
     
     private var vocabularies: [Vocabulary] = [] {
         didSet {
@@ -74,13 +73,11 @@ final class MaterialsViewModel: MaterialsViewModelProtocol {
     init(router: MaterialsCoordinatorProtocol,
          dataProvider: FirebaseDatabaseFetchingProtocol,
          userSession: SessionInfoProtocol,
-         networkState: InternetConnectableProtocol,
-         coreDataStack: CoreDataStack) {
+         networkState: InternetConnectableProtocol) {
         self.router = router
         self.dataProvider = dataProvider
         self.userSession = userSession
         self.networkState = networkState
-        self.coreDataStack = coreDataStack
         
         self.isActivityIndicatorHidden = .init(false)
         
@@ -154,18 +151,17 @@ final class MaterialsViewModel: MaterialsViewModelProtocol {
             return
         }
         
-        let context = coreDataStack.viewContext
         if networkState.isReachable {
             let request = VocabularyFetchRequest(userId: userId)
             dataProvider.fetch(request: request, onSuccess: { (vocabularies: [Vocabulary]) in
-                vocabularies.forEach({ try? VocabularyEntity.insert(entity: $0, context: context) })
+                vocabularies.forEach({ try? VocabularyEntity.insert(entity: $0) })
                 self.vocabularies = vocabularies
             }) { (error) in
                 self.vocabularies = .empty
             }
         } else {
             do {
-                vocabularies = try VocabularyEntity.selectAllBy(userId: userId, context: context)
+                vocabularies = try VocabularyEntity.selectAllBy(userId: userId)
             } catch {
                 vocabularies = .empty
             }

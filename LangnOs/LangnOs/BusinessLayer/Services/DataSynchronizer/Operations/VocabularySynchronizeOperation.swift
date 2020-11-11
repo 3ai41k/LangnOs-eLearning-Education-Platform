@@ -35,10 +35,8 @@ final class VocabularySynchronizeOperation: SynchronizeOperation {
     
     private func getUnsynchronizedVocabularies() -> [Vocabulary] {
         guard let userId = UserSession.shared.currentUser?.id else { return [] }
-        
-        let predicate = NSPredicate(format: "userId == %@ AND isSynchronized == %@", argumentArray: [userId, false])
         do {
-            return try VocabularyEntity.select(context: CoreDataStack.shared.viewContext, predicate: predicate)
+            return try VocabularyEntity.selectUnsynchronized(userId: userId)
         } catch {
             handleAnError(error)
         }
@@ -47,7 +45,7 @@ final class VocabularySynchronizeOperation: SynchronizeOperation {
     
     private func updateVocabulary(_ vocabulary: Vocabulary) {
         do {
-            try VocabularyEntity.update(entity: vocabulary, context: CoreDataStack.shared.viewContext)
+            try VocabularyEntity.update(entity: vocabulary)
         } catch {
             handleAnError(error)
         }

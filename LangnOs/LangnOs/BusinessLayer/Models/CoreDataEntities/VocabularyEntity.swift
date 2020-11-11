@@ -59,7 +59,8 @@ extension VocabularyEntity: CDEntityProtocol {
     
     typealias Entity = Vocabulary
     
-    static func selectAllBy(userId: String, context: NSManagedObjectContext) throws -> [Vocabulary] {
+    static func selectAllBy(userId: String) throws -> [Vocabulary] {
+        let context = CoreDataStack.shared.viewContext
         let request = NSFetchRequest<VocabularyEntity>(entityName: "VocabularyEntity")
         request.predicate = NSPredicate(format: "userId == %@", userId)
         request.sortDescriptors = [NSSortDescriptor(key: "createdDate", ascending: false)]
@@ -70,7 +71,31 @@ extension VocabularyEntity: CDEntityProtocol {
         }
     }
     
-    static func select(context: NSManagedObjectContext, predicate: NSPredicate?) throws -> [Vocabulary] {
+    static func selectFavotite(userId: String) throws -> [Vocabulary] {
+        let context = CoreDataStack.shared.viewContext
+        let request = NSFetchRequest<VocabularyEntity>(entityName: "VocabularyEntity")
+        request.predicate = NSPredicate(format: "userId == %@ AND isFavorite", userId, true)
+        request.sortDescriptors = [NSSortDescriptor(key: "createdDate", ascending: false)]
+        do {
+            return try context.fetch(request).map({ Vocabulary(entity: $0) })
+        } catch {
+            throw error
+        }
+    }
+    
+    static func selectUnsynchronized(userId: String) throws -> [Vocabulary]  {
+        let context = CoreDataStack.shared.viewContext
+        let request = NSFetchRequest<VocabularyEntity>(entityName: "VocabularyEntity")
+        request.predicate = NSPredicate(format: "userId == %@ AND isSynchronized == %@", userId, false)
+        do {
+            return try context.fetch(request).map({ Vocabulary(entity: $0) })
+        } catch {
+            throw error
+        }
+    }
+    
+    static func select(predicate: NSPredicate?) throws -> [Vocabulary] {
+        let context = CoreDataStack.shared.viewContext
         let request = NSFetchRequest<VocabularyEntity>(entityName: "VocabularyEntity")
         request.predicate = predicate
         do {
@@ -80,11 +105,12 @@ extension VocabularyEntity: CDEntityProtocol {
         }
     }
     
-    static func insert(entity: Vocabulary, context: NSManagedObjectContext) throws {
+    static func insert(entity: Vocabulary) throws {
+        let context = CoreDataStack.shared.viewContext
         let request = NSFetchRequest<VocabularyEntity>(entityName: "VocabularyEntity")
         request.predicate = NSPredicate(format: "id == %@", UUID(uuidString: entity.id)! as CVarArg)
         do {
-            let vocabularies = try context.fetch(request)
+            let vocabularies = try CoreDataStack.shared.viewContext.fetch(request)
             if vocabularies.isEmpty {
                 _ = VocabularyEntity(vocabulary: entity, context: context)
             }
@@ -93,11 +119,12 @@ extension VocabularyEntity: CDEntityProtocol {
         }
     }
     
-    static func update(entity: Vocabulary, context: NSManagedObjectContext) throws {
+    static func update(entity: Vocabulary) throws {
+        let context = CoreDataStack.shared.viewContext
         let request = NSFetchRequest<VocabularyEntity>(entityName: "VocabularyEntity")
         request.predicate = NSPredicate(format: "id == %@", UUID(uuidString: entity.id)! as CVarArg)
         do {
-            let vocabularies = try context.fetch(request)
+            let vocabularies = try CoreDataStack.shared.viewContext.fetch(request)
             if let vocabulary = vocabularies.first {
                 vocabulary.update(entity, context: context)
             }
@@ -106,7 +133,8 @@ extension VocabularyEntity: CDEntityProtocol {
         }
     }
     
-    static func delete(entity: Vocabulary, context: NSManagedObjectContext) throws {
+    static func delete(entity: Vocabulary) throws {
+        let context = CoreDataStack.shared.viewContext
         let request = NSFetchRequest<VocabularyEntity>(entityName: "VocabularyEntity")
         request.predicate = NSPredicate(format: "id == %@", UUID(uuidString: entity.id)! as CVarArg)
         do {

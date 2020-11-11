@@ -27,12 +27,10 @@ final class MaterialsCoordinator: Coordinator, MaterialsCoordinatorProtocol  {
         let dataProvider = FirebaseDatabase.shared
         let userSession = UserSession.shared
         let networkState = NetworkState.shared
-        let coreDataStack = CoreDataStack.shared
         let viewModel = MaterialsViewModel(router: self,
                                            dataProvider: dataProvider,
                                            userSession: userSession,
-                                           networkState: networkState,
-                                           coreDataStack: coreDataStack)
+                                           networkState: networkState)
         
         let cellFactory = MaterialsCellFactory()
         let layout = SquareGridFlowLayout(numberOfItemsPerRow: 2)

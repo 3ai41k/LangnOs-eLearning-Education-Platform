@@ -54,7 +54,6 @@ final class CreateVocabularyViewModel: CreateVocabularyViewModelProtocol {
     private let storage: FirebaseStorageUploadingProtocol
     private let userSession: SessionInfoProtocol
     private let networkState: InternetConnectableProtocol
-    private let coreDataStack: CoreDataStack
     
     private var generalInfo: VocabularyGeneralInfo
     
@@ -64,14 +63,12 @@ final class CreateVocabularyViewModel: CreateVocabularyViewModelProtocol {
          dataProvider: FirebaseDatabaseCreatingProtocol,
          storage: FirebaseStorageUploadingProtocol,
          userSession: SessionInfoProtocol,
-         networkState: InternetConnectableProtocol,
-         coreDataStack: CoreDataStack) {
+         networkState: InternetConnectableProtocol) {
         self.router = router
         self.dataProvider = dataProvider
         self.storage = storage
         self.userSession = userSession
         self.networkState = networkState
-        self.coreDataStack = coreDataStack
         
         self.categoryButtonTitle = .init("Select".localize)
         self.generalInfo = VocabularyGeneralInfo()
@@ -112,7 +109,7 @@ final class CreateVocabularyViewModel: CreateVocabularyViewModelProtocol {
             uploadTermImages(userId: userId, vocabularyId: vocabulary.id) {
                 let request = VocabularyCreateRequest(vocabulary: vocabulary)
                 self.dataProvider.create(request: request, onSuccess: {
-                    try? VocabularyEntity.insert(entity: vocabulary, context: self.coreDataStack.viewContext)
+                    try? VocabularyEntity.insert(entity: vocabulary)
                     self.router.closeActivity()
                     self.router.didCreateVocabulary(vocabulary)
                 }) { (error) in
@@ -121,7 +118,7 @@ final class CreateVocabularyViewModel: CreateVocabularyViewModelProtocol {
                 }
             }
         } else {
-            try? VocabularyEntity.insert(entity: vocabulary, context: coreDataStack.viewContext)
+            try? VocabularyEntity.insert(entity: vocabulary)
             router.didCreateVocabulary(vocabulary)
         }
     }
