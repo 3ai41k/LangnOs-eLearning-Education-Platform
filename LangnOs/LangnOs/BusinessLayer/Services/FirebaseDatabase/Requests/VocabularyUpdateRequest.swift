@@ -20,16 +20,16 @@ struct VocabularyUpdateRequest {
 
 extension VocabularyUpdateRequest: DataProviderRequestProtocol {
     
-    var entity: Vocabulary? {
-        vocabulary
-    }
-    
     var collectionPath: CollectionPath {
         .vocabularies
     }
     
     var documentPath: String? {
         vocabulary.id
+    }
+    
+    var documentData: [String : Any]? {
+        try? DictionaryEncoder().encode(entity: vocabulary)
     }
     
 }

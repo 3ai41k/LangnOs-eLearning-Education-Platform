@@ -38,7 +38,7 @@ final class VocabularySynchronizeOperation: SynchronizeOperation {
         
         let predicate = NSPredicate(format: "userId == %@ AND isSynchronized == %@", argumentArray: [userId, false])
         do {
-            return try Vocabulary.select(context: CoreDataStack.shared.viewContext, predicate: predicate)
+            return try VocabularyEntity.select(context: CoreDataStack.shared.viewContext, predicate: predicate)
         } catch {
             handleAnError(error)
         }
@@ -47,7 +47,7 @@ final class VocabularySynchronizeOperation: SynchronizeOperation {
     
     private func updateVocabulary(_ vocabulary: Vocabulary) {
         do {
-            try vocabulary.update(context: CoreDataStack.shared.viewContext)
+            try VocabularyEntity.update(entity: vocabulary, context: CoreDataStack.shared.viewContext)
         } catch {
             handleAnError(error)
         }

@@ -9,6 +9,10 @@
 import Foundation
 
 struct Right: Codable {
+    
+    // MARK: - Public properties
+    
     let name: String
     let value: Bool
+    
 }

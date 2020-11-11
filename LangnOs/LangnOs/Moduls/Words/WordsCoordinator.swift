@@ -29,7 +29,7 @@ final class WordsCoordinator: Coordinator, WordsCoordinatorProtocol {
     // MARK: - Override
     
     override func start() {
-        let dataProvider = DataProvider(firebaseDatabase: FirebaseDatabase.shared)
+        let dataProvider = FirebaseDatabase.shared
         let userSession = UserSession.shared
         let storage = FirebaseStorage()
         let viewModel = WordsViewModel(router: self,

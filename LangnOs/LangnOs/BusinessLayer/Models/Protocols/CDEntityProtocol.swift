@@ -10,8 +10,9 @@ import Foundation
 import CoreData
 
 protocol CDEntityProtocol {
-    static func select(context: NSManagedObjectContext, predicate: NSPredicate?) throws -> [Self]
-    func insert(context: NSManagedObjectContext) throws
-    func update(context: NSManagedObjectContext) throws
-    func delete(context: NSManagedObjectContext) throws
+    associatedtype Entity
+    static func select(context: NSManagedObjectContext, predicate: NSPredicate?) throws -> [Entity]
+    static func insert(entity: Entity, context: NSManagedObjectContext) throws
+    static func update(entity: Entity, context: NSManagedObjectContext) throws
+    static func delete(entity: Entity, context: NSManagedObjectContext) throws
 }

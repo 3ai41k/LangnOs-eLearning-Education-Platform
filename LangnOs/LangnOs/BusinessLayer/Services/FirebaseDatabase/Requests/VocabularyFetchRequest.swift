@@ -20,14 +20,12 @@ struct VocabularyFetchRequest {
 
 extension VocabularyFetchRequest: DataProviderRequestProtocol {
     
-    typealias Entity = Vocabulary
-    
     var collectionPath: CollectionPath {
         .vocabularies
     }
     
-    var query: QueryComponentProtocol? {
-        IsEqualToComponent("userId", isEqualTo: userId)
+    func query(_ reference: CollectionReference) -> Query? {
+        reference.whereField("userId", isEqualTo: userId)
     }
     
 }

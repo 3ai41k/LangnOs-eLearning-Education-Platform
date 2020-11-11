@@ -102,7 +102,7 @@ extension SingInViewModel: SingInInputProtocol {
 extension SingInViewModel: SingInOutputProtocol {
     
     func nextAction() {
-        let request = UserFetchRequest(email: user.email, password: user.password)
+        let request = AuthorizeUserRequest(email: user.email, password: user.password)
         dataProvider.fetch(request: request, onSuccess: { (users: [User1]) in
             guard let user = users.first else { return }
             self.userSession.starSession(with: user)

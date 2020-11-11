@@ -9,16 +9,15 @@
 import FirebaseFirestore
 
 protocol DataProviderRequestProtocol {
-    associatedtype Entity: Codable & CDEntityProtocol
-    var entity: Entity? { get }
     var collectionPath: CollectionPath { get }
-    var query: QueryComponentProtocol? { get }
     var documentPath: String? { get }
+    var documentData: [String: Any]? { get }
+    func query(_ reference: CollectionReference) -> Query?
 }
 
 extension DataProviderRequestProtocol {
-    var entity: Entity? { nil }
-    var query: QueryComponentProtocol? { nil }
     var documentPath: String? { nil }
+    var documentData: [String: Any]? { nil }
+    func query(_ reference: CollectionReference) -> Query? { nil }
 }
 

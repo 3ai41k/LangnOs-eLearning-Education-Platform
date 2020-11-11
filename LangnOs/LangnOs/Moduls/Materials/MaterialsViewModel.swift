@@ -10,15 +10,14 @@ import Foundation
 import Combine
 
 protocol MaterialsViewModelInputProtocol {
-    var title: CurrentValueSubject<String?, Never> { get }
-    var scopeButtonTitles: CurrentValueSubject<[String]?, Never> { get }
+    var title: String { get }
+    var scopeButtonTitles: [String] { get }
 }
 
 protocol MaterialsViewModelOutputProtocol {
-    func fetchDataAction()
-    func createVocabularyAction()
-    func searchAction(_ searchedText: String)
-    func selectScopeAction(_ index: Int)
+    func createVocabulary()
+    func search(_ text: String)
+    func selectScope(_ index: Int)
 }
 
 protocol MaterialsViewModelBindingProtocol {
@@ -39,8 +38,14 @@ final class MaterialsViewModel: MaterialsViewModelProtocol {
     
     // MARK: - Public properties
     
-    var title: CurrentValueSubject<String?, Never>
-    var scopeButtonTitles: CurrentValueSubject<[String]?, Never>
+    var title: String {
+        "Materials".localize
+    }
+    
+    var scopeButtonTitles: [String] {
+        filters.map({ $0.title })
+    }
+    
     var isActivityIndicatorHidden: CurrentValueSubject<Bool, Never>
     var tableSections: [CollectionSectionViewModelProtocol] = []
     
@@ -49,6 +54,8 @@ final class MaterialsViewModel: MaterialsViewModelProtocol {
     private let router: MaterialsCoordinatorProtocol
     private let dataProvider: FirebaseDatabaseFetchingProtocol
     private let userSession: SessionInfoProtocol
+    private let networkState: InternetConnectableProtocol
+    private let coreDataStack: CoreDataStack
     
     private var vocabularies: [Vocabulary] = [] {
         didSet {
@@ -66,16 +73,20 @@ final class MaterialsViewModel: MaterialsViewModelProtocol {
     
     init(router: MaterialsCoordinatorProtocol,
          dataProvider: FirebaseDatabaseFetchingProtocol,
-         userSession: SessionInfoProtocol) {
+         userSession: SessionInfoProtocol,
+         networkState: InternetConnectableProtocol,
+         coreDataStack: CoreDataStack) {
         self.router = router
         self.dataProvider = dataProvider
         self.userSession = userSession
+        self.networkState = networkState
+        self.coreDataStack = coreDataStack
         
-        self.title = .init("Materials".localize)
-        self.scopeButtonTitles = .init(filters.map({ $0.title }))
         self.isActivityIndicatorHidden = .init(false)
         
-        self.setupEmptySection(&tableSections)
+        self.setupEmptySection()
+        
+        self.fetchData()
     }
     
     // MARK: - Public methods
@@ -87,40 +98,7 @@ final class MaterialsViewModel: MaterialsViewModelProtocol {
         }
     }
     
-    // MARK: - Private methods
-    
-    private func setupEmptySection(_ tableSections: inout [CollectionSectionViewModelProtocol]) {
-        let sectionViewModel = UniversalCollectionSectionViewModel(cells: [])
-        tableSections.append(sectionViewModel)
-    }
-    
-    private func discardSearch() {
-        let cellViewModels = vocabularies.map({ VocabularyCollectionViewCellViewModel(vocabulary: $0) })
-        tableSections[SectionType.vocabulary.rawValue].cells.value = cellViewModels
-    }
-    
-}
-
-// MARK: - MaterialsViewModelOutputProtocol
-
-extension MaterialsViewModel {
-    
-    func fetchDataAction() {
-        guard let userId = userSession.currentUser?.id else {
-            self.vocabularies = .empty
-            return
-        }
-        
-        let request = VocabularyFetchRequest(userId: userId)
-        dataProvider.fetch(request: request, onSuccess: { (vocabularies: [Vocabulary]) in
-            self.vocabularies = vocabularies.sorted(by: \.createdDate, using: >)
-        }) { (error) in
-            self.vocabularies = .empty
-            self.router.showError(error)
-        }
-    }
-    
-    func createVocabularyAction() {
+    func createVocabulary() {
         router.navigateToCreateVocabulary { (vocabulary) in
             self.vocabularies.append(vocabulary)
         }
@@ -133,15 +111,15 @@ extension MaterialsViewModel {
     // because \Vocabulary.createdDate id Date type
     //
     
-    func searchAction(_ searchedText: String) {
-        guard let filterBy = VocabularyFilter(rawValue: slectedFilterIndex), !searchedText.isEmpty else {
+    func search(_ text: String) {
+        guard let filterBy = VocabularyFilter(rawValue: slectedFilterIndex), !text.isEmpty else {
             discardSearch()
             return
         }
         
         let cellViewModels = vocabularies.filter { vocabulary in
             guard let keyPathToString = filterBy.keyPath as? KeyPath<Vocabulary, String> else { return  false }
-            return vocabulary[keyPath: keyPathToString].contains(searchedText)
+            return vocabulary[keyPath: keyPathToString].contains(text)
         }.map({
             VocabularyCollectionViewCellViewModel(vocabulary: $0)
         })
@@ -149,10 +127,50 @@ extension MaterialsViewModel {
         tableSections[SectionType.vocabulary.rawValue].cells.value = cellViewModels
     }
     
-    func selectScopeAction(_ index: Int) {
+    func selectScope(_ index: Int) {
         slectedFilterIndex = index
     }
     
+    func refreshData(completion: @escaping () -> Void) {
+        fetchData()
+        completion()
+    }
+    
+    // MARK: - Private methods
+    
+    private func setupEmptySection() {
+        let sectionViewModel = UniversalCollectionSectionViewModel(cells: [])
+        tableSections.append(sectionViewModel)
+    }
+    
+    private func discardSearch() {
+        let cellViewModels = vocabularies.map({ VocabularyCollectionViewCellViewModel(vocabulary: $0) })
+        tableSections[SectionType.vocabulary.rawValue].cells.value = cellViewModels
+    }
+    
+    private func fetchData() {
+        guard let userId = userSession.currentUser?.id else {
+            vocabularies = .empty
+            return
+        }
+        
+        let context = coreDataStack.viewContext
+        if networkState.isReachable {
+            let request = VocabularyFetchRequest(userId: userId)
+            dataProvider.fetch(request: request, onSuccess: { (vocabularies: [Vocabulary]) in
+                vocabularies.forEach({ try? VocabularyEntity.insert(entity: $0, context: context) })
+                self.vocabularies = vocabularies
+            }) { (error) in
+                self.vocabularies = .empty
+            }
+        } else {
+            do {
+                vocabularies = try VocabularyEntity.selectAllBy(userId: userId, context: context)
+            } catch {
+                vocabularies = .empty
+            }
+        }
+    }
+    
 }
-
 

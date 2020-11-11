@@ -9,6 +9,9 @@
 import Foundation
 
 struct User1: Codable {
+    
+    // MARK: - Public properties
+    
     let id: String
     var name: String
     var email: String
@@ -21,4 +24,5 @@ struct User1: Codable {
             Right(name: "isTeacher", value: false)
         ])
     }
+    
 }

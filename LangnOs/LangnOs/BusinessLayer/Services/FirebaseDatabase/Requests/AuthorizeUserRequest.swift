@@ -8,7 +8,7 @@
 
 import FirebaseFirestore
 
-struct UserFetchRequest {
+struct AuthorizeUserRequest {
     
     // MARK: - Public properties
     
@@ -19,16 +19,17 @@ struct UserFetchRequest {
 
 // MARK: - DataProviderRequestProtocol
 
-extension UserFetchRequest: DataProviderRequestProtocol {
-    
-    typealias Entity = User1
+extension AuthorizeUserRequest: DataProviderRequestProtocol {
     
     var collectionPath: CollectionPath {
         .users
     }
     
-    var query: QueryComponentProtocol? {
-        IsEqualToComponent("email", isEqualTo: email)
+    func query(_ reference: CollectionReference) -> Query? {
+        reference
+            .whereField("email", isEqualTo: email)
+            .whereField("password", isEqualTo: password)
     }
+    
     
 }

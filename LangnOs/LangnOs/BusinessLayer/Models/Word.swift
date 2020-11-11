@@ -10,12 +10,16 @@ import Foundation
 
 struct Word: Codable {
     
+    // MARK: - Public properties
+    
     var term: String
     var definition: String
     
     static var empty: Word {
         Word(term: "", definition: "")
     }
+    
+    // MARK: - Init
     
     init(term: String, definition: String) {
         self.term = term

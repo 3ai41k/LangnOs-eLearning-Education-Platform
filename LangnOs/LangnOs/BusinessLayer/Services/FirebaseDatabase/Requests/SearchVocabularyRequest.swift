@@ -36,15 +36,8 @@ struct SearchVocabularyRequest {
 
 extension SearchVocabularyRequest: DataProviderRequestProtocol {
     
-    typealias Entity = Vocabulary
-    
     var collectionPath: CollectionPath {
         .vocabularies
     }
-    
-    var query: QueryComponentProtocol? {
-        SearchComponets(searchBy.rawValue, search: searchText)
-    }
-    
     
 }

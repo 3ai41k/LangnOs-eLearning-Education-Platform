@@ -41,8 +41,7 @@ final class VocabularyListCoordinator: Coordinator, VocabularyListCoordinatorPro
     // MARK: - Override
     
     override func start() {
-        let firebaseDatabase = FirebaseDatabase.shared
-        let dataProvider = DataProvider(firebaseDatabase: firebaseDatabase)
+        let dataProvider = FirebaseDatabase.shared
         let userSession = UserSession.shared
         let viewModel = VocabularyListViewModel(router: self,
                                                 dataProvider: dataProvider,

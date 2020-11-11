@@ -36,22 +36,12 @@ final class MaterialsViewController: BindibleViewController<MaterialsViewModelPr
         return searchController
     }()
     
-    // MARK: - Lifecycle
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        viewModel?.fetchDataAction()
-    }
-    
     // MARK: - Override
     
     override func bindViewModel() {
+        title = viewModel?.title
+        searchController.searchBar.scopeButtonTitles = viewModel?.scopeButtonTitles
         cancellables = [
-            viewModel?.title.sink(receiveValue: { [weak self] (title) in
-                self?.title = title
-            }),
-            viewModel?.scopeButtonTitles.assign(to: \.searchBar.scopeButtonTitles, on: searchController),
             viewModel?.isActivityIndicatorHidden.sink(receiveValue: { [weak self] (isHidden) in
                 if isHidden {
                     let createVocabularyButton = UIBarButtonItem(barButtonSystemItem: .add,
@@ -101,13 +91,14 @@ final class MaterialsViewController: BindibleViewController<MaterialsViewModelPr
     
     @objc
     private func refreshData(_ sender: UIRefreshControl) {
-        viewModel?.fetchDataAction()
-        sender.endRefreshing()
+        viewModel?.refreshData {
+            sender.endRefreshing()
+        }
     }
     
     @objc
     private func didCreateVocabularyTouch() {
-        viewModel?.createVocabularyAction()
+        viewModel?.createVocabulary()
     }
     
 }
@@ -118,7 +109,7 @@ extension MaterialsViewController: UISearchResultsUpdating {
     
     func updateSearchResults(for searchController: UISearchController) {
         guard let text = searchController.searchBar.text else { return }
-        viewModel?.searchAction(text)
+        viewModel?.search(text)
     }
     
 }
@@ -128,7 +119,7 @@ extension MaterialsViewController: UISearchResultsUpdating {
 extension MaterialsViewController: UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
-        viewModel?.selectScopeAction(selectedScope)
+        viewModel?.selectScope(selectedScope)
     }
     
 }

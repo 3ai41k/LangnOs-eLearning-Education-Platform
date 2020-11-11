@@ -20,17 +20,14 @@ struct FavoriteVocabularyFetchRequest {
 
 extension FavoriteVocabularyFetchRequest: DataProviderRequestProtocol {
     
-    typealias Entity = Vocabulary
-    
     var collectionPath: CollectionPath {
         .vocabularies
     }
     
-    var query: QueryComponentProtocol? {
-        QueryAndConnector(components: [
-            IsEqualToComponent("userId", isEqualTo: userId),
-            IsEqualToComponent("isFavorite", isEqualTo: true)
-        ])
+    func query(_ reference: CollectionReference) -> Query? {
+        reference
+            .whereField("userId", isEqualTo: userId)
+            .whereField("isFavorite", isEqualTo: true)
     }
     
 }

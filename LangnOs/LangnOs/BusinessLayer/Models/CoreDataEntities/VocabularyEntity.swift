@@ -22,6 +22,7 @@ final class VocabularyEntity: NSManagedObject {
         self.title = vocabulary.title
         self.category = vocabulary.category
         self.isFavorite = vocabulary.isFavorite
+        self.isPrivate = vocabulary.isPrivate
         self.phrasesLearned = Int32(vocabulary.phrasesLearned)
         self.phrasesLeftToLearn = Int32(vocabulary.phrasesLeftToLearn)
         self.totalLearningTime = vocabulary.totalLearningTime
@@ -48,6 +49,70 @@ final class VocabularyEntity: NSManagedObject {
         self.words = NSSet(array: vocabulary.words.map({
             WordEntity(word: $0, context: context)
         }))
+    }
+    
+}
+
+// MARK: - CDEntityProtocol
+
+extension VocabularyEntity: CDEntityProtocol {
+    
+    typealias Entity = Vocabulary
+    
+    static func selectAllBy(userId: String, context: NSManagedObjectContext) throws -> [Vocabulary] {
+        let request = NSFetchRequest<VocabularyEntity>(entityName: "VocabularyEntity")
+        request.predicate = NSPredicate(format: "userId == %@", userId)
+        do {
+            return try context.fetch(request).map({ Vocabulary(entity: $0) })
+        } catch {
+            throw error
+        }
+    }
+    
+    static func select(context: NSManagedObjectContext, predicate: NSPredicate?) throws -> [Vocabulary] {
+        let request = NSFetchRequest<VocabularyEntity>(entityName: "VocabularyEntity")
+        request.predicate = predicate
+        do {
+            return try context.fetch(request).map({ Vocabulary(entity: $0) })
+        } catch {
+            throw error
+        }
+    }
+    
+    static func insert(entity: Vocabulary, context: NSManagedObjectContext) throws {
+        let request = NSFetchRequest<VocabularyEntity>(entityName: "VocabularyEntity")
+        request.predicate = NSPredicate(format: "id == %@", UUID(uuidString: entity.id)! as CVarArg)
+        do {
+            let vocabularies = try context.fetch(request)
+            if vocabularies.isEmpty {
+                _ = VocabularyEntity(vocabulary: entity, context: context)
+            }
+        } catch {
+            throw error
+        }
+    }
+    
+    static func update(entity: Vocabulary, context: NSManagedObjectContext) throws {
+        let request = NSFetchRequest<VocabularyEntity>(entityName: "VocabularyEntity")
+        request.predicate = NSPredicate(format: "id == %@", UUID(uuidString: entity.id)! as CVarArg)
+        do {
+            let vocabularies = try context.fetch(request)
+            if let vocabulary = vocabularies.first {
+                vocabulary.update(entity, context: context)
+            }
+        } catch {
+            throw error
+        }
+    }
+    
+    static func delete(entity: Vocabulary, context: NSManagedObjectContext) throws {
+        let request = NSFetchRequest<VocabularyEntity>(entityName: "VocabularyEntity")
+        request.predicate = NSPredicate(format: "id == %@", UUID(uuidString: entity.id)! as CVarArg)
+        do {
+            try context.fetch(request).forEach({ context.delete($0) })
+        } catch {
+            throw error
+        }
     }
     
 }

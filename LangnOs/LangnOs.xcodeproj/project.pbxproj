@@ -9,12 +9,7 @@
 /* Begin PBXBuildFile section */
 		4A5C4BF5DB24242E45BCEF2B /* Pods_LangnOsTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 780DBDB11495221AFA5D783C /* Pods_LangnOsTests.framework */; };
 		61C7EECA589DD05A72E263FD /* Pods_LangnOs.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 838CBE43D71675BA7ED1743C /* Pods_LangnOs.framework */; };
-		8D435A35254B4E0C00838691 /* CollectionPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D435A34254B4E0C00838691 /* CollectionPath.swift */; };
-		8D435A3B254B4E5C00838691 /* QueryComponentProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D435A3A254B4E5C00838691 /* QueryComponentProtocol.swift */; };
-		8D435A41254B4ED800838691 /* IsEqualToComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D435A40254B4ED800838691 /* IsEqualToComponent.swift */; };
 		8D435A65254B6B0C00838691 /* QueryBulderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D435A64254B6B0C00838691 /* QueryBulderTests.swift */; };
-		8D435A6B254C223400838691 /* QueryAndConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D435A6A254C223400838691 /* QueryAndConnector.swift */; };
-		8D435A70254C25D300838691 /* QueryOrConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D435A6F254C25D300838691 /* QueryOrConnector.swift */; };
 		8D435A78254C3A1E00838691 /* SearchVocabularyCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D435A74254C3A1E00838691 /* SearchVocabularyCoordinator.swift */; };
 		8D435A7A254C3A1E00838691 /* SearchVocabularyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D435A76254C3A1E00838691 /* SearchVocabularyViewModel.swift */; };
 		8D435A7F254C3DFA00838691 /* UserInfoHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D435A7E254C3DFA00838691 /* UserInfoHeaderView.swift */; };
@@ -22,7 +17,6 @@
 		8D435A86254C51AF00838691 /* UIImag+Size.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D435A85254C51AF00838691 /* UIImag+Size.swift */; };
 		8D435A88254C526200838691 /* UserDefaultsKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D435A87254C526200838691 /* UserDefaultsKey.swift */; };
 		8D435A8C254C7CC500838691 /* Array+Empty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D435A8B254C7CC500838691 /* Array+Empty.swift */; };
-		8D435A8E254DF84B00838691 /* ArrayContainsComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D435A8D254DF84B00838691 /* ArrayContainsComponent.swift */; };
 		8D435A93254DFBC300838691 /* CoursesCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D435A8F254DFBC300838691 /* CoursesCoordinator.swift */; };
 		8D435A94254DFBC300838691 /* CoursesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D435A90254DFBC300838691 /* CoursesViewController.swift */; };
 		8D435A95254DFBC300838691 /* CoursesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D435A91254DFBC300838691 /* CoursesViewModel.swift */; };
@@ -30,7 +24,6 @@
 		8D435A98254E051900838691 /* SearchVocabularyRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D435A97254E051900838691 /* SearchVocabularyRequest.swift */; };
 		8D435A9B254EE3D100838691 /* SearchVocabularyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D435A99254EE3D100838691 /* SearchVocabularyViewController.swift */; };
 		8D435A9C254EE3D100838691 /* SearchVocabularyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D435A9A254EE3D100838691 /* SearchVocabularyViewController.xib */; };
-		8D435AA2254EECE100838691 /* SearchComponets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D435AA1254EECE100838691 /* SearchComponets.swift */; };
 		8D435AB0254F45E500838691 /* VocabularyInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D435AAF254F45E500838691 /* VocabularyInfoView.swift */; };
 		8D435AB2254F45F100838691 /* VocabularyInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D435AB1254F45F100838691 /* VocabularyInfoView.xib */; };
 		8D435AC1254F534E00838691 /* VocabularyCategoryCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D435ABD254F534E00838691 /* VocabularyCategoryCoordinator.swift */; };
@@ -38,7 +31,6 @@
 		8D435AC3254F534E00838691 /* VocabularyCategoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D435ABF254F534E00838691 /* VocabularyCategoryViewModel.swift */; };
 		8D435AC4254F534E00838691 /* VocabularyCategoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D435AC0254F534E00838691 /* VocabularyCategoryViewController.xib */; };
 		8D435ACB255065A500838691 /* DataSynchronizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D435ACA255065A500838691 /* DataSynchronizer.swift */; };
-		8D435ACF25509CD500838691 /* Vocabulary+CDEntityProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D435ACE25509CD500838691 /* Vocabulary+CDEntityProtocol.swift */; };
 		8D435AD22550A1DB00838691 /* SynchronizeOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D435AD12550A1DB00838691 /* SynchronizeOperation.swift */; };
 		8D435AD42550A2C400838691 /* VocabularySynchronizeOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D435AD32550A2C400838691 /* VocabularySynchronizeOperation.swift */; };
 		8D435AE0255166A500838691 /* AsyncOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D435ADF255166A500838691 /* AsyncOperation.swift */; };
@@ -103,6 +95,7 @@
 		8D66254C252A7D3900991D45 /* WordsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D66254B252A7D3900991D45 /* WordsViewModel.swift */; };
 		8D662558252A800600991D45 /* UniversalTableViewCellRegistratable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D662557252A800600991D45 /* UniversalTableViewCellRegistratable.swift */; };
 		8D66255A252B0F9F00991D45 /* VocabularyCreateRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D662559252B0F9F00991D45 /* VocabularyCreateRequest.swift */; };
+		8D768CD0255C4E3200E8B778 /* CollectionPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D768CCF255C4E3200E8B778 /* CollectionPath.swift */; };
 		8D83EA65252B8BB7004E6098 /* VocabularyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D83EA63252B8BB7004E6098 /* VocabularyTableViewCell.swift */; };
 		8D83EA66252B8BB7004E6098 /* VocabularyTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D83EA64252B8BB7004E6098 /* VocabularyTableViewCell.xib */; };
 		8D83EA68252B8BE5004E6098 /* VocabularyCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D83EA67252B8BE5004E6098 /* VocabularyCellViewModel.swift */; };
@@ -116,7 +109,6 @@
 		8D94E7CC2534DF03005FA4B9 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D94E7CB2534DF03005FA4B9 /* CoreDataStack.swift */; };
 		8D94E7D02534E34E005FA4B9 /* VocabularyEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D94E7CF2534E34E005FA4B9 /* VocabularyEntity.swift */; };
 		8D94E7D22534E376005FA4B9 /* WordEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D94E7D12534E376005FA4B9 /* WordEntity.swift */; };
-		8D94E7D42534E3DC005FA4B9 /* DataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D94E7D32534E3DC005FA4B9 /* DataProvider.swift */; };
 		8D94E7D62534F6DF005FA4B9 /* CDEntityProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D94E7D52534F6DF005FA4B9 /* CDEntityProtocol.swift */; };
 		8D94E7D92534F772005FA4B9 /* NetworkState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D94E7D82534F772005FA4B9 /* NetworkState.swift */; };
 		8D94E7E025362FE5005FA4B9 /* NoResulsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D94E7DF25362FE5005FA4B9 /* NoResulsView.swift */; };
@@ -204,7 +196,6 @@
 		8DD28C122528AEC800F59B7D /* SingInCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD28C112528AEC800F59B7D /* SingInCoordinator.swift */; };
 		8DD28C152528AEEF00F59B7D /* SingInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD28C132528AEEF00F59B7D /* SingInViewController.swift */; };
 		8DD28C162528AEEF00F59B7D /* SingInViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DD28C142528AEEF00F59B7D /* SingInViewController.xib */; };
-		8DD745A42559A18600370285 /* User+CDEntityProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD745A32559A18600370285 /* User+CDEntityProtocol.swift */; };
 		8DD745AE255AE30100370285 /* SearchVocabularyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD745AC255AE30100370285 /* SearchVocabularyTableViewCell.swift */; };
 		8DD745AF255AE30100370285 /* SearchVocabularyTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DD745AD255AE30100370285 /* SearchVocabularyTableViewCell.xib */; };
 		8DD745B1255AE30B00370285 /* SearchVocabularyCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD745B0255AE30B00370285 /* SearchVocabularyCellViewModel.swift */; };
@@ -217,7 +208,7 @@
 		8DF0FD982556F23100D5B225 /* FavoriteVocabularyTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DF0FD962556F23100D5B225 /* FavoriteVocabularyTableViewCell.xib */; };
 		8DF0FD9A2556F24A00D5B225 /* FavoriteVocabularyCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF0FD992556F24A00D5B225 /* FavoriteVocabularyCellViewModel.swift */; };
 		8DF0FD9C2558375500D5B225 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF0FD9B2558375500D5B225 /* User.swift */; };
-		8DF0FD9E2558395200D5B225 /* UserFetchRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF0FD9D2558395200D5B225 /* UserFetchRequest.swift */; };
+		8DF0FD9E2558395200D5B225 /* AuthorizeUserRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF0FD9D2558395200D5B225 /* AuthorizeUserRequest.swift */; };
 		8DF0FDA225583D6C00D5B225 /* Right.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF0FDA125583D6C00D5B225 /* Right.swift */; };
 		8DF0FDA42558464300D5B225 /* UserCreateRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF0FDA32558464300D5B225 /* UserCreateRequest.swift */; };
 		8DF2536C25431819001492AE /* DashboardSectionFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF2536B25431819001492AE /* DashboardSectionFactory.swift */; };
@@ -291,14 +282,9 @@
 		780DBDB11495221AFA5D783C /* Pods_LangnOsTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LangnOsTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		838CBE43D71675BA7ED1743C /* Pods_LangnOs.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LangnOs.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		857C62CE9E52E6B51FA9DA81 /* Pods-LangnOs.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LangnOs.release.xcconfig"; path = "Target Support Files/Pods-LangnOs/Pods-LangnOs.release.xcconfig"; sourceTree = "<group>"; };
-		8D435A34254B4E0C00838691 /* CollectionPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionPath.swift; sourceTree = "<group>"; };
-		8D435A3A254B4E5C00838691 /* QueryComponentProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueryComponentProtocol.swift; sourceTree = "<group>"; };
-		8D435A40254B4ED800838691 /* IsEqualToComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IsEqualToComponent.swift; sourceTree = "<group>"; };
 		8D435A59254B64FD00838691 /* LangnOsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LangnOsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D435A5D254B64FD00838691 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8D435A64254B6B0C00838691 /* QueryBulderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueryBulderTests.swift; sourceTree = "<group>"; };
-		8D435A6A254C223400838691 /* QueryAndConnector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueryAndConnector.swift; sourceTree = "<group>"; };
-		8D435A6F254C25D300838691 /* QueryOrConnector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueryOrConnector.swift; sourceTree = "<group>"; };
 		8D435A74254C3A1E00838691 /* SearchVocabularyCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchVocabularyCoordinator.swift; sourceTree = "<group>"; };
 		8D435A76254C3A1E00838691 /* SearchVocabularyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchVocabularyViewModel.swift; sourceTree = "<group>"; };
 		8D435A7E254C3DFA00838691 /* UserInfoHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoHeaderView.swift; sourceTree = "<group>"; };
@@ -306,7 +292,6 @@
 		8D435A85254C51AF00838691 /* UIImag+Size.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImag+Size.swift"; sourceTree = "<group>"; };
 		8D435A87254C526200838691 /* UserDefaultsKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsKey.swift; sourceTree = "<group>"; };
 		8D435A8B254C7CC500838691 /* Array+Empty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Empty.swift"; sourceTree = "<group>"; };
-		8D435A8D254DF84B00838691 /* ArrayContainsComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayContainsComponent.swift; sourceTree = "<group>"; };
 		8D435A8F254DFBC300838691 /* CoursesCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursesCoordinator.swift; sourceTree = "<group>"; };
 		8D435A90254DFBC300838691 /* CoursesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursesViewController.swift; sourceTree = "<group>"; };
 		8D435A91254DFBC300838691 /* CoursesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursesViewModel.swift; sourceTree = "<group>"; };
@@ -314,7 +299,6 @@
 		8D435A97254E051900838691 /* SearchVocabularyRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchVocabularyRequest.swift; sourceTree = "<group>"; };
 		8D435A99254EE3D100838691 /* SearchVocabularyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchVocabularyViewController.swift; sourceTree = "<group>"; };
 		8D435A9A254EE3D100838691 /* SearchVocabularyViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchVocabularyViewController.xib; sourceTree = "<group>"; };
-		8D435AA1254EECE100838691 /* SearchComponets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchComponets.swift; sourceTree = "<group>"; };
 		8D435AAF254F45E500838691 /* VocabularyInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabularyInfoView.swift; sourceTree = "<group>"; };
 		8D435AB1254F45F100838691 /* VocabularyInfoView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VocabularyInfoView.xib; sourceTree = "<group>"; };
 		8D435ABD254F534E00838691 /* VocabularyCategoryCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabularyCategoryCoordinator.swift; sourceTree = "<group>"; };
@@ -322,7 +306,6 @@
 		8D435ABF254F534E00838691 /* VocabularyCategoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabularyCategoryViewModel.swift; sourceTree = "<group>"; };
 		8D435AC0254F534E00838691 /* VocabularyCategoryViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VocabularyCategoryViewController.xib; sourceTree = "<group>"; };
 		8D435ACA255065A500838691 /* DataSynchronizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSynchronizer.swift; sourceTree = "<group>"; };
-		8D435ACE25509CD500838691 /* Vocabulary+CDEntityProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Vocabulary+CDEntityProtocol.swift"; sourceTree = "<group>"; };
 		8D435AD12550A1DB00838691 /* SynchronizeOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SynchronizeOperation.swift; sourceTree = "<group>"; };
 		8D435AD32550A2C400838691 /* VocabularySynchronizeOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabularySynchronizeOperation.swift; sourceTree = "<group>"; };
 		8D435ADF255166A500838691 /* AsyncOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncOperation.swift; sourceTree = "<group>"; };
@@ -387,6 +370,7 @@
 		8D66254B252A7D3900991D45 /* WordsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordsViewModel.swift; sourceTree = "<group>"; };
 		8D662557252A800600991D45 /* UniversalTableViewCellRegistratable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniversalTableViewCellRegistratable.swift; sourceTree = "<group>"; };
 		8D662559252B0F9F00991D45 /* VocabularyCreateRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabularyCreateRequest.swift; sourceTree = "<group>"; };
+		8D768CCF255C4E3200E8B778 /* CollectionPath.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionPath.swift; sourceTree = "<group>"; };
 		8D83EA63252B8BB7004E6098 /* VocabularyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabularyTableViewCell.swift; sourceTree = "<group>"; };
 		8D83EA64252B8BB7004E6098 /* VocabularyTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VocabularyTableViewCell.xib; sourceTree = "<group>"; };
 		8D83EA67252B8BE5004E6098 /* VocabularyCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabularyCellViewModel.swift; sourceTree = "<group>"; };
@@ -400,7 +384,6 @@
 		8D94E7CB2534DF03005FA4B9 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		8D94E7CF2534E34E005FA4B9 /* VocabularyEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabularyEntity.swift; sourceTree = "<group>"; };
 		8D94E7D12534E376005FA4B9 /* WordEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordEntity.swift; sourceTree = "<group>"; };
-		8D94E7D32534E3DC005FA4B9 /* DataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataProvider.swift; sourceTree = "<group>"; };
 		8D94E7D52534F6DF005FA4B9 /* CDEntityProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CDEntityProtocol.swift; sourceTree = "<group>"; };
 		8D94E7D82534F772005FA4B9 /* NetworkState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkState.swift; sourceTree = "<group>"; };
 		8D94E7DF25362FE5005FA4B9 /* NoResulsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoResulsView.swift; sourceTree = "<group>"; };
@@ -490,7 +473,6 @@
 		8DD28C112528AEC800F59B7D /* SingInCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingInCoordinator.swift; sourceTree = "<group>"; };
 		8DD28C132528AEEF00F59B7D /* SingInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingInViewController.swift; sourceTree = "<group>"; };
 		8DD28C142528AEEF00F59B7D /* SingInViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SingInViewController.xib; sourceTree = "<group>"; };
-		8DD745A32559A18600370285 /* User+CDEntityProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "User+CDEntityProtocol.swift"; sourceTree = "<group>"; };
 		8DD745AC255AE30100370285 /* SearchVocabularyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchVocabularyTableViewCell.swift; sourceTree = "<group>"; };
 		8DD745AD255AE30100370285 /* SearchVocabularyTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchVocabularyTableViewCell.xib; sourceTree = "<group>"; };
 		8DD745B0255AE30B00370285 /* SearchVocabularyCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchVocabularyCellViewModel.swift; sourceTree = "<group>"; };
@@ -503,7 +485,7 @@
 		8DF0FD962556F23100D5B225 /* FavoriteVocabularyTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FavoriteVocabularyTableViewCell.xib; sourceTree = "<group>"; };
 		8DF0FD992556F24A00D5B225 /* FavoriteVocabularyCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteVocabularyCellViewModel.swift; sourceTree = "<group>"; };
 		8DF0FD9B2558375500D5B225 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		8DF0FD9D2558395200D5B225 /* UserFetchRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserFetchRequest.swift; sourceTree = "<group>"; };
+		8DF0FD9D2558395200D5B225 /* AuthorizeUserRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizeUserRequest.swift; sourceTree = "<group>"; };
 		8DF0FDA125583D6C00D5B225 /* Right.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Right.swift; sourceTree = "<group>"; };
 		8DF0FDA32558464300D5B225 /* UserCreateRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCreateRequest.swift; sourceTree = "<group>"; };
 		8DF2536B25431819001492AE /* DashboardSectionFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardSectionFactory.swift; sourceTree = "<group>"; };
@@ -591,35 +573,6 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		8D435A31254B4DCC00838691 /* QueryMapper */ = {
-			isa = PBXGroup;
-			children = (
-				8D435A32254B4DE600838691 /* Protocols */,
-				8D435A6C254C22A300838691 /* Connectors */,
-				8D435A43254B4EFF00838691 /* Components */,
-				8D435A34254B4E0C00838691 /* CollectionPath.swift */,
-			);
-			path = QueryMapper;
-			sourceTree = "<group>";
-		};
-		8D435A32254B4DE600838691 /* Protocols */ = {
-			isa = PBXGroup;
-			children = (
-				8D435A3A254B4E5C00838691 /* QueryComponentProtocol.swift */,
-			);
-			path = Protocols;
-			sourceTree = "<group>";
-		};
-		8D435A43254B4EFF00838691 /* Components */ = {
-			isa = PBXGroup;
-			children = (
-				8D435A40254B4ED800838691 /* IsEqualToComponent.swift */,
-				8D435A8D254DF84B00838691 /* ArrayContainsComponent.swift */,
-				8D435AA1254EECE100838691 /* SearchComponets.swift */,
-			);
-			path = Components;
-			sourceTree = "<group>";
-		};
 		8D435A5A254B64FD00838691 /* LangnOsTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -644,15 +597,6 @@
 				8D94E7D82534F772005FA4B9 /* NetworkState.swift */,
 			);
 			path = NetworkState;
-			sourceTree = "<group>";
-		};
-		8D435A6C254C22A300838691 /* Connectors */ = {
-			isa = PBXGroup;
-			children = (
-				8D435A6A254C223400838691 /* QueryAndConnector.swift */,
-				8D435A6F254C25D300838691 /* QueryOrConnector.swift */,
-			);
-			path = Connectors;
 			sourceTree = "<group>";
 		};
 		8D435A73254C39F100838691 /* SearchVocabulary */ = {
@@ -712,9 +656,9 @@
 			isa = PBXGroup;
 			children = (
 				8D435AD62550A37E00838691 /* Requests */,
+				8D768CCF255C4E3200E8B778 /* CollectionPath.swift */,
 				8DAA55462529129E00FF5066 /* DataProviderRequestProtocol.swift */,
 				8DAA553D25290FDD00FF5066 /* FirebaseDatabase.swift */,
-				8D94E7D32534E3DC005FA4B9 /* DataProvider.swift */,
 			);
 			path = FirebaseDatabase;
 			sourceTree = "<group>";
@@ -722,7 +666,7 @@
 		8D435AD62550A37E00838691 /* Requests */ = {
 			isa = PBXGroup;
 			children = (
-				8DF0FD9D2558395200D5B225 /* UserFetchRequest.swift */,
+				8DF0FD9D2558395200D5B225 /* AuthorizeUserRequest.swift */,
 				8DF0FDA32558464300D5B225 /* UserCreateRequest.swift */,
 				8DF253D525485073001492AE /* FavoriteVocabularyFetchRequest.swift */,
 				8D435A97254E051900838691 /* SearchVocabularyRequest.swift */,
@@ -1427,7 +1371,6 @@
 				8D435AD72550A3A500838691 /* FirebaseStorage */,
 				8D435AD52550A36000838691 /* FirebaseDatabase */,
 				8D435A66254C15E000838691 /* CoreData */,
-				8D435A31254B4DCC00838691 /* QueryMapper */,
 				8D435AD92550A3C800838691 /* DataSynchronizer */,
 				8D435ADB2550A42600838691 /* Dicationary-Data Mappers */,
 				8D435ADC2550A45B00838691 /* SpeechSynthesizer */,
@@ -1442,10 +1385,8 @@
 				8D94E7CE2534E0FD005FA4B9 /* Protocols */,
 				8D94E7CD2534E0F1005FA4B9 /* CoreDataEntities */,
 				8DF0FD9B2558375500D5B225 /* User.swift */,
-				8DD745A32559A18600370285 /* User+CDEntityProtocol.swift */,
 				8DF0FDA125583D6C00D5B225 /* Right.swift */,
 				8DAA553F2529112B00FF5066 /* Vocabulary.swift */,
-				8D435ACE25509CD500838691 /* Vocabulary+CDEntityProtocol.swift */,
 				8DAA554D25291D3400FF5066 /* Word.swift */,
 				8D435B2125548A1900838691 /* Category.swift */,
 			);
@@ -1914,7 +1855,6 @@
 				8DF253E62549AFDB001492AE /* VocabularyListViewController.swift in Sources */,
 				8DF0FD93255596C200D5B225 /* DeleteTermImageRequest.swift in Sources */,
 				8DF253C82545DDC8001492AE /* WordRepresentionCellViewModel.swift in Sources */,
-				8D435A70254C25D300838691 /* QueryOrConnector.swift in Sources */,
 				8DAA554A252912BA00FF5066 /* VocabularyFetchRequest.swift in Sources */,
 				8DD28BB325266F6800F59B7D /* DashboardCoordinator.swift in Sources */,
 				8DD745B5255AE8BC00370285 /* FetchUserImageRequest.swift in Sources */,
@@ -1928,7 +1868,6 @@
 				8D66253A252A6D4600991D45 /* VocabularyProgressView.swift in Sources */,
 				8D83EA76252B9EB9004E6098 /* CoordinatorClosableProtocol.swift in Sources */,
 				8DD28BD32526854300F59B7D /* UINavigationItem+Drivable.swift in Sources */,
-				8DD745A42559A18600370285 /* User+CDEntityProtocol.swift in Sources */,
 				8D94E7CC2534DF03005FA4B9 /* CoreDataStack.swift in Sources */,
 				8DF253FB2549B46D001492AE /* VocabularyListCellFactory.swift in Sources */,
 				8DF253DD254881C7001492AE /* ActivityIndicatorCellViewModel.swift in Sources */,
@@ -1979,24 +1918,20 @@
 				8D435AD22550A1DB00838691 /* SynchronizeOperation.swift in Sources */,
 				8D83EA6A252B8FEA004E6098 /* CreateVocabularyCellFactory.swift in Sources */,
 				8D524F64252E5E8F002A6E01 /* UniversalCollectionSectionViewModel.swift in Sources */,
-				8D435A35254B4E0C00838691 /* CollectionPath.swift in Sources */,
 				8DF0FD9A2556F24A00D5B225 /* FavoriteVocabularyCellViewModel.swift in Sources */,
 				8DF2537625431968001492AE /* TitleSectionViewModel.swift in Sources */,
 				8DF253B82544A07A001492AE /* BottomCardDismisser.swift in Sources */,
 				8DC3CF23252C67F9003CA62A /* InputView.swift in Sources */,
 				8DF253CD2545FCC1001492AE /* VocabularyUpdateRequest.swift in Sources */,
-				8D435A8E254DF84B00838691 /* ArrayContainsComponent.swift in Sources */,
 				8D662558252A800600991D45 /* UniversalTableViewCellRegistratable.swift in Sources */,
 				8D524FF12533BF47002A6E01 /* FlashCardTableViewCellViewModel.swift in Sources */,
 				8DD28B8F252667F600F59B7D /* LangnOs.xcdatamodeld in Sources */,
 				8DD28BCD2526815C00F59B7D /* BindibleViewController.swift in Sources */,
 				8DA744BB253F421200F9EC8B /* ViewAllCollectionReusableView.swift in Sources */,
 				8DD28BF92527B3C700F59B7D /* UniversalCollectionViewCellFactoryProtocol.swift in Sources */,
-				8D435ACF25509CD500838691 /* Vocabulary+CDEntityProtocol.swift in Sources */,
 				8DD28BA625266BCE00F59B7D /* RootCoordinator.swift in Sources */,
 				8D6625242529F79B00991D45 /* CreateVocabularyViewModel.swift in Sources */,
 				8DAA554E25291D3400FF5066 /* Word.swift in Sources */,
-				8D435A6B254C223400838691 /* QueryAndConnector.swift in Sources */,
 				8DF928AC253DEBCF0052FC31 /* WritingProgressView.swift in Sources */,
 				8DD28BAA25266CDB00F59B7D /* RootViewModel.swift in Sources */,
 				8DF253AF2544838D001492AE /* VocabularySettingsCoordinator.swift in Sources */,
@@ -2031,7 +1966,6 @@
 				8DF2536C25431819001492AE /* DashboardSectionFactory.swift in Sources */,
 				8D524FDF2533ACC0002A6E01 /* UITextField+Drivable.swift in Sources */,
 				8D94E7C52534D102005FA4B9 /* SpeechSynthesizer.swift in Sources */,
-				8D435AA2254EECE100838691 /* SearchComponets.swift in Sources */,
 				8D435A94254DFBC300838691 /* CoursesViewController.swift in Sources */,
 				8DD28B87252667F600F59B7D /* SceneDelegate.swift in Sources */,
 				8DD28C0725289C8C00F59B7D /* VocabularyCollectionViewCellViewModel.swift in Sources */,
@@ -2039,7 +1973,6 @@
 				8D662529252A386500991D45 /* VocabularyActionView.swift in Sources */,
 				8DF2539525436C0C001492AE /* Sequence+KeyPathSorting.swift in Sources */,
 				8DD28BEE2527A52100F59B7D /* BarButtonDrivableModel.swift in Sources */,
-				8D435A3B254B4E5C00838691 /* QueryComponentProtocol.swift in Sources */,
 				8DC3CF43252D2CBD003CA62A /* VocabularyDeleteRequest.swift in Sources */,
 				8D524FD525337A22002A6E01 /* ToolbarDrivableModel.swift in Sources */,
 				8DA744B6253F414300F9EC8B /* ViewAllCollectionReusableViewModel.swift in Sources */,
@@ -2048,7 +1981,7 @@
 				8DF2539025434BE9001492AE /* MaterialsViewModel.swift in Sources */,
 				8D9985F125292B17009EA144 /* VocabularyViewModel.swift in Sources */,
 				8D66254A252A7BE100991D45 /* UniversalTableViewCellFactoryProtocol.swift in Sources */,
-				8DF0FD9E2558395200D5B225 /* UserFetchRequest.swift in Sources */,
+				8DF0FD9E2558395200D5B225 /* AuthorizeUserRequest.swift in Sources */,
 				8DD28BCB252680EC00F59B7D /* PresentationViewModel.swift in Sources */,
 				8DF253A125446BA0001492AE /* DictionaryEncoder.swift in Sources */,
 				8DD745B1255AE30B00370285 /* SearchVocabularyCellViewModel.swift in Sources */,
@@ -2064,17 +1997,16 @@
 				8DF2538125432B62001492AE /* SFSymbols.swift in Sources */,
 				8D66251F2529F6C000991D45 /* CreateVocabularyViewController.swift in Sources */,
 				8DD28BFB2527B76800F59B7D /* DashboardCellFactory.swift in Sources */,
-				8D435A41254B4ED800838691 /* IsEqualToComponent.swift in Sources */,
 				8D435A78254C3A1E00838691 /* SearchVocabularyCoordinator.swift in Sources */,
 				8D94E846253A1F8D005FA4B9 /* ImagePickerViewController.swift in Sources */,
 				8DF2537B254328B3001492AE /* ColoredImageCellViewModel.swift in Sources */,
 				8D435A9B254EE3D100838691 /* SearchVocabularyViewController.swift in Sources */,
 				8DD28BB025266F4000F59B7D /* DashboardViewController.swift in Sources */,
-				8D94E7D42534E3DC005FA4B9 /* DataProvider.swift in Sources */,
 				8DF928A9253DDE700052FC31 /* WritingWordModel.swift in Sources */,
 				8DAA55402529112B00FF5066 /* Vocabulary.swift in Sources */,
 				8D524F9D252F7EC1002A6E01 /* AccountCoordinator.swift in Sources */,
 				8DF0FDA225583D6C00D5B225 /* Right.swift in Sources */,
+				8D768CD0255C4E3200E8B778 /* CollectionPath.swift in Sources */,
 				8DD28C122528AEC800F59B7D /* SingInCoordinator.swift in Sources */,
 				8D524FE32533BA27002A6E01 /* FlashCardsViewController.swift in Sources */,
 				8DF253DA25488166001492AE /* ActivityIndicatorTableViewCell.swift in Sources */,

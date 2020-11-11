@@ -24,12 +24,15 @@ final class MaterialsCoordinator: Coordinator, MaterialsCoordinatorProtocol  {
     // MARK: - Override
     
     override func start() {
-        let firebaseDatabase = FirebaseDatabase.shared
-        let dataProvider = DataProvider(firebaseDatabase: firebaseDatabase)
+        let dataProvider = FirebaseDatabase.shared
         let userSession = UserSession.shared
+        let networkState = NetworkState.shared
+        let coreDataStack = CoreDataStack.shared
         let viewModel = MaterialsViewModel(router: self,
                                            dataProvider: dataProvider,
-                                           userSession: userSession)
+                                           userSession: userSession,
+                                           networkState: networkState,
+                                           coreDataStack: coreDataStack)
         
         let cellFactory = MaterialsCellFactory()
         let layout = SquareGridFlowLayout(numberOfItemsPerRow: 2)

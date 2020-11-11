@@ -20,16 +20,16 @@ struct UserCreateRequest {
 
 extension UserCreateRequest: DataProviderRequestProtocol {
     
-    var entity: User1? {
-        user
-    }
-    
     var collectionPath: CollectionPath {
         .users
     }
     
     var documentPath: String? {
         user.id
+    }
+    
+    var documentData: [String : Any]? {
+        try? DictionaryEncoder().encode(entity: user)
     }
     
 }
