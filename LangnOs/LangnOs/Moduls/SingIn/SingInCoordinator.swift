@@ -12,7 +12,11 @@ protocol SingInNavigationProtocol {
     func navigateToSingUp()
 }
 
-typealias SingInCoordinatorProtocol = SingInNavigationProtocol & AlertPresentableProtocol & CoordinatorClosableProtocol
+typealias SingInCoordinatorProtocol =
+    SingInNavigationProtocol &
+    AlertPresentableProtocol &
+    ActivityPresentableProtocol &
+    CoordinatorClosableProtocol
 
 final class SingInCoordinator: Coordinator, SingInCoordinatorProtocol {
     
@@ -21,9 +25,11 @@ final class SingInCoordinator: Coordinator, SingInCoordinatorProtocol {
     override func start() {
         let dataProvider = FirebaseDatabase.shared
         let userSession = UserSession.shared
+        let validator = Validator()
         let singInViewModel = SingInViewModel(router: self,
                                               dataProvider: dataProvider,
-                                              userSession: userSession)
+                                              userSession: userSession,
+                                              validator: validator)
         
         let singInViewController = SingInViewController()
         singInViewController.viewModel = singInViewModel

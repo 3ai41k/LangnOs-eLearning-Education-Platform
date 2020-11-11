@@ -86,7 +86,7 @@ extension SingUpViewModel: SingInInputProtocol {
 
 extension SingUpViewModel: SingInOutputProtocol {
     
-    func nextAction() {
+    func done() {
         let request = UserCreateRequest(user: user)
         dataProvider.create(request: request, onSuccess: {
             self.userSession.starSession(with: self.user)

@@ -54,7 +54,7 @@ final class SingInViewController: BindibleViewController<SingInInputProtocol & S
     
     @IBAction
     private func didNextTouch(_ sender: Any) {
-        viewModel?.nextAction()
+        viewModel?.done()
     }
     
     @IBAction

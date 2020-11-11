@@ -96,6 +96,7 @@
 		8D662558252A800600991D45 /* UniversalTableViewCellRegistratable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D662557252A800600991D45 /* UniversalTableViewCellRegistratable.swift */; };
 		8D66255A252B0F9F00991D45 /* VocabularyCreateRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D662559252B0F9F00991D45 /* VocabularyCreateRequest.swift */; };
 		8D768CD0255C4E3200E8B778 /* CollectionPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D768CCF255C4E3200E8B778 /* CollectionPath.swift */; };
+		8D768CD3255C6FB700E8B778 /* Validator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D768CD2255C6FB700E8B778 /* Validator.swift */; };
 		8D83EA65252B8BB7004E6098 /* VocabularyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D83EA63252B8BB7004E6098 /* VocabularyTableViewCell.swift */; };
 		8D83EA66252B8BB7004E6098 /* VocabularyTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D83EA64252B8BB7004E6098 /* VocabularyTableViewCell.xib */; };
 		8D83EA68252B8BE5004E6098 /* VocabularyCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D83EA67252B8BE5004E6098 /* VocabularyCellViewModel.swift */; };
@@ -208,7 +209,7 @@
 		8DF0FD982556F23100D5B225 /* FavoriteVocabularyTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DF0FD962556F23100D5B225 /* FavoriteVocabularyTableViewCell.xib */; };
 		8DF0FD9A2556F24A00D5B225 /* FavoriteVocabularyCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF0FD992556F24A00D5B225 /* FavoriteVocabularyCellViewModel.swift */; };
 		8DF0FD9C2558375500D5B225 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF0FD9B2558375500D5B225 /* User.swift */; };
-		8DF0FD9E2558395200D5B225 /* AuthorizeUserRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF0FD9D2558395200D5B225 /* AuthorizeUserRequest.swift */; };
+		8DF0FD9E2558395200D5B225 /* AuthorizeRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF0FD9D2558395200D5B225 /* AuthorizeRequest.swift */; };
 		8DF0FDA225583D6C00D5B225 /* Right.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF0FDA125583D6C00D5B225 /* Right.swift */; };
 		8DF0FDA42558464300D5B225 /* UserCreateRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF0FDA32558464300D5B225 /* UserCreateRequest.swift */; };
 		8DF2536C25431819001492AE /* DashboardSectionFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF2536B25431819001492AE /* DashboardSectionFactory.swift */; };
@@ -371,6 +372,7 @@
 		8D662557252A800600991D45 /* UniversalTableViewCellRegistratable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniversalTableViewCellRegistratable.swift; sourceTree = "<group>"; };
 		8D662559252B0F9F00991D45 /* VocabularyCreateRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabularyCreateRequest.swift; sourceTree = "<group>"; };
 		8D768CCF255C4E3200E8B778 /* CollectionPath.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionPath.swift; sourceTree = "<group>"; };
+		8D768CD2255C6FB700E8B778 /* Validator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validator.swift; sourceTree = "<group>"; };
 		8D83EA63252B8BB7004E6098 /* VocabularyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabularyTableViewCell.swift; sourceTree = "<group>"; };
 		8D83EA64252B8BB7004E6098 /* VocabularyTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VocabularyTableViewCell.xib; sourceTree = "<group>"; };
 		8D83EA67252B8BE5004E6098 /* VocabularyCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabularyCellViewModel.swift; sourceTree = "<group>"; };
@@ -485,7 +487,7 @@
 		8DF0FD962556F23100D5B225 /* FavoriteVocabularyTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FavoriteVocabularyTableViewCell.xib; sourceTree = "<group>"; };
 		8DF0FD992556F24A00D5B225 /* FavoriteVocabularyCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteVocabularyCellViewModel.swift; sourceTree = "<group>"; };
 		8DF0FD9B2558375500D5B225 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		8DF0FD9D2558395200D5B225 /* AuthorizeUserRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizeUserRequest.swift; sourceTree = "<group>"; };
+		8DF0FD9D2558395200D5B225 /* AuthorizeRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizeRequest.swift; sourceTree = "<group>"; };
 		8DF0FDA125583D6C00D5B225 /* Right.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Right.swift; sourceTree = "<group>"; };
 		8DF0FDA32558464300D5B225 /* UserCreateRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCreateRequest.swift; sourceTree = "<group>"; };
 		8DF2536B25431819001492AE /* DashboardSectionFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardSectionFactory.swift; sourceTree = "<group>"; };
@@ -666,7 +668,7 @@
 		8D435AD62550A37E00838691 /* Requests */ = {
 			isa = PBXGroup;
 			children = (
-				8DF0FD9D2558395200D5B225 /* AuthorizeUserRequest.swift */,
+				8DF0FD9D2558395200D5B225 /* AuthorizeRequest.swift */,
 				8DF0FDA32558464300D5B225 /* UserCreateRequest.swift */,
 				8DF253D525485073001492AE /* FavoriteVocabularyFetchRequest.swift */,
 				8D435A97254E051900838691 /* SearchVocabularyRequest.swift */,
@@ -940,6 +942,14 @@
 				8DF253B92544A292001492AE /* ButtonCell */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		8D768CD1255C6F9700E8B778 /* Validator */ = {
+			isa = PBXGroup;
+			children = (
+				8D768CD2255C6FB700E8B778 /* Validator.swift */,
+			);
+			path = Validator;
 			sourceTree = "<group>";
 		};
 		8D83EA62252B8B78004E6098 /* VocabularyCell */ = {
@@ -1367,6 +1377,7 @@
 		8DD28C0D2528AA2200F59B7D /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				8D768CD1255C6F9700E8B778 /* Validator */,
 				8D435B03255315F100838691 /* UserSession */,
 				8D435AD72550A3A500838691 /* FirebaseStorage */,
 				8D435AD52550A36000838691 /* FirebaseDatabase */,
@@ -1836,6 +1847,7 @@
 				8D435A95254DFBC300838691 /* CoursesViewModel.swift in Sources */,
 				8DF253B42544A051001492AE /* Interactor.swift in Sources */,
 				8D524FC72530D1D8002A6E01 /* UIButton+Drivable.swift in Sources */,
+				8D768CD3255C6FB700E8B778 /* Validator.swift in Sources */,
 				8D83EA86252BBBD1004E6098 /* TableSectionViewModel.swift in Sources */,
 				8DD745B3255AE56E00370285 /* SeachVocabularyCellFactory.swift in Sources */,
 				8DA744AF253F2EA600F9EC8B /* StudyResultViewController.swift in Sources */,
@@ -1981,7 +1993,7 @@
 				8DF2539025434BE9001492AE /* MaterialsViewModel.swift in Sources */,
 				8D9985F125292B17009EA144 /* VocabularyViewModel.swift in Sources */,
 				8D66254A252A7BE100991D45 /* UniversalTableViewCellFactoryProtocol.swift in Sources */,
-				8DF0FD9E2558395200D5B225 /* AuthorizeUserRequest.swift in Sources */,
+				8DF0FD9E2558395200D5B225 /* AuthorizeRequest.swift in Sources */,
 				8DD28BCB252680EC00F59B7D /* PresentationViewModel.swift in Sources */,
 				8DF253A125446BA0001492AE /* DictionaryEncoder.swift in Sources */,
 				8DD745B1255AE30B00370285 /* SearchVocabularyCellViewModel.swift in Sources */,

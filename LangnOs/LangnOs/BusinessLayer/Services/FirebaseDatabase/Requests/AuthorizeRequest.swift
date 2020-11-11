@@ -1,5 +1,5 @@
 //
-//  UserFetchRequest.swift
+//  AuthorizeRequest.swift
 //  LangnOs
 //
 //  Created by Nikita Lizogubov on 08.11.2020.
@@ -8,7 +8,7 @@
 
 import FirebaseFirestore
 
-struct AuthorizeUserRequest {
+struct AuthorizeRequest {
     
     // MARK: - Public properties
     
@@ -19,7 +19,7 @@ struct AuthorizeUserRequest {
 
 // MARK: - DataProviderRequestProtocol
 
-extension AuthorizeUserRequest: DataProviderRequestProtocol {
+extension AuthorizeRequest: DataProviderRequestProtocol {
     
     var collectionPath: CollectionPath {
         .users

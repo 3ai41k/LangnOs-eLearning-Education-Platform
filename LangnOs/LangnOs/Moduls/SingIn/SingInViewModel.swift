@@ -17,7 +17,7 @@ protocol SingInInputProtocol {
 }
 
 protocol SingInOutputProtocol {
-    func nextAction()
+    func done()
 }
 
 final class SingInViewModel {
@@ -27,18 +27,25 @@ final class SingInViewModel {
     private let router: SingInCoordinatorProtocol
     private let dataProvider: FirebaseDatabaseFetchingProtocol
     private let userSession: SessionLifecycleProtocol
+    private let validator: EmailValidationProtocol
+    
     private var user: User1
     
     // MARK: - Init
     
     init(router: SingInCoordinatorProtocol,
          dataProvider: FirebaseDatabaseFetchingProtocol,
-         userSession: SessionLifecycleProtocol) {
+         userSession: SessionLifecycleProtocol,
+         validator: EmailValidationProtocol) {
         self.router = router
         self.dataProvider = dataProvider
         self.userSession = userSession
+        self.validator = validator
+        
         self.user = .empty
     }
+    
+    // MARK: - Private methods
     
     // MARK: - Actions
     
@@ -101,15 +108,26 @@ extension SingInViewModel: SingInInputProtocol {
 
 extension SingInViewModel: SingInOutputProtocol {
     
-    func nextAction() {
-        let request = AuthorizeUserRequest(email: user.email, password: user.password)
-        dataProvider.fetch(request: request, onSuccess: { (users: [User1]) in
-            guard let user = users.first else { return }
+    func done() {
+        if validator.isValid(email: user.email) {
+            router.showActivity()
             
-            self.userSession.starSession(with: user)
-            self.router.close()
-        }) { (error) in
-            self.router.showError(error)
+            let request = AuthorizeRequest(email: user.email, password: user.password)
+            dataProvider.fetch(request: request, onSuccess: { (users: [User1]) in
+                guard let user = users.first else { return }
+                
+                self.userSession.starSession(with: user)
+                
+                self.router.closeActivity()
+                self.router.close()
+            }) { (error) in
+                self.router.closeActivity()
+                self.router.showError(error)
+            }
+        } else {
+            router.showAlert(title: "Warning!",
+                             message: "Email isn't valid",
+                             actions: [OkAlertAction(handler: { })])
         }
     }
     
