@@ -82,9 +82,9 @@ final class AccountViewModel: AccountViewModelProtocol {
     
     func editPhoto() {
         router.showActionSheet(title: nil, message: nil, actions: [
-            TakePhotoAlertAction(handler: selectImageAction),
-            PhotoLibraryAlertAction(handler: selectImageAction),
-            RemovePhotoAlertAction(handler: removeImageAction),
+            TakePhotoAlertAction(handler: selectImage),
+            PhotoLibraryAlertAction(handler: selectImage),
+            RemovePhotoAlertAction(handler: removeImage),
             CancelAlertAction(handler: { })
         ])
     }
@@ -130,7 +130,7 @@ final class AccountViewModel: AccountViewModelProtocol {
     private func setupLogoutSection() {
         let cellViewModels = [
             ButtonCellViewModel(title: "Log out", titleColor: .systemRed, buttonHandler: { [weak self] in
-                self?.logoutAction()
+                self?.logout()
             })
         ]
         let sectionViewModel = TableSectionViewModel(cells: cellViewModels)
@@ -139,7 +139,7 @@ final class AccountViewModel: AccountViewModelProtocol {
     
     // MARK: - Actions
     
-    private func selectImageAction() {
+    private func selectImage() {
         guard let userId = userSession.currentUser?.id else { return }
         
         router.navigateToImagePicker(sourceType: .photoLibrary) { (image) in
@@ -152,7 +152,7 @@ final class AccountViewModel: AccountViewModelProtocol {
         }
     }
     
-    private func removeImageAction() {
+    private func removeImage() {
         guard let userId = userSession.currentUser?.id else { return }
         
         let request = DeleteUserImageRequest(userId: userId)
@@ -163,7 +163,7 @@ final class AccountViewModel: AccountViewModelProtocol {
         }
     }
     
-    private func logoutAction() {
+    private func logout() {
         router.showAlert(title: "Are you sure?", message: nil, actions: [
             CancelAlertAction(handler: { }),
             OkAlertAction(handler: {
