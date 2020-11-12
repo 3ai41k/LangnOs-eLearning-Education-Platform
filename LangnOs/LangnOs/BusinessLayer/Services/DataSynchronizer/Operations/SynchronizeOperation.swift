@@ -12,25 +12,37 @@ class SynchronizeOperation: AsyncOperation {
     
     // MARK: - Protexted(internal) properties
     
-    internal let firebaseDatabase = FirebaseDatabase.shared
-    internal let dispatchGroup: DispatchGroup
+    internal let firebaseDatabase: FirebaseDatabaseProtocol
+    
+    // MARK: - Private properties
+    
+    private let completion: () -> Void
+    private let networkState: InternetConnectableProtocol
     
     // MARK: - Lifecycle
     
-    init(dispatchGroup: DispatchGroup) {
-        self.dispatchGroup = dispatchGroup
+    init(completion: @escaping () -> Void) {
+        self.completion = completion
+        
+        self.firebaseDatabase = FirebaseDatabase.shared
+        self.networkState = NetworkState.shared
         
         super.init()
     }
     
     deinit {
         print("=> deinit ", self)
+        completion()
     }
     
     // MARK: - Override
     
     override func main() {
-        syncronize()
+        if networkState.isReachable {
+            syncronize()
+        } else {
+            state = .finished
+        }
     }
     
     // MARK: - protexted(internal) methods

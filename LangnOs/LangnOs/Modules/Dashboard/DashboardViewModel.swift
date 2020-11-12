@@ -31,7 +31,7 @@ protocol DashboardViewModelInputProtocol {
 }
 
 protocol DashboardViewModelOutputProtocol {
-    func userProfileAction()
+    func userProfile()
 }
 
 typealias DashboardViewModelProtocol =
@@ -135,7 +135,7 @@ final class DashboardViewModel: DashboardViewModelProtocol {
         }
     }
     
-    func userProfileAction() {
+    func userProfile() {
         if userSession.currentUser != nil {
             router.navigateToUserProfile()
         } else {

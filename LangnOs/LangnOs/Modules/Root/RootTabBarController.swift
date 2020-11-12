@@ -18,6 +18,14 @@ final class RootTabBarController: UITabBarController {
         }
     }
     
+    // MARK: - Lifecycle
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        viewModel?.maintenance()
+    }
+    
     // MARK: - Private methods
     
     private func bindViewModel() {

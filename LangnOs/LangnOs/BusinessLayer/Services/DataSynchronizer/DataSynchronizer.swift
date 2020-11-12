@@ -15,16 +15,18 @@ protocol CloudSynchronizeProtocol {
 
 final class DataSynchronizer {
     
-    // MARK: - Private methods
+    // MARK: - Public properties
+    
+    static let shared = DataSynchronizer()
+    
+    // MARK: - Private properties
     
     private let operationQueue: OperationQueue
-    private let dispatchGroup: DispatchGroup
     
-    // MARK: - Init
+    // MARK: - Lifecycle
     
     init() {
         self.operationQueue = OperationQueue()
-        self.dispatchGroup = DispatchGroup()
     }
     
 }
@@ -40,11 +42,10 @@ extension DataSynchronizer: CloudSynchronizeProtocol {
     
     func synchronize(completion: (() -> Void)?) {
         operationQueue.addOperations([
-            VocabularySynchronizeOperation(dispatchGroup: dispatchGroup)
+            VocabularySynchronizeOperation {
+                completion?()
+            }
         ], waitUntilFinished: false)
-        dispatchGroup.notify(queue: .main) {
-            completion?()
-        }
     }
     
     func cancelAllOperations() {

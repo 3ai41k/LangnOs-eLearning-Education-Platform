@@ -11,6 +11,18 @@ import CoreData
 
 final class VocabularySynchronizeOperation: SynchronizeOperation {
     
+    // MARK: - Private methods
+    
+    private let dispatchGroup: DispatchGroup
+    
+    // MARK: - Init
+    
+    override init(completion: @escaping () -> Void) {
+        self.dispatchGroup = DispatchGroup()
+        
+        super.init(completion: completion)
+    }
+    
     // MARK: - Override
     
     override func syncronize() {
@@ -19,15 +31,17 @@ final class VocabularySynchronizeOperation: SynchronizeOperation {
             state = .finished
         } else {
             vocabularies.forEach({ (vocabulary) in
-                let reqest = VocabularyCreateRequest(vocabulary: vocabulary)
                 dispatchGroup.enter()
+                
+                let reqest = VocabularyCreateRequest(vocabulary: vocabulary)
                 self.firebaseDatabase.create(request: reqest, onSuccess: {
                     self.updateVocabulary(vocabulary)
                     self.dispatchGroup.leave()
-                }) { (error) in
-                    self.handleAnError(error)
-                }
+                }, onFailure: self.handleAnError)
             })
+            dispatchGroup.notify(queue: .main) {
+                self.state = .finished
+            }
         }
     }
     
@@ -40,7 +54,7 @@ final class VocabularySynchronizeOperation: SynchronizeOperation {
         } catch {
             handleAnError(error)
         }
-        return []
+        return .empty
     }
     
     private func updateVocabulary(_ vocabulary: Vocabulary) {

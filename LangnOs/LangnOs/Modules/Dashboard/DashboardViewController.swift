@@ -87,7 +87,7 @@ final class DashboardViewController: BindibleViewController<DashboardViewModelPr
     
     @objc
     private func didProfileTouch() {
-        viewModel?.userProfileAction()
+        viewModel?.userProfile()
     }
 
 }

@@ -9,10 +9,14 @@
 import UIKit
 
 protocol RootNavigationProtocol {
-    
+    func navigateToMaintenance()
 }
 
-final class RootCoordinator: Coordinator {
+typealias RootCoordinatorProtocol =
+    RootNavigationProtocol &
+    ActivityPresentableProtocol
+
+final class RootCoordinator: Coordinator, RootCoordinatorProtocol {
     
     // MARK: - Private properties
     
@@ -29,21 +33,21 @@ final class RootCoordinator: Coordinator {
     // MARK: - Override
     
     override func start() {
-        let tabBarViewModel = RootViewModel(router: self)
-        let tabBarController = RootTabBarController()
-        tabBarController.viewModel = tabBarViewModel
+        let viewModel = RootViewModel(router: self)
+        let viewController = RootTabBarController()
+        viewController.viewModel = viewModel
         
-        viewController = tabBarController
+        self.viewController = viewController
         
-        window.rootViewController = tabBarController
+        window.rootViewController = viewController
         window.becomeKey()
     }
     
-}
-
-// MARK: - RootNavigationProtocol
-
-extension RootCoordinator: RootNavigationProtocol {
+    // MARK: - RootNavigationProtocol
     
+    func navigateToMaintenance() {
+        let maintenanceCoordinator = MaintenanceCoordinator(parentViewController: viewController)
+        maintenanceCoordinator.start()
+    }
     
 }

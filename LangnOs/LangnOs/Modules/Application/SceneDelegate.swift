@@ -17,7 +17,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     // MARK: - Private properties
     
     private var rootCoordinator: Coordinator?
-    private var dataSynchronizer: CloudSynchronizeProtocol?
+    private var dataSynchronizer: CloudSynchronizeProtocol = DataSynchronizer.shared
     
     private let coreDataStack = CoreDataStack.shared
     
@@ -27,14 +27,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = windowScene.windows.first
         
-        setupDataSynchronizer()
         setupRootCoordinator()
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
         print(#function)
         
-        dataSynchronizer?.cancelAllOperations()
+        dataSynchronizer.cancelAllOperations()
         coreDataStack.save()
     }
 
@@ -45,11 +44,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
     
     // MARK: - Private methods
-
-    private func setupDataSynchronizer() {
-        dataSynchronizer = DataSynchronizer()
-        dataSynchronizer?.synchronize(completion: nil)
-    }
     
     private func setupRootCoordinator() {
         rootCoordinator = RootCoordinator(window: window!)

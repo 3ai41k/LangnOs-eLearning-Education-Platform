@@ -9,6 +9,7 @@
 import Foundation
 
 protocol RootViewModelInputProtocol {
+    func maintenance()
     func getTabBarCoordinators() -> [Coordinator]
 }
 
@@ -16,11 +17,13 @@ final class RootViewModel {
     
     // MARK: - Private properties
     
-    private let router: RootNavigationProtocol
+    private let router: RootCoordinatorProtocol
+    
+    private var isSynchronized = false
     
     // MARK: - Init
     
-    init(router: RootNavigationProtocol) {
+    init(router: RootCoordinatorProtocol) {
         self.router = router
     }
     
@@ -29,6 +32,13 @@ final class RootViewModel {
 // MARK: - RootViewModelInputProtocol
 
 extension RootViewModel: RootViewModelInputProtocol {
+    
+    func maintenance() {
+        guard !isSynchronized else { return }
+        
+        router.navigateToMaintenance()
+        isSynchronized = true
+    }
     
     func getTabBarCoordinators() -> [Coordinator] {
         TabBarProvider.allCases.map({
