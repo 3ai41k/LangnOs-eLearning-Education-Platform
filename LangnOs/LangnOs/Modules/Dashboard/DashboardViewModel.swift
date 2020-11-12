@@ -186,19 +186,10 @@ final class DashboardViewModel: DashboardViewModelProtocol {
             return
         }
         
-        if networkState.isReachable {
-            let request = FavoriteVocabularyFetchRequest(userId: userId)
-            dataProvider.fetch(request: request, onSuccess: { (vocabularies: [Vocabulary]) in
-                self.favoriteVocabularies = vocabularies
-            }) { (error) in
-                self.router.showError(error)
-            }
-        } else {
-            do {
-                favoriteVocabularies = try VocabularyEntity.selectFavotite(userId: userId)
-            } catch {
-                favoriteVocabularies = .empty
-            }
+        do {
+            favoriteVocabularies = try VocabularyEntity.selectFavotite(userId: userId)
+        } catch {
+            favoriteVocabularies = .empty
         }
     }
     

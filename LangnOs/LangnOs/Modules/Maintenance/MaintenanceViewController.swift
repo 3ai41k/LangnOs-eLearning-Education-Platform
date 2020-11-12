@@ -16,7 +16,7 @@ final class MaintenanceViewController: BindibleViewController<MaintenanceViewMod
     @IBOutlet private weak var synchronizeView: UIView! {
         didSet {
             synchronizeView.layer.cornerRadius = 25.0
-            synchronizeView.transform = CGAffineTransform(translationX: .zero, y: -70.0)
+            synchronizeView.layer.opacity = .zero
         }
     }
     @IBOutlet private weak var synchronizeLabel: UIStackView!
@@ -38,16 +38,16 @@ final class MaintenanceViewController: BindibleViewController<MaintenanceViewMod
     // MARK: - Private methods
     
     private func showSynchronizeView() {
-        UIView.animate(withDuration: 0.2, animations: {
-            self.synchronizeView.transform = CGAffineTransform(translationX: .zero, y: .zero)
+        UIView.animate(withDuration: 0.3, animations: {
+            self.synchronizeView.layer.opacity = 1.0
         }) { (finished) in
             self.viewModel?.synchronize()
         }
     }
     
     private func hideSynchronizeView() {
-        UIView.animate(withDuration: 0.2, animations: {
-            self.synchronizeView.transform = CGAffineTransform(translationX: .zero, y: -70.0)
+        UIView.animate(withDuration: 0.3, animations: {
+            self.synchronizeView.layer.opacity = .zero
         }) { (finished) in
             self.viewModel?.close()
         }

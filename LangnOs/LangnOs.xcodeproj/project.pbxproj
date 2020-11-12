@@ -254,7 +254,6 @@
 		8DF253CD2545FCC1001492AE /* VocabularyUpdateRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF253CC2545FCC1001492AE /* VocabularyUpdateRequest.swift */; };
 		8DF253D025471D10001492AE /* OfflineTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF253CF25471D10001492AE /* OfflineTitleView.swift */; };
 		8DF253D225471D1A001492AE /* OfflineTitleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DF253D125471D19001492AE /* OfflineTitleView.xib */; };
-		8DF253D625485073001492AE /* FavoriteVocabularyFetchRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF253D525485073001492AE /* FavoriteVocabularyFetchRequest.swift */; };
 		8DF253DA25488166001492AE /* ActivityIndicatorTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF253D825488166001492AE /* ActivityIndicatorTableViewCell.swift */; };
 		8DF253DB25488166001492AE /* ActivityIndicatorTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DF253D925488166001492AE /* ActivityIndicatorTableViewCell.xib */; };
 		8DF253DD254881C7001492AE /* ActivityIndicatorCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF253DC254881C7001492AE /* ActivityIndicatorCellViewModel.swift */; };
@@ -536,7 +535,6 @@
 		8DF253CC2545FCC1001492AE /* VocabularyUpdateRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabularyUpdateRequest.swift; sourceTree = "<group>"; };
 		8DF253CF25471D10001492AE /* OfflineTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfflineTitleView.swift; sourceTree = "<group>"; };
 		8DF253D125471D19001492AE /* OfflineTitleView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OfflineTitleView.xib; sourceTree = "<group>"; };
-		8DF253D525485073001492AE /* FavoriteVocabularyFetchRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteVocabularyFetchRequest.swift; sourceTree = "<group>"; };
 		8DF253D825488166001492AE /* ActivityIndicatorTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicatorTableViewCell.swift; sourceTree = "<group>"; };
 		8DF253D925488166001492AE /* ActivityIndicatorTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ActivityIndicatorTableViewCell.xib; sourceTree = "<group>"; };
 		8DF253DC254881C7001492AE /* ActivityIndicatorCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicatorCellViewModel.swift; sourceTree = "<group>"; };
@@ -678,7 +676,6 @@
 			children = (
 				8DF0FD9D2558395200D5B225 /* AuthorizeRequest.swift */,
 				8DF0FDA32558464300D5B225 /* UserCreateRequest.swift */,
-				8DF253D525485073001492AE /* FavoriteVocabularyFetchRequest.swift */,
 				8D435A97254E051900838691 /* SearchVocabularyRequest.swift */,
 				8DAA5549252912BA00FF5066 /* VocabularyFetchRequest.swift */,
 				8D662559252B0F9F00991D45 /* VocabularyCreateRequest.swift */,
@@ -1905,7 +1902,6 @@
 				8DF2537E254328CD001492AE /* ColoredImageTableViewCell.swift in Sources */,
 				8D66254C252A7D3900991D45 /* WordsViewModel.swift in Sources */,
 				8D435B2B25548E6A00838691 /* VocabularyCategoryCellFactory.swift in Sources */,
-				8DF253D625485073001492AE /* FavoriteVocabularyFetchRequest.swift in Sources */,
 				8D66253A252A6D4600991D45 /* VocabularyProgressView.swift in Sources */,
 				8D83EA76252B9EB9004E6098 /* CoordinatorClosableProtocol.swift in Sources */,
 				8DD28BD32526854300F59B7D /* UINavigationItem+Drivable.swift in Sources */,

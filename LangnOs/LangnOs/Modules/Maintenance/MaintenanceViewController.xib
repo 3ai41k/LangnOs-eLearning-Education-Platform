@@ -20,41 +20,42 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3S2-iQ-fj3">
-                    <rect key="frame" x="64" y="60" width="286" height="64"/>
+                    <rect key="frame" x="72" y="60" width="270" height="48"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="CgU-4C-XGN">
-                            <rect key="frame" x="32" y="16" width="222" height="32"/>
+                            <rect key="frame" x="16" y="8" width="238" height="32"/>
                             <subviews>
                                 <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="tZR-KX-UPK">
                                     <rect key="frame" x="0.0" y="0.0" width="20" height="32"/>
+                                    <color key="color" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </activityIndicatorView>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Synchronize With Cloud" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xTR-fM-8lF">
-                                    <rect key="frame" x="36" y="0.0" width="186" height="32"/>
+                                    <rect key="frame" x="36" y="0.0" width="202" height="32"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                    <nil key="textColor"/>
+                                    <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                             </subviews>
                         </stackView>
                     </subviews>
-                    <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="backgroundColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
-                        <constraint firstItem="CgU-4C-XGN" firstAttribute="leading" secondItem="3S2-iQ-fj3" secondAttribute="leading" constant="32" id="9N2-pk-QrM"/>
-                        <constraint firstAttribute="trailing" secondItem="CgU-4C-XGN" secondAttribute="trailing" constant="32" id="HgN-yV-ibd"/>
-                        <constraint firstAttribute="height" constant="64" id="afV-A8-MaM"/>
-                        <constraint firstAttribute="bottom" secondItem="CgU-4C-XGN" secondAttribute="bottom" constant="16" id="cFA-CN-Xot"/>
-                        <constraint firstItem="CgU-4C-XGN" firstAttribute="top" secondItem="3S2-iQ-fj3" secondAttribute="top" constant="16" id="pJ4-ea-UZ1"/>
+                        <constraint firstItem="CgU-4C-XGN" firstAttribute="leading" secondItem="3S2-iQ-fj3" secondAttribute="leading" constant="16" id="9N2-pk-QrM"/>
+                        <constraint firstAttribute="trailing" secondItem="CgU-4C-XGN" secondAttribute="trailing" constant="16" id="HgN-yV-ibd"/>
+                        <constraint firstAttribute="height" constant="48" id="afV-A8-MaM"/>
+                        <constraint firstAttribute="bottom" secondItem="CgU-4C-XGN" secondAttribute="bottom" constant="8" id="cFA-CN-Xot"/>
+                        <constraint firstItem="CgU-4C-XGN" firstAttribute="top" secondItem="3S2-iQ-fj3" secondAttribute="top" constant="8" id="pJ4-ea-UZ1"/>
                     </constraints>
                 </view>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="3S2-iQ-fj3" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="16" id="F9Z-Ri-zj2"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="3S2-iQ-fj3" secondAttribute="trailing" constant="64" id="cb1-Ed-gF1"/>
-                <constraint firstItem="3S2-iQ-fj3" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="64" id="goK-9c-0S1"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="3S2-iQ-fj3" secondAttribute="trailing" constant="72" id="cb1-Ed-gF1"/>
+                <constraint firstItem="3S2-iQ-fj3" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="72" id="goK-9c-0S1"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
-            <point key="canvasLocation" x="139" y="127"/>
+            <point key="canvasLocation" x="137.68115942028987" y="126.5625"/>
         </view>
     </objects>
 </document>
