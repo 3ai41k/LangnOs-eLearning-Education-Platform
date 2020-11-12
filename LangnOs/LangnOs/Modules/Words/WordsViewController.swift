@@ -15,7 +15,7 @@ final class WordsViewController: BindibleViewController<WordsViewModelProtocol> 
     @IBOutlet private weak var tableView: UniversalTableView! {
         didSet {
             tableView.viewModel = viewModel
-            tableView.cellFactory = tableViewCellFactory
+            tableView.cellFactory = cellFactory
             
             tableView.start()
         }
@@ -23,7 +23,7 @@ final class WordsViewController: BindibleViewController<WordsViewModelProtocol> 
     
     // MARK: - Public properties
     
-    var tableViewCellFactory: UniversalTableViewCellFactoryProtocol?
+    var cellFactory: UniversalTableViewCellFactoryProtocol?
     
     // MARK: - Private properties
     // MARK: - Lifecycle

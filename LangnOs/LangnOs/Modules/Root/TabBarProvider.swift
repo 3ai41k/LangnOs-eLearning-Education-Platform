@@ -60,7 +60,7 @@ enum TabBarProvider: Int, CaseIterable {
         case .courses:
             return CoursesCoordinator(parentViewController: parentViewController)
         case .messages:
-            return MessagesCoordinator(parentViewController: parentViewController)
+            return ChatsCoordinator(parentViewController: parentViewController)
         case .search:
             return SearchVocabularyCoordinator(parentViewController: parentViewController)
         }

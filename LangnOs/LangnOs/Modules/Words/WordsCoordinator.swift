@@ -40,7 +40,7 @@ final class WordsCoordinator: Coordinator, WordsCoordinatorProtocol {
         
         let cellFactory = CreateVocabularyCellFactory()
         let viewController = WordsViewController()
-        viewController.tableViewCellFactory = cellFactory
+        viewController.cellFactory = cellFactory
         viewController.viewModel = viewModel
         
         self.viewController = viewController
