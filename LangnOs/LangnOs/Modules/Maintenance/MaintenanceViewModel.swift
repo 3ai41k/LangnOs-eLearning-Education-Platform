@@ -48,7 +48,11 @@ final class MaintenanceViewModel: MaintenanceViewModelProtocol {
     // MARK: - Public methods
     
     func synchronize() {
-        dataSynchronizer.synchronize(completion: hideSynchronizeView)
+        dataSynchronizer.synchronize {
+            DispatchQueue.main.async {
+                self.hideSynchronizeView?()
+            }
+        }
     }
     
     func close() {

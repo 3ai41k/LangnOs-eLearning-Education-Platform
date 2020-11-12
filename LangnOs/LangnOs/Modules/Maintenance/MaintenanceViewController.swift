@@ -15,7 +15,7 @@ final class MaintenanceViewController: BindibleViewController<MaintenanceViewMod
     
     @IBOutlet private weak var synchronizeView: UIView! {
         didSet {
-            synchronizeView.layer.cornerRadius = 25.0
+            synchronizeView.layer.cornerRadius = 20.0
             synchronizeView.layer.opacity = .zero
         }
     }

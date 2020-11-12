@@ -33,7 +33,12 @@ final class RootCoordinator: Coordinator, RootCoordinatorProtocol {
     // MARK: - Override
     
     override func start() {
-        let viewModel = RootViewModel(router: self)
+        let userSession = UserSession.shared
+        let networkState = NetworkState.shared
+        let viewModel = RootViewModel(router: self,
+                                      userSession: userSession,
+                                      networkState: networkState)
+        
         let viewController = RootTabBarController()
         viewController.viewModel = viewModel
         

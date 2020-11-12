@@ -17,7 +17,6 @@ class SynchronizeOperation: AsyncOperation {
     // MARK: - Private properties
     
     private let completion: () -> Void
-    private let networkState: InternetConnectableProtocol
     
     // MARK: - Lifecycle
     
@@ -25,7 +24,6 @@ class SynchronizeOperation: AsyncOperation {
         self.completion = completion
         
         self.firebaseDatabase = FirebaseDatabase.shared
-        self.networkState = NetworkState.shared
         
         super.init()
     }
@@ -38,11 +36,7 @@ class SynchronizeOperation: AsyncOperation {
     // MARK: - Override
     
     override func main() {
-        if networkState.isReachable {
-            syncronize()
-        } else {
-            state = .finished
-        }
+        syncronize()
     }
     
     // MARK: - protexted(internal) methods

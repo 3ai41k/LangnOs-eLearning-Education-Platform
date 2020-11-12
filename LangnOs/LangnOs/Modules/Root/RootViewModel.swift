@@ -18,13 +18,19 @@ final class RootViewModel {
     // MARK: - Private properties
     
     private let router: RootCoordinatorProtocol
+    private let userSession: SessionInfoProtocol
+    private let networkState: InternetConnectableProtocol
     
     private var isSynchronized = false
     
     // MARK: - Init
     
-    init(router: RootCoordinatorProtocol) {
+    init(router: RootCoordinatorProtocol,
+         userSession: SessionInfoProtocol,
+         networkState: InternetConnectableProtocol) {
         self.router = router
+        self.userSession = userSession
+        self.networkState = networkState
     }
     
 }
@@ -34,7 +40,13 @@ final class RootViewModel {
 extension RootViewModel: RootViewModelInputProtocol {
     
     func maintenance() {
-        guard !isSynchronized else { return }
+        guard
+            !isSynchronized,
+            networkState.isReachable,
+            userSession.currentUser != nil
+        else {
+            return
+        }
         
         router.navigateToMaintenance()
         isSynchronized = true
