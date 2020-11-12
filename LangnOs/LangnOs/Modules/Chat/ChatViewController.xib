@@ -9,6 +9,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ChatViewController">
             <connections>
+                <outlet property="messageTextField" destination="k2V-xD-e3X" id="gz8-Em-mol"/>
                 <outlet property="tableView" destination="u0S-N0-dP6" id="IXL-dK-w4T"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -18,20 +19,65 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" sectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="u0S-N0-dP6" customClass="UniversalTableView" customModule="LangnOs" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" sectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="u0S-N0-dP6" customClass="UniversalTableView" customModule="LangnOs" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="44" width="414" height="764"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                 </tableView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Idz-vL-ZcF">
+                    <rect key="frame" x="0.0" y="808" width="414" height="54"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3v0-sA-HWm">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="1"/>
+                            <color key="backgroundColor" systemColor="systemGray5Color" red="0.8980392157" green="0.8980392157" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="1" id="IaR-Sx-bi5"/>
+                            </constraints>
+                        </view>
+                        <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="UPN-M9-AB6">
+                            <rect key="frame" x="8" y="8" width="398" height="38"/>
+                            <subviews>
+                                <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" verticalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Message" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="k2V-xD-e3X">
+                                    <rect key="frame" x="0.0" y="0.0" width="348" height="38"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                    <textInputTraits key="textInputTraits"/>
+                                </textField>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WYR-7N-Zl2">
+                                    <rect key="frame" x="356" y="0.0" width="42" height="38"/>
+                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                    <state key="normal" title="Send"/>
+                                    <connections>
+                                        <action selector="didSendTouch:" destination="-1" eventType="touchUpInside" id="3Ni-Ht-kJe"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                        </stackView>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="systemGray6Color" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="UPN-M9-AB6" secondAttribute="bottom" constant="8" id="B81-4t-rPO"/>
+                        <constraint firstAttribute="trailing" secondItem="3v0-sA-HWm" secondAttribute="trailing" id="NEY-6e-vE3"/>
+                        <constraint firstItem="3v0-sA-HWm" firstAttribute="top" secondItem="Idz-vL-ZcF" secondAttribute="top" id="NqH-Ip-AdX"/>
+                        <constraint firstItem="UPN-M9-AB6" firstAttribute="top" secondItem="3v0-sA-HWm" secondAttribute="bottom" constant="7" id="Rhn-Be-i8V"/>
+                        <constraint firstItem="3v0-sA-HWm" firstAttribute="leading" secondItem="Idz-vL-ZcF" secondAttribute="leading" id="Uoh-1e-jHf"/>
+                        <constraint firstAttribute="trailing" secondItem="UPN-M9-AB6" secondAttribute="trailing" constant="8" id="Vts-Y3-Kzd"/>
+                        <constraint firstItem="UPN-M9-AB6" firstAttribute="leading" secondItem="Idz-vL-ZcF" secondAttribute="leading" constant="8" id="wxI-F3-Er6"/>
+                        <constraint firstAttribute="height" constant="54" id="yZ6-bD-y35"/>
+                    </constraints>
+                </view>
             </subviews>
             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
             <constraints>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="u0S-N0-dP6" secondAttribute="trailing" id="3TQ-Lr-S9L"/>
-                <constraint firstItem="u0S-N0-dP6" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="QwF-37-wHK"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="u0S-N0-dP6" secondAttribute="bottom" id="uVT-Vf-ddI"/>
-                <constraint firstItem="u0S-N0-dP6" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="zvG-LM-vfP"/>
+                <constraint firstItem="Idz-vL-ZcF" firstAttribute="top" secondItem="u0S-N0-dP6" secondAttribute="bottom" id="7Ct-MU-GSx"/>
+                <constraint firstItem="Idz-vL-ZcF" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="BLB-BQ-azq"/>
+                <constraint firstItem="Idz-vL-ZcF" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Ko7-EV-ifc"/>
+                <constraint firstItem="u0S-N0-dP6" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="LQQ-Pz-5mZ"/>
+                <constraint firstItem="Idz-vL-ZcF" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="MMs-db-qQz"/>
+                <constraint firstItem="u0S-N0-dP6" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="NgD-n5-nsl"/>
+                <constraint firstItem="Idz-vL-ZcF" firstAttribute="top" secondItem="u0S-N0-dP6" secondAttribute="bottom" id="OyT-cA-Nw7"/>
+                <constraint firstItem="u0S-N0-dP6" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="UNQ-mN-K4V"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
-            <point key="canvasLocation" x="139" y="127"/>
+            <point key="canvasLocation" x="137.68115942028987" y="126.5625"/>
         </view>
     </objects>
 </document>

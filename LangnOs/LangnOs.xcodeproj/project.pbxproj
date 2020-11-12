@@ -119,6 +119,7 @@
 		8D768D11255DA45600E8B778 /* ChatMessageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D768D0F255DA45600E8B778 /* ChatMessageTableViewCell.xib */; };
 		8D768D13255DA51B00E8B778 /* OutcomingMessageCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D768D12255DA51B00E8B778 /* OutcomingMessageCellViewModel.swift */; };
 		8D768D15255DAAAC00E8B778 /* IncomingMessageCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D768D14255DAAAC00E8B778 /* IncomingMessageCellViewModel.swift */; };
+		8D768D17255DAF2300E8B778 /* CreateMessageRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D768D16255DAF2300E8B778 /* CreateMessageRequest.swift */; };
 		8D83EA65252B8BB7004E6098 /* VocabularyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D83EA63252B8BB7004E6098 /* VocabularyTableViewCell.swift */; };
 		8D83EA66252B8BB7004E6098 /* VocabularyTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D83EA64252B8BB7004E6098 /* VocabularyTableViewCell.xib */; };
 		8D83EA68252B8BE5004E6098 /* VocabularyCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D83EA67252B8BE5004E6098 /* VocabularyCellViewModel.swift */; };
@@ -416,6 +417,7 @@
 		8D768D0F255DA45600E8B778 /* ChatMessageTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChatMessageTableViewCell.xib; sourceTree = "<group>"; };
 		8D768D12255DA51B00E8B778 /* OutcomingMessageCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutcomingMessageCellViewModel.swift; sourceTree = "<group>"; };
 		8D768D14255DAAAC00E8B778 /* IncomingMessageCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncomingMessageCellViewModel.swift; sourceTree = "<group>"; };
+		8D768D16255DAF2300E8B778 /* CreateMessageRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateMessageRequest.swift; sourceTree = "<group>"; };
 		8D83EA63252B8BB7004E6098 /* VocabularyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabularyTableViewCell.swift; sourceTree = "<group>"; };
 		8D83EA64252B8BB7004E6098 /* VocabularyTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VocabularyTableViewCell.xib; sourceTree = "<group>"; };
 		8D83EA67252B8BE5004E6098 /* VocabularyCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabularyCellViewModel.swift; sourceTree = "<group>"; };
@@ -713,6 +715,7 @@
 				8DF0FD9D2558395200D5B225 /* AuthorizeRequest.swift */,
 				8D768CF9255D9BB900E8B778 /* FetchChatsRequest.swift */,
 				8D768CFB255D9D8400E8B778 /* FetchMessagesRequest.swift */,
+				8D768D16255DAF2300E8B778 /* CreateMessageRequest.swift */,
 				8DF0FDA32558464300D5B225 /* UserCreateRequest.swift */,
 				8D435A97254E051900838691 /* SearchVocabularyRequest.swift */,
 				8DAA5549252912BA00FF5066 /* VocabularyFetchRequest.swift */,
@@ -2021,6 +2024,7 @@
 				8D435B2925548C4200838691 /* TextCellViewModel.swift in Sources */,
 				8D94E868253CE2AB005FA4B9 /* WritingViewController.swift in Sources */,
 				8DD745B9255AFA9600370285 /* UserStorage.swift in Sources */,
+				8D768D17255DAF2300E8B778 /* CreateMessageRequest.swift in Sources */,
 				8D94E869253CE2AB005FA4B9 /* WritingViewModel.swift in Sources */,
 				8D768CE6255D916E00E8B778 /* ChatsViewModel.swift in Sources */,
 				8DF25385254330A6001492AE /* MessageTableViewCell.swift in Sources */,

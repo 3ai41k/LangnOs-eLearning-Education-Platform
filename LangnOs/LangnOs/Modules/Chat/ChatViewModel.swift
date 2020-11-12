@@ -14,7 +14,7 @@ protocol ChatViewModelInputProtocol {
 }
 
 protocol ChatViewModelOutputProtocol {
-    
+    func send(message: String)
 }
 
 typealias ChatViewModelProtocol =
@@ -40,7 +40,7 @@ final class ChatViewModel: ChatViewModelProtocol {
     
     private let router: ChatCoordinatorProtocol
     private let chat: Chat
-    private let dataProvider: FirebaseDatabaseFetchingProtocol
+    private let dataProvider: FirebaseDatabaseFetchingProtocol & FirebaseDatabaseCreatingProtocol
     private let userSession: SessionInfoProtocol
     
     private var messages: [Message] = [] {
@@ -60,7 +60,7 @@ final class ChatViewModel: ChatViewModelProtocol {
     
     init(router: ChatCoordinatorProtocol,
          chat: Chat,
-         dataProvider: FirebaseDatabaseFetchingProtocol,
+         dataProvider: FirebaseDatabaseFetchingProtocol & FirebaseDatabaseCreatingProtocol,
          userSession: SessionInfoProtocol) {
         self.router = router
         self.chat = chat
@@ -70,6 +70,18 @@ final class ChatViewModel: ChatViewModelProtocol {
         self.appendMessageSection()
         
         self.fetchData()
+    }
+    
+    // MARK: - Public methods
+    
+    func send(message: String) {
+        guard let userId = userSession.currentUser?.id else { return }
+        
+        let message = Message(userId: userId, content: message)
+        let request = CreateMessageRequest(chatId: chat.id, message: message)
+        dataProvider.create(request: request, onSuccess: {
+            self.messages.append(message)
+        }, onFailure: router.showError)
     }
     
     // MARK: - Private methods

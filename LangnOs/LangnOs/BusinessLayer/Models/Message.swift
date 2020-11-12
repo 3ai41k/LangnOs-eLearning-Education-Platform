@@ -12,8 +12,18 @@ struct Message: Codable {
     
     // MARK: - Public properties
     
+    let id: String
     let userId: String
     let createdDate: Date
     let content: String
+    
+    // MARK: - Init
+    
+    init(userId: String, content: String) {
+        self.id = UUID().uuidString
+        self.userId = userId
+        self.createdDate = Date()
+        self.content = content
+    }
     
 }

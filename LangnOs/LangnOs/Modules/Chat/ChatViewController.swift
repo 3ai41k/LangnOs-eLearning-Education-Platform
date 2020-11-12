@@ -22,6 +22,7 @@ final class ChatViewController: BindibleViewController<ChatViewModel> {
             tableView.start()
         }
     }
+    @IBOutlet weak var messageTextField: UITextField!
     
     // MARK: - Public properties
     
@@ -35,6 +36,14 @@ final class ChatViewController: BindibleViewController<ChatViewModel> {
     
     override func setupUI() {
         
+    }
+    
+    // MARK: - Actions
+    
+    @IBAction
+    private func didSendTouch(_ sender: Any) {
+        guard let text = messageTextField.text, !text.isEmpty else { return }
+        viewModel?.send(message: text)
     }
     
 }
