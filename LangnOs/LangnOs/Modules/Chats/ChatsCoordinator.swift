@@ -9,7 +9,7 @@
 import UIKit
 
 protocol ChatsCoordinatorNavigationProtocol {
-    
+    func navigateToChat(_ chat: Chat)
 }
 
 typealias ChatsCoordinatorProtocol =
@@ -36,6 +36,13 @@ final class ChatsCoordinator: Coordinator, ChatsCoordinatorProtocol  {
         navigationController.tabBarItem = UITabBarItem(provider: .messages)
         
         self.viewController = navigationController
+    }
+    
+    // MARK: - ChatsCoordinatorNavigationProtocol
+    
+    func navigateToChat(_ chat: Chat) {
+        let chatCoordinator = ChatCoordinator(chat: chat, parentViewController: viewController)
+        chatCoordinator.start()
     }
     
 }

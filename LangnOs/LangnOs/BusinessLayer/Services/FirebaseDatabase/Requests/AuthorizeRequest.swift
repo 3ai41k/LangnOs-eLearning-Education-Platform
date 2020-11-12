@@ -21,8 +21,8 @@ struct AuthorizeRequest {
 
 extension AuthorizeRequest: DataProviderRequestProtocol {
     
-    var collectionPath: CollectionPath {
-        .users
+    var collectionPath: String {
+        CollectionPath.users.rawValue
     }
     
     func query(_ reference: CollectionReference) -> Query? {

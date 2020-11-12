@@ -106,7 +106,14 @@
 		8D768CEC255D932100E8B778 /* ChatTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D768CEA255D932100E8B778 /* ChatTableViewCell.xib */; };
 		8D768CEE255D946000E8B778 /* ChatCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D768CED255D946000E8B778 /* ChatCellViewModel.swift */; };
 		8D768CF0255D94C700E8B778 /* ChatsCellFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D768CEF255D94C700E8B778 /* ChatsCellFactory.swift */; };
-		8D768CF2255D96BB00E8B778 /* FetchAllUsersRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D768CF1255D96BB00E8B778 /* FetchAllUsersRequest.swift */; };
+		8D768CF4255D9B0700E8B778 /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D768CF3255D9B0700E8B778 /* Chat.swift */; };
+		8D768CF6255D9B4600E8B778 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D768CF5255D9B4600E8B778 /* Message.swift */; };
+		8D768CFA255D9BB900E8B778 /* FetchChatsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D768CF9255D9BB900E8B778 /* FetchChatsRequest.swift */; };
+		8D768CFC255D9D8400E8B778 /* FetchMessagesRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D768CFB255D9D8400E8B778 /* FetchMessagesRequest.swift */; };
+		8D768D02255DA08100E8B778 /* ChatCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D768CFE255DA08100E8B778 /* ChatCoordinator.swift */; };
+		8D768D03255DA08100E8B778 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D768CFF255DA08100E8B778 /* ChatViewController.swift */; };
+		8D768D04255DA08100E8B778 /* ChatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D768D00255DA08100E8B778 /* ChatViewModel.swift */; };
+		8D768D05255DA08100E8B778 /* ChatViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D768D01255DA08100E8B778 /* ChatViewController.xib */; };
 		8D83EA65252B8BB7004E6098 /* VocabularyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D83EA63252B8BB7004E6098 /* VocabularyTableViewCell.swift */; };
 		8D83EA66252B8BB7004E6098 /* VocabularyTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D83EA64252B8BB7004E6098 /* VocabularyTableViewCell.xib */; };
 		8D83EA68252B8BE5004E6098 /* VocabularyCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D83EA67252B8BE5004E6098 /* VocabularyCellViewModel.swift */; };
@@ -391,7 +398,14 @@
 		8D768CEA255D932100E8B778 /* ChatTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChatTableViewCell.xib; sourceTree = "<group>"; };
 		8D768CED255D946000E8B778 /* ChatCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatCellViewModel.swift; sourceTree = "<group>"; };
 		8D768CEF255D94C700E8B778 /* ChatsCellFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatsCellFactory.swift; sourceTree = "<group>"; };
-		8D768CF1255D96BB00E8B778 /* FetchAllUsersRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchAllUsersRequest.swift; sourceTree = "<group>"; };
+		8D768CF3255D9B0700E8B778 /* Chat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chat.swift; sourceTree = "<group>"; };
+		8D768CF5255D9B4600E8B778 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		8D768CF9255D9BB900E8B778 /* FetchChatsRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchChatsRequest.swift; sourceTree = "<group>"; };
+		8D768CFB255D9D8400E8B778 /* FetchMessagesRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchMessagesRequest.swift; sourceTree = "<group>"; };
+		8D768CFE255DA08100E8B778 /* ChatCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatCoordinator.swift; sourceTree = "<group>"; };
+		8D768CFF255DA08100E8B778 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
+		8D768D00255DA08100E8B778 /* ChatViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewModel.swift; sourceTree = "<group>"; };
+		8D768D01255DA08100E8B778 /* ChatViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChatViewController.xib; sourceTree = "<group>"; };
 		8D83EA63252B8BB7004E6098 /* VocabularyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabularyTableViewCell.swift; sourceTree = "<group>"; };
 		8D83EA64252B8BB7004E6098 /* VocabularyTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VocabularyTableViewCell.xib; sourceTree = "<group>"; };
 		8D83EA67252B8BE5004E6098 /* VocabularyCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabularyCellViewModel.swift; sourceTree = "<group>"; };
@@ -687,7 +701,8 @@
 			isa = PBXGroup;
 			children = (
 				8DF0FD9D2558395200D5B225 /* AuthorizeRequest.swift */,
-				8D768CF1255D96BB00E8B778 /* FetchAllUsersRequest.swift */,
+				8D768CF9255D9BB900E8B778 /* FetchChatsRequest.swift */,
+				8D768CFB255D9D8400E8B778 /* FetchMessagesRequest.swift */,
 				8DF0FDA32558464300D5B225 /* UserCreateRequest.swift */,
 				8D435A97254E051900838691 /* SearchVocabularyRequest.swift */,
 				8DAA5549252912BA00FF5066 /* VocabularyFetchRequest.swift */,
@@ -1005,6 +1020,17 @@
 			path = ChatCell;
 			sourceTree = "<group>";
 		};
+		8D768CFD255DA06300E8B778 /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				8D768CFE255DA08100E8B778 /* ChatCoordinator.swift */,
+				8D768CFF255DA08100E8B778 /* ChatViewController.swift */,
+				8D768D00255DA08100E8B778 /* ChatViewModel.swift */,
+				8D768D01255DA08100E8B778 /* ChatViewController.xib */,
+			);
+			path = Chat;
+			sourceTree = "<group>";
+		};
 		8D83EA62252B8B78004E6098 /* VocabularyCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -1234,6 +1260,7 @@
 				8DF253C22544B059001492AE /* FlashCardsSettings */,
 				8D66253D252A715800991D45 /* Words */,
 				8D768CDF255D912600E8B778 /* Chats */,
+				8D768CFD255DA06300E8B778 /* Chat */,
 				8D435A73254C39F100838691 /* SearchVocabulary */,
 				8DD28C102528ADF500F59B7D /* SingUp */,
 				8DD28C0F2528ADEC00F59B7D /* SingIn */,
@@ -1451,6 +1478,8 @@
 				8DAA553F2529112B00FF5066 /* Vocabulary.swift */,
 				8DAA554D25291D3400FF5066 /* Word.swift */,
 				8D435B2125548A1900838691 /* Category.swift */,
+				8D768CF3255D9B0700E8B778 /* Chat.swift */,
+				8D768CF5255D9B4600E8B778 /* Message.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1748,6 +1777,7 @@
 				8DF253B22544838D001492AE /* VocabularySettingsViewController.xib in Resources */,
 				8D662537252A612A00991D45 /* ScoreView.xib in Resources */,
 				8DD28B94252667F800F59B7D /* LaunchScreen.storyboard in Resources */,
+				8D768D05255DA08100E8B778 /* ChatViewController.xib in Resources */,
 				8DD28C162528AEEF00F59B7D /* SingInViewController.xib in Resources */,
 				8D662541252A717500991D45 /* WordsViewController.xib in Resources */,
 				8DD28B91252667F800F59B7D /* Assets.xcassets in Resources */,
@@ -1893,6 +1923,7 @@
 				8DF253722543194E001492AE /* TitleSectionView.swift in Sources */,
 				8D435AB0254F45E500838691 /* VocabularyInfoView.swift in Sources */,
 				8D524FE62533BA46002A6E01 /* FlashCardsCoordinator.swift in Sources */,
+				8D768CF6255D9B4600E8B778 /* Message.swift in Sources */,
 				8D435B2225548A1900838691 /* Category.swift in Sources */,
 				8DD28BAC25266EA500F59B7D /* TabBarProvider.swift in Sources */,
 				8DC3CF46252D2DA6003CA62A /* AlertPresentableProtocol.swift in Sources */,
@@ -1900,6 +1931,7 @@
 				8D768CE4255D916E00E8B778 /* ChatsCoordinator.swift in Sources */,
 				8D435A95254DFBC300838691 /* CoursesViewModel.swift in Sources */,
 				8DF253B42544A051001492AE /* Interactor.swift in Sources */,
+				8D768CF4255D9B0700E8B778 /* Chat.swift in Sources */,
 				8D524FC72530D1D8002A6E01 /* UIButton+Drivable.swift in Sources */,
 				8D768CD3255C6FB700E8B778 /* Validator.swift in Sources */,
 				8D83EA86252BBBD1004E6098 /* TableSectionViewModel.swift in Sources */,
@@ -2014,6 +2046,7 @@
 				8D768CEB255D932100E8B778 /* ChatTableViewCell.swift in Sources */,
 				8DD745AE255AE30100370285 /* SearchVocabularyTableViewCell.swift in Sources */,
 				8D768CDD255D5AFD00E8B778 /* MaintenanceViewModel.swift in Sources */,
+				8D768CFA255D9BB900E8B778 /* FetchChatsRequest.swift in Sources */,
 				8D435A7A254C3A1E00838691 /* SearchVocabularyViewModel.swift in Sources */,
 				8D524FB3252FB654002A6E01 /* SingUpViewModel.swift in Sources */,
 				8DF253E52549AFDB001492AE /* VocabularyListCoordinator.swift in Sources */,
@@ -2031,8 +2064,8 @@
 				8D435A86254C51AF00838691 /* UIImag+Size.swift in Sources */,
 				8DD28BD52526856B00F59B7D /* NavigationItemDrivableModel.swift in Sources */,
 				8DF2538F25434BE9001492AE /* MaterialsViewController.swift in Sources */,
-				8D768CF2255D96BB00E8B778 /* FetchAllUsersRequest.swift in Sources */,
 				8D435AC2254F534E00838691 /* VocabularyCategoryViewController.swift in Sources */,
+				8D768D03255DA08100E8B778 /* ChatViewController.swift in Sources */,
 				8D435A93254DFBC300838691 /* CoursesCoordinator.swift in Sources */,
 				8DF2536C25431819001492AE /* DashboardSectionFactory.swift in Sources */,
 				8D524FDF2533ACC0002A6E01 /* UITextField+Drivable.swift in Sources */,
@@ -2046,7 +2079,9 @@
 				8DD28BEE2527A52100F59B7D /* BarButtonDrivableModel.swift in Sources */,
 				8DC3CF43252D2CBD003CA62A /* VocabularyDeleteRequest.swift in Sources */,
 				8D524FD525337A22002A6E01 /* ToolbarDrivableModel.swift in Sources */,
+				8D768D02255DA08100E8B778 /* ChatCoordinator.swift in Sources */,
 				8DA744B6253F414300F9EC8B /* ViewAllCollectionReusableViewModel.swift in Sources */,
+				8D768CFC255D9D8400E8B778 /* FetchMessagesRequest.swift in Sources */,
 				8D94E7D02534E34E005FA4B9 /* VocabularyEntity.swift in Sources */,
 				8D94E7D62534F6DF005FA4B9 /* CDEntityProtocol.swift in Sources */,
 				8DF2539025434BE9001492AE /* MaterialsViewModel.swift in Sources */,
@@ -2085,6 +2120,7 @@
 				8DF253A9254482B5001492AE /* BottomCardTransition.swift in Sources */,
 				8DD28BCF252683A100F59B7D /* DashboardViewModel.swift in Sources */,
 				8D524F62252E5C71002A6E01 /* UniversalCollectionViewSectionRegistratable.swift in Sources */,
+				8D768D04255DA08100E8B778 /* ChatViewModel.swift in Sources */,
 				8DF0FD9C2558375500D5B225 /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

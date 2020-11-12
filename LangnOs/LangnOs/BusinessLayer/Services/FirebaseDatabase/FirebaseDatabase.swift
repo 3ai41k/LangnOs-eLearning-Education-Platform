@@ -71,7 +71,7 @@ final class FirebaseDatabase {
 extension FirebaseDatabase: FirebaseDatabaseFetchingProtocol {
     
     func fetch<Entity: Decodable>(request: DataProviderRequestProtocol, onSuccess: @escaping (Entity) -> Void, onFailure: @escaping (Error) -> Void) {
-        let collectionReference = dataBase.collection(request.collectionPath.rawValue)
+        let collectionReference = dataBase.collection(request.collectionPath)
         let collectionReferenceWithQuery = request.query(collectionReference) ?? collectionReference
         collectionReferenceWithQuery.getDocuments { (snapshot, error) in
             if let error = error {
@@ -95,7 +95,7 @@ extension FirebaseDatabase: FirebaseDatabaseCreatingProtocol {
     func create(request: DataProviderRequestProtocol, onSuccess: @escaping () -> Void, onFailure: @escaping (Error) -> Void) {
         guard let documentPath = request.documentPath else { onFailure(FirebaseDatabaseError.documentsWereNotFound); return }
         guard let documentData = request.documentData else { onFailure(FirebaseDatabaseError.documentIsEmpty); return }
-        let collectionReference = dataBase.collection(request.collectionPath.rawValue)
+        let collectionReference = dataBase.collection(request.collectionPath)
         let documentReference = collectionReference.document(documentPath)
         documentReference.setData(documentData) { (error) in
             if let error = error {
@@ -114,7 +114,7 @@ extension FirebaseDatabase: FirebaseDatabaseDeletingProtocol {
     
     func delete(request: DataProviderRequestProtocol, onSuccess: @escaping () -> Void, onFailure: @escaping (Error) -> Void) {
         guard let documentPath = request.documentPath else { onFailure(FirebaseDatabaseError.documentsWereNotFound); return }
-        let collectionReference = dataBase.collection(request.collectionPath.rawValue)
+        let collectionReference = dataBase.collection(request.collectionPath)
         let documentReference = collectionReference.document(documentPath)
         documentReference.delete(completion: { (error) in
             if let error = error {
@@ -134,7 +134,7 @@ extension FirebaseDatabase: FirebaseDatabaseUpdatingProtocol {
     func update(request: DataProviderRequestProtocol, onSuccess: @escaping () -> Void, onFailure: @escaping (Error) -> Void) {
         guard let documentPath = request.documentPath else { onFailure(FirebaseDatabaseError.documentsWereNotFound); return }
         guard let documentData = request.documentData else { onFailure(FirebaseDatabaseError.documentIsEmpty); return }
-        let collectionReference = dataBase.collection(request.collectionPath.rawValue)
+        let collectionReference = dataBase.collection(request.collectionPath)
         let documentReference = collectionReference.document(documentPath)
         documentReference.updateData(documentData) { (error) in
             if let error = error {

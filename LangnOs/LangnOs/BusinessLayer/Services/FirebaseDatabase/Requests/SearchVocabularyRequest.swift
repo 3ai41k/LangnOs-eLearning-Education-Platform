@@ -36,8 +36,8 @@ struct SearchVocabularyRequest {
 
 extension SearchVocabularyRequest: DataProviderRequestProtocol {
     
-    var collectionPath: CollectionPath {
-        .vocabularies
+    var collectionPath: String {
+        CollectionPath.vocabularies.rawValue
     }
     
 }

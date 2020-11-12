@@ -20,8 +20,8 @@ struct UserCreateRequest {
 
 extension UserCreateRequest: DataProviderRequestProtocol {
     
-    var collectionPath: CollectionPath {
-        .users
+    var collectionPath: String {
+        CollectionPath.users.rawValue
     }
     
     var documentPath: String? {

@@ -20,8 +20,8 @@ struct VocabularyCreateRequest {
 
 extension VocabularyCreateRequest: DataProviderRequestProtocol {
     
-    var collectionPath: CollectionPath {
-        .vocabularies
+    var collectionPath: String {
+        CollectionPath.vocabularies.rawValue
     }
     
     var documentPath: String? {

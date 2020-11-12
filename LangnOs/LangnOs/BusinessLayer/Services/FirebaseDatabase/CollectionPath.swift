@@ -11,4 +11,6 @@ import Foundation
 enum CollectionPath: String {
     case users = "Users"
     case vocabularies = "Vocabularies"
+    case chats = "Chats"
+    case messages = "Messages"
 }

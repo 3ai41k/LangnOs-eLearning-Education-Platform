@@ -22,6 +22,10 @@ typealias ChatsViewModelProtocol =
     ChatsViewModelOutputProtocol &
     UniversalTableViewModelProtocol
 
+private enum SectionType: Int {
+    case chats
+}
+
 final class ChatsViewModel: ChatsViewModelProtocol {
     
     // MARK: - Public properties
@@ -37,6 +41,13 @@ final class ChatsViewModel: ChatsViewModelProtocol {
     private let router: ChatsCoordinatorProtocol
     private let dataProvider: FirebaseDatabaseFetchingProtocol
     
+    private var chats: [Chat] = [] {
+        didSet {
+            let cellViewModels = chats.map({ ChatCellViewModel(chat: $0) })
+            tableSections[SectionType.chats.rawValue].cells.value = cellViewModels
+        }
+    }
+    
     // MARK: - Init
     
     init(router: ChatsCoordinatorProtocol,
@@ -49,7 +60,13 @@ final class ChatsViewModel: ChatsViewModelProtocol {
         self.fetchData()
     }
     
-    // MARK: - Public methods
+    // MARK: - Publis methods
+    
+    func didSelectCellAt(indexPath: IndexPath) {
+        let chat = chats[indexPath.row]
+        router.navigateToChat(chat)
+    }
+    
     // MARK: - Private methods
     
     private func appendChatSection() {
@@ -58,9 +75,9 @@ final class ChatsViewModel: ChatsViewModelProtocol {
     }
     
     private func fetchData() {
-        let request = FetchAllUsersRequest()
-        dataProvider.fetch(request: request, onSuccess: { (users: [User1]) in
-            self.tableSections[0].cells.value = users.map({ ChatCellViewModel(user: $0) })
+        let request = FetchChatsRequest()
+        dataProvider.fetch(request: request, onSuccess: { (chats: [Chat]) in
+            self.chats = chats
         }, onFailure: router.showError)
     }
     

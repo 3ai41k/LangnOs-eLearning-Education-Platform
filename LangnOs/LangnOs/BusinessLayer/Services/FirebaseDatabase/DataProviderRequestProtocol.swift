@@ -9,7 +9,7 @@
 import FirebaseFirestore
 
 protocol DataProviderRequestProtocol {
-    var collectionPath: CollectionPath { get }
+    var collectionPath: String { get }
     var documentPath: String? { get }
     var documentData: [String: Any]? { get }
     func query(_ reference: CollectionReference) -> Query?

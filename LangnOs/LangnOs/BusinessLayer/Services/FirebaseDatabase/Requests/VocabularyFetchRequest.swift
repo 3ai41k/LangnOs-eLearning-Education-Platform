@@ -20,8 +20,8 @@ struct VocabularyFetchRequest {
 
 extension VocabularyFetchRequest: DataProviderRequestProtocol {
     
-    var collectionPath: CollectionPath {
-        .vocabularies
+    var collectionPath: String {
+        CollectionPath.vocabularies.rawValue
     }
     
     func query(_ reference: CollectionReference) -> Query? {

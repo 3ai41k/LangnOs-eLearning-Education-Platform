@@ -21,17 +21,17 @@ final class ChatCellViewModel: ChatCellViewModelProtocol {
     // MARK: - Public properties
     
     var name: String {
-        user.name
+        chat.name
     }
     
     // MARK: - Private properties
     
-    private let user: User1
+    private let chat: Chat
     
     // MARK: - Init
     
-    init(user: User1) {
-        self.user = user
+    init(chat: Chat) {
+        self.chat = chat
     }
     
 }
