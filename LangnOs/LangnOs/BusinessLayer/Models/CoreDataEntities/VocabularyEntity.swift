@@ -116,7 +116,7 @@ extension VocabularyEntity: CDEntityProtocol {
         let request = NSFetchRequest<VocabularyEntity>(entityName: "VocabularyEntity")
         request.predicate = NSPredicate(format: "id == %@", UUID(uuidString: entity.id)! as CVarArg)
         do {
-            let vocabularies = try CoreDataStack.shared.viewContext.fetch(request)
+            let vocabularies = try context.fetch(request)
             if vocabularies.isEmpty {
                 _ = VocabularyEntity(vocabulary: entity, context: context)
             }
@@ -130,7 +130,7 @@ extension VocabularyEntity: CDEntityProtocol {
         let request = NSFetchRequest<VocabularyEntity>(entityName: "VocabularyEntity")
         request.predicate = NSPredicate(format: "id == %@", UUID(uuidString: entity.id)! as CVarArg)
         do {
-            let vocabularies = try CoreDataStack.shared.viewContext.fetch(request)
+            let vocabularies = try context.fetch(request)
             if let vocabulary = vocabularies.first {
                 vocabulary.update(entity, context: context)
             }
