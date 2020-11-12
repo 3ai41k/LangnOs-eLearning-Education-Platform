@@ -9,6 +9,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ChatViewController">
             <connections>
+                <outlet property="tableView" destination="u0S-N0-dP6" id="IXL-dK-w4T"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -16,7 +17,19 @@
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" sectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="u0S-N0-dP6" customClass="UniversalTableView" customModule="LangnOs" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                </tableView>
+            </subviews>
             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+            <constraints>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="u0S-N0-dP6" secondAttribute="trailing" id="3TQ-Lr-S9L"/>
+                <constraint firstItem="u0S-N0-dP6" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="QwF-37-wHK"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="u0S-N0-dP6" secondAttribute="bottom" id="uVT-Vf-ddI"/>
+                <constraint firstItem="u0S-N0-dP6" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="zvG-LM-vfP"/>
+            </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <point key="canvasLocation" x="139" y="127"/>
         </view>

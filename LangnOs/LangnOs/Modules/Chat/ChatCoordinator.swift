@@ -35,11 +35,17 @@ final class ChatCoordinator: Coordinator, ChatCoordinatorProtocol  {
     // MARK: - Override
     
     override func start() {
+        let dataProvider = FirebaseDatabase.shared
+        let userSession = UserSession.shared
         let viewModel = ChatViewModel(router: self,
-                                      chat: chat)
+                                      chat: chat,
+                                      dataProvider: dataProvider,
+                                      userSession: userSession)
         
+        let cellFactory = ChatCellFactory()
         let viewController = ChatViewController()
         viewController.viewModel = viewModel
+        viewController.cellFactory = cellFactory
         
         self.viewController = viewController
         (parentViewController as? UINavigationController)?.pushViewController(viewController, animated: true)

@@ -12,16 +12,21 @@ import Combine
 final class ChatViewController: BindibleViewController<ChatViewModel> {
     
     // MARK: - IBOutlets
-    // MARK: - Public properties
-    // MARK: - Private properties
-    // MARK: - Lifecycle
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
+    @IBOutlet private weak var tableView: UniversalTableView! {
+        didSet {
+            tableView.viewModel = viewModel
+            tableView.cellFactory = cellFactory
+            tableView.tableFooterView = UIView()
+            
+            tableView.start()
+        }
     }
     
-    // MARK: - Init
+    // MARK: - Public properties
+    
+    var cellFactory: UniversalTableViewCellFactoryProtocol?
+    
     // MARK: - Override
     
     override func bindViewModel() {
@@ -31,14 +36,6 @@ final class ChatViewController: BindibleViewController<ChatViewModel> {
     override func setupUI() {
         
     }
-    
-    override func configurateComponents() {
-        
-    }
-    
-    // MARK: - Public methods
-    // MARK: - Private methods
-    // MARK: - Actions
     
 }
 
