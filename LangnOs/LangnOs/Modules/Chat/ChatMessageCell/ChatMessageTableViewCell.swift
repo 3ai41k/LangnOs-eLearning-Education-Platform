@@ -39,19 +39,32 @@ final class ChatMessageTableViewCell: UITableViewCell, UniversalTableViewCellReg
         }
     }
     
-    // MARK: - Private properties
-    // MARK: - Lifecycle
-    // MARK: - Init
-    // MARK: - Override
-    // MARK: - Public methods
     // MARK: - Private methods
     
     private func bindViewModel() {
         messageLabel.text = viewModel?.content
         messageLabel.textAlignment = viewModel?.textAlignment ?? .natural
         containerView.backgroundColor = viewModel?.messageColor
+        
+        if viewModel?.textAlignment == .left {
+            containerViewTrailingConstraint.isActive = false
+            containerViewTrailingConstraint = containerView.trailingAnchor.constraint(lessThanOrEqualTo: contentView.trailingAnchor, constant: -8.0)
+            containerViewTrailingConstraint.isActive = true
+            
+            containerViewLeadingConstraint.isActive = false
+            containerViewLeadingConstraint = containerView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8.0)
+            containerViewLeadingConstraint.isActive = true
+        }
+        
+        if viewModel?.textAlignment == .right {
+            containerViewLeadingConstraint.isActive = false
+            containerViewLeadingConstraint = containerView.leadingAnchor.constraint(greaterThanOrEqualTo: contentView.leadingAnchor, constant: 8.0)
+            containerViewLeadingConstraint.isActive = true
+            
+            containerViewTrailingConstraint.isActive = false
+            containerViewTrailingConstraint = containerView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8.0)
+            containerViewTrailingConstraint.isActive = true
+        }
     }
-    
-    // MARK: - Actions
     
 }

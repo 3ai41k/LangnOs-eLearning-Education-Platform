@@ -36,18 +36,18 @@
                     </view>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="Xf2-L6-KOY" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="9Lg-ml-POi"/>
-                    <constraint firstAttribute="trailing" secondItem="Xf2-L6-KOY" secondAttribute="trailing" constant="8" id="NZA-sy-wAk"/>
-                    <constraint firstAttribute="bottom" secondItem="Xf2-L6-KOY" secondAttribute="bottom" constant="8" id="hB7-YZ-m8N"/>
-                    <constraint firstItem="Xf2-L6-KOY" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="q1Y-Pt-Ocf"/>
+                    <constraint firstItem="Xf2-L6-KOY" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="6jr-ZM-UW4"/>
+                    <constraint firstAttribute="bottom" secondItem="Xf2-L6-KOY" secondAttribute="bottom" constant="8" id="OhJ-fn-Rew"/>
+                    <constraint firstAttribute="trailing" secondItem="Xf2-L6-KOY" secondAttribute="trailing" constant="8" id="iXM-Wu-NcH"/>
+                    <constraint firstItem="Xf2-L6-KOY" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="zDm-vr-Ffq"/>
                 </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="containerView" destination="Xf2-L6-KOY" id="pCf-EZ-mdg"/>
-                <outlet property="containerViewLeadingConstraint" destination="9Lg-ml-POi" id="G9T-xu-SGs"/>
-                <outlet property="containerViewTrailingConstraint" destination="NZA-sy-wAk" id="59C-bM-JBZ"/>
+                <outlet property="containerViewLeadingConstraint" destination="6jr-ZM-UW4" id="N53-e8-dcV"/>
+                <outlet property="containerViewTrailingConstraint" destination="iXM-Wu-NcH" id="OtU-WT-6hS"/>
                 <outlet property="messageLabel" destination="cWh-pf-OTb" id="Fcq-Ar-OYj"/>
             </connections>
             <point key="canvasLocation" x="131.8840579710145" y="160.04464285714286"/>
