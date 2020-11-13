@@ -6,7 +6,7 @@
 //  Copyright © 2020 NL. All rights reserved.
 //
 
-import Foundation
+import FirebaseFirestore
 
 struct FetchMessagesRequest {
     
@@ -26,6 +26,10 @@ extension FetchMessagesRequest: DataProviderRequestProtocol {
             chatId,
             CollectionPath.messages.rawValue
         ].joined(separator: "/")
+    }
+    
+    func query(_ reference: CollectionReference) -> Query? {
+        reference.order(by: "createdDate")
     }
     
 }

@@ -34,10 +34,6 @@ final class ChatViewController: BindibleViewController<ChatViewModel> {
         title = viewModel?.title
     }
     
-    override func setupUI() {
-        
-    }
-    
     // MARK: - Actions
     
     @IBAction

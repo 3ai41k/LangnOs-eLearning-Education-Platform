@@ -42,11 +42,16 @@ protocol FirebaseDatabaseUpdatingProtocol {
     func update(request: DataProviderRequestProtocol, onSuccess: @escaping () -> Void, onFailure: @escaping (Error) -> Void)
 }
 
+protocol FirebaseDatabaseListeningProtocol {
+    func listen<Entity: Decodable>(request: DataProviderRequestProtocol, onSuccess: @escaping (Entity) -> Void, onFailure: @escaping (Error) -> Void)
+}
+
 typealias FirebaseDatabaseProtocol =
     FirebaseDatabaseFetchingProtocol &
     FirebaseDatabaseCreatingProtocol &
     FirebaseDatabaseDeletingProtocol &
-    FirebaseDatabaseUpdatingProtocol
+    FirebaseDatabaseUpdatingProtocol &
+    FirebaseDatabaseListeningProtocol
 
 final class FirebaseDatabase {
     
@@ -141,6 +146,28 @@ extension FirebaseDatabase: FirebaseDatabaseUpdatingProtocol {
                 onFailure(error)
             } else {
                 onSuccess()
+            }
+        }
+    }
+    
+}
+
+// MARK: - FirebaseDatabaseListeningProtocol
+
+extension FirebaseDatabase: FirebaseDatabaseListeningProtocol {
+    
+    func listen<Entity: Decodable>(request: DataProviderRequestProtocol, onSuccess: @escaping (Entity) -> Void, onFailure: @escaping (Error) -> Void) {
+        let collectionReference = dataBase.collection(request.collectionPath)
+        let collectionReferenceWithQuery = request.query(collectionReference) ?? collectionReference
+        collectionReferenceWithQuery.addSnapshotListener { (snapshot, error) in
+            if let error = error {
+                onFailure(error)
+            } else {
+                if let data = snapshot?.documents.map({ $0.data() }), let entities: Entity = try? DictionaryDecoder().decode(data: data) {
+                    onSuccess(entities)
+                } else {
+                    onFailure(FirebaseDatabaseError.collectionIsEmpty)
+                }
             }
         }
     }

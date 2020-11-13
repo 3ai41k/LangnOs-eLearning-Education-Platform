@@ -20,6 +20,10 @@ final class OutcomingMessageCellViewModel: ChatMessageCellViewModelProtocol {
         .right
     }
     
+    var messageColor: UIColor {
+        .systemBlue
+    }
+    
     // MARK: - Private properties
     
     private let message: Message

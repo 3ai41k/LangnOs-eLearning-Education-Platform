@@ -11,6 +11,7 @@ import UIKit
 protocol ChatMessageCellViewModelInputProtocol {
     var content: String { get }
     var textAlignment: NSTextAlignment { get }
+    var messageColor: UIColor { get }
 }
 
 typealias ChatMessageCellViewModelProtocol =
@@ -21,6 +22,13 @@ final class ChatMessageTableViewCell: UITableViewCell, UniversalTableViewCellReg
     
     // MARK: - IBOutlets
     
+    @IBOutlet private weak var containerView: UIView! {
+        didSet {
+            containerView.layer.cornerRadius = 15.0
+        }
+    }
+    @IBOutlet private weak var containerViewTrailingConstraint: NSLayoutConstraint!
+    @IBOutlet private weak var containerViewLeadingConstraint: NSLayoutConstraint!
     @IBOutlet private weak var messageLabel: UILabel!
     
     // MARK: - Public properties
@@ -41,6 +49,7 @@ final class ChatMessageTableViewCell: UITableViewCell, UniversalTableViewCellReg
     private func bindViewModel() {
         messageLabel.text = viewModel?.content
         messageLabel.textAlignment = viewModel?.textAlignment ?? .natural
+        containerView.backgroundColor = viewModel?.messageColor
     }
     
     // MARK: - Actions
