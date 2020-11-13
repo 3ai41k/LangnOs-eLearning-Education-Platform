@@ -227,6 +227,8 @@
 		8DD745B5255AE8BC00370285 /* FetchUserImageRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD745B4255AE8BC00370285 /* FetchUserImageRequest.swift */; };
 		8DD745B7255AF07E00370285 /* FetchTermImageRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD745B6255AF07E00370285 /* FetchTermImageRequest.swift */; };
 		8DD745B9255AFA9600370285 /* UserStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD745B8255AFA9600370285 /* UserStorage.swift */; };
+		8DE37F13255F2F4400EEB876 /* MessageInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE37F12255F2F4400EEB876 /* MessageInputView.swift */; };
+		8DE37F17255F385B00EEB876 /* MessageInputView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DE37F16255F385B00EEB876 /* MessageInputView.xib */; };
 		8DF0FD93255596C200D5B225 /* DeleteTermImageRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF0FD92255596C200D5B225 /* DeleteTermImageRequest.swift */; };
 		8DF0FD972556F23100D5B225 /* FavoriteVocabularyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF0FD952556F23100D5B225 /* FavoriteVocabularyTableViewCell.swift */; };
 		8DF0FD982556F23100D5B225 /* FavoriteVocabularyTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DF0FD962556F23100D5B225 /* FavoriteVocabularyTableViewCell.xib */; };
@@ -527,6 +529,8 @@
 		8DD745B4255AE8BC00370285 /* FetchUserImageRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchUserImageRequest.swift; sourceTree = "<group>"; };
 		8DD745B6255AF07E00370285 /* FetchTermImageRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchTermImageRequest.swift; sourceTree = "<group>"; };
 		8DD745B8255AFA9600370285 /* UserStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserStorage.swift; sourceTree = "<group>"; };
+		8DE37F12255F2F4400EEB876 /* MessageInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageInputView.swift; sourceTree = "<group>"; };
+		8DE37F16255F385B00EEB876 /* MessageInputView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MessageInputView.xib; sourceTree = "<group>"; };
 		8DF0FD92255596C200D5B225 /* DeleteTermImageRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteTermImageRequest.swift; sourceTree = "<group>"; };
 		8DF0FD952556F23100D5B225 /* FavoriteVocabularyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteVocabularyTableViewCell.swift; sourceTree = "<group>"; };
 		8DF0FD962556F23100D5B225 /* FavoriteVocabularyTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FavoriteVocabularyTableViewCell.xib; sourceTree = "<group>"; };
@@ -1036,6 +1040,7 @@
 		8D768CFD255DA06300E8B778 /* Chat */ = {
 			isa = PBXGroup;
 			children = (
+				8DE37F11255F2F1C00EEB876 /* MessageInputView */,
 				8D768D07255DA3BB00E8B778 /* ChatMessageCell */,
 				8D768CFE255DA08100E8B778 /* ChatCoordinator.swift */,
 				8D768CFF255DA08100E8B778 /* ChatViewController.swift */,
@@ -1540,6 +1545,15 @@
 			path = SearchVocabularyCell;
 			sourceTree = "<group>";
 		};
+		8DE37F11255F2F1C00EEB876 /* MessageInputView */ = {
+			isa = PBXGroup;
+			children = (
+				8DE37F12255F2F4400EEB876 /* MessageInputView.swift */,
+				8DE37F16255F385B00EEB876 /* MessageInputView.xib */,
+			);
+			path = MessageInputView;
+			sourceTree = "<group>";
+		};
 		8DF0FD942556F1D200D5B225 /* FavoriteVocabularyCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -1806,6 +1820,7 @@
 				8D768D05255DA08100E8B778 /* ChatViewController.xib in Resources */,
 				8DD28C162528AEEF00F59B7D /* SingInViewController.xib in Resources */,
 				8D662541252A717500991D45 /* WordsViewController.xib in Resources */,
+				8DE37F17255F385B00EEB876 /* MessageInputView.xib in Resources */,
 				8DD28B91252667F800F59B7D /* Assets.xcassets in Resources */,
 				8DD28B8C252667F600F59B7D /* Main.storyboard in Resources */,
 				8D94E86A253CE2AB005FA4B9 /* WritingViewController.xib in Resources */,
@@ -2102,6 +2117,7 @@
 				8D524FDF2533ACC0002A6E01 /* UITextField+Drivable.swift in Sources */,
 				8D94E7C52534D102005FA4B9 /* SpeechSynthesizer.swift in Sources */,
 				8D435A94254DFBC300838691 /* CoursesViewController.swift in Sources */,
+				8DE37F13255F2F4400EEB876 /* MessageInputView.swift in Sources */,
 				8DD28B87252667F600F59B7D /* SceneDelegate.swift in Sources */,
 				8DD28C0725289C8C00F59B7D /* VocabularyCollectionViewCellViewModel.swift in Sources */,
 				8D435A98254E051900838691 /* SearchVocabularyRequest.swift in Sources */,

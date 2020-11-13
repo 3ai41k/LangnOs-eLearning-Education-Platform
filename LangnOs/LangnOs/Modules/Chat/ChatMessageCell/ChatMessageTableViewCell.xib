@@ -17,10 +17,10 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xf2-L6-KOY">
-                        <rect key="frame" x="8" y="8" width="304" height="48"/>
+                        <rect key="frame" x="8" y="4" width="304" height="56"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Message" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cWh-pf-OTb">
-                                <rect key="frame" x="8" y="8" width="288" height="32"/>
+                                <rect key="frame" x="8" y="8" width="288" height="40"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -37,9 +37,9 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="Xf2-L6-KOY" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="6jr-ZM-UW4"/>
-                    <constraint firstAttribute="bottom" secondItem="Xf2-L6-KOY" secondAttribute="bottom" constant="8" id="OhJ-fn-Rew"/>
+                    <constraint firstAttribute="bottom" secondItem="Xf2-L6-KOY" secondAttribute="bottom" constant="4" id="OhJ-fn-Rew"/>
                     <constraint firstAttribute="trailing" secondItem="Xf2-L6-KOY" secondAttribute="trailing" constant="8" id="iXM-Wu-NcH"/>
-                    <constraint firstItem="Xf2-L6-KOY" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="zDm-vr-Ffq"/>
+                    <constraint firstItem="Xf2-L6-KOY" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="4" id="zDm-vr-Ffq"/>
                 </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

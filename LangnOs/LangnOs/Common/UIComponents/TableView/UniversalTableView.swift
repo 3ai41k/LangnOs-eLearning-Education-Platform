@@ -54,7 +54,7 @@ final class UniversalTableView: UITableView {
         didSet {
             viewModel?.tableSections.enumerated().forEach({ index, section in
                 section.cells.sink(receiveValue: { [weak self] _ in
-                    self?.reloadSections([index], with: .fade)
+                    self?.reloadSections([index], with: .none)
                 }).store(in: &cancellable)
             })
         }
@@ -69,24 +69,6 @@ final class UniversalTableView: UITableView {
     // MARK: - Private properties
     
     private var cancellable: [AnyCancellable] = []
-    
-    // MARK: - Init
-    
-    override init(frame: CGRect, style: UITableView.Style) {
-        super.init(frame: frame, style: style)
-        
-        initializeComponents()
-    }
-    
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
-        
-        initializeComponents()
-    }
-    
-    deinit {
-        removeNotifications()
-    }
     
     // MARK: - Override
     
@@ -113,25 +95,6 @@ final class UniversalTableView: UITableView {
     
     // MARK: - Private methods
     
-    private func initializeComponents() {
-        setupNotifications()
-    }
-    
-    private func setupNotifications() {
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(keyboardWillShow),
-                                               name: UIResponder.keyboardWillShowNotification,
-                                               object: nil)
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(keyboardWillHide),
-                                               name: UIResponder.keyboardWillHideNotification,
-                                               object: nil)
-    }
-    
-    private func removeNotifications() {
-        NotificationCenter.default.removeObserver(self)
-    }
-    
     private func hideBackgroundViewIfSectionsAreEmpty() {
         if let sections = viewModel?.tableSections {
             if sections.map({ $0.cells.value.isEmpty }).contains(false) {
@@ -140,19 +103,6 @@ final class UniversalTableView: UITableView {
                 backgroundView?.isHidden = false
             }
         }
-    }
-    
-    // MARK: - Actions
-    
-    @objc
-    private func keyboardWillShow(_ notificatio: Notification) {
-        guard let keyboardSize = notificatio.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else { return }
-        contentInset = UIEdgeInsets(top: 0, left: 0, bottom: keyboardSize.cgRectValue.height, right: 0)
-    }
-    
-    @objc
-    private func keyboardWillHide() {
-        contentInset = .zero
     }
     
 }

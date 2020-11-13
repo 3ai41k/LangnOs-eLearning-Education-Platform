@@ -22,24 +22,34 @@ final class ChatViewController: BindibleViewController<ChatViewModel> {
             tableView.start()
         }
     }
-    @IBOutlet weak var messageTextField: UITextField!
     
     // MARK: - Public properties
     
     var cellFactory: UniversalTableViewCellFactoryProtocol?
     
+    // MARK: - Private properties
+    
+    private lazy var messageView: UIView = {
+        let rect = CGRect(x: .zero, y: .zero, width: tableView.bounds.width, height: 44.0)
+        let view = MessageInputView(frame: rect)
+        view.returnHandler = { [weak self] (text) in
+            self?.viewModel?.send(message: text)
+        }
+        return view
+    }()
+    
     // MARK: - Override
+    
+    override var inputAccessoryView: UIView? {
+        messageView
+    }
+    
+    override var canBecomeFirstResponder: Bool {
+        true
+    }
     
     override func bindViewModel() {
         title = viewModel?.title
-    }
-    
-    // MARK: - Actions
-    
-    @IBAction
-    private func didSendTouch(_ sender: Any) {
-        guard let text = messageTextField.text, !text.isEmpty else { return }
-        viewModel?.send(message: text)
     }
     
 }

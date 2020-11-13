@@ -38,7 +38,7 @@ final class ChatViewModel: ChatViewModelProtocol {
     
     // MARK: - Private properties
     
-    private let router: ChatCoordinatorProtocol
+    // let router: ChatCoordinatorProtocol
     private let chat: Chat
     private let dataProvider: FirebaseDatabaseCreatingProtocol & FirebaseDatabaseListeningProtocol
     private let userSession: SessionInfoProtocol
@@ -62,7 +62,7 @@ final class ChatViewModel: ChatViewModelProtocol {
          chat: Chat,
          dataProvider: FirebaseDatabaseCreatingProtocol & FirebaseDatabaseListeningProtocol,
          userSession: SessionInfoProtocol) {
-        self.router = router
+        //self.router = router
         self.chat = chat
         self.dataProvider = dataProvider
         self.userSession = userSession
@@ -74,6 +74,8 @@ final class ChatViewModel: ChatViewModelProtocol {
     
     // MARK: - Public methods
     
+    // TO DO: Fix retain cycle
+    
     func send(message: String) {
         guard let userId = userSession.currentUser?.id else { return }
         
@@ -81,7 +83,9 @@ final class ChatViewModel: ChatViewModelProtocol {
         let request = CreateMessageRequest(chatId: chat.id, message: message)
         dataProvider.create(request: request, onSuccess: {
             print("Success")
-        }, onFailure: router.showError)
+        }, onFailure: { (error) in
+            //self.router.showError(error)
+        })
     }
     
     // MARK: - Private methods
@@ -95,7 +99,9 @@ final class ChatViewModel: ChatViewModelProtocol {
         let request = FetchMessagesRequest(chatId: chat.id)
         dataProvider.listen(request: request, onSuccess: { (messages: [Message]) in
             self.messages = messages
-        }, onFailure: router.showError)
+        }, onFailure: { (error) in
+            //self.router.showError(error)
+        })
     }
     
 }
