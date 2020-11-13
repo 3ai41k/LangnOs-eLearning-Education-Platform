@@ -23,6 +23,14 @@ final class TitleSectionView: UIView {
         }
     }
     
+    // MARK: - Override
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
+        backgroundColor = ColorUtils.app
+    }
+    
     // MARK: - Private methods
     
     private func bindViewModel() {

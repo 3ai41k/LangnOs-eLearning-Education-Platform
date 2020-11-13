@@ -11,7 +11,7 @@ import UIKit
 struct ColorUtils {
     
     static var app: UIColor {
-        UIColor(named: "AppBackground")!
+        .systemGray6
     }
     
     static var button: UIColor {
