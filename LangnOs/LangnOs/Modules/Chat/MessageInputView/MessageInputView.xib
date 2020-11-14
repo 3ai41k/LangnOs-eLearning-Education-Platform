@@ -24,7 +24,7 @@
                         <constraint firstAttribute="height" constant="1" id="rQ1-DG-86J"/>
                     </constraints>
                 </view>
-                <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="1Cz-0M-uIg">
+                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="1Cz-0M-uIg">
                     <rect key="frame" x="8" y="8" width="398" height="36"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iLe-cV-WxT" customClass="BorderedButton" customModule="LangnOs" customModuleProvider="target">
@@ -48,7 +48,7 @@
                             </connections>
                         </button>
                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Message" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cw5-RI-Ntu">
-                            <rect key="frame" x="44" y="0.0" width="310" height="36"/>
+                            <rect key="frame" x="44" y="1" width="310" height="34"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits"/>
                         </textField>
@@ -74,9 +74,6 @@
                             </connections>
                         </button>
                     </subviews>
-                    <constraints>
-                        <constraint firstItem="iLe-cV-WxT" firstAttribute="width" secondItem="iLe-cV-WxT" secondAttribute="height" multiplier="1:1" id="QWD-zN-4mh"/>
-                    </constraints>
                 </stackView>
             </subviews>
             <color key="backgroundColor" systemColor="systemGray6Color" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

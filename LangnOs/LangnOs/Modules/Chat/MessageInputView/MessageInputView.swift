@@ -23,12 +23,6 @@ final class MessageInputView: XibView {
     var returnHandler: ((String) -> Void)?
     var paperclipHandler: (() -> Void)?
     
-    // MARK: - Private properties
-    // MARK: - Lifecycle
-    // MARK: - Init
-    // MARK: - Override
-    // MARK: - Public methods
-    // MARK: - Private methods
     // MARK: - Actions
     
     @IBAction
@@ -42,7 +36,7 @@ final class MessageInputView: XibView {
         returnHandler?(text)
         messageTextField.text = nil
     }
-
+    
 }
 
 // MARK: - UITextFieldDelegate

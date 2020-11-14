@@ -19,7 +19,7 @@ extension UITableView {
         let rowIndex = numberOfRowsInSection - 1
         let indexPath = IndexPath(row: rowIndex, section: sectionIndex)
         
-        scrollToRow(at: indexPath, at: .top, animated: animated)
+        scrollToRow(at: indexPath, at: .bottom, animated: animated)
     }
     
 }
