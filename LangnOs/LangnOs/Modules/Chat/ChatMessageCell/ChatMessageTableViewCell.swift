@@ -24,8 +24,10 @@ enum ChatMessageAlignment {
 
 protocol ChatMessageCellViewModelInputProtocol {
     var content: String { get }
+    var date: String { get }
     var alignment: ChatMessageAlignment { get }
-    var messageColor: UIColor { get }
+    var backgroundColor: UIColor { get }
+    var dateColor: UIColor { get }
 }
 
 typealias ChatMessageCellViewModelProtocol =
@@ -59,8 +61,10 @@ final class ChatMessageTableViewCell: UITableViewCell, UniversalTableViewCellReg
     
     private func bindViewModel() {
         messageLabel.text = viewModel?.content
+        dateLabel.text = viewModel?.date
+        dateLabel.textColor = viewModel?.dateColor
         stackView.alignment = viewModel?.alignment.stackViewAlignment ?? .fill
-        containerView.backgroundColor = viewModel?.messageColor
+        containerView.backgroundColor = viewModel?.backgroundColor
         
         if viewModel?.alignment == .left {
             containerViewTrailingConstraint.isActive = false

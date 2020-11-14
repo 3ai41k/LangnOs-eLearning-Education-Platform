@@ -16,12 +16,20 @@ final class OutcomingMessageCellViewModel: ChatMessageCellViewModelProtocol {
         message.content
     }
     
+    var date: String {
+        message.createdDate.format(type: .HHmm)
+    }
+    
     var alignment: ChatMessageAlignment {
         .right
     }
     
-    var messageColor: UIColor {
+    var backgroundColor: UIColor {
         .systemBlue
+    }
+    
+    var dateColor: UIColor {
+        .systemGray6
     }
     
     // MARK: - Private properties
