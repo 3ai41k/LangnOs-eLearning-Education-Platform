@@ -24,6 +24,7 @@
                 </tableView>
             </subviews>
             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+            <gestureRecognizers/>
             <constraints>
                 <constraint firstItem="u0S-N0-dP6" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="LQQ-Pz-5mZ"/>
                 <constraint firstItem="u0S-N0-dP6" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="NgD-n5-nsl"/>

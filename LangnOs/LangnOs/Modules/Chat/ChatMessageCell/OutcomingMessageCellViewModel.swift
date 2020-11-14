@@ -16,7 +16,7 @@ final class OutcomingMessageCellViewModel: ChatMessageCellViewModelProtocol {
         message.content
     }
     
-    var textAlignment: NSTextAlignment {
+    var alignment: ChatMessageAlignment {
         .right
     }
     

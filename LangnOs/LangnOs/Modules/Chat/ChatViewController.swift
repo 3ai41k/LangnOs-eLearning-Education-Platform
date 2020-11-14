@@ -18,10 +18,6 @@ final class ChatViewController: BindibleViewController<ChatViewModel> {
             tableView.viewModel = viewModel
             tableView.cellFactory = cellFactory
             tableView.tableFooterView = UIView()
-            tableView.contentInset = UIEdgeInsets(top: .zero,
-                                                  left: .zero,
-                                                  bottom: Constants.inputAccessoryViewHeight,
-                                                  right: .zero)
             
             tableView.start()
         }
@@ -83,15 +79,9 @@ final class ChatViewController: BindibleViewController<ChatViewModel> {
                                                                 left: .zero,
                                                                 bottom: height,
                                                                 right: .zero)
-                    self?.tableView.scrollToBottom(animated: true)
-                }),
-            NotificationCenter.default
-                .publisher(for: UIResponder.keyboardWillHideNotification)
-                .sink(receiveValue: { [weak self] (_) in
-                    self?.tableView.contentInset = UIEdgeInsets(top: .zero,
-                                                                left: .zero,
-                                                                bottom: Constants.inputAccessoryViewHeight,
-                                                                right: .zero)
+                    if height != Constants.inputAccessoryViewHeight {
+                        self?.tableView.scrollToBottom(animated: true)
+                    }
                 })
         ]
     }
