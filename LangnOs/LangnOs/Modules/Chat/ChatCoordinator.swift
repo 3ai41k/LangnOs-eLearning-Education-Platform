@@ -46,6 +46,7 @@ final class ChatCoordinator: Coordinator, ChatCoordinatorProtocol  {
         let viewController = ChatViewController()
         viewController.viewModel = viewModel
         viewController.cellFactory = cellFactory
+        viewController.hidesBottomBarWhenPushed = true
         
         self.viewController = viewController
         (parentViewController as? UINavigationController)?.pushViewController(viewController, animated: true)

@@ -21,6 +21,7 @@ final class MessageInputView: XibView {
     // MARK: - Public properties
     
     var returnHandler: ((String) -> Void)?
+    var paperclipHandler: (() -> Void)?
     
     // MARK: - Private properties
     // MARK: - Lifecycle
@@ -29,6 +30,18 @@ final class MessageInputView: XibView {
     // MARK: - Public methods
     // MARK: - Private methods
     // MARK: - Actions
+    
+    @IBAction
+    private func didPaperclipTouch(_ sender: Any) {
+        paperclipHandler?()
+    }
+    
+    @IBAction
+    private func didPaperplaneTouch(_ sender: Any) {
+        guard let text = messageTextField.text else { return }
+        returnHandler?(text)
+        messageTextField.text = nil
+    }
 
 }
 

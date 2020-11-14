@@ -7,40 +7,91 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MessageInputView">
-            <connections>
-                <outlet property="messageTextField" destination="dzd-vd-Rge" id="ojV-zu-iCJ"/>
-            </connections>
-        </placeholder>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MessageInputView"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB">
-            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+            <rect key="frame" x="0.0" y="0.0" width="414" height="52"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6vq-Or-8my">
-                    <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
-                    <items>
-                        <barButtonItem style="plain" id="BTy-pV-fgi">
-                            <textField key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Message" textAlignment="natural" minimumFontSize="17" id="dzd-vd-Rge">
-                                <rect key="frame" x="20" y="5" width="374" height="34"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                        </barButtonItem>
-                    </items>
-                </toolbar>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hAB-2k-DvT">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="1"/>
+                    <color key="backgroundColor" systemColor="systemGray4Color" red="0.81960784310000001" green="0.81960784310000001" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="1" id="rQ1-DG-86J"/>
+                    </constraints>
+                </view>
+                <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="1Cz-0M-uIg">
+                    <rect key="frame" x="8" y="8" width="398" height="36"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iLe-cV-WxT" customClass="BorderedButton" customModule="LangnOs" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="0.0" width="36" height="36"/>
+                            <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="width" secondItem="iLe-cV-WxT" secondAttribute="height" multiplier="1:1" id="J8b-Vd-HSz"/>
+                            </constraints>
+                            <color key="tintColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            <inset key="imageEdgeInsets" minX="0.0" minY="2" maxX="2" maxY="0.0"/>
+                            <state key="normal" image="paperclip" catalog="system">
+                                <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="21"/>
+                            </state>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                    <real key="value" value="18"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                            <connections>
+                                <action selector="didPaperclipTouch:" destination="-1" eventType="touchUpInside" id="7Qn-hb-Akj"/>
+                            </connections>
+                        </button>
+                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Message" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cw5-RI-Ntu">
+                            <rect key="frame" x="44" y="0.0" width="310" height="36"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </textField>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="az0-I8-zbm" customClass="BorderedButton" customModule="LangnOs" customModuleProvider="target">
+                            <rect key="frame" x="362" y="0.0" width="36" height="36"/>
+                            <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="width" secondItem="az0-I8-zbm" secondAttribute="height" multiplier="1:1" id="Nnk-OV-lLV"/>
+                                <constraint firstAttribute="height" constant="36" id="RNZ-cg-b8D"/>
+                            </constraints>
+                            <color key="tintColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            <inset key="imageEdgeInsets" minX="0.0" minY="2" maxX="2" maxY="0.0"/>
+                            <state key="normal" image="paperplane" catalog="system">
+                                <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="21"/>
+                            </state>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                    <real key="value" value="18"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                            <connections>
+                                <action selector="didPaperplaneTouch:" destination="-1" eventType="touchUpInside" id="UmJ-sW-qkN"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="iLe-cV-WxT" firstAttribute="width" secondItem="iLe-cV-WxT" secondAttribute="height" multiplier="1:1" id="QWD-zN-4mh"/>
+                    </constraints>
+                </stackView>
             </subviews>
-            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+            <color key="backgroundColor" systemColor="systemGray6Color" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="6vq-Or-8my" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" id="7no-Gt-1DL"/>
-                <constraint firstItem="6vq-Or-8my" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="9bi-db-afF"/>
-                <constraint firstItem="6vq-Or-8my" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="IFD-o8-fHc"/>
-                <constraint firstItem="6vq-Or-8my" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="dHG-OZ-cnN"/>
+                <constraint firstAttribute="bottom" secondItem="1Cz-0M-uIg" secondAttribute="bottom" constant="8" id="8VW-Hw-o9v"/>
+                <constraint firstItem="hAB-2k-DvT" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="FJ6-eR-u4V"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="hAB-2k-DvT" secondAttribute="trailing" id="Lqj-sW-UZv"/>
+                <constraint firstItem="1Cz-0M-uIg" firstAttribute="top" secondItem="hAB-2k-DvT" secondAttribute="bottom" constant="7" id="ThN-xO-6N6"/>
+                <constraint firstItem="hAB-2k-DvT" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="ft9-pg-5ZM"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="1Cz-0M-uIg" secondAttribute="trailing" constant="8" id="t1i-kG-X0u"/>
+                <constraint firstItem="1Cz-0M-uIg" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="8" id="vO3-7i-y0Q"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
-            <point key="canvasLocation" x="131.19999999999999" y="152.92353823088456"/>
+            <point key="canvasLocation" x="131.19999999999999" y="151.12443778110946"/>
         </view>
     </objects>
+    <resources>
+        <image name="paperclip" catalog="system" width="128" height="128"/>
+        <image name="paperplane" catalog="system" width="128" height="121"/>
+    </resources>
 </document>
