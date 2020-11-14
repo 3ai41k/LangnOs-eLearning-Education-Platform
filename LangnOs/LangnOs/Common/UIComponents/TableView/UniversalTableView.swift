@@ -54,7 +54,9 @@ final class UniversalTableView: UITableView {
         didSet {
             viewModel?.tableSections.enumerated().forEach({ index, section in
                 section.cells.sink(receiveValue: { [weak self] _ in
-                    self?.reloadSections([index], with: .none)
+                    UIView.performWithoutAnimation {
+                        self?.reloadSections([index], with: .none)
+                    }
                 }).store(in: &cancellable)
             })
         }

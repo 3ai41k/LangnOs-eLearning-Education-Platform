@@ -17,9 +17,14 @@ protocol ChatViewModelOutputProtocol {
     func send(message: String)
 }
 
+protocol ChatViewModelBindingProtocol {
+    var scrollToBottom: (() -> Void)? { get set }
+}
+
 typealias ChatViewModelProtocol =
     ChatViewModelInputProtocol &
     ChatViewModelOutputProtocol &
+    ChatViewModelBindingProtocol &
     UniversalTableViewModelProtocol
 
 private enum SectionType: Int {
@@ -33,6 +38,8 @@ final class ChatViewModel: ChatViewModelProtocol {
     var title: String {
         chat.name
     }
+    
+    var scrollToBottom: (() -> Void)?
     
     var tableSections: [SectionViewModelProtocol] = []
     
@@ -53,6 +60,7 @@ final class ChatViewModel: ChatViewModelProtocol {
                 }
             })
             tableSections[SectionType.messages.rawValue].cells.value = cellViewModels
+            scrollToBottom?()
         }
     }
     

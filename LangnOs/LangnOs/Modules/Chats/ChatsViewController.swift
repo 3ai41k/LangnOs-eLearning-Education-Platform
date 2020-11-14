@@ -33,9 +33,5 @@ final class ChatsViewController: BindibleViewController<ChatsViewModel> {
         navigationController?.navigationBar.topItem?.title = viewModel?.title
     }
     
-    override func setupUI() {
-        navigationController?.navigationBar.prefersLargeTitles = true
-    }
-    
 }
 

@@ -229,6 +229,7 @@
 		8DD745B9255AFA9600370285 /* UserStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD745B8255AFA9600370285 /* UserStorage.swift */; };
 		8DE37F13255F2F4400EEB876 /* MessageInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE37F12255F2F4400EEB876 /* MessageInputView.swift */; };
 		8DE37F17255F385B00EEB876 /* MessageInputView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DE37F16255F385B00EEB876 /* MessageInputView.xib */; };
+		8DE37F19256003F300EEB876 /* UITableView+ScrollToBottom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE37F18256003F300EEB876 /* UITableView+ScrollToBottom.swift */; };
 		8DF0FD93255596C200D5B225 /* DeleteTermImageRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF0FD92255596C200D5B225 /* DeleteTermImageRequest.swift */; };
 		8DF0FD972556F23100D5B225 /* FavoriteVocabularyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF0FD952556F23100D5B225 /* FavoriteVocabularyTableViewCell.swift */; };
 		8DF0FD982556F23100D5B225 /* FavoriteVocabularyTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DF0FD962556F23100D5B225 /* FavoriteVocabularyTableViewCell.xib */; };
@@ -531,6 +532,7 @@
 		8DD745B8255AFA9600370285 /* UserStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserStorage.swift; sourceTree = "<group>"; };
 		8DE37F12255F2F4400EEB876 /* MessageInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageInputView.swift; sourceTree = "<group>"; };
 		8DE37F16255F385B00EEB876 /* MessageInputView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MessageInputView.xib; sourceTree = "<group>"; };
+		8DE37F18256003F300EEB876 /* UITableView+ScrollToBottom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+ScrollToBottom.swift"; sourceTree = "<group>"; };
 		8DF0FD92255596C200D5B225 /* DeleteTermImageRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteTermImageRequest.swift; sourceTree = "<group>"; };
 		8DF0FD952556F23100D5B225 /* FavoriteVocabularyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteVocabularyTableViewCell.swift; sourceTree = "<group>"; };
 		8DF0FD962556F23100D5B225 /* FavoriteVocabularyTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FavoriteVocabularyTableViewCell.xib; sourceTree = "<group>"; };
@@ -1364,6 +1366,7 @@
 				8D524F66252F0355002A6E01 /* UICollectionView+Extensions.swift */,
 				8D524FDA2533816D002A6E01 /* UIBarButtonItem+Init.swift */,
 				8D435A85254C51AF00838691 /* UIImag+Size.swift */,
+				8DE37F18256003F300EEB876 /* UITableView+ScrollToBottom.swift */,
 			);
 			path = "UIKit+Extensions";
 			sourceTree = "<group>";
@@ -1947,6 +1950,7 @@
 				8D435AC1254F534E00838691 /* VocabularyCategoryCoordinator.swift in Sources */,
 				8DF253B02544838D001492AE /* VocabularySettingsViewController.swift in Sources */,
 				8DF25388254330B6001492AE /* MessageCellViewModel.swift in Sources */,
+				8DE37F19256003F300EEB876 /* UITableView+ScrollToBottom.swift in Sources */,
 				8D524F9F252F83D2002A6E01 /* AccountViewModel.swift in Sources */,
 				8DF253FD2549B4B2001492AE /* AddToFavoriteCellViewModel.swift in Sources */,
 				8DC3CF34252CD5CD003CA62A /* SquareGridFlowLayout.swift in Sources */,

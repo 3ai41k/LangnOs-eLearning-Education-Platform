@@ -45,6 +45,14 @@ final class ChatViewController: BindibleViewController<ChatViewModel> {
         return view
     }()
     
+    // MARK: - Lifecycle
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        setupNotifications()
+    }
+    
     // MARK: - Override
     
     override var inputAccessoryView: UIView? {
@@ -57,6 +65,35 @@ final class ChatViewController: BindibleViewController<ChatViewModel> {
     
     override func bindViewModel() {
         title = viewModel?.title
+        viewModel?.scrollToBottom = { [weak self] in
+            self?.tableView.scrollToBottom(animated: false)
+        }
+    }
+    
+    // MARK: - Private methods
+    
+    private func setupNotifications() {
+        cancellables = [
+            NotificationCenter.default
+                .publisher(for: UIResponder.keyboardWillShowNotification)
+                .compactMap({ $0.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue })
+                .map({ $0.cgRectValue.height })
+                .sink(receiveValue: { [weak self] (height) in
+                    self?.tableView.contentInset = UIEdgeInsets(top: .zero,
+                                                                left: .zero,
+                                                                bottom: height,
+                                                                right: .zero)
+                    self?.tableView.scrollToBottom(animated: true)
+                }),
+            NotificationCenter.default
+                .publisher(for: UIResponder.keyboardWillHideNotification)
+                .sink(receiveValue: { [weak self] (_) in
+                    self?.tableView.contentInset = UIEdgeInsets(top: .zero,
+                                                                left: .zero,
+                                                                bottom: Constants.inputAccessoryViewHeight,
+                                                                right: .zero)
+                })
+        ]
     }
     
 }
