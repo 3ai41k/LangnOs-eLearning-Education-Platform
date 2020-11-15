@@ -1,5 +1,5 @@
 //
-//  MessageInputView.swift
+//  ChatAccessoryView.swift
 //  LangnOs
 //
 //  Created by Nikita Lizogubov on 13.11.2020.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class MessageInputView: XibView {
+final class ChatAccessoryView: XibView {
 
     // MARK: - IBOutlets
     
@@ -41,7 +41,7 @@ final class MessageInputView: XibView {
 
 // MARK: - UITextFieldDelegate
 
-extension MessageInputView: UITextFieldDelegate {
+extension ChatAccessoryView: UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         guard let text = textField.text else { return false}

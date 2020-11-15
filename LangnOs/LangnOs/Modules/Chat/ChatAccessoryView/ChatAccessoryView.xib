@@ -7,7 +7,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MessageInputView">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ChatAccessoryView">
             <connections>
                 <outlet property="messageTextField" destination="cw5-RI-Ntu" id="g5X-Eq-RRO"/>
             </connections>
@@ -57,7 +57,6 @@
                             <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="az0-I8-zbm" secondAttribute="height" multiplier="1:1" id="Nnk-OV-lLV"/>
-                                <constraint firstAttribute="height" constant="36" id="RNZ-cg-b8D"/>
                             </constraints>
                             <color key="tintColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             <inset key="imageEdgeInsets" minX="0.0" minY="2" maxX="2" maxY="0.0"/>

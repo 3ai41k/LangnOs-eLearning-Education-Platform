@@ -29,12 +29,12 @@ final class ChatViewController: BindibleViewController<ChatViewModel> {
     
     // MARK: - Private properties
     
-    private lazy var messageView: UIView = {
+    private lazy var chatAccessoryView: UIView = {
         let rect = CGRect(x: .zero,
                           y: .zero,
                           width: tableView.bounds.width,
                           height: Constants.inputAccessoryViewHeight)
-        let view = MessageInputView(frame: rect)
+        let view = ChatAccessoryView(frame: rect)
         view.returnHandler = { [weak self] (text) in
             self?.viewModel?.send(message: text)
         }
@@ -55,7 +55,7 @@ final class ChatViewController: BindibleViewController<ChatViewModel> {
     // MARK: - Override
     
     override var inputAccessoryView: UIView? {
-        messageView
+        chatAccessoryView
     }
     
     override var canBecomeFirstResponder: Bool {

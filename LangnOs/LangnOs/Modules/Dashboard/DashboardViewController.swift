@@ -53,7 +53,6 @@ final class DashboardViewController: BindibleViewController<DashboardViewModelPr
     
     override func setupUI() {
         navigationController?.navigationBar.prefersLargeTitles = true
-        navigationController?.navigationBar.isTranslucent = false
     }
     
     // MARK: - Private methods
