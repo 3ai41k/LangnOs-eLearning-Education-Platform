@@ -76,7 +76,7 @@ final class ChatsViewModel: ChatsViewModelProtocol {
     }
     
     func createChat() {
-        print(#function)
+        router.createChat()
     }
     
     // MARK: - Private methods

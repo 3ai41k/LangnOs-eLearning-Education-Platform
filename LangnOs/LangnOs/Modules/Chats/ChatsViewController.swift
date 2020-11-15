@@ -35,6 +35,8 @@ final class ChatsViewController: BindibleViewController<ChatsViewModel> {
     override func setupUI() {
         setupEditBarButtonItem()
         setupCreateChatBarButtonItem()
+        
+        navigationController?.navigationBar.prefersLargeTitles = true
     }
     
     override func setEditing(_ editing: Bool, animated: Bool) {

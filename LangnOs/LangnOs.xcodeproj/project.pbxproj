@@ -233,6 +233,10 @@
 		8DE37F1D25601A6600EEB876 /* Date+Format.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE37F1C25601A6600EEB876 /* Date+Format.swift */; };
 		8DE37F232561CD1E00EEB876 /* BorderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE37F222561CD1E00EEB876 /* BorderView.swift */; };
 		8DE37F252561D17100EEB876 /* DeleteChatRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE37F242561D17100EEB876 /* DeleteChatRequest.swift */; };
+		8DE37F2B2561D60B00EEB876 /* CreateChatCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE37F272561D60B00EEB876 /* CreateChatCoordinator.swift */; };
+		8DE37F2C2561D60B00EEB876 /* CreateChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE37F282561D60B00EEB876 /* CreateChatViewController.swift */; };
+		8DE37F2D2561D60B00EEB876 /* CreateChatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE37F292561D60B00EEB876 /* CreateChatViewModel.swift */; };
+		8DE37F2E2561D60B00EEB876 /* CreateChatViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DE37F2A2561D60B00EEB876 /* CreateChatViewController.xib */; };
 		8DF0FD93255596C200D5B225 /* DeleteTermImageRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF0FD92255596C200D5B225 /* DeleteTermImageRequest.swift */; };
 		8DF0FD972556F23100D5B225 /* FavoriteVocabularyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF0FD952556F23100D5B225 /* FavoriteVocabularyTableViewCell.swift */; };
 		8DF0FD982556F23100D5B225 /* FavoriteVocabularyTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DF0FD962556F23100D5B225 /* FavoriteVocabularyTableViewCell.xib */; };
@@ -539,6 +543,10 @@
 		8DE37F1C25601A6600EEB876 /* Date+Format.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Format.swift"; sourceTree = "<group>"; };
 		8DE37F222561CD1E00EEB876 /* BorderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BorderView.swift; sourceTree = "<group>"; };
 		8DE37F242561D17100EEB876 /* DeleteChatRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteChatRequest.swift; sourceTree = "<group>"; };
+		8DE37F272561D60B00EEB876 /* CreateChatCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateChatCoordinator.swift; sourceTree = "<group>"; };
+		8DE37F282561D60B00EEB876 /* CreateChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateChatViewController.swift; sourceTree = "<group>"; };
+		8DE37F292561D60B00EEB876 /* CreateChatViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateChatViewModel.swift; sourceTree = "<group>"; };
+		8DE37F2A2561D60B00EEB876 /* CreateChatViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CreateChatViewController.xib; sourceTree = "<group>"; };
 		8DF0FD92255596C200D5B225 /* DeleteTermImageRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteTermImageRequest.swift; sourceTree = "<group>"; };
 		8DF0FD952556F23100D5B225 /* FavoriteVocabularyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteVocabularyTableViewCell.swift; sourceTree = "<group>"; };
 		8DF0FD962556F23100D5B225 /* FavoriteVocabularyTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FavoriteVocabularyTableViewCell.xib; sourceTree = "<group>"; };
@@ -1302,6 +1310,7 @@
 				8D66253D252A715800991D45 /* Words */,
 				8D768CDF255D912600E8B778 /* Chats */,
 				8D768CFD255DA06300E8B778 /* Chat */,
+				8DE37F262561D5C000EEB876 /* CreateChat */,
 				8D435A73254C39F100838691 /* SearchVocabulary */,
 				8DD28C102528ADF500F59B7D /* SingUp */,
 				8DD28C0F2528ADEC00F59B7D /* SingIn */,
@@ -1564,6 +1573,17 @@
 				8DE37F16255F385B00EEB876 /* MessageInputView.xib */,
 			);
 			path = MessageInputView;
+			sourceTree = "<group>";
+		};
+		8DE37F262561D5C000EEB876 /* CreateChat */ = {
+			isa = PBXGroup;
+			children = (
+				8DE37F272561D60B00EEB876 /* CreateChatCoordinator.swift */,
+				8DE37F282561D60B00EEB876 /* CreateChatViewController.swift */,
+				8DE37F292561D60B00EEB876 /* CreateChatViewModel.swift */,
+				8DE37F2A2561D60B00EEB876 /* CreateChatViewController.xib */,
+			);
+			path = CreateChat;
 			sourceTree = "<group>";
 		};
 		8DF0FD942556F1D200D5B225 /* FavoriteVocabularyCell */ = {
@@ -1855,6 +1875,7 @@
 				8D524FE42533BA27002A6E01 /* FlashCardsViewController.xib in Resources */,
 				8DA744BC253F421200F9EC8B /* ViewAllCollectionReusableView.xib in Resources */,
 				8DF253D225471D1A001492AE /* OfflineTitleView.xib in Resources */,
+				8DE37F2E2561D60B00EEB876 /* CreateChatViewController.xib in Resources */,
 				8DF253EE2549B17C001492AE /* VocabularyListViewController.xib in Resources */,
 				8D435AB2254F45F100838691 /* VocabularyInfoView.xib in Resources */,
 				8DF25386254330A6001492AE /* MessageTableViewCell.xib in Resources */,
@@ -1968,6 +1989,7 @@
 				8D9985EF252929FF009EA144 /* VocabularyCoordinator.swift in Sources */,
 				8DD28C152528AEEF00F59B7D /* SingInViewController.swift in Sources */,
 				8D768D15255DAAAC00E8B778 /* IncomingMessageCellViewModel.swift in Sources */,
+				8DE37F2D2561D60B00EEB876 /* CreateChatViewModel.swift in Sources */,
 				8D435B2625548C2600838691 /* TextTableViewCell.swift in Sources */,
 				8DA744AE253F2EA600F9EC8B /* StudyResultCoordinator.swift in Sources */,
 				8DF253B62544A069001492AE /* BottomCardPresenter.swift in Sources */,
@@ -1995,6 +2017,7 @@
 				8D768CD3255C6FB700E8B778 /* Validator.swift in Sources */,
 				8D83EA86252BBBD1004E6098 /* TableSectionViewModel.swift in Sources */,
 				8DD745B3255AE56E00370285 /* SeachVocabularyCellFactory.swift in Sources */,
+				8DE37F2B2561D60B00EEB876 /* CreateChatCoordinator.swift in Sources */,
 				8DA744AF253F2EA600F9EC8B /* StudyResultViewController.swift in Sources */,
 				8D662543252A718400991D45 /* WordsCoordinator.swift in Sources */,
 				8DD28B85252667F600F59B7D /* AppDelegate.swift in Sources */,
@@ -2007,6 +2030,7 @@
 				8D524FDB2533816D002A6E01 /* UIBarButtonItem+Init.swift in Sources */,
 				8DF253D025471D10001492AE /* OfflineTitleView.swift in Sources */,
 				8D66255A252B0F9F00991D45 /* VocabularyCreateRequest.swift in Sources */,
+				8DE37F2C2561D60B00EEB876 /* CreateChatViewController.swift in Sources */,
 				8D94E85D253B50FC005FA4B9 /* DeleteUserImageRequest.swift in Sources */,
 				8DF2538E25434BE9001492AE /* MaterialsCoordinator.swift in Sources */,
 				8DF253E62549AFDB001492AE /* VocabularyListViewController.swift in Sources */,

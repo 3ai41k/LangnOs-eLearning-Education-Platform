@@ -10,6 +10,7 @@ import UIKit
 
 protocol ChatsCoordinatorNavigationProtocol {
     func navigateToChat(_ chat: Chat)
+    func createChat()
 }
 
 typealias ChatsCoordinatorProtocol =
@@ -43,6 +44,11 @@ final class ChatsCoordinator: Coordinator, ChatsCoordinatorProtocol  {
     func navigateToChat(_ chat: Chat) {
         let chatCoordinator = ChatCoordinator(chat: chat, parentViewController: viewController)
         chatCoordinator.start()
+    }
+    
+    func createChat() {
+        let createChatCoordinator = CreateChatCoordinator(parentViewController: viewController)
+        createChatCoordinator.start()
     }
     
 }

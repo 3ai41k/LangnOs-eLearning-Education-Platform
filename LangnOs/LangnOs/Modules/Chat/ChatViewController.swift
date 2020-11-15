@@ -70,11 +70,8 @@ final class ChatViewController: BindibleViewController<ChatViewModel> {
     }
     
     override func setupUI() {
-        let userBarButtonItem = UIBarButtonItem(image: SFSymbols.personCircle(),
-                                                style: .plain,
-                                                target: self,
-                                                action: #selector(didUserTouch))
-        navigationItem.rightBarButtonItem = userBarButtonItem
+        setupUserBarButtonItem()
+        navigationItem.largeTitleDisplayMode = .never
     }
     
     override func willMove(toParent parent: UIViewController?) {
@@ -101,6 +98,14 @@ final class ChatViewController: BindibleViewController<ChatViewModel> {
                     }
                 })
         ]
+    }
+    
+    private func setupUserBarButtonItem() {
+        let userBarButtonItem = UIBarButtonItem(image: SFSymbols.personCircle(),
+                                                style: .plain,
+                                                target: self,
+                                                action: #selector(didUserTouch))
+        navigationItem.rightBarButtonItem = userBarButtonItem
     }
     
     // MARK: - Actions
