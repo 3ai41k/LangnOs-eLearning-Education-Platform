@@ -38,6 +38,9 @@ final class ChatViewController: BindibleViewController<ChatViewModel> {
         view.returnHandler = { [weak self] (text) in
             self?.viewModel?.send(message: text)
         }
+        view.paperclipHandler = { [weak self] in
+            self?.viewModel?.sendFile()
+        }
         return view
     }()
     
@@ -66,6 +69,20 @@ final class ChatViewController: BindibleViewController<ChatViewModel> {
         }
     }
     
+    override func setupUI() {
+        let userBarButtonItem = UIBarButtonItem(image: SFSymbols.personCircle(),
+                                                style: .plain,
+                                                target: self,
+                                                action: #selector(didUserTouch))
+        navigationItem.rightBarButtonItem = userBarButtonItem
+    }
+    
+    override func willMove(toParent parent: UIViewController?) {
+        if parent == nil {
+            viewModel?.finish()
+        }
+    }
+    
     // MARK: - Private methods
     
     private func setupNotifications() {
@@ -84,6 +101,13 @@ final class ChatViewController: BindibleViewController<ChatViewModel> {
                     }
                 })
         ]
+    }
+    
+    // MARK: - Actions
+    
+    @objc
+    private func didUserTouch() {
+        viewModel?.userProfile()
     }
     
 }

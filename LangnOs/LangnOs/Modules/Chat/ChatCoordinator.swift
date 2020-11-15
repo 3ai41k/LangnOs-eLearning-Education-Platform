@@ -9,13 +9,12 @@
 import UIKit
 
 protocol ChatCoordinatorNavigationProtocol {
-    
+    func navigateToUserProfile()
+    func showImagePicker(didImageSelect: @escaping (UIImage) -> Void)
 }
 
 typealias ChatCoordinatorProtocol =
     ChatCoordinatorNavigationProtocol &
-    CoordinatorClosableProtocol &
-    ActivityPresentableProtocol &
     AlertPresentableProtocol
 
 final class ChatCoordinator: Coordinator, ChatCoordinatorProtocol  {
@@ -50,6 +49,20 @@ final class ChatCoordinator: Coordinator, ChatCoordinatorProtocol  {
         
         self.viewController = viewController
         (parentViewController as? UINavigationController)?.pushViewController(viewController, animated: true)
+    }
+    
+    // MARK: - ChatCoordinatorNavigationProtocol
+    
+    func navigateToUserProfile() {
+        let accountCoordinator = AccountCoordinator(parentViewController: parentViewController)
+        accountCoordinator.start()
+    }
+    
+    func showImagePicker(didImageSelect: @escaping (UIImage) -> Void) {
+        let imagePickerCoordinator = ImagePickerCoordinator(sourceType: .photoLibrary,
+                                                            didImageSelect: didImageSelect,
+                                                            parentViewController: viewController)
+        imagePickerCoordinator.start()
     }
     
 }

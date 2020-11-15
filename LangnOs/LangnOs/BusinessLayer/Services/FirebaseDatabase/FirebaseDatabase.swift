@@ -43,7 +43,7 @@ protocol FirebaseDatabaseUpdatingProtocol {
 }
 
 protocol FirebaseDatabaseListeningProtocol {
-    func listen<Entity: Decodable>(request: DataProviderRequestProtocol, onSuccess: @escaping (Entity) -> Void, onFailure: @escaping (Error) -> Void)
+    func listen<Entity: Decodable>(request: DataProviderRequestProtocol, onSuccess: @escaping (Entity) -> Void, onFailure: @escaping (Error) -> Void) -> ListenerRegistration
 }
 
 typealias FirebaseDatabaseProtocol =
@@ -156,10 +156,10 @@ extension FirebaseDatabase: FirebaseDatabaseUpdatingProtocol {
 
 extension FirebaseDatabase: FirebaseDatabaseListeningProtocol {
     
-    func listen<Entity: Decodable>(request: DataProviderRequestProtocol, onSuccess: @escaping (Entity) -> Void, onFailure: @escaping (Error) -> Void) {
+    func listen<Entity: Decodable>(request: DataProviderRequestProtocol, onSuccess: @escaping (Entity) -> Void, onFailure: @escaping (Error) -> Void) -> ListenerRegistration {
         let collectionReference = dataBase.collection(request.collectionPath)
         let collectionReferenceWithQuery = request.query(collectionReference) ?? collectionReference
-        collectionReferenceWithQuery.addSnapshotListener { (snapshot, error) in
+        return collectionReferenceWithQuery.addSnapshotListener { (snapshot, error) in
             if let error = error {
                 onFailure(error)
             } else {

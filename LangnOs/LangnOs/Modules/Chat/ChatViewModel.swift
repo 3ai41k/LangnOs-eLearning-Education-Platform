@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import Combine
+import FirebaseFirestore
 
 protocol ChatViewModelInputProtocol {
     var title: String { get }
@@ -15,6 +15,9 @@ protocol ChatViewModelInputProtocol {
 
 protocol ChatViewModelOutputProtocol {
     func send(message: String)
+    func userProfile()
+    func sendFile()
+    func finish()
 }
 
 protocol ChatViewModelBindingProtocol {
@@ -45,11 +48,12 @@ final class ChatViewModel: ChatViewModelProtocol {
     
     // MARK: - Private properties
     
-    // let router: ChatCoordinatorProtocol
+    private let router: ChatCoordinatorProtocol
     private let chat: Chat
     private let dataProvider: FirebaseDatabaseCreatingProtocol & FirebaseDatabaseListeningProtocol
     private let userSession: SessionInfoProtocol
     
+    private var listener: ListenerRegistration?
     private var messages: [Message] = [] {
         didSet {
             let cellViewModels: [CellViewModelProtocol] = messages.map({
@@ -70,7 +74,7 @@ final class ChatViewModel: ChatViewModelProtocol {
          chat: Chat,
          dataProvider: FirebaseDatabaseCreatingProtocol & FirebaseDatabaseListeningProtocol,
          userSession: SessionInfoProtocol) {
-        //self.router = router
+        self.router = router
         self.chat = chat
         self.dataProvider = dataProvider
         self.userSession = userSession
@@ -82,8 +86,6 @@ final class ChatViewModel: ChatViewModelProtocol {
     
     // MARK: - Public methods
     
-    // TO DO: Fix retain cycle
-    
     func send(message: String) {
         guard let userId = userSession.currentUser?.id else { return }
         
@@ -91,9 +93,29 @@ final class ChatViewModel: ChatViewModelProtocol {
         let request = CreateMessageRequest(chatId: chat.id, message: message)
         dataProvider.create(request: request, onSuccess: {
             print("Success")
-        }, onFailure: { (error) in
-            //self.router.showError(error)
-        })
+        }, onFailure: router.showError)
+    }
+    
+    func userProfile() {
+        router.navigateToUserProfile()
+    }
+    
+    func sendFile() {
+        router.showImagePicker { (image) in
+            print(image)
+        }
+    }
+    
+    //
+    // NOTE:
+    //
+    // This method is needed to remove firestore listener. If you don't do it you will retain the insnstance of this module.
+    // As you know, there is a problem with handling the back button of the navigation controller.
+    // Because of this, view(UIViewController) must notify the viewModel to remove all dependencies.
+    //
+    
+    func finish() {
+        listener?.remove()
     }
     
     // MARK: - Private methods
@@ -105,11 +127,9 @@ final class ChatViewModel: ChatViewModelProtocol {
     
     private func listenMessages() {
         let request = FetchMessagesRequest(chatId: chat.id)
-        dataProvider.listen(request: request, onSuccess: { (messages: [Message]) in
+        listener = dataProvider.listen(request: request, onSuccess: { (messages: [Message]) in
             self.messages = messages
-        }, onFailure: { (error) in
-            //self.router.showError(error)
-        })
+        }, onFailure: router.showError)
     }
     
 }
