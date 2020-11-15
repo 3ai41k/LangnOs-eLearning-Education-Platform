@@ -12,12 +12,11 @@ final class ChatTableViewCell: UITableViewCell, UniversalTableViewCellRegistrata
     
     // MARK: - IBOutlets
     
-    @IBOutlet private weak var containerView: UIView! {
-        didSet {
-            containerView.layer.cornerRadius = 20.0
-        }
-    }
-    @IBOutlet private weak var usernameLabel: UILabel!
+    @IBOutlet private weak var chatImageView: UIImageView!
+    @IBOutlet private weak var chatShortNameLabel: UILabel!
+    @IBOutlet private weak var chatNameLabel: UILabel!
+    @IBOutlet private weak var lastMessageLabel: UILabel!
+    @IBOutlet private weak var dateLabel: UILabel!
     
     // MARK: - Public properties
     
@@ -35,7 +34,8 @@ final class ChatTableViewCell: UITableViewCell, UniversalTableViewCellRegistrata
     // MARK: - Private methods
     
     private func bindViewModel() {
-        usernameLabel.text = viewModel?.name
+        chatNameLabel.text = viewModel?.name
+        chatShortNameLabel.text = viewModel?.shortName
     }
     
     // MARK: - Actions

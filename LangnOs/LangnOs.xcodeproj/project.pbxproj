@@ -231,6 +231,8 @@
 		8DE37F17255F385B00EEB876 /* MessageInputView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DE37F16255F385B00EEB876 /* MessageInputView.xib */; };
 		8DE37F19256003F300EEB876 /* UITableView+ScrollToBottom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE37F18256003F300EEB876 /* UITableView+ScrollToBottom.swift */; };
 		8DE37F1D25601A6600EEB876 /* Date+Format.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE37F1C25601A6600EEB876 /* Date+Format.swift */; };
+		8DE37F232561CD1E00EEB876 /* BorderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE37F222561CD1E00EEB876 /* BorderView.swift */; };
+		8DE37F252561D17100EEB876 /* DeleteChatRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE37F242561D17100EEB876 /* DeleteChatRequest.swift */; };
 		8DF0FD93255596C200D5B225 /* DeleteTermImageRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF0FD92255596C200D5B225 /* DeleteTermImageRequest.swift */; };
 		8DF0FD972556F23100D5B225 /* FavoriteVocabularyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF0FD952556F23100D5B225 /* FavoriteVocabularyTableViewCell.swift */; };
 		8DF0FD982556F23100D5B225 /* FavoriteVocabularyTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DF0FD962556F23100D5B225 /* FavoriteVocabularyTableViewCell.xib */; };
@@ -535,6 +537,8 @@
 		8DE37F16255F385B00EEB876 /* MessageInputView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MessageInputView.xib; sourceTree = "<group>"; };
 		8DE37F18256003F300EEB876 /* UITableView+ScrollToBottom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+ScrollToBottom.swift"; sourceTree = "<group>"; };
 		8DE37F1C25601A6600EEB876 /* Date+Format.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Format.swift"; sourceTree = "<group>"; };
+		8DE37F222561CD1E00EEB876 /* BorderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BorderView.swift; sourceTree = "<group>"; };
+		8DE37F242561D17100EEB876 /* DeleteChatRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteChatRequest.swift; sourceTree = "<group>"; };
 		8DF0FD92255596C200D5B225 /* DeleteTermImageRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteTermImageRequest.swift; sourceTree = "<group>"; };
 		8DF0FD952556F23100D5B225 /* FavoriteVocabularyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteVocabularyTableViewCell.swift; sourceTree = "<group>"; };
 		8DF0FD962556F23100D5B225 /* FavoriteVocabularyTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FavoriteVocabularyTableViewCell.xib; sourceTree = "<group>"; };
@@ -722,6 +726,7 @@
 			children = (
 				8DF0FD9D2558395200D5B225 /* AuthorizeRequest.swift */,
 				8D768CF9255D9BB900E8B778 /* FetchChatsRequest.swift */,
+				8DE37F242561D17100EEB876 /* DeleteChatRequest.swift */,
 				8D768CFB255D9D8400E8B778 /* FetchMessagesRequest.swift */,
 				8D768D16255DAF2300E8B778 /* CreateMessageRequest.swift */,
 				8DF0FDA32558464300D5B225 /* UserCreateRequest.swift */,
@@ -924,6 +929,7 @@
 				8D662535252A611900991D45 /* Score */,
 				8D662534252A610F00991D45 /* Vocabulary */,
 				8DC3CF21252C67CF003CA62A /* Input */,
+				8DE37F222561CD1E00EEB876 /* BorderView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1985,6 +1991,7 @@
 				8DF253B42544A051001492AE /* Interactor.swift in Sources */,
 				8D768CF4255D9B0700E8B778 /* Chat.swift in Sources */,
 				8D524FC72530D1D8002A6E01 /* UIButton+Drivable.swift in Sources */,
+				8DE37F232561CD1E00EEB876 /* BorderView.swift in Sources */,
 				8D768CD3255C6FB700E8B778 /* Validator.swift in Sources */,
 				8D83EA86252BBBD1004E6098 /* TableSectionViewModel.swift in Sources */,
 				8DD745B3255AE56E00370285 /* SeachVocabularyCellFactory.swift in Sources */,
@@ -2007,6 +2014,7 @@
 				8DF253C82545DDC8001492AE /* WordRepresentionCellViewModel.swift in Sources */,
 				8DAA554A252912BA00FF5066 /* VocabularyFetchRequest.swift in Sources */,
 				8DD28BB325266F6800F59B7D /* DashboardCoordinator.swift in Sources */,
+				8DE37F252561D17100EEB876 /* DeleteChatRequest.swift in Sources */,
 				8DD745B5255AE8BC00370285 /* FetchUserImageRequest.swift in Sources */,
 				8DD28BA425266B2500F59B7D /* Coordinator.swift in Sources */,
 				8DD28BDB2526864400F59B7D /* DrivableModelProtocol.swift in Sources */,

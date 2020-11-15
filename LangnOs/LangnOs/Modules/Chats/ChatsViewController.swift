@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Combine
 
 final class ChatsViewController: BindibleViewController<ChatsViewModel> {
     
@@ -31,6 +30,37 @@ final class ChatsViewController: BindibleViewController<ChatsViewModel> {
     
     override func bindViewModel() {
         navigationController?.navigationBar.topItem?.title = viewModel?.title
+    }
+    
+    override func setupUI() {
+        setupEditBarButtonItem()
+        setupCreateChatBarButtonItem()
+    }
+    
+    override func setEditing(_ editing: Bool, animated: Bool) {
+        super.setEditing(editing, animated: animated)
+        
+        tableView.setEditing(editing, animated: animated)
+    }
+    
+    // MARK: - Private methods
+    
+    private func setupEditBarButtonItem() {
+        navigationItem.leftBarButtonItem = editButtonItem
+    }
+    
+    private func setupCreateChatBarButtonItem() {
+        let createChatBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add,
+                                                      target: self,
+                                                      action: #selector(createChatTouch))
+        navigationItem.rightBarButtonItem = createChatBarButtonItem
+    }
+    
+    // MARK: - Actions
+    
+    @objc
+    private func createChatTouch() {
+        viewModel?.createChat()
     }
     
 }

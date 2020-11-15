@@ -10,6 +10,7 @@ import Foundation
 
 protocol ChatCellViewModelInputProtocol {
     var name: String { get }
+    var shortName: String { get }
 }
 
 typealias ChatCellViewModelProtocol =
@@ -22,6 +23,11 @@ final class ChatCellViewModel: ChatCellViewModelProtocol {
     
     var name: String {
         chat.name
+    }
+    
+    var shortName: String {
+        guard let firstLetter = chat.name.first else { return "" }
+        return String(firstLetter)
     }
     
     // MARK: - Private properties

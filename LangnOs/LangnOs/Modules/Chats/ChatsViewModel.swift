@@ -14,7 +14,7 @@ protocol ChatsViewModelInputProtocol {
 }
 
 protocol ChatsViewModelOutputProtocol {
-    
+    func createChat()
 }
 
 typealias ChatsViewModelProtocol =
@@ -39,7 +39,7 @@ final class ChatsViewModel: ChatsViewModelProtocol {
     // MARK: - Private properties
     
     private let router: ChatsCoordinatorProtocol
-    private let dataProvider: FirebaseDatabaseFetchingProtocol
+    private let dataProvider: FirebaseDatabaseFetchingProtocol & FirebaseDatabaseDeletingProtocol
     
     private var chats: [Chat] = [] {
         didSet {
@@ -51,7 +51,7 @@ final class ChatsViewModel: ChatsViewModelProtocol {
     // MARK: - Init
     
     init(router: ChatsCoordinatorProtocol,
-         dataProvider: FirebaseDatabaseFetchingProtocol) {
+         dataProvider: FirebaseDatabaseFetchingProtocol & FirebaseDatabaseDeletingProtocol) {
         self.router = router
         self.dataProvider = dataProvider
         
@@ -65,6 +65,18 @@ final class ChatsViewModel: ChatsViewModelProtocol {
     func didSelectCellAt(indexPath: IndexPath) {
         let chat = chats[indexPath.row]
         router.navigateToChat(chat)
+    }
+    
+    func deleteItemForRowAt(indexPath: IndexPath) {
+        let chat = chats[indexPath.row]
+        let request = DeleteChatRequest(chat: chat)
+        dataProvider.delete(request: request, onSuccess: {
+            self.chats.remove(at: indexPath.row)
+        }, onFailure: router.showError)
+    }
+    
+    func createChat() {
+        print(#function)
     }
     
     // MARK: - Private methods
