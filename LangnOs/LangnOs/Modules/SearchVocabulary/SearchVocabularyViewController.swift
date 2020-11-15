@@ -19,6 +19,7 @@ final class SearchVocabularyViewController: BindibleViewController<SearchVocabul
             tableView.cellFactory = cellFactory
             tableView.backgroundView = backgroundView
             tableView.tableFooterView = UIView()
+            tableView.animated = true
             
             tableView.start()
         }

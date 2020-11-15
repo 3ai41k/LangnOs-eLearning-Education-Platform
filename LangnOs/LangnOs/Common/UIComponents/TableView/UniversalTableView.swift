@@ -50,12 +50,18 @@ final class UniversalTableView: UITableView {
     
     // MARK: - Public properties
     
+    var animated = false
+    
     var viewModel: UniversalTableViewModelProtocol? {
         didSet {
             viewModel?.tableSections.enumerated().forEach({ index, section in
                 section.cells.sink(receiveValue: { [weak self] _ in
-                    UIView.performWithoutAnimation {
-                        self?.reloadSections([index], with: .none)
+                    if self?.animated == true {
+                        self?.reloadSections([index], with: .automatic)
+                    } else {
+                        UIView.performWithoutAnimation {
+                            self?.reloadSections([index], with: .none)
+                        }
                     }
                 }).store(in: &cancellable)
             })
