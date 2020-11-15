@@ -52,11 +52,8 @@ final class DashboardViewController: BindibleViewController<DashboardViewModelPr
     }
     
     override func setupUI() {
-        navigationController?.extendedLayoutIncludesOpaqueBars = true
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationController?.navigationBar.isTranslucent = false
-        navigationController?.navigationBar.backgroundColor = ColorUtils.app
-        navigationController?.view.backgroundColor = ColorUtils.app
     }
     
     // MARK: - Private methods

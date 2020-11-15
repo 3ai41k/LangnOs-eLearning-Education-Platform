@@ -69,8 +69,6 @@ final class MaterialsViewController: BindibleViewController<MaterialsViewModelPr
         navigationItem.hidesSearchBarWhenScrolling = false
         navigationController?.extendedLayoutIncludesOpaqueBars = true
         
-        collectionView.backgroundColor = ColorUtils.app
-        
         setupRefreshControl()
         setupBackgroundView()
     }
