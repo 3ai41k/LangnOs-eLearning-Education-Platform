@@ -13,77 +13,27 @@ final class ChatMessageCellViewModel: ChatMessageCellViewModelProtocol {
     // MARK: - Public properties
     
     var appearence: ChatMessageCellAppearenceProtocol {
-        ChatMessageAbstractFactory(currentUser: currentUser).create(message: message, type: .text)
+        if message.photoURL.isNotNil {
+            return factory.createPhotoCell(message: message)
+        } else if message.vocabularyId.isNotNil {
+            return factory.createVocabularyCell(message: message)
+        } else {
+            return factory.createTextCell(message: message)
+        }
     }
     
     // MARK: - Private properties
     
-    private let currentUser: User1
+    private let factory: ChatMessageAbstractFactoryProtocol
     private let message: Message
     
     // MARK: - Init
     
     init(currentUser: User1, message: Message) {
-        self.currentUser = currentUser
+        self.factory = currentUser.id == message.userId ?
+            IncomingMessageFactory() :
+            OutcomingMessageFactory()
         self.message = message
-    }
-    
-}
-
-enum ChatMessageType {
-    case text
-    case photo
-    case vocabulary
-}
-
-protocol ChatMessageAbstractFactoryProtocol {
-    func create(message: Message, type: ChatMessageType) -> ChatMessageCellAppearenceProtocol
-}
-
-final class IncomingMessageFactory: ChatMessageAbstractFactoryProtocol {
-    
-    func create(message: Message, type: ChatMessageType) -> ChatMessageCellAppearenceProtocol {
-        switch type {
-        case .text:
-            return IncomingMessageCellViewModel(message: message)
-        case .photo:
-            return IncomingMessageCellViewModel(message: message)
-        case .vocabulary:
-            return IncomingMessageCellViewModel(message: message)
-        }
-    }
-    
-}
-
-final class OutcomingMessageFactory: ChatMessageAbstractFactoryProtocol {
-    
-    func create(message: Message, type: ChatMessageType) -> ChatMessageCellAppearenceProtocol {
-        switch type {
-        case .text:
-            return OutcomingMessageCellViewModel(message: message)
-        case .photo:
-            return OutcomingMessageCellViewModel(message: message)
-        case .vocabulary:
-            return OutcomingMessageCellViewModel(message: message)
-        }
-    }
-    
-}
-
-final class ChatMessageAbstractFactory: ChatMessageAbstractFactoryProtocol {
-    
-    private let currentUser: User1
-    
-    init(currentUser: User1) {
-        self.currentUser = currentUser
-    }
-    
-    func create(message: Message, type: ChatMessageType) -> ChatMessageCellAppearenceProtocol {
-        if currentUser.id == message.id {
-            return IncomingMessageFactory().create(message: message, type: type)
-        } else {
-            return OutcomingMessageFactory().create(message: message, type: type)
-        }
     }
     
 }
@@ -110,10 +60,18 @@ class IncomingMessageCellViewModel: ChatMessageCellAppearenceProtocol {
         .systemGray2
     }
     
-    private let message: Message
+    var hideButton: Bool {
+        true
+    }
+    
+    internal let message: Message
     
     init(message: Message) {
         self.message = message
+    }
+    
+    func buttonTouch() {
+        
     }
     
 }
@@ -140,10 +98,54 @@ class OutcomingMessageCellViewModel: ChatMessageCellAppearenceProtocol {
         .systemGray6
     }
     
-    private let message: Message
+    var hideButton: Bool {
+        true
+    }
+    
+    internal let message: Message
     
     init(message: Message) {
         self.message = message
+    }
+    
+    func buttonTouch() {
+        
+    }
+    
+}
+
+final class PhotoIncomingMessageCellViewModel: IncomingMessageCellViewModel {
+    
+    
+    
+}
+
+final class PhotoOutcomingMessageCellViewModel: OutcomingMessageCellViewModel {
+    
+    
+    
+}
+
+final class VocabularyIncomingMessageCellViewModel: IncomingMessageCellViewModel {
+    
+    override var hideButton: Bool {
+        false
+    }
+    
+    override func buttonTouch() {
+        
+    }
+    
+}
+
+final class VocabularyOutcomingMessageCellViewModel: OutcomingMessageCellViewModel {
+    
+    override var hideButton: Bool {
+        false
+    }
+    
+    override func buttonTouch() {
+        
     }
     
 }

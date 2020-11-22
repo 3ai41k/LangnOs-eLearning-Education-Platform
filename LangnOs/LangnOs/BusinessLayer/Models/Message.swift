@@ -22,12 +22,27 @@ struct Message: Codable {
     // MARK: - Init
     
     init(userId: String, content: String) {
+        self.init(userId: userId, content: content, photoURL: nil, vocabularyId: nil)
+    }
+    
+    init(userId: String, content: String, photoURL: URL) {
+        self.init(userId: userId, content: content, photoURL: photoURL, vocabularyId: nil)
+    }
+    
+    init(userId: String, vocabulary: Vocabulary) {
+        self.init(userId: userId,
+                  content: String(format: "Title: %@\nWords: %d", vocabulary.title, vocabulary.words.count),
+                  photoURL: nil,
+                  vocabularyId: vocabulary.id)
+    }
+    
+    private init(userId: String, content: String, photoURL: URL?, vocabularyId: String?) {
         self.id = UUID().uuidString
         self.userId = userId
         self.createdDate = Date()
         self.content = content
-        self.photoURL = nil
-        self.vocabularyId = nil
+        self.photoURL = photoURL
+        self.vocabularyId = vocabularyId
     }
     
 }

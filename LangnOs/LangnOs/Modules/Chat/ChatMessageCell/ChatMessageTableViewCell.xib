@@ -19,30 +19,42 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xf2-L6-KOY">
                         <rect key="frame" x="8" y="4" width="304" height="88"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="axs-rA-sTQ">
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="Ms2-xE-nbb">
                                 <rect key="frame" x="8" y="8" width="288" height="72"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Se5-lm-rcI">
-                                        <rect key="frame" x="0.0" y="0.0" width="26.5" height="14.5"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Message" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cWh-pf-OTb">
-                                        <rect key="frame" x="0.0" y="14.5" width="69" height="57.5"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="axs-rA-sTQ">
+                                        <rect key="frame" x="0.0" y="0.0" width="218" height="72"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Se5-lm-rcI">
+                                                <rect key="frame" x="0.0" y="0.0" width="26.5" height="14.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Message" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cWh-pf-OTb">
+                                                <rect key="frame" x="0.0" y="14.5" width="69" height="57.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cqd-TZ-HGG">
+                                        <rect key="frame" x="234" y="0.0" width="54" height="72"/>
+                                        <state key="normal" title="Preview"/>
+                                        <connections>
+                                            <action selector="didPreviewTouch:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="yBC-HL-Yfb"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="axs-rA-sTQ" secondAttribute="bottom" constant="8" id="5uo-Ue-QJZ"/>
-                            <constraint firstItem="axs-rA-sTQ" firstAttribute="leading" secondItem="Xf2-L6-KOY" secondAttribute="leading" constant="8" id="8jj-cn-uLO"/>
-                            <constraint firstItem="axs-rA-sTQ" firstAttribute="top" secondItem="Xf2-L6-KOY" secondAttribute="top" constant="8" id="Xwm-F1-zQd"/>
-                            <constraint firstAttribute="trailing" secondItem="axs-rA-sTQ" secondAttribute="trailing" constant="8" id="xZb-WP-anJ"/>
+                            <constraint firstItem="Ms2-xE-nbb" firstAttribute="top" secondItem="Xf2-L6-KOY" secondAttribute="top" constant="8" id="6nq-h7-Id7"/>
+                            <constraint firstAttribute="trailing" secondItem="Ms2-xE-nbb" secondAttribute="trailing" constant="8" id="H43-yz-MeZ"/>
+                            <constraint firstItem="Ms2-xE-nbb" firstAttribute="leading" secondItem="Xf2-L6-KOY" secondAttribute="leading" constant="8" id="ajA-8c-oqy"/>
+                            <constraint firstAttribute="bottom" secondItem="Ms2-xE-nbb" secondAttribute="bottom" constant="8" id="dpd-8l-Mmo"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -61,6 +73,7 @@
                 <outlet property="containerViewTrailingConstraint" destination="iXM-Wu-NcH" id="OtU-WT-6hS"/>
                 <outlet property="dateLabel" destination="Se5-lm-rcI" id="o64-Ca-0nO"/>
                 <outlet property="messageLabel" destination="cWh-pf-OTb" id="Fcq-Ar-OYj"/>
+                <outlet property="previewButton" destination="Cqd-TZ-HGG" id="jAj-Ro-tcw"/>
                 <outlet property="stackView" destination="axs-rA-sTQ" id="hfg-6A-l4N"/>
             </connections>
             <point key="canvasLocation" x="131.8840579710145" y="149.33035714285714"/>

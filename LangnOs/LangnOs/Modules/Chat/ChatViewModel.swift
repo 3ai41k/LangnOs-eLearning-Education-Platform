@@ -57,7 +57,7 @@ final class ChatViewModel: ChatViewModelProtocol {
     private var messages: [Message] = [] {
         didSet {
             guard let currentUser = userSession.currentUser else { return }
-            let cellViewModels: [CellViewModelProtocol] = messages.map({
+            let cellViewModels = messages.map({
                 ChatMessageCellViewModel(currentUser: currentUser, message: $0)
             })
             tableSections[SectionType.messages.rawValue].cells.value = cellViewModels
@@ -98,9 +98,16 @@ final class ChatViewModel: ChatViewModelProtocol {
     }
     
     func sendFile() {
+        guard let userId = userSession.currentUser?.id else { return }
+        
         router.showActionSheet(title: nil, message: nil, actions: [
             UIAlertAction(title: "Share vocabulary", style: .default, handler: { (_) in
+                let mockVocabulary = Vocabulary(userId: userId, title: "Test", category: "Test", isPrivate: false, words: [
+                    Word(term: "Test Word 1", definition: "Test Def 1")
+                ])
                 
+                let message = Message(userId: userId, vocabulary: mockVocabulary)
+                self.messages.append(message)
             }),
             CancelAlertAction(handler: { })
         ])

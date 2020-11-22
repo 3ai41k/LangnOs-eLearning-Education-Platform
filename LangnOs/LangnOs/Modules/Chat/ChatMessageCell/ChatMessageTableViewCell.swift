@@ -28,6 +28,12 @@ protocol ChatMessageCellAppearenceProtocol {
     var alignment: ChatMessageAlignment { get }
     var backgroundColor: UIColor { get }
     var dateColor: UIColor { get }
+    var hideButton: Bool { get }
+    func buttonTouch()
+}
+
+extension ChatMessageCellAppearenceProtocol {
+    func buttonTouch() { }
 }
 
 protocol ChatMessageCellViewModelInputProtocol {
@@ -52,6 +58,7 @@ final class ChatMessageTableViewCell: UITableViewCell, UniversalTableViewCellReg
     @IBOutlet private weak var stackView: UIStackView!
     @IBOutlet private weak var messageLabel: UILabel!
     @IBOutlet private weak var dateLabel: UILabel!
+    @IBOutlet private weak var previewButton: UIButton!
     
     // MARK: - Public properties
     
@@ -69,6 +76,7 @@ final class ChatMessageTableViewCell: UITableViewCell, UniversalTableViewCellReg
         dateLabel.textColor = viewModel?.appearence.dateColor
         stackView.alignment = viewModel?.appearence.alignment.stackViewAlignment ?? .fill
         containerView.backgroundColor = viewModel?.appearence.backgroundColor
+        previewButton.isHidden = viewModel?.appearence.hideButton ?? true
         
         if viewModel?.appearence.alignment == .left {
             containerViewTrailingConstraint.isActive = false
@@ -89,6 +97,13 @@ final class ChatMessageTableViewCell: UITableViewCell, UniversalTableViewCellReg
             containerViewTrailingConstraint = containerView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8.0)
             containerViewTrailingConstraint.isActive = true
         }
+    }
+    
+    // MARK: - Actions
+    
+    @IBAction
+    private func didPreviewTouch(_ sender: Any) {
+        viewModel?.appearence.buttonTouch()
     }
     
 }
