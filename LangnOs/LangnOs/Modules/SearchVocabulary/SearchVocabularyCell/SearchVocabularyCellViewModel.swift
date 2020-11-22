@@ -42,15 +42,18 @@ final class SearchVocabularyCellViewModel: SearchVocabularyCellProtocol {
     
     private let vocabulary: Vocabulary
     private let storage: FirebaseStorageFetchingProtocol
+    private let userSession: SessionInfoProtocol
     private let saveHandler: () -> Void
     
     // MARK: - Init
     
     init(vocabulary: Vocabulary,
          storage: FirebaseStorageFetchingProtocol,
+         userSession: SessionInfoProtocol,
          saveHandler: @escaping () -> Void) {
         self.vocabulary = vocabulary
         self.storage = storage
+        self.userSession = userSession
         self.saveHandler = saveHandler
         
         self.image = .init(nil)
@@ -67,12 +70,16 @@ final class SearchVocabularyCellViewModel: SearchVocabularyCellProtocol {
     // MARK: - Private methods
     
     private func downloadUserPhoto() {
-        let request = FetchUserImageRequest(userId: vocabulary.userId)
+        guard let currentUser = userSession.currentUser, currentUser.photoURL != nil else {
+            image.value = SFSymbols.personCircle()
+            return
+        }
+        
+        let request = FetchUserImageRequest(userId: currentUser.id)
         storage.fetch(request: request, onSuccess: { (image) in
             self.image.value = image
         }) { (error) in
-            self.image.value = SFSymbols.personCircle()
-            print(error)
+            print(error.localizedDescription)
         }
     }
     

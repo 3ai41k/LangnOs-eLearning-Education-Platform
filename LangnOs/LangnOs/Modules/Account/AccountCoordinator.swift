@@ -23,9 +23,11 @@ final class AccountCoordinator: Coordinator, AccountCoordinatorProtocol {
     
     override func start() {
         let userSession = UserSession.shared
+        let dataProvider = FirebaseDatabase.shared
         let storage = UserStorage(storage: FirebaseStorage())
         let viewModel = AccountViewModel(router: self,
                                          userSession: userSession,
+                                         dataProvider: dataProvider,
                                          storage: storage)
         
         let cellFactory = VocabularySettingsCellFactory()

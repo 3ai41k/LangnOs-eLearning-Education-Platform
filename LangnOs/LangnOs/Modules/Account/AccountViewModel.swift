@@ -57,15 +57,18 @@ final class AccountViewModel: AccountViewModelProtocol {
     
     private let router: AccountCoordinatorProtocol
     private let userSession: SessionInfoProtocol & SessionLifecycleProtocol
+    private let dataProvider: FirebaseDatabaseUpdatingProtocol
     private let storage: FirebaseStorageProtocol
     
     // MARK: - Init
     
     init(router: AccountCoordinatorProtocol,
          userSession: SessionInfoProtocol & SessionLifecycleProtocol,
+         dataProvider: FirebaseDatabaseUpdatingProtocol,
          storage: FirebaseStorageProtocol) {
         self.router = router
         self.userSession = userSession
+        self.dataProvider = dataProvider
         self.storage = storage
         
         self.userPhoto = .init(nil)
@@ -92,11 +95,14 @@ final class AccountViewModel: AccountViewModelProtocol {
     // MARK: - Private methods
     
     private func downloadUserPhoto() {
-        guard let userId = userSession.currentUser?.id else { return }
+        guard let currentUser = userSession.currentUser, currentUser.photoURL != nil else {
+            userPhoto.value = SFSymbols.personCircle()
+            return
+        }
         
-        let request = FetchUserImageRequest(userId: userId)
+        let request = FetchUserImageRequest(userId: currentUser.id)
         storage.fetch(request: request, onSuccess: { (image) in
-            self.userPhoto.value = image != nil ? image : SFSymbols.personCircle()
+            self.userPhoto.value = image
         }) { (error) in
             self.userPhoto.value = SFSymbols.personCircle()
             self.router.showError(error)
@@ -140,15 +146,18 @@ final class AccountViewModel: AccountViewModelProtocol {
     // MARK: - Actions
     
     private func selectImage() {
-        guard let userId = userSession.currentUser?.id else { return }
+        guard let currentUser = userSession.currentUser else { return }
         
         router.navigateToImagePicker(sourceType: .photoLibrary) { (image) in
-            let request = UploadUserImageRequest(userId: userId, imageData: image.jpegData(compressionQuality: 0.25)!)
-            self.storage.upload(request: request, onSuccess: {
-                self.userPhoto.value = image
-            }) { (error) in
-                self.router.showError(error)
-            }
+            let request = UploadUserImageRequest(userId: currentUser.id, image: image)
+            self.storage.upload(request: request, onSuccess: { (photoURL) in
+                currentUser.photoURL = photoURL
+                let request = UpdateUserRequest(user: currentUser)
+                self.dataProvider.update(request: request, onSuccess: {
+                    self.userSession.saveChanges()
+                    self.userPhoto.value = image
+                }, onFailure: self.router.showError)
+            }, onFailure: self.router.showError)
         }
     }
     
@@ -167,7 +176,7 @@ final class AccountViewModel: AccountViewModelProtocol {
         router.showAlert(title: "Are you sure?", message: nil, actions: [
             CancelAlertAction(handler: { }),
             OkAlertAction(handler: {
-                self.userSession.finishSession()
+                self.userSession.finish()
                 self.router.close()
             })
         ])

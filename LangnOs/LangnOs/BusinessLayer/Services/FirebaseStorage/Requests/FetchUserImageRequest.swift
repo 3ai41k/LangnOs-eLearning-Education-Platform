@@ -2,7 +2,7 @@
 //  FetchUserImageRequest.swift
 //  LangnOs
 //
-//  Created by Nikita Lizogubov on 10.11.2020.
+//  Created by Nikita Lizogubov on 22.11.2020.
 //  Copyright © 2020 NL. All rights reserved.
 //
 
@@ -16,7 +16,7 @@ struct FetchUserImageRequest {
     
 }
 
-// MARK: - FirebaseFirestoreRequestProtocol
+// MARK: - FirebaseFirestoreUploadRequestProtocol
 
 extension FetchUserImageRequest: FirebaseFirestoreRequestProtocol {
     

@@ -6,7 +6,7 @@
 //  Copyright © 2020 NL. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 struct UploadTermImageRequest {
     
@@ -14,8 +14,8 @@ struct UploadTermImageRequest {
     
     let userId: String
     let vocabularyId: String
-    let imageName: String
-    let imageData: Data
+    let imageId: String
+    let image: UIImage
     
 }
 
@@ -23,12 +23,16 @@ struct UploadTermImageRequest {
 
 extension UploadTermImageRequest: FirebaseFirestoreUploadRequestProtocol {
     
-    var path: String {
-        "users/\(userId)/images/vocabularies/\(vocabularyId)/\(imageName).jpg"
+    var imageData: Data {
+        image.jpegData(compressionQuality: 0.25)!
     }
     
     var contentType: FirestoreContentType {
         .image
+    }
+    
+    var path: String {
+        "users/\(userId)/images/vocabularies/\(vocabularyId)/\(imageId).jpg"
     }
     
 }

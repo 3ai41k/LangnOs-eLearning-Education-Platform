@@ -16,7 +16,6 @@ final class VocabularyTableViewCell: UITableViewCell, UniversalTableViewCellRegi
     @IBOutlet private weak var containerView: UIView! {
         didSet {
             containerView.layer.cornerRadius = 10.0
-            containerView.setShadow(color: .black, opacity: 0.25)
         }
     }
     @IBOutlet private weak var activityIndicator: UIActivityIndicatorView!

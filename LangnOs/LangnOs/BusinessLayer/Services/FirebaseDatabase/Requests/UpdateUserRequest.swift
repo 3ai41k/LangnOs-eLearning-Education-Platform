@@ -1,14 +1,14 @@
 //
-//  UserCreateRequest.swift
+//  UpdateUserRequest.swift
 //  LangnOs
 //
-//  Created by Nikita Lizogubov on 08.11.2020.
+//  Created by Nikita Lizogubov on 22.11.2020.
 //  Copyright © 2020 NL. All rights reserved.
 //
 
 import Foundation
 
-struct UserCreateRequest {
+struct UpdateUserRequest {
     
     // MARK: - Public properties
     
@@ -18,7 +18,7 @@ struct UserCreateRequest {
 
 // MARK: - DataProviderRequestProtocol
 
-extension UserCreateRequest: DataProviderRequestProtocol {
+extension UpdateUserRequest: DataProviderRequestProtocol {
     
     var collectionPath: String {
         CollectionPath.users.rawValue
@@ -33,5 +33,3 @@ extension UserCreateRequest: DataProviderRequestProtocol {
     }
     
 }
-
-

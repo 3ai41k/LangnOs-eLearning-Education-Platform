@@ -106,16 +106,14 @@ final class CreateVocabularyViewModel: CreateVocabularyViewModelProtocol {
         
         if networkState.isReachable {
             router.showActivity()
-            uploadTermImages(userId: userId, vocabularyId: vocabulary.id) {
-                let request = VocabularyCreateRequest(vocabulary: vocabulary)
-                self.dataProvider.create(request: request, onSuccess: {
-                    try? VocabularyEntity.insert(entity: vocabulary)
-                    self.router.closeActivity()
-                    self.router.didCreateVocabulary(vocabulary)
-                }) { (error) in
-                    self.router.closeActivity()
-                    self.router.showError(error)
-                }
+            let request = VocabularyCreateRequest(vocabulary: vocabulary)
+            self.dataProvider.create(request: request, onSuccess: {
+                try? VocabularyEntity.insert(entity: vocabulary)
+                self.router.closeActivity()
+                self.router.didCreateVocabulary(vocabulary)
+            }) { (error) in
+                self.router.closeActivity()
+                self.router.showError(error)
             }
         } else {
             try? VocabularyEntity.insert(entity: vocabulary)
@@ -128,14 +126,6 @@ final class CreateVocabularyViewModel: CreateVocabularyViewModelProtocol {
     }
     
     // MARK: - Private methods
-    
-    private func uploadTermImages(userId: String, vocabularyId: String, completiom: @escaping () -> Void) {
-        let dispatchGroup = DispatchGroup()
-        tableSections[SectionType.words.rawValue].cells.value.forEach({
-            ($0 as? CreateWordCellViewModel)?.uploadImage(userId: userId, vocabularyId: vocabularyId, dispatchGroup: dispatchGroup)
-        })
-        dispatchGroup.notify(queue: .main, execute: completiom)
-    }
     
     private func getWords() -> [Word] {
         tableSections[SectionType.words.rawValue].cells.value.compactMap({
@@ -151,7 +141,7 @@ final class CreateVocabularyViewModel: CreateVocabularyViewModelProtocol {
     }
     
     private func createWordCellViewModel() -> CellViewModelProtocol {
-        let cellViewModel = CreateWordCellViewModel(storage: storage)
+        let cellViewModel = CreateWordCellViewModel()
         cellViewModel.addHandler = { [weak self] in self?.addWordRow() }
         cellViewModel.imageHandler = { [weak self] in self?.addImageToTheTerm($0) }
         return cellViewModel

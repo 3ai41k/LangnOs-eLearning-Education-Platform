@@ -116,7 +116,7 @@ extension SingInViewModel: SingInOutputProtocol {
             dataProvider.fetch(request: request, onSuccess: { (users: [User1]) in
                 guard let user = users.first else { return }
                 
-                self.userSession.starSession(with: user)
+                self.userSession.start(with: user)
                 
                 self.router.closeActivity()
                 self.router.close()

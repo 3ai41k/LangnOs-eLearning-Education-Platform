@@ -39,14 +39,9 @@ final class CreateWordCellViewModel: VocabularyCellViewModel {
     
     private(set) var word: Word
     
-    // MARK: - Private properties
-    
-    private let storage: FirebaseStorageUploadingProtocol
-    
     // MARK: - Init
     
-    init(storage: FirebaseStorageUploadingProtocol) {
-        self.storage = storage
+    init() {
         self.word = .empty
         
         super.init(headerTitle: "Term".localize, footerTitle: "Definition".localize)
@@ -60,25 +55,6 @@ final class CreateWordCellViewModel: VocabularyCellViewModel {
     
     override func setFooterValue(_ text: String) {
         word.definition = text
-    }
-    
-    // MARK: - Public methods
-    
-    func uploadImage(userId: String, vocabularyId: String, dispatchGroup: DispatchGroup) {
-        guard let image = image.value, let data = image.jpegData(compressionQuality: 0.25) else { return }
-        
-        let request = UploadTermImageRequest(userId: userId,
-                                             vocabularyId: vocabularyId,
-                                             imageName: word.term,
-                                             imageData: data)
-        
-        dispatchGroup.enter()
-        storage.upload(request: request, onSuccess: {
-            dispatchGroup.leave()
-        }) { (error) in
-            print(error.localizedDescription)
-            dispatchGroup.leave()
-        }
     }
     
     // MARK: - Actions

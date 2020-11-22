@@ -59,10 +59,14 @@ final class WordRepresentionCellViewModel: VocabularyCellViewModel {
     // MARK: - Private methods
     
     private func downloadPhoto() {
-        guard let userId = userSession.currentUser?.id else { return }
+        guard let currentUser = userSession.currentUser, currentUser.photoURL != nil else {
+            image.value = SFSymbols.personCircle()
+            return
+        }
+        
         showActivity.value = true
         
-        let request = FetchTermImageRequest(userId: userId, vocabularyId: vocabularyId, imageName: word.term)
+        let request = FetchUserImageRequest(userId: currentUser.id)
         storage.fetch(request: request, onSuccess: { (image) in
             self.showActivity.value = false
             self.image.value = image?.resized(to: CGSize(width: 256.0, height: 210.0))

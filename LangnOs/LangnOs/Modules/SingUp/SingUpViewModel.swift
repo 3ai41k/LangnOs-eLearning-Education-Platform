@@ -89,7 +89,7 @@ extension SingUpViewModel: SingInOutputProtocol {
     func done() {
         let request = UserCreateRequest(user: user)
         dataProvider.create(request: request, onSuccess: {
-            self.userSession.starSession(with: self.user)
+            self.userSession.start(with: self.user)
             self.router.close()
         }) { (error) in
             self.router.showError(error)

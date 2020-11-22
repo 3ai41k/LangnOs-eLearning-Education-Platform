@@ -56,7 +56,7 @@ final class SearchVocabularyViewModel: SearchVocabularyViewModelPrtotocol {
     private var vocabularies: [Vocabulary] = [] {
         didSet {
             let cellViewModesl = vocabularies.map({ (vocabulary) in
-                SearchVocabularyCellViewModel(vocabulary: vocabulary, storage: storage) { [weak self] in
+                SearchVocabularyCellViewModel(vocabulary: vocabulary, storage: storage, userSession: userSession) { [weak self] in
                     self?.saveVocabulary(vocabulary)
                 }
             })

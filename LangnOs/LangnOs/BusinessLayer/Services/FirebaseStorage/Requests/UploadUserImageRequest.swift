@@ -6,20 +6,24 @@
 //  Copyright © 2020 NL. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 struct UploadUserImageRequest {
     
     // MARK: - Public properties
     
     let userId: String
-    let imageData: Data
+    let image: UIImage
     
 }
 
 // MARK: - FirebaseFirestoreUploadRequestProtocol
 
 extension UploadUserImageRequest: FirebaseFirestoreUploadRequestProtocol {
+    
+    var imageData: Data {
+        image.jpegData(compressionQuality: 0.25)!
+    }
     
     var path: String {
         "users/\(userId)/images/profileImage.jpg"

@@ -56,10 +56,10 @@ extension UserStorage: FirebaseStorageFetchingProtocol {
 
 extension UserStorage: FirebaseStorageUploadingProtocol {
     
-    func upload(request: FirebaseFirestoreUploadRequestProtocol, onSuccess: @escaping () -> Void, onFailure: @escaping (Error) -> Void) {
-        storage.upload(request: request, onSuccess: {
+    func upload(request: FirebaseFirestoreUploadRequestProtocol, onSuccess: @escaping (URL?) -> Void, onFailure: @escaping (Error) -> Void) {
+        storage.upload(request: request, onSuccess: { (photoURL) in
             self.userDefaults.set(request.imageData, forKey: UserDefaultsKey.userImage.rawValue)
-            onSuccess()
+            onSuccess(photoURL)
         }, onFailure: onFailure)
     }
     

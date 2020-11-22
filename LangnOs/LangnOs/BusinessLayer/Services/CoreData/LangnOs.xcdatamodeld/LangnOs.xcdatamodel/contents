@@ -17,10 +17,12 @@
     </entity>
     <entity name="WordEntity" representedClassName=".WordEntity" syncable="YES" codeGenerationType="category">
         <attribute name="definition" attributeType="String"/>
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="photoURL" optional="YES" attributeType="URI"/>
         <attribute name="term" attributeType="String"/>
     </entity>
     <elements>
         <element name="VocabularyEntity" positionX="-45" positionY="0" width="128" height="238"/>
-        <element name="WordEntity" positionX="-258.03125" positionY="148.203125" width="128" height="73"/>
+        <element name="WordEntity" positionX="-258.03125" positionY="148.203125" width="128" height="103"/>
     </elements>
 </model>

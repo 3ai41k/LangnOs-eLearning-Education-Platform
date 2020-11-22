@@ -14,8 +14,9 @@ protocol SessionInfoProtocol {
 }
 
 protocol SessionLifecycleProtocol {
-    func starSession(with user: User1)
-    func finishSession()
+    func start(with user: User1)
+    func saveChanges()
+    func finish()
 }
 
 enum SessionState {
@@ -23,8 +24,8 @@ enum SessionState {
     case finish
 }
 
-protocol SessionSatePublisherProtocol {
-    var sessionSatePublisher: AnyPublisher<SessionState, Never> { get }
+protocol SessionStateProtocol {
+    var sessionState: AnyPublisher<SessionState, Never> { get }
 }
 
 final class UserSession: SessionInfoProtocol {
@@ -33,17 +34,11 @@ final class UserSession: SessionInfoProtocol {
     
     static let shared = UserSession()
     
-    private(set) var currentUser: User1? {
-        didSet {
-            currentUser != nil ?
-                sessionStateeSubject.send(.start) :
-                sessionStateeSubject.send(.finish)
-        }
-    }
+    private(set) var currentUser: User1?
     
     // MARK: - Private properties
     
-    private var coreDataStack: CoreDataStack {
+    private var coreDataStack: CoreDataClearableProtocol {
         CoreDataStack.shared
     }
     
@@ -66,6 +61,7 @@ final class UserSession: SessionInfoProtocol {
         if let data = userDefaults.data(forKey: UserDefaultsKey.user.rawValue) {
             do {
                 currentUser = try JSONDecoder().decode(User1.self, from: data)
+                sessionStateeSubject.send(.start)
             } catch {
                 print(self, "decoding error: ", error.localizedDescription)
             }
@@ -78,29 +74,42 @@ final class UserSession: SessionInfoProtocol {
 
 extension UserSession: SessionLifecycleProtocol {
     
-    func starSession(with user: User1) {
+    func start(with user: User1) {
         do {
             let data = try JSONEncoder().encode(user)
             userDefaults.set(data, forKey: UserDefaultsKey.user.rawValue)
             currentUser = user
+            sessionStateeSubject.send(.start)
         } catch {
             print(self, "encoding error: ", error.localizedDescription)
         }
     }
     
-    func finishSession() {
+    func saveChanges() {
+        guard let currentUser = currentUser else { return }
+        do {
+            let data = try JSONEncoder().encode(currentUser)
+            userDefaults.set(data, forKey: UserDefaultsKey.user.rawValue)
+        } catch {
+            print(self, "encoding error: ", error.localizedDescription)
+        }
+    }
+    
+    func finish() {
         userDefaults.removeObject(forKey: UserDefaultsKey.user.rawValue)
         userDefaults.removeObject(forKey: UserDefaultsKey.userImage.rawValue)
+        coreDataStack.clear()
         currentUser = nil
+        sessionStateeSubject.send(.finish)
     }
     
 }
 
-// MARK: - SessionSatePublisherProtocol
+// MARK: - SessionStateProtocol
 
-extension UserSession: SessionSatePublisherProtocol {
+extension UserSession: SessionStateProtocol {
     
-    var sessionSatePublisher: AnyPublisher<SessionState, Never> {
+    var sessionState: AnyPublisher<SessionState, Never> {
         sessionStateeSubject.eraseToAnyPublisher()
     }
     

@@ -79,7 +79,7 @@ final class DashboardViewModel: DashboardViewModelProtocol {
     // MARK: - Private properties
     
     private let router: DashboardCoordinatorProtocol
-    private let userSession: SessionInfoProtocol & SessionSatePublisherProtocol
+    private let userSession: SessionInfoProtocol & SessionStateProtocol
     private let dataProvider: FirebaseDatabaseFetchingProtocol
     private let storage: FirebaseStorageFetchingProtocol
     private let networkState: InternetConnectableProtocol
@@ -97,7 +97,7 @@ final class DashboardViewModel: DashboardViewModelProtocol {
     // MARK: - Init
     
     init(router: DashboardCoordinatorProtocol,
-         userSession: SessionInfoProtocol & SessionSatePublisherProtocol,
+         userSession: SessionInfoProtocol & SessionStateProtocol,
          dataProvider: FirebaseDatabaseFetchingProtocol,
          storage: FirebaseStorageFetchingProtocol,
          networkState: InternetConnectableProtocol) {
@@ -146,7 +146,7 @@ final class DashboardViewModel: DashboardViewModelProtocol {
     // MARK: - Private methods
     
     private func bindUserSession() {
-        userSession.sessionSatePublisher.sink { [weak self] (state) in
+        userSession.sessionState.sink { [weak self] (state) in
             switch state {
             case .start, .finish:
                 self?.updateUserPhoto()
@@ -166,18 +166,15 @@ final class DashboardViewModel: DashboardViewModelProtocol {
     }
     
     private func updateUserPhoto() {
-        guard let userId = userSession.currentUser?.id else {
+        guard let currentUser = userSession.currentUser, currentUser.photoURL != nil else {
             userImage.value = SFSymbols.personCircle()
             return
         }
         
-        let request = FetchUserImageRequest(userId: userId)
+        let request = FetchUserImageRequest(userId: currentUser.id)
         storage.fetch(request: request, onSuccess: { (image) in
-            self.userImage.value = image != nil ? image : SFSymbols.personCircle()
-        }) { (error) in
-            self.userImage.value = SFSymbols.personCircle()
-            self.router.showError(error)
-        }
+            self.userImage.value = image
+        }, onFailure: router.showError)
     }
     
     private func fetchFavoriteVocabulary() {
