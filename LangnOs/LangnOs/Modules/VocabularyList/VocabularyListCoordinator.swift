@@ -18,7 +18,6 @@ typealias VocabularyListCoordinatorProtocol =
     CoordinatorClosableProtocol &
     ActivityPresentableProtocol &
     AlertPresentableProtocol
-    
 
 final class VocabularyListCoordinator: Coordinator, VocabularyListCoordinatorProtocol  {
     

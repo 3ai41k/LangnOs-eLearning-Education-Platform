@@ -22,12 +22,16 @@ enum ChatMessageAlignment {
     }
 }
 
-protocol ChatMessageCellViewModelInputProtocol {
+protocol ChatMessageCellAppearenceProtocol {
     var content: String { get }
     var date: String { get }
     var alignment: ChatMessageAlignment { get }
     var backgroundColor: UIColor { get }
     var dateColor: UIColor { get }
+}
+
+protocol ChatMessageCellViewModelInputProtocol {
+    var appearence: ChatMessageCellAppearenceProtocol { get }
 }
 
 typealias ChatMessageCellViewModelProtocol =
@@ -60,13 +64,13 @@ final class ChatMessageTableViewCell: UITableViewCell, UniversalTableViewCellReg
     // MARK: - Private methods
     
     private func bindViewModel() {
-        messageLabel.text = viewModel?.content
-        dateLabel.text = viewModel?.date
-        dateLabel.textColor = viewModel?.dateColor
-        stackView.alignment = viewModel?.alignment.stackViewAlignment ?? .fill
-        containerView.backgroundColor = viewModel?.backgroundColor
+        messageLabel.text = viewModel?.appearence.content
+        dateLabel.text = viewModel?.appearence.date
+        dateLabel.textColor = viewModel?.appearence.dateColor
+        stackView.alignment = viewModel?.appearence.alignment.stackViewAlignment ?? .fill
+        containerView.backgroundColor = viewModel?.appearence.backgroundColor
         
-        if viewModel?.alignment == .left {
+        if viewModel?.appearence.alignment == .left {
             containerViewTrailingConstraint.isActive = false
             containerViewTrailingConstraint = containerView.trailingAnchor.constraint(lessThanOrEqualTo: contentView.trailingAnchor, constant: -8.0)
             containerViewTrailingConstraint.isActive = true
@@ -76,7 +80,7 @@ final class ChatMessageTableViewCell: UITableViewCell, UniversalTableViewCellReg
             containerViewLeadingConstraint.isActive = true
         }
         
-        if viewModel?.alignment == .right {
+        if viewModel?.appearence.alignment == .right {
             containerViewLeadingConstraint.isActive = false
             containerViewLeadingConstraint = containerView.leadingAnchor.constraint(greaterThanOrEqualTo: contentView.leadingAnchor, constant: 8.0)
             containerViewLeadingConstraint.isActive = true

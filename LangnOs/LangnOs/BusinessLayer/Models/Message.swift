@@ -16,6 +16,8 @@ struct Message: Codable {
     let userId: String
     let createdDate: Date
     let content: String
+    let photoURL: URL?
+    let vocabularyId: String?
     
     // MARK: - Init
     
@@ -24,6 +26,8 @@ struct Message: Codable {
         self.userId = userId
         self.createdDate = Date()
         self.content = content
+        self.photoURL = nil
+        self.vocabularyId = nil
     }
     
 }

@@ -12,7 +12,7 @@ final class ChatCellFactory: UniversalTableViewCellFactoryProtocol {
     
     var cellTypes: [UniversalTableViewCellRegistratable.Type] {
         [
-            ChatMessageTableViewCell.self,
+            ChatMessageTableViewCell.self
         ]
     }
     

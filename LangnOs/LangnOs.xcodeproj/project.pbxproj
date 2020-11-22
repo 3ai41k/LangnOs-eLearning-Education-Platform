@@ -42,6 +42,9 @@
 		8D435B2D25549DB500838691 /* UploadTermImageRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D435B2C25549DB500838691 /* UploadTermImageRequest.swift */; };
 		8D49648F256AAB5B0009B6EC /* UpdateUserRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D49648E256AAB5B0009B6EC /* UpdateUserRequest.swift */; };
 		8D496493256AB0840009B6EC /* FetchUserImageRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D496492256AB0840009B6EC /* FetchUserImageRequest.swift */; };
+		8D49649A256ACAC80009B6EC /* VocabularyMessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D496498256ACAC80009B6EC /* VocabularyMessageTableViewCell.swift */; };
+		8D49649B256ACAC80009B6EC /* VocabularyMessageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D496499256ACAC80009B6EC /* VocabularyMessageTableViewCell.xib */; };
+		8D49649D256ACB090009B6EC /* VocabularyMessageCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D49649C256ACB090009B6EC /* VocabularyMessageCellViewModel.swift */; };
 		8D524F5D252E5AAA002A6E01 /* SearchBarCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D524F5B252E5AAA002A6E01 /* SearchBarCollectionReusableView.swift */; };
 		8D524F5E252E5AAA002A6E01 /* SearchBarCollectionReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D524F5C252E5AAA002A6E01 /* SearchBarCollectionReusableView.xib */; };
 		8D524F60252E5AE5002A6E01 /* SearchBarCollectionReusableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D524F5F252E5AE5002A6E01 /* SearchBarCollectionReusableViewModel.swift */; };
@@ -119,8 +122,7 @@
 		8D768D09255DA3DA00E8B778 /* ChatCellFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D768D08255DA3DA00E8B778 /* ChatCellFactory.swift */; };
 		8D768D10255DA45600E8B778 /* ChatMessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D768D0E255DA45600E8B778 /* ChatMessageTableViewCell.swift */; };
 		8D768D11255DA45600E8B778 /* ChatMessageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D768D0F255DA45600E8B778 /* ChatMessageTableViewCell.xib */; };
-		8D768D13255DA51B00E8B778 /* OutcomingMessageCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D768D12255DA51B00E8B778 /* OutcomingMessageCellViewModel.swift */; };
-		8D768D15255DAAAC00E8B778 /* IncomingMessageCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D768D14255DAAAC00E8B778 /* IncomingMessageCellViewModel.swift */; };
+		8D768D13255DA51B00E8B778 /* ChatMessageCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D768D12255DA51B00E8B778 /* ChatMessageCellViewModel.swift */; };
 		8D768D17255DAF2300E8B778 /* CreateMessageRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D768D16255DAF2300E8B778 /* CreateMessageRequest.swift */; };
 		8D83EA65252B8BB7004E6098 /* VocabularyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D83EA63252B8BB7004E6098 /* VocabularyTableViewCell.swift */; };
 		8D83EA66252B8BB7004E6098 /* VocabularyTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D83EA64252B8BB7004E6098 /* VocabularyTableViewCell.xib */; };
@@ -350,6 +352,9 @@
 		8D435B2C25549DB500838691 /* UploadTermImageRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadTermImageRequest.swift; sourceTree = "<group>"; };
 		8D49648E256AAB5B0009B6EC /* UpdateUserRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateUserRequest.swift; sourceTree = "<group>"; };
 		8D496492256AB0840009B6EC /* FetchUserImageRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchUserImageRequest.swift; sourceTree = "<group>"; };
+		8D496498256ACAC80009B6EC /* VocabularyMessageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabularyMessageTableViewCell.swift; sourceTree = "<group>"; };
+		8D496499256ACAC80009B6EC /* VocabularyMessageTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VocabularyMessageTableViewCell.xib; sourceTree = "<group>"; };
+		8D49649C256ACB090009B6EC /* VocabularyMessageCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabularyMessageCellViewModel.swift; sourceTree = "<group>"; };
 		8D524F5B252E5AAA002A6E01 /* SearchBarCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarCollectionReusableView.swift; sourceTree = "<group>"; };
 		8D524F5C252E5AAA002A6E01 /* SearchBarCollectionReusableView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchBarCollectionReusableView.xib; sourceTree = "<group>"; };
 		8D524F5F252E5AE5002A6E01 /* SearchBarCollectionReusableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarCollectionReusableViewModel.swift; sourceTree = "<group>"; };
@@ -427,8 +432,7 @@
 		8D768D08255DA3DA00E8B778 /* ChatCellFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatCellFactory.swift; sourceTree = "<group>"; };
 		8D768D0E255DA45600E8B778 /* ChatMessageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMessageTableViewCell.swift; sourceTree = "<group>"; };
 		8D768D0F255DA45600E8B778 /* ChatMessageTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChatMessageTableViewCell.xib; sourceTree = "<group>"; };
-		8D768D12255DA51B00E8B778 /* OutcomingMessageCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutcomingMessageCellViewModel.swift; sourceTree = "<group>"; };
-		8D768D14255DAAAC00E8B778 /* IncomingMessageCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncomingMessageCellViewModel.swift; sourceTree = "<group>"; };
+		8D768D12255DA51B00E8B778 /* ChatMessageCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMessageCellViewModel.swift; sourceTree = "<group>"; };
 		8D768D16255DAF2300E8B778 /* CreateMessageRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateMessageRequest.swift; sourceTree = "<group>"; };
 		8D83EA63252B8BB7004E6098 /* VocabularyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabularyTableViewCell.swift; sourceTree = "<group>"; };
 		8D83EA64252B8BB7004E6098 /* VocabularyTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VocabularyTableViewCell.xib; sourceTree = "<group>"; };
@@ -826,6 +830,16 @@
 			path = TextCell;
 			sourceTree = "<group>";
 		};
+		8D496497256ACAAA0009B6EC /* VocabularyMessageCell */ = {
+			isa = PBXGroup;
+			children = (
+				8D496498256ACAC80009B6EC /* VocabularyMessageTableViewCell.swift */,
+				8D49649C256ACB090009B6EC /* VocabularyMessageCellViewModel.swift */,
+				8D496499256ACAC80009B6EC /* VocabularyMessageTableViewCell.xib */,
+			);
+			path = VocabularyMessageCell;
+			sourceTree = "<group>";
+		};
 		8D524F58252E52A0002A6E01 /* ReusableViews */ = {
 			isa = PBXGroup;
 			children = (
@@ -1060,6 +1074,7 @@
 			children = (
 				8DE37F11255F2F1C00EEB876 /* ChatAccessoryView */,
 				8D768D07255DA3BB00E8B778 /* ChatMessageCell */,
+				8D496497256ACAAA0009B6EC /* VocabularyMessageCell */,
 				8D768CFE255DA08100E8B778 /* ChatCoordinator.swift */,
 				8D768CFF255DA08100E8B778 /* ChatViewController.swift */,
 				8D768D00255DA08100E8B778 /* ChatViewModel.swift */,
@@ -1073,8 +1088,7 @@
 			isa = PBXGroup;
 			children = (
 				8D768D0E255DA45600E8B778 /* ChatMessageTableViewCell.swift */,
-				8D768D12255DA51B00E8B778 /* OutcomingMessageCellViewModel.swift */,
-				8D768D14255DAAAC00E8B778 /* IncomingMessageCellViewModel.swift */,
+				8D768D12255DA51B00E8B778 /* ChatMessageCellViewModel.swift */,
 				8D768D0F255DA45600E8B778 /* ChatMessageTableViewCell.xib */,
 			);
 			path = ChatMessageCell;
@@ -1712,8 +1726,8 @@
 			children = (
 				8DF253F12549B320001492AE /* AddToFavoriteCell */,
 				8DF253E12549AFDB001492AE /* VocabularyListCoordinator.swift */,
-				8DF253E22549AFDB001492AE /* VocabularyListViewController.swift */,
 				8DF253E32549AFDB001492AE /* VocabularyListViewModel.swift */,
+				8DF253E22549AFDB001492AE /* VocabularyListViewController.swift */,
 				8DF253EC2549B17C001492AE /* VocabularyListViewController.xib */,
 				8DF253FA2549B46D001492AE /* VocabularyListCellFactory.swift */,
 			);
@@ -1895,6 +1909,7 @@
 				8D435A96254DFBC300838691 /* CoursesViewController.xib in Resources */,
 				8D524FA4252F86D1002A6E01 /* UserImageView.xib in Resources */,
 				8DC3CF27252C680C003CA62A /* InputView.xib in Resources */,
+				8D49649B256ACAC80009B6EC /* VocabularyMessageTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1980,6 +1995,7 @@
 				8D435AC1254F534E00838691 /* VocabularyCategoryCoordinator.swift in Sources */,
 				8DF253B02544838D001492AE /* VocabularySettingsViewController.swift in Sources */,
 				8DF25388254330B6001492AE /* MessageCellViewModel.swift in Sources */,
+				8D49649A256ACAC80009B6EC /* VocabularyMessageTableViewCell.swift in Sources */,
 				8DE37F19256003F300EEB876 /* UITableView+ScrollToBottom.swift in Sources */,
 				8D524F9F252F83D2002A6E01 /* AccountViewModel.swift in Sources */,
 				8DF253FD2549B4B2001492AE /* AddToFavoriteCellViewModel.swift in Sources */,
@@ -1988,7 +2004,6 @@
 				8D94E7E025362FE5005FA4B9 /* NoResulsView.swift in Sources */,
 				8D9985EF252929FF009EA144 /* VocabularyCoordinator.swift in Sources */,
 				8DD28C152528AEEF00F59B7D /* SingInViewController.swift in Sources */,
-				8D768D15255DAAAC00E8B778 /* IncomingMessageCellViewModel.swift in Sources */,
 				8DE37F2D2561D60B00EEB876 /* CreateChatViewModel.swift in Sources */,
 				8D435B2625548C2600838691 /* TextTableViewCell.swift in Sources */,
 				8DA744AE253F2EA600F9EC8B /* StudyResultCoordinator.swift in Sources */,
@@ -2039,6 +2054,7 @@
 				8DAA554A252912BA00FF5066 /* VocabularyFetchRequest.swift in Sources */,
 				8DD28BB325266F6800F59B7D /* DashboardCoordinator.swift in Sources */,
 				8DE37F252561D17100EEB876 /* DeleteChatRequest.swift in Sources */,
+				8D49649D256ACB090009B6EC /* VocabularyMessageCellViewModel.swift in Sources */,
 				8DD28BA425266B2500F59B7D /* Coordinator.swift in Sources */,
 				8DD28BDB2526864400F59B7D /* DrivableModelProtocol.swift in Sources */,
 				8D435A8C254C7CC500838691 /* Array+Empty.swift in Sources */,
@@ -2185,7 +2201,7 @@
 				8DA744C025409A5100F9EC8B /* VocabularyFilter.swift in Sources */,
 				8DF253E72549AFDB001492AE /* VocabularyListViewModel.swift in Sources */,
 				8DF253F42549B396001492AE /* AddToFavoriteTableViewCell.swift in Sources */,
-				8D768D13255DA51B00E8B778 /* OutcomingMessageCellViewModel.swift in Sources */,
+				8D768D13255DA51B00E8B778 /* ChatMessageCellViewModel.swift in Sources */,
 				8D662533252A610B00991D45 /* ScoreView.swift in Sources */,
 				8D435ACB255065A500838691 /* DataSynchronizer.swift in Sources */,
 				8DF2538125432B62001492AE /* SFSymbols.swift in Sources */,

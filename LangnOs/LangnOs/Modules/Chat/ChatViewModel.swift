@@ -56,12 +56,9 @@ final class ChatViewModel: ChatViewModelProtocol {
     private var listener: ListenerRegistration?
     private var messages: [Message] = [] {
         didSet {
+            guard let currentUser = userSession.currentUser else { return }
             let cellViewModels: [CellViewModelProtocol] = messages.map({
-                if $0.userId == self.userSession.currentUser?.id {
-                    return OutcomingMessageCellViewModel(message: $0)
-                } else {
-                    return IncomingMessageCellViewModel(message: $0)
-                }
+                ChatMessageCellViewModel(currentUser: currentUser, message: $0)
             })
             tableSections[SectionType.messages.rawValue].cells.value = cellViewModels
             scrollToBottom?()
@@ -101,9 +98,12 @@ final class ChatViewModel: ChatViewModelProtocol {
     }
     
     func sendFile() {
-        router.showImagePicker { (image) in
-            print(image)
-        }
+        router.showActionSheet(title: nil, message: nil, actions: [
+            UIAlertAction(title: "Share vocabulary", style: .default, handler: { (_) in
+                
+            }),
+            CancelAlertAction(handler: { })
+        ])
     }
     
     //
